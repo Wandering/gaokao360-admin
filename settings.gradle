@@ -1,0 +1,7 @@
+include 'gaokao360-domain'
+
+include 'gaokao360-api'
+
+include 'gaokao360-service'
+
+include 'gaokao360-admin-war'
