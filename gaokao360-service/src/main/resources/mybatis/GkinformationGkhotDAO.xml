@@ -1,0 +1,746 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.thinkjoy.gaokao360.dao.IGkinformationGkhotDAO">
+<!--
+insert
+update
+updateNull
+deleteById
+deleteByCondition
+deleteByProperty
+fetch
+findOne
+findList
+findAll
+queryPage
+like
+queryList
+queryOne
+count
+selectMaxId
+updateOrSave
+selectOne
+selectList
+-->
+
+    <sql id="Base_Column_List">
+        id as id ,
+        status as status ,
+        creator as creator ,
+        createDate as createDate ,
+        lastModifier as lastModifier ,
+        lastModDate as lastModDate ,
+        hotInformation as hotInformation ,
+        informationSubContent as informationSubContent ,
+        informationContent as informationContent ,
+        hotCount as hotCount ,
+        areaId as areaId 
+    </sql>
+    <insert id="insert" parameterType="GkinformationGkhot">
+        INSERT INTO gk_gkinformation_gkhot (
+        status,
+        creator,
+        createDate,
+        lastModifier,
+        lastModDate,
+        hotInformation,
+        informationSubContent,
+        informationContent,
+        hotCount,
+        areaId
+        ) VALUES (
+        #{status},
+        #{creator},
+        #{createDate},
+        #{lastModifier},
+        #{lastModDate},
+        #{hotInformation},
+        #{informationSubContent},
+        #{informationContent},
+        #{hotCount},
+        #{areaId}
+        )
+            <selectKey resultType="java.lang.Long" keyProperty="id">
+                SELECT LAST_INSERT_ID() AS ID
+            </selectKey>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="GkinformationGkhot">
+        UPDATE gk_gkinformation_gkhot
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="status!=null">
+                status = #{status},
+            </if>
+            <if test="creator!=null">
+                creator = #{creator},
+            </if>
+            <if test="createDate!=null">
+                createDate = #{createDate},
+            </if>
+            <if test="lastModifier!=null">
+                lastModifier = #{lastModifier},
+            </if>
+            <if test="lastModDate!=null">
+                lastModDate = #{lastModDate},
+            </if>
+            <if test="hotInformation!=null">
+                hotInformation = #{hotInformation},
+            </if>
+            <if test="informationSubContent!=null">
+                informationSubContent = #{informationSubContent},
+            </if>
+            <if test="informationContent!=null">
+                informationContent = #{informationContent},
+            </if>
+            <if test="hotCount!=null">
+                hotCount = #{hotCount},
+            </if>
+            <if test="areaId!=null">
+                areaId = #{areaId},
+            </if>
+        </trim>
+        WHERE
+        id = #{id}
+    </update>
+
+    <update id="updateMap">
+        UPDATE gk_gkinformation_gkhot
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="map.status!=null">
+                status = #{map.status},
+            </if>
+            <if test="map.creator!=null">
+                creator = #{map.creator},
+            </if>
+            <if test="map.createDate!=null">
+                createDate = #{map.createDate},
+            </if>
+            <if test="map.lastModifier!=null">
+                lastModifier = #{map.lastModifier},
+            </if>
+            <if test="map.lastModDate!=null">
+                lastModDate = #{map.lastModDate},
+            </if>
+            <if test="map.hotInformation!=null">
+                hotInformation = #{map.hotInformation},
+            </if>
+            <if test="map.informationSubContent!=null">
+                informationSubContent = #{map.informationSubContent},
+            </if>
+            <if test="map.informationContent!=null">
+                informationContent = #{map.informationContent},
+            </if>
+            <if test="map.hotCount!=null">
+                hotCount = #{map.hotCount},
+            </if>
+            <if test="map.areaId!=null">
+                areaId = #{map.areaId},
+            </if>
+        </trim>
+        WHERE
+        id = #{map.id}
+    </update>
+
+    <update id="updateByCondition">
+        UPDATE gk_gkinformation_gkhot
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="update.status!=null">
+                status = #{update.status},
+            </if>
+            <if test="update.creator!=null">
+                creator = #{update.creator},
+            </if>
+            <if test="update.createDate!=null">
+                createDate = #{update.createDate},
+            </if>
+            <if test="update.lastModifier!=null">
+                lastModifier = #{update.lastModifier},
+            </if>
+            <if test="update.lastModDate!=null">
+                lastModDate = #{update.lastModDate},
+            </if>
+            <if test="update.hotInformation!=null">
+                hotInformation = #{update.hotInformation},
+            </if>
+            <if test="update.informationSubContent!=null">
+                informationSubContent = #{update.informationSubContent},
+            </if>
+            <if test="update.informationContent!=null">
+                informationContent = #{update.informationContent},
+            </if>
+            <if test="update.hotCount!=null">
+                hotCount = #{update.hotCount},
+            </if>
+            <if test="update.areaId!=null">
+                areaId = #{update.areaId},
+            </if>
+        </trim>
+
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.status!=null">
+                AND status = #{condition.status}
+            </if>
+            <if test="condition.creator!=null">
+                AND creator = #{condition.creator}
+            </if>
+            <if test="condition.createDate!=null">
+                AND createDate = #{condition.createDate}
+            </if>
+            <if test="condition.lastModifier!=null">
+                AND lastModifier = #{condition.lastModifier}
+            </if>
+            <if test="condition.lastModDate!=null">
+                AND lastModDate = #{condition.lastModDate}
+            </if>
+            <if test="condition.hotInformation!=null">
+                AND hotInformation = #{condition.hotInformation}
+            </if>
+            <if test="condition.informationSubContent!=null">
+                AND informationSubContent = #{condition.informationSubContent}
+            </if>
+            <if test="condition.informationContent!=null">
+                AND informationContent = #{condition.informationContent}
+            </if>
+            <if test="condition.hotCount!=null">
+                AND hotCount = #{condition.hotCount}
+            </if>
+            <if test="condition.areaId!=null">
+                AND areaId = #{condition.areaId}
+            </if>
+        </trim>
+    </update>
+
+    <insert id="insertMap" >
+        INSERT INTO gk_gkinformation_gkhot (
+                status,
+                creator,
+                createDate,
+                lastModifier,
+                lastModDate,
+                hotInformation,
+                informationSubContent,
+                informationContent,
+                hotCount,
+                areaId
+        ) VALUES (
+                    #{map.status},
+                    #{map.creator},
+                    #{map.createDate},
+                    #{map.lastModifier},
+                    #{map.lastModDate},
+                    #{map.hotInformation},
+                    #{map.informationSubContent},
+                    #{map.informationContent},
+                    #{map.hotCount},
+                    #{map.areaId}
+        )
+    </insert>
+
+
+    <update id="updateNull" parameterType="GkinformationGkhot">
+        UPDATE gk_gkinformation_gkhot
+        <trim prefix="SET" suffixOverrides=",">
+            status = #{status},
+            creator = #{creator},
+            createDate = #{createDate},
+            lastModifier = #{lastModifier},
+            lastModDate = #{lastModDate},
+            hotInformation = #{hotInformation},
+            informationSubContent = #{informationSubContent},
+            informationContent = #{informationContent},
+            hotCount = #{hotCount},
+            areaId = #{areaId},
+        </trim>
+        WHERE
+        id = #{id} 
+    </update>
+
+    <!-- 按Id删除 -->
+    <delete id="deleteById" parameterType="java.lang.Long">
+        DELETE FROM gk_gkinformation_gkhot
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+    </delete>
+
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        DELETE FROM gk_gkinformation_gkhot
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="id!=null">
+                AND id = #{id}
+            </if>
+            <if test="status!=null">
+                AND status = #{status}
+            </if>
+            <if test="creator!=null">
+                AND creator = #{creator}
+            </if>
+            <if test="createDate!=null">
+                AND createDate = #{createDate}
+            </if>
+            <if test="lastModifier!=null">
+                AND lastModifier = #{lastModifier}
+            </if>
+            <if test="lastModDate!=null">
+                AND lastModDate = #{lastModDate}
+            </if>
+            <if test="hotInformation!=null">
+                AND hotInformation = #{hotInformation}
+            </if>
+            <if test="informationSubContent!=null">
+                AND informationSubContent = #{informationSubContent}
+            </if>
+            <if test="informationContent!=null">
+                AND informationContent = #{informationContent}
+            </if>
+            <if test="hotCount!=null">
+                AND hotCount = #{hotCount}
+            </if>
+            <if test="areaId!=null">
+                AND areaId = #{areaId}
+            </if>
+        </trim>
+    </delete>
+
+    <delete id="deleteByProperty" parameterType="java.util.Map">
+        DELETE FROM gk_gkinformation_gkhot WHERE
+        ${property} = #{value}
+    </delete>
+
+    <select id="fetch" parameterType="java.lang.Long" resultType="GkinformationGkhot">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM gk_gkinformation_gkhot
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+    </select>
+
+    <select id="findOne" parameterType="java.util.Map" resultType="GkinformationGkhot">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM gk_gkinformation_gkhot WHERE
+        ${property} = #{value}
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+        LIMIT 0,1
+    </select>
+
+    <select id="findList" parameterType="java.util.Map" resultType="GkinformationGkhot">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM gk_gkinformation_gkhot WHERE
+        ${property} = #{value}
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="findAll" resultType="GkinformationGkhot">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM gk_gkinformation_gkhot
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryPage" resultType="GkinformationGkhot">
+        SELECT
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                        <if test="selector.id!=null">
+                            , id
+                        </if>
+                        <if test="selector.status!=null">
+                            , status
+                        </if>
+                        <if test="selector.creator!=null">
+                            , creator
+                        </if>
+                        <if test="selector.createDate!=null">
+                            , createDate
+                        </if>
+                        <if test="selector.lastModifier!=null">
+                            , lastModifier
+                        </if>
+                        <if test="selector.lastModDate!=null">
+                            , lastModDate
+                        </if>
+                        <if test="selector.hotInformation!=null">
+                            , hotInformation
+                        </if>
+                        <if test="selector.informationSubContent!=null">
+                            , informationSubContent
+                        </if>
+                        <if test="selector.informationContent!=null">
+                            , informationContent
+                        </if>
+                        <if test="selector.hotCount!=null">
+                            , hotCount
+                        </if>
+                        <if test="selector.areaId!=null">
+                            , areaId
+                        </if>
+            </trim>
+        </if>
+        <if test="selector==null">
+        <include refid="Base_Column_List" />
+        </if>
+        FROM gk_gkinformation_gkhot
+        <where>
+
+            <if test="condition.whereSql != null">
+                and id in (#{condition.whereSql})
+            </if>
+
+            <if test="condition.id!=null">
+                ${condition.groupOp}   ${condition.id.field}  ${condition.id.op}  #{condition.id.data}
+            </if>
+            <if test="condition.status!=null">
+                ${condition.groupOp}   ${condition.status.field}  ${condition.status.op}  #{condition.status.data}
+            </if>
+            <if test="condition.creator!=null">
+                ${condition.groupOp}   ${condition.creator.field}  ${condition.creator.op}  #{condition.creator.data}
+            </if>
+            <if test="condition.createDate!=null">
+                ${condition.groupOp}   ${condition.createDate.field}  ${condition.createDate.op}  #{condition.createDate.data}
+            </if>
+            <if test="condition.lastModifier!=null">
+                ${condition.groupOp}   ${condition.lastModifier.field}  ${condition.lastModifier.op}  #{condition.lastModifier.data}
+            </if>
+            <if test="condition.lastModDate!=null">
+                ${condition.groupOp}   ${condition.lastModDate.field}  ${condition.lastModDate.op}  #{condition.lastModDate.data}
+            </if>
+            <if test="condition.hotInformation!=null">
+                ${condition.groupOp}   ${condition.hotInformation.field}  ${condition.hotInformation.op}  #{condition.hotInformation.data}
+            </if>
+            <if test="condition.informationSubContent!=null">
+                ${condition.groupOp}   ${condition.informationSubContent.field}  ${condition.informationSubContent.op}  #{condition.informationSubContent.data}
+            </if>
+            <if test="condition.informationContent!=null">
+                ${condition.groupOp}   ${condition.informationContent.field}  ${condition.informationContent.op}  #{condition.informationContent.data}
+            </if>
+            <if test="condition.hotCount!=null">
+                ${condition.groupOp}   ${condition.hotCount.field}  ${condition.hotCount.op}  #{condition.hotCount.data}
+            </if>
+            <if test="condition.areaId!=null">
+                ${condition.groupOp}   ${condition.areaId.field}  ${condition.areaId.op}  #{condition.areaId.data}
+            </if>
+
+
+    </where>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+    <select id="like" parameterType="java.util.Map" resultType="GkinformationGkhot">
+        SELECT
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                    <if test="selector.id!=null">
+                        , id
+                    </if>
+                    <if test="selector.status!=null">
+                        , status
+                    </if>
+                    <if test="selector.creator!=null">
+                        , creator
+                    </if>
+                    <if test="selector.createDate!=null">
+                        , createDate
+                    </if>
+                    <if test="selector.lastModifier!=null">
+                        , lastModifier
+                    </if>
+                    <if test="selector.lastModDate!=null">
+                        , lastModDate
+                    </if>
+                    <if test="selector.hotInformation!=null">
+                        , hotInformation
+                    </if>
+                    <if test="selector.informationSubContent!=null">
+                        , informationSubContent
+                    </if>
+                    <if test="selector.informationContent!=null">
+                        , informationContent
+                    </if>
+                    <if test="selector.hotCount!=null">
+                        , hotCount
+                    </if>
+                    <if test="selector.areaId!=null">
+                        , areaId
+                    </if>
+            </trim>
+        </if>
+        <if test="selector==null">
+            <include refid="Base_Column_List" />
+        </if>
+        FROM gk_gkinformation_gkhot
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id like CONCAT('%', #{condition.id} , '%')
+            </if>
+            <if test="condition.status!=null">
+                AND status like CONCAT('%', #{condition.status} , '%')
+            </if>
+            <if test="condition.creator!=null">
+                AND creator like CONCAT('%', #{condition.creator} , '%')
+            </if>
+            <if test="condition.createDate!=null">
+                AND createDate like CONCAT('%', #{condition.createDate} , '%')
+            </if>
+            <if test="condition.lastModifier!=null">
+                AND lastModifier like CONCAT('%', #{condition.lastModifier} , '%')
+            </if>
+            <if test="condition.lastModDate!=null">
+                AND lastModDate like CONCAT('%', #{condition.lastModDate} , '%')
+            </if>
+            <if test="condition.hotInformation!=null">
+                AND hotInformation like CONCAT('%', #{condition.hotInformation} , '%')
+            </if>
+            <if test="condition.informationSubContent!=null">
+                AND informationSubContent like CONCAT('%', #{condition.informationSubContent} , '%')
+            </if>
+            <if test="condition.informationContent!=null">
+                AND informationContent like CONCAT('%', #{condition.informationContent} , '%')
+            </if>
+            <if test="condition.hotCount!=null">
+                AND hotCount like CONCAT('%', #{condition.hotCount} , '%')
+            </if>
+            <if test="condition.areaId!=null">
+                AND areaId like CONCAT('%', #{condition.areaId} , '%')
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+
+    <select id="queryList" parameterType="java.util.Map" resultType="GkinformationGkhot">
+        SELECT
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                <if test="selector.id!=null">
+                    , id
+                </if>
+                <if test="selector.status!=null">
+                    , status
+                </if>
+                <if test="selector.creator!=null">
+                    , creator
+                </if>
+                <if test="selector.createDate!=null">
+                    , createDate
+                </if>
+                <if test="selector.lastModifier!=null">
+                    , lastModifier
+                </if>
+                <if test="selector.lastModDate!=null">
+                    , lastModDate
+                </if>
+                <if test="selector.hotInformation!=null">
+                    , hotInformation
+                </if>
+                <if test="selector.informationSubContent!=null">
+                    , informationSubContent
+                </if>
+                <if test="selector.informationContent!=null">
+                    , informationContent
+                </if>
+                <if test="selector.hotCount!=null">
+                    , hotCount
+                </if>
+                <if test="selector.areaId!=null">
+                    , areaId
+                </if>
+        </trim>
+    </if>
+<if test="selector==null">
+<include refid="Base_Column_List" />
+</if>
+        FROM gk_gkinformation_gkhot
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.status!=null">
+                AND status = #{condition.status}
+            </if>
+            <if test="condition.creator!=null">
+                AND creator = #{condition.creator}
+            </if>
+            <if test="condition.createDate!=null">
+                AND createDate = #{condition.createDate}
+            </if>
+            <if test="condition.lastModifier!=null">
+                AND lastModifier = #{condition.lastModifier}
+            </if>
+            <if test="condition.lastModDate!=null">
+                AND lastModDate = #{condition.lastModDate}
+            </if>
+            <if test="condition.hotInformation!=null">
+                AND hotInformation = #{condition.hotInformation}
+            </if>
+            <if test="condition.informationSubContent!=null">
+                AND informationSubContent = #{condition.informationSubContent}
+            </if>
+            <if test="condition.informationContent!=null">
+                AND informationContent = #{condition.informationContent}
+            </if>
+            <if test="condition.hotCount!=null">
+                AND hotCount = #{condition.hotCount}
+            </if>
+            <if test="condition.areaId!=null">
+                AND areaId = #{condition.areaId}
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryOne" parameterType="java.util.Map" resultType="GkinformationGkhot">
+        SELECT
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                    <if test="selector.id!=null">
+                        , id
+                    </if>
+                    <if test="selector.status!=null">
+                        , status
+                    </if>
+                    <if test="selector.creator!=null">
+                        , creator
+                    </if>
+                    <if test="selector.createDate!=null">
+                        , createDate
+                    </if>
+                    <if test="selector.lastModifier!=null">
+                        , lastModifier
+                    </if>
+                    <if test="selector.lastModDate!=null">
+                        , lastModDate
+                    </if>
+                    <if test="selector.hotInformation!=null">
+                        , hotInformation
+                    </if>
+                    <if test="selector.informationSubContent!=null">
+                        , informationSubContent
+                    </if>
+                    <if test="selector.informationContent!=null">
+                        , informationContent
+                    </if>
+                    <if test="selector.hotCount!=null">
+                        , hotCount
+                    </if>
+                    <if test="selector.areaId!=null">
+                        , areaId
+                    </if>
+            </trim>
+        </if>
+        <if test="selector==null">
+            <include refid="Base_Column_List" />
+        </if>
+        FROM gk_gkinformation_gkhot
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.status!=null">
+                AND status = #{condition.status}
+            </if>
+            <if test="condition.creator!=null">
+                AND creator = #{condition.creator}
+            </if>
+            <if test="condition.createDate!=null">
+                AND createDate = #{condition.createDate}
+            </if>
+            <if test="condition.lastModifier!=null">
+                AND lastModifier = #{condition.lastModifier}
+            </if>
+            <if test="condition.lastModDate!=null">
+                AND lastModDate = #{condition.lastModDate}
+            </if>
+            <if test="condition.hotInformation!=null">
+                AND hotInformation = #{condition.hotInformation}
+            </if>
+            <if test="condition.informationSubContent!=null">
+                AND informationSubContent = #{condition.informationSubContent}
+            </if>
+            <if test="condition.informationContent!=null">
+                AND informationContent = #{condition.informationContent}
+            </if>
+            <if test="condition.hotCount!=null">
+                AND hotCount = #{condition.hotCount}
+            </if>
+            <if test="condition.areaId!=null">
+                AND areaId = #{condition.areaId}
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+        limit 0,1
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(id) FROM gk_gkinformation_gkhot
+       <where>
+           <if test="id!=null">
+               ${groupOp} ${id.field} ${id.op}  #{id.data}
+           </if>
+           <if test="status!=null">
+               ${groupOp} ${status.field} ${status.op}  #{status.data}
+           </if>
+           <if test="creator!=null">
+               ${groupOp} ${creator.field} ${creator.op}  #{creator.data}
+           </if>
+           <if test="createDate!=null">
+               ${groupOp} ${createDate.field} ${createDate.op}  #{createDate.data}
+           </if>
+           <if test="lastModifier!=null">
+               ${groupOp} ${lastModifier.field} ${lastModifier.op}  #{lastModifier.data}
+           </if>
+           <if test="lastModDate!=null">
+               ${groupOp} ${lastModDate.field} ${lastModDate.op}  #{lastModDate.data}
+           </if>
+           <if test="hotInformation!=null">
+               ${groupOp} ${hotInformation.field} ${hotInformation.op}  #{hotInformation.data}
+           </if>
+           <if test="informationSubContent!=null">
+               ${groupOp} ${informationSubContent.field} ${informationSubContent.op}  #{informationSubContent.data}
+           </if>
+           <if test="informationContent!=null">
+               ${groupOp} ${informationContent.field} ${informationContent.op}  #{informationContent.data}
+           </if>
+           <if test="hotCount!=null">
+               ${groupOp} ${hotCount.field} ${hotCount.op}  #{hotCount.data}
+           </if>
+           <if test="areaId!=null">
+               ${groupOp} ${areaId.field} ${areaId.op}  #{areaId.data}
+           </if>
+
+       </where>
+    </select>
+
+    <select id="selectMaxId" resultType="java.lang.Long">
+        SELECT
+        MAX(id)
+        FROM gk_gkinformation_gkhot
+    </select>
+
+</mapper>
+

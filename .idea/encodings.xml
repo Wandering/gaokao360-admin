@@ -2,6 +2,17 @@
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="GBK">
     <file url="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/Gaokao360CommonController.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/custome/gkinformationgkhot_page_grid.ftl" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/custome/js/biz_gkinformationgkhot.ftl" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/custome/script/gkinformationgkhot_biz_script.ftl" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/gkinformationgkhot.ftl" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/gaokao360-domain/src/main/java/cn/thinkjoy/gaokao360/domain/GkinformationGkhot.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/dao/IGkinformationGkhotDAO.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/facade/IGkinformationGkhotFacade.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/facade/impl" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/facade/impl/GkinformationGkhotServiceImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/service/IGkinformationGkhotService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gaokao360-service/src/main/resources/mybatis/GkinformationGkhotDAO.xml" charset="GBK" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
