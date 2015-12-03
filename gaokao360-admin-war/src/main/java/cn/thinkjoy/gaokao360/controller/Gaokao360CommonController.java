@@ -26,6 +26,7 @@ public class Gaokao360CommonController extends AbstractCommonController {
     @Autowired
     private ServiceMaps serviceMaps;
 
+
     @Override
     protected BaseServiceMaps getServiceMaps() {
         return serviceMaps;
