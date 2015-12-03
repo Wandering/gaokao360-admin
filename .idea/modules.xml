@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/gaokao360.iml" filepath="$PROJECT_DIR$/gaokao360.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gaokao360-admin.iml" filepath="$PROJECT_DIR$/gaokao360-admin.iml" />
       <module fileurl="file://$PROJECT_DIR$/gaokao360-admin-war/gaokao360-admin-war.iml" filepath="$PROJECT_DIR$/gaokao360-admin-war/gaokao360-admin-war.iml" />
       <module fileurl="file://$PROJECT_DIR$/gaokao360-api/gaokao360-api.iml" filepath="$PROJECT_DIR$/gaokao360-api/gaokao360-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/gaokao360-domain/gaokao360-domain.iml" filepath="$PROJECT_DIR$/gaokao360-domain/gaokao360-domain.iml" />

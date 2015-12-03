@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b2c7fb68-12c7-4506-b03d-6cebf5573a54" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/test/java/cn/thinkjoy/api/gen/APIDocGenMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/test/java/cn/thinkjoy/ucenter/war/test/JettyFactory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/test/java/cn/thinkjoy/ucenter/war/test/StartOauthWar.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/test/java/cn/thinkjoy/ucenter/war/test/WarStarter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/test/resources/apidoc/apidoc.ftl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/test/resources/apidoc/apidoc.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/test/resources/logback-test.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/test/java/cn/thinkjoy/ucenter/war/test/package-info.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/test/resources/spring-apigen.xml" />
-      <change type="DELETED" beforePath="C:\work\work7\gaokao360\gaokao360-admin-war\build\classes\test\cn\thinkjoy\Test.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\work\work7\gaokao360\gaokao360-admin-war\build\resources\test\spring.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\work\work7\gaokao360\gaokao360-admin-war\src\test\java\cn\thinkjoy\Test.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\work\work7\gaokao360\gaokao360-admin-war\src\test\java\cn\thinkjoy\package-info.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\work\work7\gaokao360\gaokao360-admin-war\src\test\resources\spring.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gaokao360-admin-war/build.gradle" afterPath="$PROJECT_DIR$/gaokao360-admin-war/build.gradle" />
+    <list default="true" id="b2c7fb68-12c7-4506-b03d-6cebf5573a54" name="Default" comment="添加增删改的common类">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/Gaokao360CommonController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_jetty_aggregate_jetty_webapp_8_1_9_v20130131.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_jetty_jetty_jsp_8_1_9_v20130131.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_jetty_orbit_com_sun_el_2_2_0_v201108011116.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_jetty_orbit_javax_el_2_2_0_v201108011116.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_jetty_orbit_javax_servlet_3_0_0_v201112011016.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_jetty_orbit_javax_servlet_jsp_2_2_0_v201112011158.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_jetty_orbit_javax_servlet_jsp_jstl_1_2_0_v201105211821.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_jetty_orbit_org_apache_jasper_glassfish_2_2_2_v201112011158.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_jetty_orbit_org_apache_taglibs_standard_glassfish_1_2_0_v201112081803.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_jetty_orbit_org_eclipse_jdt_core_3_7_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-admin.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gaokao360-admin-war/gaokao360-admin-war.iml" afterPath="$PROJECT_DIR$/gaokao360-admin-war/gaokao360-admin-war.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="gaokao360.iws" />
@@ -56,6 +56,10 @@
                 <option name="myItemId" value="" />
                 <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ExternalProjectsStructure$RootNode" />
               </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="gaokao360-admin" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ProjectNode" />
+              </PATH_ELEMENT>
             </PATH>
           </tree_state>
         </projects_view>
@@ -67,44 +71,64 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="APIDocGenMain.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/test/java/cn/thinkjoy/api/gen/APIDocGenMain.java">
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.34210527">
-              <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WarStarter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/test/java/cn/thinkjoy/ucenter/war/test/WarStarter.java">
+      <file leaf-file-name="DataModelController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/DataModelController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+              <caret line="48" column="51" selection-start-line="48" selection-start-column="51" selection-end-line="48" selection-end-column="51" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WebAppContext.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty.aggregate/jetty-webapp/8.1.9.v20130131/99550a29b1aa0703d4a6f5cfb842101be9fac12f/jetty-webapp-8.1.9.v20130131-sources.jar!/org/eclipse/jetty/webapp/WebAppContext.java">
+      <file leaf-file-name="ServiceMaps.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/common/ServiceMaps.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="1157" column="7" selection-start-line="1157" selection-start-column="7" selection-end-line="1157" selection-end-column="7" />
+              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ModelController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/ModelController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-13.366667">
+              <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Gaokao360CommonController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/Gaokao360CommonController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.43786982">
+              <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
               <folding>
-                <element signature="e#40220#40221#0" expanded="true" />
-                <element signature="e#40246#40247#0" expanded="true" />
+                <element signature="e#0#1214#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/build.gradle">
+      <file leaf-file-name="DatagroupController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/DatagroupController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+              <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -121,14 +145,14 @@
         <entry>
           <key>
             <ExternalProjectPojo>
-              <option name="name" value="gaokao360" />
+              <option name="name" value="gaokao360-admin" />
               <option name="path" value="$PROJECT_DIR$" />
             </ExternalProjectPojo>
           </key>
           <value>
             <list>
               <ExternalProjectPojo>
-                <option name="name" value="gaokao360" />
+                <option name="name" value="gaokao360-admin" />
                 <option name="path" value="$PROJECT_DIR$" />
               </ExternalProjectPojo>
               <ExternalProjectPojo>
@@ -313,7 +337,7 @@
                 <option name="name" value="run" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Analyzes root project 'gaokao360' and its subprojects with Sonar Runner." />
+                <option name="description" value="Analyzes root project 'gaokao360-admin' and its subprojects with Sonar Runner." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="sonarRunner" />
               </ExternalTaskPojo>
@@ -957,24 +981,24 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$/../../ucenter" value="34600302437358" />
-        <entry key="$PROJECT_DIR$/../../work1/codegen" value="4327712552011" />
-        <entry key="$PROJECT_DIR$/../../work1/gk" value="52137045464630" />
-        <entry key="$PROJECT_DIR$/../../work1/qky-platform" value="10097199982030" />
-        <entry key="$PROJECT_DIR$/../../work1/qky-webfront" value="1442548030245" />
-        <entry key="$PROJECT_DIR$/../../work1/ucenter" value="34600573848189" />
-        <entry key="$PROJECT_DIR$/../../work2/codegen" value="4334449730309" />
-        <entry key="$PROJECT_DIR$/../../work2/qky-platform" value="12987031851363" />
-        <entry key="$PROJECT_DIR$/../../work3/codegen" value="4334655378142" />
-        <entry key="$PROJECT_DIR$/../../work3/ucenter" value="36122332884130" />
-        <entry key="$PROJECT_DIR$/../../work4/codegen" value="4334640484017" />
-        <entry key="$PROJECT_DIR$/../../work4/ucenter" value="36146308643855" />
-        <entry key="$PROJECT_DIR$/../../work5/codegen" value="4334641515411" />
-        <entry key="$PROJECT_DIR$/../../work5/gaokao360" value="11591056996757" />
-        <entry key="$PROJECT_DIR$/../../work6/codegen" value="4334642336210" />
-        <entry key="$PROJECT_DIR$/../../work6/gaokao360" value="11591042863782" />
         <entry key="$PROJECT_DIR$/../codegen" value="4334644038513" />
-        <entry key="$PROJECT_DIR$" value="10142469757479" />
+        <entry key="$PROJECT_DIR$" value="10143331131984" />
+        <entry key="D:/ucenter" value="34600302437358" />
+        <entry key="D:/work1/codegen" value="4327712552011" />
+        <entry key="D:/work1/gk" value="52137045464630" />
+        <entry key="D:/work1/qky-platform" value="10097199982030" />
+        <entry key="D:/work1/qky-webfront" value="1442548030245" />
+        <entry key="D:/work1/ucenter" value="34600573848189" />
+        <entry key="D:/work2/codegen" value="4334449730309" />
+        <entry key="D:/work2/qky-platform" value="12987031851363" />
+        <entry key="D:/work3/codegen" value="4334655378142" />
+        <entry key="D:/work3/ucenter" value="36122332884130" />
+        <entry key="D:/work4/codegen" value="4334640484017" />
+        <entry key="D:/work4/ucenter" value="36146308643855" />
+        <entry key="D:/work5/codegen" value="4334641515411" />
+        <entry key="D:/work5/gaokao360" value="11591056996757" />
+        <entry key="D:/work6/codegen" value="4334642336210" />
+        <entry key="D:/work6/gaokao360" value="11591042863782" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -1465,89 +1489,89 @@
                   </entry>
                 </map>
               </option>
-              <option name="name" value="gaokao360" />
+              <option name="name" value="gaokao360-admin" />
               <option name="projectBuildClasspath">
                 <list>
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/announce" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/antlr" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/base-services" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/base-services-groovy" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/build-comparison" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/build-init" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/cli" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/code-quality" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/core" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/core-impl" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/cpp" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/diagnostics" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/ear" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/ide" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/internal-integ-testing" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/internal-testing" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/ivy" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/jacoco" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/javascript" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/jetty" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/language-base" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/language-jvm" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/launcher" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/maven" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/messaging" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/native" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/open-api" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/osgi" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/plugins" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/publish" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/reporting" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/resources" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/scala" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/signing" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/sonar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/tooling-api" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/ui" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/src/wrapper" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/ant-1.9.3.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/ant-launcher-1.9.3.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/gradle-base-services-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/gradle-base-services-groovy-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/gradle-cli-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/gradle-core-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/gradle-docs-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/gradle-launcher-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/gradle-messaging-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/gradle-native-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/gradle-open-api-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/gradle-resources-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/gradle-tooling-api-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/gradle-ui-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/gradle-wrapper-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/groovy-all-1.8.6.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/ivy-2.2.0.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/ant-antlr-1.9.3.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-announce-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-antlr-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-build-comparison-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-build-init-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-code-quality-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-core-impl-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-cpp-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-diagnostics-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-ear-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-ide-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-ivy-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-jacoco-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-javascript-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-jetty-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-language-base-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-language-jvm-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-maven-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-osgi-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-plugins-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-publish-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-reporting-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-scala-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-signing-1.12.jar" />
-                  <option value="C:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-sonar-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/announce" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/antlr" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/base-services" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/base-services-groovy" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/build-comparison" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/build-init" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/cli" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/code-quality" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/core" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/core-impl" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/cpp" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/diagnostics" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/ear" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/ide" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/internal-integ-testing" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/internal-testing" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/ivy" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/jacoco" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/javascript" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/jetty" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/language-base" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/language-jvm" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/launcher" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/maven" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/messaging" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/native" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/open-api" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/osgi" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/plugins" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/publish" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/reporting" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/resources" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/scala" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/signing" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/sonar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/tooling-api" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/ui" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/src/wrapper" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/ant-1.9.3.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/ant-launcher-1.9.3.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/gradle-base-services-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/gradle-base-services-groovy-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/gradle-cli-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/gradle-core-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/gradle-docs-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/gradle-launcher-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/gradle-messaging-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/gradle-native-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/gradle-open-api-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/gradle-resources-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/gradle-tooling-api-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/gradle-ui-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/gradle-wrapper-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/groovy-all-1.8.6.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/ivy-2.2.0.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/ant-antlr-1.9.3.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-announce-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-antlr-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-build-comparison-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-build-init-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-code-quality-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-core-impl-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-cpp-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-diagnostics-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-ear-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-ide-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-ivy-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-jacoco-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-javascript-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-jetty-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-language-base-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-language-jvm-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-maven-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-osgi-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-plugins-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-publish-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-reporting-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-scala-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-signing-1.12.jar" />
+                  <option value="D:/hj/gradle-1.12-all/gradle-1.12/lib/plugins/gradle-sonar-1.12.jar" />
                   <option value="$PROJECT_DIR$/buildSrc/src/main/java" />
                   <option value="$PROJECT_DIR$/buildSrc/src/main/groovy" />
                 </list>
@@ -1566,6 +1590,9 @@
       <list>
         <option value="$PROJECT_DIR$/gaokao360-admin-war/build.gradle" />
         <option value="$PROJECT_DIR$/gaokao360-admin-war/src/test/java/cn/thinkjoy/ucenter/war/test/WarStarter.java" />
+        <option value="$PROJECT_DIR$/gaokao360-admin-war/src/test/java/cn/thinkjoy/api/gen/APIDocGenMain.java" />
+        <option value="$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/BasedataCommonController.java" />
+        <option value="$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/Gaokao360CommonController.java" />
       </list>
     </option>
   </component>
@@ -1618,6 +1645,9 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1632,7 +1662,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360" />
+              <option name="myItemId" value="gaokao360-admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1642,11 +1672,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360" />
+              <option name="myItemId" value="gaokao360-admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360-admin-war" />
+              <option name="myItemId" value="gaokao360-service" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1656,11 +1686,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360" />
+              <option name="myItemId" value="gaokao360-admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360-admin-war" />
+              <option name="myItemId" value="gaokao360-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-service" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1668,7 +1716,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1678,11 +1730,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360" />
+              <option name="myItemId" value="gaokao360-admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360-admin-war" />
+              <option name="myItemId" value="gaokao360-service" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1690,7 +1742,37 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mybatis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1701,8 +1783,18 @@
               <option name="myItemId" value="thinkjoy" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
+              <option name="myItemId" value="gaokao360" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-api" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1712,11 +1804,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360" />
+              <option name="myItemId" value="gaokao360-admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360-admin-war" />
+              <option name="myItemId" value="gaokao360-api" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-api" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1724,7 +1834,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1735,8 +1845,18 @@
               <option name="myItemId" value="thinkjoy" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="gen" />
+              <option name="myItemId" value="gaokao360" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-admin-war" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1746,7 +1866,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360" />
+              <option name="myItemId" value="gaokao360-admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1755,29 +1875,157 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-admin-war" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-admin-war" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-admin-war" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-admin-war" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="common" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="File.Encoding" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../.." />
+    <property name="last_opened_file_path" value="D:" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="dynamic.classpath" value="false" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="FullScreen" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\work\work7\gaokao360\gaokao360-admin-war\src\test" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="cn.thinkjoy.gaokao360.controller" />
     </key>
   </component>
   <component name="RunManager" selected="Application.WarStarter">
@@ -2047,6 +2295,12 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <pass-parent-envs>true</pass-parent-envs>
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="osgi.bnd.run" factoryName="Run Launcher">
@@ -2128,8 +2382,8 @@
       </method>
     </configuration>
     <list size="2">
-      <item index="0" class="java.lang.String" itemvalue="Application.WarStarter" />
-      <item index="1" class="java.lang.String" itemvalue="Tomcat Server.Unnamed" />
+      <item index="0" class="java.lang.String" itemvalue="Tomcat Server.Unnamed" />
+      <item index="1" class="java.lang.String" itemvalue="Application.WarStarter" />
     </list>
     <recent_temporary>
       <list size="1">
@@ -2148,6 +2402,9 @@
       <option name="number" value="Default" />
       <updated>1449025399284</updated>
       <workItem from="1449025401198" duration="2921000" />
+      <workItem from="1449047316049" duration="3549000" />
+      <workItem from="1449052822306" duration="2664000" />
+      <workItem from="1449109391325" duration="2064000" />
     </task>
     <task id="LOCAL-00001" summary="整理">
       <created>1449027280322</created>
@@ -2159,58 +2416,59 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2921000" />
+    <option name="totallyTimeSpent" value="11198000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1604" height="867" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292517" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292517" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292517" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6495389" sideWeight="0.5050378" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292517" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292517" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32966322" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32938075" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32934508" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.65034014" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29380766" sideWeight="0.49496222" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="整理" />
-    <option name="LAST_COMMIT_MESSAGE" value="整理" />
+    <MESSAGE value="添加增删改的common类" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加增删改的common类" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty.aggregate/jetty-webapp/8.1.9.v20130131/99550a29b1aa0703d4a6f5cfb842101be9fac12f/jetty-webapp-8.1.9.v20130131-sources.jar!/org/eclipse/jetty/webapp/WebAppContext.java</url>
-          <line>208</line>
-          <properties />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
@@ -2223,19 +2481,15 @@
     <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty.aggregate/jetty-webapp/8.1.9.v20130131/99550a29b1aa0703d4a6f5cfb842101be9fac12f/jetty-webapp-8.1.9.v20130131-sources.jar!/org/eclipse/jetty/webapp/WebAppContext.java">
+    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/test/java/cn/thinkjoy/api/gen/APIDocGenMain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="1157" column="7" selection-start-line="1157" selection-start-column="7" selection-end-line="1157" selection-end-column="7" />
-          <folding>
-            <element signature="e#40220#40221#0" expanded="true" />
-            <element signature="e#40246#40247#0" expanded="true" />
-          </folding>
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -2243,17 +2497,215 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/test/java/cn/thinkjoy/api/gen/APIDocGenMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34210527">
-          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/test/java/cn/thinkjoy/ucenter/war/test/WarStarter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty.aggregate/jetty-webapp/8.1.9.v20130131/99550a29b1aa0703d4a6f5cfb842101be9fac12f/jetty-webapp-8.1.9.v20130131-sources.jar!/org/eclipse/jetty/webapp/WebAppContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.0434783">
+          <caret line="238" column="42" selection-start-line="238" selection-start-column="42" selection-end-line="238" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/test/java/cn/thinkjoy/api/gen/APIDocGenMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.1565218">
+          <caret line="45" column="25" selection-start-line="45" selection-start-column="25" selection-end-line="45" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/test/java/cn/thinkjoy/ucenter/war/test/WarStarter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.60347825">
+          <caret line="28" column="31" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/DataModelController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="48" column="51" selection-start-line="48" selection-start-column="51" selection-end-line="48" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/common/ServiceMaps.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.common/thinkjoy-mu-common/0.1.9-SNAPSHOT/dc8d4b4805835dac1f99cebbd8a683dfd0705c52/thinkjoy-mu-common-0.1.9-SNAPSHOT.jar!/cn/thinkjoy/common/managerui/controller/AbstractController.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4871795">
+          <caret line="35" column="57" selection-start-line="35" selection-start-column="57" selection-end-line="35" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.common/thinkjoy-mu-common/0.1.9-SNAPSHOT/dc8d4b4805835dac1f99cebbd8a683dfd0705c52/thinkjoy-mu-common-0.1.9-SNAPSHOT.jar!/cn/thinkjoy/common/managerui/controller/AbstractAdminController.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16239317">
+          <caret line="23" column="91" selection-start-line="23" selection-start-column="91" selection-end-line="23" selection-end-column="91" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/ModelController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.366667">
+          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/DatagroupController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/Gaokao360CommonController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43786982">
+          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#1214#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>Gradle : cn.thinkjoy.gaokao360:gaokao360-admin-war : gaokao360-admin-war-0.0.1-SNAPSHOT.war</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Web</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>gaokao360</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.7</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Gradle: aopalliance:aopalliance:1.0</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
