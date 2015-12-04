@@ -2,7 +2,7 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  VideoClassify.java 2015-12-04 14:05:50 $
+ * $Id:  VideoClassify.java 2015-12-04 14:49:02 $
  */
 
 

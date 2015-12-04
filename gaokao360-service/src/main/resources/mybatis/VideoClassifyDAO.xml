@@ -29,19 +29,25 @@ selectList
         classifyName as classifyName ,
         status as status ,
         createDate as createDate ,
-        lastModDate as lastModDate 
+        lastModDate as lastModDate ,
+        creator as creator ,
+        lastModifier as lastModifier 
     </sql>
     <insert id="insert" parameterType="VideoClassify">
         INSERT INTO gk_video_classify (
         classifyName,
         status,
         createDate,
-        lastModDate
+        lastModDate,
+        creator,
+        lastModifier
         ) VALUES (
         #{classifyName},
         #{status},
         #{createDate},
-        #{lastModDate}
+        #{lastModDate},
+        #{creator},
+        #{lastModifier}
         )
             <selectKey resultType="java.lang.Long" keyProperty="id">
                 SELECT LAST_INSERT_ID() AS ID
@@ -64,6 +70,12 @@ selectList
             <if test="lastModDate!=null">
                 lastModDate = #{lastModDate},
             </if>
+            <if test="creator!=null">
+                creator = #{creator},
+            </if>
+            <if test="lastModifier!=null">
+                lastModifier = #{lastModifier},
+            </if>
         </trim>
         WHERE
         id = #{id}
@@ -83,6 +95,12 @@ selectList
             </if>
             <if test="map.lastModDate!=null">
                 lastModDate = #{map.lastModDate},
+            </if>
+            <if test="map.creator!=null">
+                creator = #{map.creator},
+            </if>
+            <if test="map.lastModifier!=null">
+                lastModifier = #{map.lastModifier},
             </if>
         </trim>
         WHERE
@@ -104,6 +122,12 @@ selectList
             <if test="update.lastModDate!=null">
                 lastModDate = #{update.lastModDate},
             </if>
+            <if test="update.creator!=null">
+                creator = #{update.creator},
+            </if>
+            <if test="update.lastModifier!=null">
+                lastModifier = #{update.lastModifier},
+            </if>
         </trim>
 
         <trim prefix="WHERE" prefixOverrides="AND | OR">
@@ -122,6 +146,12 @@ selectList
             <if test="condition.lastModDate!=null">
                 AND lastModDate = #{condition.lastModDate}
             </if>
+            <if test="condition.creator!=null">
+                AND creator = #{condition.creator}
+            </if>
+            <if test="condition.lastModifier!=null">
+                AND lastModifier = #{condition.lastModifier}
+            </if>
         </trim>
     </update>
 
@@ -130,12 +160,16 @@ selectList
                 classifyName,
                 status,
                 createDate,
-                lastModDate
+                lastModDate,
+                creator,
+                lastModifier
         ) VALUES (
                     #{map.classifyName},
                     #{map.status},
                     #{map.createDate},
-                    #{map.lastModDate}
+                    #{map.lastModDate},
+                    #{map.creator},
+                    #{map.lastModifier}
         )
     </insert>
 
@@ -147,6 +181,8 @@ selectList
             status = #{status},
             createDate = #{createDate},
             lastModDate = #{lastModDate},
+            creator = #{creator},
+            lastModifier = #{lastModifier},
         </trim>
         WHERE
         id = #{id} 
@@ -178,6 +214,12 @@ selectList
             </if>
             <if test="lastModDate!=null">
                 AND lastModDate = #{lastModDate}
+            </if>
+            <if test="creator!=null">
+                AND creator = #{creator}
+            </if>
+            <if test="lastModifier!=null">
+                AND lastModifier = #{lastModifier}
             </if>
         </trim>
     </delete>
@@ -251,6 +293,12 @@ selectList
             <if test="condition.lastModDate!=null">
                 ${condition.groupOp}   ${condition.lastModDate.field}  ${condition.lastModDate.op}  #{condition.lastModDate.data}
             </if>
+            <if test="condition.creator!=null">
+                ${condition.groupOp}   ${condition.creator.field}  ${condition.creator.op}  #{condition.creator.data}
+            </if>
+            <if test="condition.lastModifier!=null">
+                ${condition.groupOp}   ${condition.lastModifier.field}  ${condition.lastModifier.op}  #{condition.lastModifier.data}
+            </if>
 
 
     </where>
@@ -282,6 +330,12 @@ selectList
             <if test="condition.lastModDate!=null">
                 AND lastModDate like CONCAT('%', #{condition.lastModDate} , '%')
             </if>
+            <if test="condition.creator!=null">
+                AND creator like CONCAT('%', #{condition.creator} , '%')
+            </if>
+            <if test="condition.lastModifier!=null">
+                AND lastModifier like CONCAT('%', #{condition.lastModifier} , '%')
+            </if>
         </trim>
         <if test="orderBy!=null">
         ORDER BY ${orderBy} ${sortBy}
@@ -309,6 +363,12 @@ selectList
             <if test="condition.lastModDate!=null">
                 AND lastModDate = #{condition.lastModDate}
             </if>
+            <if test="condition.creator!=null">
+                AND creator = #{condition.creator}
+            </if>
+            <if test="condition.lastModifier!=null">
+                AND lastModifier = #{condition.lastModifier}
+            </if>
         </trim>
         <if test="orderBy!=null">
         ORDER BY ${orderBy} ${sortBy}
@@ -335,6 +395,12 @@ selectList
             <if test="condition.lastModDate!=null">
                 AND lastModDate = #{condition.lastModDate}
             </if>
+            <if test="condition.creator!=null">
+                AND creator = #{condition.creator}
+            </if>
+            <if test="condition.lastModifier!=null">
+                AND lastModifier = #{condition.lastModifier}
+            </if>
         </trim>
         <if test="orderBy!=null">
         ORDER BY ${orderBy} ${sortBy}
@@ -359,6 +425,12 @@ selectList
            </if>
            <if test="lastModDate!=null">
                ${groupOp} ${lastModDate.field} ${lastModDate.op}  #{lastModDate.data}
+           </if>
+           <if test="creator!=null">
+               ${groupOp} ${creator.field} ${creator.op}  #{creator.data}
+           </if>
+           <if test="lastModifier!=null">
+               ${groupOp} ${lastModifier.field} ${lastModifier.op}  #{lastModifier.data}
            </if>
 
        </where>

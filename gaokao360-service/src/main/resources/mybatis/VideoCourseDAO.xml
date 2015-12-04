@@ -44,7 +44,9 @@ selectList
         createDate as createDate ,
         status as status ,
         lastModDate as lastModDate ,
-        areaId as areaId 
+        areaId as areaId ,
+        creator as creator ,
+        lastModifier as lastModifier 
     </sql>
     <insert id="insert" parameterType="VideoCourse">
         INSERT INTO gk_video_course (
@@ -66,7 +68,9 @@ selectList
         createDate,
         status,
         lastModDate,
-        areaId
+        areaId,
+        creator,
+        lastModifier
         ) VALUES (
         #{classifyId},
         #{teacherId},
@@ -86,7 +90,9 @@ selectList
         #{createDate},
         #{status},
         #{lastModDate},
-        #{areaId}
+        #{areaId},
+        #{creator},
+        #{lastModifier}
         )
             <selectKey resultType="java.lang.Long" keyProperty="id">
                 SELECT LAST_INSERT_ID() AS ID
@@ -154,6 +160,12 @@ selectList
             <if test="areaId!=null">
                 areaId = #{areaId},
             </if>
+            <if test="creator!=null">
+                creator = #{creator},
+            </if>
+            <if test="lastModifier!=null">
+                lastModifier = #{lastModifier},
+            </if>
         </trim>
         WHERE
         id = #{id}
@@ -218,6 +230,12 @@ selectList
             </if>
             <if test="map.areaId!=null">
                 areaId = #{map.areaId},
+            </if>
+            <if test="map.creator!=null">
+                creator = #{map.creator},
+            </if>
+            <if test="map.lastModifier!=null">
+                lastModifier = #{map.lastModifier},
             </if>
         </trim>
         WHERE
@@ -284,6 +302,12 @@ selectList
             <if test="update.areaId!=null">
                 areaId = #{update.areaId},
             </if>
+            <if test="update.creator!=null">
+                creator = #{update.creator},
+            </if>
+            <if test="update.lastModifier!=null">
+                lastModifier = #{update.lastModifier},
+            </if>
         </trim>
 
         <trim prefix="WHERE" prefixOverrides="AND | OR">
@@ -347,6 +371,12 @@ selectList
             <if test="condition.areaId!=null">
                 AND areaId = #{condition.areaId}
             </if>
+            <if test="condition.creator!=null">
+                AND creator = #{condition.creator}
+            </if>
+            <if test="condition.lastModifier!=null">
+                AND lastModifier = #{condition.lastModifier}
+            </if>
         </trim>
     </update>
 
@@ -370,7 +400,9 @@ selectList
                 createDate,
                 status,
                 lastModDate,
-                areaId
+                areaId,
+                creator,
+                lastModifier
         ) VALUES (
                     #{map.classifyId},
                     #{map.teacherId},
@@ -390,7 +422,9 @@ selectList
                     #{map.createDate},
                     #{map.status},
                     #{map.lastModDate},
-                    #{map.areaId}
+                    #{map.areaId},
+                    #{map.creator},
+                    #{map.lastModifier}
         )
     </insert>
 
@@ -417,6 +451,8 @@ selectList
             status = #{status},
             lastModDate = #{lastModDate},
             areaId = #{areaId},
+            creator = #{creator},
+            lastModifier = #{lastModifier},
         </trim>
         WHERE
         id = #{id} 
@@ -493,6 +529,12 @@ selectList
             </if>
             <if test="areaId!=null">
                 AND areaId = #{areaId}
+            </if>
+            <if test="creator!=null">
+                AND creator = #{creator}
+            </if>
+            <if test="lastModifier!=null">
+                AND lastModifier = #{lastModifier}
             </if>
         </trim>
     </delete>
@@ -611,6 +653,12 @@ selectList
             <if test="condition.areaId!=null">
                 ${condition.groupOp}   ${condition.areaId.field}  ${condition.areaId.op}  #{condition.areaId.data}
             </if>
+            <if test="condition.creator!=null">
+                ${condition.groupOp}   ${condition.creator.field}  ${condition.creator.op}  #{condition.creator.data}
+            </if>
+            <if test="condition.lastModifier!=null">
+                ${condition.groupOp}   ${condition.lastModifier.field}  ${condition.lastModifier.op}  #{condition.lastModifier.data}
+            </if>
 
 
     </where>
@@ -687,6 +735,12 @@ selectList
             <if test="condition.areaId!=null">
                 AND areaId like CONCAT('%', #{condition.areaId} , '%')
             </if>
+            <if test="condition.creator!=null">
+                AND creator like CONCAT('%', #{condition.creator} , '%')
+            </if>
+            <if test="condition.lastModifier!=null">
+                AND lastModifier like CONCAT('%', #{condition.lastModifier} , '%')
+            </if>
         </trim>
         <if test="orderBy!=null">
         ORDER BY ${orderBy} ${sortBy}
@@ -759,6 +813,12 @@ selectList
             <if test="condition.areaId!=null">
                 AND areaId = #{condition.areaId}
             </if>
+            <if test="condition.creator!=null">
+                AND creator = #{condition.creator}
+            </if>
+            <if test="condition.lastModifier!=null">
+                AND lastModifier = #{condition.lastModifier}
+            </if>
         </trim>
         <if test="orderBy!=null">
         ORDER BY ${orderBy} ${sortBy}
@@ -830,6 +890,12 @@ selectList
             <if test="condition.areaId!=null">
                 AND areaId = #{condition.areaId}
             </if>
+            <if test="condition.creator!=null">
+                AND creator = #{condition.creator}
+            </if>
+            <if test="condition.lastModifier!=null">
+                AND lastModifier = #{condition.lastModifier}
+            </if>
         </trim>
         <if test="orderBy!=null">
         ORDER BY ${orderBy} ${sortBy}
@@ -899,6 +965,12 @@ selectList
            </if>
            <if test="areaId!=null">
                ${groupOp} ${areaId.field} ${areaId.op}  #{areaId.data}
+           </if>
+           <if test="creator!=null">
+               ${groupOp} ${creator.field} ${creator.op}  #{creator.data}
+           </if>
+           <if test="lastModifier!=null">
+               ${groupOp} ${lastModifier.field} ${lastModifier.op}  #{lastModifier.data}
            </if>
 
        </where>

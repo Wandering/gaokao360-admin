@@ -2,7 +2,7 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  VideoCourse.java 2015-12-04 14:05:51 $
+ * $Id:  VideoCourse.java 2015-12-04 14:49:03 $
  */
 
 
@@ -15,11 +15,11 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
-import cn.thinkjoy.common.domain.BaseDomain;
+import cn.thinkjoy.common.domain.CreateBaseDomain;
 
 import java.util.*;
 
-public class VideoCourse extends BaseDomain<Long>{
+public class VideoCourse extends CreateBaseDomain<Long>{
     /** 分类ID */
     private Long classifyId;
     /** 教师ID */
@@ -190,6 +190,8 @@ public class VideoCourse extends BaseDomain<Long>{
 			.append("Status",getStatus())
 			.append("LastModDate",getLastModDate())
 			.append("AreaId",getAreaId())
+			.append("Creator",getCreator())
+			.append("LastModifier",getLastModifier())
 			.toString();
 	}
 	
