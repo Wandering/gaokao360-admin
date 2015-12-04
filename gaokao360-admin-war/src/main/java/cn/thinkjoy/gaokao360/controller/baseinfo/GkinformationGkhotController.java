@@ -76,7 +76,7 @@ public class GkinformationGkhotController extends AbstractAdminController<IGkinf
 
     @Override
     protected String getViewTitle() {
-        return "高考信息管理";
+        return "高考热点信息";
     }
 
     @Override

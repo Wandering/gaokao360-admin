@@ -76,7 +76,7 @@ public class VideoSectionController extends AbstractAdminController<IVideoSectio
 
     @Override
     protected String getViewTitle() {
-        return " 视频管理";
+        return " 视频描述";
     }
 
     @Override

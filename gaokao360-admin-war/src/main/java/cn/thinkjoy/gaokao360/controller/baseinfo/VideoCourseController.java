@@ -76,7 +76,7 @@ public class VideoCourseController extends AbstractAdminController<IVideoCourseS
 
     @Override
     protected String getViewTitle() {
-        return " 视频管理";
+        return " 视频详情";
     }
 
     @Override
