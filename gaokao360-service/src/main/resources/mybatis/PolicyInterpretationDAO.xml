@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.thinkjoy.common.managerui.dao.IRoleDAO">
+<mapper namespace="cn.thinkjoy.gaokao360.dao.IPolicyInterpretationDAO">
 <!--
 insert
 update
@@ -26,40 +26,64 @@ selectList
 
     <sql id="Base_Column_List">
         id as id ,
-        name as name ,
+        provinceId as provinceId ,
+        admissionBatchId as admissionBatchId ,
+        categoryName as categoryName ,
+        content as content ,
+        status as status ,
         creator as creator ,
         createDate as createDate ,
         lastModifier as lastModifier ,
         lastModDate as lastModDate ,
-        description as description 
+        areaId as areaId 
     </sql>
-    <insert id="insert" parameterType="Role">
-        INSERT INTO gaokao360_role (
-        name,
+    <insert id="insert" parameterType="PolicyInterpretation">
+        INSERT INTO gk_policy_interpretation (
+        provinceId,
+        admissionBatchId,
+        categoryName,
+        content,
+        status,
         creator,
         createDate,
         lastModifier,
         lastModDate,
-        description
+        areaId
         ) VALUES (
-        #{name},
+        #{provinceId},
+        #{admissionBatchId},
+        #{categoryName},
+        #{content},
+        #{status},
         #{creator},
         #{createDate},
         #{lastModifier},
         #{lastModDate},
-        #{description}
+        #{areaId}
         )
-            <selectKey resultType="java.lang.Integer" keyProperty="id">
+            <selectKey resultType="java.lang.Long" keyProperty="id">
                 SELECT LAST_INSERT_ID() AS ID
             </selectKey>
     </insert>
 
     <!-- 更新 -->
-    <update id="update" parameterType="Role">
-        UPDATE gaokao360_role
+    <update id="update" parameterType="PolicyInterpretation">
+        UPDATE gk_policy_interpretation
         <trim prefix="SET" suffixOverrides=",">
-            <if test="name!=null">
-                name = #{name},
+            <if test="provinceId!=null">
+                provinceId = #{provinceId},
+            </if>
+            <if test="admissionBatchId!=null">
+                admissionBatchId = #{admissionBatchId},
+            </if>
+            <if test="categoryName!=null">
+                categoryName = #{categoryName},
+            </if>
+            <if test="content!=null">
+                content = #{content},
+            </if>
+            <if test="status!=null">
+                status = #{status},
             </if>
             <if test="creator!=null">
                 creator = #{creator},
@@ -73,8 +97,8 @@ selectList
             <if test="lastModDate!=null">
                 lastModDate = #{lastModDate},
             </if>
-            <if test="description!=null">
-                description = #{description},
+            <if test="areaId!=null">
+                areaId = #{areaId},
             </if>
         </trim>
         WHERE
@@ -82,10 +106,22 @@ selectList
     </update>
 
     <update id="updateMap">
-        UPDATE gaokao360_role
+        UPDATE gk_policy_interpretation
         <trim prefix="SET" suffixOverrides=",">
-            <if test="map.name!=null">
-                name = #{map.name},
+            <if test="map.provinceId!=null">
+                provinceId = #{map.provinceId},
+            </if>
+            <if test="map.admissionBatchId!=null">
+                admissionBatchId = #{map.admissionBatchId},
+            </if>
+            <if test="map.categoryName!=null">
+                categoryName = #{map.categoryName},
+            </if>
+            <if test="map.content!=null">
+                content = #{map.content},
+            </if>
+            <if test="map.status!=null">
+                status = #{map.status},
             </if>
             <if test="map.creator!=null">
                 creator = #{map.creator},
@@ -99,8 +135,8 @@ selectList
             <if test="map.lastModDate!=null">
                 lastModDate = #{map.lastModDate},
             </if>
-            <if test="map.description!=null">
-                description = #{map.description},
+            <if test="map.areaId!=null">
+                areaId = #{map.areaId},
             </if>
         </trim>
         WHERE
@@ -108,10 +144,22 @@ selectList
     </update>
 
     <update id="updateByCondition">
-        UPDATE gaokao360_role
+        UPDATE gk_policy_interpretation
         <trim prefix="SET" suffixOverrides=",">
-            <if test="update.name!=null">
-                name = #{update.name},
+            <if test="update.provinceId!=null">
+                provinceId = #{update.provinceId},
+            </if>
+            <if test="update.admissionBatchId!=null">
+                admissionBatchId = #{update.admissionBatchId},
+            </if>
+            <if test="update.categoryName!=null">
+                categoryName = #{update.categoryName},
+            </if>
+            <if test="update.content!=null">
+                content = #{update.content},
+            </if>
+            <if test="update.status!=null">
+                status = #{update.status},
             </if>
             <if test="update.creator!=null">
                 creator = #{update.creator},
@@ -125,8 +173,8 @@ selectList
             <if test="update.lastModDate!=null">
                 lastModDate = #{update.lastModDate},
             </if>
-            <if test="update.description!=null">
-                description = #{update.description},
+            <if test="update.areaId!=null">
+                areaId = #{update.areaId},
             </if>
         </trim>
 
@@ -134,8 +182,20 @@ selectList
             <if test="condition.id!=null">
                 AND id = #{condition.id}
             </if>
-            <if test="condition.name!=null">
-                AND name = #{condition.name}
+            <if test="condition.provinceId!=null">
+                AND provinceId = #{condition.provinceId}
+            </if>
+            <if test="condition.admissionBatchId!=null">
+                AND admissionBatchId = #{condition.admissionBatchId}
+            </if>
+            <if test="condition.categoryName!=null">
+                AND categoryName = #{condition.categoryName}
+            </if>
+            <if test="condition.content!=null">
+                AND content = #{condition.content}
+            </if>
+            <if test="condition.status!=null">
+                AND status = #{condition.status}
             </if>
             <if test="condition.creator!=null">
                 AND creator = #{condition.creator}
@@ -149,48 +209,60 @@ selectList
             <if test="condition.lastModDate!=null">
                 AND lastModDate = #{condition.lastModDate}
             </if>
-            <if test="condition.description!=null">
-                AND description = #{condition.description}
+            <if test="condition.areaId!=null">
+                AND areaId = #{condition.areaId}
             </if>
         </trim>
     </update>
 
     <insert id="insertMap" >
-        INSERT INTO gaokao360_role (
-                name,
+        INSERT INTO gk_policy_interpretation (
+                provinceId,
+                admissionBatchId,
+                categoryName,
+                content,
+                status,
                 creator,
                 createDate,
                 lastModifier,
                 lastModDate,
-                description
+                areaId
         ) VALUES (
-                    #{map.name},
+                    #{map.provinceId},
+                    #{map.admissionBatchId},
+                    #{map.categoryName},
+                    #{map.content},
+                    #{map.status},
                     #{map.creator},
                     #{map.createDate},
                     #{map.lastModifier},
                     #{map.lastModDate},
-                    #{map.description}
+                    #{map.areaId}
         )
     </insert>
 
 
-    <update id="updateNull" parameterType="Role">
-        UPDATE gaokao360_role
+    <update id="updateNull" parameterType="PolicyInterpretation">
+        UPDATE gk_policy_interpretation
         <trim prefix="SET" suffixOverrides=",">
-            name = #{name},
+            provinceId = #{provinceId},
+            admissionBatchId = #{admissionBatchId},
+            categoryName = #{categoryName},
+            content = #{content},
+            status = #{status},
             creator = #{creator},
             createDate = #{createDate},
             lastModifier = #{lastModifier},
             lastModDate = #{lastModDate},
-            description = #{description},
+            areaId = #{areaId},
         </trim>
         WHERE
         id = #{id} 
     </update>
 
     <!-- 按Id删除 -->
-    <delete id="deleteById" parameterType="java.lang.Integer">
-        DELETE FROM gaokao360_role
+    <delete id="deleteById" parameterType="java.lang.Long">
+        DELETE FROM gk_policy_interpretation
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND id = #{id}
         </trim>
@@ -198,13 +270,25 @@ selectList
 
 
     <delete id="deleteByCondition" parameterType="java.util.Map">
-        DELETE FROM gaokao360_role
+        DELETE FROM gk_policy_interpretation
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="id!=null">
                 AND id = #{id}
             </if>
-            <if test="name!=null">
-                AND name = #{name}
+            <if test="provinceId!=null">
+                AND provinceId = #{provinceId}
+            </if>
+            <if test="admissionBatchId!=null">
+                AND admissionBatchId = #{admissionBatchId}
+            </if>
+            <if test="categoryName!=null">
+                AND categoryName = #{categoryName}
+            </if>
+            <if test="content!=null">
+                AND content = #{content}
+            </if>
+            <if test="status!=null">
+                AND status = #{status}
             </if>
             <if test="creator!=null">
                 AND creator = #{creator}
@@ -218,30 +302,30 @@ selectList
             <if test="lastModDate!=null">
                 AND lastModDate = #{lastModDate}
             </if>
-            <if test="description!=null">
-                AND description = #{description}
+            <if test="areaId!=null">
+                AND areaId = #{areaId}
             </if>
         </trim>
     </delete>
 
     <delete id="deleteByProperty" parameterType="java.util.Map">
-        DELETE FROM gaokao360_role WHERE
+        DELETE FROM gk_policy_interpretation WHERE
         ${property} = #{value}
     </delete>
 
-    <select id="fetch" parameterType="java.lang.Integer" resultType="Role">
+    <select id="fetch" parameterType="java.lang.Long" resultType="PolicyInterpretation">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gaokao360_role
+        FROM gk_policy_interpretation
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND id = #{id}
         </trim>
     </select>
 
-    <select id="findOne" parameterType="java.util.Map" resultType="Role">
+    <select id="findOne" parameterType="java.util.Map" resultType="PolicyInterpretation">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gaokao360_role WHERE
+        FROM gk_policy_interpretation WHERE
         ${property} = #{value}
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
@@ -249,29 +333,29 @@ selectList
         LIMIT 0,1
     </select>
 
-    <select id="findList" parameterType="java.util.Map" resultType="Role">
+    <select id="findList" parameterType="java.util.Map" resultType="PolicyInterpretation">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gaokao360_role WHERE
+        FROM gk_policy_interpretation WHERE
         ${property} = #{value}
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
         </if>
     </select>
 
-    <select id="findAll" resultType="Role">
+    <select id="findAll" resultType="PolicyInterpretation">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gaokao360_role
+        FROM gk_policy_interpretation
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
         </if>
     </select>
 
-    <select id="queryPage" resultType="Role">
+    <select id="queryPage" resultType="PolicyInterpretation">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gaokao360_role
+        FROM gk_policy_interpretation
         <where>
 
             <if test="condition.whereSql != null">
@@ -281,8 +365,20 @@ selectList
             <if test="condition.id!=null">
                 ${condition.groupOp}   ${condition.id.field}  ${condition.id.op}  #{condition.id.data}
             </if>
-            <if test="condition.name!=null">
-                ${condition.groupOp}   ${condition.name.field}  ${condition.name.op}  #{condition.name.data}
+            <if test="condition.provinceId!=null">
+                ${condition.groupOp}   ${condition.provinceId.field}  ${condition.provinceId.op}  #{condition.provinceId.data}
+            </if>
+            <if test="condition.admissionBatchId!=null">
+                ${condition.groupOp}   ${condition.admissionBatchId.field}  ${condition.admissionBatchId.op}  #{condition.admissionBatchId.data}
+            </if>
+            <if test="condition.categoryName!=null">
+                ${condition.groupOp}   ${condition.categoryName.field}  ${condition.categoryName.op}  #{condition.categoryName.data}
+            </if>
+            <if test="condition.content!=null">
+                ${condition.groupOp}   ${condition.content.field}  ${condition.content.op}  #{condition.content.data}
+            </if>
+            <if test="condition.status!=null">
+                ${condition.groupOp}   ${condition.status.field}  ${condition.status.op}  #{condition.status.data}
             </if>
             <if test="condition.creator!=null">
                 ${condition.groupOp}   ${condition.creator.field}  ${condition.creator.op}  #{condition.creator.data}
@@ -296,8 +392,8 @@ selectList
             <if test="condition.lastModDate!=null">
                 ${condition.groupOp}   ${condition.lastModDate.field}  ${condition.lastModDate.op}  #{condition.lastModDate.data}
             </if>
-            <if test="condition.description!=null">
-                ${condition.groupOp}   ${condition.description.field}  ${condition.description.op}  #{condition.description.data}
+            <if test="condition.areaId!=null">
+                ${condition.groupOp}   ${condition.areaId.field}  ${condition.areaId.op}  #{condition.areaId.data}
             </if>
 
 
@@ -310,16 +406,28 @@ selectList
         </if>
     </select>
 
-    <select id="like" parameterType="java.util.Map" resultType="Role">
+    <select id="like" parameterType="java.util.Map" resultType="PolicyInterpretation">
         SELECT
             <include refid="Base_Column_List" />
-        FROM gaokao360_role
+        FROM gk_policy_interpretation
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id like CONCAT('%', #{condition.id} , '%')
             </if>
-            <if test="condition.name!=null">
-                AND name like CONCAT('%', #{condition.name} , '%')
+            <if test="condition.provinceId!=null">
+                AND provinceId like CONCAT('%', #{condition.provinceId} , '%')
+            </if>
+            <if test="condition.admissionBatchId!=null">
+                AND admissionBatchId like CONCAT('%', #{condition.admissionBatchId} , '%')
+            </if>
+            <if test="condition.categoryName!=null">
+                AND categoryName like CONCAT('%', #{condition.categoryName} , '%')
+            </if>
+            <if test="condition.content!=null">
+                AND content like CONCAT('%', #{condition.content} , '%')
+            </if>
+            <if test="condition.status!=null">
+                AND status like CONCAT('%', #{condition.status} , '%')
             </if>
             <if test="condition.creator!=null">
                 AND creator like CONCAT('%', #{condition.creator} , '%')
@@ -333,8 +441,8 @@ selectList
             <if test="condition.lastModDate!=null">
                 AND lastModDate like CONCAT('%', #{condition.lastModDate} , '%')
             </if>
-            <if test="condition.description!=null">
-                AND description like CONCAT('%', #{condition.description} , '%')
+            <if test="condition.areaId!=null">
+                AND areaId like CONCAT('%', #{condition.areaId} , '%')
             </if>
         </trim>
         <if test="orderBy!=null">
@@ -343,16 +451,28 @@ selectList
     </select>
 
 
-    <select id="queryList" parameterType="java.util.Map" resultType="Role">
+    <select id="queryList" parameterType="java.util.Map" resultType="PolicyInterpretation">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gaokao360_role
+        FROM gk_policy_interpretation
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id = #{condition.id}
             </if>
-            <if test="condition.name!=null">
-                AND name = #{condition.name}
+            <if test="condition.provinceId!=null">
+                AND provinceId = #{condition.provinceId}
+            </if>
+            <if test="condition.admissionBatchId!=null">
+                AND admissionBatchId = #{condition.admissionBatchId}
+            </if>
+            <if test="condition.categoryName!=null">
+                AND categoryName = #{condition.categoryName}
+            </if>
+            <if test="condition.content!=null">
+                AND content = #{condition.content}
+            </if>
+            <if test="condition.status!=null">
+                AND status = #{condition.status}
             </if>
             <if test="condition.creator!=null">
                 AND creator = #{condition.creator}
@@ -366,8 +486,8 @@ selectList
             <if test="condition.lastModDate!=null">
                 AND lastModDate = #{condition.lastModDate}
             </if>
-            <if test="condition.description!=null">
-                AND description = #{condition.description}
+            <if test="condition.areaId!=null">
+                AND areaId = #{condition.areaId}
             </if>
         </trim>
         <if test="orderBy!=null">
@@ -375,16 +495,28 @@ selectList
         </if>
     </select>
 
-    <select id="queryOne" parameterType="java.util.Map" resultType="Role">
+    <select id="queryOne" parameterType="java.util.Map" resultType="PolicyInterpretation">
         SELECT
-            <include refid="Base_Column_List" />
-        FROM gaokao360_role
+        <include refid="Base_Column_List" />
+        FROM gk_policy_interpretation
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id = #{condition.id}
             </if>
-            <if test="condition.name!=null">
-                AND name = #{condition.name}
+            <if test="condition.provinceId!=null">
+                AND provinceId = #{condition.provinceId}
+            </if>
+            <if test="condition.admissionBatchId!=null">
+                AND admissionBatchId = #{condition.admissionBatchId}
+            </if>
+            <if test="condition.categoryName!=null">
+                AND categoryName = #{condition.categoryName}
+            </if>
+            <if test="condition.content!=null">
+                AND content = #{condition.content}
+            </if>
+            <if test="condition.status!=null">
+                AND status = #{condition.status}
             </if>
             <if test="condition.creator!=null">
                 AND creator = #{condition.creator}
@@ -398,8 +530,8 @@ selectList
             <if test="condition.lastModDate!=null">
                 AND lastModDate = #{condition.lastModDate}
             </if>
-            <if test="condition.description!=null">
-                AND description = #{condition.description}
+            <if test="condition.areaId!=null">
+                AND areaId = #{condition.areaId}
             </if>
         </trim>
         <if test="orderBy!=null">
@@ -409,13 +541,25 @@ selectList
     </select>
 
     <select id="count" resultType="java.lang.Integer">
-        SELECT count(id) FROM gaokao360_role
+        SELECT count(id) FROM gk_policy_interpretation
        <where>
            <if test="id!=null">
                ${groupOp} ${id.field} ${id.op}  #{id.data}
            </if>
-           <if test="name!=null">
-               ${groupOp} ${name.field} ${name.op}  #{name.data}
+           <if test="provinceId!=null">
+               ${groupOp} ${provinceId.field} ${provinceId.op}  #{provinceId.data}
+           </if>
+           <if test="admissionBatchId!=null">
+               ${groupOp} ${admissionBatchId.field} ${admissionBatchId.op}  #{admissionBatchId.data}
+           </if>
+           <if test="categoryName!=null">
+               ${groupOp} ${categoryName.field} ${categoryName.op}  #{categoryName.data}
+           </if>
+           <if test="content!=null">
+               ${groupOp} ${content.field} ${content.op}  #{content.data}
+           </if>
+           <if test="status!=null">
+               ${groupOp} ${status.field} ${status.op}  #{status.data}
            </if>
            <if test="creator!=null">
                ${groupOp} ${creator.field} ${creator.op}  #{creator.data}
@@ -429,17 +573,17 @@ selectList
            <if test="lastModDate!=null">
                ${groupOp} ${lastModDate.field} ${lastModDate.op}  #{lastModDate.data}
            </if>
-           <if test="description!=null">
-               ${groupOp} ${description.field} ${description.op}  #{description.data}
+           <if test="areaId!=null">
+               ${groupOp} ${areaId.field} ${areaId.op}  #{areaId.data}
            </if>
 
        </where>
     </select>
 
-    <select id="selectMaxId" resultType="java.lang.Integer">
+    <select id="selectMaxId" resultType="java.lang.Long">
         SELECT
         MAX(id)
-        FROM gaokao360_role
+        FROM gk_policy_interpretation
     </select>
 
 </mapper>
