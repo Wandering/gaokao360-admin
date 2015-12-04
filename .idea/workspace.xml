@@ -2,8 +2,154 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2c7fb68-12c7-4506-b03d-6cebf5573a54" name="Default" comment="添加文件忽略">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/dao/IVideoClassifyDAO.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/facade/IVideoClassifyFacade.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/service/IVideoClassifyService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/dao/IVideoCourseDAO.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/facade/IVideoCourseFacade.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/service/IVideoCourseService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/dao/IVideoSectionDAO.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/facade/IVideoSectionFacade.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/service/IVideoSectionService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-domain/src/main/java/cn/thinkjoy/gaokao360/domain/VideoClassify.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/baseinfo/VideoClassifyController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-service/src/main/resources/mybatis/VideoClassifyDAO.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/facade/impl/VideoClassifyFacadeImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/service/impl/VideoClassifyServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-domain/src/main/java/cn/thinkjoy/gaokao360/domain/VideoCourse.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/baseinfo/VideoCourseController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-service/src/main/resources/mybatis/VideoCourseDAO.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/facade/impl/VideoCourseFacadeImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/service/impl/VideoCourseServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-domain/src/main/java/cn/thinkjoy/gaokao360/domain/VideoSection.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/baseinfo/VideoSectionController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-service/src/main/resources/mybatis/VideoSectionDAO.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/facade/impl/VideoSectionFacadeImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/service/impl/VideoSectionServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/custome/js/biz_videoclassify.ftl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/custome/js/biz_videocourse.ftl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/custome/js/biz_videosection.ftl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/videoclassify.ftl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/custome/script/videoclassify_biz_script.ftl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/custome/videoclassify_page_grid.ftl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/videocourse.ftl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/custome/script/videocourse_biz_script.ftl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/custome/videocourse_page_grid.ftl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/videosection.ftl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/custome/script/videosection_biz_script.ftl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/custome/videosection_page_grid.ftl" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\artifacts\Gradle___cn_thinkjoy_gaokao360_gaokao360_admin_war___gaokao360_admin_war_0_0_1_SNAPSHOT_war.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\artifacts\Gradle___cn_thinkjoy_gaokao360_gaokao360_admin_war___gaokao360_admin_war_0_0_1_SNAPSHOT_war__exploded_.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\copyright\profiles_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__aopalliance_aopalliance_1_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__ch_qos_logback_logback_classic_1_1_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__ch_qos_logback_logback_core_1_1_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__cn_thinkjoy_cloudstack_cs_cache_0_0_29_SNAPSHOT.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__cn_thinkjoy_cloudstack_cs_client_core_0_0_29_SNAPSHOT.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__cn_thinkjoy_cloudstack_cs_clustermanager_client_0_0_29_SNAPSHOT.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__cn_thinkjoy_cloudstack_cs_common_0_0_29_SNAPSHOT.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__cn_thinkjoy_cloudstack_cs_context_0_0_29_SNAPSHOT.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__cn_thinkjoy_cloudstack_cs_dynconfig_client_0_0_29_SNAPSHOT.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__cn_thinkjoy_cloudstack_cs_monitor_client_0_0_29_SNAPSHOT.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__cn_thinkjoy_cloudstack_cs_spring_redis_0_0_29_SNAPSHOT.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__cn_thinkjoy_cloudstack_cs_spring_zkconfig_0_0_29_SNAPSHOT.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__cn_thinkjoy_common_thinkjoy_analytics_common_0_1_9_SNAPSHOT.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__cn_thinkjoy_common_thinkjoy_biz_common_0_1_9_SNAPSHOT.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__cn_thinkjoy_common_thinkjoy_context_common_0_1_9_SNAPSHOT.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__cn_thinkjoy_common_thinkjoy_dap_common_0_1_9_SNAPSHOT.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__cn_thinkjoy_common_thinkjoy_domain_common_0_1_9_SNAPSHOT.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__cn_thinkjoy_common_thinkjoy_kafka_common_0_1_9_SNAPSHOT.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__cn_thinkjoy_common_thinkjoy_mu_common_0_1_9_SNAPSHOT.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__cn_thinkjoy_common_thinkjoy_mus_common_0_1_9_SNAPSHOT.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__cn_thinkjoy_common_thinkjoy_protocol_common_0_1_9_SNAPSHOT.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__cn_thinkjoy_common_thinkjoy_rmq_common_0_1_9_SNAPSHOT.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__cn_thinkjoy_common_thinkjoy_security_common_0_1_9_SNAPSHOT.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__cn_thinkjoy_common_thinkjoy_web_common_0_1_9_SNAPSHOT.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__cn_thinkjoy_dap_dataservice_data_access_0_0_28_SNAPSHOT.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__cn_thinkjoy_spring_rest_exception_handler_1_0_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__com_101tec_zkclient_0_4.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__com_alibaba_druid_1_0_7.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__com_alibaba_dubbo_2_5_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__com_alibaba_fastjson_1_2_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__com_alibaba_fastjson_1_2_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__com_alibaba_rocketmq_rocketmq_client_3_2_6.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__com_alibaba_rocketmq_rocketmq_common_3_2_6.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__com_alibaba_rocketmq_rocketmq_remoting_3_2_6.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__com_google_guava_guava_17_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__com_yammer_metrics_metrics_core_2_2_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__commons_codec_commons_codec_1_9.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__commons_fileupload_commons_fileupload_1_3_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__commons_io_commons_io_2_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__commons_lang_commons_lang_2_6.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__commons_logging_commons_logging_1_1_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__io_netty_netty_3_7_0_Final.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__io_netty_netty_all_4_0_25_Final.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__javax_servlet_javax_servlet_api_3_1_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__jline_jline_0_9_94.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__junit_junit_3_8_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__junit_junit_4_11.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__log4j_log4j_1_2_16.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__log4j_log4j_1_2_17.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__mysql_mysql_connector_java_5_1_26.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__net_jpountz_lz4_lz4_1_2_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__net_sf_jopt_simple_jopt_simple_3_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_apache_commons_commons_lang3_3_3_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_apache_commons_commons_pool2_2_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_apache_commons_commons_proxy_1_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_apache_curator_curator_client_2_5_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_apache_curator_curator_framework_2_5_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_apache_curator_curator_recipes_2_5_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_apache_curator_curator_x_discovery_2_5_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_apache_kafka_kafka_2_10_0_8_2_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_apache_kafka_kafka_clients_0_8_2_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_apache_poi_poi_3_11_beta2.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_apache_poi_poi_ooxml_3_11_beta2.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_apache_poi_poi_ooxml_schemas_3_11_beta2.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_apache_poi_poi_scratchpad_3_11_beta2.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_apache_xmlbeans_xmlbeans_2_6_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_apache_zookeeper_zookeeper_3_4_6.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_aspectj_aspectjrt_1_7_4.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_aspectj_aspectjweaver_1_7_4.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_codehaus_jackson_jackson_core_asl_1_9_13.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_codehaus_jackson_jackson_mapper_asl_1_9_13.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_codehaus_janino_commons_compiler_2_7_5.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_codehaus_janino_janino_2_7_5.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_eclipse_jetty_aggregate_jetty_webapp_8_1_9_v20130131.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_eclipse_jetty_jetty_jsp_8_1_9_v20130131.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_eclipse_jetty_orbit_com_sun_el_2_2_0_v201108011116.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_eclipse_jetty_orbit_javax_el_2_2_0_v201108011116.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_eclipse_jetty_orbit_javax_servlet_3_0_0_v201112011016.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_eclipse_jetty_orbit_javax_servlet_jsp_2_2_0_v201112011158.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_eclipse_jetty_orbit_javax_servlet_jsp_jstl_1_2_0_v201105211821.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_eclipse_jetty_orbit_org_apache_jasper_glassfish_2_2_2_v201112011158.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_eclipse_jetty_orbit_org_apache_taglibs_standard_glassfish_1_2_0_v201112081803.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_eclipse_jetty_orbit_org_eclipse_jdt_core_3_7_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_freemarker_freemarker_2_3_20.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_hamcrest_hamcrest_core_1_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_javassist_javassist_3_15_0_GA.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_jboss_netty_netty_3_2_5_Final.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_mybatis_mybatis_3_2_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_mybatis_mybatis_spring_1_2_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_scala_lang_scala_library_2_10_4.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_slf4j_log4j_over_slf4j_1_7_7.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_slf4j_slf4j_api_1_7_10.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_springframework_data_spring_data_redis_1_5_0_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_springframework_spring_aop_4_1_0_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_springframework_spring_beans_4_1_0_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_springframework_spring_context_4_1_0_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_springframework_spring_context_support_4_1_0_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_springframework_spring_core_4_1_0_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_springframework_spring_expression_4_1_0_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_springframework_spring_jdbc_4_1_0_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_springframework_spring_test_4_1_0_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_springframework_spring_tx_4_1_0_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_springframework_spring_web_4_1_0_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_springframework_spring_webmvc_4_1_0_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__org_xerial_snappy_snappy_java_1_1_1_6.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__redis_clients_jedis_2_6_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\.idea\libraries\Gradle__stax_stax_api_1_0_1.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/common/ServiceMaps.java" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/common/ServiceMaps.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="gaokao360.iws" />
@@ -37,30 +183,15 @@
         <task path="$PROJECT_DIR$">
           <activation />
         </task>
+        <task path="$PROJECT_DIR$/gaokao360-admin-war">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <PATH>
               <PATH_ELEMENT>
                 <option name="myItemId" value="" />
                 <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ExternalProjectsStructure$RootNode" />
-              </PATH_ELEMENT>
-              <PATH_ELEMENT>
-                <option name="myItemId" value="gaokao360-admin" />
-                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ProjectNode" />
-              </PATH_ELEMENT>
-              <PATH_ELEMENT>
-                <option name="myItemId" value=":gaokao360-service" />
-                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ModuleNode" />
-              </PATH_ELEMENT>
-            </PATH>
-            <PATH>
-              <PATH_ELEMENT>
-                <option name="myItemId" value="" />
-                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ExternalProjectsStructure$RootNode" />
-              </PATH_ELEMENT>
-              <PATH_ELEMENT>
-                <option name="myItemId" value="gaokao360-admin" />
-                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ProjectNode" />
               </PATH_ELEMENT>
             </PATH>
           </tree_state>
@@ -73,72 +204,61 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="PolicyInterpretationServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/service/impl/PolicyInterpretationServiceImpl.java">
+      <file leaf-file-name="VideoClassifyController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/baseinfo/VideoClassifyController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+              <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IPolicyInterpretationDAO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/dao/IPolicyInterpretationDAO.java">
+      <file leaf-file-name="VideoClassify.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/gaokao360-domain/src/main/java/cn/thinkjoy/gaokao360/domain/VideoClassify.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.8226257">
+              <caret line="46" column="4" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="4" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PolicyInterpretationDAO.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gaokao360-service/src/main/resources/mybatis/PolicyInterpretationDAO.xml">
+      <file leaf-file-name="VideoCourse.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gaokao360-domain/src/main/java/cn/thinkjoy/gaokao360/domain/VideoCourse.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <marker date="1449191497368" expanded="true" signature="894:1383" placeholder="INSERT INTO ..." />
-                <marker date="1449191497368" expanded="true" signature="1469:1498" placeholder="SELECT LAST_..." />
-                <marker date="1449191497368" expanded="true" signature="1625:2774" placeholder="UPDATE gk_po..." />
-                <marker date="1449191497368" expanded="true" signature="2826:4059" placeholder="UPDATE gk_po..." />
-                <marker date="1449191497368" expanded="true" signature="6855:7584" placeholder="INSERT INTO ..." />
-                <marker date="1449191497368" expanded="true" signature="7675:8197" placeholder="UPDATE gk_po..." />
-                <marker date="1449191497368" expanded="true" signature="9859:9932" placeholder="DELETE FROM ..." />
-                <marker date="1449191497368" expanded="true" signature="10348:10582" placeholder="SELECT FROM ..gk_policy_interpretation..." />
-                <marker date="1449191497368" expanded="true" signature="17578:19197" placeholder="SELECT FROM ..gk_policy_interpretation..." />
-                <marker date="1449191497368" expanded="true" signature="20932:20992" placeholder="SELECT MAX(i..gk_policy_interpretation..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PolicyInterpretation.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gaokao360-domain/src/main/java/cn/thinkjoy/gaokao360/domain/PolicyInterpretation.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+      <file leaf-file-name="VideoSection.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gaokao360-domain/src/main/java/cn/thinkjoy/gaokao360/domain/VideoSection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.73549885">
-              <caret line="85" column="6" selection-start-line="85" selection-start-column="6" selection-end-line="85" selection-end-column="6" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="50" column="23" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gradlew" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gradlew">
+      <file leaf-file-name="VideoCourseController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/baseinfo/VideoCourseController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="59" column="36" selection-start-line="59" selection-start-column="36" selection-end-line="59" selection-end-column="36" />
+              <caret line="44" column="39" selection-start-line="44" selection-start-column="28" selection-end-line="44" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VideoSectionController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/baseinfo/VideoSectionController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -148,7 +268,7 @@
         <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/baseinfo/GkinformationGkhotController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="90" column="1" selection-start-line="90" selection-start-column="1" selection-end-line="90" selection-end-column="1" />
+              <caret line="54" column="7" selection-start-line="54" selection-start-column="7" selection-end-line="54" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -158,27 +278,27 @@
         <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/baseinfo/PolicyInterpretationController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
+              <caret line="57" column="9" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ServiceMaps.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/common/ServiceMaps.java">
+      <file leaf-file-name="videoclassify_page_grid.ftl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/custome/videoclassify_page_grid.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="42" column="41" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="41" />
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ExaminationPaperController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/baseinfo/ExaminationPaperController.java">
+      <file leaf-file-name="videoclassify.ftl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/videoclassify.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+            <state vertical-scroll-proportion="-18.321428">
+              <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -1662,8 +1782,12 @@
         <option value="$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/baseinfo/GkinformationGkhotController.java" />
         <option value="$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/DatagroupDataController.java" />
         <option value="$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/baseinfo/PolicyInterpretationController.java" />
-        <option value="$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/common/ServiceMaps.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/.idea/workspace.xml" />
+        <option value="$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/common/ServiceMaps.java" />
+        <option value="$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/baseinfo/VideoClassifyController.java" />
+        <option value="$PROJECT_DIR$/gaokao360-domain/src/main/java/cn/thinkjoy/gaokao360/domain/VideoClassify.java" />
+        <option value="$PROJECT_DIR$/gaokao360-domain/src/main/java/cn/thinkjoy/gaokao360/domain/VideoCourse.java" />
       </list>
     </option>
   </component>
@@ -1689,10 +1813,10 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1" />
-    <option name="y" value="1" />
-    <option name="width" value="1598" />
-    <option name="height" value="858" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1616" />
+    <option name="height" value="876" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -1725,10 +1849,6 @@
               <option name="myItemId" value="gaokao360" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -1736,253 +1856,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Gradle: org.apache.poi:poi-ooxml:3.11-beta2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="poi-ooxml-3.11-beta2.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Gradle: org.apache.poi:poi:3.11-beta2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="poi-3.11-beta2.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Gradle: org.apache.poi:poi:3.11-beta2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="poi-3.11-beta2.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="poi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Gradle: org.apache.poi:poi:3.11-beta2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="poi-3.11-beta2.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="poi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Gradle: org.apache.poi:poi:3.11-beta2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="poi-3.11-beta2.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="poi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hpsf" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Gradle: org.apache.poi:poi:3.11-beta2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="poi-3.11-beta2.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="poi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Gradle: cn.thinkjoy.common:thinkjoy-mu-common:0.1.9-SNAPSHOT" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="thinkjoy-mu-common-0.1.9-SNAPSHOT.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Gradle: cn.thinkjoy.common:thinkjoy-mu-common:0.1.9-SNAPSHOT" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="thinkjoy-mu-common-0.1.9-SNAPSHOT.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="managerui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Gradle: cn.thinkjoy.common:thinkjoy-mu-common:0.1.9-SNAPSHOT" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="thinkjoy-mu-common-0.1.9-SNAPSHOT.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="managerui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="&lt; 1.7 &gt;" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="&lt; 1.7 &gt;" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rt.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="&lt; 1.7 &gt;" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rt.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org" />
+              <option name="myItemId" value="gaokao360-admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1993,6 +1867,312 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="gaokao360-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mybatis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="thinkjoy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="thinkjoy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="thinkjoy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="impl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="thinkjoy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="facade" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="thinkjoy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="facade" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="impl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="thinkjoy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaokao360" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dao" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2018,11 +2198,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\IdeaProjects\gaokao360-admin\gaokao360-admin-war\src\main\java\cn\thinkjoy\gaokao360\controller\baseinfo" />
-      <recent name="D:\IdeaProjects\gaokao360-admin" />
       <recent name="D:\IdeaProjects\gaokao360-admin\gaokao360-domain\src\main\java\cn\thinkjoy\gaokao360\domain" />
-      <recent name="D:\IdeaProjects\gaokao360-admin\gaokao360-service\src\main\resources\mybatis" />
-      <recent name="D:\IdeaProjects\gaokao360-admin\gaokao360-service\src\main\java\cn\thinkjoy\gaokao360\dao" />
+      <recent name="D:\IdeaProjects\gaokao360-admin\gaokao360-admin-war\src\main\webapp\WEB-INF\view\module" />
+      <recent name="D:\IdeaProjects\gaokao360-admin\gaokao360-admin-war\src\main\webapp\WEB-INF\view\module\custome" />
+      <recent name="D:\IdeaProjects\gaokao360-admin\gaokao360-admin-war\src\main\webapp\WEB-INF\view\module\custome\script" />
+      <recent name="D:\IdeaProjects\gaokao360-admin\gaokao360-admin-war\src\main\webapp\WEB-INF\view\module\custome\js" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\IdeaProjects\gaokao360-admin\gaokao360-admin-war\src\main\webapp\WEB-INF\view\module" />
@@ -2031,7 +2211,7 @@
       <recent name="cn.thinkjoy.gaokao360.controller" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.gaokao360-admin [clean]">
+  <component name="RunManager" selected="Application.WarStarter">
     <configuration default="false" name="WarStarter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -2064,6 +2244,24 @@
         <option name="taskNames">
           <list>
             <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <method />
+    </configuration>
+    <configuration default="false" name="gaokao360-admin [cleanEclipse]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="cleanEclipse" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -2397,20 +2595,20 @@
         </SHUTDOWN>
       </ConfigurationWrapper>
       <method>
-        <option name="BuildArtifacts" enabled="true">
-          <artifact name="Gradle : cn.thinkjoy.gaokao360:gaokao360-admin-war : gaokao360-admin-war-0.0.1-SNAPSHOT.war (exploded)" />
-        </option>
+        <option name="BuildArtifacts" enabled="true" />
       </method>
     </configuration>
-    <list size="3">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Tomcat Server.Unnamed" />
       <item index="1" class="java.lang.String" itemvalue="Application.WarStarter" />
       <item index="2" class="java.lang.String" itemvalue="Gradle.gaokao360-admin [clean]" />
+      <item index="3" class="java.lang.String" itemvalue="Gradle.gaokao360-admin [cleanEclipse]" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Gradle.gaokao360-admin [clean]" />
-        <item index="1" class="java.lang.String" itemvalue="Application.WarStarter" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Application.WarStarter" />
+        <item index="1" class="java.lang.String" itemvalue="Gradle.gaokao360-admin [clean]" />
+        <item index="2" class="java.lang.String" itemvalue="Gradle.gaokao360-admin [cleanEclipse]" />
       </list>
     </recent_temporary>
   </component>
@@ -2428,7 +2626,7 @@
       <workItem from="1449047316049" duration="3549000" />
       <workItem from="1449052822306" duration="2664000" />
       <workItem from="1449109391325" duration="23646000" />
-      <workItem from="1449191376332" duration="1594000" />
+      <workItem from="1449191376332" duration="7822000" />
     </task>
     <task id="LOCAL-00001" summary="整理">
       <created>1449027280322</created>
@@ -2472,37 +2670,43 @@
       <option name="project" value="LOCAL" />
       <updated>1449192447894</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="添加文件忽略">
+      <created>1449193018026</created>
+      <option name="number" value="00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1449193018026</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34374000" />
+    <option name="totallyTimeSpent" value="40602000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="1" width="1598" height="858" extended-state="0" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32806325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32751676" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6495389" sideWeight="0.5050378" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292517" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3287483" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287483" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25812745" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25514138" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19375813" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19151671" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2874828" sideWeight="0.49496222" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.0" sideWeight="0.49496222" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -2547,291 +2751,14 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/springmvc-servlet.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-51.892857">
-          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/resources/logback.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="52" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gaokao360-domain/src/main/java/cn/thinkjoy/gaokao360/domain/GkinformationGkhot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.85328186">
-          <caret line="75" column="43" selection-start-line="75" selection-start-column="43" selection-end-line="75" selection-end-column="43" />
-          <folding>
-            <element signature="e#1068#1069#0" expanded="false" />
-            <element signature="e#1118#1119#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/facade/impl/GkinformationGkhotFacadeImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.common/thinkjoy-mu-common/0.1.9-SNAPSHOT/dc8d4b4805835dac1f99cebbd8a683dfd0705c52/thinkjoy-mu-common-0.1.9-SNAPSHOT.jar!/cn/thinkjoy/common/managerui/controller/AbstractController.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35185185">
-          <caret line="23" column="22" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.common/thinkjoy-mu-common/0.1.9-SNAPSHOT/dc8d4b4805835dac1f99cebbd8a683dfd0705c52/thinkjoy-mu-common-0.1.9-SNAPSHOT.jar!/cn/thinkjoy/common/managerui/controller/AbstractCommonController.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.64506173">
-          <caret line="48" column="14" selection-start-line="48" selection-start-column="14" selection-end-line="48" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gaokao360-service/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/resources/config/main-conf.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/resources/config/metadata.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="16" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/resources/spring.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.821428">
-          <caret line="13" column="35" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gaokao360-service/src/main/resources/springme.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.464286">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dependencies.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/service/IExaminationPaperService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/service/impl/ExaminationPaperServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gaokao360-domain/src/main/java/cn/thinkjoy/gaokao360/domain/ExaminationPaper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/dao/IExaminationPaperDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/examinationpaper.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/custome/examinationpaper_page_grid.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/custome/js/biz_examinationpaper.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/custome/script/examinationpaper_biz_script.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.6785714">
-          <caret line="1" column="12" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.common/thinkjoy-biz-common/0.1.9-SNAPSHOT/1c6e929e0255d15dfbd4596296c63d5349462630/thinkjoy-biz-common-0.1.9-SNAPSHOT.jar!/cn/thinkjoy/common/service/IBaseService.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.071429">
-          <caret line="50" column="36" selection-start-line="50" selection-start-column="36" selection-end-line="50" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.common/thinkjoy-biz-common/0.1.9-SNAPSHOT/1c6e929e0255d15dfbd4596296c63d5349462630/thinkjoy-biz-common-0.1.9-SNAPSHOT.jar!/cn/thinkjoy/common/service/impl/AbstractBaseService.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.714286">
-          <caret line="102" column="77" selection-start-line="102" selection-start-column="15" selection-end-line="102" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.common/thinkjoy-mus-common/0.1.9-SNAPSHOT/81bcb98a11f3af62a986ea7ee68c6b84c47f700b/thinkjoy-mus-common-0.1.9-SNAPSHOT.jar!/cn/thinkjoy/common/managerui/service/impl/ActionPermServiceImpl.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1969697">
-          <caret line="47" column="25" selection-start-line="47" selection-start-column="25" selection-end-line="47" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.common/thinkjoy-mus-common/0.1.9-SNAPSHOT/81bcb98a11f3af62a986ea7ee68c6b84c47f700b/thinkjoy-mus-common-0.1.9-SNAPSHOT.jar!/cn/thinkjoy/common/managerui/service/IActionPermService.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4318182">
-          <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.common/thinkjoy-mu-common/0.1.9-SNAPSHOT/dc8d4b4805835dac1f99cebbd8a683dfd0705c52/thinkjoy-mu-common-0.1.9-SNAPSHOT.jar!/cn/thinkjoy/common/managerui/controller/helpers/ActionPermHelper.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.321429">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gaokao360-service/src/main/resources/mybatis/ExaminationPaperDAO.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gaokao360-service/src/main/resources/mybatis/GkinformationGkhotDAO.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.866667">
-          <caret line="512" column="53" selection-start-line="512" selection-start-column="53" selection-end-line="512" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.common/thinkjoy-mu-common/0.1.9-SNAPSHOT/dc8d4b4805835dac1f99cebbd8a683dfd0705c52/thinkjoy-mu-common-0.1.9-SNAPSHOT.jar!/cn/thinkjoy/common/managerui/controller/AbstractAdminController.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.035714">
-          <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/DataModelController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/ResourceActionController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/UserDatagroupController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="87" column="29" selection-start-line="87" selection-start-column="29" selection-end-line="87" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/RoleUserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="59" column="5" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/RoleResourceController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/ResourceGridController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/RoleController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/DatagroupController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="83" column="17" selection-start-line="83" selection-start-column="17" selection-end-line="83" selection-end-column="17" />
           <folding>
-            <element signature="e#2266#2267#0" expanded="true" />
-            <element signature="e#2295#2296#0" expanded="true" />
+            <element signature="e#2266#2267#0" expanded="false" />
+            <element signature="e#2295#2296#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/Gaokao360CommonController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2617587">
-          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2873,34 +2800,73 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/dao/IPolicyInterpretationDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gaokao360-service/src/main/resources/mybatis/PolicyInterpretationDAO.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1449191497368" expanded="true" signature="894:1383" placeholder="INSERT INTO ..." />
-            <marker date="1449191497368" expanded="true" signature="1469:1498" placeholder="SELECT LAST_..." />
-            <marker date="1449191497368" expanded="true" signature="1625:2774" placeholder="UPDATE gk_po..." />
-            <marker date="1449191497368" expanded="true" signature="2826:4059" placeholder="UPDATE gk_po..." />
-            <marker date="1449191497368" expanded="true" signature="6855:7584" placeholder="INSERT INTO ..." />
-            <marker date="1449191497368" expanded="true" signature="7675:8197" placeholder="UPDATE gk_po..." />
-            <marker date="1449191497368" expanded="true" signature="9859:9932" placeholder="DELETE FROM ..." />
-            <marker date="1449191497368" expanded="true" signature="10348:10582" placeholder="SELECT FROM ..gk_policy_interpretation..." />
-            <marker date="1449191497368" expanded="true" signature="17578:19197" placeholder="SELECT FROM ..gk_policy_interpretation..." />
-            <marker date="1449191497368" expanded="true" signature="20932:20992" placeholder="SELECT MAX(i..gk_policy_interpretation..." />
+            <marker date="1449191497368" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1449191497368" expanded="true" signature="-1:-1" placeholder="SELECT LAST_..." />
+            <marker date="1449191497368" expanded="true" signature="-1:-1" placeholder="UPDATE gk_po..." />
+            <marker date="1449191497368" expanded="true" signature="-1:-1" placeholder="UPDATE gk_po..." />
+            <marker date="1449191497368" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1449191497368" expanded="true" signature="-1:-1" placeholder="UPDATE gk_po..." />
+            <marker date="1449191497368" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
+            <marker date="1449191497368" expanded="true" signature="-1:-1" placeholder="SELECT FROM ..gk_policy_interpretation..." />
+            <marker date="1449191497368" expanded="true" signature="-1:-1" placeholder="SELECT FROM ..gk_policy_interpretation..." />
+            <marker date="1449191497368" expanded="true" signature="-1:-1" placeholder="SELECT MAX(i..gk_policy_interpretation..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gaokao360-domain/src/main/java/cn/thinkjoy/gaokao360/domain/PolicyInterpretation.java">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="11" selection-start-line="0" selection-start-column="11" selection-end-line="0" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/encodings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="130" column="21" selection-start-line="130" selection-start-column="21" selection-end-line="130" selection-end-column="21" />
+          <folding>
+            <marker date="1449209801749" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1449209801749" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1449209801749" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1449209801749" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/Gaokao360CommonController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/biz_script.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="22.392857">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding>
+            <marker date="1449047303716" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/custome/script/Datagroup_biz_script.ftl">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -2908,10 +2874,74 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gradlew">
+    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/custome/js/biz_Datagroup.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.6785714">
+          <caret line="1" column="70" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/custome/js/biz_Resource.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="11.75">
+          <caret line="18" column="27" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/custome/gkinformationgkhot_page_grid.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="13.107142">
+          <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/custome/model_page_grid.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="52.464287">
+          <caret line="16" column="40" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/gkinformationgkhot.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.964286">
+          <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/dao/IExaminationPaperDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="59" column="36" selection-start-line="59" selection-start-column="36" selection-end-line="59" selection-end-column="36" />
+          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/dao/IGkinformationGkhotDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/dao/IPolicyInterpretationDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="29" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
           <folding />
         </state>
       </provider>
@@ -2924,18 +2954,107 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/baseinfo/GkinformationGkhotController.java">
+    <entry file="file://$PROJECT_DIR$/gradlew">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="90" column="1" selection-start-line="90" selection-start-column="1" selection-end-line="90" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.6745562">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/baseinfo/PolicyInterpretationController.java">
+    <entry file="file://$PROJECT_DIR$/gaokao360-service/src/main/resources/mybatis/GkinformationGkhotDAO.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.037475344">
+          <caret line="512" column="53" selection-start-line="512" selection-start-column="53" selection-end-line="512" selection-end-column="53" />
+          <folding>
+            <marker date="1449140744451" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1449140744451" expanded="true" signature="-1:-1" placeholder="SELECT LAST_..." />
+            <marker date="1449140744451" expanded="true" signature="-1:-1" placeholder="UPDATE gk_gk..." />
+            <marker date="1449140744451" expanded="true" signature="-1:-1" placeholder="UPDATE gk_gk..." />
+            <marker date="1449140744451" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1449140744451" expanded="true" signature="-1:-1" placeholder="UPDATE gk_gk..." />
+            <marker date="1449140744451" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
+            <marker date="1449140744451" expanded="true" signature="-1:-1" placeholder="SELECT FROM ..gk_gkinformation_gkhot..." />
+            <marker date="1449140744451" expanded="true" signature="-1:-1" placeholder="SELECT FROM ..gk_gkinformation_gkhot..." />
+            <marker date="1449140744451" expanded="true" signature="-1:-1" placeholder="SELECT MAX(i..gk_gkinformation_gkhot..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-service/src/main/resources/mybatis/ExaminationPaperDAO.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-service/src/main/resources/mybatis/DatagroupDataDAO.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1449047304336" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1449047304336" expanded="true" signature="-1:-1" placeholder="SELECT LAST_..." />
+            <marker date="1449047304336" expanded="true" signature="-1:-1" placeholder="UPDATE gaoka..." />
+            <marker date="1449047304336" expanded="true" signature="-1:-1" placeholder="UPDATE gaoka..." />
+            <marker date="1449047304336" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1449047304336" expanded="true" signature="-1:-1" placeholder="UPDATE gaoka..." />
+            <marker date="1449047304336" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
+            <marker date="1449047304336" expanded="true" signature="-1:-1" placeholder="SELECT FROM ..gaokao360_datagroup_data..." />
+            <marker date="1449047304336" expanded="true" signature="-1:-1" placeholder="SELECT FROM ..gaokao360_datagroup_data..." />
+            <marker date="1449047304336" expanded="true" signature="-1:-1" placeholder="SELECT MAX(i..gaokao360_datagroup_data..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-service/src/main/resources/mybatis/DatagroupDAO.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1449047304335" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1449047304335" expanded="true" signature="-1:-1" placeholder="SELECT LAST_..." />
+            <marker date="1449047304335" expanded="true" signature="-1:-1" placeholder="UPDATE gaoka..." />
+            <marker date="1449047304335" expanded="true" signature="-1:-1" placeholder="UPDATE gaoka..." />
+            <marker date="1449047304335" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1449047304335" expanded="true" signature="-1:-1" placeholder="UPDATE gaoka..." />
+            <marker date="1449047304335" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
+            <marker date="1449047304335" expanded="true" signature="-1:-1" placeholder="SELECT FROM ..gaokao360_datagroup..." />
+            <marker date="1449047304335" expanded="true" signature="-1:-1" placeholder="SELECT FROM ..gaokao360_datagroup..." />
+            <marker date="1449047304335" expanded="true" signature="-1:-1" placeholder="SELECT MAX(i..gaokao360_datagroup..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/service/IGkinformationGkhotService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18737672">
+          <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/service/IExaminationPaperService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18737672">
+          <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/facade/IGkinformationGkhotFacade.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18737672">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/service/IVideoClassifyService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -2943,15 +3062,162 @@
     <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/common/ServiceMaps.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="41" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="41" />
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/service/impl/VideoClassifyServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.73549885">
-          <caret line="85" column="6" selection-start-line="85" selection-start-column="6" selection-end-line="85" selection-end-column="6" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/facade/IVideoClassifyFacade.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/facade/impl/VideoClassifyFacadeImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/dao/IVideoClassifyDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-service/src/main/resources/mybatis/VideoClassifyDAO.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="34" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
+          <folding>
+            <marker date="1449206525072" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1449206525072" expanded="true" signature="-1:-1" placeholder="SELECT LAST_..." />
+            <marker date="1449206525072" expanded="true" signature="-1:-1" placeholder="UPDATE gk_vi..." />
+            <marker date="1449206525072" expanded="true" signature="-1:-1" placeholder="UPDATE gk_vi..." />
+            <marker date="1449206525072" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1449206525072" expanded="true" signature="-1:-1" placeholder="UPDATE gk_vi..." />
+            <marker date="1449206525072" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
+            <marker date="1449206525072" expanded="true" signature="-1:-1" placeholder="SELECT FROM ..gk_video_classify..." />
+            <marker date="1449206525072" expanded="true" signature="-1:-1" placeholder="SELECT FROM ..gk_video_classify..." />
+            <marker date="1449206525072" expanded="true" signature="-1:-1" placeholder="SELECT MAX(i..gk_video_classify..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-domain/src/main/java/cn/thinkjoy/gaokao360/domain/PolicyInterpretation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/custome/js/biz_videoclassify.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/custome/script/videoclassify_biz_script.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/custome/videoclassify_page_grid.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/videoclassify.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.321428">
+          <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/baseinfo/VideoClassifyController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/baseinfo/VideoCourseController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="44" column="39" selection-start-line="44" selection-start-column="28" selection-end-line="44" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/baseinfo/VideoSectionController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/baseinfo/GkinformationGkhotController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="54" column="7" selection-start-line="54" selection-start-column="7" selection-end-line="54" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/baseinfo/PolicyInterpretationController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="57" column="9" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-domain/src/main/java/cn/thinkjoy/gaokao360/domain/VideoSection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="50" column="23" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-domain/src/main/java/cn/thinkjoy/gaokao360/domain/VideoCourse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-domain/src/main/java/cn/thinkjoy/gaokao360/domain/VideoClassify.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8226257">
+          <caret line="46" column="4" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="4" />
           <folding />
         </state>
       </provider>

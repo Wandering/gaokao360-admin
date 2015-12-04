@@ -11,9 +11,7 @@ package cn.thinkjoy.gaokao360.common;
 import cn.thinkjoy.common.service.IBaseService;
 
 
-import cn.thinkjoy.gaokao360.service.IExaminationPaperService;
-import cn.thinkjoy.gaokao360.service.IGkinformationGkhotService;
-import cn.thinkjoy.gaokao360.service.IPolicyInterpretationService;
+import cn.thinkjoy.gaokao360.service.*;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +33,14 @@ public class ServiceMaps extends BaseServiceMaps{
     private IExaminationPaperService examinationPaperService;
     @Autowired
     private IPolicyInterpretationService policyInterpretationService;
+    @Autowired
+    private IVideoClassifyService videoClassifyService;
 
+    @Autowired
+    private IVideoCourseService videoCourseService;
+
+    @Autowired
+    private IVideoSectionService videoSectionService;
 
     @PostConstruct
     public void init(){
@@ -43,6 +48,9 @@ public class ServiceMaps extends BaseServiceMaps{
         serviceMap.put("gkinformationGkhot",gkinformationGkhotService);
         serviceMap.put("examinationPaperService",examinationPaperService);
         serviceMap.put("policyInterpretationService",policyInterpretationService);
+        serviceMap.put("videoClassify",videoClassifyService);
+        serviceMap.put("videoCourse",videoCourseService);
+        serviceMap.put("videoSection",videoSectionService);
     }
 
 }

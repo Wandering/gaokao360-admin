@@ -11,6 +11,9 @@
     <file url="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/dao/IGkinformationGkhotDAO.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/facade/IGkinformationGkhotFacade.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/facade/impl" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/facade/impl/VideoClassifyFacadeImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/facade/impl/VideoCourseFacadeImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/facade/impl/VideoSectionFacadeImpl.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/service/IGkinformationGkhotService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gaokao360-service/src/main/resources/mybatis/GkinformationGkhotDAO.xml" charset="GBK" />
     <file url="PROJECT" charset="UTF-8" />
