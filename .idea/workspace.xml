@@ -1,61 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b2c7fb68-12c7-4506-b03d-6cebf5573a54" name="Default" comment="添加增删改的common类">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/dao/IPolicyInterpretationDAO.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/service/IPolicyInterpretationService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-domain/src/main/java/cn/thinkjoy/gaokao360/domain/PolicyInterpretation.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/baseinfo/PolicyInterpretationController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-service/src/main/resources/mybatis/PolicyInterpretationDAO.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/service/impl/PolicyInterpretationServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gradlew" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-admin-war\build\classes\main\cn\thinkjoy\gaokao360\common\ServiceMaps.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-admin-war\build\classes\main\cn\thinkjoy\gaokao360\controller\DataModelController.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-admin-war\build\classes\main\cn\thinkjoy\gaokao360\controller\DatagroupController.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-admin-war\build\classes\main\cn\thinkjoy\gaokao360\controller\DatagroupDataController.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-admin-war\build\classes\main\cn\thinkjoy\gaokao360\controller\ModelController.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-admin-war\build\classes\main\cn\thinkjoy\gaokao360\controller\ResourceActionController.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-admin-war\build\classes\main\cn\thinkjoy\gaokao360\controller\ResourceController.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-admin-war\build\classes\main\cn\thinkjoy\gaokao360\controller\ResourceGridController.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-admin-war\build\classes\main\cn\thinkjoy\gaokao360\controller\RoleController.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-admin-war\build\classes\main\cn\thinkjoy\gaokao360\controller\RoleResourceController.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-admin-war\build\classes\main\cn\thinkjoy\gaokao360\controller\RoleUserController.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-admin-war\build\classes\main\cn\thinkjoy\gaokao360\controller\UserDatagroupController.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-admin-war\build\resources\main\config\main-conf.properties" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-admin-war\build\resources\main\config\metadata.properties" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-admin-war\build\resources\main\logback.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-admin-war\build\resources\main\spring.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-api\build\resources\test\spring.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-domain\build\classes\main\cn\thinkjoy\dto\AssignDTO.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-domain\build\classes\main\cn\thinkjoy\dto\AssignDetailDTO.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-domain\build\classes\main\cn\thinkjoy\dto\BaseDTO.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-domain\build\classes\main\cn\thinkjoy\dto\ResouceActionDTO.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-domain\build\classes\main\cn\thinkjoy\dto\ResourceDTO.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-domain\build\classes\main\cn\thinkjoy\dto\RoleDTO.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-domain\build\classes\main\cn\thinkjoy\dto\UserDTO.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-domain\build\resources\test\spring.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-service\build\resources\main\config\main-conf.properties" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-service\build\resources\main\config\metadata.properties" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-service\build\resources\main\dubbo\gaokao360-dubbo-consumer.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-service\build\resources\main\dubbo\gaokao360-dubbo-provider.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-service\build\resources\main\logback.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-service\build\resources\main\mybatis\DataModelDAO.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-service\build\resources\main\mybatis\DatagroupDAO.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-service\build\resources\main\mybatis\DatagroupDataDAO.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-service\build\resources\main\mybatis\ModelDAO.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-service\build\resources\main\mybatis\PermissionDAO.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-service\build\resources\main\mybatis\ResourceActionDAO.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-service\build\resources\main\mybatis\ResourceDAO.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-service\build\resources\main\mybatis\ResourceGridDAO.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-service\build\resources\main\mybatis\RoleDAO.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-service\build\resources\main\mybatis\RoleResourceDAO.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-service\build\resources\main\mybatis\RoleUserDAO.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-service\build\resources\main\mybatis\UserDatagroupDAO.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-service\build\resources\main\springme.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-service\build\resources\test\sql\createTbls.sql" afterPath="" />
-      <change type="DELETED" beforePath="D:\IdeaProjects\gaokao360-admin\gaokao360-service\build\resources\test\sql\template.sql" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+    <list default="true" id="b2c7fb68-12c7-4506-b03d-6cebf5573a54" name="Default" comment="添加文件忽略">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/common/ServiceMaps.java" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/common/ServiceMaps.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="gaokao360.iws" />
@@ -125,16 +73,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="IPolicyInterpretationService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/service/IPolicyInterpretationService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="PolicyInterpretationServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/service/impl/PolicyInterpretationServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -186,11 +124,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.464285">
-              <caret line="80" column="10" selection-start-line="80" selection-start-column="10" selection-end-line="80" selection-end-column="10" />
+            <state vertical-scroll-proportion="0.73549885">
+              <caret line="85" column="6" selection-start-line="85" selection-start-column="6" selection-end-line="85" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -216,11 +154,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PolicyInterpretationController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PolicyInterpretationController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/baseinfo/PolicyInterpretationController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4553377">
-              <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ServiceMaps.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/common/ServiceMaps.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="42" column="41" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -1704,7 +1652,6 @@
         <option value="$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/facade/IGkinformationGkhotFacade.java" />
         <option value="$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/dao/IGkinformationGkhotDAO.java" />
         <option value="$PROJECT_DIR$/gaokao360-service/src/main/java/cn/thinkjoy/gaokao360/facade/impl/GkinformationGkhotServiceImpl.java" />
-        <option value="$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/common/ServiceMaps.java" />
         <option value="$PROJECT_DIR$/gaokao360-admin-war/logs/mubs-warn.2015-12-03.log" />
         <option value="$PROJECT_DIR$/gaokao360-service/src/main/resources/logback.xml" />
         <option value="$PROJECT_DIR$/gaokao360-admin-war/src/main/resources/config/metadata.properties" />
@@ -1714,8 +1661,9 @@
         <option value="$PROJECT_DIR$/gaokao360-service/src/main/resources/mybatis/GkinformationGkhotDAO.xml" />
         <option value="$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/baseinfo/GkinformationGkhotController.java" />
         <option value="$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/DatagroupDataController.java" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/baseinfo/PolicyInterpretationController.java" />
+        <option value="$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/common/ServiceMaps.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -2045,208 +1993,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="gaokao360-admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360-admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360-domain" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360-admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360-api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360-admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360-api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360-admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360-admin-war" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360-admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360-admin-war" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360-admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360-admin-war" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360-admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360-admin-war" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360-admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360-admin-war" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="baseinfo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360-admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360-admin-war" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gaokao360" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2682,7 +2428,7 @@
       <workItem from="1449047316049" duration="3549000" />
       <workItem from="1449052822306" duration="2664000" />
       <workItem from="1449109391325" duration="23646000" />
-      <workItem from="1449191376332" duration="984000" />
+      <workItem from="1449191376332" duration="1594000" />
     </task>
     <task id="LOCAL-00001" summary="整理">
       <created>1449027280322</created>
@@ -2720,11 +2466,17 @@
       <option name="project" value="LOCAL" />
       <updated>1449191637917</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="添加文件忽略">
+      <created>1449192447894</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1449192447894</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33764000" />
+    <option name="totallyTimeSpent" value="34374000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="1" width="1598" height="858" extended-state="0" />
@@ -2773,7 +2525,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="整理" />
     <MESSAGE value="添加增删改的common类" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加增删改的common类" />
+    <MESSAGE value="添加文件忽略" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加文件忽略" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2794,14 +2547,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/springmvc-servlet.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-51.892857">
@@ -3086,6 +2831,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2617587">
           <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3162,14 +2908,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.464285">
-          <caret line="80" column="10" selection-start-line="80" selection-start-column="10" selection-end-line="80" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gradlew">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3196,8 +2934,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/controller/baseinfo/PolicyInterpretationController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4553377">
-          <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/java/cn/thinkjoy/gaokao360/common/ServiceMaps.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="42" column="41" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.73549885">
+          <caret line="85" column="6" selection-start-line="85" selection-start-column="6" selection-end-line="85" selection-end-column="6" />
           <folding />
         </state>
       </provider>

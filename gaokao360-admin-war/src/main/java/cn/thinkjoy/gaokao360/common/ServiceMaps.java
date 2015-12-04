@@ -11,7 +11,9 @@ package cn.thinkjoy.gaokao360.common;
 import cn.thinkjoy.common.service.IBaseService;
 
 
+import cn.thinkjoy.gaokao360.service.IExaminationPaperService;
 import cn.thinkjoy.gaokao360.service.IGkinformationGkhotService;
+import cn.thinkjoy.gaokao360.service.IPolicyInterpretationService;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,10 +31,18 @@ public class ServiceMaps extends BaseServiceMaps{
 
     @Autowired
     private IGkinformationGkhotService gkinformationGkhotService;
+    @Autowired
+    private IExaminationPaperService examinationPaperService;
+    @Autowired
+    private IPolicyInterpretationService policyInterpretationService;
+
+
     @PostConstruct
     public void init(){
         super.init();
         serviceMap.put("gkinformationGkhot",gkinformationGkhotService);
+        serviceMap.put("examinationPaperService",examinationPaperService);
+        serviceMap.put("policyInterpretationService",policyInterpretationService);
     }
 
 }
