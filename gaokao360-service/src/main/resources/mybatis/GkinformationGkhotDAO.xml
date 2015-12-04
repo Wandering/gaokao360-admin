@@ -66,7 +66,7 @@ selectList
             </selectKey>
     </insert>
 
-    <!-- 更新 -->
+    <!-- 鏇存柊 -->
     <update id="update" parameterType="GkinformationGkhot">
         UPDATE gk_gkinformation_gkhot
         <trim prefix="SET" suffixOverrides=",">
@@ -260,7 +260,7 @@ selectList
         id = #{id} 
     </update>
 
-    <!-- 按Id删除 -->
+    <!-- 鎸塈d鍒犻櫎 -->
     <delete id="deleteById" parameterType="java.lang.Long">
         DELETE FROM gk_gkinformation_gkhot
         <trim prefix="WHERE" prefixOverrides="AND | OR">
@@ -354,46 +354,7 @@ selectList
 
     <select id="queryPage" resultType="GkinformationGkhot">
         SELECT
-        <if test="selector!=null">
-            <trim prefixOverrides=",">
-                        <if test="selector.id!=null">
-                            , id
-                        </if>
-                        <if test="selector.status!=null">
-                            , status
-                        </if>
-                        <if test="selector.creator!=null">
-                            , creator
-                        </if>
-                        <if test="selector.createDate!=null">
-                            , createDate
-                        </if>
-                        <if test="selector.lastModifier!=null">
-                            , lastModifier
-                        </if>
-                        <if test="selector.lastModDate!=null">
-                            , lastModDate
-                        </if>
-                        <if test="selector.hotInformation!=null">
-                            , hotInformation
-                        </if>
-                        <if test="selector.informationSubContent!=null">
-                            , informationSubContent
-                        </if>
-                        <if test="selector.informationContent!=null">
-                            , informationContent
-                        </if>
-                        <if test="selector.hotCount!=null">
-                            , hotCount
-                        </if>
-                        <if test="selector.areaId!=null">
-                            , areaId
-                        </if>
-            </trim>
-        </if>
-        <if test="selector==null">
         <include refid="Base_Column_List" />
-        </if>
         FROM gk_gkinformation_gkhot
         <where>
 
@@ -447,46 +408,7 @@ selectList
 
     <select id="like" parameterType="java.util.Map" resultType="GkinformationGkhot">
         SELECT
-        <if test="selector!=null">
-            <trim prefixOverrides=",">
-                    <if test="selector.id!=null">
-                        , id
-                    </if>
-                    <if test="selector.status!=null">
-                        , status
-                    </if>
-                    <if test="selector.creator!=null">
-                        , creator
-                    </if>
-                    <if test="selector.createDate!=null">
-                        , createDate
-                    </if>
-                    <if test="selector.lastModifier!=null">
-                        , lastModifier
-                    </if>
-                    <if test="selector.lastModDate!=null">
-                        , lastModDate
-                    </if>
-                    <if test="selector.hotInformation!=null">
-                        , hotInformation
-                    </if>
-                    <if test="selector.informationSubContent!=null">
-                        , informationSubContent
-                    </if>
-                    <if test="selector.informationContent!=null">
-                        , informationContent
-                    </if>
-                    <if test="selector.hotCount!=null">
-                        , hotCount
-                    </if>
-                    <if test="selector.areaId!=null">
-                        , areaId
-                    </if>
-            </trim>
-        </if>
-        <if test="selector==null">
             <include refid="Base_Column_List" />
-        </if>
         FROM gk_gkinformation_gkhot
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
@@ -531,46 +453,7 @@ selectList
 
     <select id="queryList" parameterType="java.util.Map" resultType="GkinformationGkhot">
         SELECT
-        <if test="selector!=null">
-            <trim prefixOverrides=",">
-                <if test="selector.id!=null">
-                    , id
-                </if>
-                <if test="selector.status!=null">
-                    , status
-                </if>
-                <if test="selector.creator!=null">
-                    , creator
-                </if>
-                <if test="selector.createDate!=null">
-                    , createDate
-                </if>
-                <if test="selector.lastModifier!=null">
-                    , lastModifier
-                </if>
-                <if test="selector.lastModDate!=null">
-                    , lastModDate
-                </if>
-                <if test="selector.hotInformation!=null">
-                    , hotInformation
-                </if>
-                <if test="selector.informationSubContent!=null">
-                    , informationSubContent
-                </if>
-                <if test="selector.informationContent!=null">
-                    , informationContent
-                </if>
-                <if test="selector.hotCount!=null">
-                    , hotCount
-                </if>
-                <if test="selector.areaId!=null">
-                    , areaId
-                </if>
-        </trim>
-    </if>
-<if test="selector==null">
-<include refid="Base_Column_List" />
-</if>
+        <include refid="Base_Column_List" />
         FROM gk_gkinformation_gkhot
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
@@ -614,46 +497,7 @@ selectList
 
     <select id="queryOne" parameterType="java.util.Map" resultType="GkinformationGkhot">
         SELECT
-        <if test="selector!=null">
-            <trim prefixOverrides=",">
-                    <if test="selector.id!=null">
-                        , id
-                    </if>
-                    <if test="selector.status!=null">
-                        , status
-                    </if>
-                    <if test="selector.creator!=null">
-                        , creator
-                    </if>
-                    <if test="selector.createDate!=null">
-                        , createDate
-                    </if>
-                    <if test="selector.lastModifier!=null">
-                        , lastModifier
-                    </if>
-                    <if test="selector.lastModDate!=null">
-                        , lastModDate
-                    </if>
-                    <if test="selector.hotInformation!=null">
-                        , hotInformation
-                    </if>
-                    <if test="selector.informationSubContent!=null">
-                        , informationSubContent
-                    </if>
-                    <if test="selector.informationContent!=null">
-                        , informationContent
-                    </if>
-                    <if test="selector.hotCount!=null">
-                        , hotCount
-                    </if>
-                    <if test="selector.areaId!=null">
-                        , areaId
-                    </if>
-            </trim>
-        </if>
-        <if test="selector==null">
             <include refid="Base_Column_List" />
-        </if>
         FROM gk_gkinformation_gkhot
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">

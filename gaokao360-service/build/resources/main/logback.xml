@@ -54,7 +54,7 @@
 
     <appender name="SPECLOGGER-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/mubs-spec.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>logs/gaokao360-spec.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>30</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -75,7 +75,7 @@
     </logger>
 
     <!-- 这里平时的level为WARN，跟踪问题时才设置为DEBUG -->
-    <logger name="cn.thinkjoy" level="WARN">
+    <logger name="cn.thinkjoy" level="DEBUG">
         <appender-ref ref="DEBUG-FILE-APPENDER"/>
         <appender-ref ref="WARN-FILE-APPENDER" />
     </logger>

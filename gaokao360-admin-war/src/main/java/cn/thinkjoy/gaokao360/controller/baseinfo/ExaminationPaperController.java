@@ -2,12 +2,12 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  GkinformationGkhotController.java 2015-12-03 14:24:46 $
+ * $Id:  ExaminationPaperController.java 2015-12-03 18:35:56 $
  */
 
 package cn.thinkjoy.gaokao360.controller.baseinfo;
 
-import cn.thinkjoy.gaokao360.service.IGkinformationGkhotService;
+import cn.thinkjoy.gaokao360.service.IExaminationPaperService;
 import cn.thinkjoy.common.managerui.dao.IResourceGridDAO;
 import cn.thinkjoy.common.managerui.service.IResourceGridService;
 import cn.thinkjoy.common.domain.view.BizData4Page;
@@ -30,11 +30,11 @@ import cn.thinkjoy.common.managerui.controller.AbstractAdminController;
 
 @Controller
 @RequestMapping(value="/admin/gaokao360")
-public class GkinformationGkhotController extends AbstractAdminController<IGkinformationGkhotService>{
+public class ExaminationPaperController extends AbstractAdminController<IExaminationPaperService>{
 
 
     @Autowired
-    private IGkinformationGkhotService gkinformationGkhotService;
+    private IExaminationPaperService examinationPaperService;
 
     /**
      * 页面主请求
@@ -42,7 +42,7 @@ public class GkinformationGkhotController extends AbstractAdminController<IGkinf
      * @param response
      * @return  返回菜单数据、表格描述元数据、当前主描述  如本页面为org
      */
-    @RequestMapping(value="/gkinformationgkhot")
+    @RequestMapping(value="/examinationpaper")
     public ModelAndView renderMainView(HttpServletRequest request,HttpServletResponse response){
 
 
@@ -53,15 +53,15 @@ public class GkinformationGkhotController extends AbstractAdminController<IGkinf
      * 获取所有的组织信息
      * @return
      */
-    @RequestMapping(value="/gkinformationgkhots")
+    @RequestMapping(value="/examinationpapers")
     @ResponseBody
-    public BizData4Page findAllGkinformationGkhots(HttpServletRequest request,HttpServletResponse response){
+    public BizData4Page findAllExaminationPapers(HttpServletRequest request,HttpServletResponse response){
         return doPage(request, response);
     }
 
     @Override
-    protected IGkinformationGkhotService getMainService() {
-        return gkinformationGkhotService;
+    protected IExaminationPaperService getMainService() {
+        return examinationPaperService;
     }
 
     @Override
@@ -71,17 +71,17 @@ public class GkinformationGkhotController extends AbstractAdminController<IGkinf
 
     @Override
     protected String getMainObjName() {
-        return "gkinformationgkhot";
+        return "examinationpaper";
     }
 
     @Override
     protected String getViewTitle() {
-        return "高考信息管理";
+        return "密卷管理";
     }
 
     @Override
     protected String getParentTitle() {
-        return " 高考信息管理";
+        return "备考模块";
     }
 
     @Override
