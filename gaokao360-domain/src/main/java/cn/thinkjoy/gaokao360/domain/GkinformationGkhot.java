@@ -2,7 +2,7 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  GkinformationGkhot.java 2015-12-03 14:06:28 $
+ * $Id:  GkinformationGkhot.java 2015-12-07 10:41:41 $
  */
 
 
@@ -30,6 +30,8 @@ public class GkinformationGkhot extends CreateBaseDomain<Long>{
     private Long hotCount;
     /** 区域Id */
     private Long areaId;
+    /** 热点时间 */
+    private String hotdate;
 
 	public GkinformationGkhot(){
 	}
@@ -68,6 +70,13 @@ public class GkinformationGkhot extends CreateBaseDomain<Long>{
     public Long getAreaId() {
         return this.areaId;
     }
+    public void setHotdate(String value) {
+        this.hotdate = value;
+    }
+
+    public String getHotdate() {
+        return this.hotdate;
+    }
 
 	public String toString() {
 		return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
@@ -82,6 +91,7 @@ public class GkinformationGkhot extends CreateBaseDomain<Long>{
 			.append("InformationContent",getInformationContent())
 			.append("HotCount",getHotCount())
 			.append("AreaId",getAreaId())
+			.append("Hotdate",getHotdate())
 			.toString();
 	}
 	

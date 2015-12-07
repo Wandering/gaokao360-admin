@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IGkinformationGkhotExDAO">
+<!--
+insert
+update
+updateNull
+deleteById
+deleteByCondition
+deleteByProperty
+fetch
+findOne
+findList
+findAll
+queryPage
+like
+queryList
+queryOne
+count
+selectMaxId
+updateOrSave
+selectOne
+selectList
+-->
+
+    <sql id="Base_Column_List">
+        gkhot.id as id ,
+        gkhot.status as status ,
+        gkhot.creator as creator ,
+        gkhot.createDate as createDate ,
+        gkhot.lastModifier as lastModifier ,
+        gkhot.lastModDate as lastModDate ,
+        gkhot.hotInformation as hotInformation ,
+        gkhot.informationSubContent as informationSubContent ,
+        gkhot.informationContent as informationContent ,
+        gkhot.hotCount as hotCount ,
+        gkhot.areaId as areaId,
+        gkhot.hotdate as hotdate,
+		province.id as province
+
+    </sql>
+
+    <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.GkinformationGkhotDTO">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM gk_gkinformation_gkhot gkhot
+        LEFT JOIN gk_province province on gkhot.areaId=province.id
+        <where>
+
+            <if test="condition.whereSql != null">
+                and id in (#{condition.whereSql})
+            </if>
+
+            <if test="condition.gkhothotInformation!=null">
+                ${condition.groupOp}   ${condition.gkhot.hotInformation.field}  ${condition.gkhot.hotInformation.op}  #{condition.gkhot.hotInformation.data}
+            </if>
+            <if test="condition.gkhotinformationContent!=null">
+                ${condition.groupOp}   ${condition.gkhot.informationContent.field}  ${condition.gkhot.informationContent.op}  #{condition.gkhot.informationContent.data}
+            </if>
+            <if test="condition.gkhotareaId!=null">
+                ${condition.groupOp}   ${condition.gkhot.areaId.field}  ${condition.gkhot.areaId.op}  #{condition.gkhot.areaId.data}
+            </if>
+
+
+    </where>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(gkhot.id)
+        FROM gk_gkinformation_gkhot gkhot
+        LEFT JOIN gk_province province on gkhot.areaId=province.id
+       <where>
+
+           <if test="gkhothotInformation!=null">
+               ${groupOp} ${gkhot.hotInformation.field} ${gkhot.hotInformation.op}  #{gkhot.hotInformation.data}
+           </if>
+           <if test="gkhotinformationContent!=null">
+               ${groupOp} ${gkhot.informationContent.field} ${gkhot.informationContent.op}  #{gkhot.informationContent.data}
+           </if>
+           <if test="gkhotareaId!=null">
+               ${groupOp} ${gkhot.areaId.field} ${gkhot.areaId.op}  #{gkhot.areaId.data}
+           </if>
+
+       </where>
+    </select>
+
+</mapper>
+

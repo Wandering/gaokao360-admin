@@ -35,7 +35,8 @@ selectList
         informationSubContent as informationSubContent ,
         informationContent as informationContent ,
         hotCount as hotCount ,
-        areaId as areaId 
+        areaId as areaId ,
+        hotdate as hotdate 
     </sql>
     <insert id="insert" parameterType="GkinformationGkhot">
         INSERT INTO gk_gkinformation_gkhot (
@@ -48,7 +49,8 @@ selectList
         informationSubContent,
         informationContent,
         hotCount,
-        areaId
+        areaId,
+        hotdate
         ) VALUES (
         #{status},
         #{creator},
@@ -59,14 +61,15 @@ selectList
         #{informationSubContent},
         #{informationContent},
         #{hotCount},
-        #{areaId}
+        #{areaId},
+        #{hotdate}
         )
             <selectKey resultType="java.lang.Long" keyProperty="id">
                 SELECT LAST_INSERT_ID() AS ID
             </selectKey>
     </insert>
 
-    <!-- 鏇存柊 -->
+    <!-- 更新 -->
     <update id="update" parameterType="GkinformationGkhot">
         UPDATE gk_gkinformation_gkhot
         <trim prefix="SET" suffixOverrides=",">
@@ -99,6 +102,9 @@ selectList
             </if>
             <if test="areaId!=null">
                 areaId = #{areaId},
+            </if>
+            <if test="hotdate!=null">
+                hotdate = #{hotdate},
             </if>
         </trim>
         WHERE
@@ -138,6 +144,9 @@ selectList
             <if test="map.areaId!=null">
                 areaId = #{map.areaId},
             </if>
+            <if test="map.hotdate!=null">
+                hotdate = #{map.hotdate},
+            </if>
         </trim>
         WHERE
         id = #{map.id}
@@ -176,6 +185,9 @@ selectList
             <if test="update.areaId!=null">
                 areaId = #{update.areaId},
             </if>
+            <if test="update.hotdate!=null">
+                hotdate = #{update.hotdate},
+            </if>
         </trim>
 
         <trim prefix="WHERE" prefixOverrides="AND | OR">
@@ -212,6 +224,9 @@ selectList
             <if test="condition.areaId!=null">
                 AND areaId = #{condition.areaId}
             </if>
+            <if test="condition.hotdate!=null">
+                AND hotdate = #{condition.hotdate}
+            </if>
         </trim>
     </update>
 
@@ -226,7 +241,8 @@ selectList
                 informationSubContent,
                 informationContent,
                 hotCount,
-                areaId
+                areaId,
+                hotdate
         ) VALUES (
                     #{map.status},
                     #{map.creator},
@@ -237,7 +253,8 @@ selectList
                     #{map.informationSubContent},
                     #{map.informationContent},
                     #{map.hotCount},
-                    #{map.areaId}
+                    #{map.areaId},
+                    #{map.hotdate}
         )
     </insert>
 
@@ -255,12 +272,13 @@ selectList
             informationContent = #{informationContent},
             hotCount = #{hotCount},
             areaId = #{areaId},
+            hotdate = #{hotdate},
         </trim>
         WHERE
         id = #{id} 
     </update>
 
-    <!-- 鎸塈d鍒犻櫎 -->
+    <!-- 按Id删除 -->
     <delete id="deleteById" parameterType="java.lang.Long">
         DELETE FROM gk_gkinformation_gkhot
         <trim prefix="WHERE" prefixOverrides="AND | OR">
@@ -304,6 +322,9 @@ selectList
             </if>
             <if test="areaId!=null">
                 AND areaId = #{areaId}
+            </if>
+            <if test="hotdate!=null">
+                AND hotdate = #{hotdate}
             </if>
         </trim>
     </delete>
@@ -395,6 +416,9 @@ selectList
             <if test="condition.areaId!=null">
                 ${condition.groupOp}   ${condition.areaId.field}  ${condition.areaId.op}  #{condition.areaId.data}
             </if>
+            <if test="condition.hotdate!=null">
+                ${condition.groupOp}   ${condition.hotdate.field}  ${condition.hotdate.op}  #{condition.hotdate.data}
+            </if>
 
 
     </where>
@@ -444,6 +468,9 @@ selectList
             <if test="condition.areaId!=null">
                 AND areaId like CONCAT('%', #{condition.areaId} , '%')
             </if>
+            <if test="condition.hotdate!=null">
+                AND hotdate like CONCAT('%', #{condition.hotdate} , '%')
+            </if>
         </trim>
         <if test="orderBy!=null">
         ORDER BY ${orderBy} ${sortBy}
@@ -489,6 +516,9 @@ selectList
             <if test="condition.areaId!=null">
                 AND areaId = #{condition.areaId}
             </if>
+            <if test="condition.hotdate!=null">
+                AND hotdate = #{condition.hotdate}
+            </if>
         </trim>
         <if test="orderBy!=null">
         ORDER BY ${orderBy} ${sortBy}
@@ -497,7 +527,7 @@ selectList
 
     <select id="queryOne" parameterType="java.util.Map" resultType="GkinformationGkhot">
         SELECT
-            <include refid="Base_Column_List" />
+        <include refid="Base_Column_List" />
         FROM gk_gkinformation_gkhot
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
@@ -532,6 +562,9 @@ selectList
             </if>
             <if test="condition.areaId!=null">
                 AND areaId = #{condition.areaId}
+            </if>
+            <if test="condition.hotdate!=null">
+                AND hotdate = #{condition.hotdate}
             </if>
         </trim>
         <if test="orderBy!=null">
@@ -575,6 +608,9 @@ selectList
            </if>
            <if test="areaId!=null">
                ${groupOp} ${areaId.field} ${areaId.op}  #{areaId.data}
+           </if>
+           <if test="hotdate!=null">
+               ${groupOp} ${hotdate.field} ${hotdate.op}  #{hotdate.data}
            </if>
 
        </where>

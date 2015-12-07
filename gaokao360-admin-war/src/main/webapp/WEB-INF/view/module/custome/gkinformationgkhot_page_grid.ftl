@@ -1,7 +1,7 @@
 <!-- 增加过滤div + 主体表格 -->
 <div class="page-content">
     <!-- 搜索start-->
-    <form class="form-horizontal" role="form" action="/admin/${bizSys}/${mainObj}s">
+    <form class="form-horizontal" role="form" action="/admin/${bizSys}/ex/${mainObj}s">
 
 
         <div class="col-xs-12">
