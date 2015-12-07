@@ -45,12 +45,12 @@ public class ServiceMaps extends BaseServiceMaps{
     @PostConstruct
     public void init(){
         super.init();
-        serviceMap.put("gkinformationGkhot",gkinformationGkhotService);
-        serviceMap.put("examinationPaperService",examinationPaperService);
+        serviceMap.put("gkinformationgkhot",gkinformationGkhotService);
+        serviceMap.put("examinationpaperService",examinationPaperService);
         serviceMap.put("policyInterpretationService",policyInterpretationService);
-        serviceMap.put("videoClassify",videoClassifyService);
-        serviceMap.put("videoCourse",videoCourseService);
-        serviceMap.put("videoSection",videoSectionService);
+        serviceMap.put("videoclassify",videoClassifyService);
+        serviceMap.put("videocourse",videoCourseService);
+        serviceMap.put("videosection",videoSectionService);
     }
 
 }

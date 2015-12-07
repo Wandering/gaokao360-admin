@@ -81,7 +81,7 @@ public class GkinformationGkhotController extends AbstractAdminController<IGkinf
 
     @Override
     protected String getParentTitle() {
-        return " 高考信息管理";
+        return "高考信息管理";
     }
 
     @Override

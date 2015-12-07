@@ -73,7 +73,7 @@ public class PolicyInterpretationExController extends AbstractAdminController<IP
 
     @Override
     protected String getParentTitle() {
-        return "政策解读模块";
+        return "备考模块";
     }
 
     @Override
