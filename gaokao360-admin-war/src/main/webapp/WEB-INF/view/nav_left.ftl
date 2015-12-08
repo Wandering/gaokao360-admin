@@ -8,7 +8,7 @@
     <li class="active">
     <#elseif resource.parentId == null> <!-- 父节点 -->
         <#assign pr = "pr" /> <!-- 父节点标记 -->
-    </ul>
+        <h1>${resource.name}</h1>
     <li class="">
     <#else>
         <#assign pr = null /> <!-- 非父节点标记 -->
@@ -18,24 +18,19 @@
         <a href="#" class="dropdown-toggle">
             <i class="menu-icon fa fa-list"></i>
             <span class="menu-text"> ${resource.name} </span>
-
             <b class="arrow fa fa-angle-down"></b>
         </a>
-
         <b class="arrow"></b>
-
     <ul class="submenu">
     <#else>
-        <li class="">
-            <a href="${resource.url}">
-                <i class="menu-icon fa fa-caret-right"></i>
-            ${resource.name}
-            </a>
-
-            <b class="arrow"></b>
-        </li>
+        <#--<li class="">-->
+            <#--<a href="${resource.url}" style="color:#00ffff">-->
+                <#--<i class="menu-icon fa fa-caret-right"></i>-->
+            <#--${resource.name}-->
+            <#--</a>-->
+            <#--<b class="arrow"></b>-->
+        <#--</li>-->
     </#if>
-
     <#if !resource_has_next>
     </ul>
     </li>
@@ -43,4 +38,4 @@
 
 </#list>
 <!-- dyn item end -->
-</ul><!-- /.nav-list -->
+</ul>
