@@ -58,7 +58,7 @@ public class ExaminationPaperExController extends AbstractAdminController<IExami
 
     @Override
     protected String getBizSys() {
-        return "gaokao360";
+        return "gaokao360/ex";
     }
 
     @Override
