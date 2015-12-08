@@ -8,17 +8,16 @@ package cn.thinkjoy.gaokao360.service.ex.impl;
 
 import cn.thinkjoy.common.dao.IBaseDAO;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
-import cn.thinkjoy.gaokao360.dao.IExaminationPaperDAO;
 import cn.thinkjoy.gaokao360.dao.ex.IExaminationPaperExDAO;
-import cn.thinkjoy.gaokao360.domain.ExaminationPaper;
 import cn.thinkjoy.gaokao360.dto.ExaminationPaperDTO;
 import cn.thinkjoy.gaokao360.service.IExaminationPaperService;
+import cn.thinkjoy.gaokao360.service.ex.IExaminationPaperExService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 @Service("ExaminationPaperExServiceImpl")
-public class ExaminationPaperExServiceImpl extends AbstractPageService<IBaseDAO<ExaminationPaperDTO>, ExaminationPaperDTO> implements IExaminationPaperService<IBaseDAO<ExaminationPaperDTO>,ExaminationPaperDTO>{
+public class ExaminationPaperExServiceImpl extends AbstractPageService<IBaseDAO<ExaminationPaperDTO>, ExaminationPaperDTO> implements IExaminationPaperExService<IBaseDAO<ExaminationPaperDTO>,ExaminationPaperDTO>{
     @Autowired
     private IExaminationPaperExDAO examinationPaperExDAO;
 

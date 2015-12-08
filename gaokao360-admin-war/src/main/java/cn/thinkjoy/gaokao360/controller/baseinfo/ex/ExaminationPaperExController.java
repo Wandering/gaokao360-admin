@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
-@RequestMapping(value="/admin/gaokao360")
+@RequestMapping(value="/admin/gaokao360/ex")
 public class ExaminationPaperExController extends AbstractAdminController<IExaminationPaperExService>{
 
 
