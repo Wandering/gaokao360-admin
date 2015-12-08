@@ -1,4 +1,4 @@
-#######å¼€æ”¾æ¨¡å¼############
+#######¿ª·ÅÄ£Ê½############
 
 ###############
 #    folder   #
@@ -67,7 +67,7 @@
 ###############
 *.bat
 
-#########ä¿å®ˆæ¨¡å¼############
+#########±£ÊØÄ£Ê½############
 !/plutommi/Customer/CustResource/PLUTO_MMI/
 !/plutommi/Customer/LcdResource/MainLcd128X160/
 !/plutommi/Customer/Images/PLUTO128X160/image.zip
