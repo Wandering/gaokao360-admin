@@ -57,7 +57,7 @@ public class GkinformationGkhotExController extends AbstractAdminController<IGki
 
     @Override
     protected String getBizSys() {
-        return "gaokao360";
+        return "gaokao360/ex";
     }
 
     @Override
