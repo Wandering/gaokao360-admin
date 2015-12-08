@@ -1,4 +1,4 @@
-#######开放模式############
+#######锟斤拷锟斤拷模式############
 
 ###############
 #    folder   #
@@ -28,6 +28,8 @@
 /vendor/font/MTK/official/project/plutommi/content/inc/
 /vendor/font/MTK/official/project/plutommi/content/src/
 
+/out/
+/.gradle/
 
 
 ###############
@@ -67,7 +69,7 @@
 ###############
 *.bat
 
-#########保守模式############
+#########锟斤拷锟斤拷模式############
 !/plutommi/Customer/CustResource/PLUTO_MMI/
 !/plutommi/Customer/LcdResource/MainLcd128X160/
 !/plutommi/Customer/Images/PLUTO128X160/image.zip
