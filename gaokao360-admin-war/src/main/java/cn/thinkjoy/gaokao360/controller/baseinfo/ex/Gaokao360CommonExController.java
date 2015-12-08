@@ -28,11 +28,16 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     @Autowired
     private IProvinceService provinceService;
 
+    /**
+     * 查询所有的省份
+     * @return
+     */
     @RequestMapping(value="/getProvince")
     @ResponseBody
     public List getProvince(){
         return  provinceService.findAll();
     }
+
     @Override
     protected BaseServiceMaps getServiceMaps() {
         return serviceMaps;

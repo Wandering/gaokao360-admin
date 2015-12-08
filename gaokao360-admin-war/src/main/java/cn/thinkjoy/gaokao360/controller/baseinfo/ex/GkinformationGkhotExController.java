@@ -72,7 +72,7 @@ public class GkinformationGkhotExController extends AbstractAdminController<IGki
 
     @Override
     protected String getParentTitle() {
-        return "高考信息管理";
+        return "数据模块";
     }
 
     @Override

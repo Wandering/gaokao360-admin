@@ -81,7 +81,7 @@ public class ExaminationPaperController extends AbstractAdminController<IExamina
 
     @Override
     protected String getParentTitle() {
-        return "备考模块";
+        return "权限管理";
     }
 
     @Override

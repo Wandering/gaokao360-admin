@@ -81,7 +81,7 @@ public class ModelController extends AbstractAdminController<IModelService>{
 
     @Override
     protected String getParentTitle() {
-        return "基础管理";
+        return "权限管理";
     }
 
     @Override
