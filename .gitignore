@@ -1,8 +1,3 @@
-#######����ģʽ############
-
-###############
-#    folder   #
-###############
 /_souceInsight_/
 /build/
 /MoDIS/
@@ -28,8 +23,13 @@
 /vendor/font/MTK/official/project/plutommi/content/inc/
 /vendor/font/MTK/official/project/plutommi/content/src/
 
-/out/
-/.gradle/
+
+
+###############
+#  view #
+###############
+.sass-cache
+
 
 
 ###############
@@ -69,7 +69,7 @@
 ###############
 *.bat
 
-#########����ģʽ############
+#########保守模式############
 !/plutommi/Customer/CustResource/PLUTO_MMI/
 !/plutommi/Customer/LcdResource/MainLcd128X160/
 !/plutommi/Customer/Images/PLUTO128X160/image.zip
@@ -85,5 +85,5 @@
 
 ##idea##
 /.idea/
-/.idea/encodings.xml
 *.iml
+/classes/
