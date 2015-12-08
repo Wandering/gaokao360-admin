@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2c7fb68-12c7-4506-b03d-6cebf5573a54" name="Default" comment="高考热点和政策解读相关文件">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/assets/img/icon.ico" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gaokao360-admin-war/build/tmp/war/MANIFEST.MF" afterPath="$PROJECT_DIR$/gaokao360-admin-war/build/tmp/war/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/assets/css/ace.min.css" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/assets/css/ace.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/breadcrumbs.ftl" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/breadcrumbs.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/footer.html" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/footer.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gaokao360-domain/gaokao360-domain.iml" afterPath="$PROJECT_DIR$/gaokao360-domain/gaokao360-domain.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/custome/gkinformationgkhot_page_grid.ftl" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/custome/gkinformationgkhot_page_grid.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/head.html" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/head.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/nav_bar.ftl" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/nav_bar.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/nav_left.ftl" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/nav_left.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/page_grid.ftl" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/page_grid.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/sidebar.ftl" afterPath="$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/sidebar.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="gaokao360.iws" />
@@ -78,8 +67,8 @@
       <file leaf-file-name="gkinformationgkhot_page_grid.ftl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/custome/gkinformationgkhot_page_grid.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-19.870968" vertical-offset="0" max-vertical-offset="1144">
-              <caret line="28" column="46" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="780">
+              <caret line="28" column="33" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -88,7 +77,7 @@
       <file leaf-file-name="index.ftl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/index.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.225806" vertical-offset="88" max-vertical-offset="990">
+            <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="675">
               <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
               <folding />
             </state>
@@ -98,7 +87,7 @@
       <file leaf-file-name="sidebar.ftl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/sidebar.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.548387" vertical-offset="0" max-vertical-offset="506">
+            <state vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="345">
               <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
               <folding />
             </state>
@@ -108,8 +97,8 @@
       <file leaf-file-name="nav_left.ftl" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/nav_left.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6257485" vertical-offset="0" max-vertical-offset="1012">
-              <caret line="19" column="35" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.3198198" vertical-offset="297" max-vertical-offset="1080">
+              <caret line="34" column="34" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -118,7 +107,7 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/html/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="266.39655" vertical-offset="16639" max-vertical-offset="54340">
+            <state vertical-scroll-proportion="0.0" vertical-offset="810" max-vertical-offset="37050">
               <caret line="54" column="48" selection-start-line="54" selection-start-column="45" selection-end-line="54" selection-end-column="48" />
               <folding />
             </state>
@@ -214,6 +203,11 @@
                 <option name="name" value="publishMavenJavaPublicationToMavenLocal" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Compiles Java source 'test:java'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="compileTestJava" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="createREADME" />
               </ExternalTaskPojo>
@@ -222,23 +216,8 @@
                 <option name="name" value="cleanEclipseClasspath" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Processes source set 'main:resources'." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="processResources" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="copytest" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Compiles source set 'test:java'." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="compileTestJava" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Compiles source set 'main:java'." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="compileJava" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Assembles classes 'main'." />
@@ -249,11 +228,6 @@
                 <option name="description" value="Publishes all publications produced by this project." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="publish" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Processes source set 'test:resources'." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="processTestResources" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Cleans all Eclipse files." />
@@ -314,6 +288,11 @@
                 <option name="name" value="assemble" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Compiles Java source 'main:java'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="compileJava" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="description" value="Generates all Eclipse files." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="eclipse" />
@@ -356,6 +335,16 @@
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="createJavaProject" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Processes resources 'test:resources'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="processTestResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Processes resources 'main:resources'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="processResources" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
@@ -435,12 +424,12 @@
                 <option name="name" value="cleanEclipseProject" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Compiles source set 'main:java'." />
+                <option name="description" value="Compiles Java source 'main:java'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/gaokao360-admin-war" />
                 <option name="name" value="compileJava" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Compiles source set 'test:java'." />
+                <option name="description" value="Compiles Java source 'test:java'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/gaokao360-admin-war" />
                 <option name="name" value="compileTestJava" />
               </ExternalTaskPojo>
@@ -488,12 +477,12 @@
                 <option name="name" value="javadoc" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Processes source set 'main:resources'." />
+                <option name="description" value="Processes resources 'main:resources'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/gaokao360-admin-war" />
                 <option name="name" value="processResources" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Processes source set 'test:resources'." />
+                <option name="description" value="Processes resources 'test:resources'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/gaokao360-admin-war" />
                 <option name="name" value="processTestResources" />
               </ExternalTaskPojo>
@@ -591,12 +580,12 @@
                 <option name="name" value="cleanEclipseProject" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Compiles source set 'main:java'." />
+                <option name="description" value="Compiles Java source 'main:java'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/gaokao360-api" />
                 <option name="name" value="compileJava" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Compiles source set 'test:java'." />
+                <option name="description" value="Compiles Java source 'test:java'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/gaokao360-api" />
                 <option name="name" value="compileTestJava" />
               </ExternalTaskPojo>
@@ -640,12 +629,12 @@
                 <option name="name" value="javadoc" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Processes source set 'main:resources'." />
+                <option name="description" value="Processes resources 'main:resources'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/gaokao360-api" />
                 <option name="name" value="processResources" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Processes source set 'test:resources'." />
+                <option name="description" value="Processes resources 'test:resources'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/gaokao360-api" />
                 <option name="name" value="processTestResources" />
               </ExternalTaskPojo>
@@ -738,12 +727,12 @@
                 <option name="name" value="cleanEclipseProject" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Compiles source set 'main:java'." />
+                <option name="description" value="Compiles Java source 'main:java'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/gaokao360-domain" />
                 <option name="name" value="compileJava" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Compiles source set 'test:java'." />
+                <option name="description" value="Compiles Java source 'test:java'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/gaokao360-domain" />
                 <option name="name" value="compileTestJava" />
               </ExternalTaskPojo>
@@ -787,12 +776,12 @@
                 <option name="name" value="javadoc" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Processes source set 'main:resources'." />
+                <option name="description" value="Processes resources 'main:resources'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/gaokao360-domain" />
                 <option name="name" value="processResources" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Processes source set 'test:resources'." />
+                <option name="description" value="Processes resources 'test:resources'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/gaokao360-domain" />
                 <option name="name" value="processTestResources" />
               </ExternalTaskPojo>
@@ -885,12 +874,12 @@
                 <option name="name" value="cleanEclipseProject" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Compiles source set 'main:java'." />
+                <option name="description" value="Compiles Java source 'main:java'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/gaokao360-service" />
                 <option name="name" value="compileJava" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Compiles source set 'test:java'." />
+                <option name="description" value="Compiles Java source 'test:java'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/gaokao360-service" />
                 <option name="name" value="compileTestJava" />
               </ExternalTaskPojo>
@@ -938,12 +927,12 @@
                 <option name="name" value="javadoc" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Processes source set 'main:resources'." />
+                <option name="description" value="Processes resources 'main:resources'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/gaokao360-service" />
                 <option name="name" value="processResources" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Processes source set 'test:resources'." />
+                <option name="description" value="Processes resources 'test:resources'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/gaokao360-service" />
                 <option name="name" value="processTestResources" />
               </ExternalTaskPojo>
@@ -984,33 +973,8 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$/../dengsf/ddxq" value="1419496169000" />
-        <entry key="$PROJECT_DIR$/../dengsf/ionic/tecc-cop" value="15720893769000" />
-        <entry key="$PROJECT_DIR$" value="10146812760000" />
-        <entry key="$PROJECT_DIR$/../gk" value="50586501855000" />
-        <entry key="$PROJECT_DIR$/../jx/ms-corevalue" value="11379408454000" />
-        <entry key="$PROJECT_DIR$/../tecc-cop" value="15648423813000" />
-        <entry key="$PROJECT_DIR$/../tecc-mp/mp" value="1418813628000" />
-        <entry key="$PROJECT_DIR$/../up-core" value="9919559629000" />
-        <entry key="$PROJECT_DIR$/../workspace/gk" value="31744121860000" />
-        <entry key="$PROJECT_DIR$/../workspace/gk-login" value="8657454210000" />
-        <entry key="$PROJECT_DIR$/../workspace/gk-server" value="11542652832000" />
-        <entry key="$PROJECT_DIR$/../workspace/jx-calling" value="11476797896000" />
-        <entry key="$PROJECT_DIR$/../workspace/jx-eduplatform" value="11507688004000" />
-        <entry key="$PROJECT_DIR$/../workspace/jx-op" value="21515274196000" />
-        <entry key="$PROJECT_DIR$/../workspace/jx-video" value="11437391368000" />
-        <entry key="$PROJECT_DIR$/../workspace/ms-corevalue" value="11389137742000" />
-        <entry key="$PROJECT_DIR$/../workspace/qky-webfront" value="1444644093000" />
-        <entry key="$PROJECT_DIR$/../workspace/ss" value="17302490184000" />
-        <entry key="$PROJECT_DIR$/../workspace/ss-market" value="10093066788000" />
-        <entry key="$PROJECT_DIR$/../workspace/tecc-backend-new" value="11441492400000" />
-        <entry key="$PROJECT_DIR$/../workspace/tecc-cop" value="15695278698000" />
-        <entry key="$PROJECT_DIR$/../workspace/tecc-protocol" value="7135503655000" />
-        <entry key="$PROJECT_DIR$/../workspace/thinkjoy-common" value="17125209312000" />
-        <entry key="$PROJECT_DIR$/../workspace/thinkjoy-dap" value="15761547767000" />
-        <entry key="$PROJECT_DIR$/../xyh/tecc-xyh" value="1416307129000" />
-        <entry key="$PROJECT_DIR$/../xyy/tecc-backend" value="25398742230000" />
-        <entry key="$USER_HOME$/Downloads/tecc-xyh" value="1439175378000" />
+        <entry key="$PROJECT_DIR$" value="10146951630000" />
+        <entry key="$PROJECT_DIR$/../gk" value="52180299864000" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -1025,58 +989,58 @@
                       <ExternalModuleBuildClasspathPojo>
                         <option name="entries">
                           <list>
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/cn.thinkjoy.gradle.plugins/gradle-gitflow-plugin/1.0.1/jar/38861e75a08a3d16cbd3b6568b942e69a1badeaa/gradle-gitflow-plugin-1.0.1.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.gradle.api.plugins/gradle-nexus-plugin/0.4/source/cc194cea8dfbf500bfd6fc163b2fc16388c42ff5/gradle-nexus-plugin-0.4-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.gradle.api.plugins/gradle-nexus-plugin/0.4/jar/c1e87c59f3081cf11c6d58da00188be5617427b4/gradle-nexus-plugin-0.4.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.hibernate.build.gradle/gradle-maven-publish-auth/2.0.1/source/5de11c76d4c3e8d728ace71e132a6581ae87d326/gradle-maven-publish-auth-2.0.1-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.hibernate.build.gradle/gradle-maven-publish-auth/2.0.1/jar/1dafd7ba42afb8c6138fe1ee1c6209a8834413e4/gradle-maven-publish-auth-2.0.1.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.googlecode.javaewah/JavaEWAH/0.5.6/source/a8c94b75fec75e3e4f55212cea1a21773802674e/JavaEWAH-0.5.6-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.googlecode.javaewah/JavaEWAH/0.5.6/jar/1207c0fc8552d4f5f574b50f29321d923521128e/JavaEWAH-0.5.6.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.eclipse.jgit/org.eclipse.jgit/3.0.0.201306101825-r/source/96cb75fcea7198fef5c8e49c162636891efe0d37/org.eclipse.jgit-3.0.0.201306101825-r-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.eclipse.jgit/org.eclipse.jgit/3.0.0.201306101825-r/jar/c79117e7b178df4483d3f5f0bbfe961bb436697b/org.eclipse.jgit-3.0.0.201306101825-r.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.apache.servicemix.bundles/org.apache.servicemix.bundles.jsch/0.1.49_1/source/8f8da3b7bbe3085a8c5df6f88d2db79b311b1ebf/org.apache.servicemix.bundles.jsch-0.1.49_1-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.apache.servicemix.bundles/org.apache.servicemix.bundles.jsch/0.1.49_1/bundle/aa7ffbb33c8f34da1c095e93b920a2646576144e/org.apache.servicemix.bundles.jsch-0.1.49_1.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.google.code.findbugs/jsr305/1.3.9/jar/40719ea6961c0cb6afaeb6a921eaa1f6afd4cfdf/jsr305-1.3.9.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.google.guava/guava/10.0.1/source/50c3953eaac12b8067111030ffdb8e44f80f5a79/guava-10.0.1-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.google.guava/guava/10.0.1/jar/292c96f9cb18231528cac4b0bf17d28149d14809/guava-10.0.1.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.atlassian.jgitflow/jgit-flow-core/0.21/source/2cd7952fc050f84d929552718a96daed7d728532/jgit-flow-core-0.21-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.atlassian.jgitflow/jgit-flow-core/0.21/bundle/e1c2bbbe6026dc732a38911496e9fe86cebcd347/jgit-flow-core-0.21.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-utils/3.0.17/source/79cfd0962de410235e9315d38d6488123e9bb299/plexus-utils-3.0.17-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-utils/3.0.17/jar/7b86f7a4ceffc8eadbb1a84207134af776f7cb95/plexus-utils-3.0.17.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch/0.1.49/source/64dce2cf3fa15bdc7680dc1951737d9f8240d541/jsch-0.1.49-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch/0.1.49/jar/5c46cae7d01e845379beac44512e25eb11017159/jsch-0.1.49.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.core/0.0.7/source/1e7de81afd838051022c24185751d5a96b75f1a8/jsch.agentproxy.core-0.0.7-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.core/0.0.7/bundle/9bcf818dc9e5247b01b1b18671a12caac293ae40/jsch.agentproxy.core-0.0.7.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.jsch/0.0.7/source/2e1531c9da987211703797e0236e9b374321ab8f/jsch.agentproxy.jsch-0.0.7-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.jsch/0.0.7/jar/ff3a71caf45efeb00980f93f0c39a9750640e8d8/jsch.agentproxy.jsch-0.0.7.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/net.java.dev.jna/jna/3.4.0/source/2f42653596d0044f0ab456620cba54c9cf53c5ca/jna-3.4.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/net.java.dev.jna/jna/3.4.0/jar/803ff252fedbd395baffd43b37341dc4a150a554/jna-3.4.0.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/net.java.dev.jna/platform/3.4.0/source/2f42653596d0044f0ab456620cba54c9cf53c5ca/platform-3.4.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/net.java.dev.jna/platform/3.4.0/jar/e3f70017be8100d3d6923f50b3d2ee17714e9c13/platform-3.4.0.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.usocket-jna/0.0.7/source/affe9e19df0572622d581eb099b948bc110ac3a2/jsch.agentproxy.usocket-jna-0.0.7-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.usocket-jna/0.0.7/bundle/98cf51ca8d7882c203729ffa48e9b7be4c50b835/jsch.agentproxy.usocket-jna-0.0.7.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.sshagent/0.0.7/source/fa4b76688b6757d62196c0c227e8426db90a55fe/jsch.agentproxy.sshagent-0.0.7-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.sshagent/0.0.7/bundle/5c09a3d2a0562de53cf616794f43f51a3c0a496c/jsch.agentproxy.sshagent-0.0.7.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-classworlds/1.4/source/bc72165f9c2d4a16bb8356e141fb7e19b3517baa/plexus-classworlds-1.4-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-classworlds/1.4/jar/b2cc7a1e5579608055cef3a85bc0ef793f4b91dc/plexus-classworlds-1.4.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/log4j/log4j/1.2.12/jar/57b8740427ee6d7b0b60792751356cad17dc0d9/log4j-1.2.12.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/commons-logging/commons-logging-api/1.1/jar/7d4cf5231d46c8524f9b9ed75bb2d1c69ab93322/commons-logging-api-1.1.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.apache.xbean/xbean-reflect/3.4/source/77c8a006107cb5520096d629aedd0ff733e11fe1/xbean-reflect-3.4-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.apache.xbean/xbean-reflect/3.4/bundle/26fd55dceb037f4789b399b22874d74f4d2db66f/xbean-reflect-3.4.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.google.code.google-collections/google-collect/snapshot-20080530/source/ba65a2b9dcb70c89a4f2a8e61414bb972e46cdda/google-collect-snapshot-20080530-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.google.code.google-collections/google-collect/snapshot-20080530/jar/a22f9b3a80ba9696ed120735f8b6c3c99d942bcc/google-collect-snapshot-20080530.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/junit/junit/3.8.2/source/aaa058540bf14ad600dd784de979c46c721ccbbe/junit-3.8.2-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/junit/junit/3.8.2/jar/7e4cde26b53a9a0e3fe5b00d1dbbc7cc1d46060/junit-3.8.2.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-container-default/1.0.0/source/6de18d6f29cc1bd6064081128bebd9ff41410b1a/plexus-container-default-1.0.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-container-default/1.0.0/jar/b93713c4c97be9ce0ad8af1e51cc7d2928e4696/plexus-container-default-1.0.0.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/xml-apis/xml-apis/1.0.b2/source/d8525661c5a0a05702fa41873d250d135031ec25/xml-apis-1.0.b2-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/xml-apis/xml-apis/1.0.b2/jar/3136ca936f64c9d68529f048c2618bd356bf85c9/xml-apis-1.0.b2.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/dom4j/dom4j/1.6.1/source/a8e7149359255f43e0e5e3b1837948f9ed5861fb/dom4j-1.6.1-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/dom4j/dom4j/1.6.1/jar/5d3ccc056b6f056dbf0dddfdf43894b9065a8f94/dom4j-1.6.1.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.sonatype.plexus/plexus-cipher/1.4/source/fd919edf211954e41e0e60bc8b042bd2e1e5cc1f/plexus-cipher-1.4-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.sonatype.plexus/plexus-cipher/1.4/jar/50ade46f23bb38cd984b4ec560c46223432aac38/plexus-cipher-1.4.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.sonatype.plexus/plexus-sec-dispatcher/1.3/source/4f1b3cd71ec7bbc5de8406fe560d3b34099d6a85/plexus-sec-dispatcher-1.3-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.sonatype.plexus/plexus-sec-dispatcher/1.3/jar/dedc02034fb8fcd7615d66593228cb71709134b4/plexus-sec-dispatcher-1.3.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.gradle.plugins/gradle-gitflow-plugin/1.0.1/38861e75a08a3d16cbd3b6568b942e69a1badeaa/gradle-gitflow-plugin-1.0.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gradle.api.plugins/gradle-nexus-plugin/0.4/cc194cea8dfbf500bfd6fc163b2fc16388c42ff5/gradle-nexus-plugin-0.4-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gradle.api.plugins/gradle-nexus-plugin/0.4/c1e87c59f3081cf11c6d58da00188be5617427b4/gradle-nexus-plugin-0.4.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate.build.gradle/gradle-maven-publish-auth/2.0.1/5de11c76d4c3e8d728ace71e132a6581ae87d326/gradle-maven-publish-auth-2.0.1-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate.build.gradle/gradle-maven-publish-auth/2.0.1/1dafd7ba42afb8c6138fe1ee1c6209a8834413e4/gradle-maven-publish-auth-2.0.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.javaewah/JavaEWAH/0.5.6/a8c94b75fec75e3e4f55212cea1a21773802674e/JavaEWAH-0.5.6-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.javaewah/JavaEWAH/0.5.6/1207c0fc8552d4f5f574b50f29321d923521128e/JavaEWAH-0.5.6.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jgit/org.eclipse.jgit/3.0.0.201306101825-r/96cb75fcea7198fef5c8e49c162636891efe0d37/org.eclipse.jgit-3.0.0.201306101825-r-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jgit/org.eclipse.jgit/3.0.0.201306101825-r/c79117e7b178df4483d3f5f0bbfe961bb436697b/org.eclipse.jgit-3.0.0.201306101825-r.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.servicemix.bundles/org.apache.servicemix.bundles.jsch/0.1.49_1/8f8da3b7bbe3085a8c5df6f88d2db79b311b1ebf/org.apache.servicemix.bundles.jsch-0.1.49_1-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.servicemix.bundles/org.apache.servicemix.bundles.jsch/0.1.49_1/aa7ffbb33c8f34da1c095e93b920a2646576144e/org.apache.servicemix.bundles.jsch-0.1.49_1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/1.3.9/40719ea6961c0cb6afaeb6a921eaa1f6afd4cfdf/jsr305-1.3.9.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/10.0.1/50c3953eaac12b8067111030ffdb8e44f80f5a79/guava-10.0.1-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/10.0.1/292c96f9cb18231528cac4b0bf17d28149d14809/guava-10.0.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.atlassian.jgitflow/jgit-flow-core/0.21/2cd7952fc050f84d929552718a96daed7d728532/jgit-flow-core-0.21-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.atlassian.jgitflow/jgit-flow-core/0.21/e1c2bbbe6026dc732a38911496e9fe86cebcd347/jgit-flow-core-0.21.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-utils/3.0.17/79cfd0962de410235e9315d38d6488123e9bb299/plexus-utils-3.0.17-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-utils/3.0.17/7b86f7a4ceffc8eadbb1a84207134af776f7cb95/plexus-utils-3.0.17.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch/0.1.49/64dce2cf3fa15bdc7680dc1951737d9f8240d541/jsch-0.1.49-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch/0.1.49/5c46cae7d01e845379beac44512e25eb11017159/jsch-0.1.49.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.core/0.0.7/1e7de81afd838051022c24185751d5a96b75f1a8/jsch.agentproxy.core-0.0.7-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.core/0.0.7/9bcf818dc9e5247b01b1b18671a12caac293ae40/jsch.agentproxy.core-0.0.7.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.jsch/0.0.7/2e1531c9da987211703797e0236e9b374321ab8f/jsch.agentproxy.jsch-0.0.7-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.jsch/0.0.7/ff3a71caf45efeb00980f93f0c39a9750640e8d8/jsch.agentproxy.jsch-0.0.7.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/jna/3.4.0/2f42653596d0044f0ab456620cba54c9cf53c5ca/jna-3.4.0-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/jna/3.4.0/803ff252fedbd395baffd43b37341dc4a150a554/jna-3.4.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/platform/3.4.0/2f42653596d0044f0ab456620cba54c9cf53c5ca/platform-3.4.0-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/platform/3.4.0/e3f70017be8100d3d6923f50b3d2ee17714e9c13/platform-3.4.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.usocket-jna/0.0.7/affe9e19df0572622d581eb099b948bc110ac3a2/jsch.agentproxy.usocket-jna-0.0.7-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.usocket-jna/0.0.7/98cf51ca8d7882c203729ffa48e9b7be4c50b835/jsch.agentproxy.usocket-jna-0.0.7.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.sshagent/0.0.7/fa4b76688b6757d62196c0c227e8426db90a55fe/jsch.agentproxy.sshagent-0.0.7-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.sshagent/0.0.7/5c09a3d2a0562de53cf616794f43f51a3c0a496c/jsch.agentproxy.sshagent-0.0.7.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-classworlds/1.4/bc72165f9c2d4a16bb8356e141fb7e19b3517baa/plexus-classworlds-1.4-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-classworlds/1.4/b2cc7a1e5579608055cef3a85bc0ef793f4b91dc/plexus-classworlds-1.4.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/log4j/log4j/1.2.12/57b8740427ee6d7b0b60792751356cad17dc0d9/log4j-1.2.12.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging-api/1.1/7d4cf5231d46c8524f9b9ed75bb2d1c69ab93322/commons-logging-api-1.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.xbean/xbean-reflect/3.4/77c8a006107cb5520096d629aedd0ff733e11fe1/xbean-reflect-3.4-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.xbean/xbean-reflect/3.4/26fd55dceb037f4789b399b22874d74f4d2db66f/xbean-reflect-3.4.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.google-collections/google-collect/snapshot-20080530/ba65a2b9dcb70c89a4f2a8e61414bb972e46cdda/google-collect-snapshot-20080530-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.google-collections/google-collect/snapshot-20080530/a22f9b3a80ba9696ed120735f8b6c3c99d942bcc/google-collect-snapshot-20080530.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/3.8.2/aaa058540bf14ad600dd784de979c46c721ccbbe/junit-3.8.2-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/3.8.2/7e4cde26b53a9a0e3fe5b00d1dbbc7cc1d46060/junit-3.8.2.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-container-default/1.0.0/6de18d6f29cc1bd6064081128bebd9ff41410b1a/plexus-container-default-1.0.0-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-container-default/1.0.0/b93713c4c97be9ce0ad8af1e51cc7d2928e4696/plexus-container-default-1.0.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/xml-apis/xml-apis/1.0.b2/d8525661c5a0a05702fa41873d250d135031ec25/xml-apis-1.0.b2-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/xml-apis/xml-apis/1.0.b2/3136ca936f64c9d68529f048c2618bd356bf85c9/xml-apis-1.0.b2.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/dom4j/dom4j/1.6.1/a8e7149359255f43e0e5e3b1837948f9ed5861fb/dom4j-1.6.1-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/dom4j/dom4j/1.6.1/5d3ccc056b6f056dbf0dddfdf43894b9065a8f94/dom4j-1.6.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.sonatype.plexus/plexus-cipher/1.4/fd919edf211954e41e0e60bc8b042bd2e1e5cc1f/plexus-cipher-1.4-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.sonatype.plexus/plexus-cipher/1.4/50ade46f23bb38cd984b4ec560c46223432aac38/plexus-cipher-1.4.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.sonatype.plexus/plexus-sec-dispatcher/1.3/4f1b3cd71ec7bbc5de8406fe560d3b34099d6a85/plexus-sec-dispatcher-1.3-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.sonatype.plexus/plexus-sec-dispatcher/1.3/dedc02034fb8fcd7615d66593228cb71709134b4/plexus-sec-dispatcher-1.3.jar" />
                           </list>
                         </option>
                         <option name="path" value="$PROJECT_DIR$" />
@@ -1088,58 +1052,58 @@
                       <ExternalModuleBuildClasspathPojo>
                         <option name="entries">
                           <list>
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/cn.thinkjoy.gradle.plugins/gradle-gitflow-plugin/1.0.1/jar/38861e75a08a3d16cbd3b6568b942e69a1badeaa/gradle-gitflow-plugin-1.0.1.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.gradle.api.plugins/gradle-nexus-plugin/0.4/source/cc194cea8dfbf500bfd6fc163b2fc16388c42ff5/gradle-nexus-plugin-0.4-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.gradle.api.plugins/gradle-nexus-plugin/0.4/jar/c1e87c59f3081cf11c6d58da00188be5617427b4/gradle-nexus-plugin-0.4.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.hibernate.build.gradle/gradle-maven-publish-auth/2.0.1/source/5de11c76d4c3e8d728ace71e132a6581ae87d326/gradle-maven-publish-auth-2.0.1-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.hibernate.build.gradle/gradle-maven-publish-auth/2.0.1/jar/1dafd7ba42afb8c6138fe1ee1c6209a8834413e4/gradle-maven-publish-auth-2.0.1.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.googlecode.javaewah/JavaEWAH/0.5.6/source/a8c94b75fec75e3e4f55212cea1a21773802674e/JavaEWAH-0.5.6-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.googlecode.javaewah/JavaEWAH/0.5.6/jar/1207c0fc8552d4f5f574b50f29321d923521128e/JavaEWAH-0.5.6.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.eclipse.jgit/org.eclipse.jgit/3.0.0.201306101825-r/source/96cb75fcea7198fef5c8e49c162636891efe0d37/org.eclipse.jgit-3.0.0.201306101825-r-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.eclipse.jgit/org.eclipse.jgit/3.0.0.201306101825-r/jar/c79117e7b178df4483d3f5f0bbfe961bb436697b/org.eclipse.jgit-3.0.0.201306101825-r.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.apache.servicemix.bundles/org.apache.servicemix.bundles.jsch/0.1.49_1/source/8f8da3b7bbe3085a8c5df6f88d2db79b311b1ebf/org.apache.servicemix.bundles.jsch-0.1.49_1-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.apache.servicemix.bundles/org.apache.servicemix.bundles.jsch/0.1.49_1/bundle/aa7ffbb33c8f34da1c095e93b920a2646576144e/org.apache.servicemix.bundles.jsch-0.1.49_1.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.google.code.findbugs/jsr305/1.3.9/jar/40719ea6961c0cb6afaeb6a921eaa1f6afd4cfdf/jsr305-1.3.9.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.google.guava/guava/10.0.1/source/50c3953eaac12b8067111030ffdb8e44f80f5a79/guava-10.0.1-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.google.guava/guava/10.0.1/jar/292c96f9cb18231528cac4b0bf17d28149d14809/guava-10.0.1.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.atlassian.jgitflow/jgit-flow-core/0.21/source/2cd7952fc050f84d929552718a96daed7d728532/jgit-flow-core-0.21-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.atlassian.jgitflow/jgit-flow-core/0.21/bundle/e1c2bbbe6026dc732a38911496e9fe86cebcd347/jgit-flow-core-0.21.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-utils/3.0.17/source/79cfd0962de410235e9315d38d6488123e9bb299/plexus-utils-3.0.17-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-utils/3.0.17/jar/7b86f7a4ceffc8eadbb1a84207134af776f7cb95/plexus-utils-3.0.17.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch/0.1.49/source/64dce2cf3fa15bdc7680dc1951737d9f8240d541/jsch-0.1.49-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch/0.1.49/jar/5c46cae7d01e845379beac44512e25eb11017159/jsch-0.1.49.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.core/0.0.7/source/1e7de81afd838051022c24185751d5a96b75f1a8/jsch.agentproxy.core-0.0.7-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.core/0.0.7/bundle/9bcf818dc9e5247b01b1b18671a12caac293ae40/jsch.agentproxy.core-0.0.7.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.jsch/0.0.7/source/2e1531c9da987211703797e0236e9b374321ab8f/jsch.agentproxy.jsch-0.0.7-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.jsch/0.0.7/jar/ff3a71caf45efeb00980f93f0c39a9750640e8d8/jsch.agentproxy.jsch-0.0.7.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/net.java.dev.jna/jna/3.4.0/source/2f42653596d0044f0ab456620cba54c9cf53c5ca/jna-3.4.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/net.java.dev.jna/jna/3.4.0/jar/803ff252fedbd395baffd43b37341dc4a150a554/jna-3.4.0.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/net.java.dev.jna/platform/3.4.0/source/2f42653596d0044f0ab456620cba54c9cf53c5ca/platform-3.4.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/net.java.dev.jna/platform/3.4.0/jar/e3f70017be8100d3d6923f50b3d2ee17714e9c13/platform-3.4.0.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.usocket-jna/0.0.7/source/affe9e19df0572622d581eb099b948bc110ac3a2/jsch.agentproxy.usocket-jna-0.0.7-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.usocket-jna/0.0.7/bundle/98cf51ca8d7882c203729ffa48e9b7be4c50b835/jsch.agentproxy.usocket-jna-0.0.7.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.sshagent/0.0.7/source/fa4b76688b6757d62196c0c227e8426db90a55fe/jsch.agentproxy.sshagent-0.0.7-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.sshagent/0.0.7/bundle/5c09a3d2a0562de53cf616794f43f51a3c0a496c/jsch.agentproxy.sshagent-0.0.7.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-classworlds/1.4/source/bc72165f9c2d4a16bb8356e141fb7e19b3517baa/plexus-classworlds-1.4-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-classworlds/1.4/jar/b2cc7a1e5579608055cef3a85bc0ef793f4b91dc/plexus-classworlds-1.4.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/log4j/log4j/1.2.12/jar/57b8740427ee6d7b0b60792751356cad17dc0d9/log4j-1.2.12.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/commons-logging/commons-logging-api/1.1/jar/7d4cf5231d46c8524f9b9ed75bb2d1c69ab93322/commons-logging-api-1.1.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.apache.xbean/xbean-reflect/3.4/source/77c8a006107cb5520096d629aedd0ff733e11fe1/xbean-reflect-3.4-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.apache.xbean/xbean-reflect/3.4/bundle/26fd55dceb037f4789b399b22874d74f4d2db66f/xbean-reflect-3.4.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.google.code.google-collections/google-collect/snapshot-20080530/source/ba65a2b9dcb70c89a4f2a8e61414bb972e46cdda/google-collect-snapshot-20080530-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.google.code.google-collections/google-collect/snapshot-20080530/jar/a22f9b3a80ba9696ed120735f8b6c3c99d942bcc/google-collect-snapshot-20080530.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/junit/junit/3.8.2/source/aaa058540bf14ad600dd784de979c46c721ccbbe/junit-3.8.2-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/junit/junit/3.8.2/jar/7e4cde26b53a9a0e3fe5b00d1dbbc7cc1d46060/junit-3.8.2.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-container-default/1.0.0/source/6de18d6f29cc1bd6064081128bebd9ff41410b1a/plexus-container-default-1.0.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-container-default/1.0.0/jar/b93713c4c97be9ce0ad8af1e51cc7d2928e4696/plexus-container-default-1.0.0.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/xml-apis/xml-apis/1.0.b2/source/d8525661c5a0a05702fa41873d250d135031ec25/xml-apis-1.0.b2-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/xml-apis/xml-apis/1.0.b2/jar/3136ca936f64c9d68529f048c2618bd356bf85c9/xml-apis-1.0.b2.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/dom4j/dom4j/1.6.1/source/a8e7149359255f43e0e5e3b1837948f9ed5861fb/dom4j-1.6.1-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/dom4j/dom4j/1.6.1/jar/5d3ccc056b6f056dbf0dddfdf43894b9065a8f94/dom4j-1.6.1.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.sonatype.plexus/plexus-cipher/1.4/source/fd919edf211954e41e0e60bc8b042bd2e1e5cc1f/plexus-cipher-1.4-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.sonatype.plexus/plexus-cipher/1.4/jar/50ade46f23bb38cd984b4ec560c46223432aac38/plexus-cipher-1.4.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.sonatype.plexus/plexus-sec-dispatcher/1.3/source/4f1b3cd71ec7bbc5de8406fe560d3b34099d6a85/plexus-sec-dispatcher-1.3-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.sonatype.plexus/plexus-sec-dispatcher/1.3/jar/dedc02034fb8fcd7615d66593228cb71709134b4/plexus-sec-dispatcher-1.3.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.gradle.plugins/gradle-gitflow-plugin/1.0.1/38861e75a08a3d16cbd3b6568b942e69a1badeaa/gradle-gitflow-plugin-1.0.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gradle.api.plugins/gradle-nexus-plugin/0.4/cc194cea8dfbf500bfd6fc163b2fc16388c42ff5/gradle-nexus-plugin-0.4-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gradle.api.plugins/gradle-nexus-plugin/0.4/c1e87c59f3081cf11c6d58da00188be5617427b4/gradle-nexus-plugin-0.4.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate.build.gradle/gradle-maven-publish-auth/2.0.1/5de11c76d4c3e8d728ace71e132a6581ae87d326/gradle-maven-publish-auth-2.0.1-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate.build.gradle/gradle-maven-publish-auth/2.0.1/1dafd7ba42afb8c6138fe1ee1c6209a8834413e4/gradle-maven-publish-auth-2.0.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.javaewah/JavaEWAH/0.5.6/a8c94b75fec75e3e4f55212cea1a21773802674e/JavaEWAH-0.5.6-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.javaewah/JavaEWAH/0.5.6/1207c0fc8552d4f5f574b50f29321d923521128e/JavaEWAH-0.5.6.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jgit/org.eclipse.jgit/3.0.0.201306101825-r/96cb75fcea7198fef5c8e49c162636891efe0d37/org.eclipse.jgit-3.0.0.201306101825-r-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jgit/org.eclipse.jgit/3.0.0.201306101825-r/c79117e7b178df4483d3f5f0bbfe961bb436697b/org.eclipse.jgit-3.0.0.201306101825-r.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.servicemix.bundles/org.apache.servicemix.bundles.jsch/0.1.49_1/8f8da3b7bbe3085a8c5df6f88d2db79b311b1ebf/org.apache.servicemix.bundles.jsch-0.1.49_1-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.servicemix.bundles/org.apache.servicemix.bundles.jsch/0.1.49_1/aa7ffbb33c8f34da1c095e93b920a2646576144e/org.apache.servicemix.bundles.jsch-0.1.49_1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/1.3.9/40719ea6961c0cb6afaeb6a921eaa1f6afd4cfdf/jsr305-1.3.9.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/10.0.1/50c3953eaac12b8067111030ffdb8e44f80f5a79/guava-10.0.1-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/10.0.1/292c96f9cb18231528cac4b0bf17d28149d14809/guava-10.0.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.atlassian.jgitflow/jgit-flow-core/0.21/2cd7952fc050f84d929552718a96daed7d728532/jgit-flow-core-0.21-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.atlassian.jgitflow/jgit-flow-core/0.21/e1c2bbbe6026dc732a38911496e9fe86cebcd347/jgit-flow-core-0.21.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-utils/3.0.17/79cfd0962de410235e9315d38d6488123e9bb299/plexus-utils-3.0.17-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-utils/3.0.17/7b86f7a4ceffc8eadbb1a84207134af776f7cb95/plexus-utils-3.0.17.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch/0.1.49/64dce2cf3fa15bdc7680dc1951737d9f8240d541/jsch-0.1.49-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch/0.1.49/5c46cae7d01e845379beac44512e25eb11017159/jsch-0.1.49.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.core/0.0.7/1e7de81afd838051022c24185751d5a96b75f1a8/jsch.agentproxy.core-0.0.7-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.core/0.0.7/9bcf818dc9e5247b01b1b18671a12caac293ae40/jsch.agentproxy.core-0.0.7.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.jsch/0.0.7/2e1531c9da987211703797e0236e9b374321ab8f/jsch.agentproxy.jsch-0.0.7-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.jsch/0.0.7/ff3a71caf45efeb00980f93f0c39a9750640e8d8/jsch.agentproxy.jsch-0.0.7.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/jna/3.4.0/2f42653596d0044f0ab456620cba54c9cf53c5ca/jna-3.4.0-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/jna/3.4.0/803ff252fedbd395baffd43b37341dc4a150a554/jna-3.4.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/platform/3.4.0/2f42653596d0044f0ab456620cba54c9cf53c5ca/platform-3.4.0-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/platform/3.4.0/e3f70017be8100d3d6923f50b3d2ee17714e9c13/platform-3.4.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.usocket-jna/0.0.7/affe9e19df0572622d581eb099b948bc110ac3a2/jsch.agentproxy.usocket-jna-0.0.7-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.usocket-jna/0.0.7/98cf51ca8d7882c203729ffa48e9b7be4c50b835/jsch.agentproxy.usocket-jna-0.0.7.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.sshagent/0.0.7/fa4b76688b6757d62196c0c227e8426db90a55fe/jsch.agentproxy.sshagent-0.0.7-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.sshagent/0.0.7/5c09a3d2a0562de53cf616794f43f51a3c0a496c/jsch.agentproxy.sshagent-0.0.7.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-classworlds/1.4/bc72165f9c2d4a16bb8356e141fb7e19b3517baa/plexus-classworlds-1.4-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-classworlds/1.4/b2cc7a1e5579608055cef3a85bc0ef793f4b91dc/plexus-classworlds-1.4.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/log4j/log4j/1.2.12/57b8740427ee6d7b0b60792751356cad17dc0d9/log4j-1.2.12.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging-api/1.1/7d4cf5231d46c8524f9b9ed75bb2d1c69ab93322/commons-logging-api-1.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.xbean/xbean-reflect/3.4/77c8a006107cb5520096d629aedd0ff733e11fe1/xbean-reflect-3.4-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.xbean/xbean-reflect/3.4/26fd55dceb037f4789b399b22874d74f4d2db66f/xbean-reflect-3.4.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.google-collections/google-collect/snapshot-20080530/ba65a2b9dcb70c89a4f2a8e61414bb972e46cdda/google-collect-snapshot-20080530-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.google-collections/google-collect/snapshot-20080530/a22f9b3a80ba9696ed120735f8b6c3c99d942bcc/google-collect-snapshot-20080530.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/3.8.2/aaa058540bf14ad600dd784de979c46c721ccbbe/junit-3.8.2-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/3.8.2/7e4cde26b53a9a0e3fe5b00d1dbbc7cc1d46060/junit-3.8.2.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-container-default/1.0.0/6de18d6f29cc1bd6064081128bebd9ff41410b1a/plexus-container-default-1.0.0-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-container-default/1.0.0/b93713c4c97be9ce0ad8af1e51cc7d2928e4696/plexus-container-default-1.0.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/xml-apis/xml-apis/1.0.b2/d8525661c5a0a05702fa41873d250d135031ec25/xml-apis-1.0.b2-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/xml-apis/xml-apis/1.0.b2/3136ca936f64c9d68529f048c2618bd356bf85c9/xml-apis-1.0.b2.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/dom4j/dom4j/1.6.1/a8e7149359255f43e0e5e3b1837948f9ed5861fb/dom4j-1.6.1-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/dom4j/dom4j/1.6.1/5d3ccc056b6f056dbf0dddfdf43894b9065a8f94/dom4j-1.6.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.sonatype.plexus/plexus-cipher/1.4/fd919edf211954e41e0e60bc8b042bd2e1e5cc1f/plexus-cipher-1.4-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.sonatype.plexus/plexus-cipher/1.4/50ade46f23bb38cd984b4ec560c46223432aac38/plexus-cipher-1.4.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.sonatype.plexus/plexus-sec-dispatcher/1.3/4f1b3cd71ec7bbc5de8406fe560d3b34099d6a85/plexus-sec-dispatcher-1.3-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.sonatype.plexus/plexus-sec-dispatcher/1.3/dedc02034fb8fcd7615d66593228cb71709134b4/plexus-sec-dispatcher-1.3.jar" />
                           </list>
                         </option>
                         <option name="path" value="$PROJECT_DIR$/gaokao360-admin-war" />
@@ -1151,58 +1115,58 @@
                       <ExternalModuleBuildClasspathPojo>
                         <option name="entries">
                           <list>
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/cn.thinkjoy.gradle.plugins/gradle-gitflow-plugin/1.0.1/jar/38861e75a08a3d16cbd3b6568b942e69a1badeaa/gradle-gitflow-plugin-1.0.1.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.gradle.api.plugins/gradle-nexus-plugin/0.4/source/cc194cea8dfbf500bfd6fc163b2fc16388c42ff5/gradle-nexus-plugin-0.4-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.gradle.api.plugins/gradle-nexus-plugin/0.4/jar/c1e87c59f3081cf11c6d58da00188be5617427b4/gradle-nexus-plugin-0.4.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.hibernate.build.gradle/gradle-maven-publish-auth/2.0.1/source/5de11c76d4c3e8d728ace71e132a6581ae87d326/gradle-maven-publish-auth-2.0.1-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.hibernate.build.gradle/gradle-maven-publish-auth/2.0.1/jar/1dafd7ba42afb8c6138fe1ee1c6209a8834413e4/gradle-maven-publish-auth-2.0.1.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.googlecode.javaewah/JavaEWAH/0.5.6/source/a8c94b75fec75e3e4f55212cea1a21773802674e/JavaEWAH-0.5.6-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.googlecode.javaewah/JavaEWAH/0.5.6/jar/1207c0fc8552d4f5f574b50f29321d923521128e/JavaEWAH-0.5.6.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.eclipse.jgit/org.eclipse.jgit/3.0.0.201306101825-r/source/96cb75fcea7198fef5c8e49c162636891efe0d37/org.eclipse.jgit-3.0.0.201306101825-r-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.eclipse.jgit/org.eclipse.jgit/3.0.0.201306101825-r/jar/c79117e7b178df4483d3f5f0bbfe961bb436697b/org.eclipse.jgit-3.0.0.201306101825-r.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.apache.servicemix.bundles/org.apache.servicemix.bundles.jsch/0.1.49_1/source/8f8da3b7bbe3085a8c5df6f88d2db79b311b1ebf/org.apache.servicemix.bundles.jsch-0.1.49_1-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.apache.servicemix.bundles/org.apache.servicemix.bundles.jsch/0.1.49_1/bundle/aa7ffbb33c8f34da1c095e93b920a2646576144e/org.apache.servicemix.bundles.jsch-0.1.49_1.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.google.code.findbugs/jsr305/1.3.9/jar/40719ea6961c0cb6afaeb6a921eaa1f6afd4cfdf/jsr305-1.3.9.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.google.guava/guava/10.0.1/source/50c3953eaac12b8067111030ffdb8e44f80f5a79/guava-10.0.1-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.google.guava/guava/10.0.1/jar/292c96f9cb18231528cac4b0bf17d28149d14809/guava-10.0.1.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.atlassian.jgitflow/jgit-flow-core/0.21/source/2cd7952fc050f84d929552718a96daed7d728532/jgit-flow-core-0.21-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.atlassian.jgitflow/jgit-flow-core/0.21/bundle/e1c2bbbe6026dc732a38911496e9fe86cebcd347/jgit-flow-core-0.21.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-utils/3.0.17/source/79cfd0962de410235e9315d38d6488123e9bb299/plexus-utils-3.0.17-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-utils/3.0.17/jar/7b86f7a4ceffc8eadbb1a84207134af776f7cb95/plexus-utils-3.0.17.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch/0.1.49/source/64dce2cf3fa15bdc7680dc1951737d9f8240d541/jsch-0.1.49-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch/0.1.49/jar/5c46cae7d01e845379beac44512e25eb11017159/jsch-0.1.49.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.core/0.0.7/source/1e7de81afd838051022c24185751d5a96b75f1a8/jsch.agentproxy.core-0.0.7-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.core/0.0.7/bundle/9bcf818dc9e5247b01b1b18671a12caac293ae40/jsch.agentproxy.core-0.0.7.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.jsch/0.0.7/source/2e1531c9da987211703797e0236e9b374321ab8f/jsch.agentproxy.jsch-0.0.7-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.jsch/0.0.7/jar/ff3a71caf45efeb00980f93f0c39a9750640e8d8/jsch.agentproxy.jsch-0.0.7.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/net.java.dev.jna/jna/3.4.0/source/2f42653596d0044f0ab456620cba54c9cf53c5ca/jna-3.4.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/net.java.dev.jna/jna/3.4.0/jar/803ff252fedbd395baffd43b37341dc4a150a554/jna-3.4.0.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/net.java.dev.jna/platform/3.4.0/source/2f42653596d0044f0ab456620cba54c9cf53c5ca/platform-3.4.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/net.java.dev.jna/platform/3.4.0/jar/e3f70017be8100d3d6923f50b3d2ee17714e9c13/platform-3.4.0.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.usocket-jna/0.0.7/source/affe9e19df0572622d581eb099b948bc110ac3a2/jsch.agentproxy.usocket-jna-0.0.7-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.usocket-jna/0.0.7/bundle/98cf51ca8d7882c203729ffa48e9b7be4c50b835/jsch.agentproxy.usocket-jna-0.0.7.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.sshagent/0.0.7/source/fa4b76688b6757d62196c0c227e8426db90a55fe/jsch.agentproxy.sshagent-0.0.7-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.sshagent/0.0.7/bundle/5c09a3d2a0562de53cf616794f43f51a3c0a496c/jsch.agentproxy.sshagent-0.0.7.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-classworlds/1.4/source/bc72165f9c2d4a16bb8356e141fb7e19b3517baa/plexus-classworlds-1.4-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-classworlds/1.4/jar/b2cc7a1e5579608055cef3a85bc0ef793f4b91dc/plexus-classworlds-1.4.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/log4j/log4j/1.2.12/jar/57b8740427ee6d7b0b60792751356cad17dc0d9/log4j-1.2.12.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/commons-logging/commons-logging-api/1.1/jar/7d4cf5231d46c8524f9b9ed75bb2d1c69ab93322/commons-logging-api-1.1.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.apache.xbean/xbean-reflect/3.4/source/77c8a006107cb5520096d629aedd0ff733e11fe1/xbean-reflect-3.4-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.apache.xbean/xbean-reflect/3.4/bundle/26fd55dceb037f4789b399b22874d74f4d2db66f/xbean-reflect-3.4.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.google.code.google-collections/google-collect/snapshot-20080530/source/ba65a2b9dcb70c89a4f2a8e61414bb972e46cdda/google-collect-snapshot-20080530-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.google.code.google-collections/google-collect/snapshot-20080530/jar/a22f9b3a80ba9696ed120735f8b6c3c99d942bcc/google-collect-snapshot-20080530.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/junit/junit/3.8.2/source/aaa058540bf14ad600dd784de979c46c721ccbbe/junit-3.8.2-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/junit/junit/3.8.2/jar/7e4cde26b53a9a0e3fe5b00d1dbbc7cc1d46060/junit-3.8.2.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-container-default/1.0.0/source/6de18d6f29cc1bd6064081128bebd9ff41410b1a/plexus-container-default-1.0.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-container-default/1.0.0/jar/b93713c4c97be9ce0ad8af1e51cc7d2928e4696/plexus-container-default-1.0.0.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/xml-apis/xml-apis/1.0.b2/source/d8525661c5a0a05702fa41873d250d135031ec25/xml-apis-1.0.b2-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/xml-apis/xml-apis/1.0.b2/jar/3136ca936f64c9d68529f048c2618bd356bf85c9/xml-apis-1.0.b2.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/dom4j/dom4j/1.6.1/source/a8e7149359255f43e0e5e3b1837948f9ed5861fb/dom4j-1.6.1-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/dom4j/dom4j/1.6.1/jar/5d3ccc056b6f056dbf0dddfdf43894b9065a8f94/dom4j-1.6.1.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.sonatype.plexus/plexus-cipher/1.4/source/fd919edf211954e41e0e60bc8b042bd2e1e5cc1f/plexus-cipher-1.4-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.sonatype.plexus/plexus-cipher/1.4/jar/50ade46f23bb38cd984b4ec560c46223432aac38/plexus-cipher-1.4.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.sonatype.plexus/plexus-sec-dispatcher/1.3/source/4f1b3cd71ec7bbc5de8406fe560d3b34099d6a85/plexus-sec-dispatcher-1.3-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.sonatype.plexus/plexus-sec-dispatcher/1.3/jar/dedc02034fb8fcd7615d66593228cb71709134b4/plexus-sec-dispatcher-1.3.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.gradle.plugins/gradle-gitflow-plugin/1.0.1/38861e75a08a3d16cbd3b6568b942e69a1badeaa/gradle-gitflow-plugin-1.0.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gradle.api.plugins/gradle-nexus-plugin/0.4/cc194cea8dfbf500bfd6fc163b2fc16388c42ff5/gradle-nexus-plugin-0.4-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gradle.api.plugins/gradle-nexus-plugin/0.4/c1e87c59f3081cf11c6d58da00188be5617427b4/gradle-nexus-plugin-0.4.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate.build.gradle/gradle-maven-publish-auth/2.0.1/5de11c76d4c3e8d728ace71e132a6581ae87d326/gradle-maven-publish-auth-2.0.1-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate.build.gradle/gradle-maven-publish-auth/2.0.1/1dafd7ba42afb8c6138fe1ee1c6209a8834413e4/gradle-maven-publish-auth-2.0.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.javaewah/JavaEWAH/0.5.6/a8c94b75fec75e3e4f55212cea1a21773802674e/JavaEWAH-0.5.6-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.javaewah/JavaEWAH/0.5.6/1207c0fc8552d4f5f574b50f29321d923521128e/JavaEWAH-0.5.6.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jgit/org.eclipse.jgit/3.0.0.201306101825-r/96cb75fcea7198fef5c8e49c162636891efe0d37/org.eclipse.jgit-3.0.0.201306101825-r-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jgit/org.eclipse.jgit/3.0.0.201306101825-r/c79117e7b178df4483d3f5f0bbfe961bb436697b/org.eclipse.jgit-3.0.0.201306101825-r.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.servicemix.bundles/org.apache.servicemix.bundles.jsch/0.1.49_1/8f8da3b7bbe3085a8c5df6f88d2db79b311b1ebf/org.apache.servicemix.bundles.jsch-0.1.49_1-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.servicemix.bundles/org.apache.servicemix.bundles.jsch/0.1.49_1/aa7ffbb33c8f34da1c095e93b920a2646576144e/org.apache.servicemix.bundles.jsch-0.1.49_1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/1.3.9/40719ea6961c0cb6afaeb6a921eaa1f6afd4cfdf/jsr305-1.3.9.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/10.0.1/50c3953eaac12b8067111030ffdb8e44f80f5a79/guava-10.0.1-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/10.0.1/292c96f9cb18231528cac4b0bf17d28149d14809/guava-10.0.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.atlassian.jgitflow/jgit-flow-core/0.21/2cd7952fc050f84d929552718a96daed7d728532/jgit-flow-core-0.21-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.atlassian.jgitflow/jgit-flow-core/0.21/e1c2bbbe6026dc732a38911496e9fe86cebcd347/jgit-flow-core-0.21.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-utils/3.0.17/79cfd0962de410235e9315d38d6488123e9bb299/plexus-utils-3.0.17-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-utils/3.0.17/7b86f7a4ceffc8eadbb1a84207134af776f7cb95/plexus-utils-3.0.17.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch/0.1.49/64dce2cf3fa15bdc7680dc1951737d9f8240d541/jsch-0.1.49-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch/0.1.49/5c46cae7d01e845379beac44512e25eb11017159/jsch-0.1.49.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.core/0.0.7/1e7de81afd838051022c24185751d5a96b75f1a8/jsch.agentproxy.core-0.0.7-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.core/0.0.7/9bcf818dc9e5247b01b1b18671a12caac293ae40/jsch.agentproxy.core-0.0.7.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.jsch/0.0.7/2e1531c9da987211703797e0236e9b374321ab8f/jsch.agentproxy.jsch-0.0.7-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.jsch/0.0.7/ff3a71caf45efeb00980f93f0c39a9750640e8d8/jsch.agentproxy.jsch-0.0.7.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/jna/3.4.0/2f42653596d0044f0ab456620cba54c9cf53c5ca/jna-3.4.0-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/jna/3.4.0/803ff252fedbd395baffd43b37341dc4a150a554/jna-3.4.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/platform/3.4.0/2f42653596d0044f0ab456620cba54c9cf53c5ca/platform-3.4.0-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/platform/3.4.0/e3f70017be8100d3d6923f50b3d2ee17714e9c13/platform-3.4.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.usocket-jna/0.0.7/affe9e19df0572622d581eb099b948bc110ac3a2/jsch.agentproxy.usocket-jna-0.0.7-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.usocket-jna/0.0.7/98cf51ca8d7882c203729ffa48e9b7be4c50b835/jsch.agentproxy.usocket-jna-0.0.7.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.sshagent/0.0.7/fa4b76688b6757d62196c0c227e8426db90a55fe/jsch.agentproxy.sshagent-0.0.7-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.sshagent/0.0.7/5c09a3d2a0562de53cf616794f43f51a3c0a496c/jsch.agentproxy.sshagent-0.0.7.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-classworlds/1.4/bc72165f9c2d4a16bb8356e141fb7e19b3517baa/plexus-classworlds-1.4-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-classworlds/1.4/b2cc7a1e5579608055cef3a85bc0ef793f4b91dc/plexus-classworlds-1.4.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/log4j/log4j/1.2.12/57b8740427ee6d7b0b60792751356cad17dc0d9/log4j-1.2.12.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging-api/1.1/7d4cf5231d46c8524f9b9ed75bb2d1c69ab93322/commons-logging-api-1.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.xbean/xbean-reflect/3.4/77c8a006107cb5520096d629aedd0ff733e11fe1/xbean-reflect-3.4-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.xbean/xbean-reflect/3.4/26fd55dceb037f4789b399b22874d74f4d2db66f/xbean-reflect-3.4.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.google-collections/google-collect/snapshot-20080530/ba65a2b9dcb70c89a4f2a8e61414bb972e46cdda/google-collect-snapshot-20080530-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.google-collections/google-collect/snapshot-20080530/a22f9b3a80ba9696ed120735f8b6c3c99d942bcc/google-collect-snapshot-20080530.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/3.8.2/aaa058540bf14ad600dd784de979c46c721ccbbe/junit-3.8.2-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/3.8.2/7e4cde26b53a9a0e3fe5b00d1dbbc7cc1d46060/junit-3.8.2.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-container-default/1.0.0/6de18d6f29cc1bd6064081128bebd9ff41410b1a/plexus-container-default-1.0.0-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-container-default/1.0.0/b93713c4c97be9ce0ad8af1e51cc7d2928e4696/plexus-container-default-1.0.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/xml-apis/xml-apis/1.0.b2/d8525661c5a0a05702fa41873d250d135031ec25/xml-apis-1.0.b2-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/xml-apis/xml-apis/1.0.b2/3136ca936f64c9d68529f048c2618bd356bf85c9/xml-apis-1.0.b2.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/dom4j/dom4j/1.6.1/a8e7149359255f43e0e5e3b1837948f9ed5861fb/dom4j-1.6.1-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/dom4j/dom4j/1.6.1/5d3ccc056b6f056dbf0dddfdf43894b9065a8f94/dom4j-1.6.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.sonatype.plexus/plexus-cipher/1.4/fd919edf211954e41e0e60bc8b042bd2e1e5cc1f/plexus-cipher-1.4-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.sonatype.plexus/plexus-cipher/1.4/50ade46f23bb38cd984b4ec560c46223432aac38/plexus-cipher-1.4.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.sonatype.plexus/plexus-sec-dispatcher/1.3/4f1b3cd71ec7bbc5de8406fe560d3b34099d6a85/plexus-sec-dispatcher-1.3-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.sonatype.plexus/plexus-sec-dispatcher/1.3/dedc02034fb8fcd7615d66593228cb71709134b4/plexus-sec-dispatcher-1.3.jar" />
                           </list>
                         </option>
                         <option name="path" value="$PROJECT_DIR$/gaokao360-api" />
@@ -1214,58 +1178,58 @@
                       <ExternalModuleBuildClasspathPojo>
                         <option name="entries">
                           <list>
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/cn.thinkjoy.gradle.plugins/gradle-gitflow-plugin/1.0.1/jar/38861e75a08a3d16cbd3b6568b942e69a1badeaa/gradle-gitflow-plugin-1.0.1.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.gradle.api.plugins/gradle-nexus-plugin/0.4/source/cc194cea8dfbf500bfd6fc163b2fc16388c42ff5/gradle-nexus-plugin-0.4-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.gradle.api.plugins/gradle-nexus-plugin/0.4/jar/c1e87c59f3081cf11c6d58da00188be5617427b4/gradle-nexus-plugin-0.4.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.hibernate.build.gradle/gradle-maven-publish-auth/2.0.1/source/5de11c76d4c3e8d728ace71e132a6581ae87d326/gradle-maven-publish-auth-2.0.1-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.hibernate.build.gradle/gradle-maven-publish-auth/2.0.1/jar/1dafd7ba42afb8c6138fe1ee1c6209a8834413e4/gradle-maven-publish-auth-2.0.1.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.googlecode.javaewah/JavaEWAH/0.5.6/source/a8c94b75fec75e3e4f55212cea1a21773802674e/JavaEWAH-0.5.6-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.googlecode.javaewah/JavaEWAH/0.5.6/jar/1207c0fc8552d4f5f574b50f29321d923521128e/JavaEWAH-0.5.6.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.eclipse.jgit/org.eclipse.jgit/3.0.0.201306101825-r/source/96cb75fcea7198fef5c8e49c162636891efe0d37/org.eclipse.jgit-3.0.0.201306101825-r-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.eclipse.jgit/org.eclipse.jgit/3.0.0.201306101825-r/jar/c79117e7b178df4483d3f5f0bbfe961bb436697b/org.eclipse.jgit-3.0.0.201306101825-r.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.apache.servicemix.bundles/org.apache.servicemix.bundles.jsch/0.1.49_1/source/8f8da3b7bbe3085a8c5df6f88d2db79b311b1ebf/org.apache.servicemix.bundles.jsch-0.1.49_1-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.apache.servicemix.bundles/org.apache.servicemix.bundles.jsch/0.1.49_1/bundle/aa7ffbb33c8f34da1c095e93b920a2646576144e/org.apache.servicemix.bundles.jsch-0.1.49_1.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.google.code.findbugs/jsr305/1.3.9/jar/40719ea6961c0cb6afaeb6a921eaa1f6afd4cfdf/jsr305-1.3.9.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.google.guava/guava/10.0.1/source/50c3953eaac12b8067111030ffdb8e44f80f5a79/guava-10.0.1-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.google.guava/guava/10.0.1/jar/292c96f9cb18231528cac4b0bf17d28149d14809/guava-10.0.1.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.atlassian.jgitflow/jgit-flow-core/0.21/source/2cd7952fc050f84d929552718a96daed7d728532/jgit-flow-core-0.21-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.atlassian.jgitflow/jgit-flow-core/0.21/bundle/e1c2bbbe6026dc732a38911496e9fe86cebcd347/jgit-flow-core-0.21.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-utils/3.0.17/source/79cfd0962de410235e9315d38d6488123e9bb299/plexus-utils-3.0.17-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-utils/3.0.17/jar/7b86f7a4ceffc8eadbb1a84207134af776f7cb95/plexus-utils-3.0.17.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch/0.1.49/source/64dce2cf3fa15bdc7680dc1951737d9f8240d541/jsch-0.1.49-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch/0.1.49/jar/5c46cae7d01e845379beac44512e25eb11017159/jsch-0.1.49.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.core/0.0.7/source/1e7de81afd838051022c24185751d5a96b75f1a8/jsch.agentproxy.core-0.0.7-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.core/0.0.7/bundle/9bcf818dc9e5247b01b1b18671a12caac293ae40/jsch.agentproxy.core-0.0.7.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.jsch/0.0.7/source/2e1531c9da987211703797e0236e9b374321ab8f/jsch.agentproxy.jsch-0.0.7-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.jsch/0.0.7/jar/ff3a71caf45efeb00980f93f0c39a9750640e8d8/jsch.agentproxy.jsch-0.0.7.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/net.java.dev.jna/jna/3.4.0/source/2f42653596d0044f0ab456620cba54c9cf53c5ca/jna-3.4.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/net.java.dev.jna/jna/3.4.0/jar/803ff252fedbd395baffd43b37341dc4a150a554/jna-3.4.0.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/net.java.dev.jna/platform/3.4.0/source/2f42653596d0044f0ab456620cba54c9cf53c5ca/platform-3.4.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/net.java.dev.jna/platform/3.4.0/jar/e3f70017be8100d3d6923f50b3d2ee17714e9c13/platform-3.4.0.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.usocket-jna/0.0.7/source/affe9e19df0572622d581eb099b948bc110ac3a2/jsch.agentproxy.usocket-jna-0.0.7-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.usocket-jna/0.0.7/bundle/98cf51ca8d7882c203729ffa48e9b7be4c50b835/jsch.agentproxy.usocket-jna-0.0.7.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.sshagent/0.0.7/source/fa4b76688b6757d62196c0c227e8426db90a55fe/jsch.agentproxy.sshagent-0.0.7-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.sshagent/0.0.7/bundle/5c09a3d2a0562de53cf616794f43f51a3c0a496c/jsch.agentproxy.sshagent-0.0.7.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-classworlds/1.4/source/bc72165f9c2d4a16bb8356e141fb7e19b3517baa/plexus-classworlds-1.4-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-classworlds/1.4/jar/b2cc7a1e5579608055cef3a85bc0ef793f4b91dc/plexus-classworlds-1.4.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/log4j/log4j/1.2.12/jar/57b8740427ee6d7b0b60792751356cad17dc0d9/log4j-1.2.12.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/commons-logging/commons-logging-api/1.1/jar/7d4cf5231d46c8524f9b9ed75bb2d1c69ab93322/commons-logging-api-1.1.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.apache.xbean/xbean-reflect/3.4/source/77c8a006107cb5520096d629aedd0ff733e11fe1/xbean-reflect-3.4-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.apache.xbean/xbean-reflect/3.4/bundle/26fd55dceb037f4789b399b22874d74f4d2db66f/xbean-reflect-3.4.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.google.code.google-collections/google-collect/snapshot-20080530/source/ba65a2b9dcb70c89a4f2a8e61414bb972e46cdda/google-collect-snapshot-20080530-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.google.code.google-collections/google-collect/snapshot-20080530/jar/a22f9b3a80ba9696ed120735f8b6c3c99d942bcc/google-collect-snapshot-20080530.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/junit/junit/3.8.2/source/aaa058540bf14ad600dd784de979c46c721ccbbe/junit-3.8.2-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/junit/junit/3.8.2/jar/7e4cde26b53a9a0e3fe5b00d1dbbc7cc1d46060/junit-3.8.2.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-container-default/1.0.0/source/6de18d6f29cc1bd6064081128bebd9ff41410b1a/plexus-container-default-1.0.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-container-default/1.0.0/jar/b93713c4c97be9ce0ad8af1e51cc7d2928e4696/plexus-container-default-1.0.0.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/xml-apis/xml-apis/1.0.b2/source/d8525661c5a0a05702fa41873d250d135031ec25/xml-apis-1.0.b2-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/xml-apis/xml-apis/1.0.b2/jar/3136ca936f64c9d68529f048c2618bd356bf85c9/xml-apis-1.0.b2.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/dom4j/dom4j/1.6.1/source/a8e7149359255f43e0e5e3b1837948f9ed5861fb/dom4j-1.6.1-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/dom4j/dom4j/1.6.1/jar/5d3ccc056b6f056dbf0dddfdf43894b9065a8f94/dom4j-1.6.1.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.sonatype.plexus/plexus-cipher/1.4/source/fd919edf211954e41e0e60bc8b042bd2e1e5cc1f/plexus-cipher-1.4-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.sonatype.plexus/plexus-cipher/1.4/jar/50ade46f23bb38cd984b4ec560c46223432aac38/plexus-cipher-1.4.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.sonatype.plexus/plexus-sec-dispatcher/1.3/source/4f1b3cd71ec7bbc5de8406fe560d3b34099d6a85/plexus-sec-dispatcher-1.3-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.sonatype.plexus/plexus-sec-dispatcher/1.3/jar/dedc02034fb8fcd7615d66593228cb71709134b4/plexus-sec-dispatcher-1.3.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.gradle.plugins/gradle-gitflow-plugin/1.0.1/38861e75a08a3d16cbd3b6568b942e69a1badeaa/gradle-gitflow-plugin-1.0.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gradle.api.plugins/gradle-nexus-plugin/0.4/cc194cea8dfbf500bfd6fc163b2fc16388c42ff5/gradle-nexus-plugin-0.4-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gradle.api.plugins/gradle-nexus-plugin/0.4/c1e87c59f3081cf11c6d58da00188be5617427b4/gradle-nexus-plugin-0.4.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate.build.gradle/gradle-maven-publish-auth/2.0.1/5de11c76d4c3e8d728ace71e132a6581ae87d326/gradle-maven-publish-auth-2.0.1-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate.build.gradle/gradle-maven-publish-auth/2.0.1/1dafd7ba42afb8c6138fe1ee1c6209a8834413e4/gradle-maven-publish-auth-2.0.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.javaewah/JavaEWAH/0.5.6/a8c94b75fec75e3e4f55212cea1a21773802674e/JavaEWAH-0.5.6-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.javaewah/JavaEWAH/0.5.6/1207c0fc8552d4f5f574b50f29321d923521128e/JavaEWAH-0.5.6.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jgit/org.eclipse.jgit/3.0.0.201306101825-r/96cb75fcea7198fef5c8e49c162636891efe0d37/org.eclipse.jgit-3.0.0.201306101825-r-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jgit/org.eclipse.jgit/3.0.0.201306101825-r/c79117e7b178df4483d3f5f0bbfe961bb436697b/org.eclipse.jgit-3.0.0.201306101825-r.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.servicemix.bundles/org.apache.servicemix.bundles.jsch/0.1.49_1/8f8da3b7bbe3085a8c5df6f88d2db79b311b1ebf/org.apache.servicemix.bundles.jsch-0.1.49_1-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.servicemix.bundles/org.apache.servicemix.bundles.jsch/0.1.49_1/aa7ffbb33c8f34da1c095e93b920a2646576144e/org.apache.servicemix.bundles.jsch-0.1.49_1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/1.3.9/40719ea6961c0cb6afaeb6a921eaa1f6afd4cfdf/jsr305-1.3.9.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/10.0.1/50c3953eaac12b8067111030ffdb8e44f80f5a79/guava-10.0.1-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/10.0.1/292c96f9cb18231528cac4b0bf17d28149d14809/guava-10.0.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.atlassian.jgitflow/jgit-flow-core/0.21/2cd7952fc050f84d929552718a96daed7d728532/jgit-flow-core-0.21-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.atlassian.jgitflow/jgit-flow-core/0.21/e1c2bbbe6026dc732a38911496e9fe86cebcd347/jgit-flow-core-0.21.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-utils/3.0.17/79cfd0962de410235e9315d38d6488123e9bb299/plexus-utils-3.0.17-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-utils/3.0.17/7b86f7a4ceffc8eadbb1a84207134af776f7cb95/plexus-utils-3.0.17.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch/0.1.49/64dce2cf3fa15bdc7680dc1951737d9f8240d541/jsch-0.1.49-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch/0.1.49/5c46cae7d01e845379beac44512e25eb11017159/jsch-0.1.49.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.core/0.0.7/1e7de81afd838051022c24185751d5a96b75f1a8/jsch.agentproxy.core-0.0.7-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.core/0.0.7/9bcf818dc9e5247b01b1b18671a12caac293ae40/jsch.agentproxy.core-0.0.7.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.jsch/0.0.7/2e1531c9da987211703797e0236e9b374321ab8f/jsch.agentproxy.jsch-0.0.7-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.jsch/0.0.7/ff3a71caf45efeb00980f93f0c39a9750640e8d8/jsch.agentproxy.jsch-0.0.7.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/jna/3.4.0/2f42653596d0044f0ab456620cba54c9cf53c5ca/jna-3.4.0-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/jna/3.4.0/803ff252fedbd395baffd43b37341dc4a150a554/jna-3.4.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/platform/3.4.0/2f42653596d0044f0ab456620cba54c9cf53c5ca/platform-3.4.0-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/platform/3.4.0/e3f70017be8100d3d6923f50b3d2ee17714e9c13/platform-3.4.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.usocket-jna/0.0.7/affe9e19df0572622d581eb099b948bc110ac3a2/jsch.agentproxy.usocket-jna-0.0.7-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.usocket-jna/0.0.7/98cf51ca8d7882c203729ffa48e9b7be4c50b835/jsch.agentproxy.usocket-jna-0.0.7.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.sshagent/0.0.7/fa4b76688b6757d62196c0c227e8426db90a55fe/jsch.agentproxy.sshagent-0.0.7-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.sshagent/0.0.7/5c09a3d2a0562de53cf616794f43f51a3c0a496c/jsch.agentproxy.sshagent-0.0.7.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-classworlds/1.4/bc72165f9c2d4a16bb8356e141fb7e19b3517baa/plexus-classworlds-1.4-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-classworlds/1.4/b2cc7a1e5579608055cef3a85bc0ef793f4b91dc/plexus-classworlds-1.4.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/log4j/log4j/1.2.12/57b8740427ee6d7b0b60792751356cad17dc0d9/log4j-1.2.12.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging-api/1.1/7d4cf5231d46c8524f9b9ed75bb2d1c69ab93322/commons-logging-api-1.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.xbean/xbean-reflect/3.4/77c8a006107cb5520096d629aedd0ff733e11fe1/xbean-reflect-3.4-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.xbean/xbean-reflect/3.4/26fd55dceb037f4789b399b22874d74f4d2db66f/xbean-reflect-3.4.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.google-collections/google-collect/snapshot-20080530/ba65a2b9dcb70c89a4f2a8e61414bb972e46cdda/google-collect-snapshot-20080530-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.google-collections/google-collect/snapshot-20080530/a22f9b3a80ba9696ed120735f8b6c3c99d942bcc/google-collect-snapshot-20080530.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/3.8.2/aaa058540bf14ad600dd784de979c46c721ccbbe/junit-3.8.2-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/3.8.2/7e4cde26b53a9a0e3fe5b00d1dbbc7cc1d46060/junit-3.8.2.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-container-default/1.0.0/6de18d6f29cc1bd6064081128bebd9ff41410b1a/plexus-container-default-1.0.0-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-container-default/1.0.0/b93713c4c97be9ce0ad8af1e51cc7d2928e4696/plexus-container-default-1.0.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/xml-apis/xml-apis/1.0.b2/d8525661c5a0a05702fa41873d250d135031ec25/xml-apis-1.0.b2-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/xml-apis/xml-apis/1.0.b2/3136ca936f64c9d68529f048c2618bd356bf85c9/xml-apis-1.0.b2.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/dom4j/dom4j/1.6.1/a8e7149359255f43e0e5e3b1837948f9ed5861fb/dom4j-1.6.1-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/dom4j/dom4j/1.6.1/5d3ccc056b6f056dbf0dddfdf43894b9065a8f94/dom4j-1.6.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.sonatype.plexus/plexus-cipher/1.4/fd919edf211954e41e0e60bc8b042bd2e1e5cc1f/plexus-cipher-1.4-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.sonatype.plexus/plexus-cipher/1.4/50ade46f23bb38cd984b4ec560c46223432aac38/plexus-cipher-1.4.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.sonatype.plexus/plexus-sec-dispatcher/1.3/4f1b3cd71ec7bbc5de8406fe560d3b34099d6a85/plexus-sec-dispatcher-1.3-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.sonatype.plexus/plexus-sec-dispatcher/1.3/dedc02034fb8fcd7615d66593228cb71709134b4/plexus-sec-dispatcher-1.3.jar" />
                           </list>
                         </option>
                         <option name="path" value="$PROJECT_DIR$/gaokao360-domain" />
@@ -1277,58 +1241,58 @@
                       <ExternalModuleBuildClasspathPojo>
                         <option name="entries">
                           <list>
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/cn.thinkjoy.gradle.plugins/gradle-gitflow-plugin/1.0.1/jar/38861e75a08a3d16cbd3b6568b942e69a1badeaa/gradle-gitflow-plugin-1.0.1.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.gradle.api.plugins/gradle-nexus-plugin/0.4/source/cc194cea8dfbf500bfd6fc163b2fc16388c42ff5/gradle-nexus-plugin-0.4-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.gradle.api.plugins/gradle-nexus-plugin/0.4/jar/c1e87c59f3081cf11c6d58da00188be5617427b4/gradle-nexus-plugin-0.4.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.hibernate.build.gradle/gradle-maven-publish-auth/2.0.1/source/5de11c76d4c3e8d728ace71e132a6581ae87d326/gradle-maven-publish-auth-2.0.1-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.hibernate.build.gradle/gradle-maven-publish-auth/2.0.1/jar/1dafd7ba42afb8c6138fe1ee1c6209a8834413e4/gradle-maven-publish-auth-2.0.1.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.googlecode.javaewah/JavaEWAH/0.5.6/source/a8c94b75fec75e3e4f55212cea1a21773802674e/JavaEWAH-0.5.6-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.googlecode.javaewah/JavaEWAH/0.5.6/jar/1207c0fc8552d4f5f574b50f29321d923521128e/JavaEWAH-0.5.6.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.eclipse.jgit/org.eclipse.jgit/3.0.0.201306101825-r/source/96cb75fcea7198fef5c8e49c162636891efe0d37/org.eclipse.jgit-3.0.0.201306101825-r-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.eclipse.jgit/org.eclipse.jgit/3.0.0.201306101825-r/jar/c79117e7b178df4483d3f5f0bbfe961bb436697b/org.eclipse.jgit-3.0.0.201306101825-r.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.apache.servicemix.bundles/org.apache.servicemix.bundles.jsch/0.1.49_1/source/8f8da3b7bbe3085a8c5df6f88d2db79b311b1ebf/org.apache.servicemix.bundles.jsch-0.1.49_1-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.apache.servicemix.bundles/org.apache.servicemix.bundles.jsch/0.1.49_1/bundle/aa7ffbb33c8f34da1c095e93b920a2646576144e/org.apache.servicemix.bundles.jsch-0.1.49_1.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.google.code.findbugs/jsr305/1.3.9/jar/40719ea6961c0cb6afaeb6a921eaa1f6afd4cfdf/jsr305-1.3.9.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.google.guava/guava/10.0.1/source/50c3953eaac12b8067111030ffdb8e44f80f5a79/guava-10.0.1-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.google.guava/guava/10.0.1/jar/292c96f9cb18231528cac4b0bf17d28149d14809/guava-10.0.1.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.atlassian.jgitflow/jgit-flow-core/0.21/source/2cd7952fc050f84d929552718a96daed7d728532/jgit-flow-core-0.21-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.atlassian.jgitflow/jgit-flow-core/0.21/bundle/e1c2bbbe6026dc732a38911496e9fe86cebcd347/jgit-flow-core-0.21.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-utils/3.0.17/source/79cfd0962de410235e9315d38d6488123e9bb299/plexus-utils-3.0.17-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-utils/3.0.17/jar/7b86f7a4ceffc8eadbb1a84207134af776f7cb95/plexus-utils-3.0.17.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch/0.1.49/source/64dce2cf3fa15bdc7680dc1951737d9f8240d541/jsch-0.1.49-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch/0.1.49/jar/5c46cae7d01e845379beac44512e25eb11017159/jsch-0.1.49.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.core/0.0.7/source/1e7de81afd838051022c24185751d5a96b75f1a8/jsch.agentproxy.core-0.0.7-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.core/0.0.7/bundle/9bcf818dc9e5247b01b1b18671a12caac293ae40/jsch.agentproxy.core-0.0.7.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.jsch/0.0.7/source/2e1531c9da987211703797e0236e9b374321ab8f/jsch.agentproxy.jsch-0.0.7-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.jsch/0.0.7/jar/ff3a71caf45efeb00980f93f0c39a9750640e8d8/jsch.agentproxy.jsch-0.0.7.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/net.java.dev.jna/jna/3.4.0/source/2f42653596d0044f0ab456620cba54c9cf53c5ca/jna-3.4.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/net.java.dev.jna/jna/3.4.0/jar/803ff252fedbd395baffd43b37341dc4a150a554/jna-3.4.0.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/net.java.dev.jna/platform/3.4.0/source/2f42653596d0044f0ab456620cba54c9cf53c5ca/platform-3.4.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/net.java.dev.jna/platform/3.4.0/jar/e3f70017be8100d3d6923f50b3d2ee17714e9c13/platform-3.4.0.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.usocket-jna/0.0.7/source/affe9e19df0572622d581eb099b948bc110ac3a2/jsch.agentproxy.usocket-jna-0.0.7-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.usocket-jna/0.0.7/bundle/98cf51ca8d7882c203729ffa48e9b7be4c50b835/jsch.agentproxy.usocket-jna-0.0.7.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.sshagent/0.0.7/source/fa4b76688b6757d62196c0c227e8426db90a55fe/jsch.agentproxy.sshagent-0.0.7-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.jcraft/jsch.agentproxy.sshagent/0.0.7/bundle/5c09a3d2a0562de53cf616794f43f51a3c0a496c/jsch.agentproxy.sshagent-0.0.7.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-classworlds/1.4/source/bc72165f9c2d4a16bb8356e141fb7e19b3517baa/plexus-classworlds-1.4-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-classworlds/1.4/jar/b2cc7a1e5579608055cef3a85bc0ef793f4b91dc/plexus-classworlds-1.4.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/log4j/log4j/1.2.12/jar/57b8740427ee6d7b0b60792751356cad17dc0d9/log4j-1.2.12.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/commons-logging/commons-logging-api/1.1/jar/7d4cf5231d46c8524f9b9ed75bb2d1c69ab93322/commons-logging-api-1.1.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.apache.xbean/xbean-reflect/3.4/source/77c8a006107cb5520096d629aedd0ff733e11fe1/xbean-reflect-3.4-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.apache.xbean/xbean-reflect/3.4/bundle/26fd55dceb037f4789b399b22874d74f4d2db66f/xbean-reflect-3.4.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.google.code.google-collections/google-collect/snapshot-20080530/source/ba65a2b9dcb70c89a4f2a8e61414bb972e46cdda/google-collect-snapshot-20080530-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/com.google.code.google-collections/google-collect/snapshot-20080530/jar/a22f9b3a80ba9696ed120735f8b6c3c99d942bcc/google-collect-snapshot-20080530.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/junit/junit/3.8.2/source/aaa058540bf14ad600dd784de979c46c721ccbbe/junit-3.8.2-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/junit/junit/3.8.2/jar/7e4cde26b53a9a0e3fe5b00d1dbbc7cc1d46060/junit-3.8.2.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-container-default/1.0.0/source/6de18d6f29cc1bd6064081128bebd9ff41410b1a/plexus-container-default-1.0.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-container-default/1.0.0/jar/b93713c4c97be9ce0ad8af1e51cc7d2928e4696/plexus-container-default-1.0.0.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/xml-apis/xml-apis/1.0.b2/source/d8525661c5a0a05702fa41873d250d135031ec25/xml-apis-1.0.b2-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/xml-apis/xml-apis/1.0.b2/jar/3136ca936f64c9d68529f048c2618bd356bf85c9/xml-apis-1.0.b2.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/dom4j/dom4j/1.6.1/source/a8e7149359255f43e0e5e3b1837948f9ed5861fb/dom4j-1.6.1-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/dom4j/dom4j/1.6.1/jar/5d3ccc056b6f056dbf0dddfdf43894b9065a8f94/dom4j-1.6.1.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.sonatype.plexus/plexus-cipher/1.4/source/fd919edf211954e41e0e60bc8b042bd2e1e5cc1f/plexus-cipher-1.4-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.sonatype.plexus/plexus-cipher/1.4/jar/50ade46f23bb38cd984b4ec560c46223432aac38/plexus-cipher-1.4.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.sonatype.plexus/plexus-sec-dispatcher/1.3/source/4f1b3cd71ec7bbc5de8406fe560d3b34099d6a85/plexus-sec-dispatcher-1.3-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-all/7rd4e4rcg4riqi0j6j508m2lbk/gradle-2.0/caches/artifacts-26/filestore/org.sonatype.plexus/plexus-sec-dispatcher/1.3/jar/dedc02034fb8fcd7615d66593228cb71709134b4/plexus-sec-dispatcher-1.3.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.gradle.plugins/gradle-gitflow-plugin/1.0.1/38861e75a08a3d16cbd3b6568b942e69a1badeaa/gradle-gitflow-plugin-1.0.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gradle.api.plugins/gradle-nexus-plugin/0.4/cc194cea8dfbf500bfd6fc163b2fc16388c42ff5/gradle-nexus-plugin-0.4-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gradle.api.plugins/gradle-nexus-plugin/0.4/c1e87c59f3081cf11c6d58da00188be5617427b4/gradle-nexus-plugin-0.4.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate.build.gradle/gradle-maven-publish-auth/2.0.1/5de11c76d4c3e8d728ace71e132a6581ae87d326/gradle-maven-publish-auth-2.0.1-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate.build.gradle/gradle-maven-publish-auth/2.0.1/1dafd7ba42afb8c6138fe1ee1c6209a8834413e4/gradle-maven-publish-auth-2.0.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.javaewah/JavaEWAH/0.5.6/a8c94b75fec75e3e4f55212cea1a21773802674e/JavaEWAH-0.5.6-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.javaewah/JavaEWAH/0.5.6/1207c0fc8552d4f5f574b50f29321d923521128e/JavaEWAH-0.5.6.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jgit/org.eclipse.jgit/3.0.0.201306101825-r/96cb75fcea7198fef5c8e49c162636891efe0d37/org.eclipse.jgit-3.0.0.201306101825-r-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jgit/org.eclipse.jgit/3.0.0.201306101825-r/c79117e7b178df4483d3f5f0bbfe961bb436697b/org.eclipse.jgit-3.0.0.201306101825-r.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.servicemix.bundles/org.apache.servicemix.bundles.jsch/0.1.49_1/8f8da3b7bbe3085a8c5df6f88d2db79b311b1ebf/org.apache.servicemix.bundles.jsch-0.1.49_1-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.servicemix.bundles/org.apache.servicemix.bundles.jsch/0.1.49_1/aa7ffbb33c8f34da1c095e93b920a2646576144e/org.apache.servicemix.bundles.jsch-0.1.49_1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/1.3.9/40719ea6961c0cb6afaeb6a921eaa1f6afd4cfdf/jsr305-1.3.9.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/10.0.1/50c3953eaac12b8067111030ffdb8e44f80f5a79/guava-10.0.1-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/10.0.1/292c96f9cb18231528cac4b0bf17d28149d14809/guava-10.0.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.atlassian.jgitflow/jgit-flow-core/0.21/2cd7952fc050f84d929552718a96daed7d728532/jgit-flow-core-0.21-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.atlassian.jgitflow/jgit-flow-core/0.21/e1c2bbbe6026dc732a38911496e9fe86cebcd347/jgit-flow-core-0.21.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-utils/3.0.17/79cfd0962de410235e9315d38d6488123e9bb299/plexus-utils-3.0.17-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-utils/3.0.17/7b86f7a4ceffc8eadbb1a84207134af776f7cb95/plexus-utils-3.0.17.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch/0.1.49/64dce2cf3fa15bdc7680dc1951737d9f8240d541/jsch-0.1.49-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch/0.1.49/5c46cae7d01e845379beac44512e25eb11017159/jsch-0.1.49.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.core/0.0.7/1e7de81afd838051022c24185751d5a96b75f1a8/jsch.agentproxy.core-0.0.7-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.core/0.0.7/9bcf818dc9e5247b01b1b18671a12caac293ae40/jsch.agentproxy.core-0.0.7.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.jsch/0.0.7/2e1531c9da987211703797e0236e9b374321ab8f/jsch.agentproxy.jsch-0.0.7-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.jsch/0.0.7/ff3a71caf45efeb00980f93f0c39a9750640e8d8/jsch.agentproxy.jsch-0.0.7.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/jna/3.4.0/2f42653596d0044f0ab456620cba54c9cf53c5ca/jna-3.4.0-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/jna/3.4.0/803ff252fedbd395baffd43b37341dc4a150a554/jna-3.4.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/platform/3.4.0/2f42653596d0044f0ab456620cba54c9cf53c5ca/platform-3.4.0-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/platform/3.4.0/e3f70017be8100d3d6923f50b3d2ee17714e9c13/platform-3.4.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.usocket-jna/0.0.7/affe9e19df0572622d581eb099b948bc110ac3a2/jsch.agentproxy.usocket-jna-0.0.7-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.usocket-jna/0.0.7/98cf51ca8d7882c203729ffa48e9b7be4c50b835/jsch.agentproxy.usocket-jna-0.0.7.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.sshagent/0.0.7/fa4b76688b6757d62196c0c227e8426db90a55fe/jsch.agentproxy.sshagent-0.0.7-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch.agentproxy.sshagent/0.0.7/5c09a3d2a0562de53cf616794f43f51a3c0a496c/jsch.agentproxy.sshagent-0.0.7.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-classworlds/1.4/bc72165f9c2d4a16bb8356e141fb7e19b3517baa/plexus-classworlds-1.4-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-classworlds/1.4/b2cc7a1e5579608055cef3a85bc0ef793f4b91dc/plexus-classworlds-1.4.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/log4j/log4j/1.2.12/57b8740427ee6d7b0b60792751356cad17dc0d9/log4j-1.2.12.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging-api/1.1/7d4cf5231d46c8524f9b9ed75bb2d1c69ab93322/commons-logging-api-1.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.xbean/xbean-reflect/3.4/77c8a006107cb5520096d629aedd0ff733e11fe1/xbean-reflect-3.4-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.xbean/xbean-reflect/3.4/26fd55dceb037f4789b399b22874d74f4d2db66f/xbean-reflect-3.4.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.google-collections/google-collect/snapshot-20080530/ba65a2b9dcb70c89a4f2a8e61414bb972e46cdda/google-collect-snapshot-20080530-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.google-collections/google-collect/snapshot-20080530/a22f9b3a80ba9696ed120735f8b6c3c99d942bcc/google-collect-snapshot-20080530.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/3.8.2/aaa058540bf14ad600dd784de979c46c721ccbbe/junit-3.8.2-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/3.8.2/7e4cde26b53a9a0e3fe5b00d1dbbc7cc1d46060/junit-3.8.2.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-container-default/1.0.0/6de18d6f29cc1bd6064081128bebd9ff41410b1a/plexus-container-default-1.0.0-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-container-default/1.0.0/b93713c4c97be9ce0ad8af1e51cc7d2928e4696/plexus-container-default-1.0.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/xml-apis/xml-apis/1.0.b2/d8525661c5a0a05702fa41873d250d135031ec25/xml-apis-1.0.b2-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/xml-apis/xml-apis/1.0.b2/3136ca936f64c9d68529f048c2618bd356bf85c9/xml-apis-1.0.b2.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/dom4j/dom4j/1.6.1/a8e7149359255f43e0e5e3b1837948f9ed5861fb/dom4j-1.6.1-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/dom4j/dom4j/1.6.1/5d3ccc056b6f056dbf0dddfdf43894b9065a8f94/dom4j-1.6.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.sonatype.plexus/plexus-cipher/1.4/fd919edf211954e41e0e60bc8b042bd2e1e5cc1f/plexus-cipher-1.4-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.sonatype.plexus/plexus-cipher/1.4/50ade46f23bb38cd984b4ec560c46223432aac38/plexus-cipher-1.4.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.sonatype.plexus/plexus-sec-dispatcher/1.3/4f1b3cd71ec7bbc5de8406fe560d3b34099d6a85/plexus-sec-dispatcher-1.3-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.sonatype.plexus/plexus-sec-dispatcher/1.3/dedc02034fb8fcd7615d66593228cb71709134b4/plexus-sec-dispatcher-1.3.jar" />
                           </list>
                         </option>
                         <option name="path" value="$PROJECT_DIR$/gaokao360-service" />
@@ -1340,48 +1304,86 @@
               <option name="name" value="gaokao360-admin" />
               <option name="projectBuildClasspath">
                 <list>
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/ant-1.9.2.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/ant-launcher-1.9.2.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/gradle-base-services-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/gradle-base-services-groovy-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/gradle-cli-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/gradle-core-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/gradle-docs-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/gradle-launcher-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/gradle-messaging-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/gradle-native-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/gradle-open-api-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/gradle-resources-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/gradle-tooling-api-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/gradle-ui-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/gradle-wrapper-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/groovy-all-1.8.6.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/ivy-2.2.0.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/plugins/ant-antlr-1.9.2.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/plugins/gradle-announce-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/plugins/gradle-antlr-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/plugins/gradle-build-comparison-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/plugins/gradle-build-setup-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/plugins/gradle-code-quality-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/plugins/gradle-core-impl-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/plugins/gradle-cpp-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/plugins/gradle-diagnostics-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/plugins/gradle-ear-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/plugins/gradle-ide-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/plugins/gradle-ivy-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/plugins/gradle-jacoco-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/plugins/gradle-javascript-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/plugins/gradle-jetty-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/plugins/gradle-language-base-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/plugins/gradle-language-jvm-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/plugins/gradle-maven-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/plugins/gradle-osgi-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/plugins/gradle-plugins-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/plugins/gradle-publish-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/plugins/gradle-reporting-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/plugins/gradle-scala-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/plugins/gradle-signing-1.8.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-bin/vruqmccc8532n7gr46qavsii8/gradle-1.8/lib/plugins/gradle-sonar-1.8.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/announce" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/antlr" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/base-services" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/base-services-groovy" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/build-comparison" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/build-init" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/cli" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/code-quality" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/core" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/core-impl" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/cpp" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/diagnostics" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/ear" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/ide" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/internal-integ-testing" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/internal-testing" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/ivy" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/jacoco" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/javascript" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/jetty" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/language-base" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/language-jvm" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/launcher" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/maven" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/messaging" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/native" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/open-api" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/osgi" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/plugins" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/publish" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/reporting" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/resources" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/scala" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/signing" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/sonar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/tooling-api" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/ui" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/src/wrapper" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/ant-1.9.2.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/ant-launcher-1.9.2.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/gradle-base-services-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/gradle-base-services-groovy-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/gradle-cli-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/gradle-core-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/gradle-docs-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/gradle-launcher-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/gradle-messaging-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/gradle-native-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/gradle-open-api-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/gradle-resources-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/gradle-tooling-api-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/gradle-ui-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/gradle-wrapper-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/groovy-all-1.8.6.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/ivy-2.2.0.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/plugins/ant-antlr-1.9.2.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/plugins/gradle-announce-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/plugins/gradle-antlr-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/plugins/gradle-build-comparison-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/plugins/gradle-build-init-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/plugins/gradle-code-quality-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/plugins/gradle-core-impl-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/plugins/gradle-cpp-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/plugins/gradle-diagnostics-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/plugins/gradle-ear-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/plugins/gradle-ide-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/plugins/gradle-ivy-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/plugins/gradle-jacoco-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/plugins/gradle-javascript-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/plugins/gradle-jetty-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/plugins/gradle-language-base-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/plugins/gradle-language-jvm-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/plugins/gradle-maven-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/plugins/gradle-osgi-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/plugins/gradle-plugins-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/plugins/gradle-publish-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/plugins/gradle-reporting-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/plugins/gradle-scala-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/plugins/gradle-signing-1.11.jar" />
+                  <option value="$USER_HOME$/dev-env/gradle-1.11/lib/plugins/gradle-sonar-1.11.jar" />
                   <option value="$PROJECT_DIR$/buildSrc/src/main/java" />
                   <option value="$PROJECT_DIR$/buildSrc/src/main/groovy" />
                 </list>
@@ -1470,7 +1472,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="819" />
+    <option name="height" value="810" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -1827,18 +1829,6 @@
       <setting name="passParentEnv" value="true" />
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <setting name="launchBrowser" value="false" />
-      <method />
-    </configuration>
-    <configuration default="true" type="executeSpecs" factoryName="Gauge Execution">
-      <setting name="environment" value="" />
-      <setting name="specsToExecute" value="" />
-      <setting name="tags" value="" />
-      <setting name="parallelNodes" value="" />
-      <setting name="execInParallel" value="false" />
-      <setting name="programParameters" value="" />
-      <setting name="workingDirectory" value="" />
-      <envMap />
-      <setting name="rowsRange" value="" />
       <method />
     </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
@@ -2219,6 +2209,8 @@
       <workItem from="1449542629099" duration="396000" />
       <workItem from="1449544893004" duration="4507000" />
       <workItem from="1449554922210" duration="2465000" />
+      <workItem from="1449564555153" duration="1117000" />
+      <workItem from="1449569649194" duration="6000" />
     </task>
     <task id="LOCAL-00001" summary="整理">
       <created>1449027280322</created>
@@ -2302,44 +2294,44 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75385000" />
+    <option name="totallyTimeSpent" value="76508000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="819" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="810" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37986577" sideWeight="0.50771207" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37986577" sideWeight="0.50771207" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287483" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16881259" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292517" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23748212" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7691275" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.53645116" sideWeight="0.4922879" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3261745" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292517" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27181688" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7691275" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.517194" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.53645116" sideWeight="0.4922879" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3261745" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -2638,7 +2630,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1914" max-vertical-offset="2090">
           <caret line="87" column="5" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2689,7 +2680,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.9827585" vertical-offset="833" max-vertical-offset="1694">
           <caret line="51" column="35" selection-start-line="51" selection-start-column="35" selection-end-line="51" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2725,7 +2715,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6706587" vertical-offset="102" max-vertical-offset="770">
           <caret line="25" column="23" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2752,21 +2741,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="432" max-vertical-offset="1100">
           <caret line="31" column="12" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/module/custome/gkinformationgkhot_page_grid.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.870968" vertical-offset="0" max-vertical-offset="1144">
-          <caret line="28" column="46" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="780">
+          <caret line="28" column="33" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/index.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.225806" vertical-offset="88" max-vertical-offset="990">
+        <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="675">
           <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
           <folding />
         </state>
@@ -2774,7 +2762,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/sidebar.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.548387" vertical-offset="0" max-vertical-offset="506">
+        <state vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="345">
           <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
           <folding />
         </state>
@@ -2782,7 +2770,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/html/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="266.39655" vertical-offset="16639" max-vertical-offset="54340">
+        <state vertical-scroll-proportion="0.0" vertical-offset="810" max-vertical-offset="37050">
           <caret line="54" column="48" selection-start-line="54" selection-start-column="45" selection-end-line="54" selection-end-column="48" />
           <folding />
         </state>
@@ -2790,8 +2778,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gaokao360-admin-war/src/main/webapp/WEB-INF/view/nav_left.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6257485" vertical-offset="0" max-vertical-offset="1012">
-          <caret line="19" column="35" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.3198198" vertical-offset="297" max-vertical-offset="1080">
+          <caret line="34" column="34" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
           <folding />
         </state>
       </provider>
