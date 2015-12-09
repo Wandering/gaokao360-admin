@@ -75,7 +75,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         String url = "http://cs-dev.thinkjoy.com.cn/rest/v1/uploadFile";
         try {
             FileOutputStream outputStream = new FileOutputStream(path+"/"+filename);
-            outputStream.write(content.getBytes());
+            outputStream.write(content.getBytes("UTF-8"));
         } catch (Exception e) {
             throw new BizException("",e.getLocalizedMessage());
         }
@@ -92,7 +92,6 @@ public class Gaokao360CommonExController extends AbstractCommonController {
 
         template.getMessageConverters().add(new FastJsonHttpMessageConverter());
         String st = template.postForObject(url, param, String.class);
-
         return st;
     }
 
