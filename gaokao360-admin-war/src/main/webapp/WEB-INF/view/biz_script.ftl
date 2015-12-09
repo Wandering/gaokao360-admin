@@ -210,17 +210,17 @@
         //navButtons
             jQuery(grid_selector).jqGrid('navGrid',pager_selector,
                     { 	//navbar options
-                        edit: ${actions?seq_contains("edit")?string("true", "false")}, //决定是否显示true
+                        edit: ${actions?seq_contains("edit")?string("false", "false")}, //决定是否显示true
                         editicon : 'ace-icon fa fa-pencil blue',
-                        add: ${actions?seq_contains("add")?string("true", "false")},
+                        add: ${actions?seq_contains("add")?string("false", "false")},
                         addicon : 'ace-icon fa fa-plus-circle purple',
-                        del: ${actions?seq_contains("del")?string("true", "false")},
+                        del: ${actions?seq_contains("del")?string("false", "false")},
                         delicon : 'ace-icon fa fa-trash-o red',
-                        search: true,
+                        search: false,
                         searchicon : 'ace-icon fa fa-search orange',
-                        refresh: true,
+                        refresh: false,
                         refreshicon : 'ace-icon fa fa-refresh green',
-                        view: true,
+                        view: false,
                         viewicon : 'ace-icon fa fa-search-plus grey'
                     },
                     {
@@ -357,31 +357,31 @@
                     }
             )
 
-    <#if actions?seq_contains("import")>
-            .navButtonAdd(pager_selector,{
-                id:"import-action",
-                title:"Import Records",
-                caption:"",
-                buttonicon:"ace-icon fa fa-search-plus grey",
-                onClickButton: function(){
-                    alert("Deleting Row");
-                },
-                position:"last"
-            })
-    </#if>
+    <#--<#if actions?seq_contains("import")>-->
+            <#--.navButtonAdd(pager_selector,{-->
+                <#--id:"import-action",-->
+                <#--title:"Import Records",-->
+                <#--caption:"",-->
+                <#--buttonicon:"ace-icon fa fa-search-plus grey",-->
+                <#--onClickButton: function(){-->
+                    <#--alert("Deleting Row");-->
+                <#--},-->
+                <#--position:"last"-->
+            <#--})-->
+    <#--</#if>-->
 
-    <#if actions?seq_contains("export")>
-            .navButtonAdd(pager_selector,{
-                id:"export-action",
-                title:"Export template",
-                caption:"",
-                buttonicon:"ace-icon fa fa-search-plus grey",
-                onClickButton: function(){
-                    alert("Deleting Row");
-                },
-                position:"last"
-            })
-    </#if>
+    <#--<#if actions?seq_contains("export")>-->
+            <#--.navButtonAdd(pager_selector,{-->
+                <#--id:"export-action",-->
+                <#--title:"Export template",-->
+                <#--caption:"",-->
+                <#--buttonicon:"ace-icon fa fa-search-plus grey",-->
+                <#--onClickButton: function(){-->
+                    <#--alert("Deleting Row");-->
+                <#--},-->
+                <#--position:"last"-->
+            <#--})-->
+    <#--</#if>-->
 
     <#if actions?seq_contains("resource_assign")>
             .navButtonAdd(pager_selector, {

@@ -187,7 +187,6 @@
                             }
 
                             //上传高考热点内容到云存储
-
                             var hotContentHtml = ''
                                     + '<!DOCTYPE html>'
                                     + '<html lang="en">'
@@ -200,8 +199,6 @@
                             + '</body>'
                             + '</html>';
                             var hotContentUrl = dynGetData('/admin/${bizSys}/getContentUrl', hotContentHtml);
-
-
                             if (datePickerV == "") {
                                 tipsDialog('温馨提示', '请选择高考热点日期');
                                 return false;
@@ -325,9 +322,6 @@
                 tipsDialog('温馨提示', '请选中一行后修改');
                 return false;
             }
-            alert(22)
-            return false;
-
             var dialogHtml = ''
                     + '<div class="row">'
                     + '<div class="col-xs-12">'
@@ -375,6 +369,14 @@
             + '</form>'
             + '</div>'
             + '</div>';
+            $.getJSON('/admin/${bizSys}/${mainObj}/queryone',function(result){
+                console.log(result)
+
+            });
+
+
+
+
             bootbox.dialog({
                 title: "修改高考热点",
                 message: dialogHtml,
