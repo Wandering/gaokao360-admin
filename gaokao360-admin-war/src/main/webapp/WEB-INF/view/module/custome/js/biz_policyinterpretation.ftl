@@ -8,7 +8,7 @@
             returnStr += '<option value="00">请选择'+str+'</option>';
             $.ajaxSettings.async = false;
             $.getJSON(ajaxUrl, function (result) {
-                console.log(result);
+                console.log(result + "==");
                 if (result.rtnCode == "0000000") {
                     for (var i = 0; i < result.bizData.length; i++) {
                         var provinceId = result.bizData[i].id;
@@ -16,13 +16,14 @@
                         returnStr += '<option value="' + provinceId + '">' + provinceName + '</option>';
                     }
                 }
+                console.log(returnStr);
             });
             $.ajaxSettings.async = true;
             return returnStr;
         },
         getInterfaceUrl: {
-            getProvinceUrl: '/admin/gaokao360/ex/getProvince',
-            getEduLevel:'/admin/gaokao360/getAdmissionBatch'
+            getProvinceUrl: '/admin/${bizSys}/getProvince',
+            getEduLevel:'/admin/${bizSys}/getAdmissionBatch'
         }
     };
 
@@ -36,7 +37,7 @@
         $('#province').append(province);
         var policyInterGroup = '';
         var eduLevel = policyInterpretation.getSelOption(policyInterpretation.getInterfaceUrl.getEduLevel,'学历层次');
-        console.info(eduLevel);
+        $('#eduLevel').html(eduLevel);
 
         $("#addPolicyInterpretation").on(ace.click_event, function () {
             //添加政策解读

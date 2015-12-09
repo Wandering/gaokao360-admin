@@ -26,9 +26,6 @@
 
                 <div class="col-sm-7 no-padding">
                     <select class="form-control" id="eduLevel">
-                        <#--<option value="1">一级分类</option>-->
-                        <#--<option value="2">专科</option>-->
-                        <#--<option value="3">本科</option>-->
                     </select>
                 </div>
             </div>
