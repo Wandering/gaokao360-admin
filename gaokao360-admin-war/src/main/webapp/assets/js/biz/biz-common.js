@@ -71,11 +71,9 @@ function dynGetData(ajaxUrl){
                     returnStr += result.bizData.rows[i].id + ":" + result.bizData.rows[i].name;
                 }
             }
-
         } else {
             alert("request error");
         }
-
     });
     $.ajaxSettings.async = true;
     return returnStr;
@@ -270,3 +268,11 @@ function formatSeconds(cellvalue) {
 //    $("#del_grid-table").remove();
 //
 //})
+//自定义方法  将表格中的详情转换成查看详情
+function formatdataURL(cellvalue){
+    if(cellvalue == null || cellvalue=='' ||cellvalue ==0){
+        return "";
+    }
+    return "<a href='"+cellvalue+"' target='_blank' class='btn btn-sm btn-primary'>查看详情</a>";
+}
+
