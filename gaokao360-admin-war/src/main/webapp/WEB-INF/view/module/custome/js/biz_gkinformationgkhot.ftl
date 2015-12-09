@@ -1,4 +1,3 @@
-
 <script>
     <!-- 自定义js请写在这个文件  以下这个查询方法只是个例子，请按照业务需求修改 -->
     function buildRules() {
@@ -86,6 +85,7 @@
         var Hot = {
             getProvince: function (ajaxUrl) {
                 var returnStr = "";
+                returnStr += '<option value="00">请选择省份</option>';
                 $.ajaxSettings.async = false;
                 $.getJSON(ajaxUrl, function (result) {
                     console.log(result);
@@ -111,7 +111,7 @@
                     + '<div class="form-group">'
                     + '<label class="col-sm-2 control-label no-padding-right"> 选择省份：</label>'
                     + '<div class="col-sm-3">'
-                    + '<select class="form-control" id="form-field-select-1">';
+                    + '<select class="form-control" id="selProvince">';
             dialogHtml += Hot.getProvince('/admin/gaokao360/ex/getProvince')
             + '</select>'
             + '</div>'
@@ -119,21 +119,19 @@
             + '<div class="form-group">'
             + '<label class="col-sm-2 control-label no-padding-right" for="hotTitle"> 高考热点标题：</label>'
             + '<div class="col-sm-3">'
-            + '<input type="text" id="hotTitle" placeholder="请输入热点标题" class="" />'
+            + '<input type="text" id="hotTitle" placeholder="请输入高考热点标题" class="" />'
             + '</div>'
             + '</div>'
             + '<div class="form-group">'
             + '<label class="col-sm-2 control-label no-padding-right" for="hotContent"> 高考热点内容：</label>'
             + '<div class="col-sm-10">'
-
             + '<form method="POST" id="myform" action="wysiwyg.php">'
             + '<div id="hotContent" class="wysiwyg-editor"></div>'
             + '<input type="hidden" name="wysiwyg-value" />'
-
             + '<div class="form-actions align-right clearfix" style="display:none">'
             + '<button type="submit" class="btn btn-primary pull-right">'
             + '<i class="ace-icon fa fa-check bigger-110"></i>'
-            + 'Submit'
+            + 'submit'
             + '</button>'
             + '</div>'
             + '</form>'
@@ -143,7 +141,7 @@
             + '<label class="col-sm-2 control-label no-padding-right" for="hotContent"> 高考热点日期：</label>'
             + '<div class="col-sm-4">'
             + '<div class="input-group">'
-            + '<input class="form-control date-picker" id="date-picker" type="text" data-date-format="yyyy-mm-dd" />'
+            + '<input class="form-control date-picker" placeholder="请选择高考热点日期" id="date-picker" type="text" data-date-format="yyyy-mm-dd" />'
             + '<span class="input-group-addon">'
             + '<i class="fa fa-calendar bigger-110"></i>'
             + '</span>'
@@ -159,89 +157,126 @@
                 className: 'my-modal',
                 buttons: {
                     "success": {
-                        "label": "<i class='ace-icon fa fa-check'></i> Success!",
+                        "label": "<i class='ace-icon fa fa-check'></i> 提交",
                         "className": "btn-sm btn-success",
                         "callback": function () {
-                            return false;
-                            //Example.show("great success");
+                            var selProvinceV = $('#selProvince option:checked').val(),
+                                    hotTitleV = $('#hotTitle').val().trim(),
+                                    hotContentV = $('#hotContent').html(),
+                                    datePickerV = $('#date-picker').val().trim();
+
+                            console.log(hotContentV)
+                            if (selProvinceV == "00") {
+                                tipsDialog('温馨提示', '请选择省份');
+                                return false;
+                            }
+                            if (hotTitleV == "") {
+                                tipsDialog('温馨提示', '请输入高考热点标题');
+                                return false;
+                            }
+                            if (hotContentV == "") {
+                                tipsDialog('温馨提示', '请输入高考热点内容');
+                                return false;
+                            }
+                            if (datePickerV == "") {
+                                tipsDialog('温馨提示', '请选择高考热点日期');
+                                return false;
+                            }
+                            var infoData = {};
+                            $.ajax({
+                                type: "POST",
+                                url: '/admin/${bizSys}/commonsave/{mainObj}',
+                                data: infoData,
+                                success: function (result) {
+                                    alert(result);
+                                }
+                            });
+
+
                         }
                     }
                 }
             });
+
             $('#date-picker').datepicker({
                 autoclose: true,
                 todayHighlight: true
             });
             $('#hotContent').ace_wysiwyg({
-                toolbar:
-                        [
-                            {
-                                name:'font',
-                                title:'Custom tooltip',
-                                values:['Some Font!','Arial','Verdana','Comic Sans MS','Custom Font!']
-                            },
-                            null,
-                            {
-                                name:'fontSize',
-                                title:'Custom tooltip',
-                                values:{1 : 'Size#1 Text' , 2 : 'Size#1 Text' , 3 : 'Size#3 Text' , 4 : 'Size#4 Text' , 5 : 'Size#5 Text'}
-                            },
-                            null,
-                            {name:'bold', title:'Custom tooltip'},
-                            {name:'italic', title:'Custom tooltip'},
-                            {name:'strikethrough', title:'Custom tooltip'},
-                            {name:'underline', title:'Custom tooltip'},
-                            null,
-                            'insertunorderedlist',
-                            'insertorderedlist',
-                            'outdent',
-                            'indent',
-                            null,
-                            {name:'justifyleft'},
-                            {name:'justifycenter'},
-                            {name:'justifyright'},
-                            {name:'justifyfull'},
-                            null,
-                            {
-                                name:'createLink',
-                                placeholder:'Custom PlaceHolder Text',
-                                button_class:'btn-purple',
-                                button_text:'Custom TEXT'
-                            },
-                            {name:'unlink'},
-                            null,
-                            {
-                                name:'insertImage',
-                                placeholder:'Custom PlaceHolder Text',
-                                button_class:'btn-inverse',
-                                //choose_file:false,//hide choose file button
-                                button_text:'Set choose_file:false to hide this',
-                                button_insert_class:'btn-pink',
-                                button_insert:'Insert Image'
-                            },
-                            null,
-                            {
-                                name:'foreColor',
-                                title:'Custom Colors',
-                                values:['red','green','blue','navy','orange'],
-                                /**
-                                 You change colors as well
-                                 */
-                            },
-                        /**null,
-                         {
-                             name:'backColor'
-                         },*/
-                            null,
-                            {name:'undo'},
-                            {name:'redo'},
-                            null,
-                            'viewSource'
-                        ],
+                toolbar: [
+                    {
+                        name: 'font',
+                        title: 'Custom tooltip',
+                        values: ['Some Font!', 'Arial', 'Verdana', 'Comic Sans MS', 'Custom Font!']
+                    },
+                    null,
+                    {
+                        name: 'fontSize',
+                        title: 'Custom tooltip',
+                        values: {
+                            1: 'Size#1 Text',
+                            2: 'Size#1 Text',
+                            3: 'Size#3 Text',
+                            4: 'Size#4 Text',
+                            5: 'Size#5 Text'
+                        }
+                    },
+                    null,
+                    {name: 'bold', title: 'Custom tooltip'},
+                    {name: 'italic', title: 'Custom tooltip'},
+                    {name: 'strikethrough', title: 'Custom tooltip'},
+                    {name: 'underline', title: 'Custom tooltip'},
+                    null,
+                    'insertunorderedlist',
+                    'insertorderedlist',
+                    'outdent',
+                    'indent',
+                    null,
+                    {name: 'justifyleft'},
+                    {name: 'justifycenter'},
+                    {name: 'justifyright'},
+                    {name: 'justifyfull'},
+                    null,
+                    {
+                        name: 'createLink',
+                        placeholder: 'Custom PlaceHolder Text',
+                        button_class: 'btn-purple',
+                        button_text: 'Custom TEXT'
+                    },
+                    {name: 'unlink'},
+                    null,
+                    {
+                        name: 'insertImage',
+                        placeholder: 'Custom PlaceHolder Text',
+                        button_class: 'btn-inverse',
+                        //choose_file:false,//hide choose file button
+                        button_text: 'Set choose_file:false to hide this',
+                        button_insert_class: 'btn-pink',
+                        button_insert: 'Insert Image'
+                    },
+                    null,
+                    {
+                        name: 'foreColor',
+                        title: 'Custom Colors',
+                        values: ['red', 'green', 'blue', 'navy', 'orange'],
+                        /**
+                         You change colors as well
+                         */
+                    },
+                /**null,
+                 {
+                     name:'backColor'
+                 },*/
+                    null,
+                    {name: 'undo'},
+                    {name: 'redo'},
+                    null,
+                    'viewSource'
+                ],
                 //speech_button:false,//hide speech button on chrome
 
                 'wysiwyg': {
-                    hotKeys : {} //disable hotkeys
+                    hotKeys: {} //disable hotkeys
                 }
 
             }).prev().addClass('wysiwyg-style2');
@@ -249,6 +284,17 @@
         });
 
 
-
+        function tipsDialog(title, message) {
+            bootbox.dialog({
+                title: title,
+                message: '<span class="bigger-110 center">' + message + '</span>',
+                buttons: {
+                    cancel: {
+                        label: "关闭",
+                        className: "btn-sm",
+                    }
+                }
+            });
+        }
     });
 </script>
