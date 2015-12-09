@@ -56,7 +56,14 @@
         }
     </style>
 
-
+    <form action="http://cs-dev.thinkjoy.com.cn/rest/v1/uploadFile" enctype="multipart/form-data" method="post">
+        product:<input type="text" name="productCode" value="ucenter">
+        bizSystem: <input type="text" name="bizSystem" value="ucenter">
+        userId: <input type="text" name="userId" value="erere3403403434034">
+        file: <input type="file" name="file">
+        spaceName: <input type="text" name="spaceName" value="ucenter">
+        <input type="submit" value="上传">
+    </form>
 
 <#include 'page_grid.ftl'>
 </div><!-- /.page-content -->

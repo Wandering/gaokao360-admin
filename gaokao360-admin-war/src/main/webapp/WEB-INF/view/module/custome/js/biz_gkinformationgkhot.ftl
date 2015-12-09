@@ -178,11 +178,25 @@
                                 tipsDialog('温馨提示', '请输入高考热点内容');
                                 return false;
                             }
+
+                            //上传高考热点内容到云存储
+
+
+
+
+
                             if (datePickerV == "") {
                                 tipsDialog('温馨提示', '请选择高考热点日期');
                                 return false;
                             }
-                            var infoData = {};
+
+
+                            var infoData = {
+                                hotInformation:hotTitleV,
+                                informationContent: hotContentV,
+                                hotdate: datePickerV,
+                                oper:add
+                            };
                             $.ajax({
                                 type: "POST",
                                 url: '/admin/${bizSys}/commonsave/{mainObj}',
@@ -194,6 +208,10 @@
 
 
                         }
+                    },
+                    cancel: {
+                        label: "关闭",
+                        className: "btn-sm",
                     }
                 }
             });
