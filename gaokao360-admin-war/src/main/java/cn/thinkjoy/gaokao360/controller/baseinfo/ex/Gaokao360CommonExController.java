@@ -13,8 +13,10 @@ import cn.thinkjoy.common.managerui.controller.helpers.BaseServiceMaps;
 import cn.thinkjoy.common.service.IBaseService;
 import cn.thinkjoy.gaokao360.common.ServiceMaps;
 import cn.thinkjoy.gaokao360.controller.baseinfo.ProvinceController;
+import cn.thinkjoy.gaokao360.dao.ex.IAuditoriumDAO;
 import cn.thinkjoy.gaokao360.service.IProvinceService;
 import cn.thinkjoy.gaokao360.service.ISubjectService;
+import cn.thinkjoy.gaokao360.service.ex.IAuditoriumService;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import org.apache.commons.lang.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +44,8 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     private IProvinceService provinceService;
     @Autowired
     private ISubjectService subjectService;
+    @Autowired
+    private IAuditoriumService auditoriumService;
 
     /**
      * 查询所有的省份
@@ -60,6 +64,15 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     @ResponseBody
     public List getSubject(){
         return  subjectService.findAll();
+    }
+    /**
+     * 查询所有的一级学科
+     * @return
+     */
+    @RequestMapping(value="/getAdmissionBatch")
+    @ResponseBody
+    public List getAdmissionBatch(){
+        return  auditoriumService.findAll();
     }
 
     /**
