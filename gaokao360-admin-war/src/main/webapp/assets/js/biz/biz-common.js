@@ -56,7 +56,13 @@ function formatdate(cellvalue){
 
     return date.getFullYear()+"-"+month+"-"+dates+" "+hour+":"+minutes+":"+seconds;
 }
-
+//日期 long 显示为 yyyy-MM-dd hh:mm:ss
+function formatdataURL(cellvalue){
+    if(cellvalue == null || cellvalue=='' ||cellvalue ==0){
+        return "";
+    }
+    return "<a href='"+cellvalue+"' target='_blank' class='btn btn-sm btn-primary'>查看详情</a>";
+}
 //同步获取 jqgrid编辑页面 select 组件值
 function dynGetData(ajaxUrl){
     var returnStr = "";
