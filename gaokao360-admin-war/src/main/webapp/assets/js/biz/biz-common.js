@@ -71,11 +71,9 @@ function dynGetData(ajaxUrl){
                     returnStr += result.bizData.rows[i].id + ":" + result.bizData.rows[i].name;
                 }
             }
-
         } else {
             alert("request error");
         }
-
     });
     $.ajaxSettings.async = true;
     return returnStr;
