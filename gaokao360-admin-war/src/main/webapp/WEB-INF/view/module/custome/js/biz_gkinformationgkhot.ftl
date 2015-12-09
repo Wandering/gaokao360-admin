@@ -57,9 +57,6 @@
     });
 
 
-
-
-
     jQuery(function ($) {
         var Hot = {
             getProvince: function (ajaxUrl) {
@@ -96,9 +93,9 @@
                     if (result.rtnCode == '0000000') {
                         var jsonData = JSON.parse(result.bizData);
                         console.log(jsonData);
-                        if(jsonData.rtnCode == '0000000'){
+                        if (jsonData.rtnCode == '0000000') {
                             returnStr += jsonData.bizData.file.fileUrl;
-                        }else{
+                        } else {
 
                         }
 
@@ -218,7 +215,10 @@
                                 url: '/admin/${bizSys}/commonsave/${mainObj}',
                                 data: infoData,
                                 success: function (result) {
-                                    console.log(result)
+                                    console.log(result);
+                                    if(result.rtnCode=="0000000"){
+                                        searchLoad();
+                                    }
                                 }
                             });
                         }
@@ -317,6 +317,7 @@
 
         //修改高考热点
         $("#editHotBtn").on(ace.click_event, function () {
+            var rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
             var selTrN = $('tr.ui-state-highlight[role="row"]').length;
             if (selTrN != 1) {
                 tipsDialog('温馨提示', '请选中一行后修改');
@@ -369,14 +370,25 @@
             + '</form>'
             + '</div>'
             + '</div>';
-            $.getJSON('/admin/${bizSys}/${mainObj}/queryone',function(result){
+            $.getJSON('/admin/${bizSys}/${mainObj}queryone?id=' + rowId, function (result) {
                 console.log(result)
+                if (result.rtnCode == "0000000") {
+                    var dataInfo = result.bizData;
+                    var areaId = dataInfo.areaId,
+                            hotInformation = dataInfo.hotInformation,
+                            hotdate = dataInfo.hotdate,
+                            informationContent = dataInfo.informationContent;
+                    console.log(informationContent)
 
+                    $('#hotContent').load(informationContent)
+
+
+                    $('#selProvince').find('option[value="' + areaId + '"]').attr('selected', 'selected');
+                    $('#hotTitle').val(hotInformation);
+                    $('#hotContent').html(informationContent);
+                    $('#date-picker').val(hotdate);
+                }
             });
-
-
-
-
             bootbox.dialog({
                 title: "修改高考热点",
                 message: dialogHtml,
@@ -428,13 +440,14 @@
 
 
                             var infoData = {
+                                id: rowId,
                                 areaId: selProvinceV,
                                 hotInformation: hotTitleV,
                                 informationContent: hotContentUrl,
                                 hotdate: datePickerV,
                                 informationSubContent: '',
                                 hotCount: 0,
-                                oper: 'add'
+                                oper: 'edit'
                             };
                             console.log(infoData)
                             $.ajax({
@@ -443,10 +456,11 @@
                                 data: infoData,
                                 success: function (result) {
                                     console.log(result)
+                                    if(result.rtnCode=="0000000"){
+                                        searchLoad();
+                                    }
                                 }
                             });
-
-
                         }
                     },
                     cancel: {
