@@ -100,7 +100,7 @@
                 $.ajaxSettings.async = true;
                 return returnStr;
             }
-        };
+        };===
 
 
         $("#addHotBtn").on(ace.click_event, function () {

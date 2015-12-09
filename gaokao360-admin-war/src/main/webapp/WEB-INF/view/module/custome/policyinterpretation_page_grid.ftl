@@ -3,48 +3,64 @@
     <!-- 搜索start-->
     <form class="form-horizontal" role="form" action="/admin/${bizSys}/${mainObj}s">
         <div class="col-xs-12 no-padding">
-            <div class="col-sm-2">
-                <div class="form-group">
-                    <#--<div class="col-sm-2">-->
-                        <input type="text" class="" placeholder="关键字查询" id="userPhone">
-                    <#--</div>-->
+            <div class="col-sm-3 no-padding">
+                <label class="col-sm-4 control-label text-right">关键字：</label>
+
+                <div class="col-sm-8 no-padding">
+                    <input type="text" class="" placeholder="关键字查询" id="userPhone">
                 </div>
             </div>
-            <div class="col-sm-2">
-                    <#--<label class="col-sm-4 control-label">问题状态:</label>-->
-                        <select class="form-control" id="status">
-                            <option value="1">一级分类</option>
-                            <option value="2">专科</option>
-                            <option value="3">本科</option>
-                        </select>
+            <div class="col-sm-3">
+                <label class="col-sm-5 control-label text-right">学历层次：</label>
+
+                <div class="col-sm-7 no-padding">
+                    <select class="form-control" id="status">
+                        <option value="1">一级分类</option>
+                        <option value="2">专科</option>
+                        <option value="3">本科</option>
+                    </select>
+                </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <label class="col-sm-4 control-label text-right">时间:</label>
+                    <label class="col-sm-4 control-label text-right">省份：</label>
                     <div class="col-sm-8 no-padding">
-                        <div class="input-daterange input-group" data-date-format="yyyy-mm-dd">
-                            <input type="text" class="input-sm form-control" name="start" id="startCommitTime"/>
-                                <span class="input-group-addon">
-                                    <i class="fa fa-exchange"></i>
-                                </span>
-                            <input type="text" class="input-sm form-control" name="end" id="endCommitTime"/>
-                        </div>
+                        <select class="form-control" id="status">
+                            <option value="1">选择身份</option>
+                            <option value="2">陕西省</option>
+                            <option value="3">湖南省</option>
+                            <option value="4">广西省</option>
+                        </select>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3 col-sm-push-2">
+            <div class="col-sm-3 text-center">
+                <button type="button" class="btn btn-purple btn-sm" id="search">搜索<i
+                        class="ace-icon fa fa-search icon-on-right bigger-110"></i></button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
                 <div class="form-group">
-                    <div class="col-sm-4" style="width:200px;">
-                        <button type="button" class="btn btn-purple btn-sm" id="search">
-                            搜索
-                            <i class="ace-icon fa fa-search icon-on-right bigger-110"></i>
+                    <div class="col-sm-4">
+                        <button class="btn btn-purple btn-sm" id="addPolicyInterpretation">
+                            <i class="ace-icon fa fa-cloud-upload bigger-110"></i>
+                            添加政策解读
                         </button>
-                    <#if actions?seq_contains("import")>
-                        <button type="button" class="btn btn-purple btn-sm" id="export" style="float:right;">导入</button>
-                    </#if>
-                    <#if actions?seq_contains("export")>
-                        <button type="button" class="btn btn-purple btn-sm" id="export" style="float:right;">导出</button>
-                    </#if>
+                        <button class="btn btn-primary btn-sm">
+                            <i class="ace-icon fa fa-pencil-square-o bigger-110"></i>
+                            修改
+                        </button>
+                        <button class="btn btn-danger btn-sm">
+                            <i class="ace-icon fa fa-trash-o bigger-110 "></i>
+                            删除
+                        </button>
+                    <#--<#if actions?seq_contains("import")>-->
+                    <#--<button type="button" class="btn btn-purple btn-sm" id="export" style="float:right;">导入</button>-->
+                    <#--</#if>-->
+                    <#--<#if actions?seq_contains("export")>-->
+                    <#--<button type="button" class="btn btn-purple btn-sm" id="export" style="float:right;">导出</button>-->
+                    <#--</#if>-->
                     </div>
                 </div>
             </div>
@@ -64,11 +80,8 @@
                             class="sr-only">Close</span></button>
                 </div>
                 <div class="modal-body" style="">
-
                     <form class="form-horizontal" role="form" style="width:100%">
-
                         <div class="form-group">
-
                             <div class="col-sm-9">
                                 <input type="text" id="editId" placeholder="" class="col-xs-10 col-sm-8"
                                        hidden="hidden"/>
@@ -77,7 +90,6 @@
                                           style="margin: 0px -0.015625px 0px 0px; height: 72px; width: 363px;"></textarea>
                             </div>
                         </div>
-
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -85,9 +97,7 @@
                     <button type="button" class="btn btn-primary" id="answer_submit">确定</button>
                 </div>
             </div>
-
         </div>
     </div>
     <!-- 自定义模态框end-->
-
 </div><!-- /.page-content -->
