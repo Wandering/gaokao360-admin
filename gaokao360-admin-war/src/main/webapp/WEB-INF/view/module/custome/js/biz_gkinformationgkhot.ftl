@@ -57,28 +57,7 @@
     });
 
 
-    function dynGetData(ajaxUrl) {
-        var returnStr = "";
-        $.ajaxSettings.async = false;
-        $.getJSON(ajaxUrl, function (result) {
-            //debugger;
-            if ("0000000" == result.rtnCode) {
-                for (i = 0; i < result.bizData.rows.length; i++) {
-                    if (i < result.bizData.rows.length - 1) {
-                        returnStr += result.bizData.rows[i].id + ":" + result.bizData.rows[i].name + ";";
-                    } else {
-                        returnStr += result.bizData.rows[i].id + ":" + result.bizData.rows[i].name;
-                    }
-                }
 
-            } else {
-                alert("request error");
-            }
-
-        });
-        $.ajaxSettings.async = true;
-        return returnStr;
-    }
 
 
     jQuery(function ($) {
@@ -101,6 +80,34 @@
                 return returnStr;
             }
         };
+
+
+        function dynGetData(ajaxUrl, contentData) {
+            var returnStr = "";
+            $.ajaxSettings.async = false;
+            $.ajax({
+                type: 'POST',
+                url: ajaxUrl,
+                data: {
+                    content: contentData
+                },
+                success: function (result) {
+                    console.log(result)
+                    if (result.rtnCode == '0000000') {
+                        var jsonData = JSON.parse(result.bizData);
+                        console.log(jsonData);
+                        if(jsonData.rtnCode == '0000000'){
+                            returnStr += jsonData.bizData.file.fileUrl;
+                        }else{
+
+                        }
+
+                    }
+                }
+            });
+            $.ajaxSettings.async = true;
+            return returnStr;
+        }
 
         // 添加高考热点
         $("#addHotBtn").on(ace.click_event, function () {
@@ -180,7 +187,7 @@
                             }
 
                             //上传高考热点内容到云存储
-                            var hotContentUrl = 'http://www.baidu.com';
+
                             var hotContentHtml = ''
                                     + '<!DOCTYPE html>'
                                     + '<html lang="en">'
@@ -192,28 +199,13 @@
                             hotContentHtml += hotContentV
                             + '</body>'
                             + '</html>';
+                            var hotContentUrl = dynGetData('/admin/${bizSys}/getContentUrl', hotContentHtml);
 
-                            console.log(hotContentHtml)
 
                             if (datePickerV == "") {
                                 tipsDialog('温馨提示', '请选择高考热点日期');
                                 return false;
                             }
-
-                            <#--$.ajax({-->
-                                <#--type:'POST',-->
-                                <#--url:'/admin/${bizSys}/getContentUrl'-->
-                                <#--data:{-->
-                                    <#--content:hotContentHtml-->
-                                <#--},-->
-                                <#--success:function(result){-->
-                                     <#--console.log(result)-->
-                                <#--}-->
-                            <#--});-->
-
-
-
-
                             var infoData = {
                                 areaId: selProvinceV,
                                 hotInformation: hotTitleV,
@@ -221,7 +213,7 @@
                                 hotdate: datePickerV,
                                 informationSubContent: '',
                                 hotCount: 0,
-                                oper:'add'
+                                oper: 'add'
                             };
                             console.log(infoData)
                             $.ajax({
@@ -232,8 +224,6 @@
                                     console.log(result)
                                 }
                             });
-
-
                         }
                     },
                     cancel: {
@@ -330,16 +320,11 @@
 
         //修改高考热点
         $("#editHotBtn").on(ace.click_event, function () {
-
-
             var selTrN = $('tr.ui-state-highlight[role="row"]').length;
-            if(selTrN!=1){
+            if (selTrN != 1) {
                 tipsDialog('温馨提示', '请选中一行后修改');
                 return false;
             }
-
-
-
             alert(22)
             return false;
 
@@ -447,7 +432,7 @@
                                 hotdate: datePickerV,
                                 informationSubContent: '',
                                 hotCount: 0,
-                                oper:'add'
+                                oper: 'add'
                             };
                             console.log(infoData)
                             $.ajax({
