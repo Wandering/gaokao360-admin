@@ -87,3 +87,6 @@
 /.idea/
 *.iml
 /classes/
+/gaokao360-admin-war/build/
+
+

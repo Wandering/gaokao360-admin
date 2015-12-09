@@ -36,6 +36,8 @@
 <script src="${path}/assets/js/ace.min.js"></script>
 <script src="${path}/assets/js/fuelux/jquery.ztree.core-3.5.min.js"></script>
 <script src="${path}/assets/js/fuelux/jquery.ztree.excheck-3.5.min.js"></script>
+<script src="${path}/assets/js/bootbox.min.js"></script>
+<script src="${path}/assets/js/bootstrap-wysiwyg.min.js"></script>
 
 <!-- inline scripts related to this page -->
 <script type="text/javascript">
