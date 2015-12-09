@@ -38,7 +38,7 @@
             <button class="btn btn-purple" id="addHotBtn"><i
                     class="ace-icon fa fa-cloud-upload align-top bigger-125"></i>添加高考热点
             </button>
-            <button class="btn btn-primary"><i class="ace-icon fa fa-pencil-square-o align-top bigger-125"></i>修改
+            <button class="btn btn-primary" id="editHotBtn"><i class="ace-icon fa fa-pencil-square-o align-top bigger-125"></i>修改
             </button>
             <button class="btn btn-danger"><i class="ace-icon fa fa-trash-o align-top bigger-125"></i>删除</button>
         </div>
@@ -55,8 +55,6 @@
             }
         }
     </style>
-
-
 
 <#include 'page_grid.ftl'>
 </div><!-- /.page-content -->

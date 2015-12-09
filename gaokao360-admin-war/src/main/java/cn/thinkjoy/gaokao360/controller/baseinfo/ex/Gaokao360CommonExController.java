@@ -13,6 +13,7 @@ import cn.thinkjoy.common.service.IBaseService;
 import cn.thinkjoy.gaokao360.common.ServiceMaps;
 import cn.thinkjoy.gaokao360.controller.baseinfo.ProvinceController;
 import cn.thinkjoy.gaokao360.service.IProvinceService;
+import cn.thinkjoy.gaokao360.service.ISubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,8 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     private ServiceMaps serviceMaps;
     @Autowired
     private IProvinceService provinceService;
+    @Autowired
+    private ISubjectService subjectService;
 
     /**
      * 查询所有的省份
@@ -37,7 +40,15 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     public List getProvince(){
         return  provinceService.findAll();
     }
-
+    /**
+     * 查询所有的科目
+     * @return
+     */
+    @RequestMapping(value="/getSubject")
+    @ResponseBody
+    public List getSubject(){
+        return  subjectService.findAll();
+    }
     @Override
     protected BaseServiceMaps getServiceMaps() {
         return serviceMaps;
