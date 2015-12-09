@@ -14,6 +14,7 @@ import cn.thinkjoy.common.service.IBaseService;
 import cn.thinkjoy.gaokao360.common.ServiceMaps;
 import cn.thinkjoy.gaokao360.controller.baseinfo.ProvinceController;
 import cn.thinkjoy.gaokao360.dao.ex.IAuditoriumDAO;
+import cn.thinkjoy.gaokao360.service.IAdmissionBatchService;
 import cn.thinkjoy.gaokao360.service.IProvinceService;
 import cn.thinkjoy.gaokao360.service.ISubjectService;
 import cn.thinkjoy.gaokao360.service.ex.IAuditoriumService;
@@ -31,6 +32,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value="/admin/gaokao360/ex")
@@ -42,7 +44,12 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     @Autowired
     private ISubjectService subjectService;
     @Autowired
-    private IAuditoriumService auditoriumService;
+    private IAdmissionBatchService admissionBatchService;
+
+    @Override
+    protected void innerHandleDel(String mainObj, Map dataMap) {
+        getServiceMaps().get(mainObj).delete(dataMap.get("id"));
+    }
 
     /**
      * 查询所有的省份
@@ -69,7 +76,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     @RequestMapping(value="/getAdmissionBatch")
     @ResponseBody
     public List getAdmissionBatch(){
-        return  auditoriumService.findAll();
+        return  admissionBatchService.findAll();
     }
 
     /**

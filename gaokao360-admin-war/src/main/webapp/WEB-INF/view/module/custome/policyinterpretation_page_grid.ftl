@@ -26,9 +26,9 @@
 
                 <div class="col-sm-7 no-padding">
                     <select class="form-control" id="eduLevel">
-                        <option value="1">一级分类</option>
-                        <option value="2">专科</option>
-                        <option value="3">本科</option>
+                        <#--<option value="1">一级分类</option>-->
+                        <#--<option value="2">专科</option>-->
+                        <#--<option value="3">本科</option>-->
                     </select>
                 </div>
             </div>
@@ -67,68 +67,6 @@
             </div>
         </div>
     </div>
-
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="bootbox-close-button close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h4 class="modal-title">添加政策解读</h4></div>
-        <div class="modal-body">
-            <div class="bootbox-body">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="form-horizontal" role="form">
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label no-padding-right">选择省份：</label>
-
-                                <div class="col-sm-2">
-                                    <select class="form-control" id="selProvince">
-                                        <option value="00">请选择省份</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label no-padding-right" for="policyInterOne">
-                                    政策一级分类：</label>
-
-                                <div class="col-sm-6">
-                                    <input type="text" id="policyInterOne" placeholder="政策解读一级分类，限制字数10个字"
-                                           class="col-sm-5">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label no-padding-right" for="policyInterTwo">
-                                    政策二级分类：</label>
-
-                                <div class="col-sm-6">
-                                    <input type="text" id="policyInterTwo" placeholder="政策解读二级分类，限制字数10个字"
-                                           class="col-sm-5">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label no-padding-right" for="policyInterDetail">
-                                    政策解读详情：</label>
-                                <div class="col-xs-6 col-sm-4">
-                                    <div id="policyInterDetail" class="wysiwyg-editor" style="width: 740px">
-                                        <input type="hidden" name="wysiwyg-value"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer text-center">
-            <button data-bb-handler="success" type="button" class="btn btn-sm btn-primary">
-                <i class="ace-icon fa fa-check"></i> 提交
-            </button>
-            <button data-bb-handler="success" type="button" class="btn btn-sm btn-default">
-                <i class="ace-icon fa fa-check"></i> 取消
-            </button>
-        </div>
-    </div>
-
-
     <!-- 搜索end -->
 <#include 'page_grid.ftl'>
 </div><!-- /.page-content -->
