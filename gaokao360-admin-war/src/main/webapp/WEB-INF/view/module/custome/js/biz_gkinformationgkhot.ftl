@@ -100,7 +100,7 @@
                 $.ajaxSettings.async = true;
                 return returnStr;
             }
-        };===
+        };
 
         // 添加高考热点
         $("#addHotBtn").on(ace.click_event, function () {

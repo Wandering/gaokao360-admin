@@ -1,20 +1,31 @@
 <!-- 增加过滤div + 主体表格 -->
+<style>
+    @media (min-width: 768px) {
+        .wysiwyg-style2 {
+            width: 750px !important;
+            resize: none;
+        }
+    }
+    .modal-dialog{
+        width: 1000px!important;
+    }
+</style>
 <div class="page-content">
     <!-- 搜索start-->
-    <form class="form-horizontal" role="form" action="/admin/${bizSys}/${mainObj}s">
+    <div class="form-horizontal">
         <div class="col-xs-12 no-padding">
             <div class="col-sm-3 no-padding">
                 <label class="col-sm-4 control-label text-right">关键字：</label>
 
                 <div class="col-sm-8 no-padding">
-                    <input type="text" class="" placeholder="关键字查询" id="userPhone">
+                    <input type="text" class="" placeholder="关键字查询" id="keyWord">
                 </div>
             </div>
             <div class="col-sm-3">
                 <label class="col-sm-5 control-label text-right">学历层次：</label>
 
                 <div class="col-sm-7 no-padding">
-                    <select class="form-control" id="status">
+                    <select class="form-control" id="eduLevel">
                         <option value="1">一级分类</option>
                         <option value="2">专科</option>
                         <option value="3">本科</option>
@@ -24,13 +35,9 @@
             <div class="col-sm-3">
                 <div class="form-group">
                     <label class="col-sm-4 control-label text-right">省份：</label>
+
                     <div class="col-sm-8 no-padding">
-                        <select class="form-control" id="status">
-                            <option value="1">选择身份</option>
-                            <option value="2">陕西省</option>
-                            <option value="3">湖南省</option>
-                            <option value="4">广西省</option>
-                        </select>
+                        <select class="form-control" id="province"></select>
                     </div>
                 </div>
             </div>
@@ -55,49 +62,73 @@
                             <i class="ace-icon fa fa-trash-o bigger-110 "></i>
                             删除
                         </button>
-                    <#--<#if actions?seq_contains("import")>-->
-                    <#--<button type="button" class="btn btn-purple btn-sm" id="export" style="float:right;">导入</button>-->
-                    <#--</#if>-->
-                    <#--<#if actions?seq_contains("export")>-->
-                    <#--<button type="button" class="btn btn-purple btn-sm" id="export" style="float:right;">导出</button>-->
-                    <#--</#if>-->
                     </div>
                 </div>
             </div>
         </div>
-    </form>
-    <!-- 搜索end -->
-<#include 'page_grid.ftl'>
-    <!-- 自定义模态框start-->
-    <div class="modal fade widget-box ui-widget " id="edit_answer_modal" tabindex="-1" role="dialog"
-         aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog" style="width:500px">
-            <div class="modal-content">
-                <div class="widget-header">
-                    <h5 class="widget-title">回答答案</h5>
-                    <button type="button" class="close" data-dismiss="modal"><span
-                            aria-hidden="true">&times;</span><span
-                            class="sr-only">Close</span></button>
-                </div>
-                <div class="modal-body" style="">
-                    <form class="form-horizontal" role="form" style="width:100%">
-                        <div class="form-group">
-                            <div class="col-sm-9">
-                                <input type="text" id="editId" placeholder="" class="col-xs-10 col-sm-8"
-                                       hidden="hidden"/>
-                                <textarea class="form-control" id="expertAnswer.answer" name="answer"
-                                          placeholder="请输入答案"
-                                          style="margin: 0px -0.015625px 0px 0px; height: 72px; width: 363px;"></textarea>
+    </div>
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="bootbox-close-button close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">添加政策解读</h4></div>
+        <div class="modal-body">
+            <div class="bootbox-body">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right">选择省份：</label>
+
+                                <div class="col-sm-2">
+                                    <select class="form-control" id="selProvince">
+                                        <option value="00">请选择省份</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="policyInterOne">
+                                    政策一级分类：</label>
+
+                                <div class="col-sm-6">
+                                    <input type="text" id="policyInterOne" placeholder="政策解读一级分类，限制字数10个字"
+                                           class="col-sm-5">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="policyInterTwo">
+                                    政策二级分类：</label>
+
+                                <div class="col-sm-6">
+                                    <input type="text" id="policyInterTwo" placeholder="政策解读二级分类，限制字数10个字"
+                                           class="col-sm-5">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="policyInterDetail">
+                                    政策解读详情：</label>
+                                <div class="col-xs-6 col-sm-4">
+                                    <div id="policyInterDetail" class="wysiwyg-editor" style="width: 740px">
+                                        <input type="hidden" name="wysiwyg-value"/>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary" id="answer_submit">确定</button>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="modal-footer text-center">
+            <button data-bb-handler="success" type="button" class="btn btn-sm btn-primary">
+                <i class="ace-icon fa fa-check"></i> 提交
+            </button>
+            <button data-bb-handler="success" type="button" class="btn btn-sm btn-default">
+                <i class="ace-icon fa fa-check"></i> 取消
+            </button>
+        </div>
     </div>
-    <!-- 自定义模态框end-->
+
+
+    <!-- 搜索end -->
+<#include 'page_grid.ftl'>
 </div><!-- /.page-content -->
