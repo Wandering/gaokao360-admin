@@ -24,10 +24,7 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.File;
@@ -75,6 +72,15 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         return  auditoriumService.findAll();
     }
 
+    /**
+     * 公共获取单挑数据的方法
+     * @return
+     */
+    @RequestMapping(value="/{mainObj}queryone")
+    @ResponseBody
+    public Object queryOne(@PathVariable String mainObj,@RequestParam("id")String id){
+        return  serviceMaps.get(mainObj).fetch(id);
+    }
     /**
      * 查询所有的科目
      * @return
