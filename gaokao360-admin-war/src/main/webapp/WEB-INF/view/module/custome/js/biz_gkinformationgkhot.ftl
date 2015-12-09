@@ -200,16 +200,16 @@
                                 return false;
                             }
 
-                            <#--$.ajax({-->
-                                <#--type:'POST',-->
-                                <#--url:'/admin/${bizSys}/getContentUrl'-->
-                                <#--data:{-->
-                                    <#--content:hotContentHtml-->
-                                <#--},-->
-                                <#--success:function(result){-->
-                                     <#--console.log(result)-->
-                                <#--}-->
-                            <#--});-->
+                            $.ajax({
+                                type:'POST',
+                                url:'/admin/${bizSys}/getContentUrl',
+                                data:{
+                                    content:hotContentHtml
+                                },
+                                success:function(result){
+                                     console.log(result)
+                                }
+                            });
 
 
 
@@ -330,16 +330,11 @@
 
         //修改高考热点
         $("#editHotBtn").on(ace.click_event, function () {
-
-
             var selTrN = $('tr.ui-state-highlight[role="row"]').length;
             if(selTrN!=1){
                 tipsDialog('温馨提示', '请选中一行后修改');
                 return false;
             }
-
-
-
             alert(22)
             return false;
 
