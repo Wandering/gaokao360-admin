@@ -180,6 +180,8 @@
                             }
 
                             //上传高考热点内容到云存储
+                            var hotContentUrl ='http://www.baidu.com';
+
 
 
 
@@ -192,17 +194,21 @@
 
 
                             var infoData = {
+                                areaId:selProvinceV,
                                 hotInformation:hotTitleV,
-                                informationContent: hotContentV,
+                                informationContent: hotContentUrl,
                                 hotdate: datePickerV,
-                                oper:add
+                                informationSubContent : '',
+                                hotCount : 0,
+                                oper:'add'
                             };
+                            console.log(infoData)
                             $.ajax({
                                 type: "POST",
                                 url: '/admin/${bizSys}/commonsave/{mainObj}',
                                 data: infoData,
                                 success: function (result) {
-                                    alert(result);
+                                    console.log(result)
                                 }
                             });
 
