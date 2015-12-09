@@ -182,12 +182,15 @@
                                 tipsDialog('温馨提示', '请选择高考热点日期');
                                 return false;
                             }
-                            var infoData = {
-
-                            };
-                            $.post('/admin/${bizSys}/commonsave/{mainObj}',infoData,function(data){
-                                bootbox.alert("成功");
-                            },'json');
+                            var infoData = {};
+                            $.ajax({
+                                type: "POST",
+                                url: '/admin/${bizSys}/commonsave/{mainObj}',
+                                data: infoData,
+                                success: function (result) {
+                                    alert(result);
+                                }
+                            });
 
 
                         }
