@@ -37,7 +37,7 @@ selectList
         gkhot.hotCount as hotCount ,
         gkhot.areaId as areaId,
         gkhot.hotdate as hotdate,
-		province.id as province
+		province.name as province
 
     </sql>
 
