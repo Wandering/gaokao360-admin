@@ -1,15 +1,19 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<#include "head.html"></head>
+<title>政策解读管理</title>
+<#include "head.html">
+</head>
 
 <body class="no-skin">
 <!-- #section:basics/navbar.layout -->
 <#include "nav_bar.ftl"><!-- /section:basics/navbar.layout -->
 <div class="main-container" id="main-container">
     <script type="text/javascript">
-        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+        try {
+            ace.settings.check('main-container', 'fixed')
+        } catch (e) {
+        }
     </script>
 
     <!-- #section:basics/sidebar -->
@@ -17,15 +21,17 @@
     <!-- /section:basics/sidebar -->
     <div class="main-content">
         <!-- #section:basics/content.breadcrumbs -->
-<#include "breadcrumbs.ftl">
+    <#include "breadcrumbs.ftl">
         <!-- /section:basics/content.breadcrumbs -->
 
-<#include "/module/custome/policyinterpretation_page_grid.ftl">
-    </div><!-- /.main-content -->
+    <#include "/module/custome/policyinterpretation_page_grid.ftl">
+    </div>
+    <!-- /.main-content -->
 
 <#include "footer.html">    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
-        <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
-    </a>
-</div><!-- /.main-container -->
+    <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+</a>
+</div>
+<!-- /.main-container -->
 <#include "/module/custome/script/policyinterpretation_biz_script.ftl"></body>
 </html>
