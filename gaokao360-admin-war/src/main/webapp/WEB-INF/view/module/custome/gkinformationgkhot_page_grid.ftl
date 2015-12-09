@@ -38,7 +38,7 @@
             <button class="btn btn-purple" id="addHotBtn"><i
                     class="ace-icon fa fa-cloud-upload align-top bigger-125"></i>添加高考热点
             </button>
-            <button class="btn btn-primary"><i class="ace-icon fa fa-pencil-square-o align-top bigger-125"></i>修改
+            <button class="btn btn-primary" id="editHotBtn"><i class="ace-icon fa fa-pencil-square-o align-top bigger-125"></i>修改
             </button>
             <button class="btn btn-danger"><i class="ace-icon fa fa-trash-o align-top bigger-125"></i>删除</button>
         </div>
@@ -55,15 +55,6 @@
             }
         }
     </style>
-
-    <form action="http://cs-dev.thinkjoy.com.cn/rest/v1/uploadFile" enctype="multipart/form-data" method="post">
-        product:<input type="text" name="productCode" value="ucenter">
-        bizSystem: <input type="text" name="bizSystem" value="ucenter">
-        userId: <input type="text" name="userId" value="erere3403403434034">
-        file: <input type="file" name="file">
-        spaceName: <input type="text" name="spaceName" value="ucenter">
-        <input type="submit" value="上传">
-    </form>
 
 <#include 'page_grid.ftl'>
 </div><!-- /.page-content -->

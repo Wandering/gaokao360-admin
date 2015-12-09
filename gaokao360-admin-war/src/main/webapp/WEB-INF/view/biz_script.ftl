@@ -102,7 +102,7 @@
             },
             onSelectRow: function (id, status) {
                 //当前行id
-                console.log(id);
+                console.log("第"+id);
                 if (status) {
                     currentGridId = id;
                 }
