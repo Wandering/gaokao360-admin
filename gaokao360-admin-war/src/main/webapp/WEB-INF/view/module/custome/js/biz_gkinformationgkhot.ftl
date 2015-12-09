@@ -200,6 +200,7 @@
                                 return false;
                             }
 
+
                             $.ajax({
                                 type:'POST',
                                 url:'/admin/${bizSys}/getContentUrl',
@@ -207,7 +208,7 @@
                                     content:hotContentHtml
                                 },
                                 success:function(result){
-                                     console.log(result)
+                                     console.log(JSON.parse(result.bizData).file.fileUrl)
                                 }
                             });
 
