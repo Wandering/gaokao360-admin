@@ -66,7 +66,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
      * 查询所有的科目
      * @return
      */
-    @RequestMapping(value="/getContentUrl")
+    @RequestMapping(value="/getContentUrl",method = RequestMethod.POST)
     @ResponseBody
     public String getContentUrl(@RequestParam("content")String content){
 
