@@ -28,9 +28,10 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import javax.swing.text.html.HTML;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
@@ -77,6 +78,32 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     @ResponseBody
     public List getAdmissionBatch(){
         return  admissionBatchService.findAll();
+    }
+
+    /**
+     * 查询所有的一级学科
+     * @return
+     */
+    @RequestMapping(value="/getHTMLContent")
+    @ResponseBody
+    public String getHTMLContent(@RequestParam("htmlurl")String htmlurl){
+        String htmlString = "";
+        try {
+            //生成一个URL对象
+            URL url = new URL(htmlurl);
+            //打开URL
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            //得到输入流，即获得了网页的内容
+            BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(),"UTF-8"));
+            String line;
+            // 读取输入流的数据，并显示
+            while ((line = reader.readLine()) != null) {
+                htmlString+=line;
+            }
+        }catch (Exception e){
+            throw new BizException("","读取页面失败");
+        }
+        return  htmlString;
     }
 
     /**
