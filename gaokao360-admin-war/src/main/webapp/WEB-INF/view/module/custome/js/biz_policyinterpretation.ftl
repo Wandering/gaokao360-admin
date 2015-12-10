@@ -58,9 +58,9 @@
         getEduLevel: function () {
 
         },
-        getSelOption: function (ajaxUrl,str) {
+        getSelOption: function (ajaxUrl, str) {
             var returnStr = "";
-            returnStr += '<option value="00">请选择'+str+'</option>';
+            returnStr += '<option value="00">请选择' + str + '</option>';
             $.ajaxSettings.async = false;
             $.getJSON(ajaxUrl, function (result) {
                 if (result.rtnCode == "0000000") {
@@ -74,9 +74,17 @@
             $.ajaxSettings.async = true;
             return returnStr;
         },
+        tipsDialog: function (message) {
+            var str = '<div class="alert alert-danger alert-dismissible well-sm pull-right text-center" role="alert" style="margin-right:44px;"> ' +
+                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                    '<span aria-hidden="true">&times;</span></button> ' +
+                    '<strong>温馨提示：</strong><span>"' + message + '"</span> ' +
+                    '</div>';
+            $('#tips').html(str).fadeIn(3000);
+        },
         getInterfaceUrl: {
             getProvinceUrl: '/admin/${bizSys}/getProvince',
-            getEduLevel:'/admin/${bizSys}/getAdmissionBatch'
+            getEduLevel: '/admin/${bizSys}/getAdmissionBatch'
         }
     };
 
@@ -87,12 +95,11 @@
         /*
         * 获取省份，学历层次
         * */
-        var province = policyInterpretation.getSelOption(policyInterpretation.getInterfaceUrl.getProvinceUrl,'省份');
+        var province = policyInterpretation.getSelOption(policyInterpretation.getInterfaceUrl.getProvinceUrl, '省份');
         $('#province').append(province);
         var policyInterGroup = '';
-        var eduLevel = policyInterpretation.getSelOption(policyInterpretation.getInterfaceUrl.getEduLevel,'学历层次');
+        var eduLevel = policyInterpretation.getSelOption(policyInterpretation.getInterfaceUrl.getEduLevel, '学历层次');
         $('#eduLevel').html(eduLevel);
-
         $("#addPolicyInterpretation").on(ace.click_event, function () {
 
             //添加政策解读
@@ -104,7 +111,7 @@
                     + '<div class="form-group">'
                     + '<label class="col-sm-2 control-label no-padding-right">选择省份：</label>'
                     + '<div class="col-sm-2">'
-                    + '<select class="form-control" id="province">'+province+'</select>'
+                    + '<select class="form-control" id="province">' + province + '</select>'
                     + '</div>'
                     + '</div>'
                     + '<div class="form-group">'
@@ -114,7 +121,7 @@
                     + '<input type="text" id="policyInterOne" placeholder="政策解读一级分类，限制字数10个字" class="col-sm-5">'
                     + '</div>'
                     + '<div class="col-sm-2 col-sm-pull-3">'
-                    + '<select class="form-control" id="policyInterGroup">'+policyInterGroup+'</select>'
+                    + '<select class="form-control" id="policyInterGroup">' + policyInterGroup + '</select>'
                     + '</div>'
                     + '</div>'
                     + '<div class="form-group">'
@@ -134,18 +141,33 @@
                     + '</div>'
                     + '</div>'
                     + '</div>'
+                    +'<div id="tips"></div>'
                     + '</div>'
                     + '</div>'
                     + '</div>'
                     + '</div>';
-            var addPolicyInterpretationFun = function(){
-//            var provinceV = $('#province option:checked').val();
-               var provinceV =   $("#province").find("option:selected").text();
-//                policyInterOneV = $('#policyInterOne').val().trim(),
-//                policyInterGroupV = $('#policyInterGroup option:checked').val().trim(),
-//                policyInterTwoV = $('#policyInterTwo').val().trim(),
-//                policyInterDetailV = $('#policyInterDetail').html();
-                console.log(provinceV);
+            var addPolicyInterpretationFun = function () {
+                var provinceV = $("#province").find("option:selected").val(),
+                        policyInterOneV = $.trim($('#policyInterOne').val()),
+//                        policyInterGroupV = $('#policyInterGroup).find("option:selected").text(),
+                        policyInterTwoV = $.trim($('#policyInterTwo').val()),
+                        policyInterDetailV = $('#policyInterDetail').html();
+                if (provinceV == "00") {
+                    policyInterpretation.tipsDialog('请选择省份');
+                    return false;
+                }
+                if (policyInterOneV == "") {
+                    policyInterpretation.tipsDialog('请选政策一级分类不能为空');
+                    return false;
+                }
+                if (policyInterTwoV == "") {
+                    policyInterpretation.tipsDialog('请选政策二级分类不能为空');
+                    return false;
+                }
+                if (policyInterDetailV == "") {
+                    policyInterpretation.tipsDialog('请输入政策解读详情内容');
+                    return false;
+                }
             };
             bootbox.dialog({
                 title: "添加政策解读",
@@ -155,10 +177,7 @@
                     "success": {
                         "label": "<i class='ace-icon fa fa-check'></i> 提交",
                         "className": "btn-sm btn-success",
-                        "callback": function(){
-                            var provinceV = $("#province").find("option:selected").text();
-                            console.log(provinceV);
-                        }
+                        "callback": addPolicyInterpretationFun
                     },
                     cancel: {
                         label: "关闭",
@@ -246,82 +265,6 @@
 
 
         });
-//        //初始化富文本编辑器
-//        $('#policyInterDetail').ace_wysiwyg({
-//            toolbar: [
-//                {
-//                    name: 'font',
-//                    title: 'Custom tooltip',
-//                    values: ['Some Font!', 'Arial', 'Verdana', 'Comic Sans MS', 'Custom Font!']
-//                },
-//                null,
-//                {
-//                    name: 'fontSize',
-//                    title: 'Custom tooltip',
-//                    values: {
-//                        1: 'Size#1 Text',
-//                        2: 'Size#1 Text',
-//                        3: 'Size#3 Text',
-//                        4: 'Size#4 Text',
-//                        5: 'Size#5 Text'
-//                    }
-//                },
-//                null,
-//                {name: 'bold', title: 'Custom tooltip'},
-//                {name: 'italic', title: 'Custom tooltip'},
-//                {name: 'strikethrough', title: 'Custom tooltip'},
-//                {name: 'underline', title: 'Custom tooltip'},
-//                null,
-//                'insertunorderedlist',
-//                'insertorderedlist',
-//                'outdent',
-//                'indent',
-//                null,
-//                {name: 'justifyleft'},
-//                {name: 'justifycenter'},
-//                {name: 'justifyright'},
-//                {name: 'justifyfull'},
-//                null,
-//                {
-//                    name: 'createLink',
-//                    placeholder: 'Custom PlaceHolder Text',
-//                    button_class: 'btn-purple',
-//                    button_text: 'Custom TEXT'
-//                },
-//                {name: 'unlink'},
-//                null,
-//                {
-//                    name: 'insertImage',
-//                    placeholder: 'Custom PlaceHolder Text',
-//                    button_class: 'btn-inverse',
-//                    //choose_file:false,//hide choose file button
-//                    button_text: 'Set choose_file:false to hide this',
-//                    button_insert_class: 'btn-pink',
-//                    button_insert: 'Insert Image'
-//                },
-//                null,
-//                {
-//                    name: 'foreColor',
-//                    title: 'Custom Colors',
-//                    values: ['red', 'green', 'blue', 'navy', 'orange'],
-//                    /**
-//                     You change colors as well
-//                     */
-//                },
-//            /**null,
-//             {
-//             name:'backColor'
-//             },*/
-//                null,
-//                {name: 'undo'},
-//                {name: 'redo'},
-//                null,
-//                'viewSource'
-//            ],
-//            //speech_button:false,//hide speech button on chrome
-//            'wysiwyg': {
-//                hotKeys: {} //disable hotkeys
-//            }
-//        }).prev().addClass('wysiwyg-style2');
+
     });
 </script>
