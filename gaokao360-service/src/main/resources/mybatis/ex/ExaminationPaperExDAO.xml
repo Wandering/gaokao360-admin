@@ -63,16 +63,16 @@ selectList
             </if>
 
             <if test="condition.papersubjectId!=null">
-                ${condition.groupOp}   ${condition.paper.subjectId.field}  ${condition.paper.subjectId.op}  #{condition.paper.subjectId.data}
+                ${condition.groupOp}   ${condition.papersubjectId.field}  ${condition.papersubjectId.op}  #{condition.papersubjectId.data}
             </if>
             <if test="condition.paperyears!=null">
-                ${condition.groupOp}   ${condition.paper.years.field}  ${condition.paper.years.op}  #{condition.paper.years.data}
+                ${condition.groupOp}   ${condition.paperyears.field}  ${condition.paperyears.op}  #{condition.paperyears.data}
             </if>
             <if test="condition.paperareaId!=null">
-                ${condition.groupOp}   ${condition.paper.areaId.field}  ${condition.paper.areaId.op}  #{condition.paper.areaId.data}
+                ${condition.groupOp}   ${condition.paperareaId.field}  ${condition.paperareaId.op}  #{condition.paperareaId.data}
             </if>
-            <if test="condition.queryparam!=null">
-                ${condition.groupOp}   ${condition.queryparam.field}  ${condition.queryparam.op}  #{condition.queryparam.data}
+            <if test="condition.paperpaperName!=null">
+                ${condition.groupOp}   ${condition.paperpaperName.field}  ${condition.paperpaperName.op}  #{condition.paperpaperName.data}
             </if>
 
 
@@ -94,16 +94,16 @@ selectList
         LEFT JOIN gk_province province ON province.id = paper.areaId
        <where>
            <if test="papersubjectId!=null">
-               ${groupOp}   ${subjectId.field}  ${subjectId.op}  #{paper.subjectId.data}
+               ${groupOp}   ${papersubjectId.field}  ${papersubjectId.op}  #{papersubjectId.data}
            </if>
            <if test="paperyears!=null">
-               ${groupOp}   ${paper.years.field}  ${paper.years.op}  #{paper.years.data}
+               ${groupOp}   ${paperyears.field}  ${paperyears.op}  #{paperyears.data}
            </if>
            <if test="paperareaId!=null">
-               ${groupOp}   ${areaId.field}  ${paper.areaId.op}  #{paper.areaId.data}
+               ${groupOp}   ${paperareaId.field}  ${paperareaId.op}  #{paperareaId.data}
            </if>
-           <if test="queryparam!=null">
-               ${groupOp}   ${queryparam.field}  ${queryparam.op}  #{queryparam.data}
+           <if test="paperpaperName!=null">
+               ${groupOp}   ${paperpaperName.field}  ${paperpaperName.op}  #{paperpaperName.data}
            </if>
 
 

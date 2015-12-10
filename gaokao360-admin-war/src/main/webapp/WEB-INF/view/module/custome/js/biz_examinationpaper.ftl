@@ -1,31 +1,40 @@
 <script>
     <!-- 自定义js请写在这个文件  以下这个查询方法只是个例子，请按照业务需求修改 -->
     function buildRules() {
-        var courseName = $('#courseName').val();
-        var status = $('#status').val();
-        var classfyId = $('#classfyId').val();
+        var papersubjectId = $('#courseName').val();
+        var paperyears = $('#status').val();
+        var paperareaId = $('#classfyId').val();
+        var paperpaperName = $('#classfyId').val();
         var rules = [];
-        if (courseName != ''&&courseName!=null&&courseName!=undefined) {
+        if (papersubjectId != ''&&papersubjectId!=null&&papersubjectId!=undefined&&papersubjectId!="00") {
             var rule = {
-                'field': 'courseName',
+                'field': 'paper.subjectId',
                 'op': 'eq',
-                'data': courseName
+                'data': papersubjectId
             }
             rules.push(rule);
         }
-        if (status != ''&&status!=null&&status!=undefined) {
+        if (paperyears != ''&&paperyears!=null&&paperyears!=undefined&&paperyears!="00") {
             var rule = {
-                'field': 'status',
+                'field': 'paper.years',
                 'op': 'eq',
-                'data': status
+                'data': paperyears
             }
             rules.push(rule);
         }
-        if (classfyId != ''&&classfyId!=null&&classfyId!=undefined) {
+        if (paperareaId != ''&&paperareaId!=null&&paperareaId!=undefined&&paperyears!="00") {
             var rule = {
-                'field': 'classfyId',
+                'field': 'paper.areaId',
                 'op': 'eq',
-                'data': classfyId
+                'data': paperareaId
+            }
+            rules.push(rule);
+        }
+        if (paperpaperName != ''&&paperpaperName!=null&&paperpaperName!=undefined&&paperpaperName!="00") {
+            var rule = {
+                'field': 'paperpaperName',
+                'op': 'eq',
+                'data': paper.paperName
             }
             rules.push(rule);
         }
