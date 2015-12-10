@@ -383,7 +383,6 @@
                     });
                     $('#selProvince').find('option[value="' + areaId + '"]').attr('selected', 'selected');
                     $('#hotTitle').val(hotInformation);
-
                     $('#date-picker').val(hotdate);
                 }
             });
@@ -416,7 +415,6 @@
                             }
 
                             //上传高考热点内容到云存储
-                            var hotContentUrl = 'http://www.baidu.com';
                             var hotContentHtml = ''
                                     + '<!DOCTYPE html>'
                                     + '<html lang="en">'
@@ -428,9 +426,7 @@
                             hotContentHtml += hotContentV
                             + '</body>'
                             + '</html>';
-
-                            console.log(hotContentHtml)
-
+                            var hotContentUrl = dynGetData('/admin/${bizSys}/getContentUrl', hotContentHtml);
                             if (datePickerV == "") {
                                 tipsDialog('温馨提示', '请选择高考热点日期');
                                 return false;
