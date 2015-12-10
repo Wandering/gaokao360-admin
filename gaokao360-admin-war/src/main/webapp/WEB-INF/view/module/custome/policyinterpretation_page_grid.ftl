@@ -10,6 +10,9 @@
     .modal-dialog{
         width: 1000px!important;
     }
+    .hide{
+        display: none;
+    }
 </style>
 <div class="page-content">
     <!-- 搜索start-->

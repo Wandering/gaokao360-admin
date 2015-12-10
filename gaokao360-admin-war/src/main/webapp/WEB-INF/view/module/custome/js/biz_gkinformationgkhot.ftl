@@ -174,6 +174,10 @@
                                 return false;
                             }
 
+                            if (datePickerV == "") {
+                                tipsDialog('温馨提示', '请选择高考热点日期');
+                                return false;
+                            }
                             //上传高考热点内容到云存储
                             var hotContentHtml = ''
                                     + '<!DOCTYPE html>'
@@ -187,10 +191,6 @@
                             + '</body>'
                             + '</html>';
                             var hotContentUrl = dynGetData('/admin/${bizSys}/getContentUrl', hotContentHtml);
-                            if (datePickerV == "") {
-                                tipsDialog('温馨提示', '请选择高考热点日期');
-                                return false;
-                            }
                             var infoData = {
                                 areaId: selProvinceV,
                                 hotInformation: hotTitleV,
@@ -383,7 +383,6 @@
                     });
                     $('#selProvince').find('option[value="' + areaId + '"]').attr('selected', 'selected');
                     $('#hotTitle').val(hotInformation);
-
                     $('#date-picker').val(hotdate);
                 }
             });
@@ -414,9 +413,11 @@
                                 tipsDialog('温馨提示', '请输入高考热点内容');
                                 return false;
                             }
-
+                            if (datePickerV == "") {
+                                tipsDialog('温馨提示', '请选择高考热点日期');
+                                return false;
+                            }
                             //上传高考热点内容到云存储
-                            var hotContentUrl = 'http://www.baidu.com';
                             var hotContentHtml = ''
                                     + '<!DOCTYPE html>'
                                     + '<html lang="en">'
@@ -428,15 +429,7 @@
                             hotContentHtml += hotContentV
                             + '</body>'
                             + '</html>';
-
-                            console.log(hotContentHtml)
-
-                            if (datePickerV == "") {
-                                tipsDialog('温馨提示', '请选择高考热点日期');
-                                return false;
-                            }
-
-
+                            var hotContentUrl = dynGetData('/admin/${bizSys}/getContentUrl', hotContentHtml);
                             var infoData = {
                                 id: rowId,
                                 areaId: selProvinceV,
