@@ -44,13 +44,12 @@
 
     }
 
-    $("#search").click(function () {
-        searchLoad();
-
-    });
-
-
     jQuery(function ($) {
+        $("#search").click(function () {
+            searchLoad();
+
+        });
+
         var Hot = {
             getProvince: function (ajaxUrl) {
                 var returnStr = "";
@@ -70,7 +69,7 @@
                 return returnStr;
             }
         };
-
+        $('#areaId').html(Hot.getProvince('/admin/gaokao360/ex/getProvince'));
 
         function dynGetData(ajaxUrl, contentData) {
             var returnStr = "";
@@ -161,8 +160,7 @@
                                     hotTitleV = $('#hotTitle').val().trim(),
                                     hotContentV = $('#hotContent').html(),
                                     datePickerV = $('#date-picker').val().trim();
-
-                            console.log(hotContentV)
+                            console.log(hotContentV);
                             if (selProvinceV == "00") {
                                 tipsDialog('温馨提示', '请选择省份');
                                 return false;
@@ -209,7 +207,7 @@
                                 data: infoData,
                                 success: function (result) {
                                     console.log(result);
-                                    if(result.rtnCode=="0000000"){
+                                    if (result.rtnCode == "0000000") {
                                         searchLoad();
                                     }
                                 }
@@ -449,7 +447,7 @@
                                 data: infoData,
                                 success: function (result) {
                                     console.log(result)
-                                    if(result.rtnCode=="0000000"){
+                                    if (result.rtnCode == "0000000") {
                                         searchLoad();
                                     }
                                 }
@@ -545,6 +543,47 @@
                 }
 
             }).prev().addClass('wysiwyg-style2');
+
+        });
+        //删除
+        $("#deleteHotBtn").on(ace.click_event, function () {
+            var rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
+            var selTrN = $('tr.ui-state-highlight[role="row"]').length;
+            if (selTrN != 1) {
+                tipsDialog('温馨提示', '请选中一行后在删除');
+                return false;
+            }
+            bootbox.dialog({
+                title: "添加高考热点",
+                message: "确定删除该条数据",
+                buttons: {
+                    "success": {
+                        "label": "<i class='ace-icon fa fa-check'></i> 确定",
+                        "className": "btn-sm btn-success",
+                        "callback": function () {
+                            $.ajax({
+                                type: "POST",
+                                url: '/admin/${bizSys}/commonsave/${mainObj}',
+                                data: {
+                                    oper: 'del',
+                                    id: rowId
+                                },
+                                success: function (result) {
+                                    console.log(result);
+                                    if (result.rtnCode == "0000000") {
+                                        searchLoad();
+                                    }
+                                }
+                            });
+                        }
+                    },
+                    cancel: {
+                        label: "关闭",
+                        className: "btn-sm",
+                    }
+                }
+            });
+
 
         });
 
