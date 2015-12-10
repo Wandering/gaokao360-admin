@@ -61,7 +61,7 @@ selectList
 
 
     </where>
-        ORDER BY  gkhot.id DESC
+        ORDER BY  id DESC
         <if test="offset != null">
             limit ${offset}, ${rows}
         </if>
