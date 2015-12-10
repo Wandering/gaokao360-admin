@@ -11,11 +11,7 @@
 
             <div class="col-sm-2">
                 <div class="form-group">
-                    <select class="form-control" id="areaId">
-                        <option value="">按省份查询</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                    </select>
+                    <select class="form-control" id="areaId"></select>
                 </div>
             </div>
 
@@ -40,7 +36,7 @@
             </button>
             <button class="btn btn-primary" id="editHotBtn"><i class="ace-icon fa fa-pencil-square-o align-top bigger-125"></i>修改
             </button>
-            <button class="btn btn-danger"><i class="ace-icon fa fa-trash-o align-top bigger-125"></i>删除</button>
+            <button class="btn btn-danger" id="deleteHotBtn"><i class="ace-icon fa fa-trash-o align-top bigger-125"></i>删除</button>
         </div>
     </div>
     <!--添加高考热点 start-->

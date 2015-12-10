@@ -60,14 +60,12 @@ selectList
                 ${condition.groupOp}   ${condition.interpretationadmissionBatchId.field}  ${condition.interpretationadmissionBatchId.op}  #{condition.interpretationadmissionBatchId.data}
             </if>
             <if test="condition.queryparam!=null">
-                ${condition.groupOp}   ${condition.queryparam.field}  ${condition.queryparam.op}  #{condition.queryparam.data}
+                  ${condition.groupOp}  (interpretation.categoryName LIKE #{condition.queryparam.data}  OR interpretation.content LIKE  #{condition.queryparam.data})
             </if>
 
 
     </where>
-        <if test="orderBy!=null">
-        ORDER BY ${orderBy} ${sortBy}
-        </if>
+        ORDER BY id DESC
         <if test="offset != null">
             limit ${offset}, ${rows}
         </if>
@@ -86,9 +84,8 @@ selectList
                ${groupOp} ${interpretationadmissionBatchId.field} ${interpretationadmissionBatchId.op}  #{interpretationadmissionBatchId.data}
            </if>
            <if test="queryparam!=null">
-               ${groupOp} ${queryparam.field} ${queryparam.op}  #{queryparam.data}
+               ${groupOp} ( interpretation.categoryName LIKE  #{queryparam.data} OR interpretation.content LIKE  #{queryparam.data}  )
            </if>
-
        </where>
     </select>
 

@@ -1,4 +1,58 @@
 <script>
+
+//    搜索相关代码-start
+    function buildRules() {
+        var keyWord = $('#keyWord').val();
+        var eduLevel = $('#eduLevel').val();
+        var province = $('#province').val();
+        var rules = [];
+        if (keyWord != ''&&keyWord!=null&&keyWord!=undefined) {
+            var rule = {
+                'field': 'queryparam',
+                'op': 'lk',
+                'data': keyWord
+            }
+            rules.push(rule);
+        }
+        if (eduLevel != ''&&eduLevel!=null&&eduLevel!=undefined&&eduLevel!="00") {
+            var rule = {
+                'field': 'interpretation.admissionBatchId',
+                'op': 'eq',
+                'data': eduLevel
+            }
+            rules.push(rule);
+        }
+        if (province != ''&&province!=null&&province!=undefined&&province!="00") {
+            var rule = {
+                'field': 'interpretation.provinceId',
+                'op': 'eq',
+                'data': province
+            }
+            rules.push(rule);
+        }
+        return rules;
+    }
+    function searchLoad(){
+        var url = "/admin/${bizSys}/${mainObj}s";
+
+        var rules = buildRules();
+
+        var filters = {
+            'groupOp': 'AND',
+            "rules": rules
+        };
+
+        $("#grid-table").jqGrid('setGridParam', {url:url,mtype:"POST",postData:"filters="+JSON.stringify(filters),page: 1}).trigger("reloadGrid");
+
+
+    }
+
+    $("#search").click(function () {
+        searchLoad();
+
+    });
+//    搜索相关代码-end
+
     var select = document.getElementById('province');
     var policyInterpretation = {
         getEduLevel: function () {
