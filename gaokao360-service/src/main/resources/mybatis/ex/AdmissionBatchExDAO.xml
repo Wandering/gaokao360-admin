@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IAdmissionBatchDAO">
+<!--
+insert
+update
+updateNull
+deleteById
+deleteByCondition
+deleteByProperty
+fetch
+findOne
+findList
+findAll
+queryPage
+like
+queryList
+queryOne
+count
+selectMaxId
+updateOrSave
+selectOne
+selectList
+-->
+
+    <sql id="Base_Column_List">
+        id as id ,
+        name as name ,
+        status as status ,
+        areaId as areaId ,
+        sort as sort 
+    </sql>
+    <insert id="insertMap" >
+        INSERT INTO gk_admission_batch (
+        name,
+        status,
+        areaId,
+        sort
+        ) SELECT
+        #{map.name},
+        #{map.status},
+        #{map.areaId},
+        MAX(id) as sort
+        FROM gk_admission_batch
+    </insert>
+</mapper>
