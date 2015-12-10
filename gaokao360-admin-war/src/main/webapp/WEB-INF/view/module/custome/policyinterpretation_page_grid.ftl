@@ -1,5 +1,6 @@
 <!-- 增加过滤div + 主体表格 -->
 <style>
+    <#--富文本编辑器样式调整-->
     @media (min-width: 768px) {
         .wysiwyg-style2 {
             width: 750px !important;

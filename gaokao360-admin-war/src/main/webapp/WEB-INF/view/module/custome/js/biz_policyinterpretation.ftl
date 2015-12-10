@@ -1,4 +1,5 @@
 <script>
+    var select = document.getElementById('province');
     var policyInterpretation = {
         getEduLevel: function () {
 
@@ -8,7 +9,6 @@
             returnStr += '<option value="00">请选择'+str+'</option>';
             $.ajaxSettings.async = false;
             $.getJSON(ajaxUrl, function (result) {
-                console.log(result + "==");
                 if (result.rtnCode == "0000000") {
                     for (var i = 0; i < result.bizData.length; i++) {
                         var provinceId = result.bizData[i].id;
@@ -16,7 +16,6 @@
                         returnStr += '<option value="' + provinceId + '">' + provinceName + '</option>';
                     }
                 }
-                console.log(returnStr);
             });
             $.ajaxSettings.async = true;
             return returnStr;
@@ -30,6 +29,7 @@
 
     //政策解读模块
     jQuery(function ($) {
+
         /*
         * 获取省份，学历层次
         * */
@@ -40,6 +40,7 @@
         $('#eduLevel').html(eduLevel);
 
         $("#addPolicyInterpretation").on(ace.click_event, function () {
+
             //添加政策解读
             var dialogHtml = ''
                     + '<div class="bootbox-body">'
@@ -83,6 +84,15 @@
                     + '</div>'
                     + '</div>'
                     + '</div>';
+            var addPolicyInterpretationFun = function(){
+//            var provinceV = $('#province option:checked').val();
+               var provinceV =   $("#province").find("option:selected").text();
+//                policyInterOneV = $('#policyInterOne').val().trim(),
+//                policyInterGroupV = $('#policyInterGroup option:checked').val().trim(),
+//                policyInterTwoV = $('#policyInterTwo').val().trim(),
+//                policyInterDetailV = $('#policyInterDetail').html();
+                console.log(provinceV);
+            };
             bootbox.dialog({
                 title: "添加政策解读",
                 message: dialogHtml,
@@ -91,40 +101,14 @@
                     "success": {
                         "label": "<i class='ace-icon fa fa-check'></i> 提交",
                         "className": "btn-sm btn-success",
-                        "callback": function () {
-                            var selProvinceV = $('#selProvince option:checked').val(),
-                                    hotTitleV = $('#hotTitle').val().trim(),
-                                    hotContentV = $('#hotContent').html(),
-                                    datePickerV = $('#date-picker').val().trim();
-                            console.log(hotContentV)
-                            if (selProvinceV == "00") {
-                                tipsDialog('温馨提示', '请选择省份');
-                                return false;
-                            }
-                            if (hotTitleV == "") {
-                                tipsDialog('温馨提示', '请输入高考热点标题');
-                                return false;
-                            }
-                            if (hotContentV == "") {
-                                tipsDialog('温馨提示', '请输入高考热点内容');
-                                return false;
-                            }
-                            if (datePickerV == "") {
-                                tipsDialog('温馨提示', '请选择高考热点日期');
-                                return false;
-                            }
-                            var infoData = {};
-                            $.ajax({
-                                type: "POST",
-                                url: '/admin/${bizSys}/commonsave/{mainObj}',
-                                data: infoData,
-                                success: function (result) {
-                                    alert(result);
-                                }
-                            });
-
-
+                        "callback": function(){
+                            var provinceV = $("#province").find("option:selected").text();
+                            console.log(provinceV);
                         }
+                    },
+                    cancel: {
+                        label: "关闭",
+                        className: "btn-sm",
                     }
                 }
             });
