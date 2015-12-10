@@ -53,13 +53,10 @@ selectList
             </if>
 
             <if test="condition.gkhothotInformation!=null">
-                ${condition.groupOp}   ${condition.gkhot.hotInformation.field}  ${condition.gkhot.hotInformation.op}  #{condition.gkhot.hotInformation.data}
-            </if>
-            <if test="condition.gkhotinformationContent!=null">
-                ${condition.groupOp}   ${condition.gkhot.informationContent.field}  ${condition.gkhot.informationContent.op}  #{condition.gkhot.informationContent.data}
+                ${condition.groupOp}   ${condition.gkhothotInformation.field}  ${condition.gkhothotInformation.op}  #{condition.gkhothotInformation.data}
             </if>
             <if test="condition.gkhotareaId!=null">
-                ${condition.groupOp}   ${condition.gkhot.areaId.field}  ${condition.gkhot.areaId.op}  #{condition.gkhot.areaId.data}
+                ${condition.groupOp}   ${condition.gkhotareaId.field}  ${condition.gkhotareaId.op}  #{condition.gkhotareaId.data}
             </if>
 
 
@@ -79,13 +76,10 @@ selectList
        <where>
 
            <if test="gkhothotInformation!=null">
-               ${groupOp} ${gkhot.hotInformation.field} ${gkhot.hotInformation.op}  #{gkhot.hotInformation.data}
-           </if>
-           <if test="gkhotinformationContent!=null">
-               ${groupOp} ${gkhot.informationContent.field} ${gkhot.informationContent.op}  #{gkhot.informationContent.data}
+               ${groupOp} ${gkhothotInformation.field} ${gkhothotInformation.op}  #{gkhothotInformation.data}
            </if>
            <if test="gkhotareaId!=null">
-               ${groupOp} ${gkhot.areaId.field} ${gkhot.areaId.op}  #{gkhot.areaId.data}
+               ${groupOp} ${gkhotareaId.field} ${gkhotareaId.op}  #{gkhotareaId.data}
            </if>
 
        </where>

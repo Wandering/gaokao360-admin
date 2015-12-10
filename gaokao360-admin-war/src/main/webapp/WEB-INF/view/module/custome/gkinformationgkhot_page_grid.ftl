@@ -1,17 +1,17 @@
 <!-- 增加过滤div + 主体表格 -->
 <div class="page-content">
     <!-- 搜索start-->
-    <form class="form-horizontal" role="form" action="/admin/${bizSys}/ex/${mainObj}s">
+    <form class="form-horizontal" role="form" action="/admin/${bizSys}/${mainObj}s">
         <div class="col-xs-12">
             <div class="col-sm-2">
                 <div class="form-group">
-                    <input type="text" class="keywordSearch" placeholder="关键字查询" id="keywordSearch">
+                    <input type="text" class="keywordSearch" placeholder="关键字查询" id="hotInformation">
                 </div>
             </div>
 
             <div class="col-sm-2">
                 <div class="form-group">
-                    <select class="form-control" id="status">
+                    <select class="form-control" id="areaId">
                         <option value="">按省份查询</option>
                         <option value="1">1</option>
                         <option value="2">2</option>

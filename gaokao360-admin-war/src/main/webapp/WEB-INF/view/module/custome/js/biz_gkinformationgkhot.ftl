@@ -1,34 +1,27 @@
 <script>
     <!-- 自定义js请写在这个文件  以下这个查询方法只是个例子，请按照业务需求修改 -->
     function buildRules() {
-        var courseName = $('#courseName').val();
-        var status = $('#status').val();
-        var classfyId = $('#classfyId').val();
+        var areaId = $('#areaId').val();
+        var hotInformation = $('#hotInformation').val();
+//        var hotInformation = "0";
         var rules = [];
-        if (courseName != '' && courseName != null && courseName != undefined) {
+        if (areaId != '' && areaId != null && areaId != undefined) {
             var rule = {
-                'field': 'courseName',
+                'field': 'gkhot.areaId',
                 'op': 'eq',
-                'data': courseName
+                'data': areaId
             }
             rules.push(rule);
         }
-        if (status != '' && status != null && status != undefined) {
+        if (hotInformation != '' && hotInformation != null && hotInformation != undefined) {
             var rule = {
-                'field': 'status',
-                'op': 'eq',
-                'data': status
+                'field': 'gkhot.hotInformation',
+                'op': 'lk',
+                'data': hotInformation
             }
             rules.push(rule);
         }
-        if (classfyId != '' && classfyId != null && classfyId != undefined) {
-            var rule = {
-                'field': 'classfyId',
-                'op': 'eq',
-                'data': classfyId
-            }
-            rules.push(rule);
-        }
+        console.log(rules)
         return rules;
     }
     function searchLoad() {
@@ -43,7 +36,7 @@
 
         $("#grid-table").jqGrid('setGridParam', {
             url: url,
-            mtype: "POST",
+            mtype: "GET",
             postData: "filters=" + JSON.stringify(filters),
             page: 1
         }).trigger("reloadGrid");

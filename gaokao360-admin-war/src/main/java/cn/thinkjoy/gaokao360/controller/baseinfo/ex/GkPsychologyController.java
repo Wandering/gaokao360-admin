@@ -63,7 +63,7 @@ public class GkPsychologyController extends AbstractAdminController<IGkPsycholog
 
     @Override
     protected String getMainObjName() {
-        return "gkpsychologys";
+        return "gkpsychology";
     }
 
     @Override
