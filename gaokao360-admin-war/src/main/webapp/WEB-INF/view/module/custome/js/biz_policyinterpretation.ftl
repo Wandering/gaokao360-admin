@@ -158,15 +158,12 @@
 //
             var addPolicyInterpretationFun = function () {
 
-                console.info($('#province2 option:checked').val());
-
-
-                var provinceV = $("#province").find("option:selected").attr('value'),
+                var provinceV = $("#province2").find("option:selected").attr('value'),
                         policyInterOneV = $.trim($('#policyInterOne').val()),
 //                      policyInterGroupV = $('#policyInterGroup).find("option:selected").text(),
                         policyInterTwoV = $.trim($('#policyInterTwo').val()),
                         policyInterDetailV = $('#policyInterDetail').html();
-
+                console.info(provinceV);
                 if (provinceV == "00") {
                     policyInterpretation.tipsDialog('请选择省份');
                     return false;
@@ -183,21 +180,37 @@
                     policyInterpretation.tipsDialog('请输入政策解读详情内容');
                     return false;
                 }
-//                var infoData = {
-//                    areaId: provinceV,
-//
-//                };
-                <#--$.ajax({-->
-                    <#--type: "POST",-->
-                    <#--url: '/admin/${bizSys}/getAdmissionBatch',-->
-                    <#--data: infoData,-->
-                    <#--success: function (result) {-->
-                        <#--console.log(result);-->
-                        <#--if (result.rtnCode == "0000000") {-->
-                            <#--searchLoad();-->
-                        <#--}-->
-                    <#--}-->
-                <#--});-->
+                var infoData = {
+                    provinceId: provinceV,
+                    admissionBatchId:'',
+                    content:policyInterDetailV,
+                    categoryName:policyInterTwoV,
+                    oper: 'add'
+                };
+                //一级政策分类
+                $.ajax({
+                    type: "POST",
+                    url: '/admin/${bizSys}/commonsave/admissionbatch',
+                    data: {
+                        name: '哈哈',
+                        oper: 'add'
+                    }
+                    success: function (result) {
+                        console.log(result);
+                    }
+                });
+                //添加政策解读
+                $.ajax({
+                    type: "POST",
+                    url: '/admin/${bizSys}/getAdmissionBatch',
+                    data: infoData,
+                    success: function (result) {
+                        console.log(result);
+                        if (result.rtnCode == "0000000") {
+                            searchLoad();
+                        }
+                    }
+                });
             };
             bootbox.dialog({
                 title: "添加政策解读",

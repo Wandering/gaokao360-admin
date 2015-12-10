@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="col-sm-3">
-                <label class="col-sm-5 control-label text-right">学历层次：</label>
+                <label class="col-sm-5 control-label text-right">政策一级分类：</label>
 
                 <div class="col-sm-7 no-padding">
                     <select class="form-control" id="eduLevel">
