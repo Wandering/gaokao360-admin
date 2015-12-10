@@ -5,7 +5,7 @@
         var hotInformation = $('#hotInformation').val();
 //        var hotInformation = "0";
         var rules = [];
-        if (areaId != '' && areaId != null && areaId != undefined) {
+        if (areaId != '' && areaId != null && areaId != undefined && areaId！="00") {
             var rule = {
                 'field': 'gkhot.areaId',
                 'op': 'eq',
