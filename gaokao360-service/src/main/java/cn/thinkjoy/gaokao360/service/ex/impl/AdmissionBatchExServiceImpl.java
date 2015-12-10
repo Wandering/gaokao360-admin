@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-@Service("AdmissionBatchServiceImpl")
+@Service("AdmissionBatchExServiceImpl")
 public class AdmissionBatchExServiceImpl extends AbstractPageService<IBaseDAO<AdmissionBatch>, AdmissionBatch> implements IAdmissionBatchExService<IBaseDAO<AdmissionBatch>,AdmissionBatch>{
     @Autowired
     private IAdmissionBatchExDAO admissionBatchExDAO;
