@@ -1,12 +1,12 @@
 <script>
 
-//    搜索相关代码-start
+    //    搜索相关代码-start
     function buildRules() {
         var keyWord = $('#keyWord').val();
         var eduLevel = $('#eduLevel').val();
         var province = $('#province').val();
         var rules = [];
-        if (keyWord != ''&&keyWord!=null&&keyWord!=undefined) {
+        if (keyWord != '' && keyWord != null && keyWord != undefined) {
             var rule = {
                 'field': 'queryparam',
                 'op': 'lk',
@@ -14,7 +14,7 @@
             }
             rules.push(rule);
         }
-        if (eduLevel != ''&&eduLevel!=null&&eduLevel!=undefined&&eduLevel!="00") {
+        if (eduLevel != '' && eduLevel != null && eduLevel != undefined && eduLevel != "00") {
             var rule = {
                 'field': 'interpretation.admissionBatchId',
                 'op': 'eq',
@@ -22,7 +22,7 @@
             }
             rules.push(rule);
         }
-        if (province != ''&&province!=null&&province!=undefined&&province!="00") {
+        if (province != '' && province != null && province != undefined && province != "00") {
             var rule = {
                 'field': 'interpretation.provinceId',
                 'op': 'eq',
@@ -32,7 +32,7 @@
         }
         return rules;
     }
-    function searchLoad(){
+    function searchLoad() {
         var url = "/admin/${bizSys}/${mainObj}s";
 
         var rules = buildRules();
@@ -42,7 +42,12 @@
             "rules": rules
         };
 
-        $("#grid-table").jqGrid('setGridParam', {url:url,mtype:"POST",postData:"filters="+JSON.stringify(filters),page: 1}).trigger("reloadGrid");
+        $("#grid-table").jqGrid('setGridParam', {
+            url: url,
+            mtype: "POST",
+            postData: "filters=" + JSON.stringify(filters),
+            page: 1
+        }).trigger("reloadGrid");
 
 
     }
@@ -51,7 +56,7 @@
         searchLoad();
 
     });
-//    搜索相关代码-end
+    //    搜索相关代码-end
 
     var select = document.getElementById('province');
     var policyInterpretation = {
@@ -78,16 +83,28 @@
             var str = '<div class="alert alert-danger alert-dismissible well-sm pull-right text-center" role="alert" style="margin-right:44px;"> ' +
                     '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
                     '<span aria-hidden="true">&times;</span></button> ' +
-                    '<strong>温馨提示：</strong><span>"' + message + '"</span> ' +
+                    '<strong>温馨提示：</strong><span>' + message + '</span> ' +
                     '</div>';
             $('#tips').html(str).fadeIn(3000);
         },
         getInterfaceUrl: {
             getProvinceUrl: '/admin/${bizSys}/getProvince',
-            getEduLevel: '/admin/${bizSys}/getAdmissionBatch'
+            getEduLevel: '/admin/${bizSys}/getAdmissionBatch',
+            addPolicy:'/admin/${bizSys}/getAdmissionBatch',
+            addGroup:'/admin/${bizSys}/commonsave/admissionbatch',
+            getGroup:'/admin/${bizSys}/getAdmissionBatch',
+        },
+        getData: function (url,data,callback) {
+            $.ajax({
+                type: "POST",
+                url: url,
+                dataType:'json',
+                data: data,
+                success:callback
+            });
         }
-    };
 
+    };
 
     //政策解读模块
     jQuery(function ($) {
@@ -98,17 +115,35 @@
         var province = policyInterpretation.getSelOption(policyInterpretation.getInterfaceUrl.getProvinceUrl, '省份');
         $('#province').append(province);
 
-
-
-
-
-
-
-        var policyInterGroup = '';
         var eduLevel = policyInterpretation.getSelOption(policyInterpretation.getInterfaceUrl.getEduLevel, '学历层次');
         $('#eduLevel').html(eduLevel);
-        $("#addPolicyInterpretation").on(ace.click_event, function () {
 
+        $("#addPolicyInterpretation").on(ace.click_event, function () {
+            //添加：一级政策分类
+            $(document).on('change', '#policyInterGroup', function () {
+                if ($(this).val() == '000') {
+                    $('#newPolicy').removeClass('hide');
+                } else {
+                    $('#newPolicy').addClass('hide');
+                }
+            });
+            policyInterpretation.getData(policyInterpretation.getInterfaceUrl.addGroup,{
+                name:'123',
+                oper:'add',
+                aeraId:''
+            },function(res){
+                console.info(res);
+            });
+            //拉取：一级政策分类
+            policyInterpretation.getData(policyInterpretation.getInterfaceUrl.getGroup,{},function(res){
+                var strOption = '';
+                if(res.rtnCode == '0000000'){
+                    $.each(res.bizData,function(i,v){
+                        strOption += '<option value="'+ v.id+'">'+ v.name+'</option>';
+                    });
+                    $('#policyInterGroup').append(strOption);
+                }
+            });
             //添加政策解读
             var dialogHtml = ''
                     + '<div class="bootbox-body">'
@@ -118,19 +153,28 @@
                     + '<div class="form-group">'
                     + '<label class="col-sm-2 control-label no-padding-right">选择省份：</label>'
                     + '<div class="col-sm-2">'
-                    + '<select class="form-control" id="province2">'+ province +'</select>'
+                    + '<select class="form-control" id="province2">' + province + '</select>'
                     + '</div>'
                     + '</div>'
                     + '<div class="form-group">'
                     + '<label class="col-sm-2 control-label no-padding-right" for="policyInterOne">'
                     + '政策一级分类：</label>'
+                    + '<div class="col-sm-2">'
+                    + '<select class="form-control" id="policyInterGroup">'+'<option value="00">选择政策一级分类</option><option value="000">+新建政策分类+</option>'
+                    + '</select>'
+                    + '</div>'
+                    + '</div>'
+
+                    + '<div class="form-group hide" id="newPolicy">'
+                    + '<label class="col-sm-2 control-label no-padding-right" for="policyInterOne">'
+                    + '新建政策一级分类：</label>'
                     + '<div class="col-sm-6">'
-                    + '<input type="text" id="policyInterOne" placeholder="政策解读一级分类，限制字数10个字" class="col-sm-5">'
-                    + '</div>'
-                    + '<div class="col-sm-2 col-sm-pull-3">'
-                    + '<select class="form-control" id="policyInterGroup">' + policyInterGroup + '</select>'
+                    + '<input type="text" id="policyInterNew" placeholder="政策解读一级分类，限制字数10个字"'
+                    + 'class="col-sm-5">'
                     + '</div>'
                     + '</div>'
+
+
                     + '<div class="form-group">'
                     + '<label class="col-sm-2 control-label no-padding-right" for="policyInterTwo">'
                     + '政策二级分类：</label>'
@@ -148,58 +192,42 @@
                     + '</div>'
                     + '</div>'
                     + '</div>'
-                    +'<div id="tips"></div>'
+                    + '<div id="tips"></div>'
                     + '</div>'
                     + '</div>'
                     + '</div>'
                     + '</div>';
 
-
-//
             var addPolicyInterpretationFun = function () {
-
                 var provinceV = $("#province2").find("option:selected").attr('value'),
-                        policyInterOneV = $.trim($('#policyInterOne').val()),
-//                      policyInterGroupV = $('#policyInterGroup).find("option:selected").text(),
+                        policyInterGroupV = $("#policyInterGroup").find("option:selected").attr('value'),
                         policyInterTwoV = $.trim($('#policyInterTwo').val()),
                         policyInterDetailV = $('#policyInterDetail').html();
-                console.info(provinceV);
+                console.info(policyInterTwoV);
                 if (provinceV == "00") {
                     policyInterpretation.tipsDialog('请选择省份');
                     return false;
                 }
-                if (policyInterOneV == "") {
-                    policyInterpretation.tipsDialog('请选政策一级分类不能为空');
+                if (policyInterGroupV == "00") {
+                    policyInterpretation.tipsDialog('请选择政策一级分类');
                     return false;
                 }
                 if (policyInterTwoV == "") {
-                    policyInterpretation.tipsDialog('请选政策二级分类不能为空');
+                    policyInterpretation.tipsDialog('政策二级分类不能为空');
                     return false;
                 }
                 if (policyInterDetailV == "") {
                     policyInterpretation.tipsDialog('请输入政策解读详情内容');
                     return false;
                 }
+                //添加政策解读
                 var infoData = {
                     provinceId: provinceV,
-                    admissionBatchId:'',
-                    content:policyInterDetailV,
-                    categoryName:policyInterTwoV,
+                    admissionBatchId: policyInterGroupV,
+                    content: policyInterDetailV,
+                    categoryName: policyInterTwoV,
                     oper: 'add'
                 };
-                //一级政策分类
-                $.ajax({
-                    type: "POST",
-                    url: '/admin/${bizSys}/commonsave/admissionbatch',
-                    data: {
-                        name: '哈哈',
-                        oper: 'add'
-                    }
-                    success: function (result) {
-                        console.log(result);
-                    }
-                });
-                //添加政策解读
                 $.ajax({
                     type: "POST",
                     url: '/admin/${bizSys}/getAdmissionBatch',
