@@ -10,7 +10,7 @@
                 'field': 'gkhot.areaId',
                 'op': 'eq',
                 'data': areaId
-            }
+            };
             rules.push(rule);
         }
         if (hotInformation != '' && hotInformation != null && hotInformation != undefined) {
@@ -18,10 +18,10 @@
                 'field': 'gkhot.hotInformation',
                 'op': 'lk',
                 'data': hotInformation
-            }
+            };
             rules.push(rule);
         }
-        console.log(rules)
+        console.log(rules);
         return rules;
     }
     function searchLoad() {
@@ -369,14 +369,21 @@
                             hotInformation = dataInfo.hotInformation,
                             hotdate = dataInfo.hotdate,
                             informationContent = dataInfo.informationContent;
-                    console.log(informationContent)
-
-                    $('#hotContent').load(informationContent)
-
-
+                    $.ajax({
+                        type:'POST',
+                        url:'/admin/${bizSys}/getHTMLContent',
+                        data: {
+                            htmlurl:informationContent
+                        },
+                        success: function (res) {
+                            if(res.rtnCode == "0000000"){
+                                $('#hotContent').html(res.bizData);
+                            }
+                        }
+                    });
                     $('#selProvince').find('option[value="' + areaId + '"]').attr('selected', 'selected');
                     $('#hotTitle').val(hotInformation);
-                    $('#hotContent').html(informationContent);
+
                     $('#date-picker').val(hotdate);
                 }
             });
