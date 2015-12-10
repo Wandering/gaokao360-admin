@@ -48,8 +48,8 @@ public class ServiceMaps extends BaseServiceMaps{
     public void init(){
         super.init();
         serviceMap.put("gkinformationgkhot",gkinformationGkhotService);
-        serviceMap.put("examinationpaperService",examinationPaperService);
-        serviceMap.put("policyInterpretationService",policyInterpretationService);
+        serviceMap.put("examinationpaper",examinationPaperService);
+        serviceMap.put("policyinterpretation",policyInterpretationService);
         serviceMap.put("videoclassify",videoClassifyService);
         serviceMap.put("videocourse",videoCourseService);
         serviceMap.put("videosection",videoSectionService);
