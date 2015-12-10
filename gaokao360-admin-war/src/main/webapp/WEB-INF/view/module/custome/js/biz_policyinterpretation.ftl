@@ -144,14 +144,15 @@
         $('#eduLevel').html(eduLevel);
 
         $("#addPolicyInterpretation").on(ace.click_event, function () {
-            //添加：一级政策分类
-//            $(document).on('change', '#policyInterGroup', function () {
-//                if ($(this).val() == '000') {
-//                    $('#newPolicy').removeClass('hide');
-//                } else {
-//                    $('#newPolicy').addClass('hide');
-//                }
-//            });
+//          添加：一级政策分类
+            $(document).on('change', '#policyInterGroup', function () {
+                if ($(this).val() == '000') {
+                    $('#newPolicy').removeClass('hide');
+
+                } else {
+                    $('#newPolicy').addClass('hide');
+                }
+            });
             policyInterpretation.getData(policyInterpretation.getInterfaceUrl.addGroup, {
                 name: '123',
                 oper: 'add',
