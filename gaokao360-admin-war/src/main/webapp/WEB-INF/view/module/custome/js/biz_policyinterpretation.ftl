@@ -97,6 +97,13 @@
         * */
         var province = policyInterpretation.getSelOption(policyInterpretation.getInterfaceUrl.getProvinceUrl, '省份');
         $('#province').append(province);
+
+
+
+
+
+
+
         var policyInterGroup = '';
         var eduLevel = policyInterpretation.getSelOption(policyInterpretation.getInterfaceUrl.getEduLevel, '学历层次');
         $('#eduLevel').html(eduLevel);
@@ -111,7 +118,7 @@
                     + '<div class="form-group">'
                     + '<label class="col-sm-2 control-label no-padding-right">选择省份：</label>'
                     + '<div class="col-sm-2">'
-                    + '<select class="form-control" id="province">' + province + '</select>'
+                    + '<select class="form-control" id="province2">'+ province +'</select>'
                     + '</div>'
                     + '</div>'
                     + '<div class="form-group">'
@@ -146,12 +153,20 @@
                     + '</div>'
                     + '</div>'
                     + '</div>';
+
+
+//
             var addPolicyInterpretationFun = function () {
-                var provinceV = $("#province").find("option:selected").val(),
+
+                console.info($('#province2 option:checked').val());
+
+
+                var provinceV = $("#province").find("option:selected").attr('value'),
                         policyInterOneV = $.trim($('#policyInterOne').val()),
-//                        policyInterGroupV = $('#policyInterGroup).find("option:selected").text(),
+//                      policyInterGroupV = $('#policyInterGroup).find("option:selected").text(),
                         policyInterTwoV = $.trim($('#policyInterTwo').val()),
                         policyInterDetailV = $('#policyInterDetail').html();
+
                 if (provinceV == "00") {
                     policyInterpretation.tipsDialog('请选择省份');
                     return false;
@@ -168,6 +183,21 @@
                     policyInterpretation.tipsDialog('请输入政策解读详情内容');
                     return false;
                 }
+//                var infoData = {
+//                    areaId: provinceV,
+//
+//                };
+                <#--$.ajax({-->
+                    <#--type: "POST",-->
+                    <#--url: '/admin/${bizSys}/getAdmissionBatch',-->
+                    <#--data: infoData,-->
+                    <#--success: function (result) {-->
+                        <#--console.log(result);-->
+                        <#--if (result.rtnCode == "0000000") {-->
+                            <#--searchLoad();-->
+                        <#--}-->
+                    <#--}-->
+                <#--});-->
             };
             bootbox.dialog({
                 title: "添加政策解读",
