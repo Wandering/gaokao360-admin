@@ -54,10 +54,10 @@ selectList
             </if>
 
             <if test="condition.interpretationprovinceId!=null">
-                ${condition.groupOp}   ${condition.interpretation.provinceId.field}  ${condition.interpretation.provinceId.op}  #{condition.interpretation.provinceId.data}
+                ${condition.groupOp}   ${condition.interpretationprovinceId.field}  ${condition.interpretationprovinceId.op}  #{condition.interpretationprovinceId.data}
             </if>
             <if test="condition.interpretationadmissionBatchId!=null">
-                ${condition.groupOp}   ${condition.interpretation.admissionBatchId.field}  ${condition.interpretation.admissionBatchId.op}  #{condition.interpretation.admissionBatchId.data}
+                ${condition.groupOp}   ${condition.interpretationadmissionBatchId.field}  ${condition.interpretationadmissionBatchId.op}  #{condition.interpretationadmissionBatchId.data}
             </if>
             <if test="condition.queryparam!=null">
                 ${condition.groupOp}   ${condition.queryparam.field}  ${condition.queryparam.op}  #{condition.queryparam.data}
@@ -80,10 +80,10 @@ selectList
         LEFT OUTER JOIN gk_admission_batch batch ON batch.id=interpretation.admissionBatchId
        <where>
            <if test="interpretationprovinceId!=null">
-               ${groupOp} ${interpretation.provinceId.field} ${interpretation.provinceId.op}  #{interpretation.provinceId.data}
+               ${groupOp} ${interpretationprovinceId.field} ${interpretationprovinceId.op}  #{interpretationprovinceId.data}
            </if>
            <if test="interpretationadmissionBatchId!=null">
-               ${groupOp} ${interpretation.admissionBatchId.field} ${interpretation.admissionBatchId.op}  #{interpretation.admissionBatchId.data}
+               ${groupOp} ${interpretationadmissionBatchId.field} ${interpretationadmissionBatchId.op}  #{interpretationadmissionBatchId.data}
            </if>
            <if test="queryparam!=null">
                ${groupOp} ${queryparam.field} ${queryparam.op}  #{queryparam.data}

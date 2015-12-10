@@ -67,10 +67,10 @@ selectList
                 and id in (#{condition.whereSql})
             </if>
             <if test="condition.coursesubjectId!=null">
-                ${condition.groupOp}   ${condition.course.subjectId.field}  ${condition.course.subjectId.op}  #{condition.course.subjectId.data}
+                ${condition.groupOp}   ${condition.coursesubjectId.field}  ${condition.coursesubjectId.op}  #{condition.coursesubjectId.data}
             </if>
             <if test="condition.courseareaId!=null">
-                ${condition.groupOp}   ${condition.course.areaId.field}  ${condition.course.areaId.op}  #{condition.course.areaId.data}
+                ${condition.groupOp}   ${condition.courseareaId.field}  ${condition.courseareaId.op}  #{condition.courseareaId.data}
             </if>
             <if test="condition.queryparam!=null">
                 and (course.teacher like CONCAT('%', #{condition.queryparam.data} , '%')  OR course.subcontent like CONCAT('%', #{condition.queryparam.data} , '%')')
@@ -95,10 +95,10 @@ selectList
        <where>
            course.classifyId=1
            <if test="coursesubjectId!=null">
-               ${groupOp}   ${course.subjectId.field}  ${course.subjectId.op}  #{course.subjectId.data}
+               ${groupOp}   ${coursesubjectId.field}  ${coursesubjectId.op}  #{coursesubjectId.data}
            </if>
            <if test="courseareaId!=null">
-               ${groupOp}   ${course.areaId.field}  ${course.areaId.op}  #{course.areaId.data}
+               ${groupOp}   ${course.courseareaId.field}  ${course.courseareaId.op}  #{course.courseareaId.data}
            </if>
            <if test="queryparam!=null">
                and (course.teacher like CONCAT('%', #{queryparam.data} , '%')  OR course.subcontent like CONCAT('%', #{queryparam.data} , '%')')
