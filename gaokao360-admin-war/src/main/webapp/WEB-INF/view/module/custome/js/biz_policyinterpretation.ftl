@@ -90,17 +90,42 @@
         getInterfaceUrl: {
             getProvinceUrl: '/admin/${bizSys}/getProvince',
             getEduLevel: '/admin/${bizSys}/getAdmissionBatch',
-            addPolicy:'/admin/${bizSys}/getAdmissionBatch',
-            addGroup:'/admin/${bizSys}/commonsave/admissionbatch',
-            getGroup:'/admin/${bizSys}/getAdmissionBatch',
+            addPolicy: '/admin/${bizSys}/commonsave/${mainObj}',
+            addGroup: '/admin/${bizSys}/commonsave/admissionbatch',
+            getGroup: '/admin/${bizSys}/getAdmissionBatch',
         },
-        getData: function (url,data,callback) {
+        dynGetData: function (ajaxUrl, contentData) {
+            var returnStr = "";
+            $.ajaxSettings.async = false;
+            $.ajax({
+                type: 'POST',
+                url: ajaxUrl,
+                data: {
+                    content: contentData
+                },
+                success: function (result) {
+                    if (result.rtnCode == '0000000') {
+                        var jsonData = JSON.parse(result.bizData);
+                        console.log(jsonData);
+                        if (jsonData.rtnCode == '0000000') {
+                            returnStr += jsonData.bizData.file.fileUrl;
+                        } else {
+
+                        }
+
+                    }
+                }
+            });
+            $.ajaxSettings.async = true;
+            return returnStr;
+        },
+        getData: function (url, data, callback) {
             $.ajax({
                 type: "POST",
                 url: url,
-                dataType:'json',
+                dataType: 'json',
                 data: data,
-                success:callback
+                success: callback
             });
         }
 
@@ -127,19 +152,19 @@
                     $('#newPolicy').addClass('hide');
                 }
             });
-            policyInterpretation.getData(policyInterpretation.getInterfaceUrl.addGroup,{
-                name:'123',
-                oper:'add',
-                aeraId:''
-            },function(res){
+            policyInterpretation.getData(policyInterpretation.getInterfaceUrl.addGroup, {
+                name: '123',
+                oper: 'add',
+                aeraId: ''
+            }, function (res) {
                 console.info(res);
             });
             //拉取：一级政策分类
-            policyInterpretation.getData(policyInterpretation.getInterfaceUrl.getGroup,{},function(res){
+            policyInterpretation.getData(policyInterpretation.getInterfaceUrl.getGroup, {}, function (res) {
                 var strOption = '';
-                if(res.rtnCode == '0000000'){
-                    $.each(res.bizData,function(i,v){
-                        strOption += '<option value="'+ v.id+'">'+ v.name+'</option>';
+                if (res.rtnCode == '0000000') {
+                    $.each(res.bizData, function (i, v) {
+                        strOption += '<option value="' + v.id + '">' + v.name + '</option>';
                     });
                     $('#policyInterGroup').append(strOption);
                 }
@@ -160,7 +185,7 @@
                     + '<label class="col-sm-2 control-label no-padding-right" for="policyInterOne">'
                     + '政策一级分类：</label>'
                     + '<div class="col-sm-2">'
-                    + '<select class="form-control" id="policyInterGroup">'+'<option value="00">选择政策一级分类</option><option value="000">+新建政策分类+</option>'
+                    + '<select class="form-control" id="policyInterGroup">' + '<option value="00">选择政策一级分类</option><option value="000">+新建政策分类+</option>'
                     + '</select>'
                     + '</div>'
                     + '</div>'
@@ -220,23 +245,29 @@
                     policyInterpretation.tipsDialog('请输入政策解读详情内容');
                     return false;
                 }
+                //上传高考热点内容到云存储
+                var policyContentHtml = ''
+                        + '<!DOCTYPE html>'
+                        + '<html lang="en">'
+                        + '<head>'
+                        + '<meta charset="UTF-8">'
+                        + '<title>Document</title>'
+                        + '</head>'
+                        + '<body>';
+                policyContentHtml += policyInterDetailV + '</body>' + '</html>';
+                var policyContentUrl = policyInterpretation.dynGetData('/admin/${bizSys}/getContentUrl', policyContentHtml);
                 //添加政策解读
                 var infoData = {
                     provinceId: provinceV,
                     admissionBatchId: policyInterGroupV,
-                    content: policyInterDetailV,
+                    content: policyContentUrl,
                     categoryName: policyInterTwoV,
                     oper: 'add'
                 };
-                $.ajax({
-                    type: "POST",
-                    url: '/admin/${bizSys}/getAdmissionBatch',
-                    data: infoData,
-                    success: function (result) {
-                        console.log(result);
-                        if (result.rtnCode == "0000000") {
-                            searchLoad();
-                        }
+                policyInterpretation.getData(policyInterpretation.getInterfaceUrl.addPolicy, infoData, function (res) {
+                    console.info(res);
+                    if (res.rtnCode == "0000000") {
+//                        searchLoad();
                     }
                 });
             };
