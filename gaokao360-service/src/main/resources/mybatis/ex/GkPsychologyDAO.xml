@@ -25,7 +25,7 @@
     -->
 
     <sql id="Base_Column_List">
-       course.id as id ,
+        course.id as id ,
         course.classifyId as classifyId ,
         course.teacherId as teacherId ,
         course.subjectId as subjectId ,
@@ -59,7 +59,7 @@
         FROM gk_video_course course
         LEFT OUTER JOIN gk_video_classify classify ON classify.id = course.classifyId
         LEFT OUTER JOIN gk_subject gksubject ON course.subjectId = gksubject.id
-        LEFT JOIN gk_province province ON course.areaId = province.ids
+        LEFT JOIN gk_province province ON course.areaId = province.id
 
         <where>
             course.classifyId=2
@@ -73,12 +73,12 @@
                 ${condition.groupOp}   ${condition.courseareaId.field}  ${condition.courseareaId.op}  #{condition.courseareaId.data}
             </if>
             <if test="condition.queryparam!=null">
-                ${condition.groupOp} (course.teacher like #{condition.queryparam.data}  OR course.subcontent like  #{condition.queryparam.data})
+                and (course.teacher like CONCAT('%', #{condition.queryparam.data} , '%')  OR course.subcontent like CONCAT('%', #{condition.queryparam.data} , '%')')
             </if>
 
 
         </where>
-            ORDER BY id DESC
+        ORDER BY id DESC
         <if test="offset != null">
             limit ${offset}, ${rows}
         </if>
@@ -99,7 +99,7 @@
                 ${groupOp}   ${course.courseareaId.field}  ${course.courseareaId.op}  #{course.courseareaId.data}
             </if>
             <if test="queryparam!=null">
-                ${groupOp}  (course.teacher like #{queryparam.data}  OR course.subcontent like  #{queryparam.data} )
+                and (course.teacher like CONCAT('%', #{queryparam.data} , '%')  OR course.subcontent like CONCAT('%', #{queryparam.data} , '%')')
             </if>
         </where>
     </select>

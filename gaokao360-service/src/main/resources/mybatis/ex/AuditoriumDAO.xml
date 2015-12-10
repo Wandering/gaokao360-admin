@@ -25,7 +25,7 @@ selectList
 -->
 
     <sql id="Base_Column_List">
-        course.id as id ,
+       course.id as id ,
         course.classifyId as classifyId ,
         course.teacherId as teacherId ,
         course.subjectId as subjectId ,
@@ -48,7 +48,7 @@ selectList
         course.creator as creator ,
         course.lastModifier as lastModifier,
         classify.classifyName as  classifyName,
-        gksubject.id as subjectName,
+        gksubject.subjectName as subjectName,
         province.name as province
 
     </sql>
