@@ -36,7 +36,7 @@
 
         $("#grid-table").jqGrid('setGridParam', {
             url: url,
-            mtype: "GET",
+            mtype: "POST",
             postData: "filters=" + JSON.stringify(filters),
             page: 1
         }).trigger("reloadGrid");

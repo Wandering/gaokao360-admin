@@ -41,6 +41,8 @@ public class ServiceMaps extends BaseServiceMaps{
 
     @Autowired
     private IVideoSectionService videoSectionService;
+    @Autowired
+    private IAdmissionBatchService admissionBatchService;
 
     @PostConstruct
     public void init(){
@@ -51,6 +53,7 @@ public class ServiceMaps extends BaseServiceMaps{
         serviceMap.put("videoclassify",videoClassifyService);
         serviceMap.put("videocourse",videoCourseService);
         serviceMap.put("videosection",videoSectionService);
+        serviceMap.put("admissionbatch",admissionBatchService);
     }
 
 }
