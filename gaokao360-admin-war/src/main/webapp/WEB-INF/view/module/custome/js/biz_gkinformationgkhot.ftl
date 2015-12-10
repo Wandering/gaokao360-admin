@@ -174,6 +174,10 @@
                                 return false;
                             }
 
+                            if (datePickerV == "") {
+                                tipsDialog('温馨提示', '请选择高考热点日期');
+                                return false;
+                            }
                             //上传高考热点内容到云存储
                             var hotContentHtml = ''
                                     + '<!DOCTYPE html>'
@@ -187,10 +191,6 @@
                             + '</body>'
                             + '</html>';
                             var hotContentUrl = dynGetData('/admin/${bizSys}/getContentUrl', hotContentHtml);
-                            if (datePickerV == "") {
-                                tipsDialog('温馨提示', '请选择高考热点日期');
-                                return false;
-                            }
                             var infoData = {
                                 areaId: selProvinceV,
                                 hotInformation: hotTitleV,
@@ -413,7 +413,10 @@
                                 tipsDialog('温馨提示', '请输入高考热点内容');
                                 return false;
                             }
-
+                            if (datePickerV == "") {
+                                tipsDialog('温馨提示', '请选择高考热点日期');
+                                return false;
+                            }
                             //上传高考热点内容到云存储
                             var hotContentHtml = ''
                                     + '<!DOCTYPE html>'
@@ -427,12 +430,6 @@
                             + '</body>'
                             + '</html>';
                             var hotContentUrl = dynGetData('/admin/${bizSys}/getContentUrl', hotContentHtml);
-                            if (datePickerV == "") {
-                                tipsDialog('温馨提示', '请选择高考热点日期');
-                                return false;
-                            }
-
-
                             var infoData = {
                                 id: rowId,
                                 areaId: selProvinceV,
