@@ -48,17 +48,17 @@
         course.creator as creator ,
         course.lastModifier as lastModifier,
         classify.classifyName as  classifyName,
-        gksubject.id as subjectName,
+        gksubject.subjectName as subjectName,
         province.name as province
 
     </sql>
 
-    <select id="queryPage" resultType="VideoCourse">
+    <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.VideoCourseDTO">
         SELECT
         <include refid="Base_Column_List" />
         FROM gk_video_course course
         LEFT OUTER JOIN gk_video_classify classify ON classify.id = course.classifyId
-        LEFT OUTER JOIN gk_subject gksubject ON course.subjectId = gksubject.subjectName
+        LEFT OUTER JOIN gk_subject gksubject ON course.subjectId = gksubject.id
         LEFT JOIN gk_province province ON course.areaId = province.id
 
         <where>
@@ -67,10 +67,10 @@
                 and id in (#{condition.whereSql})
             </if>
             <if test="condition.coursesubjectId!=null">
-                ${condition.groupOp}   ${condition.course.subjectId.field}  ${condition.course.subjectId.op}  #{condition.course.subjectId.data}
+                ${condition.groupOp}   ${condition.coursesubjectId.field}  ${condition.coursesubjectId.op}  #{condition.coursesubjectId.data}
             </if>
             <if test="condition.courseareaId!=null">
-                ${condition.groupOp}   ${condition.course.areaId.field}  ${condition.course.areaId.op}  #{condition.course.areaId.data}
+                ${condition.groupOp}   ${condition.courseareaId.field}  ${condition.courseareaId.op}  #{condition.courseareaId.data}
             </if>
             <if test="condition.queryparam!=null">
                 and (course.teacher like CONCAT('%', #{condition.queryparam.data} , '%')  OR course.subcontent like CONCAT('%', #{condition.queryparam.data} , '%')')
@@ -78,9 +78,7 @@
 
 
         </where>
-        <if test="orderBy!=null">
-            ORDER BY ${orderBy} ${sortBy}
-        </if>
+        ORDER BY id DESC
         <if test="offset != null">
             limit ${offset}, ${rows}
         </if>
@@ -88,17 +86,17 @@
 
 
     <select id="count" resultType="java.lang.Integer">
-        SELECT count(course.id) FROM gk_video_course course
+        SELECT count(course.id)  FROM gk_video_course course
         LEFT OUTER JOIN gk_video_classify classify ON classify.id = course.classifyId
-        LEFT OUTER JOIN gk_subject gksubject ON course.subjectId = gksubject.subjectName
+        LEFT OUTER JOIN gk_subject gksubject ON course.subjectId = gksubject.id
         LEFT JOIN gk_province province ON course.areaId = province.id
         <where>
             course.classifyId=2
             <if test="coursesubjectId!=null">
-                ${groupOp}   ${course.subjectId.field}  ${course.subjectId.op}  #{course.subjectId.data}
+                ${groupOp}   ${coursesubjectId.field}  ${coursesubjectId.op}  #{coursesubjectId.data}
             </if>
             <if test="courseareaId!=null">
-                ${groupOp}   ${course.areaId.field}  ${course.areaId.op}  #{course.areaId.data}
+                ${groupOp}   ${course.courseareaId.field}  ${course.courseareaId.op}  #{course.courseareaId.data}
             </if>
             <if test="queryparam!=null">
                 and (course.teacher like CONCAT('%', #{queryparam.data} , '%')  OR course.subcontent like CONCAT('%', #{queryparam.data} , '%')')

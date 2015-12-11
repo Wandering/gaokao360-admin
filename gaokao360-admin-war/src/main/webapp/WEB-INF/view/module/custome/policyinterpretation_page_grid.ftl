@@ -26,9 +26,9 @@
                 </div>
             </div>
             <div class="col-sm-3">
-                <label class="col-sm-5 control-label text-right">学历层次：</label>
+                <label class="col-sm-6 control-label text-right">政策一级分类：</label>
 
-                <div class="col-sm-7 no-padding">
+                <div class="col-sm-5 no-padding">
                     <select class="form-control" id="eduLevel">
                     </select>
                 </div>
@@ -37,7 +37,7 @@
                 <div class="form-group">
                     <label class="col-sm-4 control-label text-right">省份：</label>
 
-                    <div class="col-sm-8 no-padding">
+                    <div class="col-sm-5 no-padding">
                         <select class="form-control" id="province"></select>
                     </div>
                 </div>

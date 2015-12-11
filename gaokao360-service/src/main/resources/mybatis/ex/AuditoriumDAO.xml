@@ -25,7 +25,7 @@ selectList
 -->
 
     <sql id="Base_Column_List">
-        course.id as id ,
+       course.id as id ,
         course.classifyId as classifyId ,
         course.teacherId as teacherId ,
         course.subjectId as subjectId ,
@@ -48,17 +48,17 @@ selectList
         course.creator as creator ,
         course.lastModifier as lastModifier,
         classify.classifyName as  classifyName,
-        gksubject.id as subjectName,
+        gksubject.subjectName as subjectName,
         province.name as province
 
     </sql>
 
-    <select id="queryPage" resultType="VideoCourse">
+    <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.VideoCourseDTO">
         SELECT
         <include refid="Base_Column_List" />
         FROM gk_video_course course
         LEFT OUTER JOIN gk_video_classify classify ON classify.id = course.classifyId
-        LEFT OUTER JOIN gk_subject gksubject ON course.subjectId = gksubject.subjectName
+        LEFT OUTER JOIN gk_subject gksubject ON course.subjectId = gksubject.id
         LEFT JOIN gk_province province ON course.areaId = province.id
 
         <where>
@@ -78,9 +78,7 @@ selectList
 
 
     </where>
-        <if test="orderBy!=null">
-        ORDER BY ${orderBy} ${sortBy}
-        </if>
+        ORDER BY id DESC
         <if test="offset != null">
             limit ${offset}, ${rows}
         </if>
@@ -88,9 +86,9 @@ selectList
 
 
     <select id="count" resultType="java.lang.Integer">
-        SELECT count(course.id) FROM gk_video_course course
+        SELECT count(course.id)  FROM gk_video_course course
         LEFT OUTER JOIN gk_video_classify classify ON classify.id = course.classifyId
-        LEFT OUTER JOIN gk_subject gksubject ON course.subjectId = gksubject.subjectName
+        LEFT OUTER JOIN gk_subject gksubject ON course.subjectId = gksubject.id
         LEFT JOIN gk_province province ON course.areaId = province.id
        <where>
            course.classifyId=1

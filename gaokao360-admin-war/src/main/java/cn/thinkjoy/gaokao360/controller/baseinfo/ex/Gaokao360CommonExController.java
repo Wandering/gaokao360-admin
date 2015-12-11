@@ -17,6 +17,7 @@ import cn.thinkjoy.gaokao360.dao.ex.IAuditoriumDAO;
 import cn.thinkjoy.gaokao360.service.IAdmissionBatchService;
 import cn.thinkjoy.gaokao360.service.IProvinceService;
 import cn.thinkjoy.gaokao360.service.ISubjectService;
+import cn.thinkjoy.gaokao360.service.ex.IAdmissionBatchExService;
 import cn.thinkjoy.gaokao360.service.ex.IAuditoriumService;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import org.apache.commons.lang.time.DateUtils;
@@ -32,6 +33,7 @@ import javax.swing.text.html.HTML;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -46,6 +48,8 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     private ISubjectService subjectService;
     @Autowired
     private IAdmissionBatchService admissionBatchService;
+    @Autowired
+    private IAdmissionBatchExService admissionBatchExService;
 
     @Override
     protected void innerHandleDel(String mainObj, Map dataMap) {
@@ -106,6 +110,16 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         return  htmlString;
     }
 
+    @Override
+    protected void innerHandleAdd(String mainObj, Map dataMap) {
+        if("admissionbatch".equals(mainObj)){
+            admissionBatchExService.insertMap(dataMap);
+        }else{
+            super.innerHandleAdd(mainObj, dataMap);
+        }
+
+    }
+
     /**
      * 公共获取单挑数据的方法
      * @return
@@ -114,6 +128,17 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     @ResponseBody
     public Object queryOne(@PathVariable String mainObj,@RequestParam("id")String id){
         return  serviceMaps.get(mainObj).fetch(id);
+    }
+    /**
+     * 公共获取单挑数据的方法
+     * @return
+     */
+    @RequestMapping(value="/getVideoSection")
+    @ResponseBody
+    public Object getVideoSection(@RequestParam("id")String id){
+        Map<String,Object> map = new HashMap<>();
+        map.put("courseId",id);
+        return  serviceMaps.get("videosection").queryList(map,"sectionSort","asc");
     }
     /**
      * 查询所有的科目
@@ -147,6 +172,8 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         String st = template.postForObject(url, param, String.class);
         return st;
     }
+
+
 
     @Override
     protected BaseServiceMaps getServiceMaps() {

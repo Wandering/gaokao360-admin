@@ -275,4 +275,50 @@ function formatdataURL(cellvalue){
     }
     return "<a href='"+cellvalue+"' target='_blank' class='btn btn-sm btn-primary'>查看详情</a>";
 }
-
+//合并省份
+function formatdataProvince1(cellvalue,options, rowObject){
+    if(cellvalue == null || cellvalue=='' ||cellvalue ==0){
+        return "";
+    }
+    var province=rowObject.areaId;
+    if(province == null || province=='' ||province ==0){
+        return "";
+    }
+    return province;
+}
+//合并省份
+function formatdataProvince2(cellvalue,options, rowObject){
+    if(cellvalue == null || cellvalue=='' ||cellvalue ==0){
+        return "";
+    }
+    var province=rowObject.province;
+    if(province == null || province=='' ||province ==0){
+        return "";
+    }
+    return province;
+}
+//合并一级政策
+function formatdataAdmissionBatch(cellvalue,options, rowObject) {
+    if (cellvalue == null || cellvalue == '' || cellvalue == 0) {
+        return "";
+    }
+    var admissionBatch = rowObject.admissionBatch;
+    if (admissionBatch == null || admissionBatch == '' || admissionBatch == 0) {
+        return "";
+    }
+    console.log(admissionBatch)
+    return admissionBatch;
+}
+//合并学科
+function formatdataSubject(cellvalue,options, rowObject) {
+    if (cellvalue == null || cellvalue == '' || cellvalue == 0) {
+        return "";
+    }
+    var subject = rowObject.subjectName;
+    console.log(rowObject)
+    console.log(subject)
+    if (subject == null || subject == '' || subject == 0) {
+        return "";
+    }
+    return subject;
+}
