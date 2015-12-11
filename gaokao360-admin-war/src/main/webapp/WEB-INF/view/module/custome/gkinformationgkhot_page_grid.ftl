@@ -32,7 +32,7 @@
     <div class="col-xs-12">
         <div class="form-group">
             <button class="btn btn-purple" id="addHotBtn"><i
-                    class="ace-icon fa fa-cloud-upload align-top bigger-125"></i>添加高考热点
+                    class="ace-icon fa fa-cloud-upload align-top bigger-125"></i>添加
             </button>
             <button class="btn btn-primary" id="editHotBtn"><i class="ace-icon fa fa-pencil-square-o align-top bigger-125"></i>修改
             </button>
