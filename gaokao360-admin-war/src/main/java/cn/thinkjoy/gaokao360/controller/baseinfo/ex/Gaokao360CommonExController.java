@@ -33,6 +33,7 @@ import javax.swing.text.html.HTML;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -128,7 +129,17 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     public Object queryOne(@PathVariable String mainObj,@RequestParam("id")String id){
         return  serviceMaps.get(mainObj).fetch(id);
     }
-
+    /**
+     * 公共获取单挑数据的方法
+     * @return
+     */
+    @RequestMapping(value="/getVideoSection")
+    @ResponseBody
+    public Object getVideoSection(@RequestParam("id")String id){
+        Map<String,Object> map = new HashMap<>();
+        map.put("courseId",id);
+        return  serviceMaps.get("videosection").queryList(map,"sectionSort","asc");
+    }
     /**
      * 查询所有的科目
      * @return
