@@ -88,6 +88,15 @@ selectList
            </if>
        </where>
     </select>
-
+    <select id="fetch" parameterType="java.lang.Long" resultType="cn.thinkjoy.gaokao360.dto.PolicyInterpretationDTO">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM gk_policy_interpretation interpretation
+        LEFT JOIN gk_province province ON province.id=interpretation.provinceId
+        LEFT OUTER JOIN gk_admission_batch batch ON batch.id=interpretation.admissionBatchId
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND interpretation.id = #{id}
+        </trim>
+    </select>
 </mapper>
 

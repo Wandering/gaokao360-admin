@@ -47,7 +47,7 @@
                         class="ace-icon fa fa-search icon-on-right bigger-110"></i></button>
             </div>
         </div>
-        <div class="row">
+        <#--<div class="row">-->
             <div class="col-sm-12">
                 <div class="form-group">
                     <div class="col-sm-4">
@@ -55,18 +55,18 @@
                             <i class="ace-icon fa fa-cloud-upload bigger-110"></i>
                             添加政策解读
                         </button>
-                        <button class="btn btn-primary btn-sm">
+                        <button class="btn btn-primary btn-sm" id="modify-btn">
                             <i class="ace-icon fa fa-pencil-square-o bigger-110"></i>
                             修改
                         </button>
-                        <button class="btn btn-danger btn-sm">
+                        <button class="btn btn-danger btn-sm" id="delete-btn">
                             <i class="ace-icon fa fa-trash-o bigger-110 "></i>
                             删除
                         </button>
                     </div>
                 </div>
             </div>
-        </div>
+        <#--</div>-->
     </div>
     <!-- 搜索end -->
 <#include 'page_grid.ftl'>

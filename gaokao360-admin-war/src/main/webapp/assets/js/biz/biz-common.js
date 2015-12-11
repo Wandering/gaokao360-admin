@@ -288,13 +288,17 @@ function formatdataProvince1(cellvalue,options, rowObject){
 }
 //合并省份
 function formatdataProvince2(cellvalue,options, rowObject){
+    //console.log(rowObject.province);
     if(cellvalue == null || cellvalue=='' ||cellvalue ==0){
         return "";
     }
     var province=rowObject.province;
+
     if(province == null || province=='' ||province ==0){
         return "";
     }
+
+
     return province;
 }
 //合并一级政策
@@ -306,7 +310,7 @@ function formatdataAdmissionBatch(cellvalue,options, rowObject) {
     if (admissionBatch == null || admissionBatch == '' || admissionBatch == 0) {
         return "";
     }
-    console.log(admissionBatch)
+    //console.log(admissionBatch)
     return admissionBatch;
 }
 //合并学科

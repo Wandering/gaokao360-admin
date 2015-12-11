@@ -104,5 +104,16 @@ selectList
        </where>
     </select>
 
+    <select id="fetch" parameterType="java.lang.Long" resultType="cn.thinkjoy.gaokao360.dto.VideoCourseDTO">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM gk_video_course course
+        LEFT OUTER JOIN gk_video_classify classify ON classify.id = course.classifyId
+        LEFT OUTER JOIN gk_subject gksubject ON course.subjectId = gksubject.id
+        LEFT JOIN gk_province province ON course.areaId = province.id
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND course.id = #{id}
+        </trim>
+    </select>
 </mapper>
 
