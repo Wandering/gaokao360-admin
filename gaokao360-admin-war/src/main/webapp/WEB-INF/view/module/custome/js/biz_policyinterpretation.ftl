@@ -109,7 +109,8 @@
             addGroup: '/admin/${bizSys}/commonsave/admissionbatch',
             getGroup: '/admin/${bizSys}/getAdmissionBatch',
             getDynGetData: '/admin/${bizSys}/getContentUrl',
-            modifyData:'/admin/${bizSys}/${mainObj}fetch'
+            <#--modifyData:'/admin/${bizSys}/${mainObj}fetch'-->
+            modifyData:'/admin/${bizSys}/${mainObj}queryone'
         },
         dynGetData: function (ajaxUrl, contentData) {
             var returnStr = "";
@@ -479,23 +480,63 @@
                 policyInterpretation.tipsDialog('温馨提示', '请选中一行后再修改');
                 return false;
             }
-            /*
-            *
-            * admissionBatchId: 3
-areaId: 0
-categoryName: "民族预科"
-content: "<p>&nbsp;</p>
-createDate: 0
-creator: 0
-id: 11
-lastModDate: 1449806343130
-lastModDateAsDate: 1449806343130
-provinceId: 1
-status: 1
-            * */
             policyInterpretation.getData(policyInterpretation.getInterfaceUrl.modifyData,{id:rowId},function(res){
-               console.info(res);
-                $('#province2').find('option[value="' + areaId + '"]').attr('selected', 'selected');
+                $('#policyInterGroup').append(eduLevel);
+                if(res.rtnCode == '0000000'){
+                    $('#province2').find('option[value="' + res.bizData.provinceId + '"]').attr('selected', 'selected');
+                    $('#policyInterGroup').find('option[value="' + res.bizData.admissionBatchId + '"]').attr('selected', 'selected');
+                    $('#policyInterTwo').val(res.bizData.categoryName);
+                    $.ajax({
+                        type:'POST',
+                        url:'/admin/${bizSys}/getHTMLContent',
+                        data: {
+                            htmlurl:res.bizData.content
+                        },
+                        success: function (res) {
+                            if(res.rtnCode == "0000000"){
+                                $('#policyInterDetail').html(res.bizData);
+                            }
+                        }
+                    });
+                }
+            });
+            //添加：一级政策分类输入框
+            $(document).on('change', '#policyInterGroup', function () {
+                if ($(this).val() == '000') {
+                    $('#newPolicy').removeClass('hide');
+                }
+                else {
+                    $('#newPolicy').addClass('hide');
+                }
+            });
+            var nweGroupName = '';
+            $(document).on('click', '#add-group', function () {
+                nweGroupName = $('#policyInterNew').val();
+                if (nweGroupName == '') {
+                    policyInterpretation.tips('新建政策一级分类不能为空');
+                    return false;
+                }
+                policyInterpretation.getData(policyInterpretation.getInterfaceUrl.addGroup, {
+                    name: nweGroupName,
+                    oper: 'add',
+                    areaId: 0
+                }, function (res) {
+                    if (res.rtnCode == '0000000') {
+                        console.info(res);
+                        $('#newPolicy').hide();
+                        policyInterpretation.getData(policyInterpretation.getInterfaceUrl.getGroup, {}, function (res) {
+                            if (res.rtnCode == '0000000') {
+                                var strOption = '';
+                                $.each(res.bizData, function (i, v) {
+                                    if (v.name == nweGroupName) {
+                                        strOption += '<option value="' + v.id + '">' + nweGroupName + '</option>';
+                                        $('#policyInterGroup').append(strOption).find('option[value="' + v.id + '"]').attr('selected', 'selected')
+                                    }
+                                });
+                            }
+                        })
+                    }
+                })
             });
 
             var dialogHtml = ''

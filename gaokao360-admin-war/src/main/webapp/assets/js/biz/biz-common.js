@@ -288,7 +288,7 @@ function formatdataProvince1(cellvalue,options, rowObject){
 }
 //合并省份
 function formatdataProvince2(cellvalue,options, rowObject){
-    console.log(rowObject.province);
+    //console.log(rowObject.province);
     if(cellvalue == null || cellvalue=='' ||cellvalue ==0){
         return "";
     }
