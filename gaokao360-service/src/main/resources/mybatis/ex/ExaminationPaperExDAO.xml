@@ -108,5 +108,15 @@ selectList
        </where>
     </select>
 
+    <select id="fetch" parameterType="java.lang.Long" resultType="cn.thinkjoy.gaokao360.dto.ExaminationPaperDTO">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM gk_examination_paper paper
+        LEFT OUTER JOIN gk_subject gksubject on paper.subjectId = gksubject.id
+        LEFT JOIN gk_province province ON province.id = paper.areaId
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND paper.id = #{id}
+        </trim>
+    </select>
 </mapper>
 
