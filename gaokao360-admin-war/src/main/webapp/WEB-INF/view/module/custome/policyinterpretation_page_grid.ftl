@@ -47,7 +47,7 @@
                         class="ace-icon fa fa-search icon-on-right bigger-110"></i></button>
             </div>
         </div>
-        <div class="row">
+        <#--<div class="row">-->
             <div class="col-sm-12">
                 <div class="form-group">
                     <div class="col-sm-4">
@@ -66,7 +66,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        <#--</div>-->
     </div>
     <!-- 搜索end -->
 <#include 'page_grid.ftl'>
