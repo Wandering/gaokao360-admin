@@ -95,7 +95,7 @@ selectList
         LEFT JOIN gk_province province ON province.id=interpretation.provinceId
         LEFT OUTER JOIN gk_admission_batch batch ON batch.id=interpretation.admissionBatchId
         <trim prefix="WHERE" prefixOverrides="AND | OR">
-            AND id = #{id}
+            AND interpretation.id = #{id}
         </trim>
     </select>
 </mapper>
