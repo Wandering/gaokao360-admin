@@ -44,6 +44,7 @@ public class PolicyInterpretationExController extends AbstractAdminController<IP
     }
 
     @RequestMapping(value="/{mainObj}fetch")
+    @ResponseBody
     public Object fetch(@PathVariable String mainObj,@RequestParam("id")String id){
 
         return policyInterpretationExService.fetch(id);
