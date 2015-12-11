@@ -156,6 +156,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
             try {
                 FileOutputStream outputStream = new FileOutputStream(path + "/" + filename);
                 outputStream.write(content.getBytes("UTF-8"));
+                outputStream.close();
             } catch (Exception e) {
                 throw new BizException("", e.getLocalizedMessage());
             }
@@ -178,6 +179,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
             if(file.exists()){
                 file.delete();
             }
+
         }
         return st;
     }
