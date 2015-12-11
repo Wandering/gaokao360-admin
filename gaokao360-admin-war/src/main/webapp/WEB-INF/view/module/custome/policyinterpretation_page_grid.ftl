@@ -55,7 +55,7 @@
                             <i class="ace-icon fa fa-cloud-upload bigger-110"></i>
                             添加政策解读
                         </button>
-                        <button class="btn btn-primary btn-sm">
+                        <button class="btn btn-primary btn-sm" id="modify-btn">
                             <i class="ace-icon fa fa-pencil-square-o bigger-110"></i>
                             修改
                         </button>
