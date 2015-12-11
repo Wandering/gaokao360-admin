@@ -88,7 +88,7 @@ selectList
            </if>
        </where>
     </select>
-    <select id="fetch" parameterType="java.lang.Long" resultType="PolicyInterpretation">
+    <select id="fetch" parameterType="java.lang.Long" resultType="cn.thinkjoy.gaokao360.dto.PolicyInterpretationDTO">
         SELECT
         <include refid="Base_Column_List" />
         FROM gk_policy_interpretation interpretation
