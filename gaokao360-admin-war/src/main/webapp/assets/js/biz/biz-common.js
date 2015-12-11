@@ -315,8 +315,8 @@ function formatdataSubject(cellvalue,options, rowObject) {
         return "";
     }
     var subject = rowObject.subjectName;
-    console.log(rowObject)
-    console.log(subject)
+    //console.log(rowObject)
+    //console.log(subject)
     if (subject == null || subject == '' || subject == 0) {
         return "";
     }
