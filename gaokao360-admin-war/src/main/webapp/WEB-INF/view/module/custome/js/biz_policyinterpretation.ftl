@@ -182,6 +182,10 @@
                     policyInterpretation.tips('新建政策一级分类不能为空');
                     return false;
                 }
+                if (nweGroupName.length>10  ) {
+                    policyInterpretation.tips('新建政策一级分类字数不能大于10个字');
+                    return false;
+                }
                 policyInterpretation.getData(policyInterpretation.getInterfaceUrl.addGroup, {
                     name: nweGroupName,
                     oper: 'add',
@@ -512,8 +516,12 @@
             var nweGroupName = '';
             $(document).on('click', '#add-group', function () {
                 nweGroupName = $('#policyInterNew').val();
-                if (nweGroupName == '') {
+                if (nweGroupName == ''  ) {
                     policyInterpretation.tips('新建政策一级分类不能为空');
+                    return false;
+                }
+                if (nweGroupName.length>10  ) {
+                    policyInterpretation.tips('新建政策一级分类字数不能大于10个字');
                     return false;
                 }
                 policyInterpretation.getData(policyInterpretation.getInterfaceUrl.addGroup, {
