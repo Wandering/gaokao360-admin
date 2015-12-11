@@ -14,6 +14,7 @@ import cn.thinkjoy.common.service.IBaseService;
 import cn.thinkjoy.gaokao360.common.ServiceMaps;
 import cn.thinkjoy.gaokao360.controller.baseinfo.ProvinceController;
 import cn.thinkjoy.gaokao360.dao.ex.IAuditoriumDAO;
+import cn.thinkjoy.gaokao360.domain.PolicyInterpretation;
 import cn.thinkjoy.gaokao360.service.IAdmissionBatchService;
 import cn.thinkjoy.gaokao360.service.IProvinceService;
 import cn.thinkjoy.gaokao360.service.ISubjectService;
@@ -147,33 +148,83 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     @RequestMapping(value="/getContentUrl",method = RequestMethod.POST)
     @ResponseBody
     public String getContentUrl(@RequestParam("content")String content){
-
+        String st =null;
         String path = request.getSession().getServletContext().getRealPath("/upload");
-        String filename="gk"+ System.currentTimeMillis()+".html";
+        String filename = "gk" + System.currentTimeMillis() + ".html";
         String url = "http://cs-dev.thinkjoy.com.cn/rest/v1/uploadFile";
         try {
-            FileOutputStream outputStream = new FileOutputStream(path+"/"+filename);
-            outputStream.write(content.getBytes("UTF-8"));
-        } catch (Exception e) {
-            throw new BizException("",e.getLocalizedMessage());
-        }
-        FileSystemResource resource = new FileSystemResource(new File(path+"/"+filename));
-        MultiValueMap<String, Object> param = new LinkedMultiValueMap<String, Object>();
-        RestTemplate template = new RestTemplate();
-        //这里大家可以用其他的httpClient均可以
-        param.add("file", resource);
-        param.add("productCode", "gk360");
-        param.add("bizSystem", "gk360");
-        param.add("spaceName ", "gk360");
-        param.add("userId ", "gk360");
-        param.add("dirId ", "0");
+            try {
+                FileOutputStream outputStream = new FileOutputStream(path + "/" + filename);
+                outputStream.write(content.getBytes("UTF-8"));
+            } catch (Exception e) {
+                throw new BizException("", e.getLocalizedMessage());
+            }
+            FileSystemResource resource = new FileSystemResource(new File(path + "/" + filename));
+            MultiValueMap<String, Object> param = new LinkedMultiValueMap<String, Object>();
+            RestTemplate template = new RestTemplate();
+            //这里大家可以用其他的httpClient均可以
+            param.add("file", resource);
+            param.add("productCode", "gk360");
+            param.add("bizSystem", "gk360");
+            param.add("spaceName ", "gk360");
+            param.add("userId ", "gk360");
+            param.add("dirId ", "0");
 
-        template.getMessageConverters().add(new FastJsonHttpMessageConverter());
-        String st = template.postForObject(url, param, String.class);
+            template.getMessageConverters().add(new FastJsonHttpMessageConverter());
+            st = template.postForObject(url, param, String.class);
+
+        }finally {
+            File file = new File(path + "/" + filename);
+            if(file.exists()){
+                file.delete();
+            }
+        }
         return st;
     }
+//    public String delFileUrl(String filename){
+//        String st =null;
+//        String path = request.getSession().getServletContext().getRealPath("/upload");
+//        String filename = "gk" + System.currentTimeMillis() + ".html";
+//        String url = "http://cs-dev.thinkjoy.com.cn/rest/v1/uploadFile";
+//        try {
+//            try {
+//                FileOutputStream outputStream = new FileOutputStream(path + "/" + filename);
+//                outputStream.write(content.getBytes("UTF-8"));
+//            } catch (Exception e) {
+//                throw new BizException("", e.getLocalizedMessage());
+//            }
+//            FileSystemResource resource = new FileSystemResource(new File(path + "/" + filename));
+//            MultiValueMap<String, Object> param = new LinkedMultiValueMap<String, Object>();
+//            RestTemplate template = new RestTemplate();
+//            //这里大家可以用其他的httpClient均可以
+//            param.add("file", resource);
+//            param.add("productCode", "gk360");
+//            param.add("bizSystem", "gk360");
+//            param.add("spaceName ", "gk360");
+//            param.add("userId ", "gk360");
+//            param.add("dirId ", "0");
+//
+//            template.getMessageConverters().add(new FastJsonHttpMessageConverter());
+//            st = template.postForObject(url, param, String.class);
+//
+//        }finally {
+//            File file = new File(path + "/" + filename);
+//            if(file.exists()){
+//                file.delete();
+//            }
+//        }
+//        return st;
+//    }
+    @Override
+    protected void innerHandleUpdate(String mainObj, Map dataMap) {
+        if("policyinterpretation".equals(mainObj)){
+            PolicyInterpretation policyInterpretation = (PolicyInterpretation)serviceMaps.get(mainObj).fetch(dataMap.get("id"));
 
-
+        }else if("gkinformationgkhot".equals(mainObj)){
+            serviceMaps.get(mainObj).fetch(dataMap.get("id"));
+        }
+        super.innerHandleUpdate(mainObj, dataMap);
+    }
 
     @Override
     protected BaseServiceMaps getServiceMaps() {
