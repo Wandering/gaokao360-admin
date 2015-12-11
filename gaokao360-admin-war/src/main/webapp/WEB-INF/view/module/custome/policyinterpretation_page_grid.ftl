@@ -59,7 +59,7 @@
                             <i class="ace-icon fa fa-pencil-square-o bigger-110"></i>
                             修改
                         </button>
-                        <button class="btn btn-danger btn-sm">
+                        <button class="btn btn-danger btn-sm" id="delete-btn">
                             <i class="ace-icon fa fa-trash-o bigger-110 "></i>
                             删除
                         </button>

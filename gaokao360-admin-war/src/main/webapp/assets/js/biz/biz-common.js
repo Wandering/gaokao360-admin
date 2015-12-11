@@ -306,7 +306,7 @@ function formatdataAdmissionBatch(cellvalue,options, rowObject) {
     if (admissionBatch == null || admissionBatch == '' || admissionBatch == 0) {
         return "";
     }
-    console.log(admissionBatch)
+    //console.log(admissionBatch)
     return admissionBatch;
 }
 //合并学科

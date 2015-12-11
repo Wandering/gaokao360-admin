@@ -82,7 +82,7 @@
             $.ajaxSettings.async = true;
             return returnStr;
         },
-        tipsDialog: function (message) {
+        tips: function (message) {
             var str = '<div class="alert alert-danger alert-dismissible well-sm pull-right text-center" role="alert" style="margin-right:44px;"> ' +
                     '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
                     '<span aria-hidden="true">&times;</span></button> ' +
@@ -90,13 +90,25 @@
                     '</div>';
             $('#tips').html(str).fadeIn(3000);
         },
+        tipsDialog: function (title, message) {
+            bootbox.dialog({
+                title: title,
+                message: '<span class="bigger-110 center">' + message + '</span>',
+                buttons: {
+                    cancel: {
+                        label: "关闭",
+                        className: "btn-sm",
+                    }
+                }
+            });
+        },
         getInterfaceUrl: {
             getProvinceUrl: '/admin/${bizSys}/getProvince',
             getEduLevel: '/admin/${bizSys}/getAdmissionBatch',
             addPolicy: '/admin/${bizSys}/commonsave/${mainObj}',
             addGroup: '/admin/${bizSys}/commonsave/admissionbatch',
             getGroup: '/admin/${bizSys}/getAdmissionBatch',
-            getDynGetData:'/admin/${bizSys}/getContentUrl'
+            getDynGetData: '/admin/${bizSys}/getContentUrl'
         },
         dynGetData: function (ajaxUrl, contentData) {
             var returnStr = "";
@@ -156,43 +168,40 @@
             $(document).on('change', '#policyInterGroup', function () {
                 if ($(this).val() == '000') {
                     $('#newPolicy').removeClass('hide');
-
-
-                } else {
+                }
+                else {
                     $('#newPolicy').addClass('hide');
                 }
             });
-
-            $(document).on('click','#add-group',function(){
+            var nweGroupName = '';
+            $(document).on('click', '#add-group', function () {
+                nweGroupName = $('#policyInterNew').val();
+                if (nweGroupName == '') {
+                    policyInterpretation.tips('新建政策一级分类不能为空');
+                    return false;
+                }
                 policyInterpretation.getData(policyInterpretation.getInterfaceUrl.addGroup, {
-                            name: $('#policyInterNew').val(),
-                            oper: 'add',
-                            areaId: 0
-                        },
-                        function (res) {
+                    name: nweGroupName,
+                    oper: 'add',
+                    areaId: 0
+                }, function (res) {
+                    if (res.rtnCode == '0000000') {
+                        console.info(res);
+                        $('#newPolicy').hide();
+                        policyInterpretation.getData(policyInterpretation.getInterfaceUrl.getGroup, {}, function (res) {
                             if (res.rtnCode == '0000000') {
-                                console.info(res);
+                                var strOption = '';
+                                $.each(res.bizData, function (i, v) {
+                                    if (v.name == nweGroupName) {
+                                        strOption += '<option value="' + v.id + '">' + nweGroupName + '</option>';
+                                        $('#policyInterGroup').append(strOption).find('option[value="' + v.id + '"]').attr('selected', 'selected')
+                                    }
+                                });
                             }
                         })
+                    }
+                })
             });
-//            var policyInterGroupV = '';
-//            var selectPolicy = $("#policyInterGroup").find("option:selected").attr('value');
-//            if (selectPolicy == '000') {
-//                policyInterGroupV = $('#policyInterNew').val();
-//                policyInterpretation.getData(policyInterpretation.getInterfaceUrl.addGroup, {
-//                            name: policyInterGroupV,
-//                            oper: 'add',
-//                            areaId: 0
-//                        },
-//                        function (res) {
-//                            if (res.rtnCode == '0000000') {
-//                                console.info(res);
-//                            }
-//                        })
-//            } else {
-//                policyInterGroupV = selectPolicy;
-//            }
-
             //添加政策解读
             var dialogHtml = ''
                     + '<div class="bootbox-body">'
@@ -250,36 +259,40 @@
                 var policyInterTwoV = $.trim($('#policyInterTwo').val());
                 var policyInterDetailV = $('#policyInterDetail').html();
                 if (provinceV == "00") {
-                    policyInterpretation.tipsDialog('请选择省份');
+                    policyInterpretation.tips('请选择省份');
                     return false;
                 }
-//                var policyInterGroupV = '';
-//                var selectPolicy = $("#policyInterGroup").find("option:selected").attr('value');
-//                if (selectPolicy == '000') {
-//                    policyInterGroupV = $('#policyInterNew').val();
-//                    policyInterpretation.getData(policyInterpretation.getInterfaceUrl.addGroup, {
-//                                name: policyInterGroupV,
-//                                oper: 'add',
-//                                areaId: 0
-//                            },
-//                            function (res) {
-//                                if (res.rtnCode == '0000000') {
-//                                    console.info(res);
-//                                }
-//                            })
-//                } else {
-//                    policyInterGroupV = selectPolicy;
-//                }
-                if (policyInterGroupV == "00" && $('#policyInterNew').val() == "") {
-                    policyInterpretation.tipsDialog('请选择政策一级分类');
+                var policyInterGroupV = '';
+                var selectPolicy = $("#policyInterGroup").find("option:selected").attr('value');
+                if (selectPolicy == '000') {
+                    policyInterGroupV = $('#policyInterNew').val();
+                    if (policyInterGroupV == '') {
+                        policyInterpretation.tips('新建政策一级分类不能为空');
+                        return false;
+                    }
+                    policyInterpretation.getData(policyInterpretation.getInterfaceUrl.addGroup, {
+                                name: policyInterGroupV,
+                                oper: 'add',
+                                areaId: 0
+                            },
+                            function (res) {
+                                if (res.rtnCode == '0000000') {
+                                    console.info(res);
+                                }
+                            })
+                } else {
+                    policyInterGroupV = selectPolicy;
+                }
+                if (selectPolicy == "000" || selectPolicy == "00") {
+                    policyInterpretation.tips('请选择政策一级分类');
                     return false;
                 }
                 if (policyInterTwoV == "") {
-                    policyInterpretation.tipsDialog('政策二级分类不能为空');
+                    policyInterpretation.tips('政策二级分类不能为空');
                     return false;
                 }
                 if (policyInterDetailV == "") {
-                    policyInterpretation.tipsDialog('请输入政策解读详情内容');
+                    policyInterpretation.tips('请输入政策解读详情内容');
                     return false;
                 }
                 //上传高考热点内容到云存储
@@ -404,10 +417,53 @@
             }).prev().addClass('wysiwyg-style2');
         });
 
+        /*
+        *
+        * 删除
+        *
+        * */
+        $("#delete-btn").on(ace.click_event, function () {
+            var rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
+            var selTrN = $('tr.ui-state-highlight[role="row"]').length;
+            if (selTrN != 1) {
+                policyInterpretation.tipsDialog('温馨提示', '请选中一行后在删除');
+                return false;
+            }
+            console.info(rowId, selTrN);
+            bootbox.dialog({
+                title: "删除政策解读详情",
+                message: "确定删除该条数据",
+                buttons: {
+                    "success": {
+                        "label": "<i class='ace-icon fa fa-check'></i> 确定",
+                        "className": "btn-sm btn-success",
+                        "callback": function () {
+                            $.ajax({
+                                type: "POST",
+                                url: '/admin/${bizSys}/commonsave/admissionbatch',
+                                data: {
+                                    oper: 'del',
+                                    id: rowId
+                                },
+                                success: function (result) {
+                                    console.log(result);
+                                    if (result.rtnCode == "0000000") {
+                                        searchLoad();
+                                    }
+                                }
+                            });
+                        }
+                    },
+                    cancel: {
+                        label: "关闭",
+                        className: "btn-sm",
+                    }
+                }
+            });
 
 
 
-
+        })
 
 
     });
