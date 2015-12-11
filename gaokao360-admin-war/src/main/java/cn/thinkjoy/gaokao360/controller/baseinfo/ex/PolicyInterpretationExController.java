@@ -13,7 +13,9 @@ import cn.thinkjoy.gaokao360.service.IPolicyInterpretationService;
 import cn.thinkjoy.gaokao360.service.ex.IPolicyInterpretationExService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -41,6 +43,11 @@ public class PolicyInterpretationExController extends AbstractAdminController<IP
         return doRenderMainView(request, response);
     }
 
+    @RequestMapping(value="/{mainObj}fetch")
+    public Object fetch(@PathVariable String mainObj,@RequestParam("id")String id){
+
+        return policyInterpretationExService.fetch(id);
+    }
     /**
      * 获取所有的组织信息
      * @return
