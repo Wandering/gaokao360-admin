@@ -109,7 +109,7 @@
             addGroup: '/admin/${bizSys}/commonsave/admissionbatch',
             getGroup: '/admin/${bizSys}/getAdmissionBatch',
             getDynGetData: '/admin/${bizSys}/getContentUrl',
-            modifyData:'/admin/${bizSys}/${mainObj}queryone'
+            modifyData:'/admin/${bizSys}/${mainObj}fetch'
         },
         dynGetData: function (ajaxUrl, contentData) {
             var returnStr = "";
