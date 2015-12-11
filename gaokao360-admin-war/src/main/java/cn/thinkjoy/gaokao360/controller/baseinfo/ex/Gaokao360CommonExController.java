@@ -20,6 +20,8 @@ import cn.thinkjoy.gaokao360.service.IProvinceService;
 import cn.thinkjoy.gaokao360.service.ISubjectService;
 import cn.thinkjoy.gaokao360.service.ex.IAdmissionBatchExService;
 import cn.thinkjoy.gaokao360.service.ex.IAuditoriumService;
+import com.alibaba.dubbo.common.json.JSON;
+import com.alibaba.dubbo.common.json.ParseException;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import org.apache.commons.lang.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -173,7 +175,6 @@ public class Gaokao360CommonExController extends AbstractCommonController {
 
             template.getMessageConverters().add(new FastJsonHttpMessageConverter());
             st = template.postForObject(url, param, String.class);
-
         }finally {
             File file = new File(path + "/" + filename);
             if(file.exists()){
@@ -183,6 +184,9 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         }
         return st;
     }
+
+
+
 //    public String delFileUrl(String filename){
 //        String st =null;
 //        String path = request.getSession().getServletContext().getRealPath("/upload");
