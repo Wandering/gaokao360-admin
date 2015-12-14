@@ -20,12 +20,12 @@
 <#include "breadcrumbs.ftl">
         <!-- /section:basics/content.breadcrumbs -->
 
-<#include "/module/custome/auditorium_page_grid.ftl">
+<#include "/module/custome/gkpsychology_page_grid.ftl">
     </div><!-- /.main-content -->
 
 <#include "footer.html">    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
         <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
     </a>
 </div><!-- /.main-container -->
-<#include "/module/custome/script/auditorium_biz_script.ftl"></body>
+<#include "/module/custome/script/biz_gkpsychology.ftl"></body>
 </html>
