@@ -27,5 +27,5 @@
         <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
     </a>
 </div><!-- /.main-container -->
-<#include "/module/custome/script/biz_gkpsychology.ftl"></body>
+<#include "/module/custome/script/gkpsychology_biz_script.ftl"></body>
 </html>
