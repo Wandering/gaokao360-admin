@@ -28,21 +28,18 @@
         <div class="col-sm-2">
             <div class="form-group">
                 <select class="form-control" id="selCourses">
-                    <option value="00">选择课程</option>
                 </select>
             </div>
         </div>
         <div class="col-sm-2">
             <div class="form-group">
                 <select class="form-control" id="selYears">
-                    <option value="">选择年份</option>
                 </select>
             </div>
         </div>
         <div class="col-sm-2">
             <div class="form-group">
                 <select class="form-control" id="selProvince">
-                    <option value="">选择省份</option>
                 </select>
             </div>
         </div>
