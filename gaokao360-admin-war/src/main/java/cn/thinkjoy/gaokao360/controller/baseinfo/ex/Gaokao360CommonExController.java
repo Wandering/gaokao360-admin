@@ -12,18 +12,12 @@ import cn.thinkjoy.common.managerui.controller.AbstractCommonController;
 import cn.thinkjoy.common.managerui.controller.helpers.BaseServiceMaps;
 import cn.thinkjoy.common.service.IBaseService;
 import cn.thinkjoy.gaokao360.common.ServiceMaps;
-import cn.thinkjoy.gaokao360.controller.baseinfo.ProvinceController;
-import cn.thinkjoy.gaokao360.dao.ex.IAuditoriumDAO;
 import cn.thinkjoy.gaokao360.domain.PolicyInterpretation;
 import cn.thinkjoy.gaokao360.service.IAdmissionBatchService;
 import cn.thinkjoy.gaokao360.service.IProvinceService;
 import cn.thinkjoy.gaokao360.service.ISubjectService;
 import cn.thinkjoy.gaokao360.service.ex.IAdmissionBatchExService;
-import cn.thinkjoy.gaokao360.service.ex.IAuditoriumService;
-import com.alibaba.dubbo.common.json.JSON;
-import com.alibaba.dubbo.common.json.ParseException;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
-import org.apache.commons.lang.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Controller;
@@ -32,10 +26,10 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import javax.swing.text.html.HTML;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -76,6 +70,20 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     @ResponseBody
     public List getSubject(){
         return  subjectService.findAll();
+    }
+
+    /**
+     * 查询所有的科目
+     * @return
+     */
+    @RequestMapping(value="/getYears")
+    @ResponseBody
+    public List getYears(){
+        List list = new ArrayList();
+        list.add("2015");
+        list.add("2014");
+        list.add("2013");
+        return list;
     }
     /**
      * 查询所有的一级学科
