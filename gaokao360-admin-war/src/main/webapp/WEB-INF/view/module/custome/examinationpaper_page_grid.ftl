@@ -1,7 +1,7 @@
 <!-- 增加过滤div + 主体表格 -->
 <div class="page-content">
     <!-- 搜索start-->
-    <form class="form-horizontal" role="form" action="/admin/${bizSys}/${mainObj}s">
+    <#--<form class="form-horizontal" role="form" action="/admin/${bizSys}/${mainObj}s">-->
         <div class="col-xs-12">
             <div class="col-sm-2">
                 <div class="form-group">
@@ -29,8 +29,12 @@
                     </select>
                 </div>
             </div>
+            <div class="col-sm-3 text-center">
+                <button type="button" class="btn btn-purple btn-sm" id="search">搜索<i
+                        class="ace-icon fa fa-search icon-on-right bigger-110"></i></button>
+            </div>
         </div>
-    </form>
+    <#--</form>-->
     <!-- 搜索end -->
     <div class="col-xs-12">
         <div class="form-group">
