@@ -720,17 +720,17 @@
             dnd: '#uploader .queueList',
             paste: document.body,
 
-            accept: {
-                title: 'Video',
-                extensions: 'mp4',
-                mimeTypes: 'video/mp4'
-            },
 //            accept: {
-//                title: 'Images',
-////                extensions: 'gif,jpg,jpeg,bmp,png',
-//                extensions: 'gif,jpg,jpeg,bmp,png',
-//                mimeTypes: 'image/*'
+//                title: 'Video',
+//                extensions: 'mp4',
+//                mimeTypes: 'video/mp4'
 //            },
+            accept: {
+                title: 'Images',
+//                extensions: 'gif,jpg,jpeg,bmp,png',
+                extensions: 'gif,jpg,jpeg,bmp,png',
+                mimeTypes: 'image/*'
+            },
 
             // swf文件路径
             swf: '${path}/assets/js/webuploader-0.1.5/Uploader.swf',
@@ -743,7 +743,7 @@
             server: 'http://cs-dev.thinkjoy.com.cn/rest/v1/uploadFile?userId=gk360&dirId=0&productCode=gk360&bizSystem=gk360&spaceName=gk360',
             fileNumLimit: 5,
             fileSizeLimit: 10 * 1024 * 1024,    // 200 M
-            fileSingleSizeLimit: 100 * 1024 * 1024    // 50 M
+            fileSingleSizeLimit: 1000 * 1024 * 1024    // 50 M
         });
         // 添加“添加文件”的按钮，
         uploader.addButton({
