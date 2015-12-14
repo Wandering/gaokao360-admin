@@ -1,5 +1,4 @@
 <script>
-    <!-- �Զ���js��д������ļ�  ���������ѯ����ֻ�Ǹ����ӣ��밴��ҵ�������޸� -->
     function buildRules() {
         var courseName = $('#courseName').val();
         var status = $('#status').val();
