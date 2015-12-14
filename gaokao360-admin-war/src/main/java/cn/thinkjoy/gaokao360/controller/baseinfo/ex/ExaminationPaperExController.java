@@ -52,15 +52,15 @@ public class ExaminationPaperExController extends AbstractAdminController<IExami
         return doPage(request, response);
     }
 
-    /**
-     * 获取所有的组织信息
-     * @return
-     */
-    @RequestMapping(value="/${mainObj}fetch")
-    @ResponseBody
-    public ExaminationPaperDTO fetch(String id){
-        return (ExaminationPaperDTO)examinationPaperExService.fetch(id);
-    }
+//    /**
+//     * 获取所有的组织信息
+//     * @return
+//     */
+//    @RequestMapping(value="/${mainObj}fetch")
+//    @ResponseBody
+//    public ExaminationPaperDTO fetch(String id){
+//        return (ExaminationPaperDTO)examinationPaperExService.fetch(id);
+//    }
     @Override
     protected IExaminationPaperExService getMainService() {
         return examinationPaperExService;
