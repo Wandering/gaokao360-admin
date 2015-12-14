@@ -611,7 +611,7 @@
                 buttons: {
                     cancel: {
                         label: "关闭",
-                        className: "btn-sm",
+                        className: "btn-sm"
                     }
                 }
             });
@@ -721,9 +721,9 @@
 
 
         //添加正题密卷
-//        UI.$addExamBtn(ace.click_event, function () {
-//
-//        });
+        UI.$addExamBtn(ace.click_event, function () {
+
+        });
     });
 
 
