@@ -99,7 +99,7 @@
         }
 
         // 添加高考热点
-        $("#addHotBtn").on(ace.click_event, function () {
+        $("#addBtn").on(ace.click_event, function () {
             var dialogHtml = ''
                     + '<div class="row">'
                     + '<div class="col-xs-12">'
@@ -113,13 +113,13 @@
             + '</div>'
             + '</div>'
             + '<div class="form-group">'
-            + '<label class="col-sm-2 control-label no-padding-right" for="hotTitle"> 高考热点标题：</label>'
+            + '<label class="col-sm-2 control-label no-padding-right" for="hotTitle"> 标题：</label>'
             + '<div class="col-sm-3">'
             + '<input type="text" id="hotTitle" placeholder="请输入高考热点标题" class="" />'
             + '</div>'
             + '</div>'
             + '<div class="form-group">'
-            + '<label class="col-sm-2 control-label no-padding-right" for="hotContent"> 高考热点内容：</label>'
+            + '<label class="col-sm-2 control-label no-padding-right" for="hotContent"> 内容：</label>'
             + '<div class="col-sm-10">'
             + '<form method="POST" id="myform" action="wysiwyg.php">'
             + '<div id="hotContent" class="wysiwyg-editor"></div>'
@@ -134,7 +134,7 @@
             + '</div>'
             + '</div>'
             + '<div class="form-group">'
-            + '<label class="col-sm-2 control-label no-padding-right" for="hotContent"> 高考热点日期：</label>'
+            + '<label class="col-sm-2 control-label no-padding-right" for="hotContent"> 日期：</label>'
             + '<div class="col-sm-4">'
             + '<div class="input-group">'
             + '<input class="form-control date-picker" placeholder="请选择高考热点日期" id="date-picker" type="text" data-date-format="yyyy-mm-dd" />'
@@ -307,7 +307,7 @@
         });
 
         //修改高考热点
-        $("#editHotBtn").on(ace.click_event, function () {
+        $("#editBtn").on(ace.click_event, function () {
             var rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
             var selTrN = $('tr.ui-state-highlight[role="row"]').length;
             if (selTrN != 1) {
@@ -327,13 +327,13 @@
             + '</div>'
             + '</div>'
             + '<div class="form-group">'
-            + '<label class="col-sm-2 control-label no-padding-right" for="hotTitle"> 高考热点标题：</label>'
+            + '<label class="col-sm-2 control-label no-padding-right" for="hotTitle"> 标题：</label>'
             + '<div class="col-sm-3">'
             + '<input type="text" id="hotTitle" placeholder="请输入高考热点标题" class="" />'
             + '</div>'
             + '</div>'
             + '<div class="form-group">'
-            + '<label class="col-sm-2 control-label no-padding-right" for="hotContent"> 高考热点内容：</label>'
+            + '<label class="col-sm-2 control-label no-padding-right" for="hotContent"> 内容：</label>'
             + '<div class="col-sm-10">'
             + '<form method="POST" id="myform" action="wysiwyg.php">'
             + '<div id="hotContent" class="wysiwyg-editor"></div>'
@@ -348,7 +348,7 @@
             + '</div>'
             + '</div>'
             + '<div class="form-group">'
-            + '<label class="col-sm-2 control-label no-padding-right" for="hotContent"> 高考热点日期：</label>'
+            + '<label class="col-sm-2 control-label no-padding-right" for="hotContent"> 日期：</label>'
             + '<div class="col-sm-4">'
             + '<div class="input-group">'
             + '<input class="form-control date-picker" placeholder="请选择高考热点日期" id="date-picker" type="text" data-date-format="yyyy-mm-dd" />'
@@ -546,7 +546,7 @@
 
         });
         //删除
-        $("#deleteHotBtn").on(ace.click_event, function () {
+        $("#deleteBtn").on(ace.click_event, function () {
             var rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
             var selTrN = $('tr.ui-state-highlight[role="row"]').length;
             if (selTrN != 1) {

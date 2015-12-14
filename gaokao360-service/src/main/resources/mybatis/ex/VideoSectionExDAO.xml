@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.thinkjoy.gaokao360.dao.IVideoSectionDAO">
+<!--
+insert
+update
+updateNull
+deleteById
+deleteByCondition
+deleteByProperty
+fetch
+findOne
+findList
+findAll
+queryPage
+like
+queryList
+queryOne
+count
+selectMaxId
+updateOrSave
+selectOne
+selectList
+-->
+
+    <sql id="Base_Column_List">
+        id as id ,
+        courseId as courseId ,
+        sectionName as sectionName ,
+        sectionSort as sectionSort ,
+        isAccept as isAccept ,
+        fileUrl as fileUrl ,
+        createDate as createDate ,
+        status as status ,
+        creator as creator ,
+        lastModDate as lastModDate ,
+        lastModifier as lastModifier 
+    </sql>
+    <select id="queryByCourseId" parameterType="java.lang.Long" resultType="VideoSection">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM gk_video_section
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND courseId = #{courseId}
+        </trim>
+    </select>
+
+</mapper>
+

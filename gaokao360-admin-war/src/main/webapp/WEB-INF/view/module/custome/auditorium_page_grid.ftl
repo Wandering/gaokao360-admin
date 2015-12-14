@@ -2,110 +2,433 @@
 <div class="page-content">
     <!-- 搜索start-->
     <form class="form-horizontal" role="form" action="/admin/${bizSys}/${mainObj}s">
-
-
         <div class="col-xs-12">
             <div class="col-sm-2">
                 <div class="form-group">
                     <div class="col-sm-2">
-                        <input type="text" class="" placeholder="请输入提问者手机号" id="userPhone">
+                        <input type="text" class="keywordSearch" placeholder="关键字查询" id="keyWord">
                     </div>
                 </div>
             </div>
-
-            <div class="col-sm-4">
+            <div class="col-sm-2">
                 <div class="form-group">
-                    <label class="col-sm-4 control-label">问题状态:</label>
-
-                    <div class="col-sm-8">
+                    <div class="col-sm-12">
                         <select class="form-control" id="status">
-                            <option value="">全部</option>
-                            <option value="2">显示</option>
-                            <option value="1">隐藏</option>
+                            <option value="">选择课程</option>
                         </select>
                     </div>
                 </div>
             </div>
-
-            <div class="col-sm-4">
+            <div class="col-sm-2">
                 <div class="form-group">
-                    <label class="col-sm-4 control-label">时间:</label>
-
-                    <div class="col-sm-8">
-                        <div class="input-daterange input-group" data-date-format="yyyy-mm-dd">
-                            <input type="text" class="input-sm form-control" name="start" id="startCommitTime"/>
-                                <span class="input-group-addon">
-                                    <i class="fa fa-exchange"></i>
-                                </span>
-                            <input type="text" class="input-sm form-control" name="end" id="endCommitTime"/>
-                        </div>
+                    <div class="col-sm-12">
+                        <select class="form-control" id="status">
+                            <option value="">按省份查询</option>
+                        </select>
                     </div>
                 </div>
             </div>
-
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <div class="col-sm-4" style="width:200px;">
-                        <button type="button" class="btn btn-purple btn-sm" id="search">
-                            搜索
-                            <i class="ace-icon fa fa-search icon-on-right bigger-110"></i>
-                        </button>
-                        <#if actions?seq_contains("import")>
-                            <button type="button" class="btn btn-purple btn-sm" id="export" style="float:right;">导入</button>
-                        </#if>
-                        <#if actions?seq_contains("export")>
-                            <button type="button" class="btn btn-purple btn-sm" id="export" style="float:right;">导出</button>
-                        </#if>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xs-12">
-
-            <div class="col-sm-4">
-            </div>
-
-
-
         </div>
     </form>
     <!-- 搜索end -->
-<#include 'page_grid.ftl'>
-
-    <!-- 自定义模态框start-->
-    <div class="modal fade widget-box ui-widget " id="edit_answer_modal" tabindex="-1" role="dialog"
-         aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog" style="width:500px">
-            <div class="modal-content">
-                <div class="widget-header">
-                    <h5 class="widget-title">回答答案</h5>
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
-                            class="sr-only">Close</span></button>
-                </div>
-                <div class="modal-body" style="">
-
-                    <form class="form-horizontal" role="form" style="width:100%">
-
-                        <div class="form-group">
-
-                            <div class="col-sm-9">
-                                <input type="text" id="editId" placeholder="" class="col-xs-10 col-sm-8" hidden="hidden"/>
-                                <textarea class="form-control" id="expertAnswer.answer" name="answer" placeholder="请输入答案"
-                                          style="margin: 0px -0.015625px 0px 0px; height: 72px; width: 363px;"></textarea>
-                            </div>
-                        </div>
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary" id="answer_submit">确定</button>
-                </div>
-            </div>
-
+    <div class="col-xs-12">
+        <div class="form-group">
+            <button class="btn btn-purple" id="addBtn"><i
+                    class="ace-icon fa fa-cloud-upload align-top bigger-125"></i>添加
+            </button>
+            <button class="btn btn-primary" id="editBtn"><i class="ace-icon fa fa-pencil-square-o align-top bigger-125"></i>修改
+            </button>
+            <button class="btn btn-danger" id="deleteBtn"><i class="ace-icon fa fa-trash-o align-top bigger-125"></i>删除</button>
         </div>
     </div>
-    <!-- 自定义模态框end-->
 
+
+    <style>
+        #container {
+            color: #838383;
+            font-size: 12px;
+        }
+
+        #uploader .queueList {
+            margin: 20px;
+            border: 3px dashed #e6e6e6;
+        }
+        #uploader .queueList.filled {
+            padding: 17px;
+            margin: 0;
+            border: 3px dashed transparent;
+        }
+        #uploader .queueList.webuploader-dnd-over {
+            border: 3px dashed #999999;
+        }
+
+        #uploader p {margin: 0;}
+
+        .element-invisible {
+            position: absolute !important;
+            clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+            clip: rect(1px,1px,1px,1px);
+        }
+
+        #uploader .placeholder {
+            min-height: 350px;
+            padding-top: 178px;
+            text-align: center;
+            background: url(../images/image.png) center 93px no-repeat;
+            color: #cccccc;
+            font-size: 18px;
+            position: relative;
+        }
+
+        #uploader .placeholder .webuploader-pick {
+            font-size: 18px;
+            background: #00b7ee;
+            border-radius: 3px;
+            line-height: 44px;
+            padding: 0 30px;
+            *width: 120px;
+            color: #fff;
+            display: inline-block;
+            margin: 0 auto 20px auto;
+            cursor: pointer;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        #uploader .placeholder .webuploader-pick-hover {
+            background: #00a2d4;
+        }
+
+        #uploader .placeholder .flashTip {
+            color: #666666;
+            font-size: 12px;
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            bottom: 20px;
+        }
+        #uploader .placeholder .flashTip a {
+            color: #0785d1;
+            text-decoration: none;
+        }
+        #uploader .placeholder .flashTip a:hover {
+            text-decoration: underline;
+        }
+
+        #uploader .filelist {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #uploader .filelist:after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+            clear: both;
+        }
+
+        #uploader .filelist li {
+            width: 110px;
+            height: 110px;
+            background: url(../images/bg.png) no-repeat;
+            text-align: center;
+            margin: 0 8px 20px 0;
+            position: relative;
+            display: inline;
+            float: left;
+            overflow: hidden;
+            font-size: 12px;
+        }
+
+        #uploader .filelist li p.log {
+            position: relative;
+            top: -45px;
+        }
+
+        #uploader .filelist li p.title {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow : ellipsis;
+            top: 5px;
+            text-indent: 5px;
+            text-align: left;
+        }
+
+        #uploader .filelist li p.progress {
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            height: 8px;
+            overflow: hidden;
+            z-index: 50;
+            margin: 0;
+            border-radius: 0;
+            background: none;
+            -webkit-box-shadow: 0 0 0;
+        }
+        #uploader .filelist li p.progress span {
+            display: none;
+            overflow: hidden;
+            width: 0;
+            height: 100%;
+            background: #1483d8 url(../images/progress.png) repeat-x;
+
+            -webit-transition: width 200ms linear;
+            -moz-transition: width 200ms linear;
+            -o-transition: width 200ms linear;
+            -ms-transition: width 200ms linear;
+            transition: width 200ms linear;
+
+            -webkit-animation: progressmove 2s linear infinite;
+            -moz-animation: progressmove 2s linear infinite;
+            -o-animation: progressmove 2s linear infinite;
+            -ms-animation: progressmove 2s linear infinite;
+            animation: progressmove 2s linear infinite;
+
+            -webkit-transform: translateZ(0);
+        }
+
+        @-webkit-keyframes progressmove {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 17px 0;
+            }
+        }
+        @-moz-keyframes progressmove {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 17px 0;
+            }
+        }
+        @keyframes progressmove {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 17px 0;
+            }
+        }
+
+        #uploader .filelist li p.imgWrap {
+            position: relative;
+            z-index: 2;
+            line-height: 110px;
+            vertical-align: middle;
+            overflow: hidden;
+            width: 110px;
+            height: 110px;
+
+            -webkit-transform-origin: 50% 50%;
+            -moz-transform-origin: 50% 50%;
+            -o-transform-origin: 50% 50%;
+            -ms-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+
+            -webit-transition: 200ms ease-out;
+            -moz-transition: 200ms ease-out;
+            -o-transition: 200ms ease-out;
+            -ms-transition: 200ms ease-out;
+            transition: 200ms ease-out;
+        }
+
+        #uploader .filelist li img {
+            width: 100%;
+        }
+
+        #uploader .filelist li p.error {
+            background: #f43838;
+            color: #fff;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 28px;
+            line-height: 28px;
+            width: 100%;
+            z-index: 100;
+        }
+
+        #uploader .filelist li .success {
+            display: block;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 40px;
+            width: 100%;
+            z-index: 200;
+            background: url(../images/success.png) no-repeat right bottom;
+        }
+
+        #uploader .filelist div.file-panel {
+            position: absolute;
+            height: 0;
+            filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#80000000', endColorstr='#80000000')\0;
+            background: rgba( 0, 0, 0, 0.5 );
+            width: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 300;
+        }
+
+        #uploader .filelist div.file-panel span {
+            width: 24px;
+            height: 24px;
+            display: inline;
+            float: right;
+            text-indent: -9999px;
+            overflow: hidden;
+            background: url(../images/icons.png) no-repeat;
+            margin: 5px 1px 1px;
+            cursor: pointer;
+        }
+
+        #uploader .filelist div.file-panel span.rotateLeft {
+            background-position: 0 -24px;
+        }
+        #uploader .filelist div.file-panel span.rotateLeft:hover {
+            background-position: 0 0;
+        }
+
+        #uploader .filelist div.file-panel span.rotateRight {
+            background-position: -24px -24px;
+        }
+        #uploader .filelist div.file-panel span.rotateRight:hover {
+            background-position: -24px 0;
+        }
+
+        #uploader .filelist div.file-panel span.cancel {
+            background-position: -48px -24px;
+        }
+        #uploader .filelist div.file-panel span.cancel:hover {
+            background-position: -48px 0;
+        }
+
+        #uploader .statusBar {
+            height: 63px;
+            border-top: 1px solid #dadada;
+            padding: 0 20px;
+            line-height: 63px;
+            vertical-align: middle;
+            position: relative;
+        }
+
+        #uploader .statusBar .progress {
+            border: 1px solid #1483d8;
+            width: 198px;
+            background: #fff;
+            height: 18px;
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            line-height: 20px;
+            color: #6dbfff;
+            position: relative;
+            margin: 0 10px 0 0;
+        }
+        #uploader .statusBar .progress span.percentage {
+            width: 0;
+            height: 100%;
+            left: 0;
+            top: 0;
+            background: #1483d8;
+            position: absolute;
+        }
+        #uploader .statusBar .progress span.text {
+            position: relative;
+            z-index: 10;
+        }
+
+        #uploader .statusBar .info {
+            display: inline-block;
+            font-size: 14px;
+            color: #666666;
+        }
+
+        #uploader .statusBar .btns {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            line-height: 40px;
+        }
+
+        #filePicker2 {
+            display: inline-block;
+            float: left;
+        }
+
+        #uploader .statusBar .btns .webuploader-pick,
+        #uploader .statusBar .btns .uploadBtn,
+        #uploader .statusBar .btns .uploadBtn.state-uploading,
+        #uploader .statusBar .btns .uploadBtn.state-paused {
+            background: #ffffff;
+            border: 1px solid #cfcfcf;
+            color: #565656;
+            padding: 0 18px;
+            display: inline-block;
+            border-radius: 3px;
+            margin-left: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            float: left;
+        }
+        #uploader .statusBar .btns .webuploader-pick-hover,
+        #uploader .statusBar .btns .uploadBtn:hover,
+        #uploader .statusBar .btns .uploadBtn.state-uploading:hover,
+        #uploader .statusBar .btns .uploadBtn.state-paused:hover {
+            background: #f0f0f0;
+        }
+
+        #uploader .statusBar .btns .uploadBtn {
+            background: #00b7ee;
+            color: #fff;
+            border-color: transparent;
+        }
+        #uploader .statusBar .btns .uploadBtn:hover {
+            background: #00a2d4;
+        }
+
+        #uploader .statusBar .btns .uploadBtn.disabled {
+            pointer-events: none;
+            opacity: 0.6;
+        }
+    </style>
+
+    <!--dom结构部分-->
+    <div id="uploader" class="wu-example">
+        <div class="imgList"></div>
+        <div class="queueList">
+            <div id="dndArea" class="placeholder">
+                <div id="filePicker"></div>
+                <p>或将照片拖到这里，单次最多可选300张</p>
+            </div>
+        </div>
+        <div class="statusBar" style="display:none;">
+            <div class="progress">
+                <span class="text">0%</span>
+                <span class="percentage"></span>
+            </div><div class="info"></div>
+            <div class="btns">
+                <div id="filePicker2"></div><div class="uploadBtn">开始上传</div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+<#include 'page_grid.ftl'>
 </div><!-- /.page-content -->
