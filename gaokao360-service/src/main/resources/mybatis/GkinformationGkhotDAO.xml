@@ -36,7 +36,8 @@ selectList
         informationContent as informationContent ,
         hotCount as hotCount ,
         areaId as areaId ,
-        hotdate as hotdate 
+        hotdate as hotdate ,
+        htmlId as htmlId 
     </sql>
     <insert id="insert" parameterType="GkinformationGkhot">
         INSERT INTO gk_gkinformation_gkhot (
@@ -50,7 +51,8 @@ selectList
         informationContent,
         hotCount,
         areaId,
-        hotdate
+        hotdate,
+        htmlId
         ) VALUES (
         #{status},
         #{creator},
@@ -62,7 +64,8 @@ selectList
         #{informationContent},
         #{hotCount},
         #{areaId},
-        #{hotdate}
+        #{hotdate},
+        #{htmlId}
         )
             <selectKey resultType="java.lang.Long" keyProperty="id">
                 SELECT LAST_INSERT_ID() AS ID
@@ -106,6 +109,9 @@ selectList
             <if test="hotdate!=null">
                 hotdate = #{hotdate},
             </if>
+            <if test="htmlId!=null">
+                htmlId = #{htmlId},
+            </if>
         </trim>
         WHERE
         id = #{id}
@@ -146,6 +152,9 @@ selectList
             </if>
             <if test="map.hotdate!=null">
                 hotdate = #{map.hotdate},
+            </if>
+            <if test="map.htmlId!=null">
+                htmlId = #{map.htmlId},
             </if>
         </trim>
         WHERE
@@ -188,6 +197,9 @@ selectList
             <if test="update.hotdate!=null">
                 hotdate = #{update.hotdate},
             </if>
+            <if test="update.htmlId!=null">
+                htmlId = #{update.htmlId},
+            </if>
         </trim>
 
         <trim prefix="WHERE" prefixOverrides="AND | OR">
@@ -227,6 +239,9 @@ selectList
             <if test="condition.hotdate!=null">
                 AND hotdate = #{condition.hotdate}
             </if>
+            <if test="condition.htmlId!=null">
+                AND htmlId = #{condition.htmlId}
+            </if>
         </trim>
     </update>
 
@@ -242,7 +257,8 @@ selectList
                 informationContent,
                 hotCount,
                 areaId,
-                hotdate
+                hotdate,
+                htmlId
         ) VALUES (
                     #{map.status},
                     #{map.creator},
@@ -254,7 +270,8 @@ selectList
                     #{map.informationContent},
                     #{map.hotCount},
                     #{map.areaId},
-                    #{map.hotdate}
+                    #{map.hotdate},
+                    #{map.htmlId}
         )
     </insert>
 
@@ -273,6 +290,7 @@ selectList
             hotCount = #{hotCount},
             areaId = #{areaId},
             hotdate = #{hotdate},
+            htmlId = #{htmlId},
         </trim>
         WHERE
         id = #{id} 
@@ -325,6 +343,9 @@ selectList
             </if>
             <if test="hotdate!=null">
                 AND hotdate = #{hotdate}
+            </if>
+            <if test="htmlId!=null">
+                AND htmlId = #{htmlId}
             </if>
         </trim>
     </delete>
@@ -419,6 +440,9 @@ selectList
             <if test="condition.hotdate!=null">
                 ${condition.groupOp}   ${condition.hotdate.field}  ${condition.hotdate.op}  #{condition.hotdate.data}
             </if>
+            <if test="condition.htmlId!=null">
+                ${condition.groupOp}   ${condition.htmlId.field}  ${condition.htmlId.op}  #{condition.htmlId.data}
+            </if>
 
 
     </where>
@@ -471,6 +495,9 @@ selectList
             <if test="condition.hotdate!=null">
                 AND hotdate like CONCAT('%', #{condition.hotdate} , '%')
             </if>
+            <if test="condition.htmlId!=null">
+                AND htmlId like CONCAT('%', #{condition.htmlId} , '%')
+            </if>
         </trim>
         <if test="orderBy!=null">
         ORDER BY ${orderBy} ${sortBy}
@@ -519,6 +546,9 @@ selectList
             <if test="condition.hotdate!=null">
                 AND hotdate = #{condition.hotdate}
             </if>
+            <if test="condition.htmlId!=null">
+                AND htmlId = #{condition.htmlId}
+            </if>
         </trim>
         <if test="orderBy!=null">
         ORDER BY ${orderBy} ${sortBy}
@@ -566,6 +596,9 @@ selectList
             <if test="condition.hotdate!=null">
                 AND hotdate = #{condition.hotdate}
             </if>
+            <if test="condition.htmlId!=null">
+                AND htmlId = #{condition.htmlId}
+            </if>
         </trim>
         <if test="orderBy!=null">
         ORDER BY ${orderBy} ${sortBy}
@@ -611,6 +644,9 @@ selectList
            </if>
            <if test="hotdate!=null">
                ${groupOp} ${hotdate.field} ${hotdate.op}  #{hotdate.data}
+           </if>
+           <if test="htmlId!=null">
+               ${groupOp} ${htmlId.field} ${htmlId.op}  #{htmlId.data}
            </if>
 
        </where>

@@ -9,6 +9,7 @@ package cn.thinkjoy.gaokao360.controller.baseinfo.ex;
 
 import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.common.managerui.controller.AbstractAdminController;
+import cn.thinkjoy.gaokao360.dto.ExaminationPaperDTO;
 import cn.thinkjoy.gaokao360.service.IExaminationPaperService;
 import cn.thinkjoy.gaokao360.service.ex.IExaminationPaperExService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,15 @@ public class ExaminationPaperExController extends AbstractAdminController<IExami
         return doPage(request, response);
     }
 
+//    /**
+//     * 获取所有的组织信息
+//     * @return
+//     */
+//    @RequestMapping(value="/${mainObj}fetch")
+//    @ResponseBody
+//    public ExaminationPaperDTO fetch(String id){
+//        return (ExaminationPaperDTO)examinationPaperExService.fetch(id);
+//    }
     @Override
     protected IExaminationPaperExService getMainService() {
         return examinationPaperExService;

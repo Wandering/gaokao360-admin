@@ -35,7 +35,8 @@ selectList
         createDate as createDate ,
         lastModifier as lastModifier ,
         lastModDate as lastModDate ,
-        areaId as areaId 
+        areaId as areaId ,
+        htmlId as htmlId 
     </sql>
     <insert id="insert" parameterType="PolicyInterpretation">
         INSERT INTO gk_policy_interpretation (
@@ -48,7 +49,8 @@ selectList
         createDate,
         lastModifier,
         lastModDate,
-        areaId
+        areaId,
+        htmlId
         ) VALUES (
         #{provinceId},
         #{admissionBatchId},
@@ -59,7 +61,8 @@ selectList
         #{createDate},
         #{lastModifier},
         #{lastModDate},
-        #{areaId}
+        #{areaId},
+        #{htmlId}
         )
             <selectKey resultType="java.lang.Long" keyProperty="id">
                 SELECT LAST_INSERT_ID() AS ID
@@ -100,6 +103,9 @@ selectList
             <if test="areaId!=null">
                 areaId = #{areaId},
             </if>
+            <if test="htmlId!=null">
+                htmlId = #{htmlId},
+            </if>
         </trim>
         WHERE
         id = #{id}
@@ -137,6 +143,9 @@ selectList
             </if>
             <if test="map.areaId!=null">
                 areaId = #{map.areaId},
+            </if>
+            <if test="map.htmlId!=null">
+                htmlId = #{map.htmlId},
             </if>
         </trim>
         WHERE
@@ -176,6 +185,9 @@ selectList
             <if test="update.areaId!=null">
                 areaId = #{update.areaId},
             </if>
+            <if test="update.htmlId!=null">
+                htmlId = #{update.htmlId},
+            </if>
         </trim>
 
         <trim prefix="WHERE" prefixOverrides="AND | OR">
@@ -212,6 +224,9 @@ selectList
             <if test="condition.areaId!=null">
                 AND areaId = #{condition.areaId}
             </if>
+            <if test="condition.htmlId!=null">
+                AND htmlId = #{condition.htmlId}
+            </if>
         </trim>
     </update>
 
@@ -226,7 +241,8 @@ selectList
                 createDate,
                 lastModifier,
                 lastModDate,
-                areaId
+                areaId,
+                htmlId
         ) VALUES (
                     #{map.provinceId},
                     #{map.admissionBatchId},
@@ -237,7 +253,8 @@ selectList
                     #{map.createDate},
                     #{map.lastModifier},
                     #{map.lastModDate},
-                    #{map.areaId}
+                    #{map.areaId},
+                    #{map.htmlId}
         )
     </insert>
 
@@ -255,6 +272,7 @@ selectList
             lastModifier = #{lastModifier},
             lastModDate = #{lastModDate},
             areaId = #{areaId},
+            htmlId = #{htmlId},
         </trim>
         WHERE
         id = #{id} 
@@ -304,6 +322,9 @@ selectList
             </if>
             <if test="areaId!=null">
                 AND areaId = #{areaId}
+            </if>
+            <if test="htmlId!=null">
+                AND htmlId = #{htmlId}
             </if>
         </trim>
     </delete>
@@ -395,6 +416,9 @@ selectList
             <if test="condition.areaId!=null">
                 ${condition.groupOp}   ${condition.areaId.field}  ${condition.areaId.op}  #{condition.areaId.data}
             </if>
+            <if test="condition.htmlId!=null">
+                ${condition.groupOp}   ${condition.htmlId.field}  ${condition.htmlId.op}  #{condition.htmlId.data}
+            </if>
 
 
     </where>
@@ -444,6 +468,9 @@ selectList
             <if test="condition.areaId!=null">
                 AND areaId like CONCAT('%', #{condition.areaId} , '%')
             </if>
+            <if test="condition.htmlId!=null">
+                AND htmlId like CONCAT('%', #{condition.htmlId} , '%')
+            </if>
         </trim>
         <if test="orderBy!=null">
         ORDER BY ${orderBy} ${sortBy}
@@ -489,6 +516,9 @@ selectList
             <if test="condition.areaId!=null">
                 AND areaId = #{condition.areaId}
             </if>
+            <if test="condition.htmlId!=null">
+                AND htmlId = #{condition.htmlId}
+            </if>
         </trim>
         <if test="orderBy!=null">
         ORDER BY ${orderBy} ${sortBy}
@@ -533,6 +563,9 @@ selectList
             <if test="condition.areaId!=null">
                 AND areaId = #{condition.areaId}
             </if>
+            <if test="condition.htmlId!=null">
+                AND htmlId = #{condition.htmlId}
+            </if>
         </trim>
         <if test="orderBy!=null">
         ORDER BY ${orderBy} ${sortBy}
@@ -575,6 +608,9 @@ selectList
            </if>
            <if test="areaId!=null">
                ${groupOp} ${areaId.field} ${areaId.op}  #{areaId.data}
+           </if>
+           <if test="htmlId!=null">
+               ${groupOp} ${htmlId.field} ${htmlId.op}  #{htmlId.data}
            </if>
 
        </where>
