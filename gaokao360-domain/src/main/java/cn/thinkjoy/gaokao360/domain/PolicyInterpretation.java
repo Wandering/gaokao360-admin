@@ -2,7 +2,7 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  PolicyInterpretation.java 2015-12-04 09:11:36 $
+ * $Id:  PolicyInterpretation.java 2015-12-14 14:21:14 $
  */
 
 
@@ -30,6 +30,8 @@ public class PolicyInterpretation extends CreateBaseDomain<Long>{
     private String content;
     /** 区域Id */
     private Long areaId;
+    /** 内容在云盘中的ID */
+    private String htmlId;
 
 	public PolicyInterpretation(){
 	}
@@ -68,6 +70,13 @@ public class PolicyInterpretation extends CreateBaseDomain<Long>{
     public Long getAreaId() {
         return this.areaId;
     }
+    public void setHtmlId(String value) {
+        this.htmlId = value;
+    }
+
+    public String getHtmlId() {
+        return this.htmlId;
+    }
 
 	public String toString() {
 		return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
@@ -82,6 +91,7 @@ public class PolicyInterpretation extends CreateBaseDomain<Long>{
 			.append("LastModifier",getLastModifier())
 			.append("LastModDate",getLastModDate())
 			.append("AreaId",getAreaId())
+			.append("HtmlId",getHtmlId())
 			.toString();
 	}
 	
