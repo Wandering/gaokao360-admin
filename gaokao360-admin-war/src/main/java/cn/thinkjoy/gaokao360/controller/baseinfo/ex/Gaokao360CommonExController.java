@@ -76,7 +76,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
      * 查询所有的科目
      * @return
      */
-    @RequestMapping(value="/getYears")
+    @RequestMapping(value="/{mainObj}/getYears")
     @ResponseBody
     public List getYears(){
         List list = new ArrayList();
@@ -125,7 +125,19 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     protected void innerHandleAdd(String mainObj, Map dataMap) {
         if("admissionbatch".equals(mainObj)){
             admissionBatchExService.insertMap(dataMap);
-        }else{
+        }else if("auditorium".equals(mainObj)){
+//            String[]
+            if(dataMap.containsKey("sectionId")){
+                String sectionId = (String)dataMap.get("sectionId");
+                sectionId.split(",");
+            }
+//            for(){
+//
+//            }
+            serviceMaps.get("videocourse").insertMap(dataMap);
+        }else if("gkPsychology".equals(mainObj)){
+            serviceMaps.get("videocourse").insertMap(dataMap);
+        }else {
             super.innerHandleAdd(mainObj, dataMap);
         }
 
