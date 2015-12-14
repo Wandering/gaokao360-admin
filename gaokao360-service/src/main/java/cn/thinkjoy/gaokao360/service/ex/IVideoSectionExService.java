@@ -14,4 +14,6 @@ import cn.thinkjoy.gaokao360.domain.VideoSection;
 
 public interface IVideoSectionExService<D extends IBaseDAO<T>, T extends BaseDomain> extends IBaseService<D, T>,IPageService<D, T>{
     public VideoSection  queryByCourseId(Object courseId);
+    public Long queryByMaxId();
+    public void updateCourseId(Object courseId,Object id);
 }
