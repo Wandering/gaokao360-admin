@@ -46,5 +46,14 @@ selectList
         </trim>
     </select>
 
+    <select id="queryByMaxId"  resultType="java.lang.Long">
+        SELECT
+        max(id)
+        FROM gk_video_course
+    </select>
+
+    <select id="updateCourseId" parameterType="java.lang.Long" resultType="java.lang.Long">
+        UPDATE gk_video_section SET courseId=#{courseId} WHERE id=#{id}
+    </select>
 </mapper>
 

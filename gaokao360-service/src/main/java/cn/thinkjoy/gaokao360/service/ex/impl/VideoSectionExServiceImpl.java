@@ -32,6 +32,16 @@ public class VideoSectionExServiceImpl extends AbstractPageService<IBaseDAO<Vide
         return videoSectioneExDAO.queryByCourseId(courseId);
     }
 
+    @Override
+    public void updateCourseId(Object courseId,Object id) {
+        videoSectioneExDAO.updateCourseId(courseId,id);
+    }
+
+    @Override
+    public Long queryByMaxId() {
+        return videoSectioneExDAO.queryByMaxId();
+    }
+
 
 //    @Override
 //    public void insert(BaseDomain entity) {

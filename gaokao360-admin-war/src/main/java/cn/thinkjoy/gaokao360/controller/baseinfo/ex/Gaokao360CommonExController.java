@@ -17,6 +17,7 @@ import cn.thinkjoy.gaokao360.service.IAdmissionBatchService;
 import cn.thinkjoy.gaokao360.service.IProvinceService;
 import cn.thinkjoy.gaokao360.service.ISubjectService;
 import cn.thinkjoy.gaokao360.service.ex.IAdmissionBatchExService;
+import cn.thinkjoy.gaokao360.service.ex.IVideoSectionExService;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
@@ -47,10 +48,19 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     private IAdmissionBatchService admissionBatchService;
     @Autowired
     private IAdmissionBatchExService admissionBatchExService;
+    @Autowired
+    private IVideoSectionExService videoSectionExService;
 
     @Override
     protected void innerHandleDel(String mainObj, Map dataMap) {
-        getServiceMaps().get(mainObj).delete(dataMap.get("id"));
+        if("auditorium".equals(mainObj)){
+            serviceMaps.get("videocourse").delete(dataMap);
+        }else if("gkPsychology".equals(mainObj)){
+            serviceMaps.get("videocourse").delete(dataMap);
+        }else {
+            getServiceMaps().get(mainObj).delete(dataMap.get("id"));
+        }
+
     }
 
     /**
@@ -126,17 +136,32 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         if("admissionbatch".equals(mainObj)){
             admissionBatchExService.insertMap(dataMap);
         }else if("auditorium".equals(mainObj)){
-//            String[]
+            serviceMaps.get("videocourse").insertMap(dataMap);
+            Long lid = videoSectionExService.queryByMaxId();
+            String[] strs=null;
             if(dataMap.containsKey("sectionId")){
                 String sectionId = (String)dataMap.get("sectionId");
-                sectionId.split(",");
+                strs=sectionId.split(",");
             }
-//            for(){
-//
-//            }
-            serviceMaps.get("videocourse").insertMap(dataMap);
+            if(strs!=null){
+                for(String str:strs){
+                    videoSectionExService.updateCourseId(lid,str);
+                }
+            }
+
         }else if("gkPsychology".equals(mainObj)){
             serviceMaps.get("videocourse").insertMap(dataMap);
+            Long lid = videoSectionExService.queryByMaxId();
+            String[] strs=null;
+            if(dataMap.containsKey("sectionId")){
+                String sectionId = (String)dataMap.get("sectionId");
+                strs=sectionId.split(",");
+            }
+            if(strs!=null){
+                for(String str:strs){
+                    videoSectionExService.updateCourseId(lid,str);
+                }
+            }
         }else {
             super.innerHandleAdd(mainObj, dataMap);
         }
@@ -249,7 +274,13 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         }else if("gkinformationgkhot".equals(mainObj)){
             serviceMaps.get(mainObj).fetch(dataMap.get("id"));
         }
-        super.innerHandleUpdate(mainObj, dataMap);
+        if("auditorium".equals(mainObj)){
+            serviceMaps.get("videocourse").updateMap(dataMap);
+        }else if("gkPsychology".equals(mainObj)){
+            serviceMaps.get("videocourse").updateMap(dataMap);
+        }else {
+            super.innerHandleUpdate(mainObj, dataMap);
+        }
     }
 
     @Override
