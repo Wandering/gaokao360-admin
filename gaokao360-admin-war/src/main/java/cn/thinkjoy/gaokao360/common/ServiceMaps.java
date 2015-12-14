@@ -12,6 +12,8 @@ import cn.thinkjoy.common.service.IBaseService;
 
 
 import cn.thinkjoy.gaokao360.service.*;
+import cn.thinkjoy.gaokao360.service.ex.IAuditoriumService;
+import cn.thinkjoy.gaokao360.service.ex.IGkPsychologyService;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,6 +45,10 @@ public class ServiceMaps extends BaseServiceMaps{
     private IVideoSectionService videoSectionService;
     @Autowired
     private IAdmissionBatchService admissionBatchService;
+    @Autowired
+    private IAuditoriumService auditoriumService;
+    @Autowired
+    private IGkPsychologyService gkPsychologyService;
 
     @PostConstruct
     public void init(){
@@ -54,6 +60,8 @@ public class ServiceMaps extends BaseServiceMaps{
         serviceMap.put("videocourse",videoCourseService);
         serviceMap.put("videosection",videoSectionService);
         serviceMap.put("admissionbatch",admissionBatchService);
+        serviceMap.put("auditorium",auditoriumService);
+        serviceMap.put("gkPsychology",gkPsychologyService);
     }
 
 }
