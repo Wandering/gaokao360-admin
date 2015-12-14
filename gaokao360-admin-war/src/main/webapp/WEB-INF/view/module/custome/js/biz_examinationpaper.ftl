@@ -6,7 +6,7 @@
         var paperareaId = $('#classfyId').val();
         var paperpaperName = $('#classfyId').val();
         var rules = [];
-        if (papersubjectId != ''&&papersubjectId!=null&&papersubjectId!=undefined&&papersubjectId!="00") {
+        if (papersubjectId != '' && papersubjectId != null && papersubjectId != undefined && papersubjectId != "00") {
             var rule = {
                 'field': 'paper.subjectId',
                 'op': 'eq',
@@ -14,7 +14,7 @@
             }
             rules.push(rule);
         }
-        if (paperyears != ''&&paperyears!=null&&paperyears!=undefined&&paperyears!="00") {
+        if (paperyears != '' && paperyears != null && paperyears != undefined && paperyears != "00") {
             var rule = {
                 'field': 'paper.years',
                 'op': 'eq',
@@ -22,7 +22,7 @@
             }
             rules.push(rule);
         }
-        if (paperareaId != ''&&paperareaId!=null&&paperareaId!=undefined&&paperyears!="00") {
+        if (paperareaId != '' && paperareaId != null && paperareaId != undefined && paperyears != "00") {
             var rule = {
                 'field': 'paper.areaId',
                 'op': 'eq',
@@ -30,7 +30,7 @@
             }
             rules.push(rule);
         }
-        if (paperpaperName != ''&&paperpaperName!=null&&paperpaperName!=undefined&&paperpaperName!="00") {
+        if (paperpaperName != '' && paperpaperName != null && paperpaperName != undefined && paperpaperName != "00") {
             var rule = {
                 'field': 'paperpaperName',
                 'op': 'eq',
@@ -131,6 +131,7 @@
             searchLoad();
 
         });
+//        dom对象
         var UI = {
             $selCourses: $('#selCourses'),
             $selYears: $('#selYears'),
@@ -138,7 +139,13 @@
 
             $addExamBtn: $('#addExamBtn'),
             $editExamBtn: $('#editExamHotBtn'),
-            $deleteHotBtn: $('#deleteHotBtn')
+            $deleteHotBtn: $('#deleteHotBtn'),
+
+            $province2: $('#province2'),
+            $subjectName: $('#subjectName'),
+            $examName: $('#examName'),
+            $examYear: $('#examYear'),
+            $uploaderSWF: $('#uploaderSWF')
         };
 //        获取科目
         examPaperObj.getData(examPaperObj.url.getSubjectUrl, {}, function (res) {
@@ -151,24 +158,115 @@
                 UI.$selCourses.append(subjectHtml);
             }
         });
-//        获取年份
+//        获取省份
+        var provinceHtml = '';
         examPaperObj.getData(examPaperObj.url.getProvinceUrl, {}, function (res) {
             if (res.rtnCode == '0000000') {
                 var dataProvince = res.bizData;
-                var provinceHtml = '';
-                $.each(dataProvince,function(i,v){
+                $.each(dataProvince, function (i, v) {
                     provinceHtml += '<option value="' + v.id + '">' + v.name + '</option>';
                 });
                 UI.$selProvince.append(provinceHtml);
             }
         });
-
-
-        //添加正题密卷
-        UI.$addExamBtn(ace.click_event, function () {
-
+//        获取年份
+        examPaperObj.getData(examPaperObj.url.getYear, {}, function (res) {
+            console.info(res);
+            if (res.rtnCode == '0000000') {
+                var dataYear = res.bizData;
+                var yearHtml = '';
+                for (var i in dataYear) {
+                    yearHtml += '<option>' + dataYear[i] + '</option>';
+                }
+                UI.$selYears.append(yearHtml);
+            }
         });
-    });
+//        添加密卷
+        UI.$addExamBtn.on(ace.click_event, function () {
+            var year = new Date().getFullYear();
+            var rangeYearHtml = '';
+            for (var i = 1990; i <= year; i++) {
+                rangeYearHtml += '<option>' + i + '</option>'
+            }
+            var dialogHtml = ''
+                    + '<div class="bootbox-body">'
+                    + '<div class="row">'
+                    + '<div class="col-xs-12">'
+                    + '<div class="form-horizontal" role="form">'
+                    + '<div class="form-group">'
+                    + '<label class="col-sm-2 control-label no-padding-right">选择省份：</label>'
+                    + '<div class="col-sm-2">'
+                    + '<select class="form-control" id="province2">' + provinceHtml + '</select>'
+                    + '</div>'
+                    + '</div>'
+                    + '<div class="form-group">'
+                    + '<label class="col-sm-2 control-label no-padding-right" for="subjectName">'
+                    + '课程名称：</label>'
+                    + '<div class="col-sm-3">'
+                    + '<input type="text" id="subjectName" placeholder="输入课程名称不超过10个字" class="col-sm-10"/ >'
+                    + '</div>'
+                    + '</div>'
+                    + '<div class="form-group">'
+                    + '<label class="col-sm-2 control-label no-padding-right" for="examName">'
+                    + '真题密卷：</label>'
+                    + '<div class="col-sm-3">'
+                    + '<input type="text" id="examName" placeholder="请输入真题密卷的标题" class="col-sm-10"/ >'
+                    + '</div>'
+                    + '</div>'
+                    + '<div class="form-group">'
+                    + '<label class="col-sm-2 control-label no-padding-right" for="examYear">年份：</label>'
+                    + '<div class="col-sm-2">'
+                    + '<select class="form-control" id="examYear">' + rangeYearHtml + '</select>'
+                    + '</div>'
+                    + '</div>'
+                    + '<div class="form-group">'
+                    + '<label class="col-sm-2 control-label no-padding-right" for="policyInterTwo">'
+                    + '上传文件：</label>'
+                    + '<div class="col-sm-6">'
+                    + '<input type="file" id="uploaderSWF" class="col-sm-5" >'
+                    + '</div>'
+                    + '</div>'
+                    + '<div id="tips"></div>'
+                    + '</div>'
+                    + '</div>'
+                    + '</div>'
+                    + '</div>';
+            var addExamFun = function () {
+                var addExamData = {
+                    oper:add,
+                    areaId:'',
+                    paperName:'',//课程名称
+                    mbeikaochongcitype:'真题密卷'
+                };
+                examPaperObj.getData(examPaperObj.url.commonExamPaper,addExamData,function(res){
+                    console.info(res);
+                })
+
+
+
+            };//addExamFun
+            bootbox.dialog({
+                title: "添加真题密卷",
+                message: dialogHtml,
+                className: 'my-modal',
+                buttons: {
+                    "success": {
+                        "label": "<i class='ace-icon fa fa-check'></i> 提交",
+                        "className": "btn-sm btn-success submitExamBtn",
+                        "callback": addExamFun
+                    },
+                    cancel: {
+                        label: "关闭",
+                        className: "btn-sm"
+                    }
+                }
+            });
+
+
+        }); //ace.click_event结束
+
+
+    });//$结束
 
 
 </script>

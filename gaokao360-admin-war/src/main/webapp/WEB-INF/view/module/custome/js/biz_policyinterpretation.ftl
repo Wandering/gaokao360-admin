@@ -127,6 +127,7 @@
                         console.log(jsonData);
                         if (jsonData.rtnCode == '0000000') {
                             returnStr += jsonData.bizData.file.fileUrl;
+//                            id = jsonData.bizData.file.id;
                         } else {
 
                         }
@@ -344,7 +345,7 @@
                     },
                     cancel: {
                         label: "关闭",
-                        className: "btn-sm",
+                        className: "btn-sm"
                     }
                 }
             });
