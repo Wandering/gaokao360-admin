@@ -43,12 +43,7 @@ public class PolicyInterpretationExController extends AbstractAdminController<IP
         return doRenderMainView(request, response);
     }
 
-    @RequestMapping(value="/{mainObj}fetch")
-    @ResponseBody
-    public Object fetch(@PathVariable String mainObj,@RequestParam("id")String id){
 
-        return policyInterpretationExService.fetch(id);
-    }
     /**
      * 获取所有的组织信息
      * @return

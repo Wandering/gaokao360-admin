@@ -118,6 +118,12 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         return  admissionBatchService.findAll();
     }
 
+
+    @RequestMapping(value="/{mainObj}fetch")
+    @ResponseBody
+    public Object fetch(@PathVariable String mainObj,@RequestParam("id")String id){
+        return serviceMaps.get(mainObj+"ex").fetch(id);
+    }
     /**
      * 查询所有的一级学科
      * @return
