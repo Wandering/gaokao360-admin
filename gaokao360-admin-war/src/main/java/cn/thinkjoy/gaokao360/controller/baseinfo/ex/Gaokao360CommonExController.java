@@ -109,7 +109,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         return list;
     }
     /**
-     * 查询所有的一级学科
+     * 查询所有政策一级分类
      * @return
      */
     @RequestMapping(value="/getAdmissionBatch")
@@ -119,13 +119,19 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     }
 
 
+    /**
+     * 模板化fetch方法  查询ex单条数据
+     * @param mainObj
+     * @param id
+     * @return
+     */
     @RequestMapping(value="/{mainObj}fetch")
     @ResponseBody
     public Object fetch(@PathVariable String mainObj,@RequestParam("id")String id){
         return serviceMaps.get(mainObj+"ex").fetch(id);
     }
     /**
-     * 查询所有的一级学科
+     * 解析html内容
      * @return
      */
     @RequestMapping(value="/getHTMLContent")
@@ -188,7 +194,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     }
 
     /**
-     * 公共获取单挑数据的方法
+     * 公共获取单条数据的方法
      * @return
      */
     @RequestMapping(value="/{mainObj}queryone")
@@ -197,7 +203,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         return  serviceMaps.get(mainObj).fetch(id);
     }
     /**
-     * 公共获取单挑数据的方法
+     * 获取视频列表
      * @return
      */
     @RequestMapping(value="/getVideoSection")
@@ -208,7 +214,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         return  serviceMaps.get("videosection").queryList(map,"sectionSort","asc");
     }
     /**
-     * 查询所有的科目
+     * 富文本转接接口
      * @return
      */
     @RequestMapping(value="/getContentUrl",method = RequestMethod.POST)
@@ -250,7 +256,11 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     }
 
 
-
+    /**
+     * 删除富文本html
+     * @param id
+     * @return
+     */
     public String delFileUrl(Object id){
         String st =null;
         String path = request.getSession().getServletContext().getRealPath("/upload");
