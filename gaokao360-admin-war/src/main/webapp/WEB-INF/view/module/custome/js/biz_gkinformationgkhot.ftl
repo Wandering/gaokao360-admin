@@ -21,7 +21,7 @@
             };
             rules.push(rule);
         }
-        console.log(rules);
+//        console.log(rules);
         return rules;
     }
     function searchLoad() {
@@ -49,104 +49,86 @@
             searchLoad();
 
         });
+        // 获取省份数据
+        var provinceData = CommonFn.getProvince();
+        $('#areaId').html(provinceData);
 
-        var Hot = {
-            getProvince: function (ajaxUrl) {
-                var returnStr = "";
-                returnStr += '<option value="00">请选择省份</option>';
-                $.ajaxSettings.async = false;
-                $.getJSON(ajaxUrl, function (result) {
-                    console.log(result);
-                    if (result.rtnCode == "0000000") {
-                        for (var i = 0; i < result.bizData.length; i++) {
-                            var provinceId = result.bizData[i].id;
-                            var provinceName = result.bizData[i].name;
-                            returnStr += '<option value="' + provinceId + '">' + provinceName + '</option>';
-                        }
-                    }
-                });
-                $.ajaxSettings.async = true;
-                return returnStr;
-            }
-        };
-        $('#areaId').html(Hot.getProvince('/admin/gaokao360/ex/getProvince'));
+//        function dynGetData(ajaxUrl, contentData) {
+//            var returnStr = "";
+//            $.ajaxSettings.async = false;
+//            $.ajax({
+//                type: 'POST',
+//                url: ajaxUrl,
+//                data: {
+//                    content: contentData
+//                },
+//                success: function (result) {
+//                    console.log(result)
+//                    if (result.rtnCode == '0000000') {
+//                        var jsonData = JSON.parse(result.bizData);
+//                        console.log(jsonData);
+//                        if (jsonData.rtnCode == '0000000') {
+//                            returnStr += jsonData.bizData.file.fileUrl;
+//                        } else {
+//
+//                        }
+//                    }
+//                }
+//            });
+//            $.ajaxSettings.async = true;
+//            return returnStr;
+//        }
 
-        function dynGetData(ajaxUrl, contentData) {
-            var returnStr = "";
-            $.ajaxSettings.async = false;
-            $.ajax({
-                type: 'POST',
-                url: ajaxUrl,
-                data: {
-                    content: contentData
-                },
-                success: function (result) {
-                    console.log(result)
-                    if (result.rtnCode == '0000000') {
-                        var jsonData = JSON.parse(result.bizData);
-                        console.log(jsonData);
-                        if (jsonData.rtnCode == '0000000') {
-                            returnStr += jsonData.bizData.file.fileUrl;
-                        } else {
 
-                        }
-
-                    }
-                }
-            });
-            $.ajaxSettings.async = true;
-            return returnStr;
-        }
-
+        var dialogHtml = ''
+                + '<div class="row">'
+                + '<div class="col-xs-12">'
+                + '<form class="form-horizontal" role="form">'
+                + '<div class="form-group">'
+                + '<label class="col-sm-2 control-label no-padding-right"> 选择省份：</label>'
+                + '<div class="col-sm-3">'
+                + '<select class="form-control" id="selProvince">';
+        dialogHtml += provinceData
+                + '</select>'
+                + '</div>'
+                + '</div>'
+                + '<div class="form-group">'
+                + '<label class="col-sm-2 control-label no-padding-right" for="hotTitle"> 标题：</label>'
+                + '<div class="col-sm-3">'
+                + '<input type="text" id="hotTitle" placeholder="请输入高考热点标题" class="" />'
+                + '</div>'
+                + '</div>'
+                + '<div class="form-group">'
+                + '<label class="col-sm-2 control-label no-padding-right" for="hotContent"> 内容：</label>'
+                + '<div class="col-sm-10">'
+                + '<form method="POST" id="myform" action="wysiwyg.php">'
+                + '<div id="hotContent" class="wysiwyg-editor"></div>'
+                + '<input type="hidden" name="wysiwyg-value" />'
+                + '<div class="form-actions align-right clearfix" style="display:none">'
+                + '<button type="submit" class="btn btn-primary pull-right">'
+                + '<i class="ace-icon fa fa-check bigger-110"></i>'
+                + 'submit'
+                + '</button>'
+                + '</div>'
+                + '</form>'
+                + '</div>'
+                + '</div>'
+                + '<div class="form-group">'
+                + '<label class="col-sm-2 control-label no-padding-right" for="hotContent"> 日期：</label>'
+                + '<div class="col-sm-4">'
+                + '<div class="input-group">'
+                + '<input class="form-control date-picker" placeholder="请选择高考热点日期" id="date-picker" type="text" data-date-format="yyyy-mm-dd" />'
+                + '<span class="input-group-addon">'
+                + '<i class="fa fa-calendar bigger-110"></i>'
+                + '</span>'
+                + '</div>'
+                + '</div>'
+                + '</div>'
+                + '</form>'
+                + '</div>'
+                + '</div>';
         // 添加高考热点
         $("#addBtn").on(ace.click_event, function () {
-            var dialogHtml = ''
-                    + '<div class="row">'
-                    + '<div class="col-xs-12">'
-                    + '<form class="form-horizontal" role="form">'
-                    + '<div class="form-group">'
-                    + '<label class="col-sm-2 control-label no-padding-right"> 选择省份：</label>'
-                    + '<div class="col-sm-3">'
-                    + '<select class="form-control" id="selProvince">';
-            dialogHtml += Hot.getProvince('/admin/gaokao360/ex/getProvince')
-            + '</select>'
-            + '</div>'
-            + '</div>'
-            + '<div class="form-group">'
-            + '<label class="col-sm-2 control-label no-padding-right" for="hotTitle"> 标题：</label>'
-            + '<div class="col-sm-3">'
-            + '<input type="text" id="hotTitle" placeholder="请输入高考热点标题" class="" />'
-            + '</div>'
-            + '</div>'
-            + '<div class="form-group">'
-            + '<label class="col-sm-2 control-label no-padding-right" for="hotContent"> 内容：</label>'
-            + '<div class="col-sm-10">'
-            + '<form method="POST" id="myform" action="wysiwyg.php">'
-            + '<div id="hotContent" class="wysiwyg-editor"></div>'
-            + '<input type="hidden" name="wysiwyg-value" />'
-            + '<div class="form-actions align-right clearfix" style="display:none">'
-            + '<button type="submit" class="btn btn-primary pull-right">'
-            + '<i class="ace-icon fa fa-check bigger-110"></i>'
-            + 'submit'
-            + '</button>'
-            + '</div>'
-            + '</form>'
-            + '</div>'
-            + '</div>'
-            + '<div class="form-group">'
-            + '<label class="col-sm-2 control-label no-padding-right" for="hotContent"> 日期：</label>'
-            + '<div class="col-sm-4">'
-            + '<div class="input-group">'
-            + '<input class="form-control date-picker" placeholder="请选择高考热点日期" id="date-picker" type="text" data-date-format="yyyy-mm-dd" />'
-            + '<span class="input-group-addon">'
-            + '<i class="fa fa-calendar bigger-110"></i>'
-            + '</span>'
-            + '</div>'
-            + '</div>'
-            + '</div>'
-            + '</form>'
-            + '</div>'
-            + '</div>';
             bootbox.dialog({
                 title: "添加高考热点",
                 message: dialogHtml,
@@ -160,7 +142,7 @@
                                     hotTitleV = $('#hotTitle').val().trim(),
                                     hotContentV = $('#hotContent').html(),
                                     datePickerV = $('#date-picker').val().trim();
-                            console.log(hotContentV);
+//                            console.log(hotContentV);
                             if (selProvinceV == "00") {
                                 tipsDialog('温馨提示', '请选择省份');
                                 return false;
@@ -179,39 +161,49 @@
                                 return false;
                             }
                             //上传高考热点内容到云存储
-                            var hotContentHtml = ''
-                                    + '<!DOCTYPE html>'
-                                    + '<html lang="en">'
-                                    + '<head>'
-                                    + '<meta charset="UTF-8">'
-                                    + '<title>Document</title>'
-                                    + '</head>'
-                                    + '<body>';
-                            hotContentHtml += hotContentV
-                            + '</body>'
-                            + '</html>';
-                            var hotContentUrl = dynGetData('/admin/${bizSys}/getContentUrl', hotContentHtml);
-                            var infoData = {
-                                areaId: selProvinceV,
-                                hotInformation: hotTitleV,
-                                informationContent: hotContentUrl,
-                                hotdate: datePickerV,
-                                informationSubContent: '',
-                                hotCount: 0,
-                                oper: 'add'
-                            };
-                            console.log(infoData)
-                            $.ajax({
-                                type: "POST",
-                                url: '/admin/${bizSys}/commonsave/${mainObj}',
-                                data: infoData,
-                                success: function (result) {
-                                    console.log(result);
-                                    if (result.rtnCode == "0000000") {
-                                        searchLoad();
-                                    }
-                                }
-                            });
+//                            var hotContentHtml = ''
+//                                    + '<!DOCTYPE html>'
+//                                    + '<html lang="en">'
+//                                    + '<head>'
+//                                    + '<meta charset="UTF-8">'
+//                                    + '<title>Document</title>'
+//                                    + '</head>'
+//                                    + '<body>';
+//                            hotContentHtml += hotContentV
+//                            + '</body>'
+//                            + '</html>';
+
+                            var hotContentHtml = CommonFn.getTextareaData(hotContentV);
+
+                            CommonFn.getTextareaUrlData('/admin/${bizSys}/getContentUrl', hotContentHtml)
+
+
+
+                            <#--console.log(CommonFn.getTextareaUrlData('/admin/${bizSys}/getContentUrl', CommonFn.getTextareaData(hotContentV)))-->
+
+
+                            <#--var hotContentUrl = dynGetData('/admin/${bizSys}/getContentUrl', hotContentHtml);-->
+//                            var infoData = {
+//                                areaId: selProvinceV,
+//                                hotInformation: hotTitleV,
+//                                informationContent: hotContentUrl,
+//                                hotdate: datePickerV,
+//                                informationSubContent: '',
+//                                hotCount: 0,
+//                                oper: 'add'
+//                            };
+//                            console.log(infoData)
+                            <#--$.ajax({-->
+                                <#--type: "POST",-->
+                                <#--url: '/admin/${bizSys}/commonsave/${mainObj}',-->
+                                <#--data: infoData,-->
+                                <#--success: function (result) {-->
+                                    <#--console.log(result);-->
+                                    <#--if (result.rtnCode == "0000000") {-->
+                                        <#--searchLoad();-->
+                                    <#--}-->
+                                <#--}-->
+                            <#--});-->
                         }
                     },
                     cancel: {
@@ -322,7 +314,7 @@
                     + '<label class="col-sm-2 control-label no-padding-right"> 选择省份：</label>'
                     + '<div class="col-sm-3">'
                     + '<select class="form-control" id="selProvince">';
-            dialogHtml += Hot.getProvince('/admin/gaokao360/ex/getProvince')
+//            dialogHtml += CommonFn.getProvince('/admin/gaokao360/ex/getProvince')
             + '</select>'
             + '</div>'
             + '</div>'
