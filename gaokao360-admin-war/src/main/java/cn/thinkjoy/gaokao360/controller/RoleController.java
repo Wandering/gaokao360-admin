@@ -38,7 +38,7 @@ import cn.thinkjoy.common.managerui.controller.AbstractAdminController;
 
 @Controller
 @RequestMapping(value="/admin/gaokao360")
-public class RoleController extends AbstractAdminController<IRoleService>{
+public class RoleController extends BaseController<IRoleService>{
 
     @Autowired
     private IResourceService resourceService;

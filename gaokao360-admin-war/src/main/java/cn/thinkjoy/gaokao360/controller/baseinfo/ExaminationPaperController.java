@@ -7,6 +7,8 @@
 
 package cn.thinkjoy.gaokao360.controller.baseinfo;
 
+import cn.thinkjoy.gaokao360.controller.BaseController;
+import cn.thinkjoy.gaokao360.dto.ExaminationPaperDTO;
 import cn.thinkjoy.gaokao360.service.IExaminationPaperService;
 import cn.thinkjoy.common.managerui.dao.IResourceGridDAO;
 import cn.thinkjoy.common.managerui.service.IResourceGridService;
@@ -30,7 +32,7 @@ import cn.thinkjoy.common.managerui.controller.AbstractAdminController;
 
 @Controller
 @RequestMapping(value="/admin/gaokao360")
-public class ExaminationPaperController extends AbstractAdminController<IExaminationPaperService>{
+public class ExaminationPaperController extends BaseController<IExaminationPaperService> {
 
 
     @Autowired
@@ -48,6 +50,7 @@ public class ExaminationPaperController extends AbstractAdminController<IExamina
 
         return doRenderMainView(request, response);
     }
+
 
     /**
      * 获取所有的组织信息

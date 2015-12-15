@@ -7,6 +7,7 @@
 
 package cn.thinkjoy.gaokao360.controller.baseinfo;
 
+import cn.thinkjoy.gaokao360.controller.BaseController;
 import cn.thinkjoy.gaokao360.service.IVideoSectionService;
 import cn.thinkjoy.common.managerui.dao.IResourceGridDAO;
 import cn.thinkjoy.common.managerui.service.IResourceGridService;
@@ -30,7 +31,7 @@ import cn.thinkjoy.common.managerui.controller.AbstractAdminController;
 
 @Controller
 @RequestMapping(value="/admin/gaokao360")
-public class VideoSectionController extends AbstractAdminController<IVideoSectionService>{
+public class VideoSectionController extends BaseController<IVideoSectionService> {
 
 
     @Autowired

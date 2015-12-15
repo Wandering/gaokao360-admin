@@ -7,17 +7,23 @@
 
 package cn.thinkjoy.gaokao360.controller.baseinfo.ex;
 
+import cn.thinkjoy.common.domain.BaseDomain;
 import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.common.managerui.controller.AbstractCommonController;
 import cn.thinkjoy.common.managerui.controller.helpers.BaseServiceMaps;
 import cn.thinkjoy.common.service.IBaseService;
 import cn.thinkjoy.gaokao360.common.ServiceMaps;
+import cn.thinkjoy.gaokao360.domain.GkinformationGkhot;
 import cn.thinkjoy.gaokao360.domain.PolicyInterpretation;
 import cn.thinkjoy.gaokao360.service.IAdmissionBatchService;
 import cn.thinkjoy.gaokao360.service.IProvinceService;
 import cn.thinkjoy.gaokao360.service.ISubjectService;
 import cn.thinkjoy.gaokao360.service.ex.IAdmissionBatchExService;
+import cn.thinkjoy.gaokao360.service.ex.IVideoSectionExService;
+import com.alibaba.druid.support.logging.LogFactory;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.google.common.collect.Maps;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Controller;
@@ -25,14 +31,14 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping(value="/admin/gaokao360/ex")
@@ -47,10 +53,27 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     private IAdmissionBatchService admissionBatchService;
     @Autowired
     private IAdmissionBatchExService admissionBatchExService;
+    @Autowired
+    private IVideoSectionExService videoSectionExService;
 
     @Override
     protected void innerHandleDel(String mainObj, Map dataMap) {
-        getServiceMaps().get(mainObj).delete(dataMap.get("id"));
+        if("policyinterpretation".equals(mainObj)){
+            PolicyInterpretation policyInterpretation = (PolicyInterpretation)serviceMaps.get(mainObj).fetch(dataMap.get("id"));
+            delFileUrl(policyInterpretation.getHtmlId());
+
+        }else if("gkinformationgkhot".equals(mainObj)){
+            GkinformationGkhot gkinformationGkhot =(GkinformationGkhot)serviceMaps.get(mainObj).fetch(dataMap.get("id"));
+            delFileUrl(gkinformationGkhot.getHtmlId());
+        }
+        if("auditorium".equals(mainObj)){
+            serviceMaps.get("videocourse").delete(dataMap);
+        }else if("gkPsychology".equals(mainObj)){
+            serviceMaps.get("videocourse").delete(dataMap);
+        }else {
+            getServiceMaps().get(mainObj).delete(dataMap.get("id"));
+        }
+
     }
 
     /**
@@ -78,7 +101,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
      */
     @RequestMapping(value="/{mainObj}/getYears")
     @ResponseBody
-    public List getYears(){
+    public List getYears(@PathVariable String mainObj){
         List list = new ArrayList();
         list.add("2015");
         list.add("2014");
@@ -86,7 +109,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         return list;
     }
     /**
-     * 查询所有的一级学科
+     * 查询所有政策一级分类
      * @return
      */
     @RequestMapping(value="/getAdmissionBatch")
@@ -95,8 +118,20 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         return  admissionBatchService.findAll();
     }
 
+
     /**
-     * 查询所有的一级学科
+     * 模板化fetch方法  查询ex单条数据
+     * @param mainObj
+     * @param id
+     * @return
+     */
+    @RequestMapping(value="/{mainObj}fetch")
+    @ResponseBody
+    public Object fetch(@PathVariable String mainObj,@RequestParam("id")String id){
+        return serviceMaps.get(mainObj+"ex").fetch(id);
+    }
+    /**
+     * 解析html内容
      * @return
      */
     @RequestMapping(value="/getHTMLContent")
@@ -126,17 +161,32 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         if("admissionbatch".equals(mainObj)){
             admissionBatchExService.insertMap(dataMap);
         }else if("auditorium".equals(mainObj)){
-//            String[]
+            serviceMaps.get("videocourse").insertMap(dataMap);
+            Long lid = videoSectionExService.queryByMaxId();
+            String[] strs=null;
             if(dataMap.containsKey("sectionId")){
                 String sectionId = (String)dataMap.get("sectionId");
-                sectionId.split(",");
+                strs=sectionId.split(",");
             }
-//            for(){
-//
-//            }
-            serviceMaps.get("videocourse").insertMap(dataMap);
+            if(strs!=null){
+                for(String str:strs){
+                    videoSectionExService.updateCourseId(lid,str);
+                }
+            }
+
         }else if("gkPsychology".equals(mainObj)){
             serviceMaps.get("videocourse").insertMap(dataMap);
+            Long lid = videoSectionExService.queryByMaxId();
+            String[] strs=null;
+            if(dataMap.containsKey("sectionId")){
+                String sectionId = (String)dataMap.get("sectionId");
+                strs=sectionId.split(",");
+            }
+            if(strs!=null){
+                for(String str:strs){
+                    videoSectionExService.updateCourseId(lid,str);
+                }
+            }
         }else {
             super.innerHandleAdd(mainObj, dataMap);
         }
@@ -144,7 +194,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     }
 
     /**
-     * 公共获取单挑数据的方法
+     * 公共获取单条数据的方法
      * @return
      */
     @RequestMapping(value="/{mainObj}queryone")
@@ -153,7 +203,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         return  serviceMaps.get(mainObj).fetch(id);
     }
     /**
-     * 公共获取单挑数据的方法
+     * 获取视频列表
      * @return
      */
     @RequestMapping(value="/getVideoSection")
@@ -164,7 +214,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         return  serviceMaps.get("videosection").queryList(map,"sectionSort","asc");
     }
     /**
-     * 查询所有的科目
+     * 富文本转接接口
      * @return
      */
     @RequestMapping(value="/getContentUrl",method = RequestMethod.POST)
@@ -206,51 +256,54 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     }
 
 
+    /**
+     * 删除富文本html
+     * @param id
+     * @return
+     */
+    public String delFileUrl(Object id){
+        String st =null;
+        String path = request.getSession().getServletContext().getRealPath("/upload");
+        String filename = "gk" + System.currentTimeMillis() + ".html";
+        String url = "http://cs-dev.thinkjoy.com.cn/rest/v1/uploadFile";
+        try {
+            MultiValueMap<String, Object> param = new LinkedMultiValueMap<String, Object>();
+            RestTemplate template = new RestTemplate();
+            //这里大家可以用其他的httpClient均可以
+            param.add("productCode", "gk360");
+            param.add("bizSystem", "gk360");
+            param.add("spaceName ", "gk360");
+            param.add("userId ", "gk360");
+            param.add("dirId ", "0");
+            param.add("fileId ",id);
 
-//    public String delFileUrl(String filename){
-//        String st =null;
-//        String path = request.getSession().getServletContext().getRealPath("/upload");
-//        String filename = "gk" + System.currentTimeMillis() + ".html";
-//        String url = "http://cs-dev.thinkjoy.com.cn/rest/v1/uploadFile";
-//        try {
-//            try {
-//                FileOutputStream outputStream = new FileOutputStream(path + "/" + filename);
-//                outputStream.write(content.getBytes("UTF-8"));
-//            } catch (Exception e) {
-//                throw new BizException("", e.getLocalizedMessage());
-//            }
-//            FileSystemResource resource = new FileSystemResource(new File(path + "/" + filename));
-//            MultiValueMap<String, Object> param = new LinkedMultiValueMap<String, Object>();
-//            RestTemplate template = new RestTemplate();
-//            //这里大家可以用其他的httpClient均可以
-//            param.add("file", resource);
-//            param.add("productCode", "gk360");
-//            param.add("bizSystem", "gk360");
-//            param.add("spaceName ", "gk360");
-//            param.add("userId ", "gk360");
-//            param.add("dirId ", "0");
-//
-//            template.getMessageConverters().add(new FastJsonHttpMessageConverter());
-//            st = template.postForObject(url, param, String.class);
-//
-//        }finally {
-//            File file = new File(path + "/" + filename);
-//            if(file.exists()){
-//                file.delete();
-//            }
-//        }
-//        return st;
-//    }
+            template.getMessageConverters().add(new FastJsonHttpMessageConverter());
+            st = template.postForObject(url, param, String.class);
+
+        }catch (Exception e){
+            logger.error("删除错误");
+        }
+        return st;
+    }
     @Override
     protected void innerHandleUpdate(String mainObj, Map dataMap) {
         if("policyinterpretation".equals(mainObj)){
             PolicyInterpretation policyInterpretation = (PolicyInterpretation)serviceMaps.get(mainObj).fetch(dataMap.get("id"));
+            delFileUrl(policyInterpretation.getHtmlId());
 
         }else if("gkinformationgkhot".equals(mainObj)){
-            serviceMaps.get(mainObj).fetch(dataMap.get("id"));
+            GkinformationGkhot gkinformationGkhot =(GkinformationGkhot)serviceMaps.get(mainObj).fetch(dataMap.get("id"));
+            delFileUrl(gkinformationGkhot.getHtmlId());
         }
-        super.innerHandleUpdate(mainObj, dataMap);
+        if("auditorium".equals(mainObj)){
+            serviceMaps.get("videocourse").updateMap(dataMap);
+        }else if("gkPsychology".equals(mainObj)){
+            serviceMaps.get("videocourse").updateMap(dataMap);
+        }else {
+            super.innerHandleUpdate(mainObj, dataMap);
+        }
     }
+
 
     @Override
     protected BaseServiceMaps getServiceMaps() {

@@ -6,7 +6,7 @@
         var paperareaId = $('#classfyId').val();
         var paperpaperName = $('#classfyId').val();
         var rules = [];
-        if (papersubjectId != ''&&papersubjectId!=null&&papersubjectId!=undefined&&papersubjectId!="00") {
+        if (papersubjectId != '' && papersubjectId != null && papersubjectId != undefined && papersubjectId != "00") {
             var rule = {
                 'field': 'paper.subjectId',
                 'op': 'eq',
@@ -14,7 +14,7 @@
             }
             rules.push(rule);
         }
-        if (paperyears != ''&&paperyears!=null&&paperyears!=undefined&&paperyears!="00") {
+        if (paperyears != '' && paperyears != null && paperyears != undefined && paperyears != "00") {
             var rule = {
                 'field': 'paper.years',
                 'op': 'eq',
@@ -22,7 +22,7 @@
             }
             rules.push(rule);
         }
-        if (paperareaId != ''&&paperareaId!=null&&paperareaId!=undefined&&paperyears!="00") {
+        if (paperareaId != '' && paperareaId != null && paperareaId != undefined && paperyears != "00") {
             var rule = {
                 'field': 'paper.areaId',
                 'op': 'eq',
@@ -30,7 +30,7 @@
             }
             rules.push(rule);
         }
-        if (paperpaperName != ''&&paperpaperName!=null&&paperpaperName!=undefined&&paperpaperName!="00") {
+        if (paperpaperName != '' && paperpaperName != null && paperpaperName != undefined && paperpaperName != "00") {
             var rule = {
                 'field': 'paperpaperName',
                 'op': 'eq',
@@ -56,568 +56,7 @@
             postData: "filters=" + JSON.stringify(filters),
             page: 1
         }).trigger("reloadGrid");
-
-
     }
-
-    jQuery(function ($) {
-        $("#search").click(function () {
-            searchLoad();
-
-        });
-
-        var Hot = {
-            getProvince: function (ajaxUrl) {
-                var returnStr = "";
-                returnStr += '<option value="00">请选择省份</option>';
-                $.ajaxSettings.async = false;
-                $.getJSON(ajaxUrl, function (result) {
-                    console.log(result);
-                    if (result.rtnCode == "0000000") {
-                        for (var i = 0; i < result.bizData.length; i++) {
-                            var provinceId = result.bizData[i].id;
-                            var provinceName = result.bizData[i].name;
-                            returnStr += '<option value="' + provinceId + '">' + provinceName + '</option>';
-                        }
-                    }
-                });
-                $.ajaxSettings.async = true;
-                return returnStr;
-            }
-        };
-        $('#areaId').html(Hot.getProvince('/admin/gaokao360/ex/getProvince'));
-
-        function dynGetData(ajaxUrl, contentData) {
-            var returnStr = "";
-            $.ajaxSettings.async = false;
-            $.ajax({
-                type: 'POST',
-                url: ajaxUrl,
-                data: {
-                    content: contentData
-                },
-                success: function (result) {
-                    console.log(result)
-                    if (result.rtnCode == '0000000') {
-                        var jsonData = JSON.parse(result.bizData);
-                        console.log(jsonData);
-                        if (jsonData.rtnCode == '0000000') {
-                            returnStr += jsonData.bizData.file.fileUrl;
-                        } else {
-
-                        }
-
-                    }
-                }
-            });
-            $.ajaxSettings.async = true;
-            return returnStr;
-        }
-
-        // 添加高考热点
-        $("#addBtn").on(ace.click_event, function () {
-            var dialogHtml = ''
-                    + '<div class="row">'
-                    + '<div class="col-xs-12">'
-                    + '<form class="form-horizontal" role="form">'
-                    + '<div class="form-group">'
-                    + '<label class="col-sm-2 control-label no-padding-right"> 选择省份：</label>'
-                    + '<div class="col-sm-3">'
-                    + '<select class="form-control" id="selProvince">';
-            dialogHtml += Hot.getProvince('/admin/gaokao360/ex/getProvince')
-            + '</select>'
-            + '</div>'
-            + '</div>'
-            + '<div class="form-group">'
-            + '<label class="col-sm-2 control-label no-padding-right" for="hotTitle"> 高考热点标题：</label>'
-            + '<div class="col-sm-3">'
-            + '<input type="text" id="hotTitle" placeholder="请输入高考热点标题" class="" />'
-            + '</div>'
-            + '</div>'
-            + '<div class="form-group">'
-            + '<label class="col-sm-2 control-label no-padding-right" for="hotContent"> 高考热点内容：</label>'
-            + '<div class="col-sm-10">'
-            + '<form method="POST" id="myform" action="wysiwyg.php">'
-            + '<div id="hotContent" class="wysiwyg-editor"></div>'
-            + '<input type="hidden" name="wysiwyg-value" />'
-            + '<div class="form-actions align-right clearfix" style="display:none">'
-            + '<button type="submit" class="btn btn-primary pull-right">'
-            + '<i class="ace-icon fa fa-check bigger-110"></i>'
-            + 'submit'
-            + '</button>'
-            + '</div>'
-            + '</form>'
-            + '</div>'
-            + '</div>'
-            + '<div class="form-group">'
-            + '<label class="col-sm-2 control-label no-padding-right" for="hotContent"> 高考热点日期：</label>'
-            + '<div class="col-sm-4">'
-            + '<div class="input-group">'
-            + '<input class="form-control date-picker" placeholder="请选择高考热点日期" id="date-picker" type="text" data-date-format="yyyy-mm-dd" />'
-            + '<span class="input-group-addon">'
-            + '<i class="fa fa-calendar bigger-110"></i>'
-            + '</span>'
-            + '</div>'
-            + '</div>'
-            + '</div>'
-            + '</form>'
-            + '</div>'
-            + '</div>';
-            bootbox.dialog({
-                title: "添加高考热点",
-                message: dialogHtml,
-                className: 'my-modal',
-                buttons: {
-                    "success": {
-                        "label": "<i class='ace-icon fa fa-check'></i> 提交",
-                        "className": "btn-sm btn-success",
-                        "callback": function () {
-                            var selProvinceV = $('#selProvince option:checked').val(),
-                                    hotTitleV = $('#hotTitle').val().trim(),
-                                    hotContentV = $('#hotContent').html(),
-                                    datePickerV = $('#date-picker').val().trim();
-                            console.log(hotContentV);
-                            if (selProvinceV == "00") {
-                                tipsDialog('温馨提示', '请选择省份');
-                                return false;
-                            }
-                            if (hotTitleV == "") {
-                                tipsDialog('温馨提示', '请输入高考热点标题');
-                                return false;
-                            }
-                            if (hotContentV == "") {
-                                tipsDialog('温馨提示', '请输入高考热点内容');
-                                return false;
-                            }
-
-                            if (datePickerV == "") {
-                                tipsDialog('温馨提示', '请选择高考热点日期');
-                                return false;
-                            }
-                            //上传高考热点内容到云存储
-                            var hotContentHtml = ''
-                                    + '<!DOCTYPE html>'
-                                    + '<html lang="en">'
-                                    + '<head>'
-                                    + '<meta charset="UTF-8">'
-                                    + '<title>Document</title>'
-                                    + '</head>'
-                                    + '<body>';
-                            hotContentHtml += hotContentV
-                            + '</body>'
-                            + '</html>';
-                            var hotContentUrl = dynGetData('/admin/${bizSys}/getContentUrl', hotContentHtml);
-                            var infoData = {
-                                areaId: selProvinceV,
-                                hotInformation: hotTitleV,
-                                informationContent: hotContentUrl,
-                                hotdate: datePickerV,
-                                informationSubContent: '',
-                                hotCount: 0,
-                                oper: 'add'
-                            };
-                            console.log(infoData)
-                            $.ajax({
-                                type: "POST",
-                                url: '/admin/${bizSys}/commonsave/${mainObj}',
-                                data: infoData,
-                                success: function (result) {
-                                    console.log(result);
-                                    if (result.rtnCode == "0000000") {
-                                        searchLoad();
-                                    }
-                                }
-                            });
-                        }
-                    },
-                    cancel: {
-                        label: "关闭",
-                        className: "btn-sm",
-                    }
-                }
-            });
-
-            $('#date-picker').datepicker({
-                autoclose: true,
-                todayHighlight: true
-            });
-            $('#hotContent').ace_wysiwyg({
-                toolbar: [
-                    {
-                        name: 'font',
-                        title: 'Custom tooltip',
-                        values: ['Some Font!', 'Arial', 'Verdana', 'Comic Sans MS', 'Custom Font!']
-                    },
-                    null,
-                    {
-                        name: 'fontSize',
-                        title: 'Custom tooltip',
-                        values: {
-                            1: 'Size#1 Text',
-                            2: 'Size#1 Text',
-                            3: 'Size#3 Text',
-                            4: 'Size#4 Text',
-                            5: 'Size#5 Text'
-                        }
-                    },
-                    null,
-                    {name: 'bold', title: 'Custom tooltip'},
-                    {name: 'italic', title: 'Custom tooltip'},
-                    {name: 'strikethrough', title: 'Custom tooltip'},
-                    {name: 'underline', title: 'Custom tooltip'},
-                    null,
-                    'insertunorderedlist',
-                    'insertorderedlist',
-                    'outdent',
-                    'indent',
-                    null,
-                    {name: 'justifyleft'},
-                    {name: 'justifycenter'},
-                    {name: 'justifyright'},
-                    {name: 'justifyfull'},
-                    null,
-                    {
-                        name: 'createLink',
-                        placeholder: 'Custom PlaceHolder Text',
-                        button_class: 'btn-purple',
-                        button_text: 'Custom TEXT'
-                    },
-                    {name: 'unlink'},
-                    null,
-                    {
-                        name: 'insertImage',
-                        placeholder: 'Custom PlaceHolder Text',
-                        button_class: 'btn-inverse',
-                        //choose_file:false,//hide choose file button
-                        button_text: 'Set choose_file:false to hide this',
-                        button_insert_class: 'btn-pink',
-                        button_insert: 'Insert Image'
-                    },
-                    null,
-                    {
-                        name: 'foreColor',
-                        title: 'Custom Colors',
-                        values: ['red', 'green', 'blue', 'navy', 'orange'],
-                        /**
-                         You change colors as well
-                         */
-                    },
-                /**null,
-                 {
-                     name:'backColor'
-                 },*/
-                    null,
-                    {name: 'undo'},
-                    {name: 'redo'},
-                    null,
-                    'viewSource'
-                ],
-                //speech_button:false,//hide speech button on chrome
-
-                'wysiwyg': {
-                    hotKeys: {} //disable hotkeys
-                }
-
-            }).prev().addClass('wysiwyg-style2');
-
-        });
-
-        //修改高考热点
-        $("#editBtn").on(ace.click_event, function () {
-            var rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
-            var selTrN = $('tr.ui-state-highlight[role="row"]').length;
-            if (selTrN != 1) {
-                tipsDialog('温馨提示', '请选中一行后修改');
-                return false;
-            }
-            var dialogHtml = ''
-                    + '<div class="row">'
-                    + '<div class="col-xs-12">'
-                    + '<form class="form-horizontal" role="form">'
-                    + '<div class="form-group">'
-                    + '<label class="col-sm-2 control-label no-padding-right"> 选择省份：</label>'
-                    + '<div class="col-sm-3">'
-                    + '<select class="form-control" id="selProvince">';
-            dialogHtml += Hot.getProvince('/admin/gaokao360/ex/getProvince')
-            + '</select>'
-            + '</div>'
-            + '</div>'
-            + '<div class="form-group">'
-            + '<label class="col-sm-2 control-label no-padding-right" for="hotTitle"> 高考热点标题：</label>'
-            + '<div class="col-sm-3">'
-            + '<input type="text" id="hotTitle" placeholder="请输入高考热点标题" class="" />'
-            + '</div>'
-            + '</div>'
-            + '<div class="form-group">'
-            + '<label class="col-sm-2 control-label no-padding-right" for="hotContent"> 高考热点内容：</label>'
-            + '<div class="col-sm-10">'
-            + '<form method="POST" id="myform" action="wysiwyg.php">'
-            + '<div id="hotContent" class="wysiwyg-editor"></div>'
-            + '<input type="hidden" name="wysiwyg-value" />'
-            + '<div class="form-actions align-right clearfix" style="display:none">'
-            + '<button type="submit" class="btn btn-primary pull-right">'
-            + '<i class="ace-icon fa fa-check bigger-110"></i>'
-            + 'submit'
-            + '</button>'
-            + '</div>'
-            + '</form>'
-            + '</div>'
-            + '</div>'
-            + '<div class="form-group">'
-            + '<label class="col-sm-2 control-label no-padding-right" for="hotContent"> 高考热点日期：</label>'
-            + '<div class="col-sm-4">'
-            + '<div class="input-group">'
-            + '<input class="form-control date-picker" placeholder="请选择高考热点日期" id="date-picker" type="text" data-date-format="yyyy-mm-dd" />'
-            + '<span class="input-group-addon">'
-            + '<i class="fa fa-calendar bigger-110"></i>'
-            + '</span>'
-            + '</div>'
-            + '</div>'
-            + '</div>'
-            + '</form>'
-            + '</div>'
-            + '</div>';
-            $.getJSON('/admin/${bizSys}/${mainObj}queryone?id=' + rowId, function (result) {
-                console.log(result)
-                if (result.rtnCode == "0000000") {
-                    var dataInfo = result.bizData;
-                    var areaId = dataInfo.areaId,
-                            hotInformation = dataInfo.hotInformation,
-                            hotdate = dataInfo.hotdate,
-                            informationContent = dataInfo.informationContent;
-                    $.ajax({
-                        type:'POST',
-                        url:'/admin/${bizSys}/getHTMLContent',
-                        data: {
-                            htmlurl:informationContent
-                        },
-                        success: function (res) {
-                            if(res.rtnCode == "0000000"){
-                                $('#hotContent').html(res.bizData);
-                            }
-                        }
-                    });
-                    $('#selProvince').find('option[value="' + areaId + '"]').attr('selected', 'selected');
-                    $('#hotTitle').val(hotInformation);
-                    $('#date-picker').val(hotdate);
-                }
-            });
-            bootbox.dialog({
-                title: "修改高考热点",
-                message: dialogHtml,
-                className: 'my-modal',
-                buttons: {
-                    "success": {
-                        "label": "<i class='ace-icon fa fa-check'></i> 提交",
-                        "className": "btn-sm btn-success",
-                        "callback": function () {
-                            var selProvinceV = $('#selProvince option:checked').val(),
-                                    hotTitleV = $('#hotTitle').val().trim(),
-                                    hotContentV = $('#hotContent').html(),
-                                    datePickerV = $('#date-picker').val().trim();
-
-                            console.log(hotContentV)
-                            if (selProvinceV == "00") {
-                                tipsDialog('温馨提示', '请选择省份');
-                                return false;
-                            }
-                            if (hotTitleV == "") {
-                                tipsDialog('温馨提示', '请输入高考热点标题');
-                                return false;
-                            }
-                            if (hotContentV == "") {
-                                tipsDialog('温馨提示', '请输入高考热点内容');
-                                return false;
-                            }
-                            if (datePickerV == "") {
-                                tipsDialog('温馨提示', '请选择高考热点日期');
-                                return false;
-                            }
-                            //上传高考热点内容到云存储
-                            var hotContentHtml = ''
-                                    + '<!DOCTYPE html>'
-                                    + '<html lang="en">'
-                                    + '<head>'
-                                    + '<meta charset="UTF-8">'
-                                    + '<title>Document</title>'
-                                    + '</head>'
-                                    + '<body>';
-                            hotContentHtml += hotContentV
-                            + '</body>'
-                            + '</html>';
-                            var hotContentUrl = dynGetData('/admin/${bizSys}/getContentUrl', hotContentHtml);
-                            var infoData = {
-                                id: rowId,
-                                areaId: selProvinceV,
-                                hotInformation: hotTitleV,
-                                informationContent: hotContentUrl,
-                                hotdate: datePickerV,
-                                informationSubContent: '',
-                                hotCount: 0,
-                                oper: 'edit'
-                            };
-                            console.log(infoData)
-                            $.ajax({
-                                type: "POST",
-                                url: '/admin/${bizSys}/commonsave/${mainObj}',
-                                data: infoData,
-                                success: function (result) {
-                                    console.log(result)
-                                    if (result.rtnCode == "0000000") {
-                                        searchLoad();
-                                    }
-                                }
-                            });
-                        }
-                    },
-                    cancel: {
-                        label: "关闭",
-                        className: "btn-sm",
-                    }
-                }
-            });
-
-            $('#date-picker').datepicker({
-                autoclose: true,
-                todayHighlight: true
-            });
-            $('#hotContent').ace_wysiwyg({
-                toolbar: [
-                    {
-                        name: 'font',
-                        title: 'Custom tooltip',
-                        values: ['Some Font!', 'Arial', 'Verdana', 'Comic Sans MS', 'Custom Font!']
-                    },
-                    null,
-                    {
-                        name: 'fontSize',
-                        title: 'Custom tooltip',
-                        values: {
-                            1: 'Size#1 Text',
-                            2: 'Size#1 Text',
-                            3: 'Size#3 Text',
-                            4: 'Size#4 Text',
-                            5: 'Size#5 Text'
-                        }
-                    },
-                    null,
-                    {name: 'bold', title: 'Custom tooltip'},
-                    {name: 'italic', title: 'Custom tooltip'},
-                    {name: 'strikethrough', title: 'Custom tooltip'},
-                    {name: 'underline', title: 'Custom tooltip'},
-                    null,
-                    'insertunorderedlist',
-                    'insertorderedlist',
-                    'outdent',
-                    'indent',
-                    null,
-                    {name: 'justifyleft'},
-                    {name: 'justifycenter'},
-                    {name: 'justifyright'},
-                    {name: 'justifyfull'},
-                    null,
-                    {
-                        name: 'createLink',
-                        placeholder: 'Custom PlaceHolder Text',
-                        button_class: 'btn-purple',
-                        button_text: 'Custom TEXT'
-                    },
-                    {name: 'unlink'},
-                    null,
-                    {
-                        name: 'insertImage',
-                        placeholder: 'Custom PlaceHolder Text',
-                        button_class: 'btn-inverse',
-                        //choose_file:false,//hide choose file button
-                        button_text: 'Set choose_file:false to hide this',
-                        button_insert_class: 'btn-pink',
-                        button_insert: 'Insert Image'
-                    },
-                    null,
-                    {
-                        name: 'foreColor',
-                        title: 'Custom Colors',
-                        values: ['red', 'green', 'blue', 'navy', 'orange'],
-                        /**
-                         You change colors as well
-                         */
-                    },
-                /**null,
-                 {
-                     name:'backColor'
-                 },*/
-                    null,
-                    {name: 'undo'},
-                    {name: 'redo'},
-                    null,
-                    'viewSource'
-                ],
-                //speech_button:false,//hide speech button on chrome
-
-                'wysiwyg': {
-                    hotKeys: {} //disable hotkeys
-                }
-
-            }).prev().addClass('wysiwyg-style2');
-
-        });
-        //删除
-        $("#deleteBtn").on(ace.click_event, function () {
-            var rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
-            var selTrN = $('tr.ui-state-highlight[role="row"]').length;
-            if (selTrN != 1) {
-                tipsDialog('温馨提示', '请选中一行后在删除');
-                return false;
-            }
-            bootbox.dialog({
-                title: "添加高考热点",
-                message: "确定删除该条数据",
-                buttons: {
-                    "success": {
-                        "label": "<i class='ace-icon fa fa-check'></i> 确定",
-                        "className": "btn-sm btn-success",
-                        "callback": function () {
-                            $.ajax({
-                                type: "POST",
-                                url: '/admin/${bizSys}/commonsave/${mainObj}',
-                                data: {
-                                    oper: 'del',
-                                    id: rowId
-                                },
-                                success: function (result) {
-                                    console.log(result);
-                                    if (result.rtnCode == "0000000") {
-                                        searchLoad();
-                                    }
-                                }
-                            });
-                        }
-                    },
-                    cancel: {
-                        label: "关闭",
-                        className: "btn-sm",
-                    }
-                }
-            });
-
-
-        });
-
-
-        function tipsDialog(title, message) {
-            bootbox.dialog({
-                title: title,
-                message: '<span class="bigger-110 center">' + message + '</span>',
-                buttons: {
-                    cancel: {
-                        label: "关闭",
-                        className: "btn-sm",
-                    }
-                }
-            });
-        }
-    });
-
     /*
     *
     * 真题密卷
@@ -630,7 +69,8 @@
             commonExamPaper: '/admin/${bizSys}/commonsave/${mainObj}',
             getProvinceUrl: '/admin/${bizSys}/getProvince',
             getSubjectUrl: '/admin/${bizSys}/getSubject',
-            getYear: '/admin/${bizSys}/${mainObj}/getYears'
+            getYear: '/admin/${bizSys}/${mainObj}/getYears',
+            editeData:'/admin/${bizSys}/${mainObj}queryone'
         },
         getData: function (url, data, callback) {
             $.ajax({
@@ -687,6 +127,12 @@
         }
     };
     jQuery(function ($) {
+//        搜索
+        $("#search").click(function () {
+            searchLoad();
+
+        });
+//        dom对象
         var UI = {
             $selCourses: $('#selCourses'),
             $selYears: $('#selYears'),
@@ -694,37 +140,342 @@
 
             $addExamBtn: $('#addExamBtn'),
             $editExamBtn: $('#editExamHotBtn'),
-            $deleteHotBtn: $('#deleteHotBtn')
+            $deleteHotBtn: $('#deleteHotBtn'),
+
+            $province2: $('#province2'),
+            $subjectName: $('#subjectName'),
+            $examName: $('#examName'),
+            $examYear: $('#examYear'),
+            $uploaderSWF: $('#uploaderSWF')
         };
 //        获取科目
+        var subjectHtml = '';
         examPaperObj.getData(examPaperObj.url.getSubjectUrl, {}, function (res) {
             if (res.rtnCode == '0000000') {
-                var dataSubject = res.bizData;
-                var subjectHtml = '';
+                dataSubject = res.bizData;
+                subjectHtml = '<option value="00">请选择科目</option>';
                 $.each(dataSubject, function (i, v) {
                     subjectHtml += '<option value="' + v.id + '">' + v.subjectName + '</option>';
                 });
                 UI.$selCourses.append(subjectHtml);
             }
         });
-//        获取年份
+//        获取省份
+        var provinceHtml = '';
         examPaperObj.getData(examPaperObj.url.getProvinceUrl, {}, function (res) {
             if (res.rtnCode == '0000000') {
                 var dataProvince = res.bizData;
-                var provinceHtml = '';
-                $.each(dataProvince,function(i,v){
+                provinceHtml = '<option value="00">请选择省份</option>';
+                $.each(dataProvince, function (i, v) {
                     provinceHtml += '<option value="' + v.id + '">' + v.name + '</option>';
                 });
                 UI.$selProvince.append(provinceHtml);
             }
         });
+//        课程名称
+        examPaperObj.getData(examPaperObj.url.getYear, {}, function (res) {
+            if (res.rtnCode == '0000000') {
+                var dataYear = res.bizData;
+                var yearHtml = '<option>请选择年份</option>';
+                for (var i in dataYear) {
+                    yearHtml += '<option>' + dataYear[i] + '</option>';
+                }
+                UI.$selYears.append(yearHtml);
+            }
+        });
+//        选择年份
+        UI.$addExamBtn.on(ace.click_event, function () {
+            var year = new Date().getFullYear();
+            var rangeYearHtml = '<option>请选择年份</option>';
+            for (var i = 1990; i <= year; i++) {
+                rangeYearHtml += '<option>' + i + '</option>';
+            }
+            console.info(rangeYearHtml);
+            var dialogHtml = ''
+                    + '<div class="bootbox-body">'
+                    + '<div class="row">'
+                    + '<div class="col-xs-12">'
+                    + '<div class="form-horizontal" role="form">'
+                    + '<div class="form-group">'
+                    + '<label class="col-sm-2 control-label no-padding-right">选择省份：</label>'
+                    + '<div class="col-sm-2">'
+                    + '<select class="form-control" id="province2">' + provinceHtml + '</select>'
+                    + '</div>'
+                    + '</div>'
+                    + '<div class="form-group">'
+                    + '<label class="col-sm-2 control-label no-padding-right" for="subjectName">'
+                    + '课程名称：</label>'
+                    + '<div class="col-sm-2">'
+                    + '<select class="form-control" id="subjectName2">' + subjectHtml + '</select>'
+                    + '</div>'
+                    + '</div>'
+                    + '<div class="form-group">'
+                    + '<label class="col-sm-2 control-label no-padding-right" for="examName">'
+                    + '真题密卷：</label>'
+                    + '<div class="col-sm-3">'
+                    + '<input type="text" id="examName" placeholder="请输入真题密卷的标题" class="col-sm-10"/ >'
+                    + '</div>'
+                    + '</div>'
+                    + '<div class="form-group">'
+                    + '<label class="col-sm-2 control-label no-padding-right" for="examYear">年份：</label>'
+                    + '<div class="col-sm-2">'
+                    + '<select class="form-control" id="examYear">' + rangeYearHtml + '</select>'
+                    + '</div>'
+                    + '</div>'
+                    + '<div class="form-group">'
+                    + '<label class="col-sm-2 control-label no-padding-right" for="policyInterTwo">'
+                    + '上传文件：</label>'
+                    + '<div class="col-sm-6">'
+                    + '<input type="file" id="uploaderSWF" class="col-sm-5" >'
+                    + '</div>'
+                    + '</div>'
+                    + '<div id="tips"></div>'
+                    + '</div>'
+                    + '</div>'
+                    + '</div>'
+                    + '</div>';
+            var addExamFun = function () {
+                var years = $("#examYear").find('option:selected').text();
+                var areaId = $('#province2').find("option:selected").attr('value');
+                var subjectId = $("#subjectName2").find('option:selected').attr('value');
+                var examTitle = $('#examName').val().trim();
+                if (areaId == '00') {
+                    examPaperObj.tips('省份没有选择');
+                    return false;
+                }
+                if (subjectId == '00') {
+                    examPaperObj.tips('科目没有选择');
+                    return false;
+                }
+                if (examTitle.length > 10 || examTitle.length == 0) {
+                    examPaperObj.tips('真题密卷标题不符合要求,请重新输入');
+                    return false;
+                }
+                if (years == '请选择年份') {
+                    examPaperObj.tips('年份没有选择,请重新输入');
+                    return false;
+                }
+                var addExamData = {
+                    oper: 'add',
+                    years: years,
+                    areaId: areaId,
+                    subjectId: subjectId,//课程名称
+                    mbeikaochongcitype: '真题密卷',
+                    mbeikaochongcitypeid: 2,
+                    paperName: examTitle,
+                    price: 0,
+                    isAccept: 0,
+                    resources: '/Public/Uploads/examination_paper/20150407/1428375993.swf',//url地址
+                    resourcesExt: 'swf',
+                    resourcesFilesize: '1200',//
+                    downloadsManual: 0,
+                    downloadsAutomatic: 0,
+                    sort: 0
+                };
+                examPaperObj.getData(examPaperObj.url.commonExamPaper, addExamData, function (res) {
+                    if (res.rtnCode == '0000000') {
+                        searchLoad();
+                    }
+                })
+            };//addExamFun
+            bootbox.dialog({
+                title: "添加真题密卷",
+                message: dialogHtml,
+                className: 'my-modal',
+                buttons: {
+                    "success": {
+                        "label": "<i class='ace-icon fa fa-check'></i> 提交",
+                        "className": "btn-sm btn-success submitExamBtn",
+                        "callback": addExamFun
+                    },
+                    cancel: {
+                        label: "关闭",
+                        className: "btn-sm"
+                    }
+                }
+            });
 
 
-        //添加正题密卷
-//        UI.$addExamBtn(ace.click_event, function () {
-//
-//        });
-    });
+        }); //[add]ace.click_event结束
+
+//        删除密卷
+        UI.$deleteHotBtn.on(ace.click_event, function () {
+            var rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
+            var selTrN = $('tr.ui-state-highlight[role="row"]').length;
+            if (selTrN != 1) {
+                examPaperObj.tipsDialog('温馨提示', '请选中一行后在删除');
+                return false;
+            }
+            bootbox.dialog({
+                title: "删除真题密卷",
+                message: "确定删除该条数据",
+                buttons: {
+                    "success": {
+                        "label": "<i class='ace-icon fa fa-check'></i> 确定",
+                        "className": "btn-sm btn-success",
+                        "callback": function () {
+                            var delData = {
+                                oper: 'del',
+                                id: rowId
+                            };
+                            examPaperObj.getData(examPaperObj.url.commonExamPaper, delData, function (res) {
+                                console.log(res);
+                                if (res.rtnCode == "0000000") {
+                                    searchLoad();
+                                }
+                            });
+                        }
+                    },
+                    cancel: {
+                        label: "关闭",
+                        className: "btn-sm"
+                    }
+                }
+            });
+        });//[delete]ace.click_event结束
+
+
+//        修改密卷
+        UI.$editExamBtn.on(ace.click_event, function () {
+            var rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
+            var selTrN = $('tr.ui-state-highlight[role="row"]').length;
+            if (selTrN != 1) {
+                examPaperObj.tipsDialog('温馨提示', '请选中一行后在删除');
+                return false;
+            }
+            var year = new Date().getFullYear();
+            var rangeYearHtml = '<option>请选择年份</option>';
+            for (var i = 1990; i <= year; i++) {
+                rangeYearHtml += '<option value="'+i+'">' + i + '</option>';
+            }
+            var dialogHtml = ''
+                    + '<div class="bootbox-body">'
+                    + '<div class="row">'
+                    + '<div class="col-xs-12">'
+                    + '<div class="form-horizontal" role="form">'
+                    + '<div class="form-group">'
+                    + '<label class="col-sm-2 control-label no-padding-right">选择省份：</label>'
+                    + '<div class="col-sm-2">'
+                    + '<select class="form-control" id="province2">' + provinceHtml + '</select>'
+                    + '</div>'
+                    + '</div>'
+                    + '<div class="form-group">'
+                    + '<label class="col-sm-2 control-label no-padding-right" for="subjectName">'
+                    + '课程名称：</label>'
+                    + '<div class="col-sm-2">'
+                    + '<select class="form-control" id="subjectName2">' + subjectHtml + '</select>'
+                    + '</div>'
+                    + '</div>'
+                    + '<div class="form-group">'
+                    + '<label class="col-sm-2 control-label no-padding-right" for="examName">'
+                    + '真题密卷：</label>'
+                    + '<div class="col-sm-3">'
+                    + '<input type="text" id="examName" placeholder="请输入真题密卷的标题" class="col-sm-10"/ >'
+                    + '</div>'
+                    + '</div>'
+                    + '<div class="form-group">'
+                    + '<label class="col-sm-2 control-label no-padding-right" for="examYear">年份：</label>'
+                    + '<div class="col-sm-2">'
+                    + '<select class="form-control" id="examYear">' + rangeYearHtml + '</select>'
+                    + '</div>'
+                    + '</div>'
+                    + '<div class="form-group">'
+                    + '<label class="col-sm-2 control-label no-padding-right" for="policyInterTwo">'
+                    + '上传文件：</label>'
+                    + '<div class="col-sm-6">'
+                    + '<input type="file" id="uploaderSWF" class="col-sm-5" >'
+                    + '</div>'
+                    + '</div>'
+                    + '<div id="tips"></div>'
+                    + '</div>'
+                    + '</div>'
+                    + '</div>'
+                    + '</div>';
+            var addExamData = {
+                oper: 'edit',
+                id:rowId
+            };
+            examPaperObj.getData(examPaperObj.url.editeData, addExamData, function (res) {
+                if (res.rtnCode == '0000000') {
+                    var data = res.bizData;
+                    $('#province2').find('option[value="' + data.areaId + '"]').attr('selected', 'selected');
+                    $("#subjectName2").find('option[value="' + data.subjectId + '"]').attr('selected', 'selected');
+                    $("#examName").val(data.paperName);
+                    $("#examYear").find('option[value="' + data.years + '"]').attr('selected', 'selected');
+                }
+            });
+            var addExamFun = function () {
+                var years = $("#examYear").find('option:selected').text();
+                var areaId = $('#province2').find("option:selected").attr('value');
+                var subjectId = $("#subjectName2").find('option:selected').attr('value');
+                var examTitle = $('#examName').val().trim();
+                if (areaId == '00') {
+                    examPaperObj.tips('省份没有选择');
+                    return false;
+                }
+                if (subjectId == '00') {
+                    examPaperObj.tips('科目没有选择');
+                    return false;
+                }
+                if (examTitle.length > 10 || examTitle.length == 0) {
+                    examPaperObj.tips('真题密卷标题不符合要求,请重新输入');
+                    return false;
+                }
+                if (years == '请选择年份') {
+                    examPaperObj.tips('年份没有选择,请重新输入');
+                    return false;
+                }
+                var addExamData = {
+                    oper: 'add',
+                    years: years,
+                    areaId: areaId,
+                    subjectId: subjectId,//课程名称
+                    mbeikaochongcitype: '真题密卷',
+                    mbeikaochongcitypeid: 2,
+                    paperName: examTitle,
+                    price: 0,
+                    isAccept: 0,
+                    resources: '/Public/Uploads/examination_paper/20150407/1428375993.swf',//url地址
+                    resourcesExt: 'swf',
+                    resourcesFilesize: '1200',//
+                    downloadsManual: 0,
+                    downloadsAutomatic: 0,
+                    sort: 0
+                };
+                examPaperObj.getData(examPaperObj.url.commonExamPaper, addExamData, function (res) {
+                    if (res.rtnCode == '0000000') {
+                        searchLoad();
+                    }
+                })
+            };//addExamFun
+            bootbox.dialog({
+                title: "修改真题密卷",
+                message: dialogHtml,
+                className: 'my-modal',
+                buttons: {
+                    "success": {
+                        "label": "<i class='ace-icon fa fa-check'></i> 提交",
+                        "className": "btn-sm btn-success submitExamBtn",
+                        "callback": addExamFun
+                    },
+                    cancel: {
+                        label: "关闭",
+                        className: "btn-sm"
+                    }
+                }
+            });
+
+
+        }); //[edite]ace.click_event结束
+
+
+
+
+
+
+
+
+    });//$结束
 
 
 </script>

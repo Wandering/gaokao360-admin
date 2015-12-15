@@ -9,6 +9,7 @@ package cn.thinkjoy.gaokao360.controller.baseinfo.ex;
 
 import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.common.managerui.controller.AbstractAdminController;
+import cn.thinkjoy.gaokao360.controller.BaseController;
 import cn.thinkjoy.gaokao360.service.IPolicyInterpretationService;
 import cn.thinkjoy.gaokao360.service.ex.IPolicyInterpretationExService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping(value="/admin/gaokao360/ex")
-public class PolicyInterpretationExController extends AbstractAdminController<IPolicyInterpretationExService>{
+public class PolicyInterpretationExController extends BaseController<IPolicyInterpretationExService> {
 
 
     @Autowired
@@ -43,12 +44,7 @@ public class PolicyInterpretationExController extends AbstractAdminController<IP
         return doRenderMainView(request, response);
     }
 
-    @RequestMapping(value="/{mainObj}fetch")
-    @ResponseBody
-    public Object fetch(@PathVariable String mainObj,@RequestParam("id")String id){
 
-        return policyInterpretationExService.fetch(id);
-    }
     /**
      * 获取所有的组织信息
      * @return

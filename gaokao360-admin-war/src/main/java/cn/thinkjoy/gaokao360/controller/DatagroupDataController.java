@@ -30,7 +30,7 @@ import cn.thinkjoy.common.managerui.controller.AbstractAdminController;
 
 @Controller
 @RequestMapping(value="/admin/gaokao360")
-public class DatagroupDataController extends AbstractAdminController<IDatagroupDataService>{
+public class DatagroupDataController extends BaseController<IDatagroupDataService>{
 
 
     @Autowired

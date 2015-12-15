@@ -9,6 +9,7 @@ package cn.thinkjoy.gaokao360.controller.baseinfo.ex;
 
 import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.common.managerui.controller.AbstractAdminController;
+import cn.thinkjoy.gaokao360.controller.BaseController;
 import cn.thinkjoy.gaokao360.service.ex.IGkinformationGkhotExService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping(value="/admin/gaokao360/ex")
-public class GkinformationGkhotExController extends AbstractAdminController<IGkinformationGkhotExService>{
+public class GkinformationGkhotExController extends BaseController<IGkinformationGkhotExService> {
 
 
     @Autowired
