@@ -9,6 +9,7 @@ package cn.thinkjoy.gaokao360.controller.baseinfo.ex;
 
 import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.common.managerui.controller.AbstractAdminController;
+import cn.thinkjoy.gaokao360.controller.BaseController;
 import cn.thinkjoy.gaokao360.dto.ExaminationPaperDTO;
 import cn.thinkjoy.gaokao360.service.IExaminationPaperService;
 import cn.thinkjoy.gaokao360.service.ex.IExaminationPaperExService;
@@ -23,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping(value="/admin/gaokao360/ex")
-public class ExaminationPaperExController extends AbstractAdminController<IExaminationPaperExService>{
+public class ExaminationPaperExController extends BaseController<IExaminationPaperExService> {
 
 
     @Autowired

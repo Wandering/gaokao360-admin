@@ -623,6 +623,14 @@
 
 
     });
+    function setDefultValue(cellvalue, options, cell) {
+        if (cellvalue) {
+            return cellvalue;
+        } else {
+            return "";
+        }
+
+    }
 </script>
 
 <link rel="stylesheet" href="${path}/assets/css/ace.onpage-help.css" />

@@ -30,7 +30,7 @@ import cn.thinkjoy.common.managerui.controller.AbstractAdminController;
 
 @Controller
 @RequestMapping(value="/admin/gaokao360")
-public class ResourceGridController extends AbstractAdminController<IResourceGridService>{
+public class ResourceGridController extends BaseController<IResourceGridService>{
 
 
     @Autowired

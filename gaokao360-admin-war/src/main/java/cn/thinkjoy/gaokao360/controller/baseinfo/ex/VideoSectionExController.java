@@ -9,6 +9,7 @@ package cn.thinkjoy.gaokao360.controller.baseinfo.ex;
 
 import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.common.managerui.controller.AbstractAdminController;
+import cn.thinkjoy.gaokao360.controller.BaseController;
 import cn.thinkjoy.gaokao360.domain.VideoSection;
 import cn.thinkjoy.gaokao360.service.IVideoSectionService;
 import cn.thinkjoy.gaokao360.service.ex.IVideoSectionExService;
@@ -26,7 +27,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping(value="/admin/gaokao360/ex")
-public class VideoSectionExController extends AbstractAdminController<IVideoSectionExService>{
+public class VideoSectionExController extends BaseController<IVideoSectionExService> {
 
 
     @Autowired

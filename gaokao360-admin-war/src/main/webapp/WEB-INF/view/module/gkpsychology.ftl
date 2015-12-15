@@ -3,7 +3,10 @@
 <html lang="en">
 <head>
 <#include "head.html"></head>
-
+<script>
+    var mytesttype = '${mainObj}';
+    console.log("type==",mytesttype);
+</script>
 <body class="no-skin">
 <!-- #section:basics/navbar.layout -->
 <#include "nav_bar.ftl"><!-- /section:basics/navbar.layout -->
@@ -20,12 +23,12 @@
 <#include "breadcrumbs.ftl">
         <!-- /section:basics/content.breadcrumbs -->
 
-<#include "/module/custome/gkpsychology_page_grid.ftl">
+<#include "/module/custome/auditorium_page_grid.ftl">
     </div><!-- /.main-content -->
 
 <#include "footer.html">    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
         <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
     </a>
 </div><!-- /.main-container -->
-<#include "/module/custome/script/gkpsychology_biz_script.ftl"></body>
+<#include "/module/custome/script/auditorium_biz_script.ftl"></body>
 </html>
