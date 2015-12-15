@@ -96,7 +96,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     }
 
     /**
-     * 查询所有的科目
+     * 查询年份
      * @return
      */
     @RequestMapping(value="/{mainObj}/getYears")
