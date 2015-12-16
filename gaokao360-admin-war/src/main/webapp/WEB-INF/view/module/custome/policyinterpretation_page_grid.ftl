@@ -1,72 +1,49 @@
 <!-- 增加过滤div + 主体表格 -->
-<style>
-    <#--富文本编辑器样式调整-->
-    @media (min-width: 768px) {
-        .wysiwyg-style2 {
-            width: 750px !important;
-            resize: none;
-        }
-    }
+<#--<style>-->
+<#--&lt;#&ndash;富文本编辑器样式调整&ndash;&gt;-->
+<#--@media (min-width: 768px) {-->
+<#--.wysiwyg-style2 {-->
+<#--width: 750px !important;-->
+<#--resize: none;-->
+<#--}-->
+<#--}-->
 
-    .modal-dialog {
-        width: 1000px !important;
-    }
+<#--.modal-dialog {-->
+<#--width: 1000px !important;-->
+<#--}-->
 
-    .hide {
-        display: none;
-    }
-</style>
+<#--.hide {-->
+<#--display: none;-->
+<#--}-->
+<#--</style>-->
 <div class="page-content">
     <!-- 搜索start-->
-    <div class="form-horizontal">
-        <div class="col-xs-12 no-padding">
-            <div class="col-sm-3 no-padding">
-                <label class="col-sm-4 control-label text-right">关键字：</label>
-
-                <div class="col-sm-8 no-padding">
-                    <input type="text" class="" placeholder="关键字查询" id="keyWord">
-                </div>
+    <form class="form-inline" role="form" action="/admin/${bizSys}/${mainObj}s">
+        <div class="row">
+            <div class="form-group col-sm-2">
+                <input type="text" class="" placeholder="关键字查询" id="keyWord">
             </div>
-            <div class="col-sm-3">
-                <label class="col-sm-6 control-label text-right">政策一级分类：</label>
-
-                <div class="col-sm-5 no-padding">
-                    <select class="form-control" id="eduLevel">
-                    </select>
-                </div>
+            <div class="form-group col-sm-2">
+                <select class="form-control" id="eduLevel"></select>
             </div>
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label class="col-sm-4 control-label text-right">省份：</label>
-
-                    <div class="col-sm-5 no-padding">
-                        <select class="form-control" id="province"></select>
-                    </div>
-                </div>
+            <div class="form-group col-sm-2">
+                <select class="form-control" id="province"></select>
             </div>
-            <div class="col-sm-3 text-center">
+            <div class="form-group col-sm-2">
                 <button type="button" class="btn btn-purple btn-sm" id="search">搜索<i
                         class="ace-icon fa fa-search icon-on-right bigger-110"></i></button>
             </div>
         </div>
-        <div class="col-sm-12">
-            <div class="form-group">
-                <div class="col-sm-4">
-                    <button class="btn btn-purple btn-sm" id="addPolicyInterpretation">
-                        <i class="ace-icon fa fa-cloud-upload bigger-110"></i>
-                        添加政策解读
-                    </button>
-                    <button class="btn btn-primary btn-sm" id="modify-btn">
-                        <i class="ace-icon fa fa-pencil-square-o bigger-110"></i>
-                        修改
-                    </button>
-                    <button class="btn btn-danger btn-sm" id="delete-btn">
-                        <i class="ace-icon fa fa-trash-o bigger-110 "></i>
-                        删除
-                    </button>
-                </div>
-            </div>
-        </div>
+    </form>
+    <div class="form-group hr10">
+        <button class="btn btn-purple" id="addPolicyInterpretation"><i
+                class="ace-icon fa fa-cloud-upload align-top bigger-125"></i>添加
+        </button>
+        <button class="btn btn-primary" id="modify-btn"><i
+                class="ace-icon fa fa-pencil-square-o align-top bigger-125"></i>修改
+        </button>
+        <button class="btn btn-danger" id="delete-btn"><i class="ace-icon fa fa-trash-o align-top bigger-125"></i>删除
+        </button>
     </div>
     <!-- 搜索end -->
 <#include 'page_grid.ftl'>
