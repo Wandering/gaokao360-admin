@@ -253,7 +253,7 @@
                     + '<div class="form-group">'
                     + '<label class="col-sm-2 control-label no-padding-right" for="policyInterDetail">'
                     + '政策解读详情：</label>'
-                    + '<div class="col-sm-10">'
+                    + '<div class="col-xs-6 col-sm-4">'
                     + '<div id="policyInterDetail" class="wysiwyg-editor" style="width: 740px">'
                     + '<input type="hidden" name="wysiwyg-value"/>'
                     + '</div>'

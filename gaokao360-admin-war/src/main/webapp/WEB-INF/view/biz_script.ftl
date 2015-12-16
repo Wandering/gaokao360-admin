@@ -1,6 +1,3 @@
-
-<!-- basic scripts -->
-
 <!--[if !IE]> -->
 <script type="text/javascript">
     window.jQuery || document.write("<script src='${path}/assets/js/jquery.min.js'>"+"<"+"/script>");
@@ -36,7 +33,7 @@
 <script src="${path}/assets/js/ace.min.js"></script>
 <script src="${path}/assets/js/fuelux/jquery.ztree.core-3.5.min.js"></script>
 <script src="${path}/assets/js/fuelux/jquery.ztree.excheck-3.5.min.js"></script>
-<script src="${path}/assets/js/bootbox.min.js"></script>
+<script src="${path}/assets/js/bootbox.js"></script>
 <script src="${path}/assets/js/bootstrap-wysiwyg.min.js"></script>
 
 <!-- inline scripts related to this page -->
@@ -629,8 +626,11 @@
         } else {
             return "";
         }
-
     }
+
+
+    var  mainObj = '${mainObj}';
+
 </script>
 
 <link rel="stylesheet" href="${path}/assets/css/ace.onpage-help.css" />
@@ -651,3 +651,11 @@
 <script src="${path}/assets/js/webuploader-0.1.5/webuploader.js"></script>
 
 <script src="${path}/assets/js/common/common.js"></script>
+<style>
+    @media (min-width: 768px) {
+        .my-modal .modal-dialog {
+            width: 1000px;
+            margin: 30px auto;
+        }
+    }
+</style>

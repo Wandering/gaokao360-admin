@@ -3,10 +3,6 @@
 <html lang="en">
 <head>
 <#include "head.html"></head>
-<script>
-    var mytesttype = ${mainObj};
-    console.log("type==",mytesttype);
-</script>
 <body class="no-skin">
 <!-- #section:basics/navbar.layout -->
 <#include "nav_bar.ftl"><!-- /section:basics/navbar.layout -->
