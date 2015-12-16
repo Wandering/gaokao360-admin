@@ -1,0 +1,842 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.thinkjoy.gaokao360.dao.IMajoredScoreLineDAO">
+<!--
+insert
+update
+updateNull
+deleteById
+deleteByCondition
+deleteByProperty
+fetch
+findOne
+findList
+findAll
+queryPage
+like
+queryList
+queryOne
+count
+selectMaxId
+updateOrSave
+selectOne
+selectList
+-->
+
+    <sql id="Base_Column_List">
+        id as id ,
+        sort as sort ,
+        majoredId as majoredId ,
+        majoredCode as majoredCode ,
+        majoredName as majoredName ,
+        universityCode as universityCode ,
+        universityName as universityName ,
+        averageScore as averageScore ,
+        highestScore as highestScore ,
+        provinceId as provinceId ,
+        provinceName as provinceName ,
+        cityId as cityId ,
+        ciyName as ciyName ,
+        countyId as countyId ,
+        countyName as countyName ,
+        subject as subject ,
+        enrollBatch as enrollBatch ,
+        year as year 
+    </sql>
+    <insert id="insert" parameterType="MajoredScoreLine">
+        INSERT INTO gk_majored_score_line (
+        sort,
+        majoredId,
+        majoredCode,
+        majoredName,
+        universityCode,
+        universityName,
+        averageScore,
+        highestScore,
+        provinceId,
+        provinceName,
+        cityId,
+        ciyName,
+        countyId,
+        countyName,
+        subject,
+        enrollBatch,
+        year
+        ) VALUES (
+        #{sort},
+        #{majoredId},
+        #{majoredCode},
+        #{majoredName},
+        #{universityCode},
+        #{universityName},
+        #{averageScore},
+        #{highestScore},
+        #{provinceId},
+        #{provinceName},
+        #{cityId},
+        #{ciyName},
+        #{countyId},
+        #{countyName},
+        #{subject},
+        #{enrollBatch},
+        #{year}
+        )
+            <selectKey resultType="java.lang.Long" keyProperty="id">
+                SELECT LAST_INSERT_ID() AS ID
+            </selectKey>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="MajoredScoreLine">
+        UPDATE gk_majored_score_line
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="sort!=null">
+                sort = #{sort},
+            </if>
+            <if test="majoredId!=null">
+                majoredId = #{majoredId},
+            </if>
+            <if test="majoredCode!=null">
+                majoredCode = #{majoredCode},
+            </if>
+            <if test="majoredName!=null">
+                majoredName = #{majoredName},
+            </if>
+            <if test="universityCode!=null">
+                universityCode = #{universityCode},
+            </if>
+            <if test="universityName!=null">
+                universityName = #{universityName},
+            </if>
+            <if test="averageScore!=null">
+                averageScore = #{averageScore},
+            </if>
+            <if test="highestScore!=null">
+                highestScore = #{highestScore},
+            </if>
+            <if test="provinceId!=null">
+                provinceId = #{provinceId},
+            </if>
+            <if test="provinceName!=null">
+                provinceName = #{provinceName},
+            </if>
+            <if test="cityId!=null">
+                cityId = #{cityId},
+            </if>
+            <if test="ciyName!=null">
+                ciyName = #{ciyName},
+            </if>
+            <if test="countyId!=null">
+                countyId = #{countyId},
+            </if>
+            <if test="countyName!=null">
+                countyName = #{countyName},
+            </if>
+            <if test="subject!=null">
+                subject = #{subject},
+            </if>
+            <if test="enrollBatch!=null">
+                enrollBatch = #{enrollBatch},
+            </if>
+            <if test="year!=null">
+                year = #{year},
+            </if>
+        </trim>
+        WHERE
+        id = #{id}
+    </update>
+
+    <update id="updateMap">
+        UPDATE gk_majored_score_line
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="map.sort!=null">
+                sort = #{map.sort},
+            </if>
+            <if test="map.majoredId!=null">
+                majoredId = #{map.majoredId},
+            </if>
+            <if test="map.majoredCode!=null">
+                majoredCode = #{map.majoredCode},
+            </if>
+            <if test="map.majoredName!=null">
+                majoredName = #{map.majoredName},
+            </if>
+            <if test="map.universityCode!=null">
+                universityCode = #{map.universityCode},
+            </if>
+            <if test="map.universityName!=null">
+                universityName = #{map.universityName},
+            </if>
+            <if test="map.averageScore!=null">
+                averageScore = #{map.averageScore},
+            </if>
+            <if test="map.highestScore!=null">
+                highestScore = #{map.highestScore},
+            </if>
+            <if test="map.provinceId!=null">
+                provinceId = #{map.provinceId},
+            </if>
+            <if test="map.provinceName!=null">
+                provinceName = #{map.provinceName},
+            </if>
+            <if test="map.cityId!=null">
+                cityId = #{map.cityId},
+            </if>
+            <if test="map.ciyName!=null">
+                ciyName = #{map.ciyName},
+            </if>
+            <if test="map.countyId!=null">
+                countyId = #{map.countyId},
+            </if>
+            <if test="map.countyName!=null">
+                countyName = #{map.countyName},
+            </if>
+            <if test="map.subject!=null">
+                subject = #{map.subject},
+            </if>
+            <if test="map.enrollBatch!=null">
+                enrollBatch = #{map.enrollBatch},
+            </if>
+            <if test="map.year!=null">
+                year = #{map.year},
+            </if>
+        </trim>
+        WHERE
+        id = #{map.id}
+    </update>
+
+    <update id="updateByCondition">
+        UPDATE gk_majored_score_line
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="update.sort!=null">
+                sort = #{update.sort},
+            </if>
+            <if test="update.majoredId!=null">
+                majoredId = #{update.majoredId},
+            </if>
+            <if test="update.majoredCode!=null">
+                majoredCode = #{update.majoredCode},
+            </if>
+            <if test="update.majoredName!=null">
+                majoredName = #{update.majoredName},
+            </if>
+            <if test="update.universityCode!=null">
+                universityCode = #{update.universityCode},
+            </if>
+            <if test="update.universityName!=null">
+                universityName = #{update.universityName},
+            </if>
+            <if test="update.averageScore!=null">
+                averageScore = #{update.averageScore},
+            </if>
+            <if test="update.highestScore!=null">
+                highestScore = #{update.highestScore},
+            </if>
+            <if test="update.provinceId!=null">
+                provinceId = #{update.provinceId},
+            </if>
+            <if test="update.provinceName!=null">
+                provinceName = #{update.provinceName},
+            </if>
+            <if test="update.cityId!=null">
+                cityId = #{update.cityId},
+            </if>
+            <if test="update.ciyName!=null">
+                ciyName = #{update.ciyName},
+            </if>
+            <if test="update.countyId!=null">
+                countyId = #{update.countyId},
+            </if>
+            <if test="update.countyName!=null">
+                countyName = #{update.countyName},
+            </if>
+            <if test="update.subject!=null">
+                subject = #{update.subject},
+            </if>
+            <if test="update.enrollBatch!=null">
+                enrollBatch = #{update.enrollBatch},
+            </if>
+            <if test="update.year!=null">
+                year = #{update.year},
+            </if>
+        </trim>
+
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.sort!=null">
+                AND sort = #{condition.sort}
+            </if>
+            <if test="condition.majoredId!=null">
+                AND majoredId = #{condition.majoredId}
+            </if>
+            <if test="condition.majoredCode!=null">
+                AND majoredCode = #{condition.majoredCode}
+            </if>
+            <if test="condition.majoredName!=null">
+                AND majoredName = #{condition.majoredName}
+            </if>
+            <if test="condition.universityCode!=null">
+                AND universityCode = #{condition.universityCode}
+            </if>
+            <if test="condition.universityName!=null">
+                AND universityName = #{condition.universityName}
+            </if>
+            <if test="condition.averageScore!=null">
+                AND averageScore = #{condition.averageScore}
+            </if>
+            <if test="condition.highestScore!=null">
+                AND highestScore = #{condition.highestScore}
+            </if>
+            <if test="condition.provinceId!=null">
+                AND provinceId = #{condition.provinceId}
+            </if>
+            <if test="condition.provinceName!=null">
+                AND provinceName = #{condition.provinceName}
+            </if>
+            <if test="condition.cityId!=null">
+                AND cityId = #{condition.cityId}
+            </if>
+            <if test="condition.ciyName!=null">
+                AND ciyName = #{condition.ciyName}
+            </if>
+            <if test="condition.countyId!=null">
+                AND countyId = #{condition.countyId}
+            </if>
+            <if test="condition.countyName!=null">
+                AND countyName = #{condition.countyName}
+            </if>
+            <if test="condition.subject!=null">
+                AND subject = #{condition.subject}
+            </if>
+            <if test="condition.enrollBatch!=null">
+                AND enrollBatch = #{condition.enrollBatch}
+            </if>
+            <if test="condition.year!=null">
+                AND year = #{condition.year}
+            </if>
+        </trim>
+    </update>
+
+    <insert id="insertMap" >
+        INSERT INTO gk_majored_score_line (
+                sort,
+                majoredId,
+                majoredCode,
+                majoredName,
+                universityCode,
+                universityName,
+                averageScore,
+                highestScore,
+                provinceId,
+                provinceName,
+                cityId,
+                ciyName,
+                countyId,
+                countyName,
+                subject,
+                enrollBatch,
+                year
+        ) VALUES (
+                    #{map.sort},
+                    #{map.majoredId},
+                    #{map.majoredCode},
+                    #{map.majoredName},
+                    #{map.universityCode},
+                    #{map.universityName},
+                    #{map.averageScore},
+                    #{map.highestScore},
+                    #{map.provinceId},
+                    #{map.provinceName},
+                    #{map.cityId},
+                    #{map.ciyName},
+                    #{map.countyId},
+                    #{map.countyName},
+                    #{map.subject},
+                    #{map.enrollBatch},
+                    #{map.year}
+        )
+    </insert>
+
+
+    <update id="updateNull" parameterType="MajoredScoreLine">
+        UPDATE gk_majored_score_line
+        <trim prefix="SET" suffixOverrides=",">
+            sort = #{sort},
+            majoredId = #{majoredId},
+            majoredCode = #{majoredCode},
+            majoredName = #{majoredName},
+            universityCode = #{universityCode},
+            universityName = #{universityName},
+            averageScore = #{averageScore},
+            highestScore = #{highestScore},
+            provinceId = #{provinceId},
+            provinceName = #{provinceName},
+            cityId = #{cityId},
+            ciyName = #{ciyName},
+            countyId = #{countyId},
+            countyName = #{countyName},
+            subject = #{subject},
+            enrollBatch = #{enrollBatch},
+            year = #{year},
+        </trim>
+        WHERE
+        id = #{id} 
+    </update>
+
+    <!-- 按Id删除 -->
+    <delete id="deleteById" parameterType="java.lang.Long">
+        DELETE FROM gk_majored_score_line
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+    </delete>
+
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        DELETE FROM gk_majored_score_line
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="id!=null">
+                AND id = #{id}
+            </if>
+            <if test="sort!=null">
+                AND sort = #{sort}
+            </if>
+            <if test="majoredId!=null">
+                AND majoredId = #{majoredId}
+            </if>
+            <if test="majoredCode!=null">
+                AND majoredCode = #{majoredCode}
+            </if>
+            <if test="majoredName!=null">
+                AND majoredName = #{majoredName}
+            </if>
+            <if test="universityCode!=null">
+                AND universityCode = #{universityCode}
+            </if>
+            <if test="universityName!=null">
+                AND universityName = #{universityName}
+            </if>
+            <if test="averageScore!=null">
+                AND averageScore = #{averageScore}
+            </if>
+            <if test="highestScore!=null">
+                AND highestScore = #{highestScore}
+            </if>
+            <if test="provinceId!=null">
+                AND provinceId = #{provinceId}
+            </if>
+            <if test="provinceName!=null">
+                AND provinceName = #{provinceName}
+            </if>
+            <if test="cityId!=null">
+                AND cityId = #{cityId}
+            </if>
+            <if test="ciyName!=null">
+                AND ciyName = #{ciyName}
+            </if>
+            <if test="countyId!=null">
+                AND countyId = #{countyId}
+            </if>
+            <if test="countyName!=null">
+                AND countyName = #{countyName}
+            </if>
+            <if test="subject!=null">
+                AND subject = #{subject}
+            </if>
+            <if test="enrollBatch!=null">
+                AND enrollBatch = #{enrollBatch}
+            </if>
+            <if test="year!=null">
+                AND year = #{year}
+            </if>
+        </trim>
+    </delete>
+
+    <delete id="deleteByProperty" parameterType="java.util.Map">
+        DELETE FROM gk_majored_score_line WHERE
+        ${property} = #{value}
+    </delete>
+
+    <select id="fetch" parameterType="java.lang.Long" resultType="MajoredScoreLine">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM gk_majored_score_line
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+    </select>
+
+    <select id="findOne" parameterType="java.util.Map" resultType="MajoredScoreLine">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM gk_majored_score_line WHERE
+        ${property} = #{value}
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+        LIMIT 0,1
+    </select>
+
+    <select id="findList" parameterType="java.util.Map" resultType="MajoredScoreLine">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM gk_majored_score_line WHERE
+        ${property} = #{value}
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="findAll" resultType="MajoredScoreLine">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM gk_majored_score_line
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryPage" resultType="MajoredScoreLine">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM gk_majored_score_line
+        <where>
+
+            <if test="condition.whereSql != null">
+                and id in (#{condition.whereSql})
+            </if>
+
+            <if test="condition.id!=null">
+                ${condition.groupOp}   ${condition.id.field}  ${condition.id.op}  #{condition.id.data}
+            </if>
+            <if test="condition.sort!=null">
+                ${condition.groupOp}   ${condition.sort.field}  ${condition.sort.op}  #{condition.sort.data}
+            </if>
+            <if test="condition.majoredId!=null">
+                ${condition.groupOp}   ${condition.majoredId.field}  ${condition.majoredId.op}  #{condition.majoredId.data}
+            </if>
+            <if test="condition.majoredCode!=null">
+                ${condition.groupOp}   ${condition.majoredCode.field}  ${condition.majoredCode.op}  #{condition.majoredCode.data}
+            </if>
+            <if test="condition.majoredName!=null">
+                ${condition.groupOp}   ${condition.majoredName.field}  ${condition.majoredName.op}  #{condition.majoredName.data}
+            </if>
+            <if test="condition.universityCode!=null">
+                ${condition.groupOp}   ${condition.universityCode.field}  ${condition.universityCode.op}  #{condition.universityCode.data}
+            </if>
+            <if test="condition.universityName!=null">
+                ${condition.groupOp}   ${condition.universityName.field}  ${condition.universityName.op}  #{condition.universityName.data}
+            </if>
+            <if test="condition.averageScore!=null">
+                ${condition.groupOp}   ${condition.averageScore.field}  ${condition.averageScore.op}  #{condition.averageScore.data}
+            </if>
+            <if test="condition.highestScore!=null">
+                ${condition.groupOp}   ${condition.highestScore.field}  ${condition.highestScore.op}  #{condition.highestScore.data}
+            </if>
+            <if test="condition.provinceId!=null">
+                ${condition.groupOp}   ${condition.provinceId.field}  ${condition.provinceId.op}  #{condition.provinceId.data}
+            </if>
+            <if test="condition.provinceName!=null">
+                ${condition.groupOp}   ${condition.provinceName.field}  ${condition.provinceName.op}  #{condition.provinceName.data}
+            </if>
+            <if test="condition.cityId!=null">
+                ${condition.groupOp}   ${condition.cityId.field}  ${condition.cityId.op}  #{condition.cityId.data}
+            </if>
+            <if test="condition.ciyName!=null">
+                ${condition.groupOp}   ${condition.ciyName.field}  ${condition.ciyName.op}  #{condition.ciyName.data}
+            </if>
+            <if test="condition.countyId!=null">
+                ${condition.groupOp}   ${condition.countyId.field}  ${condition.countyId.op}  #{condition.countyId.data}
+            </if>
+            <if test="condition.countyName!=null">
+                ${condition.groupOp}   ${condition.countyName.field}  ${condition.countyName.op}  #{condition.countyName.data}
+            </if>
+            <if test="condition.subject!=null">
+                ${condition.groupOp}   ${condition.subject.field}  ${condition.subject.op}  #{condition.subject.data}
+            </if>
+            <if test="condition.enrollBatch!=null">
+                ${condition.groupOp}   ${condition.enrollBatch.field}  ${condition.enrollBatch.op}  #{condition.enrollBatch.data}
+            </if>
+            <if test="condition.year!=null">
+                ${condition.groupOp}   ${condition.year.field}  ${condition.year.op}  #{condition.year.data}
+            </if>
+
+
+    </where>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+    <select id="like" parameterType="java.util.Map" resultType="MajoredScoreLine">
+        SELECT
+            <include refid="Base_Column_List" />
+        FROM gk_majored_score_line
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id like CONCAT('%', #{condition.id} , '%')
+            </if>
+            <if test="condition.sort!=null">
+                AND sort like CONCAT('%', #{condition.sort} , '%')
+            </if>
+            <if test="condition.majoredId!=null">
+                AND majoredId like CONCAT('%', #{condition.majoredId} , '%')
+            </if>
+            <if test="condition.majoredCode!=null">
+                AND majoredCode like CONCAT('%', #{condition.majoredCode} , '%')
+            </if>
+            <if test="condition.majoredName!=null">
+                AND majoredName like CONCAT('%', #{condition.majoredName} , '%')
+            </if>
+            <if test="condition.universityCode!=null">
+                AND universityCode like CONCAT('%', #{condition.universityCode} , '%')
+            </if>
+            <if test="condition.universityName!=null">
+                AND universityName like CONCAT('%', #{condition.universityName} , '%')
+            </if>
+            <if test="condition.averageScore!=null">
+                AND averageScore like CONCAT('%', #{condition.averageScore} , '%')
+            </if>
+            <if test="condition.highestScore!=null">
+                AND highestScore like CONCAT('%', #{condition.highestScore} , '%')
+            </if>
+            <if test="condition.provinceId!=null">
+                AND provinceId like CONCAT('%', #{condition.provinceId} , '%')
+            </if>
+            <if test="condition.provinceName!=null">
+                AND provinceName like CONCAT('%', #{condition.provinceName} , '%')
+            </if>
+            <if test="condition.cityId!=null">
+                AND cityId like CONCAT('%', #{condition.cityId} , '%')
+            </if>
+            <if test="condition.ciyName!=null">
+                AND ciyName like CONCAT('%', #{condition.ciyName} , '%')
+            </if>
+            <if test="condition.countyId!=null">
+                AND countyId like CONCAT('%', #{condition.countyId} , '%')
+            </if>
+            <if test="condition.countyName!=null">
+                AND countyName like CONCAT('%', #{condition.countyName} , '%')
+            </if>
+            <if test="condition.subject!=null">
+                AND subject like CONCAT('%', #{condition.subject} , '%')
+            </if>
+            <if test="condition.enrollBatch!=null">
+                AND enrollBatch like CONCAT('%', #{condition.enrollBatch} , '%')
+            </if>
+            <if test="condition.year!=null">
+                AND year like CONCAT('%', #{condition.year} , '%')
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+
+    <select id="queryList" parameterType="java.util.Map" resultType="MajoredScoreLine">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM gk_majored_score_line
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.sort!=null">
+                AND sort = #{condition.sort}
+            </if>
+            <if test="condition.majoredId!=null">
+                AND majoredId = #{condition.majoredId}
+            </if>
+            <if test="condition.majoredCode!=null">
+                AND majoredCode = #{condition.majoredCode}
+            </if>
+            <if test="condition.majoredName!=null">
+                AND majoredName = #{condition.majoredName}
+            </if>
+            <if test="condition.universityCode!=null">
+                AND universityCode = #{condition.universityCode}
+            </if>
+            <if test="condition.universityName!=null">
+                AND universityName = #{condition.universityName}
+            </if>
+            <if test="condition.averageScore!=null">
+                AND averageScore = #{condition.averageScore}
+            </if>
+            <if test="condition.highestScore!=null">
+                AND highestScore = #{condition.highestScore}
+            </if>
+            <if test="condition.provinceId!=null">
+                AND provinceId = #{condition.provinceId}
+            </if>
+            <if test="condition.provinceName!=null">
+                AND provinceName = #{condition.provinceName}
+            </if>
+            <if test="condition.cityId!=null">
+                AND cityId = #{condition.cityId}
+            </if>
+            <if test="condition.ciyName!=null">
+                AND ciyName = #{condition.ciyName}
+            </if>
+            <if test="condition.countyId!=null">
+                AND countyId = #{condition.countyId}
+            </if>
+            <if test="condition.countyName!=null">
+                AND countyName = #{condition.countyName}
+            </if>
+            <if test="condition.subject!=null">
+                AND subject = #{condition.subject}
+            </if>
+            <if test="condition.enrollBatch!=null">
+                AND enrollBatch = #{condition.enrollBatch}
+            </if>
+            <if test="condition.year!=null">
+                AND year = #{condition.year}
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryOne" parameterType="java.util.Map" resultType="MajoredScoreLine">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM gk_majored_score_line
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.sort!=null">
+                AND sort = #{condition.sort}
+            </if>
+            <if test="condition.majoredId!=null">
+                AND majoredId = #{condition.majoredId}
+            </if>
+            <if test="condition.majoredCode!=null">
+                AND majoredCode = #{condition.majoredCode}
+            </if>
+            <if test="condition.majoredName!=null">
+                AND majoredName = #{condition.majoredName}
+            </if>
+            <if test="condition.universityCode!=null">
+                AND universityCode = #{condition.universityCode}
+            </if>
+            <if test="condition.universityName!=null">
+                AND universityName = #{condition.universityName}
+            </if>
+            <if test="condition.averageScore!=null">
+                AND averageScore = #{condition.averageScore}
+            </if>
+            <if test="condition.highestScore!=null">
+                AND highestScore = #{condition.highestScore}
+            </if>
+            <if test="condition.provinceId!=null">
+                AND provinceId = #{condition.provinceId}
+            </if>
+            <if test="condition.provinceName!=null">
+                AND provinceName = #{condition.provinceName}
+            </if>
+            <if test="condition.cityId!=null">
+                AND cityId = #{condition.cityId}
+            </if>
+            <if test="condition.ciyName!=null">
+                AND ciyName = #{condition.ciyName}
+            </if>
+            <if test="condition.countyId!=null">
+                AND countyId = #{condition.countyId}
+            </if>
+            <if test="condition.countyName!=null">
+                AND countyName = #{condition.countyName}
+            </if>
+            <if test="condition.subject!=null">
+                AND subject = #{condition.subject}
+            </if>
+            <if test="condition.enrollBatch!=null">
+                AND enrollBatch = #{condition.enrollBatch}
+            </if>
+            <if test="condition.year!=null">
+                AND year = #{condition.year}
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+        limit 0,1
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(id) FROM gk_majored_score_line
+       <where>
+           <if test="id!=null">
+               ${groupOp} ${id.field} ${id.op}  #{id.data}
+           </if>
+           <if test="sort!=null">
+               ${groupOp} ${sort.field} ${sort.op}  #{sort.data}
+           </if>
+           <if test="majoredId!=null">
+               ${groupOp} ${majoredId.field} ${majoredId.op}  #{majoredId.data}
+           </if>
+           <if test="majoredCode!=null">
+               ${groupOp} ${majoredCode.field} ${majoredCode.op}  #{majoredCode.data}
+           </if>
+           <if test="majoredName!=null">
+               ${groupOp} ${majoredName.field} ${majoredName.op}  #{majoredName.data}
+           </if>
+           <if test="universityCode!=null">
+               ${groupOp} ${universityCode.field} ${universityCode.op}  #{universityCode.data}
+           </if>
+           <if test="universityName!=null">
+               ${groupOp} ${universityName.field} ${universityName.op}  #{universityName.data}
+           </if>
+           <if test="averageScore!=null">
+               ${groupOp} ${averageScore.field} ${averageScore.op}  #{averageScore.data}
+           </if>
+           <if test="highestScore!=null">
+               ${groupOp} ${highestScore.field} ${highestScore.op}  #{highestScore.data}
+           </if>
+           <if test="provinceId!=null">
+               ${groupOp} ${provinceId.field} ${provinceId.op}  #{provinceId.data}
+           </if>
+           <if test="provinceName!=null">
+               ${groupOp} ${provinceName.field} ${provinceName.op}  #{provinceName.data}
+           </if>
+           <if test="cityId!=null">
+               ${groupOp} ${cityId.field} ${cityId.op}  #{cityId.data}
+           </if>
+           <if test="ciyName!=null">
+               ${groupOp} ${ciyName.field} ${ciyName.op}  #{ciyName.data}
+           </if>
+           <if test="countyId!=null">
+               ${groupOp} ${countyId.field} ${countyId.op}  #{countyId.data}
+           </if>
+           <if test="countyName!=null">
+               ${groupOp} ${countyName.field} ${countyName.op}  #{countyName.data}
+           </if>
+           <if test="subject!=null">
+               ${groupOp} ${subject.field} ${subject.op}  #{subject.data}
+           </if>
+           <if test="enrollBatch!=null">
+               ${groupOp} ${enrollBatch.field} ${enrollBatch.op}  #{enrollBatch.data}
+           </if>
+           <if test="year!=null">
+               ${groupOp} ${year.field} ${year.op}  #{year.data}
+           </if>
+
+       </where>
+    </select>
+
+    <select id="selectMaxId" resultType="java.lang.Long">
+        SELECT
+        MAX(id)
+        FROM gk_majored_score_line
+    </select>
+
+</mapper>
+

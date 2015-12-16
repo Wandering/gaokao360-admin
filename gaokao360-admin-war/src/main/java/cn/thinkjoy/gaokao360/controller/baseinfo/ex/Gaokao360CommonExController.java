@@ -12,6 +12,7 @@ import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.common.managerui.controller.AbstractCommonController;
 import cn.thinkjoy.common.managerui.controller.helpers.BaseServiceMaps;
 import cn.thinkjoy.common.service.IBaseService;
+import cn.thinkjoy.common.utils.ActionEnum;
 import cn.thinkjoy.gaokao360.common.ServiceMaps;
 import cn.thinkjoy.gaokao360.domain.GkinformationGkhot;
 import cn.thinkjoy.gaokao360.domain.PolicyInterpretation;
@@ -20,10 +21,8 @@ import cn.thinkjoy.gaokao360.service.IProvinceService;
 import cn.thinkjoy.gaokao360.service.ISubjectService;
 import cn.thinkjoy.gaokao360.service.ex.IAdmissionBatchExService;
 import cn.thinkjoy.gaokao360.service.ex.IVideoSectionExService;
-import com.alibaba.druid.support.logging.LogFactory;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.google.common.collect.Maps;
-import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Controller;
@@ -31,7 +30,6 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.lang.reflect.ParameterizedType;
@@ -76,15 +74,6 @@ public class Gaokao360CommonExController extends AbstractCommonController {
 
     }
 
-    /**
-     * 查询所有的省份
-     * @return
-     */
-    @RequestMapping(value="/getProvince")
-    @ResponseBody
-    public List getProvince(){
-        return  provinceService.findAll();
-    }
     /**
      * 查询所有的科目
      * @return
@@ -156,6 +145,27 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         return  htmlString;
     }
 
+    @RequestMapping(value="/insertAdmissionBatch")
+    @ResponseBody
+    public String insertAdmissionBatch(){
+        String htmlString = "";
+        //TODO   支持多对象保存
+        Map<String, Object> dataMap = Maps.newHashMap();
+
+        String prop = null;
+        Enumeration<String> names = request.getParameterNames();
+        while (names.hasMoreElements()) {
+            prop = names.nextElement();
+            dataMap.put(prop, request.getParameter(prop));
+        }
+        String operValue = request.getParameter("oper");
+        if(ActionEnum.ADD.getAction().equals(operValue)) {
+            serviceMaps.get("admissionbatch").insertMap(dataMap);
+        }
+
+        return  htmlString;
+    }
+
     @Override
     protected void innerHandleAdd(String mainObj, Map dataMap) {
         if("admissionbatch".equals(mainObj)){
@@ -202,17 +212,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     public Object queryOne(@PathVariable String mainObj,@RequestParam("id")String id){
         return  serviceMaps.get(mainObj).fetch(id);
     }
-    /**
-     * 获取视频列表
-     * @return
-     */
-    @RequestMapping(value="/getVideoSection")
-    @ResponseBody
-    public Object getVideoSection(@RequestParam("id")String id){
-        Map<String,Object> map = new HashMap<>();
-        map.put("courseId",id);
-        return  serviceMaps.get("videosection").queryList(map,"sectionSort","asc");
-    }
+
     /**
      * 富文本转接接口
      * @return
@@ -254,7 +254,6 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         }
         return st;
     }
-
 
     /**
      * 删除富文本html
@@ -304,6 +303,25 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         }
     }
 
+    /**
+     * 获取泛型类泛型
+     * @param index
+     * @return
+     */
+    private Class getGenericType(int index) {
+        Type genType = getClass().getGenericSuperclass();
+        if (!(genType instanceof ParameterizedType)) {
+            return Object.class;
+        }
+        Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
+        if (index >= params.length || index < 0) {
+            throw new RuntimeException("Index outof bounds");
+        }
+        if (!(params[index] instanceof Class)) {
+            return Object.class;
+        }
+        return (Class) params[index];
+    }
 
     @Override
     protected BaseServiceMaps getServiceMaps() {

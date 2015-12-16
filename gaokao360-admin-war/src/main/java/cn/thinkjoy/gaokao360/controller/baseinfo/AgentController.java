@@ -7,6 +7,7 @@
 
 package cn.thinkjoy.gaokao360.controller.baseinfo;
 
+import cn.thinkjoy.gaokao360.controller.BaseController;
 import cn.thinkjoy.gaokao360.service.IAgentService;
 import cn.thinkjoy.common.managerui.dao.IResourceGridDAO;
 import cn.thinkjoy.common.managerui.service.IResourceGridService;
@@ -30,7 +31,7 @@ import cn.thinkjoy.common.managerui.controller.AbstractAdminController;
 
 @Controller
 @RequestMapping(value="/admin/gaokao360")
-public class AgentController extends AbstractAdminController<IAgentService>{
+public class AgentController extends BaseController<IAgentService> {
 
 
     @Autowired
@@ -76,12 +77,12 @@ public class AgentController extends AbstractAdminController<IAgentService>{
 
     @Override
     protected String getViewTitle() {
-        return " 服务商信息";
+        return "招办电话";
     }
 
     @Override
     protected String getParentTitle() {
-        return "服务商模块";
+        return "数据模块";
     }
 
     @Override
