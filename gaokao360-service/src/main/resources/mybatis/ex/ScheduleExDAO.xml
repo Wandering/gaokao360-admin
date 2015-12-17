@@ -29,6 +29,7 @@ selectList
         schedule.areaId as areaId ,
         schedule.month as month ,
         schedule.years as years ,
+        schedule.content as content ,
         schedule.status as status ,
         schedule.createDate as createDate ,
         schedule.lastModDate as lastModDate ,
