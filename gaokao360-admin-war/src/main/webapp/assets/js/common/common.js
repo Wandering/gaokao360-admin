@@ -14,7 +14,7 @@ var CommonFn = {
         getYear: '/admin/gaokao360/ex/' + mainObj + '/getYears', // 获取年份
         getSubjectUrl: '/admin/gaokao360/ex/getSubject', // 获取学科
         getEduLevel: '/admin/gaokao360/ex/getAdmissionBatch', // 获取政策一级分类
-        saveData: '/admin/gaokao360/ex/commonsave/' + mainObj
+        saveData: '/admin/gaokao360/ex/commonsave/' + mainObj  //
     },
     getData: function (url, type, data, callback) {
         $.ajax({
@@ -171,6 +171,13 @@ var CommonFn = {
         $(obj).datepicker({
             autoclose: true,
             todayHighlight: true
+        });
+    },
+    renderDateYear: function (obj) {
+        $(obj).datepicker({
+            data:false,
+            autoclose: true,
+            format:'yyyy-mm'
         });
     },
     // tipsDialog
