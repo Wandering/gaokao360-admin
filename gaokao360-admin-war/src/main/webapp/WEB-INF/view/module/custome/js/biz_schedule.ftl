@@ -216,16 +216,12 @@
             CommonFn.renderTextarea('#hotContent');
             // 当前行数据
             var rowData = CommonFn.getRowData(rowId);
-            console.log(rowData)
+            console.log(rowData);
             $('#selProvince2').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
-            $('#hotContent').find('option[value="' + rowData[0].content + '"]').attr('selected', 'selected');
-            $('#selYears2').find('option[value="' + rowData[0].years + '"]').attr('selected', 'selected');
-            $('#selYears2').find('option[value="' + rowData[0].month + '"]').attr('selected', 'selected');
-            $('#examName').val(rowData[0].paperName);
+            $('#hotContent').html(rowData[0].content);
+
+            var hotdate = rowData[0].years+'-'+rowData[0].month;
+            $('#date-picker2').val(hotdate);
         });
-
-
-
-
     });//$结束
 </script>
