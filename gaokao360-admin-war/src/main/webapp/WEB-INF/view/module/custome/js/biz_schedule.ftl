@@ -225,7 +225,7 @@
                 return false;
             }
             bootbox.dialog({
-                title: "修改高考热点",
+                title: "修改高考日程",
                 message: dialogHtml,
                 className: 'my-modal',
                 buttons: {
