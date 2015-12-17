@@ -57,76 +57,6 @@
             page: 1
         }).trigger("reloadGrid");
     }
-    /*
-    *
-    * 真题密卷
-    * 增删改差同意使用commonExamPaper接口
-    * {oper:add/del/edit,id:''}
-    *
-    * */
-    CommonFn.getYear()
-    var examPaperObj = {
-        url: {
-            commonExamPaper: '/admin/${bizSys}/commonsave/${mainObj}',
-            getProvinceUrl: '/admin/${bizSys}/getProvince',
-            getSubjectUrl: '/admin/${bizSys}/getSubject',
-            getYear: '/admin/${bizSys}/${mainObj}/getYears',
-            editeData: '/admin/${bizSys}/${mainObj}queryone'
-        },
-        getData: function (url, data, callback) {
-            $.ajax({
-                type: "POST",
-                url: url,
-                dataType: 'json',
-                data: data,
-                success: callback
-            });
-        },
-        dynGetData: function (ajaxUrl, contentData) {
-            var returnStr = "";
-            $.ajaxSettings.async = false;
-            $.ajax({
-                type: 'POST',
-                url: ajaxUrl,
-                data: {
-                    content: contentData
-                },
-                success: function (result) {
-                    if (result.rtnCode == '0000000') {
-                        var jsonData = JSON.parse(result.bizData);
-                        console.log(jsonData);
-                        if (jsonData.rtnCode == '0000000') {
-                            returnStr += jsonData.bizData.file.fileUrl;
-                        } else {
-
-                        }
-                    }
-                }
-            });
-            $.ajaxSettings.async = true;
-            return returnStr;
-        },
-        tipsDialog: function (title, message) {
-            bootbox.dialog({
-                title: title,
-                message: '<span class="bigger-110 center">' + message + '</span>',
-                buttons: {
-                    cancel: {
-                        label: "关闭",
-                        className: "btn-sm"
-                    }
-                }
-            });
-        },
-        tips: function (message) {
-            var str = '<div class="alert alert-danger alert-dismissible well-sm pull-right text-center" role="alert" style="margin-right:44px;"> ' +
-                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
-                    '<span aria-hidden="true">&times;</span></button> ' +
-                    '<strong>温馨提示：</strong><span>' + message + '</span>' +
-                    '</div>';
-            $('#tips').html(str).fadeIn(3000);
-        }
-    };
     jQuery(function ($) {
         var typeStr;
         var rowId;
@@ -150,7 +80,7 @@
                 + '<div class="form-group">'
                 + '<label class="col-sm-2 control-label no-padding-right"> 省份：</label>'
                 + '<div class="col-sm-4">'
-                + '<select class="form-control" id="selProvince">';
+                + '<select class="form-control" id="selProvince2">';
         dialogHtml += provinceData
                 + '</select>'
                 + '</div>'
@@ -158,7 +88,7 @@
                 + '<div class="form-group">'
                 + '<label class="col-sm-2 control-label no-padding-right"> 科目类别：</label>'
                 + '<div class="col-sm-4">'
-                + '<select class="form-control" id="selCourses">';
+                + '<select class="form-control" id="selCourses2">';
         dialogHtml += subjectData
                 + '</select>'
                 + '</div>'
@@ -166,7 +96,7 @@
                 + '<div class="form-group">'
                 + '<label class="col-sm-2 control-label no-padding-right"> 年份：</label>'
                 + '<div class="col-sm-4">'
-                + '<select class="form-control" id="selYears">';
+                + '<select class="form-control" id="selYears2">';
         dialogHtml += yearsData
                 + '</select>'
                 + '</div>'
@@ -212,6 +142,7 @@
             bootbox.dialog({
                 title: "添加真题密卷",
                 message: dialogHtml,
+                className: 'my-modal',
                 buttons: {
                     "success": {
                         "label": "<i class='ace-icon fa fa-check'></i> 提交",
@@ -224,12 +155,7 @@
                     }
                 }
             });
-            CommonFn.renderDate('#date-picker');
-            CommonFn.renderTextarea('#hotContent');
-            Info.imgUpload();
         });
-
-
         //修改
         $("#editBtn").on(ace.click_event, function () {
             typeStr = "edit";
@@ -258,42 +184,41 @@
             // 当前行数据
             var rowData = CommonFn.getRowData(rowId)
             console.log(rowData)
-            $('#selProvince').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
-
-
-
-
+            $('#selProvince2').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
+            $('#selCourses2').find('option[value="' + rowData[0].subjectId + '"]').attr('selected', 'selected');
+            $('#selYears2').find('option[value="' + rowData[0].years + '"]').attr('selected', 'selected');
+            $('#examName').val(rowData[0].paperName);
         });
         //删除
         CommonFn.deleteFun('#deleteBtn', '${mainObj}');
         var addEditFun = function () {
-            var years = $("#selYears").find('option:selected').text();
-            var areaId = $('#selProvince').find("option:selected").attr('value');
-            var subjectId = $("#selProvince").find('option:selected').attr('value');
+            var selProvinceV = $('#selProvince2 option:checked').val();
+            var selSubjectV = $("#selCourses2").find('option:selected').val();
+            var selYearsV = $("#selYears2").find('option:selected').val();
             var examTitle = $('#examName').val().trim();
-            if (areaId == '00') {
-                examPaperObj.tips('省份没有选择');
+            if (selProvinceV == "00") {
+                CommonFn.tipsDialog('温馨提示', '请选择省份');
                 return false;
             }
-            if (subjectId == '00') {
-                examPaperObj.tips('科目没有选择');
+            if (selSubjectV == '00') {
+                CommonFn.tipsDialog('温馨提示', '请选择科目类别');
+                return false;
+            }
+            if (selYearsV == '00') {
+                CommonFn.tipsDialog('年份没有选择,请重新输入');
                 return false;
             }
             if (examTitle.length > 10 || examTitle.length == 0) {
-                examPaperObj.tips('真题密卷标题不符合要求,请重新输入');
-                return false;
-            }
-            if (years == '请选择年份') {
-                examPaperObj.tips('年份没有选择,请重新输入');
+                CommonFn.tipsDialog('温馨提示', '真题密卷标题不符合要求,请重新输入');
                 return false;
             }
             var addExamData = {
                 oper: typeStr,
-                years: years,
-                subjectId: subjectId,//课程名称
+                years: selYearsV,
+                subjectId: selSubjectV,//课程名称
                 mbeikaochongcitype: '真题密卷',
                 mbeikaochongcitypeid: 2,
-                paperName: examTitle,
+                paperName: "低调低调测试测试",
                 price: 0,
                 isAccept: 0,
                 resources: '/Public/Uploads/examination_paper/20150407/1428375993.swf',//url地址
@@ -301,7 +226,8 @@
                 resourcesFilesize: '1200',//
                 downloadsManual: 0,
                 downloadsAutomatic: 0,
-                sort: 0
+                sort: 0,
+                areaId:selProvinceV
             };
 
             if (typeStr == 'edit') {
@@ -309,7 +235,7 @@
             }
             $.ajax({
                 type: "POST",
-                url: CommonFn.url.saveData,
+                url: '/admin/gaokao360/ex/commonsave/${mainObj}',
                 data: addExamData,
                 success: function (result) {
                     if (result.rtnCode == "0000000") {
@@ -318,21 +244,5 @@
                 }
             });
         };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     });
 </script>

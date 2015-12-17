@@ -248,7 +248,7 @@ var CommonFn = {
         CommonFn.getData(CommonFn.url.getYear, 'GET', {}, function (result) {
             for(var k in result.bizData){
                 var year = result.bizData[k];
-                contentArr.push('<option value="' + k + '">' + year + '</option>');
+                contentArr.push('<option value="' + year + '">' + year + '</option>');
             }
         });
         return contentArr;
