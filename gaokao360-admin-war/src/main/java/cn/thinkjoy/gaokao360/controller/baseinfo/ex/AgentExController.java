@@ -13,12 +13,17 @@ import cn.thinkjoy.gaokao360.service.IAgentService;
 import cn.thinkjoy.gaokao360.service.ex.IAgentExService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value="/admin/gaokao360/ex")
@@ -51,6 +56,15 @@ public class AgentExController extends BaseController<IAgentExService> {
         return doPage(request, response);
     }
 
+    /**
+     * 获取所有的组织信息
+     * @return
+     */
+    @RequestMapping(value="/agent/doExcelImport")
+    @ResponseBody
+    public Map<String,String> doExcelImport(@RequestParam("file") MultipartFile file, @PathVariable String mainObj){
+        return new HashMap<>();
+    }
     @Override
     protected IAgentExService getMainService() {
         return agentExService;
