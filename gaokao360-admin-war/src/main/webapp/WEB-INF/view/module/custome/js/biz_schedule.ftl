@@ -101,44 +101,7 @@
             CommonFn.renderDateYear('#date-picker2');
             CommonFn.renderTextarea('#hotContent');
         });
-//      修改高考日程
-//        $("#editBtn").on(ace.click_event, function () {
-//            typeStr = "edit";
-//            rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
-//            var selTrN = $('tr.ui-state-highlight[role="row"]').length;
-//            if (selTrN != 1) {
-//                CommonFn.tipsDialog('温馨提示', '请选中一行后修改');
-//                return false;
-//            }
-//            bootbox.dialog({
-//                title: "修改高考日程",
-//                message: dialogHtml,
-//                className: 'my-modal',
-//                buttons: {
-//                    "success": {
-//                        "label": "<i class='ace-icon fa fa-check'></i> 提交",
-//                        "className": "btn-sm btn-success",
-//                        "callback": addEditFun
-//                    },
-//                    cancel: {
-//                        label: "关闭",
-//                        className: "btn-sm"
-//                    }
-//                }
-//            });
-//            // 当前行数据
-//            var rowData = CommonFn.getRowData(rowId),
-//            // 富媒体赋值
-//                    infoContet = CommonFn.getContentHtml(rowData[0].informationContent).join('');
-//            $('#selProvince').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
-//            $('#hotTitle').val(rowData[0].hotInformation);
-//            $('#hotContent').html(infoContet);
-//            $('#date-picker').val(rowData[0].hotdate);
-//            CommonFn.renderDate('#date-picker2');
-//
-//
-//            CommonFn.renderTextarea('#hotContent');
-//        });
+
         var dialogHtml = ''
                 + '<div class="row">'
                 + '<div class="col-xs-12">'
@@ -240,6 +203,8 @@
                     }
                 }
             });
+            CommonFn.renderDateYear('#date-picker2');
+            CommonFn.renderTextarea('#hotContent');
             // 当前行数据
             var rowData = CommonFn.getRowData(rowId);
             console.log(rowData)
