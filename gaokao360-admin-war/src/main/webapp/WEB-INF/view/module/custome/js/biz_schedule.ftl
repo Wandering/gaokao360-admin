@@ -1,55 +1,7 @@
 <script>
     <!-- 自定义js请写在这个文件  以下这个查询方法只是个例子，请按照业务需求修改 -->
-    function buildRules() {
-        var courseName = $('#courseName').val();
-        var status = $('#status').val();
-        var classfyId = $('#classfyId').val();
-        var rules = [];
-        if (courseName != '' && courseName != null && courseName != undefined) {
-            var rule = {
-                'field': 'courseName',
-                'op': 'eq',
-                'data': courseName
-            }
-            rules.push(rule);
-        }
-        if (status != '' && status != null && status != undefined) {
-            var rule = {
-                'field': 'status',
-                'op': 'eq',
-                'data': status
-            }
-            rules.push(rule);
-        }
-        if (classfyId != '' && classfyId != null && classfyId != undefined) {
-            var rule = {
-                'field': 'classfyId',
-                'op': 'eq',
-                'data': classfyId
-            }
-            rules.push(rule);
-        }
-        return rules;
-    }
-    function searchLoad() {
-        var url = "/admin/${bizSys}/${mainObj}s";
-
-        var rules = buildRules();
-
-        var filters = {
-            'groupOp': 'AND',
-            "rules": rules
-        };
-
-        $("#grid-table").jqGrid('setGridParam', {
-            url: url,
-            mtype: "POST",
-            postData: "filters=" + JSON.stringify(filters),
-            page: 1
-        }).trigger("reloadGrid");
 
 
-    }
 
     /*
     *
@@ -70,12 +22,69 @@
         CommonFn.renderDateYear(UI.$datePicker);
 //       搜索
         UI.$search.click(function () {
-            var data = UI.$datePicker.val().split('-');
-            var year = data[0];
-            var month = data[1];
-            console.info(year, month);
             searchLoad();
         });
+
+        function buildRules() {
+            var data = $('#date-picker').val().split('-');
+            var year = data[0];
+            var month = data[1];
+            var selProvince = $('#selProvince').val()
+            var agentKeyWord = $('#agentKeyWord').val()
+            var rules = [];
+            if (year != '' && year != null && year != undefined && year != '00') {
+                var rule = {
+                    'field': 'schedule.years',
+                    'op': 'eq',
+                    'data': year
+                }
+                rules.push(rule);
+            }
+            if (month != '' && month != null && month != undefined &&month != '00') {
+                var rule = {
+                    'field': 'schedule.month',
+                    'op': 'eq',
+                    'data': month
+                }
+                rules.push(rule);
+            }
+            if (agentKeyWord != '' && agentKeyWord != null && agentKeyWord != undefined&& agentKeyWord != '00') {
+                var rule = {
+                    'field': 'queryparam',
+                    'op': 'lk',
+                    'data': agentKeyWord
+                }
+                rules.push(rule);
+            }
+            if (selProvince != '' && selProvince != null && selProvince != undefined&& selProvince != '00') {
+                var rule = {
+                    'field': 'schedule.areaId',
+                    'op': 'eq',
+                    'data': selProvince
+                }
+                rules.push(rule);
+            }
+            return rules;
+        }
+        function searchLoad() {
+            var url = "/admin/${bizSys}/${mainObj}s";
+
+            var rules = buildRules();
+
+            var filters = {
+                'groupOp': 'AND',
+                "rules": rules
+            };
+
+            $("#grid-table").jqGrid('setGridParam', {
+                url: url,
+                mtype: "POST",
+                postData: "filters=" + JSON.stringify(filters),
+                page: 1
+            }).trigger("reloadGrid");
+
+
+        }
 //     获取省份
         var provinceData = CommonFn.getProvince();
         UI.$selProvince.append(provinceData);
