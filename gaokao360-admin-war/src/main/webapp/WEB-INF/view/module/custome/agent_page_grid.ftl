@@ -25,7 +25,7 @@
     </form>
     <div class="form-group hr10">
         <button class="btn btn-purple" id="addBtn">
-            <i class="ace-icon fa fa-cloud-upload align-top bigger-125"></i>添加高考日程
+            <i class="ace-icon fa fa-cloud-upload align-top bigger-125"></i>添加招办联系电话
         </button>
         <button class="btn btn-primary" id="editBtn">
             <i class="ace-icon fa fa-pencil-square-o align-top bigger-125"></i>修改

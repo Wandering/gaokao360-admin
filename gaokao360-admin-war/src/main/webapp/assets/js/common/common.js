@@ -173,6 +173,13 @@ var CommonFn = {
             todayHighlight: true
         });
     },
+    renderDateYear: function (obj) {
+        $(obj).datepicker({
+            data:false,
+            autoclose: true,
+            format:'yyyy-mm'
+        });
+    },
     // tipsDialog
     tipsDialog: function (title, message) {
         bootbox.dialog({

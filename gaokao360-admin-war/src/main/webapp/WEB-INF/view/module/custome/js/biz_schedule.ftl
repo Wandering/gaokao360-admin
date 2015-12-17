@@ -63,23 +63,32 @@
             $scheduleKeyWord: $('#scheduleKeyWord'),
             $selMonth: $('#selMonth'),
             $selProvince: $('#selProvince'),
-            $search: $('#search')
+            $search: $('#search'),
+            $datePicker: $('#date-picker')
         };
 //       搜索
         UI.$search.click(function () {
             searchLoad();
         });
 //     获取月份
-        var month = '';
-        for (var i = 1; i <= 12; i++) {
-            month += '<option value="' + i + '">' + i + '月</option>'
-        }
-        UI.$selMonth.append(month);
+//        var month = '';
+//        for (var i = 1; i <= 12; i++) {
+//            month += '<option value="' + i + '">' + i + '月</option>'
+//        }
+//        UI.$selMonth.append(month);
+        CommonFn.renderDateYear(UI.$datePicker);
+        UI.$datePicker.change(function () {
+            var data = UI.$datePicker.val().split('-');
+            var year = data[0];
+            var month = data[1];
+            console.info(year, month);
+        });
 //     获取省份
         var provinceData = CommonFn.getProvince();
         UI.$selProvince.append(provinceData);
 
 //     添加高考日程
+        var years = '', month = '';
         $("#addBtn").on(ace.click_event, function (e) {
             typeStr = "add";
             bootbox.dialog({
@@ -98,7 +107,11 @@
                     }
                 }
             });
-            CommonFn.renderDate('#date-picker');
+            CommonFn.renderDateYear('#date-picker2');
+            var data = UI.$datePicker.val().split('-');
+            years = data[0];
+            month = data[1];
+            console.info(years, month);
             CommonFn.renderTextarea('#hotContent');
         });
 //      修改高考日程
@@ -134,7 +147,9 @@
             $('#hotTitle').val(rowData[0].hotInformation);
             $('#hotContent').html(infoContet);
             $('#date-picker').val(rowData[0].hotdate);
-            CommonFn.renderDate('#date-picker');
+            CommonFn.renderDate('#date-picker2');
+
+
             CommonFn.renderTextarea('#hotContent');
         });
         var dialogHtml = ''
@@ -158,7 +173,7 @@
                 + '<div class="form-group">'
                 + '<label class="col-sm-2 control-label no-padding-right" for="hotContent">' + ' 日期：</label>'
                 + '<div class="col-sm-4"><div class="input-group">'
-                + '<input class="form-control date-picker" placeholder="请选择高考热点日期" id="date-picker" type="text" data-date-format="yyyy-mm-dd">'
+                + '<input class="form-control date-picker" placeholder="高考日程日期" id="date-picker2" type="text">'
                 + '<span class="input-group-addon"><i class="fa fa-calendar bigger-110"></i></span>'
                 + '</div></div></div>'
                 + '</form>'
@@ -166,7 +181,7 @@
                 + '</div>';
         var addEditFun = function () {
             var selProvinceV = $('#selProvince2 option:checked').val();
-            var datePickerV = $.trim($('#date-picker').val());
+            var datePickerV = $.trim($('#date-picker2').val());
             var hotContentV = $('#hotContent').html();
 
             if (selProvinceV == "00") {
@@ -177,14 +192,19 @@
                 CommonFn.tipsDialog('温馨提示', '请输入高考日程内容');
                 return false;
             }
+            if (hotContentV.length > 120) {
+                CommonFn.tipsDialog('温馨提示', '高考日程内容字数不能大于120字');
+                return false;
+            }
             if (datePickerV == "") {
                 CommonFn.tipsDialog('温馨提示', '请选择高考日程日期');
                 return false;
             }
             var addscheduleData = {
                 oper: typeStr,
-
-
+                month: month,
+                years: years,
+                content: hotContentV,
                 areaId: selProvinceV
             };
 
