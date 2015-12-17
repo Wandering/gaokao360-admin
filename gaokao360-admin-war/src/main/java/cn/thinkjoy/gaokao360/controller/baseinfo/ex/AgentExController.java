@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -60,14 +61,41 @@ public class AgentExController extends BaseController<IAgentExService> {
      * 获取所有的组织信息
      * @return
      */
-    @RequestMapping(value="/agent/doExcelImport")
+    @RequestMapping(value="/agent/{mainObj}doExcelImport")
     @ResponseBody
-    public Map<String,String> doExcelImport(@RequestParam("file") MultipartFile file, @PathVariable String mainObj){
-        return new HashMap<>();
+    public Map<String,Object> doExcelImport(@RequestParam("file") MultipartFile file, @PathVariable String mainObj){
+
+        return this.doImport(file,mainObj);
     }
     @Override
     protected IAgentExService getMainService() {
         return agentExService;
+    }
+
+    /**
+     * 在这里写数据处理
+     * @param list
+     * @param mainObj
+     * @return
+     */
+    @Override
+    protected String innerHandleImport(List<Map<String, String>> list, String mainObj) {
+        try{
+            this.getList(list);
+        }catch (Exception e){
+
+        }
+        return "";
+    }
+
+    @Override
+    protected Map<String, String> corrMap() {
+        Map<String,String>  map = new HashMap<>();
+        map.put("年份","yesrs");
+        map.put("月份","manth");
+        map.put("内容","content");
+        map.put("省份","areaId");
+        return map;
     }
 
     @Override

@@ -2,7 +2,7 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  EnrollReport.java 2015-12-15 17:20:07 $
+ * $Id:  EnrollReport.java 2015-12-17 15:21:03 $
  */
 
 
@@ -20,56 +20,60 @@ import cn.thinkjoy.common.domain.BaseDomain;
 import java.util.*;
 
 public class EnrollReport extends BaseDomain<Long>{
-    /** 排序 */
+    /** 分类 */
     private String sortId;
     /** 年份 */
     private String year;
-    /** 分类id */
+    /** 批次Id */
     private String batchId;
-    /** 分类 */
+    /** 批次 */
     private String batch;
-    /** 分类1 */
+    /** 批次1 */
     private String batch1;
-    /** 院校代码 */
+    /** 学校Id */
+    private Long universityId;
+    /** 学校code */
     private String universityCode;
-    /** 院校名称 */
+    /** 学校名称 */
     private String universityName;
-    /** 1 */
+    /** 文史类计划数 */
     private String wsPlanNumber;
-    /** 1 */
+    /** 文史类录取数 */
     private String wsEnrollNumber;
-    /** 1 */
+    /** 文史最高分 */
     private String wsHighestScore;
-    /** 1 */
+    /** 文史最低分 */
     private String wsLowestScore;
-    /** 1 */
+    /** 文史最低位次 */
     private String wsLowestRank;
-    /** 11 */
+    /** 文史平均分 */
     private String wsAverageScore;
-    /** 1 */
+    /** 文史平均次位 */
     private String wsAverageRank;
-    /** 11 */
+    /** 理工类计划数 */
     private String lgPlanNumber;
-    /** 1 */
+    /** 理工类录取数 */
     private String lgEnrollNumber;
-    /** 1 */
+    /** 理工类最高数 */
     private String lgHighestScore;
-    /** 1 */
+    /** 理工类最高位次 */
     private String lgHighestRank;
-    /** 11 */
+    /** 理工类最低分数 */
     private String lgLowestScore;
-    /** 1 */
+    /** 理工类最低次位 */
     private String lgLowestRank;
-    /** 1 */
+    /** 理工类平均分数 */
     private String lgAverageScore;
-    /** 1 */
+    /** 理工类平均位次 */
     private String lgAverageRank;
-    /** 1 */
+    /** 文史类最高位次 */
     private String wsHighestRank;
-    /** 1 */
+    /** 计划数 */
     private String planNumber;
-    /** 1 */
+    /** 录取数 */
     private String enrollNumber;
+    /** 区域Id */
+    private Long areaId;
 
 	public EnrollReport(){
 	}
@@ -107,6 +111,13 @@ public class EnrollReport extends BaseDomain<Long>{
 
     public String getBatch1() {
         return this.batch1;
+    }
+    public void setUniversityId(Long value) {
+        this.universityId = value;
+    }
+
+    public Long getUniversityId() {
+        return this.universityId;
     }
     public void setUniversityCode(String value) {
         this.universityCode = value;
@@ -248,6 +259,13 @@ public class EnrollReport extends BaseDomain<Long>{
     public String getEnrollNumber() {
         return this.enrollNumber;
     }
+    public void setAreaId(Long value) {
+        this.areaId = value;
+    }
+
+    public Long getAreaId() {
+        return this.areaId;
+    }
 
 	public String toString() {
 		return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
@@ -257,6 +275,7 @@ public class EnrollReport extends BaseDomain<Long>{
 			.append("BatchId",getBatchId())
 			.append("Batch",getBatch())
 			.append("Batch1",getBatch1())
+			.append("UniversityId",getUniversityId())
 			.append("UniversityCode",getUniversityCode())
 			.append("UniversityName",getUniversityName())
 			.append("WsPlanNumber",getWsPlanNumber())
@@ -277,6 +296,7 @@ public class EnrollReport extends BaseDomain<Long>{
 			.append("WsHighestRank",getWsHighestRank())
 			.append("PlanNumber",getPlanNumber())
 			.append("EnrollNumber",getEnrollNumber())
+			.append("AreaId",getAreaId())
 			.toString();
 	}
 	

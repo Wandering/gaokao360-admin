@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.thinkjoy.gaokao360.dao.IUniversityDAO">
+<!--
+insert
+update
+updateNull
+deleteById
+deleteByCondition
+deleteByProperty
+fetch
+findOne
+findList
+findAll
+queryPage
+like
+queryList
+queryOne
+count
+selectMaxId
+updateOrSave
+selectOne
+selectList
+-->
+
+    <sql id="Base_Column_List">
+        university.id as id ,
+        university.createDate as createDate ,
+        university.status as status ,
+        university.creator as creator ,
+        university.lastModDate as lastModDate ,
+        university.lastModifier as lastModifier ,
+        university.code as code ,
+        university.name as name ,
+        university.subjection as subjection ,
+        university.educationLevel as educationLevel ,
+        university.property as property ,
+        university.type as type ,
+        university.url as url ,
+        university.address as address ,
+        university.contactPhone as contactPhone ,
+        university.entranceIntro as entranceIntro ,
+        university.universityIntro as universityIntro ,
+        university.provinceId as provinceId ,
+        university.provinceName as provinceName ,
+        university.cityId as cityId ,
+        university.cityName as cityName ,
+        university.countyId as countyId ,
+        university.countyName as countyName ,
+        university.batchType as batchType,
+				province.name as province
+    </sql>
+    <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.ScheduleDTO">
+        SELECT
+        <include refid="Base_Column_List" />
+        from gk_university university
+        LEFT JOIN gk_province province  ON province.id = university.provinceId
+        <where>
+
+            <if test="condition.whereSql != null">
+                and id in (#{condition.whereSql})
+            </if>
+
+
+
+
+        </where>
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(schedule.id)
+        from gk_university university
+        LEFT JOIN gk_province province  ON province.id = university.provinceId
+        <where>
+            <if test="scheduleareaId!=null">
+                ${groupOp}   ${scheduleareaId.field}  ${scheduleareaId.op}  #{scheduleareaId.data}
+            </if>
+            <if test="queryparam!=null">
+                ${groupOp}  (province.name like #{queryparam.data} OR schedule.month like #{queryparam.data} OR schedule.years like #{queryparam.data})
+            </if>
+
+        </where>
+    </select>
+</mapper>
+

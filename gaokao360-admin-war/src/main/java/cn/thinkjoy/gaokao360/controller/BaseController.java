@@ -116,6 +116,10 @@ public abstract class BaseController<T> extends AbstractAdminController {
     }
 
     protected String  innerHandleImport(List<Map<String,String>> list,String mainObj){
+        return "true";
+    }
+
+    public final List getList(List<Map<String,String>> list){
         Map<String,String> corrMap=this.corrMap();
         List<Map<String,Object>> list1 = new ArrayList<>();
         for(Map map : list){
@@ -124,11 +128,11 @@ public abstract class BaseController<T> extends AbstractAdminController {
                 if(map.containsKey(s)){
                     keyMap.put(corrMap.get(s),map.get(s));
                 }
+                list1.add(keyMap);
             }
         }
-        return "true";
+        return list1;
     }
-
 
     protected Map<String,String> corrMap(){
         return new HashMap<>();
