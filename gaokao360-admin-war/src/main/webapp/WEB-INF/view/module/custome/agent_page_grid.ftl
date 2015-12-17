@@ -6,11 +6,6 @@
             <div class="form-group col-sm-2">
                 <input type="text" class="keywordSearch" placeholder="关键字查询" id="agentKeyWord">
             </div>
-            <div class="form-group col-sm-2">
-                <select class="form-control" id="selMonth">
-                    <option value="00">请选择月份</option>
-                </select>
-            </div>
 
             <div class="form-group col-sm-2">
                 <select class="form-control" id="selProvince">
