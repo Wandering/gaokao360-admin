@@ -60,6 +60,9 @@ public class ServiceMaps extends BaseServiceMaps{
     private IScheduleService scheduleService;
     @Autowired
     private IAgentService agentService;
+    @Autowired
+    private IAreabatchLineService areabatchLineService;
+
 
 
     @PostConstruct
@@ -81,6 +84,7 @@ public class ServiceMaps extends BaseServiceMaps{
         serviceMap.put("gkpsychologyex",gkPsychologyService);
         serviceMap.put("schedule",scheduleService);
         serviceMap.put("agent",agentService);
+        serviceMap.put("areabatchline",areabatchLineService);
     }
 
 }
