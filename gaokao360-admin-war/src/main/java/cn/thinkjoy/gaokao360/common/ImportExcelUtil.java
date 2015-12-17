@@ -243,22 +243,6 @@ public class ImportExcelUtil {
         ImportExcelUtil.list = list;
     }
 
-    private static Map<String,Object> mapStringToObj(Class[] clzs,String[] asField,Map<String,String> map){
-        Map<String,Object> map1 = new HashMap<>();
-        for(int i =0 ; i<asField.length;i++){
-            if(clzs[i].getName().endsWith("String")){
-                map1.put(asField[i],map.get(asField[i]));
-            }else if(clzs[i].getName().endsWith("Long")){
-                System.out.println(clzs[i].getName());
-                map1.put(asField[i], Long.valueOf(map.get(asField[i])));
-                System.out.println(Long.valueOf(map.get(asField[i])));
-            }else if(clzs[i].getName().endsWith("Integer")){
-                map1.put(asField[i],Integer.parseInt(map.get(asField[i])));
-            }
-        }
-        return map1;
-    }
-
     public static void main(String[] args){
         try {
             Class[] clzs = new Class[]{String.class,String.class,Long.class};
