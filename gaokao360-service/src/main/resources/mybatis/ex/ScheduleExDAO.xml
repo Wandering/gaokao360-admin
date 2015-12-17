@@ -47,12 +47,14 @@ selectList
             <if test="condition.whereSql != null">
                 and id in (#{condition.whereSql})
             </if>
-
-            <if test="condition.scheduleareaId!=null">
-                ${condition.groupOp}   ${condition.scheduleareaId.field}  ${condition.scheduleareaId.op}  #{condition.scheduleareaId.data}
+            <if test="condition.schedulemonth!=null">
+                ${condition.groupOp}   ${condition.schedulemonth.field}  ${condition.schedulemonth.op}  #{condition.schedulemonth.data}
+            </if>
+            <if test="condition.scheduleyears!=null">
+                ${condition.groupOp}   ${condition.scheduleyears.field}  ${condition.scheduleyears.op}  #{condition.scheduleyears.data}
             </if>
             <if test="condition.queryparam!=null">
-                ${condition.groupOp}  (province.name like #{condition.queryparam.data} OR schedule.month like #{condition.queryparam.data} OR schedule.years like #{condition.queryparam.data} )
+                ${condition.groupOp}  (province.name like #{condition.queryparam.data} OR schedule.month like #{condition.queryparam.data} OR schedule.years like #{condition.queryparam.data} OR schedule.content like #{condition.queryparam.data} )
             </if>
 
 
