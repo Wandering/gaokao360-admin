@@ -33,7 +33,8 @@ selectList
         createDate as createDate ,
         lastModDate as lastModDate ,
         creator as creator ,
-        lastModifier as lastModifier 
+        lastModifier as lastModifier ,
+        content as content 
     </sql>
     <insert id="insert" parameterType="Schedule">
         INSERT INTO gk_schedule (
@@ -44,7 +45,8 @@ selectList
         createDate,
         lastModDate,
         creator,
-        lastModifier
+        lastModifier,
+        content
         ) VALUES (
         #{areaId},
         #{month},
@@ -53,7 +55,8 @@ selectList
         #{createDate},
         #{lastModDate},
         #{creator},
-        #{lastModifier}
+        #{lastModifier},
+        #{content}
         )
             <selectKey resultType="java.lang.Long" keyProperty="id">
                 SELECT LAST_INSERT_ID() AS ID
@@ -88,6 +91,9 @@ selectList
             <if test="lastModifier!=null">
                 lastModifier = #{lastModifier},
             </if>
+            <if test="content!=null">
+                content = #{content},
+            </if>
         </trim>
         WHERE
         id = #{id}
@@ -119,6 +125,9 @@ selectList
             </if>
             <if test="map.lastModifier!=null">
                 lastModifier = #{map.lastModifier},
+            </if>
+            <if test="map.content!=null">
+                content = #{map.content},
             </if>
         </trim>
         WHERE
@@ -152,6 +161,9 @@ selectList
             <if test="update.lastModifier!=null">
                 lastModifier = #{update.lastModifier},
             </if>
+            <if test="update.content!=null">
+                content = #{update.content},
+            </if>
         </trim>
 
         <trim prefix="WHERE" prefixOverrides="AND | OR">
@@ -182,6 +194,9 @@ selectList
             <if test="condition.lastModifier!=null">
                 AND lastModifier = #{condition.lastModifier}
             </if>
+            <if test="condition.content!=null">
+                AND content = #{condition.content}
+            </if>
         </trim>
     </update>
 
@@ -194,7 +209,8 @@ selectList
                 createDate,
                 lastModDate,
                 creator,
-                lastModifier
+                lastModifier,
+                content
         ) VALUES (
                     #{map.areaId},
                     #{map.month},
@@ -203,7 +219,8 @@ selectList
                     #{map.createDate},
                     #{map.lastModDate},
                     #{map.creator},
-                    #{map.lastModifier}
+                    #{map.lastModifier},
+                    #{map.content}
         )
     </insert>
 
@@ -219,6 +236,7 @@ selectList
             lastModDate = #{lastModDate},
             creator = #{creator},
             lastModifier = #{lastModifier},
+            content = #{content},
         </trim>
         WHERE
         id = #{id} 
@@ -262,6 +280,9 @@ selectList
             </if>
             <if test="lastModifier!=null">
                 AND lastModifier = #{lastModifier}
+            </if>
+            <if test="content!=null">
+                AND content = #{content}
             </if>
         </trim>
     </delete>
@@ -347,6 +368,9 @@ selectList
             <if test="condition.lastModifier!=null">
                 ${condition.groupOp}   ${condition.lastModifier.field}  ${condition.lastModifier.op}  #{condition.lastModifier.data}
             </if>
+            <if test="condition.content!=null">
+                ${condition.groupOp}   ${condition.content.field}  ${condition.content.op}  #{condition.content.data}
+            </if>
 
 
     </where>
@@ -390,6 +414,9 @@ selectList
             <if test="condition.lastModifier!=null">
                 AND lastModifier like CONCAT('%', #{condition.lastModifier} , '%')
             </if>
+            <if test="condition.content!=null">
+                AND content like CONCAT('%', #{condition.content} , '%')
+            </if>
         </trim>
         <if test="orderBy!=null">
         ORDER BY ${orderBy} ${sortBy}
@@ -429,6 +456,9 @@ selectList
             <if test="condition.lastModifier!=null">
                 AND lastModifier = #{condition.lastModifier}
             </if>
+            <if test="condition.content!=null">
+                AND content = #{condition.content}
+            </if>
         </trim>
         <if test="orderBy!=null">
         ORDER BY ${orderBy} ${sortBy}
@@ -467,6 +497,9 @@ selectList
             <if test="condition.lastModifier!=null">
                 AND lastModifier = #{condition.lastModifier}
             </if>
+            <if test="condition.content!=null">
+                AND content = #{condition.content}
+            </if>
         </trim>
         <if test="orderBy!=null">
         ORDER BY ${orderBy} ${sortBy}
@@ -503,6 +536,9 @@ selectList
            </if>
            <if test="lastModifier!=null">
                ${groupOp} ${lastModifier.field} ${lastModifier.op}  #{lastModifier.data}
+           </if>
+           <if test="content!=null">
+               ${groupOp} ${content.field} ${content.op}  #{content.data}
            </if>
 
        </where>

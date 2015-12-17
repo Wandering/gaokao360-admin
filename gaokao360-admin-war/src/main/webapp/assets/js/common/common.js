@@ -169,11 +169,17 @@ var CommonFn = {
         return contentArr;
     },
     // date
-    renderDate: function (obj, format) {
+    renderDate: function (obj) {
         $(obj).datepicker({
             autoclose: true,
-            todayHighlight: true,
-            format: format
+            todayHighlight: true
+        });
+    },
+    renderDateYear: function (obj) {
+        $(obj).datepicker({
+            data:false,
+            autoclose: true,
+            format:'yyyy-mm'
         });
     },
     // tipsDialog
