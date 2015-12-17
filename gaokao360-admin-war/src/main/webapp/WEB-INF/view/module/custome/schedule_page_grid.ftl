@@ -7,14 +7,11 @@
                 <input type="text" class="keywordSearch" placeholder="关键字查询" id="agentKeyWord">
             </div>
             <div class="form-group col-sm-2">
-            <#--<select class="form-control" id="selMonth">-->
-            <#--<option value="00">请选择月份</option>-->
-            <#--</select>-->
-                    <div class="input-group">
-                        <input class="form-control date-picker" placeholder="高考日程日期" id="date-picker" type="text"
-                               data-date-format="yyyy-mm-dd">
-                        <span class="input-group-addon"><i class="fa fa-calendar bigger-110"></i></span>
-                    </div>
+                <div class="input-group">
+                    <input class="form-control date-picker" placeholder="高考日程日期" id="date-picker" type="text"
+                           data-date-format="yyyy-mm-dd">
+                    <span class="input-group-addon"><i class="fa fa-calendar bigger-110"></i></span>
+                </div>
             </div>
 
             <div class="form-group col-sm-2">
