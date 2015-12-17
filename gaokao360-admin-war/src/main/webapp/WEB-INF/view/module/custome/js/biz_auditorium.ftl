@@ -327,7 +327,6 @@
             });
             // 当有文件添加进来时执行，负责view的创建
             function addFile(file) {
-                $queue.html('');
                 var $li = $('<li id="' + file.id + '">' +
                                 '<p class="title">' + file.name + '</p>' +
                                 '<p class="imgWrap"></p>' +
@@ -598,10 +597,17 @@
             uploader.onFileQueued = function (file) {
                 fileCount++;
                 fileSize += file.size;
+
+                console.log(fileCount)
+                console.log(fileSize)
+
+
+
                 if (fileCount === 1) {
                     $placeHolder.addClass('element-invisible');
                     $statusBar.show();
-                    removeFile(file);
+                }else if (fileCount >= 2) {
+                    $('ul.filelist li:eq(0)').find('span.cancel').click();
                 }
                 addFile(file);
                 setState('ready');
