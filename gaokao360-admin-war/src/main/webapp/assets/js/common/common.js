@@ -14,7 +14,9 @@ var CommonFn = {
         getYear: '/admin/gaokao360/ex/' + mainObj + '/getYears', // 获取年份
         getSubjectUrl: '/admin/gaokao360/ex/getSubject', // 获取学科
         getEduLevel: '/admin/gaokao360/ex/getAdmissionBatch', // 获取政策一级分类
-        saveData: '/admin/gaokao360/ex/commonsave/' + mainObj  //
+        saveData: '/admin/gaokao360/ex/commonsave/' + mainObj,
+        flashSwfUrl: '/assets/js/webuploader-0.1.5/Uploader.swf', // 上传选择按钮渲染
+        uploaderUrl: 'http://cs-dev.thinkjoy.com.cn/rest/v1/uploadFile?userId=gk360&dirId=0&productCode=gk360&bizSystem=gk360&spaceName=gk360'
     },
     getData: function (url, type, data, callback) {
         $.ajax({
@@ -253,12 +255,16 @@ var CommonFn = {
         contentArr.push('<option value="00">请选择年份</option>');
         $.ajaxSettings.async = false;
         CommonFn.getData(CommonFn.url.getYear, 'GET', {}, function (result) {
-            for(var k in result.bizData){
+            for (var k in result.bizData) {
                 var year = result.bizData[k];
                 contentArr.push('<option value="' + year + '">' + year + '</option>');
             }
         });
         return contentArr;
+    },
+    //
+    uploaderSwfFn: function () {
+
     }
 
 

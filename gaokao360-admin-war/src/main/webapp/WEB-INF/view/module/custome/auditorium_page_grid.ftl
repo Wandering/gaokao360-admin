@@ -30,5 +30,40 @@
     </div>
 
 
+    <#--<div id="uploader-main">-->
+        <#--<div id="uploader" class="">-->
+            <#--<div id="preview-img" style="display: none;"><a href="javascript:;" target="_blank" id="imgUrl"><img src="" width="50" height="50" /> 查看图片</a></div>-->
+            <#--<div id="thelist" class="uploader-list"></div>-->
+            <#--<div class="btns">-->
+                <#--<div id="picker">选择文件</div>-->
+                <#--<button id="ctlBtn" class="btn btn-default">开始上传</button>-->
+            <#--</div>-->
+        <#--</div>-->
+    <#--</div>-->
+
+
+
+    <#--<div id="uploader" class="wu-example">-->
+        <#--<div class="queueList">-->
+            <#--<div id="dndArea" class="placeholder">-->
+                <#--<div id="filePicker"></div>-->
+                <#--<p>或将照片拖到这里，单次最多可选300张</p>-->
+            <#--</div>-->
+        <#--</div>-->
+        <#--<div class="statusBar" style="display:none;">-->
+            <#--<div class="progress">-->
+                <#--<span class="text">0%</span>-->
+                <#--<span class="percentage"></span>-->
+            <#--</div><div class="info"></div>-->
+            <#--<div class="btns">-->
+                <#--<div id="filePicker2"></div><div class="uploadBtn">开始上传</div>-->
+            <#--</div>-->
+        <#--</div>-->
+    <#--</div>-->
+
+
+
+
+
 <#include 'page_grid.ftl'>
 </div><!-- /.page-content -->
