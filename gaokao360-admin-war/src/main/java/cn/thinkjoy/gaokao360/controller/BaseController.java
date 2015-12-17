@@ -9,10 +9,14 @@ package cn.thinkjoy.gaokao360.controller;
 
 
 import cn.thinkjoy.common.managerui.controller.AbstractAdminController;
+import cn.thinkjoy.common.managerui.dao.IResourceActionDAO;
 import cn.thinkjoy.common.managerui.domain.Resource;
 import cn.thinkjoy.common.managerui.domain.ResourceGrid;
+import cn.thinkjoy.common.managerui.service.IResourceActionService;
+import cn.thinkjoy.common.managerui.service.IRoleService;
 import cn.thinkjoy.gaokao360.common.MenuUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,6 +26,9 @@ import java.util.Set;
 
 
 public abstract class BaseController<T> extends AbstractAdminController {
+    @Autowired
+    IResourceActionService resourceActionService;
+
     @Override
     protected void enhanceModelAndView(HttpServletRequest request, ModelAndView mav) {
         List<Resource> resourceList = (List) mav.getModel().get("resources");

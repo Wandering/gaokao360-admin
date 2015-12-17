@@ -409,9 +409,9 @@
 
                             }
                         };
-                        if("0000000" != result.rtnCode){
+                        if ("0000000" != result.rtnCode) {
                             alert("远程访问数据失败!");
-                            return ;
+                            return;
                         }
                         result = result.bizData;
                         var zNodes = result;
@@ -424,9 +424,13 @@
 
                             var chidrens = obj.resourceInfos;
                             for (var m = 0; m < chidrens.length; m++) {
+                                if (chidrens[m].roleId > 0) {
+                                    result[i].checked = true
+                                    chidrens[m].checked = true;
+                                }
                                 var third = chidrens[m].resourceInfos;
                                 for (var n = 0; n < third.length; n++) {
-                                    if (third[n].roleId > 0) {
+                                    if (third[n].roleId) {
                                         third[n].checked = true;
                                         chidrens[m].checked = true;
                                         result[i].checked = true
@@ -449,7 +453,6 @@
                             zTree.setting.check.chkboxType = type;
                             showCode('setting.check.chkboxType = { "Y" : "' + type.Y + '", "N" : "' + type.N + '" };');
                             var checked = zTree.getNodes()[0].checked;
-                            alert(checked)
                         }
 
                         function showCode(str) {
@@ -483,7 +486,7 @@
                                         objId: currentGridId,
                                         resources: JSON.stringify(array)
                                     }, function (result) {
-                                        alert(result)
+                                        alert(result.bizData)
                                         $("#treeFixed-01").hide();
                                     }
                             );
@@ -498,6 +501,7 @@
                 position: "last"
             })
     </#if>
+
 
         function style_edit_form(form) {
             //enable datepicker on "sdate" field and switches for "stock" field

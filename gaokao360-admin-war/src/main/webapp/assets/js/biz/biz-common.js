@@ -280,7 +280,7 @@ function formatdataProvince1(cellvalue,options, rowObject){
     if(cellvalue == null || cellvalue=='' ||cellvalue ==0){
         return "";
     }
-    var province=rowObject.areaId;
+    var province=rowObject.province;
     if(province == null || province=='' ||province ==0){
         return "";
     }
