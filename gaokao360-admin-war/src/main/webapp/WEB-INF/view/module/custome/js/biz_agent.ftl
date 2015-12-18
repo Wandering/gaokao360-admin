@@ -4,7 +4,7 @@
         var areaId = $('#courseName').val();
         var queryparam = $('#status').val();
         var rules = [];
-        if (areaId != '' && areaId != null && areaId != undefined &&areaId!='00') {
+        if (areaId != '' && areaId != null && areaId != undefined && areaId != '00') {
             var rule = {
                 'field': 'agent.areaId',
                 'op': 'eq',
@@ -86,42 +86,39 @@
                 }
             });
         });
-////      修改高考日程
-//        $("#editBtn").on(ace.click_event, function () {
-//            typeStr = "edit";
-//            rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
-//            var selTrN = $('tr.ui-state-highlight[role="row"]').length;
-//            if (selTrN != 1) {
-//                CommonFn.tipsDialog('温馨提示', '请选中一行后修改');
-//                return false;
-//            }
-//            bootbox.dialog({
-//                title: "修改招办联系电话",
-//                message: dialogHtml,
-//                className: 'my-modal',
-//                buttons: {
-//                    "success": {
-//                        "label": "<i class='ace-icon fa fa-check'></i> 提交",
-//                        "className": "btn-sm btn-success",
-//                        "callback": addEditFun
-//                    },
-//                    cancel: {
-//                        label: "关闭",
-//                        className: "btn-sm"
-//                    }
-//                }
-//            });
-//            // 当前行数据
-//            var rowData = CommonFn.getRowData(rowId),
-//            // 富媒体赋值
-//                    infoContet = CommonFn.getContentHtml(rowData[0].informationContent).join('');
-//            $('#selProvince').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
-//            $('#hotTitle').val(rowData[0].hotInformation);
-//            $('#hotContent').html(infoContet);
-//            $('#date-picker').val(rowData[0].hotdate);
-//            CommonFn.renderDate('#date-picker');
-//            CommonFn.renderTextarea('#hotContent');
-//        });
+//      修改高考日程
+        $("#editBtn").on(ace.click_event, function () {
+            typeStr = "edit";
+            rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
+            var selTrN = $('tr.ui-state-highlight[role="row"]').length;
+            if (selTrN != 1) {
+                CommonFn.tipsDialog('温馨提示', '请选中一行后修改');
+                return false;
+            }
+            bootbox.dialog({
+                title: "修改招办联系电话",
+                message: dialogHtml,
+                className: 'my-modal',
+                buttons: {
+                    "success": {
+                        "label": "<i class='ace-icon fa fa-check'></i> 提交",
+                        "className": "btn-sm btn-success",
+                        "callback": addEditFun
+                    },
+                    cancel: {
+                        label: "关闭",
+                        className: "btn-sm"
+                    }
+                }
+            });
+            // 当前行数据
+            var rowData = CommonFn.getRowData(rowId);
+            $('#selProvince2').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
+            var subProvince = $('#selProvince2 option:checked').html();
+            var provinceArea = (rowData[0].name).replace(subProvince,'');
+            $('#areaName').val(provinceArea);
+            $('#agentTel').val(rowData[0].telphone);
+        });
 
         var dialogHtml = ''
                 + '<div class="row">'
@@ -155,7 +152,7 @@
             var tel = /^((0\d{2,3}-\d{7,8})|(1[35874]\d{9}))$/;
             var agentTel = $.trim($('#agentTel').val());
             var area = $('#areaName').val();
-            var areaName = $('#selProvince2 option:checked').html()+area;
+            var areaName = $('#selProvince2 option:checked').html() + area;
             if (selProvinceV == "00") {
                 CommonFn.tipsDialog('温馨提示', '请选择省份');
                 return false;
@@ -175,13 +172,13 @@
             var addAgentData = {
                 oper: typeStr,
                 areaId: selProvinceV,
-                telphone:agentTel,
-                name:areaName,
-                adress:areaName
+                telphone: agentTel,
+                name: areaName,
+                address: areaName
             };
 
             if (typeStr == 'edit') {
-                addExamData.id = rowId;
+                addAgentData.id = rowId;
             }
             $.ajax({
                 type: "POST",
@@ -194,7 +191,8 @@
                 }
             });
         };//添加修改方法
-
+//      删除
+        CommonFn.deleteFun('#deleteBtn', '${mainObj}');
 
     });//$结束
 

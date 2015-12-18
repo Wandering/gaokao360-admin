@@ -172,7 +172,7 @@
             };
 
             if (typeStr == 'edit') {
-                addExamData.id = rowId;
+                addscheduleData.id = rowId;
             }
             $.ajax({
                 type: "POST",
