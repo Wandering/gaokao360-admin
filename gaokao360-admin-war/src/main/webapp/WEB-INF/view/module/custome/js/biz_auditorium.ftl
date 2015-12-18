@@ -601,8 +601,6 @@
                 console.log(fileCount)
                 console.log(fileSize)
 
-
-
                 if (fileCount === 1) {
                     $placeHolder.addClass('element-invisible');
                     $statusBar.show();
