@@ -655,11 +655,4 @@
 <script src="${path}/assets/js/webuploader-0.1.5/webuploader.js"></script>
 <#--<script src="${path}/assets/js/jquery.maskedinput.min.js"></script>-->
 <script src="${path}/assets/js/common/common.js"></script>
-<style>
-    @media (min-width: 768px) {
-        .my-modal .modal-dialog {
-            width: 1000px;
-            margin: 30px auto;
-        }
-    }
-</style>
+
