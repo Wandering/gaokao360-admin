@@ -63,37 +63,56 @@
     * */
 
     jQuery(function () {
+        var typeStr;
+        var rowId;
         var UI = {
             $selProvince: $('#selProvince')
+            , $selEduLevel: $('#selEduLevel')
             , $addBtn: $('#addBtn')
+            , $submitBtn: $('#submitBtn')
         };
 //        获取省份
-        var province = CommonFn.getProvince();
-        UI.$selProvince.append(province);
-//        添加院校层次
-        UI.$addBtn.on(ace.click_event, function () {
-            $('#edit_answer_modal').toggle();
+        UI.$selProvince.append(CommonFn.getProvince());
+        $('#selEduLevel2').append(CommonFn.getEduLevel());
+//        获取学历层次
+        UI.$selEduLevel.append(CommonFn.getEduLevel());
+//        添加院校层次信息
+        UI.$addBtn.click(function () {
+            typeStr = "add";
+            $('#edit_answer_modal').modal('show');
+            UI.$submitBtn.on(ace.click_event, function (e) {
+                e.preventDefault();
+                var addUniversityData = {
+                    oper: typeStr,
+                    code: $('#schoolCode').val()
+                    , name: $('#schoolName').val()
+                    , images: 'http://img0.imgtn.bdimg.com/it/u=2127500600,2612092016&fm=21&gp=0.jpg'
+//                    , images: $('#schoolPic').val()
+                    , sort: $('#schoolRank').val()
+                    , property: $('#schoolStatic').val()
+                    , educationLevel: $('#selEduLevel2').val()
+                    , type: $('#schoolType').val()
+                    , subjection: $('#schoolOwn').val()
+                    , url: $('#schoolWeb').val()
+                    , provinceId: $('#schoolInProvince').val()
+                    , address: $('#schoolAddress').val()
+                    , contactPhone: $('#schoolTel').val()
+                    , universityIntro: $('#schoolIntroduce').val()
+                    , entranceIntro: $('#schoolArticle').val()
+                };
+                $.ajax({
+                    type: "POST",
+                    url: '/admin/gaokao360/ex/commonsave/${mainObj}',
+                    data: addUniversityData,
+                    success: function (result) {
+                        if (result.rtnCode == "0000000") {
+                            searchLoad();
+                        }
+                    }
+                });
 
-
-
-
-
-
-
+            });
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     });//$ end

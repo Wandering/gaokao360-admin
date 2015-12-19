@@ -16,7 +16,8 @@ var CommonFn = {
         getEduLevel: '/admin/gaokao360/ex/getAdmissionBatch', // 获取政策一级分类
         saveData: '/admin/gaokao360/ex/commonsave/' + mainObj,
         flashSwfUrl: '/assets/js/webuploader-0.1.5/Uploader.swf', // 上传选择按钮渲染
-        uploaderUrl: 'http://cs-dev.thinkjoy.com.cn/rest/v1/uploadFile?userId=gk360&dirId=0&productCode=gk360&bizSystem=gk360&spaceName=gk360'
+        uploaderUrl: 'http://cs-dev.thinkjoy.com.cn/rest/v1/uploadFile?userId=gk360&dirId=0&productCode=gk360&bizSystem=gk360&spaceName=gk360',
+        eduLevel: '/admin/gaokao360/ex/eduLevel'
     },
     getData: function (url, type, data, callback) {
         $.ajax({
@@ -27,6 +28,21 @@ var CommonFn = {
             success: callback
         });
     },
+    //获取学历层次
+    getEduLevel : function(){
+        var contentArr = [];
+        CommonFn.getData(CommonFn.url.eduLevel,'get',{},function(res){
+            if(res.rtnCode == '0000000'){
+                $.each(res.bizData,function(i,v){
+                    var id = res.bizData[i].id;
+                    var name = res.bizData[i].name;
+                    contentArr.push('<option value="' + id + '">' + name + '</option>');
+                });
+            }
+        });
+        return contentArr;
+    },
+
     // 富媒体编辑器
     renderTextarea: function (obj) {
         $(obj).ace_wysiwyg({
