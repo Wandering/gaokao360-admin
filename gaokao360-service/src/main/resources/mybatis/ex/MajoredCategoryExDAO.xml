@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IMajoredCategoryExDAO">
+<!--
+insert
+update
+updateNull
+deleteById
+deleteByCondition
+deleteByProperty
+fetch
+findOne
+findList
+findAll
+queryPage
+like
+queryList
+queryOne
+count
+selectMaxId
+updateOrSave
+selectOne
+selectList
+-->
+
+    <sql id="Base_Column_List">
+        id as id ,
+        name as name ,
+        level as level ,
+        parentId as parentId 
+    </sql>
+
+    <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.MajoredCategoryDTO">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM gk_majored_category
+        <where>
+            1=1 AND (parentId =1 ||  parentId =2 )
+            <if test="condition.whereSql != null">
+                and id in (#{condition.whereSql})
+            </if>
+
+            <if test="condition.id!=null">
+                ${condition.groupOp}   ${condition.id.field}  ${condition.id.op}  #{condition.id.data}
+            </if>
+            <if test="condition.name!=null">
+                ${condition.groupOp}   ${condition.name.field}  ${condition.name.op}  #{condition.name.data}
+            </if>
+            <if test="condition.level!=null">
+                ${condition.groupOp}   ${condition.level.field}  ${condition.level.op}  #{condition.level.data}
+            </if>
+            <if test="condition.parentId!=null">
+                ${condition.groupOp}   ${condition.parentId.field}  ${condition.parentId.op}  #{condition.parentId.data}
+            </if>
+
+
+    </where>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+
+    <select id="queryList" resultType="cn.thinkjoy.gaokao360.dto.MajoredCategoryDTO">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM gk_majored_category WHERE  1=1 AND  (parentId =1 ||  parentId =2 )
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(id) FROM gk_majored_category WHERE  1=1 AND  (parentId =1 ||  parentId =2 )
+       <where>
+           <if test="id!=null">
+               ${groupOp} ${id.field} ${id.op}  #{id.data}
+           </if>
+           <if test="name!=null">
+               ${groupOp} ${name.field} ${name.op}  #{name.data}
+           </if>
+           <if test="level!=null">
+               ${groupOp} ${level.field} ${level.op}  #{level.data}
+           </if>
+           <if test="parentId!=null">
+               ${groupOp} ${parentId.field} ${parentId.op}  #{parentId.data}
+           </if>
+
+       </where>
+    </select>
+    <select id="queryListByParentId" resultType="cn.thinkjoy.gaokao360.dto.MajoredCategoryDTO">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM gk_majored_category WHERE  1=1 AND  parentId =#{ParentId}
+    </select>
+
+
+</mapper>
+

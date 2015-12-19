@@ -26,11 +26,6 @@ selectList
 
     <sql id="Base_Column_List">
         university.id as id ,
-        university.createDate as createDate ,
-        university.status as status ,
-        university.creator as creator ,
-        university.lastModDate as lastModDate ,
-        university.lastModifier as lastModifier ,
         university.code as code ,
         university.name as name ,
         university.subjection as subjection ,
@@ -49,22 +44,26 @@ selectList
         university.countyId as countyId ,
         university.countyName as countyName ,
         university.batchType as batchType,
-		province.name as province
+		province.name as province ,
+		dict.name AS dictName,
+		sort.sort as sort,
+		sort.majoredCount as majoredCount,
+		sort.images as images,
+		dict1.name as eduLevelName
     </sql>
-    <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.ScheduleDTO">
+    <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.UniversityDTO">
         SELECT
         <include refid="Base_Column_List" />
         from gk_university university
-        LEFT JOIN gk_province province  ON province.id = university.provinceId
+        LEFT JOIN gk_province province  ON province.name = university.provinceName
+        LEFT JOIN gk_university_dict dict ON university.property=dict.dictId and dict.type='FEATURE'
+        LEFT JOIN gk_university_sort sort ON sort.universityId=university.id
+        LEFT OUTER JOIN gk_university_dict dict1 ON university.educationLevel=dict1.dictId and dict1.type='EDULEVEL'
         <where>
 
             <if test="condition.whereSql != null">
                 and id in (#{condition.whereSql})
             </if>
-
-
-
-
         </where>
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
@@ -89,5 +88,11 @@ selectList
             </if>
         </where>
     </select>
+
+    <select id="getMaxId" resultType="java.lang.Integer">
+        SELECT MAX(id)
+        from gk_university university
+    </select>
+
 </mapper>
 

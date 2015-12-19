@@ -632,6 +632,24 @@
         }
     }
 
+    function mergerCatejory(cellvalue, options, cell) {
+        if(cell){
+            var mergerStr="";
+            var rowObject=cell.majoredCategoryDTOs;
+            for(var i =0;i<rowObject.length;i++){
+                mergerStr+=rowObject[i].name+"、";
+            }
+            if(mergerStr!=""){
+                mergerStr=mergerStr.substring(0,mergerStr.length-1)
+            }
+            return mergerStr;
+        }
+        console.log(rowObject)
+        return ""
+    }
+
+
+
 
     var  mainObj = '${mainObj}';
 

@@ -2,7 +2,7 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  MajoredCategory.java 2015-12-16 16:48:40 $
+ * $Id:  MajoredCategory.java 2015-12-17 19:38:23 $
  */
 
 
@@ -20,11 +20,11 @@ import cn.thinkjoy.common.domain.BaseDomain;
 import java.util.*;
 
 public class MajoredCategory extends BaseDomain<Long>{
-    /** 名称 */
+    /** 名字 */
     private String name;
-    /** level */
+    /** 层级 */
     private Integer level;
-    /** 父id */
+    /** 父ID */
     private Long parentId;
 
 	public MajoredCategory(){
