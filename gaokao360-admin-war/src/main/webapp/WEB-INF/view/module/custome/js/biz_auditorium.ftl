@@ -43,7 +43,11 @@
 
 
     }
-
+/*
+*
+* 名师讲堂模块
+*
+* */
     jQuery(function ($) {
         var typeStr;
         var rowId;
@@ -54,258 +58,78 @@
         // 课程
         var subjectData = CommonFn.getSubject();
         $('#selCourses').append(subjectData);
+        $('#selCourses2').append(subjectData);
         // 年份
         var yearsData = CommonFn.getYear();
         $('#selYears').append(yearsData);
         // 省份
         var provinceData = CommonFn.getProvince();
         $('#selProvince').html(provinceData);
-
-
-
-        var dialogHtml = ''
-                + '<div class="row">'
-                + '<div class="col-xs-12">'
-                + '<form class="form-horizontal" role="form">'
-                + '<div class="form-group">'
-                + '<label class="col-sm-2 control-label no-padding-right"> 省份：</label>'
-                + '<div class="col-sm-4">'
-                + '<select class="form-control" id="selProvince2">';
-        dialogHtml += provinceData
-                + '</select>'
-                + '</div>'
-                + '</div>'
-                + '<div class="form-group">'
-                + '<label class="col-sm-2 control-label no-padding-right"> 科目类别：</label>'
-                + '<div class="col-sm-4">'
-                + '<select class="form-control" id="selCourses2">';
-        dialogHtml += subjectData
-                + '</select>'
-                + '</div>'
-                + '</div>'
-                + '<div class="form-group">'
-                + '<label class="col-sm-2 control-label no-padding-right" for="teacherName"> 主讲老师：</label>'
-                + '<div class="col-sm-10">'
-                + '<input type="text" id="teacherName" placeholder="请输入主讲老师" class="form-control" />'
-                + '</div>'
-                + '</div>'
-                + '<div class="form-group">'
-                + '<label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 专家介绍：</label>'
-                + '<div class="col-sm-10">'
-                + '<textarea class="form-control" id="expertsIntro" placeholder="请输入专家介绍"></textarea>'
-                + '</div>'
-                + '</div>'
-
-
-                + '<div class="form-group">'
-                + '<label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 封面图片：</label>'
-                + '<div class="col-sm-10">'
-
-                + '<div id="uploader1" class="wu-example">'
-                + '<div class="uploader-tips">(只能上传一个图片,可拖拽文件,大小小于3M)</div>'
-                + '<div class="queueList">'
-                + '<div id="dndArea" class="placeholder">'
-                + '<div id="uploaderBtn1">点击上传</div>'
-                + '</div>'
-                + '</div>'
-                + '<div class="statusBar" style="display:none;">'
-                + '<div class="progress">'
-                + '<span class="text">0%</span>'
-                + '<span class="percentage"></span>'
-                + '</div><div class="info"></div>'
-                + '<div class="btns">'
-                + '<div class="uploadBtn1">开始上传</div>'
-                + '</div>'
-                + '</div>'
-                + '</div>'
-                + '</div>'
-                + '</div>'
-                + '<input type="hidden" value="" id="swfUrl1">'
-
-
-
-
-
-                + '<div class="form-group">'
-                + '<label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 封面图片：</label>'
-                + '<div class="col-sm-10">'
-
-                + '<div id="uploader2" class="wu-example">'
-                + '<div class="uploader-tips">(只能上传一个图片,可拖拽文件,大小小于3M)</div>'
-                + '<div class="queueList">'
-                + '<div id="dndArea" class="placeholder">'
-                + '<div id="uploaderBtn2">点击上传</div>'
-                + '</div>'
-                + '</div>'
-                + '<div class="statusBar" style="display:none;">'
-                + '<div class="progress">'
-                + '<span class="text">0%</span>'
-                + '<span class="percentage"></span>'
-                + '</div><div class="info"></div>'
-                + '<div class="btns">'
-                + '<div class="uploadBtn2">开始上传</div>'
-                + '</div>'
-                + '</div>'
-                + '</div>'
-                + '</div>'
-                + '</div>'
-                + '<input type="hidden" value="" id="swfUrl2">'
-
-
-
-
-
-
-
-
-
-
-                + '</form>'
-                + '</div>'
-                + '</div>';
-
+        $('#selProvince2').html(provinceData);
 
         // 添加
-        $("#addBtn").on(ace.click_event, function (e) {
-            typeStr = "add";
-            bootbox.dialog({
-                title: "添加",
-                message: dialogHtml,
-                className: 'my-modal',
-                buttons: {
-                    "success": {
-                        "label": "<i class='ace-icon fa fa-check'></i> 提交",
-                        "className": "btn-sm btn-success",
-                        "callback": addEditFun
-                    },
-                    cancel: {
-                        label: "关闭",
-                        className: "btn-sm"
-                    }
-                }
-            });
-
+        uploadFun1();
+        uploadFun2();
+        $('#addBtn').click(function () {
+            $('#dialogLayer').modal('show');
+            typeStr = 'add';
             uploadFun1();
             uploadFun2();
-//            $(window).resize({ width: 800, height: 600 })
+            $('#submitBtn').click(function(){
+                <#--classifyId :0，名师讲堂（1）还是高考心理（2）-->
+                <#--subjectId ,科目-->
+                <#--managerId ：1,名师讲堂（1）高高心理（3）-->
+<#--teacher ：陈老师,哪个老师-->
+                <#--title ：数学,标题-->
+                <#--content ,<p>&nbsp;　为使广大考生准确把握2015年高考各科目考点及答题技巧，避免知识外失分。我们组织省内名校名师，开设&ldquo;2015年高考考点及答题技巧名师讲座&rdquo;讲座包含语文、数学、英语、物理、化学、生物、政治、历史、地理九科，通过视频公益活动的方式，使广大考生能方便快捷地分享名师指导，有效提升高考质量，圆您的大学梦！</p>-->
+                <#--frontCover ：封面,-->
+                        <#--subcontent ： 简介 ,-->
+                        <#--hit：0 点击量,-->
+                        <#--years:2015 ,年份-->
+                <#--beikaochongciType ,高考名师讲堂/高考心理-->
+                <#--frontcover1：png格式的图标 ,-->
+                        <#--isAccept ：1,-->
+                        <#--areaId 省份,-->
+                        <#--sectionId:xx,xx,xx(注意使用逗号分隔)视频对应id值 根基下面接口回去到的-->
+                <#--oper：add-->
+                var addAuditoriumData = {
+                    areaId:,
+                    classifyId: 1,
+                    subjectId:
 
-
-        });
-
-//        $("#addBtn").on('click', function (e) {
-//            typeStr = "add";
-//      $('#dialogLayer').show();
-////
-////
-//        });
-
-
-
-//
-
-
-
-
-
-
-
-
-
-
-
-        //修改
-        $("#editBtn").on(ace.click_event, function () {
-            typeStr = "edit";
-            rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
-            var selTrN = $('tr.ui-state-highlight[role="row"]').length;
-            if (selTrN != 1) {
-                CommonFn.tipsDialog('温馨提示', '请选中一行后修改');
-                return false;
-            }
-            bootbox.dialog({
-                title: "修改高考热点",
-                message: dialogHtml,
-                className: 'my-modal',
-                buttons: {
-                    "success": {
-                        "label": "<i class='ace-icon fa fa-check'></i> 提交",
-                        "className": "btn-sm btn-success",
-                        "callback": addEditFun
-                    },
-                    cancel: {
-                        label: "关闭",
-                        className: "btn-sm"
+                };
+                $.ajax({
+                    type: "POST",
+                    url: '/admin/gaokao360/ex/commonsave/${mainObj}',
+                    data: addAuditoriumData,
+                    success: function (result) {
+                        if (result.rtnCode == "0000000") {
+                            searchLoad();
+                        }
                     }
-                }
+                });
             });
-            // 当前行数据
-            var rowData = CommonFn.getRowData(rowId)
-            console.log(rowData)
-            $('#selProvince2').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
-            $('#selCourses2').find('option[value="' + rowData[0].subjectId + '"]').attr('selected', 'selected');
+
+
+
 
         });
+
+
         //删除
         CommonFn.deleteFun('#deleteBtn', '${mainObj}');
-        var addEditFun = function () {
-            var selProvinceV = $('#selProvince2 option:checked').val();
-            var selSubjectV = $("#selCourses2").find('option:selected').val();
-            var teacherNameV = $.trim($("#teacherName").val());
-            var expertsIntroV = $.trim($('#expertsIntro').val());
-            var fileUrl = $('#fileUrl').val();
-            if (selProvinceV == "00") {
-                CommonFn.tipsDialog('温馨提示', '请选择省份');
-                return false;
-            }
-            if (selSubjectV == '00') {
-                CommonFn.tipsDialog('温馨提示', '请选择科目类别');
-                return false;
-            }
-            if (teacherNameV == '') {
-                CommonFn.tipsDialog('温馨提示', '请输入主讲老师')
-                return false;
-            }
-            if (expertsIntroV == '') {
-                CommonFn.tipsDialog('温馨提示', '请输入专家介绍')
-                return false;
-            }
-            if(fileUrl==""){
-                CommonFn.tipsDialog('温馨提示', '请上传文件');
-                return false;
-            }
-            var addExamData = {
-                oper: typeStr,
-                classifyId: '1',
-                subjectId: selSubjectV,//课程名称
-                managerId: '1',
-                teacher: teacherNameV,
-                title: selSubjectV,
-                content: '',
-                frontCover: '',
-                subcontent: expertsIntroV,
-                hit: '',
-                years: '2015',//
-                beikaochongciType: '高考名师讲堂',
-                frontcover1: '',
-                isAccept: 1,
-                areaId: selProvinceV,
-                sectionId: ''
-            };
 
-            if (typeStr == 'edit') {
-                addExamData.id = rowId;
-            }
-            $.ajax({
-                type: "POST",
-                url: '/admin/gaokao360/ex/commonsave/${mainObj}',
-                data: addExamData,
-                success: function (result) {
-                    if (result.rtnCode == "0000000") {
-                        searchLoad();
-                    }
-                }
-            });
-        };
+
+
+
+
+
+
+
+
+
+
+
 
         function uploadFun1() {
             var $wrap = $('#uploader1'),
@@ -633,7 +457,7 @@
 
                     case 'confirm':
                         $progress.hide();
-                        $upload.text( '开始上传' ).addClass( 'disabled' );
+                        $upload.text('开始上传').addClass('disabled');
 //                        $upload.text('开始上传');
 
                         stats = uploader.getStats();
@@ -674,7 +498,7 @@
                 }
                 else if (fileCount >= 2) {
                     $('ul.filelist li:eq(0)').find('span.cancel').click();
-                    if($('.state-complete').length==1){
+                    if ($('.state-complete').length == 1) {
                         CommonFn.tipsDialog('温馨提示', '只能上传一个文件');
                         return false;
                     }
@@ -751,10 +575,6 @@
             updateTotalProgress();
 
         }
-
-
-
-
 
 
         function uploadFun2() {
@@ -1083,7 +903,7 @@
 
                     case 'confirm':
                         $progress.hide();
-                        $upload.text( '开始上传' ).addClass( 'disabled' );
+                        $upload.text('开始上传').addClass('disabled');
 //                        $upload.text('开始上传');
 
                         stats = uploader.getStats();
@@ -1124,7 +944,7 @@
                 }
                 else if (fileCount >= 2) {
                     $('ul.filelist li:eq(0)').find('span.cancel').click();
-                    if($('.state-complete').length==1){
+                    if ($('.state-complete').length == 1) {
                         CommonFn.tipsDialog('温馨提示', '只能上传一个文件');
                         return false;
                     }
@@ -1201,10 +1021,6 @@
             updateTotalProgress();
 
         }
-
-
-
-
 
 
     });
