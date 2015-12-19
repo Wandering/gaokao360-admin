@@ -9,22 +9,29 @@ package cn.thinkjoy.gaokao360.controller.baseinfo.ex;
 
 import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.gaokao360.controller.BaseController;
+import cn.thinkjoy.gaokao360.service.IUniversityDictService;
 import cn.thinkjoy.gaokao360.service.IUniversityService;
 import cn.thinkjoy.gaokao360.service.ex.IUniversityExService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value="/admin/gaokao360/ex")
 public class UniversityExController extends BaseController<IUniversityExService> {
 
 
+    @Autowired
+    private IUniversityDictService universityDictService;
     @Autowired
     private IUniversityExService universityExService;
 
@@ -49,6 +56,19 @@ public class UniversityExController extends BaseController<IUniversityExService>
     @ResponseBody
     public BizData4Page findAllUniversitys(HttpServletRequest request,HttpServletResponse response){
         return doPage(request, response);
+    }
+
+    /**
+     * 院校基本信息学历层次
+     * @return
+     */
+    @RequestMapping(value="/eduLevel",method = RequestMethod.GET)
+    @ResponseBody
+    public List eduLevel(){
+
+        Map<String,Object> map = new HashMap<>();
+        map.put("type","EDULEVEL");
+        return universityDictService.queryList(map,"id","asc");
     }
 
     @Override
