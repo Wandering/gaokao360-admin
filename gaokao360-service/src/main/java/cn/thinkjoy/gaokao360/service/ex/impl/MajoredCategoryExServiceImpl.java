@@ -18,6 +18,7 @@ import cn.thinkjoy.gaokao360.service.ex.IMajoredCategoryExService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +27,9 @@ import java.util.Map;
 public class MajoredCategoryExServiceImpl extends AbstractPageService<IBaseDAO<MajoredCategoryDTO>, MajoredCategoryDTO> implements IMajoredCategoryExService<IBaseDAO<MajoredCategoryDTO>,MajoredCategoryDTO> {
     @Autowired
     private IMajoredCategoryExDAO majoredCategoryExDAO;
+
+    @Autowired
+    private IMajoredCategoryDAO majoredCategoryDAO;
 
     @Override
     public IBaseDAO<MajoredCategoryDTO> getDao() {
@@ -63,6 +67,43 @@ public class MajoredCategoryExServiceImpl extends AbstractPageService<IBaseDAO<M
         return majoredCategoryExDAO.queryListByParentId(id);
     }
 
+    public void insertCategory(Map<String,Object> dataMap){
+        majoredCategoryDAO.insertMap(dataMap);
+        Long l=(Long)majoredCategoryDAO.selectMaxId();
+        String majoredStr=(String)dataMap.get("majoredList");
+        String[] majoredList=majoredStr.split("、");
+        for(String str:majoredList){
+            MajoredCategory majoredCategory = new MajoredCategory();
+            majoredCategory.setName(str);
+            majoredCategory.setLevel(2);
+            majoredCategory.setParentId(l);
+        }
+
+    }
+
+    public void updateCategory(Map<String,Object> dataMap){
+        majoredCategoryDAO.updateMap(dataMap);
+        Long l=(Long)dataMap.get("id");
+        Map<String,Object> map = new HashMap<>();
+        map.put("parentId",l);
+        majoredCategoryDAO.deleteByCondition(map);
+        String majoredStr=(String)dataMap.get("majoredList");
+        String[] majoredList=majoredStr.split("、");
+        for(String str:majoredList){
+            MajoredCategory majoredCategory = new MajoredCategory();
+            majoredCategory.setName(str);
+            majoredCategory.setLevel(2);
+            majoredCategory.setParentId(l);
+        }
+
+    }
+
+    public void deleteCategory(Map<String,Object> dataMap){
+        Long l=(Long)dataMap.get("id");
+        majoredCategoryDAO.deleteById(l);
+        Map<String,Object> map = new HashMap<>();
+        map.put("parentId",l);
+    }
 //    @Override
 //    public void insert(BaseDomain entity) {
 //
