@@ -35,16 +35,14 @@
             <div class="modal-content">
                 <div class="widget-header">
                     <h5 class="widget-title">添加院校基本信息</h5>
-                <#--<button type="button" class="close" data-dismiss="modal"><span-->
-                <#--aria-hidden="true">&times;</span><span-->
-                <#--class="sr-only">Close</span></button>-->
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal">
                         <div class="form-group">
                             <label for="schoolName" class="col-sm-1 control-label">院校名称</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="schoolName">
+                                <input type="text" class="form-control" id="schoolName" placeholder="院校名称不能超过15个字">
                             </div>
                         </div>
                         <div class="form-group">
@@ -57,8 +55,8 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="schoolCode" class="col-sm-2 control-label">院校代码</label>
-                                    <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="schoolCode" placeholder="8位数字/符号/英文字母（为了区分不同的院校相同的代码时的区分）">
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="schoolCode" placeholder="8位数字/符号/英文字母">
                                     </div>
                                 </div>
                             </div>
@@ -73,7 +71,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="schoolStatic" class="col-sm-2 control-label">院校特征</label>
-                                    <div class="col-sm-7">
+                                    <div class="col-sm-6">
                                         <input type="text" class="form-control" id="schoolStatic" placeholder="请输入内容不能超过10个字">
                                     </div>
                                 </div>
@@ -89,7 +87,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="schoolType" class="col-sm-2 control-label">院校类型</label>
-                                    <div class="col-sm-7">
+                                    <div class="col-sm-6">
                                         <input type="text" class="form-control" id="schoolType" placeholder="请输入内容不能超过10个字" >
                                     </div>
                                 </div>
@@ -106,15 +104,15 @@
                         <#--好长的Dom-->
                         <div class="form-group">
                             <label for="schoolWeb" class="col-sm-1 control-label">院校网址</label>
-                            <div class="col-sm-11">
+                            <div class="col-sm-5">
                                 <input type="password" class="form-control" id="schoolWeb"  placeholder="请输入内容不能超过30个字">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="schoolInProvince" class="col-sm-1 control-label">所在省份</label>
-                            <div class="col-sm-11">
-                                <input type="password" class="form-control" id="schoolInProvince">
+                            <div class="col-sm-3">
+                                <select class="form-control" id="schoolInProvince2"></select>
                             </div>
                         </div>
 
@@ -127,7 +125,7 @@
 
                         <div class="form-group">
                             <label for="schoolPic" class="col-sm-1 control-label">联系电话</label>
-                            <div class="col-sm-11">
+                            <div class="col-sm-3">
                                 <input type="password" class="form-control" id="schoolTel">
                             </div>
                         </div>
