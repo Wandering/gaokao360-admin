@@ -30,39 +30,330 @@
     </div>
 
 
-    <#--<div id="uploader-main">-->
-        <#--<div id="uploader" class="">-->
-            <#--<div id="preview-img" style="display: none;"><a href="javascript:;" target="_blank" id="imgUrl"><img src="" width="50" height="50" /> 查看图片</a></div>-->
-            <#--<div id="thelist" class="uploader-list"></div>-->
-            <#--<div class="btns">-->
-                <#--<div id="picker">选择文件</div>-->
-                <#--<button id="ctlBtn" class="btn btn-default">开始上传</button>-->
-            <#--</div>-->
+<#--<div id="uploader-main">-->
+<#--<div id="uploader" class="">-->
+<#--<div id="preview-img" style="display: none;"><a href="javascript:;" target="_blank" id="imgUrl"><img src="" width="50" height="50" /> 查看图片</a></div>-->
+<#--<div id="thelist" class="uploader-list"></div>-->
+<#--<div class="btns">-->
+<#--<div id="picker">选择文件</div>-->
+<#--<button id="ctlBtn" class="btn btn-default">开始上传</button>-->
+<#--</div>-->
+<#--</div>-->
+<#--</div>-->
+
+
+
+<#--<div id="uploader1" class="wu-example">-->
+<#--<div class="queueList">-->
+<#--<div id="dndArea" class="placeholder">-->
+<#--<div id="uploaderBtn1">上传1</div>-->
+<#--<p>或将照片拖到这里，单次最多可选300张</p>-->
+<#--</div>-->
+<#--</div>-->
+<#--<div class="statusBar" style="display:none;">-->
+<#--<div class="progress">-->
+<#--<span class="text">0%</span>-->
+<#--<span class="percentage"></span>-->
+<#--</div><div class="info"></div>-->
+<#--<div class="btns">-->
+<#--<div class="uploadBtn1">开始上传</div>-->
+<#--</div>-->
+<#--</div>-->
+<#--</div>-->
+
+
+
+<#--<div id="uploader2" class="wu-example">-->
+<#--<div class="queueList">-->
+<#--<div id="dndArea" class="placeholder">-->
+<#--<div id="uploaderBtn2">上传2</div>-->
+<#--<p>或将照片拖到这里，单次最多可选300张</p>-->
+<#--</div>-->
+<#--</div>-->
+<#--<div class="statusBar" style="display:none;">-->
+<#--<div class="progress">-->
+<#--<span class="text">0%</span>-->
+<#--<span class="percentage"></span>-->
+<#--</div><div class="info"></div>-->
+<#--<div class="btns">-->
+<#--<div class="uploadBtn2">开始上传</div>-->
+<#--</div>-->
+<#--</div>-->
+<#--</div>-->
+
+
+
+<#--<div id="dialogLayer" style="display: none;">-->
+    <#--<div class="row" >-->
+        <#--<div class="col-xs-12">-->
+            <#--<form class="form-horizontal" role="form">-->
+                <#--<div class="form-group">-->
+                    <#--<label class="col-sm-2 control-label no-padding-right"> 省份：</label>-->
+                    <#--<div class="col-sm-4">-->
+                        <#--<select class="form-control" id="selProvince2"></select>-->
+                    <#--</div>-->
+                <#--</div>-->
+                <#--<div class="form-group">-->
+                    <#--<label class="col-sm-2 control-label no-padding-right"> 科目类别：</label>-->
+                    <#--<div class="col-sm-4">-->
+                        <#--<select class="form-control" id="selCourses2">-->
+                        <#--</select>-->
+                    <#--</div>-->
+                <#--</div>-->
+                <#--<div class="form-group">-->
+                    <#--<label class="col-sm-2 control-label no-padding-right" for="teacherName"> 主讲老师：</label>-->
+                    <#--<div class="col-sm-10">-->
+                        <#--<input type="text" id="teacherName" placeholder="请输入主讲老师" class="form-control"/>-->
+                    <#--</div>-->
+                <#--</div>-->
+                <#--<div class="form-group">-->
+                    <#--<label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 专家介绍：</label>-->
+                    <#--<div class="col-sm-10">-->
+                        <#--<textarea class="form-control" id="expertsIntro" placeholder="请输入专家介绍"></textarea>-->
+                    <#--</div>-->
+                <#--</div>-->
+
+
+                <#--<div class="form-group">-->
+                    <#--<label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 封面图片：</label>-->
+                    <#--<div class="col-sm-10">-->
+
+                        <#--<div id="uploader1" class="wu-example">-->
+                            <#--<div class="uploader-tips">(只能上传一个图片,可拖拽文件,大小小于3M)</div>-->
+                            <#--<div class="queueList">-->
+                                <#--<div id="dndArea" class="placeholder">-->
+                                    <#--<div id="uploaderBtn1">点击上传</div>-->
+                                <#--</div>-->
+                            <#--</div>-->
+                            <#--<div class="statusBar" style="display:none;">-->
+                                <#--<div class="progress">-->
+                                    <#--<span class="text">0%</span>-->
+                                    <#--<span class="percentage"></span>-->
+                                <#--</div>-->
+                                <#--<div class="info"></div>-->
+                                <#--<div class="btns">-->
+                                    <#--<div class="uploadBtn1">开始上传</div>-->
+                                <#--</div>-->
+                            <#--</div>-->
+                        <#--</div>-->
+                    <#--</div>-->
+                <#--</div>-->
+                <#--<input type="hidden" value="" id="swfUrl1">-->
+
+
+                <#--<div class="form-group">-->
+                    <#--<label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 封面图片：</label>-->
+                    <#--<div class="col-sm-10">-->
+
+                        <#--<div id="uploader2" class="wu-example">-->
+                            <#--<div class="uploader-tips">(只能上传一个图片,可拖拽文件,大小小于3M)</div>-->
+                            <#--<div class="queueList">-->
+                                <#--<div id="dndArea" class="placeholder">-->
+                                    <#--<div id="uploaderBtn2">点击上传</div>-->
+                                <#--</div>-->
+                            <#--</div>-->
+                            <#--<div class="statusBar" style="display:none;">-->
+                                <#--<div class="progress">-->
+                                    <#--<span class="text">0%</span>-->
+                                    <#--<span class="percentage"></span>-->
+                                <#--</div>-->
+                                <#--<div class="info"></div>-->
+                                <#--<div class="btns">-->
+                                    <#--<div class="uploadBtn2">开始上传</div>-->
+                                <#--</div>-->
+                            <#--</div>-->
+                        <#--</div>-->
+                    <#--</div>-->
+                <#--</div>-->
+                <#--<input type="hidden" value="" id="swfUrl2">-->
+
+
+            <#--</form>-->
         <#--</div>-->
     <#--</div>-->
 
+<#--</div>-->
 
 
-    <#--<div id="uploader" class="wu-example">-->
-        <#--<div class="queueList">-->
-            <#--<div id="dndArea" class="placeholder">-->
-                <#--<div id="filePicker"></div>-->
-                <#--<p>或将照片拖到这里，单次最多可选300张</p>-->
+
+
+
+
+
+    <!-- 自定义模态框start-->
+    <#--<div class="modal fade in widget-box ui-widget  my-modal" id="dialogLayer" tabindex="-1" role="dialog"-->
+         <#--aria-labelledby="myModalLabel" aria-hidden="false" style="display: none;">-->
+        <#--<div class="modal-dialog">-->
+            <#--<div class="modal-content">-->
+                <#--<div class="widget-header">-->
+                    <#--<h5 class="widget-title">添加</h5>-->
+                    <#--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span-->
+                            <#--class="sr-only">Close</span></button>-->
+                <#--</div>-->
+                <#--<div class="modal-body" style="">-->
+                    <#--<div class="row" >-->
+                        <#--<div class="col-xs-12">-->
+                            <#--<form class="form-horizontal" role="form">-->
+                                <#--<div class="form-group">-->
+                                    <#--<label class="col-sm-2 control-label no-padding-right"> 省份：</label>-->
+                                    <#--<div class="col-sm-4">-->
+                                        <#--<select class="form-control" id="selProvince2"></select>-->
+                                    <#--</div>-->
+                                <#--</div>-->
+                                <#--<div class="form-group">-->
+                                    <#--<label class="col-sm-2 control-label no-padding-right"> 科目类别：</label>-->
+                                    <#--<div class="col-sm-4">-->
+                                        <#--<select class="form-control" id="selCourses2">-->
+                                        <#--</select>-->
+                                    <#--</div>-->
+                                <#--</div>-->
+                                <#--<div class="form-group">-->
+                                    <#--<label class="col-sm-2 control-label no-padding-right" for="teacherName"> 主讲老师：</label>-->
+                                    <#--<div class="col-sm-10">-->
+                                        <#--<input type="text" id="teacherName" placeholder="请输入主讲老师" class="form-control"/>-->
+                                    <#--</div>-->
+                                <#--</div>-->
+                                <#--<div class="form-group">-->
+                                    <#--<label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 专家介绍：</label>-->
+                                    <#--<div class="col-sm-10">-->
+                                        <#--<textarea class="form-control" id="expertsIntro" placeholder="请输入专家介绍"></textarea>-->
+                                    <#--</div>-->
+                                <#--</div>-->
+
+
+                                <#--<div class="form-group">-->
+                                    <#--<label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 封面图片：</label>-->
+                                    <#--<div class="col-sm-10">-->
+
+                                        <#--<div id="uploader1" class="wu-example">-->
+                                            <#--<div class="uploader-tips">(只能上传一个图片,可拖拽文件,大小小于3M)</div>-->
+                                            <#--<div class="queueList">-->
+                                                <#--<div id="dndArea" class="placeholder">-->
+                                                    <#--<div id="uploaderBtn1">点击上传</div>-->
+                                                <#--</div>-->
+                                            <#--</div>-->
+                                            <#--<div class="statusBar" style="display:none;">-->
+                                                <#--<div class="progress">-->
+                                                    <#--<span class="text">0%</span>-->
+                                                    <#--<span class="percentage"></span>-->
+                                                <#--</div>-->
+                                                <#--<div class="info"></div>-->
+                                                <#--<div class="btns">-->
+                                                    <#--<div class="uploadBtn1">上传封面</div>-->
+                                                <#--</div>-->
+                                            <#--</div>-->
+                                        <#--</div>-->
+                                    <#--</div>-->
+                                <#--</div>-->
+                                <#--<input type="hidden" value="" id="swfUrl1">-->
+
+
+                                <#--<div class="form-group">-->
+                                    <#--<label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 封面图片：</label>-->
+                                    <#--<div class="col-sm-10">-->
+
+                                        <#--<div id="uploader2" class="wu-example">-->
+                                            <#--<div class="uploader-tips">(只能上传一个图片,可拖拽文件,大小小于3M)</div>-->
+                                            <#--<div class="queueList">-->
+                                                <#--<div id="dndArea" class="placeholder">-->
+                                                    <#--<div id="uploaderBtn2">点击上传</div>-->
+                                                <#--</div>-->
+                                            <#--</div>-->
+                                            <#--<div class="statusBar" style="display:none;">-->
+                                                <#--<div class="progress">-->
+                                                    <#--<span class="text">0%</span>-->
+                                                    <#--<span class="percentage"></span>-->
+                                                <#--</div>-->
+                                                <#--<div class="info"></div>-->
+                                                <#--<div class="btns">-->
+                                                    <#--<div class="uploadBtn2">上传视频</div>-->
+                                                <#--</div>-->
+                                            <#--</div>-->
+                                        <#--</div>-->
+                                    <#--</div>-->
+                                <#--</div>-->
+                                <#--<input type="hidden" value="" id="swfUrl2">-->
+
+
+                            <#--</form>-->
+                        <#--</div>-->
+                    <#--</div>-->
+
+
+
+
+
+
+
+
+                <#--</div>-->
+                <#--<div class="modal-footer">-->
+                    <#--<button type="button" id="cancelBtn" class="btn btn-default" data-dismiss="modal">取消</button>-->
+                    <#--<button type="button" id="submitBtn" class="btn btn-primary" id="answer_submit">确定</button>-->
+                <#--</div>-->
             <#--</div>-->
-        <#--</div>-->
-        <#--<div class="statusBar" style="display:none;">-->
-            <#--<div class="progress">-->
-                <#--<span class="text">0%</span>-->
-                <#--<span class="percentage"></span>-->
-            <#--</div><div class="info"></div>-->
-            <#--<div class="btns">-->
-                <#--<div id="filePicker2"></div><div class="uploadBtn">开始上传</div>-->
-            <#--</div>-->
+
         <#--</div>-->
     <#--</div>-->
+    <!-- 自定义模态框end-->
 
 
 
+    <#--<div id="dialogLayer" style="position: absolute;left: 50%;top:50%;z-index: 99999;display: none;">-->
+        <#--<div class="form-group">-->
+            <#--<label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 封面图片：</label>-->
+            <#--<div class="col-sm-10">-->
+
+                <#--<div id="uploader1" class="wu-example">-->
+                    <#--<div class="uploader-tips">(只能上传一个图片,可拖拽文件,大小小于3M)</div>-->
+                    <#--<div class="queueList">-->
+                        <#--<div id="dndArea" class="placeholder">-->
+                            <#--<div id="uploaderBtn1">点击上传</div>-->
+                        <#--</div>-->
+                    <#--</div>-->
+                    <#--<div class="statusBar" style="display:none;">-->
+                        <#--<div class="progress">-->
+                            <#--<span class="text">0%</span>-->
+                            <#--<span class="percentage"></span>-->
+                        <#--</div>-->
+                        <#--<div class="info"></div>-->
+                        <#--<div class="btns">-->
+                            <#--<div class="uploadBtn1">上传封面</div>-->
+                        <#--</div>-->
+                    <#--</div>-->
+                <#--</div>-->
+            <#--</div>-->
+        <#--</div>-->
+        <#--<input type="hidden" value="" id="swfUrl1">-->
+
+
+        <#--<div class="form-group">-->
+            <#--<label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 封面图片：</label>-->
+            <#--<div class="col-sm-10">-->
+
+                <#--<div id="uploader2" class="wu-example">-->
+                    <#--<div class="uploader-tips">(只能上传一个图片,可拖拽文件,大小小于3M)</div>-->
+                    <#--<div class="queueList">-->
+                        <#--<div id="dndArea" class="placeholder">-->
+                            <#--<div id="uploaderBtn2">点击上传</div>-->
+                        <#--</div>-->
+                    <#--</div>-->
+                    <#--<div class="statusBar" style="display:none;">-->
+                        <#--<div class="progress">-->
+                            <#--<span class="text">0%</span>-->
+                            <#--<span class="percentage"></span>-->
+                        <#--</div>-->
+                        <#--<div class="info"></div>-->
+                        <#--<div class="btns">-->
+                            <#--<div class="uploadBtn2">上传视频</div>-->
+                        <#--</div>-->
+                    <#--</div>-->
+                <#--</div>-->
+            <#--</div>-->
+        <#--</div>-->
+        <#--<input type="hidden" value="" id="swfUrl2">-->
+
+    <#--</div>-->
 
 
 <#include 'page_grid.ftl'>
