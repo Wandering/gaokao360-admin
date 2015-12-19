@@ -187,6 +187,9 @@
 
             uploadFun1();
             uploadFun2();
+//            $(window).resize({ width: 800, height: 600 })
+
+
         });
 
 //        $("#addBtn").on('click', function (e) {
@@ -195,6 +198,9 @@
 ////
 ////
 //        });
+
+
+
 //
 
 
