@@ -5,10 +5,10 @@
 <#--<script src="${path}/assets/ueditor_1.4.3/lang/zh-cn/zh-cn.js" ></script>-->
 <!-- 增加过滤div + 主体表格 -->
 <style>
-    #edui1,#edui1_iframeholder{
-        border-radius: 0!important;
-        width: 750px!important;
-    }
+    /*#edui1,#edui1_iframeholder{*/
+        /*border-radius: 0!important;*/
+        /*width: 750px!important;*/
+    /*}*/
     .edui-default .edui-editor-toolbarbox{
         box-shadow: 0 0 0!important;
     }

@@ -114,6 +114,15 @@ var CommonFn = {
         hotContentHtml.push('</body></html>');
         return hotContentHtml;
     },
+    // 富媒体返回值htmlTable
+    getTextareaDataTable: function (textareaV) {
+        var hotContentHtml = [];
+        hotContentHtml.push('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Document</title></head><body>');
+        hotContentHtml.push(textareaV);
+        hotContentHtml.push('</body></html>');
+        return hotContentHtml;
+    },
+
     // textarea
     getTextareaUrlData: function (textareaHtml) {
         var contentArr = [];

@@ -5,7 +5,7 @@
         var status = $('#status').val();
         var classfyId = $('#classfyId').val();
         var rules = [];
-        if (courseName != ''&&courseName!=null&&courseName!=undefined) {
+        if (courseName != '' && courseName != null && courseName != undefined) {
             var rule = {
                 'field': 'courseName',
                 'op': 'eq',
@@ -13,7 +13,7 @@
             }
             rules.push(rule);
         }
-        if (status != ''&&status!=null&&status!=undefined) {
+        if (status != '' && status != null && status != undefined) {
             var rule = {
                 'field': 'status',
                 'op': 'eq',
@@ -21,7 +21,7 @@
             }
             rules.push(rule);
         }
-        if (classfyId != ''&&classfyId!=null&&classfyId!=undefined) {
+        if (classfyId != '' && classfyId != null && classfyId != undefined) {
             var rule = {
                 'field': 'classfyId',
                 'op': 'eq',
@@ -31,7 +31,7 @@
         }
         return rules;
     }
-    function searchLoad(){
+    function searchLoad() {
         var url = "/admin/${bizSys}/${mainObj}s";
 
         var rules = buildRules();
@@ -41,7 +41,12 @@
             "rules": rules
         };
 
-        $("#grid-table").jqGrid('setGridParam', {url:url,mtype:"POST",postData:"filters="+JSON.stringify(filters),page: 1}).trigger("reloadGrid");
+        $("#grid-table").jqGrid('setGridParam', {
+            url: url,
+            mtype: "POST",
+            postData: "filters=" + JSON.stringify(filters),
+            page: 1
+        }).trigger("reloadGrid");
 
 
     }
@@ -50,4 +55,46 @@
         searchLoad();
 
     });
+
+    /*
+    *
+    * 院校基本信息模块
+    *
+    * */
+
+    jQuery(function () {
+        var UI = {
+            $selProvince: $('#selProvince')
+            , $addBtn: $('#addBtn')
+        };
+//        获取省份
+        var province = CommonFn.getProvince();
+        UI.$selProvince.append(province);
+//        添加院校层次
+        UI.$addBtn.on(ace.click_event, function () {
+            $('#edit_answer_modal').toggle();
+
+
+
+
+
+
+
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    });//$ end
 </script>

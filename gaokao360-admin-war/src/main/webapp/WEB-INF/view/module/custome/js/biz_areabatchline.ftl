@@ -135,24 +135,18 @@
             }).on("click", ".bootbox-close-button", function () {
                 ue.destroy();
             });
-            ue = UE.getEditor('editor');
             // 当前行数据
             var rowData = CommonFn.getRowData(rowId);
             // 富媒体赋值
-            var areaVal = rowData[0].content;
-            UE.getEditor('editor').setContent('123fewfw',true)
+            var areaVal = CommonFn.getContentHtml(rowData[0].content);
             $('#selProvince2').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
-//            UE.getEditor('editor').execCommand('insertHtml', areaVal);
-            ue.setContent(areaVal,true);
-
-            $('#hotTitle').val(rowData[0].hotInformation);
-            $('#date-picker').val(rowData[0].hotdate);
-            CommonFn.renderDate('#date-picker');
-            CommonFn.renderTextarea('#hotContent');
+            ue = UE.getEditor('editor');
+            ue.execCommand( 'inserthtml', areaVal);
+//            UE.getEditor('editor').setContent(areaVal,true)
         });
         var addEditFun = function () {
             var selProvinceV = $('#selProvince2 option:checked').val();
-            var content = CommonFn.getTextareaData(ue.getContent()).join('');
+            var content = CommonFn.getTextareaDataTable(ue.getContent()).join('');
             var contentURL = CommonFn.getTextareaUrlData(content);
             var htmlUrl = contentURL[0];
             var htmlId = contentURL[1];
