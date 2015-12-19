@@ -19,7 +19,9 @@ import cn.thinkjoy.gaokao360.domain.PolicyInterpretation;
 import cn.thinkjoy.gaokao360.service.IAdmissionBatchService;
 import cn.thinkjoy.gaokao360.service.IProvinceService;
 import cn.thinkjoy.gaokao360.service.ISubjectService;
+import cn.thinkjoy.gaokao360.service.IUniversityService;
 import cn.thinkjoy.gaokao360.service.ex.IAdmissionBatchExService;
+import cn.thinkjoy.gaokao360.service.ex.IUniversityExService;
 import cn.thinkjoy.gaokao360.service.ex.IVideoSectionExService;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.google.common.collect.Maps;
@@ -53,6 +55,8 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     private IAdmissionBatchExService admissionBatchExService;
     @Autowired
     private IVideoSectionExService videoSectionExService;
+    @Autowired
+    private IUniversityExService universityExService;
 
     @Override
     protected void innerHandleDel(String mainObj, Map dataMap) {
@@ -65,9 +69,11 @@ public class Gaokao360CommonExController extends AbstractCommonController {
             delFileUrl(gkinformationGkhot.getHtmlId());
         }
         if("auditorium".equals(mainObj)){
-            serviceMaps.get("videocourse").delete(dataMap);
+            serviceMaps.get("videocourse").delete(dataMap.get("id"));
         }else if("gkPsychology".equals(mainObj)){
-            serviceMaps.get("videocourse").delete(dataMap);
+            serviceMaps.get("videocourse").delete(dataMap.get("id"));
+        }else if("university".equals(mainObj)){
+            universityExService.deleteUniversity(dataMap);
         }else {
             getServiceMaps().get(mainObj).delete(dataMap.get("id"));
         }
@@ -197,7 +203,9 @@ public class Gaokao360CommonExController extends AbstractCommonController {
                     videoSectionExService.updateCourseId(lid,str);
                 }
             }
-        }else {
+        }else if("university".equals(mainObj)){
+            universityExService.insertUniversity(dataMap);
+        }else{
             super.innerHandleAdd(mainObj, dataMap);
         }
 
@@ -298,6 +306,8 @@ public class Gaokao360CommonExController extends AbstractCommonController {
             serviceMaps.get("videocourse").updateMap(dataMap);
         }else if("gkPsychology".equals(mainObj)){
             serviceMaps.get("videocourse").updateMap(dataMap);
+        }else if("university".equals(mainObj)){
+            universityExService.updateUniversity(dataMap);
         }else {
             super.innerHandleUpdate(mainObj, dataMap);
         }
