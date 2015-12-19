@@ -632,6 +632,24 @@
         }
     }
 
+    function mergerCatejory(cellvalue, options, cell) {
+        if(cell){
+            var mergerStr="";
+            var rowObject=cell.majoredCategoryDTOs;
+            for(var i =0;i<rowObject.length;i++){
+                mergerStr+=rowObject[i].name+"、";
+            }
+            if(mergerStr!=""){
+                mergerStr=mergerStr.substring(0,mergerStr.length-1)
+            }
+            return mergerStr;
+        }
+        console.log(rowObject)
+        return ""
+    }
+
+
+
 
     var  mainObj = '${mainObj}';
 
@@ -659,11 +677,4 @@
 <script src="${path}/assets/js/webuploader-0.1.5/webuploader.js"></script>
 <#--<script src="${path}/assets/js/jquery.maskedinput.min.js"></script>-->
 <script src="${path}/assets/js/common/common.js"></script>
-<style>
-    @media (min-width: 768px) {
-        .my-modal .modal-dialog {
-            width: 1000px;
-            margin: 30px auto;
-        }
-    }
-</style>
+
