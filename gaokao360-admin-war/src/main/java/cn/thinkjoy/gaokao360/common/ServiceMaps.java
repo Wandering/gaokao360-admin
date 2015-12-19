@@ -63,6 +63,8 @@ public class ServiceMaps extends BaseServiceMaps{
     @Autowired
     private IAreabatchLineService areabatchLineService;
 
+    @Autowired
+    private IUniversityExService universityExService;
 
 
     @PostConstruct
@@ -85,6 +87,7 @@ public class ServiceMaps extends BaseServiceMaps{
         serviceMap.put("schedule",scheduleService);
         serviceMap.put("agent",agentService);
         serviceMap.put("areabatchline",areabatchLineService);
+        serviceMap.put("universityex",universityExService);
     }
 
 }

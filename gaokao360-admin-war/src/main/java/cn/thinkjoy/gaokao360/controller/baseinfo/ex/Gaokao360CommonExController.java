@@ -23,6 +23,7 @@ import cn.thinkjoy.gaokao360.service.IUniversityService;
 import cn.thinkjoy.gaokao360.service.ex.IAdmissionBatchExService;
 import cn.thinkjoy.gaokao360.service.ex.IUniversityExService;
 import cn.thinkjoy.gaokao360.service.ex.IVideoSectionExService;
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -200,7 +201,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
             }
             if(strs!=null){
                 for(String str:strs){
-                    videoSectionExService.updateCourseId(lid,str);
+//                    JSON.
                 }
             }
         }else if("university".equals(mainObj)){
@@ -218,7 +219,11 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     @RequestMapping(value="/{mainObj}queryone")
     @ResponseBody
     public Object queryOne(@PathVariable String mainObj,@RequestParam("id")String id){
-        return  serviceMaps.get(mainObj).fetch(id);
+        if("university".equals(mainObj)){
+            return serviceMaps.get(mainObj+"ex").fetch(id);
+        }else{
+            return serviceMaps.get(mainObj).fetch(id);
+        }
     }
 
     /**

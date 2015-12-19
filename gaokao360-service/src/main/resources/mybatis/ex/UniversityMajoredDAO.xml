@@ -38,22 +38,24 @@
     <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.UniversityMajoredDTO">
         SELECT
         <include refid="Base_Column_List"/>
-        from gk_enroll_plan plan
-        left join gk_majored majored on majored.id=plan.majoredId
+        from gk_majored majored
+        left join gk_enroll_plan plan on majored.id=plan.majoredId
         left join gk_enroll_report report on report.universityCode=plan.universityCode
         WHERE 1=1
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
         </if>
-        limit 1,10
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
     </select>
 
 
     <select id="count" resultType="java.lang.Integer">
         SELECT count(majored.id)
-        from gk_enroll_plan plan
-        left join gk_majored majored on majored.id=plan.majoredId
-        left join gk_enroll_report report on report.universityCode=plan.universityCode
+        from gk_majored majored
+        left join gk_enroll_plan plan on majored.id=plan.majoredId
+        left outer join gk_enroll_report report on report.universityCode=plan.universityCode
         <where>
             <if test="scheduleareaId!=null">
                 ${groupOp} ${scheduleareaId.field} ${scheduleareaId.op} #{scheduleareaId.data}

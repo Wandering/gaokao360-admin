@@ -17,6 +17,7 @@ import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -54,7 +55,7 @@ public class VideoSectionExController extends BaseController<IVideoSectionExServ
      * 获取视频列表
      * @return
      */
-    @RequestMapping(value="/getVideoSection")
+    @RequestMapping(value="/getVideoSection",method = RequestMethod.POST)
     @ResponseBody
     public Object getVideoSection(@RequestParam("id")String id){
         Map<String,Object> map = new HashMap<>();

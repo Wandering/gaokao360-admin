@@ -241,8 +241,8 @@
                 oper: typeStr,
                 years: selYearsV,
                 subjectId: selSubjectV,//课程名称
-                mbeikaochongcitype: '真题密卷',
-                mbeikaochongcitypeid: 2,
+                mbeikaochongciType: '真题密卷',
+                mbeikaochongciTypeId: 2,
                 paperName: "低调低调测试测试",
                 price: 0,
                 isAccept: 0,
