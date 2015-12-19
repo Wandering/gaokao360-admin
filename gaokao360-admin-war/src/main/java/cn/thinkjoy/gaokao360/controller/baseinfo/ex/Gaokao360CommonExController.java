@@ -219,7 +219,11 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     @RequestMapping(value="/{mainObj}queryone")
     @ResponseBody
     public Object queryOne(@PathVariable String mainObj,@RequestParam("id")String id){
-        return  serviceMaps.get(mainObj).fetch(id);
+        if("university".equals(mainObj)){
+            return serviceMaps.get(mainObj+"ex").fetch(id);
+        }else{
+            return serviceMaps.get(mainObj).fetch(id);
+        }
     }
 
     /**
