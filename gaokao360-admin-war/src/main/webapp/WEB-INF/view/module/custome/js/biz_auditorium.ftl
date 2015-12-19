@@ -92,13 +92,15 @@
                 + '<input type="text" id="expertsIntro" placeholder="请输入专家介绍" class="form-control" />'
                 + '</div>'
                 + '</div>'
+
+
                 + '<div class="form-group">'
                 + '<label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 专家介绍：</label>'
                 + '<div class="col-sm-10">'
 
 
                 + '<div id="uploader" class="wu-example">'
-                + '<div class="uploader-tips">(只能上传一个文件,可拖拽文件)</div>'
+                + '<div class="uploader-tips">(只能上传一个图片,可拖拽文件,大小小于3M)</div>'
                 + '<div class="queueList">'
                 + '<div id="dndArea" class="placeholder">'
                 + '<div id="filePicker">点击上传</div>'
@@ -116,8 +118,17 @@
                 + '</div>'
 
 
+
+
+
+
                 + '</div>'
                 + '</div>'
+
+
+
+                + '<input type="hidden" value="" id="swfUrl">'
+
 
 
                 + '</form>'
@@ -127,7 +138,7 @@
         $("#addBtn").on(ace.click_event, function (e) {
             typeStr = "add";
             bootbox.dialog({
-                title: "添加真题密卷",
+                title: "添加",
                 message: dialogHtml,
                 className: 'my-modal',
                 buttons: {
@@ -185,6 +196,7 @@
             var selSubjectV = $("#selCourses2").find('option:selected').val();
             var teacherNameV = $.trim($("#teacherName").val());
             var expertsIntroV = $.trim($('#expertsIntro').val());
+            var fileUrl = $('#fileUrl').val();
             if (selProvinceV == "00") {
                 CommonFn.tipsDialog('温馨提示', '请选择省份');
                 return false;
@@ -199,6 +211,10 @@
             }
             if (expertsIntroV == '') {
                 CommonFn.tipsDialog('温馨提示', '请输入专家介绍')
+                return false;
+            }
+            if(fileUrl==""){
+                CommonFn.tipsDialog('温馨提示', '请上传文件');
                 return false;
             }
             var addExamData = {
@@ -240,54 +256,54 @@
             var $wrap = $('#uploader'),
 
             // 图片容器
-            $queue = $('<ul class="filelist"></ul>').appendTo($wrap.find('.queueList')),
+                    $queue = $('<ul class="filelist"></ul>').appendTo($wrap.find('.queueList')),
 
             // 状态栏，包括进度和控制按钮
-            $statusBar = $wrap.find('.statusBar'),
+                    $statusBar = $wrap.find('.statusBar'),
 
             // 文件总体选择信息。
-            $info = $statusBar.find('.info'),
+                    $info = $statusBar.find('.info'),
 
             // 上传按钮
-            $upload = $wrap.find('.uploadBtn'),
+                    $upload = $wrap.find('.uploadBtn'),
 
             // 没选择文件之前的内容。
-            $placeHolder = $wrap.find('.placeholder'),
+                    $placeHolder = $wrap.find('.placeholder'),
 
             // 总体进度条
-            $progress = $statusBar.find('.progress').hide(),
+                    $progress = $statusBar.find('.progress').hide(),
 
             // 添加的文件数量
-            fileCount = 0,
+                    fileCount = 0,
 
             // 添加的文件总大小
-            fileSize = 0,
+                    fileSize = 0,
 
             // 优化retina, 在retina下这个值是2
-            ratio = window.devicePixelRatio || 1,
+                    ratio = window.devicePixelRatio || 1,
 
             // 缩略图大小
-            thumbnailWidth = 110 * ratio,
-            thumbnailHeight = 110 * ratio,
+                    thumbnailWidth = 110 * ratio,
+                    thumbnailHeight = 110 * ratio,
 
             // 可能有pedding, ready, uploading, confirm, done.
-            state = 'pedding',
+                    state = 'pedding',
 
             // 所有文件的进度信息，key为file id
-            percentages = {},
-            supportTransition = (function () {
-                var s = document.createElement('p').style,
-                        r = 'transition' in s ||
-                                'WebkitTransition' in s ||
-                                'MozTransition' in s ||
-                                'msTransition' in s ||
-                                'OTransition' in s;
-                s = null;
-                return r;
-            })(),
+                    percentages = {},
+                    supportTransition = (function () {
+                        var s = document.createElement('p').style,
+                                r = 'transition' in s ||
+                                        'WebkitTransition' in s ||
+                                        'MozTransition' in s ||
+                                        'msTransition' in s ||
+                                        'OTransition' in s;
+                        s = null;
+                        return r;
+                    })(),
 
             // WebUploader实例
-            uploader;
+                    uploader;
 
             if (!WebUploader.Uploader.support()) {
                 alert('Web Uploader 不支持您的浏览器！如果你使用的是IE浏览器，请尝试升级 flash 播放器');
@@ -327,6 +343,7 @@
             });
             // 当有文件添加进来时执行，负责view的创建
             function addFile(file) {
+
                 var $li = $('<li id="' + file.id + '">' +
                                 '<p class="title">' + file.name + '</p>' +
                                 '<p class="imgWrap"></p>' +
@@ -516,7 +533,7 @@
                     }
                 }
 
-                $info.html(text);
+//                $info.html(text);
             }
 
             function setState(val) {
@@ -573,7 +590,7 @@
                     case 'finish':
                         stats = uploader.getStats();
                         if (stats.successNum) {
-                            alert('上传成功');
+//                            alert('上传成功');
                         } else {
                             // 没有成功的图片，重设
                             state = 'done';
@@ -581,7 +598,6 @@
                         }
                         break;
                 }
-
                 updateStatus();
             }
 
@@ -597,15 +613,16 @@
             uploader.onFileQueued = function (file) {
                 fileCount++;
                 fileSize += file.size;
-
-                console.log(fileCount)
-                console.log(fileSize)
-
                 if (fileCount === 1) {
                     $placeHolder.addClass('element-invisible');
                     $statusBar.show();
-                }else if (fileCount >= 2) {
+                }
+                else if (fileCount >= 2) {
                     $('ul.filelist li:eq(0)').find('span.cancel').click();
+                    if($('.state-complete').length==1){
+                        CommonFn.tipsDialog('温馨提示', '只能上传一个文件');
+                        return false;
+                    }
                 }
                 addFile(file);
                 setState('ready');
@@ -615,11 +632,9 @@
             uploader.onFileDequeued = function (file) {
                 fileCount--;
                 fileSize -= file.size;
-
                 if (!fileCount) {
                     setState('pedding');
                 }
-
                 removeFile(file);
                 updateTotalProgress();
 
@@ -649,7 +664,9 @@
 
             uploader.onUploadSuccess = function (file, response) {
                 console.log(response.bizData.file.fileUrl)
-                alert(response.bizData.file.fileUrl)
+//                alert(response.bizData.file.fileUrl)
+                fileUrl = response.bizData.file.fileUrl;
+                $('#swfUrl').val(fileUrl);
 
             };
 
@@ -680,6 +697,7 @@
 
 
         }
+
 
     });
 
