@@ -95,13 +95,11 @@
                                 </div>
                                 <input type="hidden" value="" id="swfUrl1">
 
-
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 封面图片：</label>
                                     <div class="col-sm-10">
-
                                         <div id="uploader2" class="wu-example">
-                                            <div class="uploader-tips">(只能上传一个图片,可拖拽文件,大小小于3M)</div>
+                                            <div class="uploader-tips">(最多上传3个,MP4格式)</div>
                                             <div class="queueList">
                                                 <div id="dndArea" class="placeholder">
                                                     <div id="uploaderBtn2">点击上传</div>

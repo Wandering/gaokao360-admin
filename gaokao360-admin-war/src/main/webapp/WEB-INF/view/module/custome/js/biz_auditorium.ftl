@@ -75,50 +75,79 @@
             typeStr = 'add';
             uploadFun1();
             uploadFun2();
-            $('#submitBtn').click(function(){
-                <#--classifyId :0，名师讲堂（1）还是高考心理（2）-->
-                <#--subjectId ,科目-->
-                <#--managerId ：1,名师讲堂（1）高高心理（3）-->
-<#--teacher ：陈老师,哪个老师-->
-                <#--title ：数学,标题-->
-                <#--content ,<p>&nbsp;　为使广大考生准确把握2015年高考各科目考点及答题技巧，避免知识外失分。我们组织省内名校名师，开设&ldquo;2015年高考考点及答题技巧名师讲座&rdquo;讲座包含语文、数学、英语、物理、化学、生物、政治、历史、地理九科，通过视频公益活动的方式，使广大考生能方便快捷地分享名师指导，有效提升高考质量，圆您的大学梦！</p>-->
-                <#--frontCover ：封面,-->
-                        <#--subcontent ： 简介 ,-->
-                        <#--hit：0 点击量,-->
-                        <#--years:2015 ,年份-->
-                <#--beikaochongciType ,高考名师讲堂/高考心理-->
-                <#--frontcover1：png格式的图标 ,-->
-                        <#--isAccept ：1,-->
-                        <#--areaId 省份,-->
-                        <#--sectionId:xx,xx,xx(注意使用逗号分隔)视频对应id值 根基下面接口回去到的-->
-                <#--oper：add-->
-                var addAuditoriumData = {
-                    areaId:,
-                    classifyId: 1,
-                    subjectId:
-
-                };
-                $.ajax({
-                    type: "POST",
-                    url: '/admin/gaokao360/ex/commonsave/${mainObj}',
-                    data: addAuditoriumData,
-                    success: function (result) {
-                        if (result.rtnCode == "0000000") {
-                            searchLoad();
-                        }
-                    }
-                });
-            });
-
-
-
-
         });
+
+
+        // 上传
+        $('#submitBtn').on('click',function(){
+            addEditFun();
+        })
+
+
+
+
+
+
 
 
         //删除
         CommonFn.deleteFun('#deleteBtn', '${mainObj}');
 
+        var addEditFun = function () {
+            var selProvinceV = $('#selProvince2 option:checked').val();
+            var selSubjectV = $("#selCourses2").find('option:selected').val();
+            var teacherNameV = $.trim($("#teacherName").val());
+            var expertsIntroV = $.trim($('#expertsIntro').val());
+
+            if (selProvinceV == "00") {
+                CommonFn.tipsDialog('温馨提示', '请选择省份');
+                return false;
+            }
+            if (selSubjectV == '00') {
+                CommonFn.tipsDialog('温馨提示', '请选择科目类别');
+                return false;
+            }
+            if (teacherNameV == '') {
+                CommonFn.tipsDialog('温馨提示', '请输入主讲老师')
+                return false;
+            }
+            if (expertsIntroV == '') {
+                CommonFn.tipsDialog('温馨提示', '请输入专家介绍')
+                return false;
+            }
+            var addExamData = {
+                oper: typeStr,
+                classifyId: '1',
+                subjectId: selSubjectV,//课程名称
+                managerId: '1',
+                teacher: teacherNameV,
+                title: selSubjectV,
+                content: '',
+                frontCover: '',
+                subcontent: expertsIntroV,
+                hit: '',
+                years: '2015',//
+                beikaochongciType: '高考名师讲堂',
+                frontcover1: '',
+                isAccept: 1,
+                areaId: selProvinceV,
+                sectionId: ''
+            };
+
+            if (typeStr == 'edit') {
+                addExamData.id = rowId;
+            }
+            $.ajax({
+                type: "POST",
+                url: '/admin/gaokao360/ex/commonsave/${mainObj}',
+                data: addExamData,
+                success: function (result) {
+                    if (result.rtnCode == "0000000") {
+                        searchLoad();
+                    }
+                }
+            });
+        };
 
 
 
