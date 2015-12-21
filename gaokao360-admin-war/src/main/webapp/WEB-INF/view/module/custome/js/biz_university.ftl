@@ -85,39 +85,107 @@
                 e.preventDefault();
 //                院校名称
                 var schoolName = $('#schoolName').val().trim();
-                if(schoolName.length == 0){
+                if (schoolName.length == 0) {
                     CommonFn.tipsDialog('温馨提示', '院校名称输入不能为空');
                     return false;
                 }
-                if(schoolName.length > 15){
+                if (schoolName.length > 15) {
                     CommonFn.tipsDialog('温馨提示', '院校名称输入不能大于15个字');
                     return false;
                 }
 //                院校头像
                 var schoolPic = $('#schoolPic').attr('src');
-                if(schoolPic == ''){
+                if (schoolPic == '') {
                     CommonFn.tipsDialog('温馨提示', '院校头像不能为空');
                     return false;
                 }
 //                院校代码
                 var schoolCode = $('#schoolCode').val().trim();
                 var regCode = /^[0-9a-zA-Z]*$/g;
-                if(schoolCode.length == ''){
+                if (schoolCode.length == '') {
                     CommonFn.tipsDialog('温馨提示', '院校代码不能为空');
                     return false;
                 }
-                if(schoolCode.length > 8 || !regCode.test(schoolCode)){
+                if (schoolCode.length > 8 || !regCode.test(schoolCode)) {
                     CommonFn.tipsDialog('温馨提示', '院校代码只能为8位数字/符号/英文字母');
                     return false;
                 }
 //                院校排名
+                var regNum = /^[0-9]*$/;
                 var schoolRank = $('#schoolRank').val().trim();
-                if(schoolCode.length == ''){
+                if (schoolRank.length == '') {
                     CommonFn.tipsDialog('温馨提示', '院校排名不能为空');
                     return false;
                 }
-
-
+                if(schoolRank.length >6 || !regNum.test(schoolRank)){
+                    CommonFn.tipsDialog('温馨提示','院校排名输入只能位数字,且不能大于6位数字');
+                    return false;
+                }
+//                院校特征
+                var schoolStatic = $('#schoolStatic').val().trim();
+                if(schoolStatic.length > 10){
+                    CommonFn.tipsDialog('温馨提示','院校特征输入不能大于10个字');
+                    return false;
+                }
+//                学历层次
+                var selEduLevel2 = $('#selEduLevel2').val().trim();
+                var selEduLevel2 = $('#selEduLevel2').find('option:selected').val();
+                if(schoolStatic.length > 10){
+                    CommonFn.tipsDialog('温馨提示','学历层次必须选择');
+                    return false;
+                }
+//                院校类型
+                var schoolType = $('#schoolType').val().trim();
+                if(schoolType.length > 10){
+                    CommonFn.tipsDialog('温馨提示','院校类型输入不能大于10个字');
+                    return false;
+                }
+//                院校隶属
+                var schoolOwn = $('#schoolOwn').val().trim();
+                if(schoolOwn.length > 10){
+                    CommonFn.tipsDialog('温馨提示','院校类型输入不能大于10个字');
+                    return false;
+                }
+//                院校网址
+                var schoolWeb = $('#schoolWeb').val().trim();
+                if(schoolWeb.length > 10){
+                    CommonFn.tipsDialog('温馨提示','院校类型输入不能大于30个字');
+                    return false;
+                }
+//                所在省份
+                var schoolInProvince2 = $("#schoolInProvince2").find('option:selected').val();
+                if(schoolInProvince2 == '00'){
+                    CommonFn.tipsDialog('温馨提示','所在省份必须选择');
+                    return false;
+                }
+//                院校地址
+                var schoolAddress = $('#schoolAddress').val().trim();
+                if(schoolAddress.length == ''){
+                    CommonFn.tipsDialog('温馨提示','输入院校地址不能为空');
+                    return false;
+                }
+                if(schoolAddress.length > 120){
+                    CommonFn.tipsDialog('温馨提示','输入院校地址内容不能超过120个字');
+                    return false;
+                }
+//                联系电话
+                var schoolTel = $('#schoolTel').val().trim();
+                if(schoolTel.length == ''){
+                    CommonFn.tipsDialog('温馨提示','电话号码不能为空');
+                    return false;
+                }
+//                院校简介
+                var schoolIntroduce = $('#schoolIntroduce').val().trim();
+                if(schoolTel.length == ''){
+                    CommonFn.tipsDialog('温馨提示','院校简介输入不能为空');
+                    return false;
+                }
+//                招生章程
+                var schoolArticle = $('#schoolArticle').val().trim();
+                if(schoolArticle.length == ''){
+                    CommonFn.tipsDialog('温馨提示','招生章程输入不能为空');
+                    return false;
+                }
 
                 var addUniversityData = {
                     oper: typeStr,
@@ -125,18 +193,18 @@
                     , name: schoolName
                     , images: 'http://img0.imgtn.bdimg.com/it/u=2127500600,2612092016&fm=21&gp=0.jpg'
 //                    , images: schoolPic
-                    , sort:
-                    , property: $('#schoolStatic').val()
-                    , educationLevel: $('#selEduLevel2').val()
-                    , type: $('#schoolType').val()
-                    , subjection: $('#schoolOwn').val()
-                    , url: $('#schoolWeb').val()
-                    , provinceId: $('#schoolInProvince').val()
-                    , provinceName: $('#schoolInProvince').html()
-                    , address: $('#schoolAddress').val()
-                    , contactPhone: $('#schoolTel').val()
-                    , universityIntro: $('#schoolIntroduce').val()
-                    , entranceIntro: $('#schoolArticle').val()
+                    , sort: schoolRank
+                    , property: schoolStatic
+                    , educationLevel: selEduLevel2
+                    , type: schoolType
+                    , subjection: schoolOwn
+                    , url: schoolWeb
+                    , provinceId: schoolInProvince2
+                    , provinceName: $('#schoolInProvince2').html()
+                    , address: schoolAddress
+                    , contactPhone: schoolTel
+                    , universityIntro: schoolIntroduce
+                    , entranceIntro: schoolArticle
                 };
                 $.ajax({
                     type: "POST",
