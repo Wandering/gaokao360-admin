@@ -2,7 +2,7 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  Majored.java 2015-12-16 16:48:39 $
+ * $Id:  Majored.java 2015-12-21 18:51:59 $
  */
 
 
@@ -52,6 +52,14 @@ public class Majored extends BaseDomain<Long>{
     private String incomeAve;
     /** 工作和专业相关度 */
     private String jobMajoredRel;
+    /** 专业排名 */
+    private Integer salaryRank;
+    /** 就业率排名 */
+    private Integer employedRank;
+    /** 专业分类Id */
+    private String subjectTypeId;
+    /** 学科分类ID */
+    private String majoredTypeId;
 
 	public Majored(){
 	}
@@ -167,6 +175,34 @@ public class Majored extends BaseDomain<Long>{
     public String getJobMajoredRel() {
         return this.jobMajoredRel;
     }
+    public void setSalaryRank(Integer value) {
+        this.salaryRank = value;
+    }
+
+    public Integer getSalaryRank() {
+        return this.salaryRank;
+    }
+    public void setEmployedRank(Integer value) {
+        this.employedRank = value;
+    }
+
+    public Integer getEmployedRank() {
+        return this.employedRank;
+    }
+    public void setSubjectTypeId(String value) {
+        this.subjectTypeId = value;
+    }
+
+    public String getSubjectTypeId() {
+        return this.subjectTypeId;
+    }
+    public void setMajoredTypeId(String value) {
+        this.majoredTypeId = value;
+    }
+
+    public String getMajoredTypeId() {
+        return this.majoredTypeId;
+    }
 
 	public String toString() {
 		return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
@@ -187,6 +223,10 @@ public class Majored extends BaseDomain<Long>{
 			.append("JobRat",getJobRat())
 			.append("IncomeAve",getIncomeAve())
 			.append("JobMajoredRel",getJobMajoredRel())
+			.append("SalaryRank",getSalaryRank())
+			.append("EmployedRank",getEmployedRank())
+			.append("SubjectTypeId",getSubjectTypeId())
+			.append("MajoredTypeId",getMajoredTypeId())
 			.toString();
 	}
 	

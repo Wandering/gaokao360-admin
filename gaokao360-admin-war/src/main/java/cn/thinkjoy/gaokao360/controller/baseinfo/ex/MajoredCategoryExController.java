@@ -9,6 +9,7 @@ package cn.thinkjoy.gaokao360.controller.baseinfo.ex;
 
 import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.gaokao360.controller.BaseController;
+import cn.thinkjoy.gaokao360.domain.GkBaseDomain;
 import cn.thinkjoy.gaokao360.domain.MajoredCategory;
 import cn.thinkjoy.gaokao360.service.IMajoredCategoryService;
 import cn.thinkjoy.gaokao360.service.ex.IMajoredCategoryExService;
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -65,8 +67,18 @@ public class MajoredCategoryExController extends BaseController<IMajoredCategory
      */
     @RequestMapping(value="/getMajoredCategoryList")
     @ResponseBody
-    public List<MajoredCategory> getMajoredCategoryList(){
-        return majoredCategoryExService.queryList(new HashMap<String, Object>(),"id","asc");
+    public List<GkBaseDomain> getMajoredCategoryList(){
+        List<MajoredCategory> majoredCategories=majoredCategoryExService.queryList(new HashMap<String, Object>(),"id","asc");
+        GkBaseDomain gkBaseDomain = null;
+        List<GkBaseDomain> list=new ArrayList<>();
+        for(MajoredCategory majoredCategory:majoredCategories){
+            gkBaseDomain=new GkBaseDomain();
+            gkBaseDomain.setName(majoredCategory.getName());
+            gkBaseDomain.setId(majoredCategory.getId());
+            list.add(gkBaseDomain);
+        }
+
+        return list;
     }
 
     /**

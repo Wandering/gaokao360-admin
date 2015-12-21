@@ -11,10 +11,14 @@ import cn.thinkjoy.common.domain.BaseDomain;
 import cn.thinkjoy.common.service.IBaseService;
 import cn.thinkjoy.common.service.IPageService;
 
+import cn.thinkjoy.gaokao360.dao.IUniversityDictDAO;
+import cn.thinkjoy.gaokao360.dao.ex.IMajoredCategoryExDAO;
 import cn.thinkjoy.gaokao360.dao.ex.IUniversityExDAO;
 import cn.thinkjoy.gaokao360.dao.ex.IUniversityMajoredDAO;
+import cn.thinkjoy.gaokao360.service.IMajoredCategoryService;
 import cn.thinkjoy.gaokao360.service.IUniversitySortService;
 
+import cn.thinkjoy.gaokao360.service.ex.IUniversityMajoredService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +36,11 @@ public class UniversitySortServiceTest{
     @Autowired
     private IUniversityMajoredDAO universityMajoredDAO;
 
+    @Autowired
+    IUniversityExDAO universityExDAO;
+
+    @Autowired
+    IMajoredCategoryExDAO majoredCategoryExDAO;
     @Test
     public void test(){
         //showcase
@@ -39,5 +48,11 @@ public class UniversitySortServiceTest{
         universityMajoredDAO.queryPage(map,1,10,"id","asc");
         System.out.print("--------------");
         universityMajoredDAO.count(map);
+    }
+    @Test
+    public void testUniversityExDAO(){
+        //showcase
+        Map<String,Object> map = new HashMap<>();
+        majoredCategoryExDAO.queryListByParentId(4);
     }
 }
