@@ -89,9 +89,9 @@ selectList
 
        </where>
     </select>
-    <select id="queryListByParentId" resultType="cn.thinkjoy.gaokao360.dto.MajoredCategoryDTO">
+    <select id="queryListByParentId" resultType="cn.thinkjoy.gaokao360.domain.GkBaseDomain">
         SELECT
-        <include refid="Base_Column_List" />
+        id,name
         FROM gk_majored_category WHERE  1=1 AND  parentId =#{ParentId}
     </select>
 

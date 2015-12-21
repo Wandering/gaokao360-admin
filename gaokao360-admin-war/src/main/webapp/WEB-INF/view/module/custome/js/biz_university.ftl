@@ -1,31 +1,32 @@
 <script>
     <!-- 自定义js请写在这个文件  以下这个查询方法只是个例子，请按照业务需求修改 -->
     function buildRules() {
-        var courseName = $('#courseName').val();
-        var status = $('#status').val();
-        var classfyId = $('#classfyId').val();
+        var universityeducationLevel = $('#selEduLevel').val();
+        var universityprovinceName = $('#selProvince').find('option:selected').html();
+        var universityprovinceId = $('#selProvince').val();
+        var queryparam = $('#EduLevelKeyWord').val();
         var rules = [];
-        if (courseName != '' && courseName != null && courseName != undefined) {
+        if (universityeducationLevel != '' && universityeducationLevel != null && universityeducationLevel != undefined&&universityeducationLevel!=='00') {
             var rule = {
-                'field': 'courseName',
+                'field': 'university.educationLevel',
                 'op': 'eq',
-                'data': courseName
+                'data': universityeducationLevel
             }
             rules.push(rule);
         }
-        if (status != '' && status != null && status != undefined) {
+        if (universityprovinceName != '' && universityprovinceName != null && universityprovinceName != undefined&&universityprovinceName!=='请选择省份') {
             var rule = {
-                'field': 'status',
+                'field': 'university.provinceName',
                 'op': 'eq',
-                'data': status
+                'data': universityprovinceName
             }
             rules.push(rule);
         }
-        if (classfyId != '' && classfyId != null && classfyId != undefined) {
+        if (queryparam != '' && queryparam != null && queryparam != undefined&&queryparam!=='00') {
             var rule = {
-                'field': 'classfyId',
-                'op': 'eq',
-                'data': classfyId
+                'field': 'queryparam',
+                'op': 'lk',
+                'data': queryparam
             }
             rules.push(rule);
         }

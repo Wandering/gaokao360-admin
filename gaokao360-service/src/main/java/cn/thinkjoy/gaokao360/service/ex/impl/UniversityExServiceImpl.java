@@ -9,9 +9,11 @@ package cn.thinkjoy.gaokao360.service.ex.impl;
 import cn.thinkjoy.common.dao.IBaseDAO;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
 import cn.thinkjoy.gaokao360.dao.IUniversityDAO;
+import cn.thinkjoy.gaokao360.dao.IUniversityDictDAO;
 import cn.thinkjoy.gaokao360.dao.IUniversitySortDAO;
 import cn.thinkjoy.gaokao360.dao.ex.IUniversityExDAO;
 import cn.thinkjoy.gaokao360.domain.University;
+import cn.thinkjoy.gaokao360.domain.UniversityDict;
 import cn.thinkjoy.gaokao360.domain.UniversitySort;
 import cn.thinkjoy.gaokao360.dto.UniversityDTO;
 import cn.thinkjoy.gaokao360.service.ex.IUniversityExService;
@@ -32,12 +34,28 @@ public class UniversityExServiceImpl extends AbstractPageService<IBaseDAO<Univer
     @Autowired
     private IUniversitySortDAO  universitySortDAO;
 
+    @Autowired
+    private IUniversityDictDAO universityDictDAO;
+
     @Override
     public IBaseDAO<UniversityDTO> getDao() {
         return universityExDAO;
     }
 
     public void insertUniversity(Map<String,Object> dataMap){
+        String property=(String) dataMap.get("property");
+        UniversityDict universityDict=universityExDAO.getDictByName(property);
+        if(universityDict!=null){
+            dataMap.put("property",universityDict.getDictId());
+        }else {
+            universityDict=new UniversityDict();
+            universityDict.setName(property);
+            universityDict.setType("FEATURE");
+            Integer sort=universityExDAO.getDictMaxSort("FEATURE");
+            universityDict.setDictId(sort++);
+            universityDictDAO.insert(universityDict);
+            dataMap.put("property",sort);
+        }
         universityDAO.insertMap(dataMap);
         dataMap.put("universityId", universityExDAO.getMaxId());
         universitySortDAO.insertMap(dataMap);
