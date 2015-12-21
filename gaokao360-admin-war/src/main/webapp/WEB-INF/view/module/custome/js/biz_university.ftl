@@ -111,7 +111,7 @@
 //                    , images: schoolInfoDOM.$schoolPic.val()
                     , sort: schoolInfoDOM.$schoolRank.val()
                     , property: schoolInfoDOM.$schoolStatic.val()
-                    , educationLevel:$('#selEduLevel2 option:checked').val()
+                    , educationLevel: $('#selEduLevel2 option:checked').val()
                     , type: schoolInfoDOM.$schoolType.val()
                     , subjection: schoolInfoDOM.$schoolOwn.val()
                     , url: schoolInfoDOM.$schoolWeb.val()
@@ -158,65 +158,40 @@
             $('#edit_answer_modal').modal('show');
             // 获取当前行数据
             var rowData = CommonFn.getRowData(rowId);
-//            address: "北京市海淀区清华园1号"
-//            batchType: "一批本科"
-//            code: "1003"
-//            contactPhone: "010-62770334 、62782051"
-//            createDateAsDate: 1450677935859
-//            dictName: "985,211,研"
-//            eduLevelName: "本科"
-//            educationLevel: "1"
-//            entranceIntro: ""
-//            id: 3
-//            lastModDate: 1450677935857
-//            lastModDateAsDate: 1450677935857
-//            property: "7"
-//            provinceName: "北京"
-//            subjection: "教育部直属"
-//            type: "工科"
-//            universityIntro: "分为非"
-//            imgUrl:""
-//            url: "http://www.tsinghua.edu.cn/publish/newthu/index.html"
-//            console.info(rowData);
-
-
-            schoolInfoDOM.$schoolName(rowData[0].name);
+            schoolInfoDOM.$schoolName.val(rowData[0].name);
             schoolInfoDOM.$schoolCode.val(rowData[0].code);
             schoolInfoDOM.$schoolRank.val(rowData[0].sort);
             schoolInfoDOM.$schoolStatic.val(rowData[0].property);
-            schoolInfoDOM.$selEduLevel2.val(rowData[0].educationLevel);
+            $('#selEduLevel2').find('option[value="' + rowData[0].educationLevel + '"]').attr('selected', 'selected');
             schoolInfoDOM.$schoolType.val(rowData[0].type);
             schoolInfoDOM.$schoolOwn.val(rowData[0].subjection);
-
             schoolInfoDOM.$schoolWeb.val(rowData[0].url);
-            schoolInfoDOM.$schoolInProvince2.val(rowData[0].provinceName);
+            $('#schoolInProvince2').find('option[value="' + rowData[0].provinceId + '"]').attr('selected', 'selected');
             schoolInfoDOM.$schoolAddress.val(rowData[0].address);
             schoolInfoDOM.$schoolTel.val(rowData[0].contactPhone);
-            schoolInfoDOM.$schoolIntroduce.val(rowData[0].universityIntro);
-            schoolInfoDOM.$schoolArticle.val(rowData[0].entranceIntro);
-
-
+            schoolInfoDOM.$schoolIntroduce.html(rowData[0].universityIntro);
+            schoolInfoDOM.$schoolArticle.html(rowData[0].entranceIntro);
             UI.$submitBtn.on(ace.click_event, function (e) {
                 e.preventDefault();
                 universityValidate();
                 var addUniversityData = {
                     oper: typeStr
-                    , code: schoolCode
-                    , name: schoolName
+                    , code: schoolInfoDOM.$schoolCode.val()
+                    , name: schoolInfoDOM.$schoolName.val()
                     , images: 'http://img0.imgtn.bdimg.com/it/u=2127500600,2612092016&fm=21&gp=0.jpg'
-//                    , images: schoolPic
-                    , sort: schoolRank
-                    , property: schoolStatic
-                    , educationLevel: selEduLevel2
-                    , type: schoolType
-                    , subjection: schoolOwn
-                    , url: schoolWeb
-                    , provinceId: schoolInProvince2
-                    , provinceName: $('#schoolInProvince2').html()
-                    , address: schoolAddress
-                    , contactPhone: schoolTel
-                    , universityIntro: schoolIntroduce
-                    , entranceIntro: schoolArticle
+//                    , images: schoolInfoDOM.$schoolPic.val()
+                    , sort: schoolInfoDOM.$schoolRank.val()
+                    , property: schoolInfoDOM.$schoolStatic.val()
+                    , educationLevel: $('#selEduLevel2 option:checked').val()
+                    , type: schoolInfoDOM.$schoolType.val()
+                    , subjection: schoolInfoDOM.$schoolOwn.val()
+                    , url: schoolInfoDOM.$schoolWeb.val()
+                    , provinceId: $('#schoolInProvince2 option:checked').val()
+                    , provinceName: $('#schoolInProvince2 option:checked').html()
+                    , address: schoolInfoDOM.$schoolAddress.val()
+                    , contactPhone: schoolInfoDOM.$schoolTel.val()
+                    , universityIntro: schoolInfoDOM.$schoolIntroduce.html()
+                    , entranceIntro: schoolInfoDOM.$schoolArticle.html()
                 };
                 $.ajax({
                     type: "POST",
