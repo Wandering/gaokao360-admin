@@ -125,7 +125,7 @@
                     , mainMajored: majoredDom.$mainMajored.val()
                     , employDirect: majoredDom.$employDirect.val()
                     , excellentStudent: majoredDom.$excellentStudent.val()
-                }
+                };
                 CommonFn.getData('/admin/gaokao360/ex/commonsave/${mainObj}', 'POST', addMajoredData, function (res) {
                     if (res.rtnCode == "0000000") {
                         searchLoad();
@@ -134,6 +134,62 @@
             })
 
         });//添加 end
+//        修改专业基本信息
+        majoredDom.$editBtn.click(function () {
+            typeStr = "edit";
+            rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
+            var selTrN = $('tr.ui-state-highlight[role="row"]').length;
+            if (selTrN != 1) {
+                CommonFn.tipsDialog('温馨提示', '请选中一行后修改');
+                return false;
+            }
+            $('#majoredModal').modal('show');
+            // 获取当前行数据
+            var rowData = CommonFn.getRowData(rowId);
+            majoredDom.$majoredName.val(rowData[0].name);
+            majoredDom.$majoredCode.val(rowData[0].code);
+            $('#selMajored2').find('option[value="' + rowData[0].majoredTypeId + '"]').attr('selected', 'selected');
+            $('#subjectType').find('option[value="' + rowData[0].subjectTypeId + '"]').attr('selected', 'selected');
+            majoredDom.$jobsRank.val(rowData[0].employedRank);
+            majoredDom.$salaryRank.val(rowData[0].salaryRank);
+            majoredDom.$sameMajored.val(rowData[0].similarMajored);
+            majoredDom.$mainMajored.val(rowData[0].mainCourse);
+            majoredDom.$employDirect.val(rowData[0].workGuide);
+            majoredDom.$excellentStudent.val(rowData[0].excellentStudent);
+            majoredDom.$submitBtn.on(ace.click_event, function (e) {
+                e.preventDefault();
+                majoredValidate();
+                var addMajoredData = {
+                    oper: typeStr
+                    , name: majoredDom.$majoredName.val()
+                    , code: majoredDom.$majoredCode.val()
+                    , subjectTypeId: $('#selMajored2').find('option:selected').val()
+                    , subjectType: $('#selMajored2').find('option:selected').html()
+                    , majoredTypeId: $('#subjectType').find('option:selected').val()
+                    , majoredType: $('#subjectType').find('option:selected').html()
+                    , salaryRank: majoredDom.$salaryRank.val()
+                    , employedRank: majoredDom.$jobsRank.val()
+                    , similarMajored: majoredDom.$sameMajored.val()
+                    , mainCourse: majoredDom.$mainMajored.val()
+                    , workGuide: majoredDom.$employDirect.val()
+                    , excellentStudent: majoredDom.$excellentStudent.val()
+                };
+                $.ajax({
+                    type: "POST",
+                    url: '/admin/gaokao360/ex/commonsave/${mainObj}',
+                    data: addMajoredData,
+                    success: function (result) {
+                        if (result.rtnCode == "0000000") {
+                            searchLoad();
+                        }
+                    }
+                });
+            });
+
+        });//修改end
+
+//        删除专业基本信息
+        CommonFn.deleteFun('#deleteBtn', '${mainObj}');
         function majoredValidate() {
             if (majoredDom.$majoredName.val().trim() == '') {
                 CommonFn.tipsDialog('温馨提示', '专业名称不能为空');
@@ -176,8 +232,6 @@
                 return false;
             }
         }
-
-
     });//$ end
 
 
