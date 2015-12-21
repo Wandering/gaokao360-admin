@@ -25,7 +25,7 @@ selectList
 -->
 
     <sql id="Base_Column_List">
-        id as id ,
+ id as id ,
         code as code ,
         name as name ,
         educationLevel as educationLevel ,
@@ -41,10 +41,64 @@ selectList
         other as other ,
         jobRat as jobRat ,
         incomeAve as incomeAve ,
-        jobMajoredRel as jobMajoredRel 
+        jobMajoredRel as jobMajoredRel ,
+        salaryRank as salaryRank ,
+        employedRank as employedRank ,
+        subjectTypeId as subjectTypeId ,
+        majoredTypeId as majoredTypeId
     </sql>
 
+    <select id="queryPage" resultType="Majored">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM gk_majored
+        <where>
 
+            <if test="condition.whereSql != null">
+                and id in (#{condition.whereSql})
+            </if>
+            <if test="condition.subjectType!=null">
+                ${condition.groupOp}   ${condition.subjectType.field}  ${condition.subjectType.op}  #{condition.subjectType.data}
+            </if>
+            <if test="condition.queryparam!=null">
+                ${condition.groupOp}
+                (province.code like #{condition.queryparam.data}
+                OR schedule.name like #{condition.queryparam.data}
+                OR schedule.name like #{condition.queryparam.data}
+                OR schedule.salaryRank like #{condition.queryparam.data}
+                OR schedule.employedRank like #{condition.queryparam.data}
+                OR schedule.majoredType like #{condition.queryparam.data})
+            </if>
+
+
+        </where>
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(id) FROM gk_majored
+        <where>
+            <if test="subjectType!=null">
+                ${groupOp}   ${subjectType.field}  ${subjectType.op}  #{subjectType.data}
+            </if>
+            <if test="queryparam!=null">
+                ${groupOp}
+                (province.code like #{queryparam.data}
+                OR schedule.name like #{queryparam.data}
+                OR schedule.name like #{queryparam.data}
+                OR schedule.salaryRank like #{queryparam.data}
+                OR schedule.employedRank like #{queryparam.data}
+                OR schedule.majoredType like #{queryparam.data})
+                OR schedule.subjectType like #{queryparam.data})
+            </if>
+
+        </where>
+    </select>
     <select id="getMajoredListByName" resultType="cn.thinkjoy.gaokao360.domain.GkBaseDomain">
         SELECT id,name,subjectType as type FROM gk_majored
          <where>
@@ -53,6 +107,7 @@ selectList
              </if>
          </where>
     </select>
+
 
 </mapper>
 
