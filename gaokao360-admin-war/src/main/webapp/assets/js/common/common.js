@@ -14,6 +14,7 @@ var CommonFn = {
         getYear: '/admin/gaokao360/ex/' + mainObj + '/getYears', // 获取年份
         getSubjectUrl: '/admin/gaokao360/ex/getSubject', // 获取学科
         getEduLevel: '/admin/gaokao360/ex/getAdmissionBatch', // 获取政策一级分类
+        getMajored:'/admin/gaokao360/ex/getMajoredCategoryList',//获取学科分类
         saveData: '/admin/gaokao360/ex/commonsave/' + mainObj,
         flashSwfUrl: '/assets/js/webuploader-0.1.5/Uploader.swf', // 上传选择按钮渲染
         uploaderUrl: 'http://cs-dev.thinkjoy.com.cn/rest/v1/uploadFile?userId=gk360&dirId=0&productCode=gk360&bizSystem=gk360&spaceName=gk360',
@@ -29,19 +30,38 @@ var CommonFn = {
         });
     },
     //获取学历层次
-    getEduLevel : function(){
-        var contentArr = ['<option val="00">请选择</option>'];
-        CommonFn.getData(CommonFn.url.eduLevel,'get',{},function(res){
-            if(res.rtnCode == '0000000'){
-                $.each(res.bizData,function(i,v){
-                    var id = res.bizData[i].id;
+    getEduLevel: function () {
+        var contentArr = ['<option value="00">请选择学历层次</option>'];
+        $.ajaxSettings.async = false;
+        CommonFn.getData(CommonFn.url.eduLevel, 'get', {}, function (res) {
+            if (res.rtnCode == '0000000') {
+                $.each(res.bizData, function (i, v) {
+                    var id = res.bizData[i].dictId;
                     var name = res.bizData[i].name;
                     contentArr.push('<option value="' + id + '">' + name + '</option>');
                 });
             }
         });
+        $.ajaxSettings.async = true;
         return contentArr;
     },
+    //获取学科分类
+    getMajored: function () {
+        var contentArr = ['<option value="00">请选择学科门类</option>'];
+        $.ajaxSettings.async = false;
+        CommonFn.getData(CommonFn.url.getMajored, 'get', {}, function (res) {
+            if (res.rtnCode == '0000000') {
+                $.each(res.bizData, function (i, v) {
+                    var id = v.id;
+                    var name = v.name;
+                    contentArr.push('<option value="' + id + '">' + name + '</option>');
+                });
+            }
+        });
+        $.ajaxSettings.async = true;
+        return contentArr;
+    },
+
 
     // 富媒体编辑器
     renderTextarea: function (obj) {
@@ -202,9 +222,9 @@ var CommonFn = {
     },
     renderDateYear: function (obj) {
         $(obj).datepicker({
-            data:false,
+            data: false,
             autoclose: true,
-            format:'yyyy-mm'
+            format: 'yyyy-mm'
         });
     },
     // tipsDialog
