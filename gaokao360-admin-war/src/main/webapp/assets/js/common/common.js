@@ -30,7 +30,7 @@ var CommonFn = {
     },
     //获取学历层次
     getEduLevel : function(){
-        var contentArr = [];
+        var contentArr = ['<option val="00">请选择</option>'];
         CommonFn.getData(CommonFn.url.eduLevel,'get',{},function(res){
             if(res.rtnCode == '0000000'){
                 $.each(res.bizData,function(i,v){
