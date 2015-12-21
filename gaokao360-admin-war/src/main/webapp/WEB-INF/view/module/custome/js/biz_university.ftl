@@ -72,6 +72,21 @@
             , $submitBtn: $('#submitBtn')
             , $editBtn: $('#editBtn')
         };
+        var schoolInfoDOM = {
+            $schoolName: $('#schoolName')
+            , $schoolCode: $('#schoolCode')
+            , $schoolRank: $('#schoolRank')
+            , $schoolStatic: $('#schoolStatic')
+            , $selEduLevel2: $('#selEduLevel2')
+            , $schoolType: $('#schoolType')
+            , $schoolOwn: $('#schoolOwn')
+            , $schoolWeb: $('#schoolWeb')
+            , $schoolInProvince2: $('#schoolInProvince2')
+            , $schoolAddress: $('#schoolAddress')
+            , $schoolTel: $('#schoolTel')
+            , $schoolIntroduce: $('#schoolIntroduce')
+            , $schoolArticle: $('#schoolArticle')
+        };
 //        获取省份
         UI.$selProvince.append(CommonFn.getProvince());
         $('#selEduLevel2').append(CommonFn.getEduLevel());
@@ -90,22 +105,22 @@
                 universityValidate();
                 var addUniversityData = {
                     oper: typeStr
-                    , code: schoolCode
-                    , name: schoolName
+                    , code: schoolInfoDOM.$schoolCode.val()
+                    , name: schoolInfoDOM.$schoolName.val()
                     , images: 'http://img0.imgtn.bdimg.com/it/u=2127500600,2612092016&fm=21&gp=0.jpg'
-//                    , images: schoolPic
-                    , sort: schoolRank
-                    , property: schoolStatic
-                    , educationLevel: selEduLevel2
-                    , type: schoolType
-                    , subjection: schoolOwn
-                    , url: schoolWeb
-                    , provinceId: schoolInProvince2
-                    , provinceName: $('#schoolInProvince2').html()
-                    , address: schoolAddress
-                    , contactPhone: schoolTel
-                    , universityIntro: schoolIntroduce
-                    , entranceIntro: schoolArticle
+//                    , images: schoolInfoDOM.$schoolPic.val()
+                    , sort: schoolInfoDOM.$schoolRank.val()
+                    , property: schoolInfoDOM.$schoolStatic.val()
+                    , educationLevel:$('#selEduLevel2 option:checked').val()
+                    , type: schoolInfoDOM.$schoolType.val()
+                    , subjection: schoolInfoDOM.$schoolOwn.val()
+                    , url: schoolInfoDOM.$schoolWeb.val()
+                    , provinceId: $('#schoolInProvince2 option:checked').val()
+                    , provinceName: $('#schoolInProvince2 option:checked').html()
+                    , address: schoolInfoDOM.$schoolAddress.val()
+                    , contactPhone: schoolInfoDOM.$schoolTel.val()
+                    , universityIntro: schoolInfoDOM.$schoolIntroduce.html()
+                    , entranceIntro: schoolInfoDOM.$schoolArticle.html()
                 };
                 $.ajax({
                     type: "POST",
@@ -117,6 +132,9 @@
                         }
                     }
                 });
+                $('#edit_answer_modal').modal('hide');
+                $('#submitForm')[0].reset();
+                $('#schoolIntroduce,#schoolArticle').html('');
             });
         });//添加end
 //      删除院校基本信息
@@ -140,7 +158,44 @@
             $('#edit_answer_modal').modal('show');
             // 获取当前行数据
             var rowData = CommonFn.getRowData(rowId);
-            console.info(rowData);
+//            address: "北京市海淀区清华园1号"
+//            batchType: "一批本科"
+//            code: "1003"
+//            contactPhone: "010-62770334 、62782051"
+//            createDateAsDate: 1450677935859
+//            dictName: "985,211,研"
+//            eduLevelName: "本科"
+//            educationLevel: "1"
+//            entranceIntro: ""
+//            id: 3
+//            lastModDate: 1450677935857
+//            lastModDateAsDate: 1450677935857
+//            property: "7"
+//            provinceName: "北京"
+//            subjection: "教育部直属"
+//            type: "工科"
+//            universityIntro: "分为非"
+//            imgUrl:""
+//            url: "http://www.tsinghua.edu.cn/publish/newthu/index.html"
+//            console.info(rowData);
+
+
+            schoolInfoDOM.$schoolName(rowData[0].name);
+            schoolInfoDOM.$schoolCode.val(rowData[0].code);
+            schoolInfoDOM.$schoolRank.val(rowData[0].sort);
+            schoolInfoDOM.$schoolStatic.val(rowData[0].property);
+            schoolInfoDOM.$selEduLevel2.val(rowData[0].educationLevel);
+            schoolInfoDOM.$schoolType.val(rowData[0].type);
+            schoolInfoDOM.$schoolOwn.val(rowData[0].subjection);
+
+            schoolInfoDOM.$schoolWeb.val(rowData[0].url);
+            schoolInfoDOM.$schoolInProvince2.val(rowData[0].provinceName);
+            schoolInfoDOM.$schoolAddress.val(rowData[0].address);
+            schoolInfoDOM.$schoolTel.val(rowData[0].contactPhone);
+            schoolInfoDOM.$schoolIntroduce.val(rowData[0].universityIntro);
+            schoolInfoDOM.$schoolArticle.val(rowData[0].entranceIntro);
+
+
             UI.$submitBtn.on(ace.click_event, function (e) {
                 e.preventDefault();
                 universityValidate();
@@ -179,8 +234,8 @@
 //      验证函数
         function universityValidate() {
 //                院校名称
-            var schoolName = $('#schoolName').val().trim();
-            if (schoolName.length == 0) {
+            var schoolName = $('#schoolName').val();
+            if (schoolName.trim().length == 0) {
                 CommonFn.tipsDialog('温馨提示', '院校名称输入不能为空');
                 return false;
             }
@@ -298,15 +353,15 @@
             }
 
 //                院校简介
-            var schoolIntroduce = $('#schoolIntroduce').val().trim();
+            var schoolIntroduce = $('#schoolIntroduce').html().trim();
             if (schoolTel.length == '') {
                 CommonFn.tipsDialog('温馨提示', '院校简介输入不能为空');
                 return false;
             }
-//                招生章程
-            var schoolArticle = $('#schoolArticle').val().trim();
+//                院校章程
+            var schoolArticle = $('#schoolArticle').html().trim();
             if (schoolArticle.length == '') {
-                CommonFn.tipsDialog('温馨提示', '招生章程输入不能为空');
+                CommonFn.tipsDialog('温馨提示', '院校章程输入不能为空');
                 return false;
             }
         }//验证函数end
