@@ -1,8 +1,8 @@
 <script>
     <!-- 自定义js请写在这个文件  以下这个查询方法只是个例子，请按照业务需求修改 -->
     function buildRules() {
-        var areaId = $('#courseName').val();
-        var queryparam = $('#status').val();
+        var areaId = $('#selProvince').val();
+        var queryparam = $('#agentKeyWord').val();
         var rules = [];
         if (areaId != '' && areaId != null && areaId != undefined && areaId != '00') {
             var rule = {

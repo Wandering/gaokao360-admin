@@ -1,10 +1,28 @@
 <script>
     <!-- 自定义js请写在这个文件  以下这个查询方法只是个例子，请按照业务需求修改 -->
+
+    function searchLoad() {
+        var url = "/admin/${bizSys}/${mainObj}s";
+
+        var rules = buildRules();
+
+        var filters = {
+            'groupOp': 'AND',
+            "rules": rules
+        };
+
+        $("#grid-table").jqGrid('setGridParam', {
+            url: url,
+            mtype: "POST",
+            postData: "filters=" + JSON.stringify(filters),
+            page: 1
+        }).trigger("reloadGrid");
+    }
     function buildRules() {
-        var papersubjectId = $('#courseName').val();
-        var paperyears = $('#status').val();
-        var paperareaId = $('#classfyId').val();
-        var paperpaperName = $('#classfyId').val();
+        var papersubjectId = $('#selCourses').val();
+        var paperyears = $('#selYears').val();
+        var paperareaId = $('#selProvince').val();
+        var paperpaperName = $('#examKeyWord').val();
         var rules = [];
         if (papersubjectId != '' && papersubjectId != null && papersubjectId != undefined && papersubjectId != "00") {
             var rule = {
@@ -32,39 +50,23 @@
         }
         if (paperpaperName != '' && paperpaperName != null && paperpaperName != undefined && paperpaperName != "00") {
             var rule = {
-                'field': 'paperpaperName',
-                'op': 'eq',
-                'data': paper.paperName
+                'field': 'queryparam',
+                'op': 'lk',
+                'data': paperpaperName
             }
             rules.push(rule);
         }
         return rules;
     }
-    function searchLoad() {
-        var url = "/admin/${bizSys}/${mainObj}s";
-
-        var rules = buildRules();
-
-        var filters = {
-            'groupOp': 'AND',
-            "rules": rules
-        };
-
-        $("#grid-table").jqGrid('setGridParam', {
-            url: url,
-            mtype: "POST",
-            postData: "filters=" + JSON.stringify(filters),
-            page: 1
-        }).trigger("reloadGrid");
-    }
+    // 搜索
+    $("#search").click(function () {
+        searchLoad();
+    });
     jQuery(function ($) {
         var typeStr;
         var rowId;
         var fileUrl;
-        // 搜索
-        $("#search").click(function () {
-            searchLoad();
-        });
+
         // 课程
         var subjectData = CommonFn.getSubject();
         $('#selCourses').append(subjectData);

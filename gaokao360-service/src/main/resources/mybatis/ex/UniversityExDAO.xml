@@ -100,7 +100,7 @@ selectList
 
     <select id="getMaxId" resultType="java.lang.Integer">
         SELECT MAX(id)
-        from gk_university university
+        from gk_university
     </select>
 
     <select id="fetch" resultType="cn.thinkjoy.gaokao360.dto.UniversityDTO">
