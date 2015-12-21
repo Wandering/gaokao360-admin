@@ -24,7 +24,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(value="/admin/gaokao360/ex")
-public class MajoredExController extends BaseController<IMajoredService> {
+public class MajoredExController extends BaseController<IMajoredExService> {
 
 
     @Autowired
@@ -62,8 +62,8 @@ public class MajoredExController extends BaseController<IMajoredService> {
     }
 
     @Override
-    protected IMajoredService getMainService() {
-        return majoredService;
+    protected IMajoredExService getMainService() {
+        return majoredExService;
     }
 
     @Override
