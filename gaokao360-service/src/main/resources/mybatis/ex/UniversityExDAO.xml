@@ -111,7 +111,7 @@ selectList
         LEFT JOIN gk_university_dict dict ON university.property=dict.dictId and dict.type='FEATURE'
         LEFT JOIN gk_university_sort sort ON sort.universityId=university.id
         LEFT OUTER JOIN gk_university_dict dict1 ON university.educationLevel=dict1.dictId and dict1.type='EDULEVEL'
-        WHERE  id=#{id}
+        WHERE   university.id=#{id}
     </select>
 </mapper>
 
