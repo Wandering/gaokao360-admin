@@ -25,7 +25,7 @@ selectList
 -->
 
     <sql id="Base_Column_List">
- id as id ,
+        id as id ,
         code as code ,
         name as name ,
         educationLevel as educationLevel ,
@@ -73,7 +73,7 @@ selectList
 
         </where>
         <if test="orderBy!=null">
-            ORDER BY ${orderBy} ${sortBy}
+            ORDER BY id DESC
         </if>
         <if test="offset != null">
             limit ${offset}, ${rows}

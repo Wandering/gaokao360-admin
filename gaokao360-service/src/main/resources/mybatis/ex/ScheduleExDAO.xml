@@ -63,7 +63,7 @@ selectList
 
 
         </where>
-        ORDER BY DESC id
+        ORDER BY id DESC
         <if test="offset != null">
             limit ${offset}, ${rows}
         </if>

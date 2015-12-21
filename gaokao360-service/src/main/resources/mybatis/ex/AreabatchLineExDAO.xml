@@ -48,7 +48,7 @@ selectList
                 ${condition.groupOp}  (province.name like #{condition.queryparam.data} OR line.content like #{condition.queryparam.data})
             </if>
     </where>
-        ORDER BY DESC id
+        ORDER BY id DESC
         <if test="offset != null">
             limit ${offset}, ${rows}
         </if>
