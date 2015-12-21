@@ -87,10 +87,10 @@
                 ue.destroy();
             });
             ue = UE.getEditor('editor');
-            $('#getContent').click(function () {
-                console.info(ue.hasContents());
-                console.info(ue.getContent());
-            });
+//            $('#getContent').click(function () {
+//                console.info(ue.hasContents());
+//                console.info(ue.getContent());
+//            });
         });//添加地区批次end
 
 
