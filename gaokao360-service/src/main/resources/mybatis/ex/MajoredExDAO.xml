@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IMajoredExDAO">
+<!--
+insert
+update
+updateNull
+deleteById
+deleteByCondition
+deleteByProperty
+fetch
+findOne
+findList
+findAll
+queryPage
+like
+queryList
+queryOne
+count
+selectMaxId
+updateOrSave
+selectOne
+selectList
+-->
+
+    <sql id="Base_Column_List">
+        id as id ,
+        code as code ,
+        name as name ,
+        educationLevel as educationLevel ,
+        subjectType as subjectType ,
+        majoredType as majoredType ,
+        degree as degree ,
+        similarMajored as similarMajored ,
+        mainStudy as mainStudy ,
+        mainCourse as mainCourse ,
+        workGuide as workGuide ,
+        university as university ,
+        stressUniversity as stressUniversity ,
+        other as other ,
+        jobRat as jobRat ,
+        incomeAve as incomeAve ,
+        jobMajoredRel as jobMajoredRel 
+    </sql>
+
+
+    <select id="getMajoredListByName" resultType="cn.thinkjoy.gaokao360.domain.GkBaseDomain">
+        SELECT id,name,subjectType as type FROM gk_majored
+         <where>
+             <if test="name!=null">
+                 AND (name like CONCAT('%', #{name} , '%'),name subjectType CONCAT('%', #{name} , '%'))
+             </if>
+         </where>
+    </select>
+
+</mapper>
+

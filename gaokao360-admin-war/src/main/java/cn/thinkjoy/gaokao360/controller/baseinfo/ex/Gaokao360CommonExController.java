@@ -16,11 +16,13 @@ import cn.thinkjoy.common.utils.ActionEnum;
 import cn.thinkjoy.gaokao360.common.ServiceMaps;
 import cn.thinkjoy.gaokao360.domain.GkinformationGkhot;
 import cn.thinkjoy.gaokao360.domain.PolicyInterpretation;
+import cn.thinkjoy.gaokao360.domain.VideoSection;
 import cn.thinkjoy.gaokao360.service.IAdmissionBatchService;
 import cn.thinkjoy.gaokao360.service.IProvinceService;
 import cn.thinkjoy.gaokao360.service.ISubjectService;
 import cn.thinkjoy.gaokao360.service.IUniversityService;
 import cn.thinkjoy.gaokao360.service.ex.IAdmissionBatchExService;
+import cn.thinkjoy.gaokao360.service.ex.IMajoredCategoryExService;
 import cn.thinkjoy.gaokao360.service.ex.IUniversityExService;
 import cn.thinkjoy.gaokao360.service.ex.IVideoSectionExService;
 import com.alibaba.fastjson.JSON;
@@ -58,6 +60,8 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     private IVideoSectionExService videoSectionExService;
     @Autowired
     private IUniversityExService universityExService;
+    @Autowired
+    private IMajoredCategoryExService majoredCategoryExService;
 
     @Override
     protected void innerHandleDel(String mainObj, Map dataMap) {
@@ -75,6 +79,8 @@ public class Gaokao360CommonExController extends AbstractCommonController {
             serviceMaps.get("videocourse").delete(dataMap.get("id"));
         }else if("university".equals(mainObj)){
             universityExService.deleteUniversity(dataMap);
+        }else if("majoredcategory".equals(mainObj)){
+            majoredCategoryExService.deleteCategory(dataMap);
         }else {
             getServiceMaps().get(mainObj).delete(dataMap.get("id"));
         }
@@ -180,32 +186,44 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         }else if("auditorium".equals(mainObj)){
             serviceMaps.get("videocourse").insertMap(dataMap);
             Long lid = videoSectionExService.queryByMaxId();
-            String[] strs=null;
+            String sectionId=null;
             if(dataMap.containsKey("sectionId")){
-                String sectionId = (String)dataMap.get("sectionId");
-                strs=sectionId.split(",");
+                sectionId = (String)dataMap.get("sectionId");
             }
-            if(strs!=null){
-                for(String str:strs){
-                    videoSectionExService.updateCourseId(lid,str);
+            if(sectionId!=null){
+                Object obj = JSON.parse(sectionId);
+                List<VideoSection> vs=(List<VideoSection>)obj;
+                for(VideoSection v:vs){
+                    if(v.getId()!=null){
+                        serviceMaps.get("videocourse").update(v);
+                    }else{
+                        serviceMaps.get("videocourse").insert(v);
+                    }
                 }
             }
 
         }else if("gkPsychology".equals(mainObj)){
             serviceMaps.get("videocourse").insertMap(dataMap);
             Long lid = videoSectionExService.queryByMaxId();
-            String[] strs=null;
+            String sectionId=null;
             if(dataMap.containsKey("sectionId")){
-                String sectionId = (String)dataMap.get("sectionId");
-                strs=sectionId.split(",");
+                sectionId = (String)dataMap.get("sectionId");
             }
-            if(strs!=null){
-                for(String str:strs){
-//                    JSON.
+            if(sectionId!=null){
+                Object obj = JSON.parse(sectionId);
+                List<VideoSection> vs=(List<VideoSection>)obj;
+                for(VideoSection v:vs){
+                    if(v.getId()!=null){
+                            serviceMaps.get("videocourse").update(v);
+                    }else{
+                        serviceMaps.get("videocourse").insert(v);
+                    }
                 }
             }
         }else if("university".equals(mainObj)){
             universityExService.insertUniversity(dataMap);
+        }else if("majoredcategory".equals(mainObj)){
+            majoredCategoryExService.insertCategory(dataMap);
         }else{
             super.innerHandleAdd(mainObj, dataMap);
         }
@@ -291,7 +309,6 @@ public class Gaokao360CommonExController extends AbstractCommonController {
 
             template.getMessageConverters().add(new FastJsonHttpMessageConverter());
             st = template.postForObject(url, param, String.class);
-
         }catch (Exception e){
             logger.error("删除错误");
         }
@@ -309,10 +326,44 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         }
         if("auditorium".equals(mainObj)){
             serviceMaps.get("videocourse").updateMap(dataMap);
+            Long lid = (Long)dataMap.get("id");
+            String sectionId=null;
+            if(dataMap.containsKey("sectionId")){
+                sectionId = (String)dataMap.get("sectionId");
+            }
+            if(sectionId!=null){
+                Object obj = JSON.parse(sectionId);
+                List<VideoSection> vs=(List<VideoSection>)obj;
+                for(VideoSection v:vs){
+                    if(v.getId()!=null){
+                        serviceMaps.get("videocourse").update(v);
+                    }else{
+                        serviceMaps.get("videocourse").insert(v);
+                    }
+                }
+            }
         }else if("gkPsychology".equals(mainObj)){
             serviceMaps.get("videocourse").updateMap(dataMap);
+            Long lid = (Long)dataMap.get("id");
+            String sectionId=null;
+            if(dataMap.containsKey("sectionId")){
+                sectionId = (String)dataMap.get("sectionId");
+            }
+            if(sectionId!=null){
+                Object obj = JSON.parse(sectionId);
+                List<VideoSection> vs=(List<VideoSection>)obj;
+                for(VideoSection v:vs){
+                    if(v.getId()!=null){
+                        serviceMaps.get("videocourse").update(v);
+                    }else{
+                        serviceMaps.get("videocourse").insert(v);
+                    }
+                }
+            }
         }else if("university".equals(mainObj)){
             universityExService.updateUniversity(dataMap);
+        }else if("majoredcategory".equals(mainObj)){
+            majoredCategoryExService.updateCategory(dataMap);
         }else {
             super.innerHandleUpdate(mainObj, dataMap);
         }

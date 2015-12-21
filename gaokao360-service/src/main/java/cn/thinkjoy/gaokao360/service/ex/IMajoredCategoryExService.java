@@ -12,8 +12,15 @@ import cn.thinkjoy.common.service.IBaseService;
 import cn.thinkjoy.common.service.IPageService;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IMajoredCategoryExService<D extends IBaseDAO<T>, T extends BaseDomain> extends IBaseService<D, T>,IPageService<D, T>{
 
     public List queryListByParentId(Object id);
+
+    void insertCategory(Map<String,Object> dataMap);
+
+    void updateCategory(Map<String,Object> dataMap);
+
+    void deleteCategory(Map<String,Object> dataMap);
 }
