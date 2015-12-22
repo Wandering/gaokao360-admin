@@ -120,6 +120,9 @@
                 CommonFn.getData('/admin/gaokao360/ex/commonsave/${mainObj}', 'POST', addMajoredData, function (res) {
                     if (res.rtnCode == "0000000") {
                         searchLoad();
+                        $('#majoredModal').modal('hide');
+                        $('#submitForm')[0].reset();
+                        $('#schoolIntroduce,#schoolArticle').html('');
                     }
                 });
             })
@@ -172,6 +175,9 @@
                     success: function (result) {
                         if (result.rtnCode == "0000000") {
                             searchLoad();
+                            $('#majoredModal').modal('hide');
+                            $('#submitForm')[0].reset();
+                            $('#schoolIntroduce,#schoolArticle').html('');
                         }
                     }
                 });
