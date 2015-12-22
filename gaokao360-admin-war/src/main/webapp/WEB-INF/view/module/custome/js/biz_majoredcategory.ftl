@@ -93,7 +93,12 @@
             // 获取当前行数据
             var rowData = CommonFn.getRowData(rowId);
             UI.$majoredCategoryName.val(rowData[0].name);
-            UI.$majoredCategoryType.val(rowData[0].majoredList);
+            var dataList = rowData[0].majoredCategoryDTOs;
+            var list = '';
+                for(var i in dataList){
+                    list += dataList[i].name+'、';
+                }
+            UI.$majoredCategoryType.val(list.substring(0,list.length-1));
             UI.$submitBtn.on(ace.click_event, function (e) {
                 e.preventDefault();
                 majoredCategoryValidate();
