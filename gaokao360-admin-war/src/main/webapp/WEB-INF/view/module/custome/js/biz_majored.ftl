@@ -4,7 +4,7 @@
         var subjectType = $('#selMajored').find("option:selected").html();
         var queryparam = $('#majoredKeyWord').val();
         var rules = [];
-        if (subjectType != '' && subjectType != null && subjectType != undefined && subjectType!='00' && subjectType!='请选择学科门类') {
+        if (subjectType != '' && subjectType != null && subjectType != undefined && subjectType != '00' && subjectType != '请选择学科门类') {
             var rule = {
                 'field': 'subjectType',
                 'op': 'eq',
@@ -12,7 +12,7 @@
             }
             rules.push(rule);
         }
-        if (queryparam != '' && queryparam != null && queryparam != undefined && queryparam!='00') {
+        if (queryparam != '' && queryparam != null && queryparam != undefined && queryparam != '00') {
             var rule = {
                 'field': 'queryparam',
                 'op': 'lk',
@@ -113,8 +113,8 @@
                     , salaryRank: majoredDom.$salaryRank.val()
                     , employedRank: majoredDom.$jobsRank.val()
                     , similarMajored: majoredDom.$sameMajored.val()
-                    , mainMajored: majoredDom.$mainMajored.val()
-                    , employDirect: majoredDom.$employDirect.val()
+                    , mainCourse: majoredDom.$mainMajored.val()
+                    , workGuide: majoredDom.$employDirect.val()
                     , excellentStudent: majoredDom.$excellentStudent.val()
                 };
                 CommonFn.getData('/admin/gaokao360/ex/commonsave/${mainObj}', 'POST', addMajoredData, function (res) {
