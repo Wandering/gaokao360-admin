@@ -110,7 +110,7 @@ public class AgentExController extends BaseController<IAgentExService> {
 
     @Override
     protected String getViewTitle() {
-        return "招办电话";
+        return "招办联系电话";
     }
 
     @Override

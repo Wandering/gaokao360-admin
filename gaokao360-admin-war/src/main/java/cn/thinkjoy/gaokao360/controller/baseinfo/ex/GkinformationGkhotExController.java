@@ -68,7 +68,7 @@ public class GkinformationGkhotExController extends BaseController<IGkinformatio
 
     @Override
     protected String getViewTitle() {
-        return "高考热点信息";
+        return "高考热点";
     }
 
     @Override

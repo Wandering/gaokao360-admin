@@ -110,12 +110,12 @@ public class MajoredCategoryExController extends BaseController<IMajoredCategory
 
     @Override
     protected String getViewTitle() {
-        return "专业关系";
+        return "专业门类管理";
     }
 
     @Override
     protected String getParentTitle() {
-        return "基础信息";
+        return "数据模块";
     }
 
     @Override
