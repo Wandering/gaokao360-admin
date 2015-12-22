@@ -73,13 +73,48 @@
                     }
                 })
             });// 提交添加end
-            UI.$cancelBtn.click(function(){
+            UI.$cancelBtn.click(function () {
                 UI.$majoredCategoryName.val('');
                 UI.$majoredCategoryType.val('');
             });
 
 
         });
+//        修改指定专业门类
+        UI.$editBtn.click(function () {
+            typeStr = "edit";
+            rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
+            var selTrN = $('tr.ui-state-highlight[role="row"]').length;
+            if (selTrN != 1) {
+                CommonFn.tipsDialog('温馨提示', '请选中一行后修改');
+                return false;
+            }
+            UI.$majoredCategoryModal.modal('show');
+            // 获取当前行数据
+            var rowData = CommonFn.getRowData(rowId);
+            UI.$majoredCategoryName.val(rowData[0].name);
+            UI.$majoredCategoryType.val(rowData[0].majoredList);
+            UI.$submitBtn.on(ace.click_event, function (e) {
+                e.preventDefault();
+                majoredCategoryValidate();
+                var editData = {
+                    oper: typeStr
+                    , name: UI.$majoredCategoryName.val().trim()
+                    , majoredList: UI.$majoredCategoryType.val().trim()
+                };
+                CommonFn.getData('/admin/gaokao360/ex/commonsave/${mainObj}', 'post', editData, function (res) {
+                    if (res.rtnCode == '0000000') {
+                        searchLoad();
+                        UI.$majoredCategoryModal.modal('hide');
+                    }
+                });
+            });
+
+        });//修改end
+
+
+//        删除指定条专业门类
+        CommonFn.deleteFun('#deleteBtn', '${mainObj}');
 //        验证函数
         function majoredCategoryValidate() {
             var categoryName = UI.$majoredCategoryName.val().trim();
