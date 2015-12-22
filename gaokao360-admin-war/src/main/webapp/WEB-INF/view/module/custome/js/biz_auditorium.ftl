@@ -84,16 +84,16 @@
                     oper: typeStr,
                     classifyId: '${mainObj}' == 'auditorium' ? '1' : '0',
                     managerId: '${mainObj}' == 'auditorium' ? '1' : '0',
-                    subjectId: '科目',
+                    subjectId: 12,//'科目'
                     teacher: '主讲老师',
                     title: '课程名称',
                     frontCover: '封面图片',
                     subcontent: '简介',
                     years: '2015',
-                    areaId: '省份',
+                    areaId: '110000',
                     sectionId: [
-                        {id: 1, sectionName: '视屏名称', sectionSort: 1, fileUrl: 123},
-                        {id: 1, sectionName: '视屏名称', sectionSort: 2, fileUrl: 123}
+                        { sectionName: '视屏名称', sectionSort: 1, fileUrl: 123},//id: 1,
+                        { sectionName: '视屏名称', sectionSort: 2, fileUrl: 123}
                     ]
                 };
                 CommonFn.getData('/admin/gaokao360/ex/commonsave/${mainObj}', 'post', addData, function (res) {
