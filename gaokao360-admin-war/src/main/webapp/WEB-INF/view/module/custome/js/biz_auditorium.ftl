@@ -80,6 +80,10 @@
             UI.$submitBtn.click(function () {
                 typeStr = 'add';
                 auditoriumValidate();
+                var listPrame = [
+                    { sectionName: '视屏名称', sectionSort: 1, fileUrl: 123},//id: 1,
+                    { sectionName: '视屏名称', sectionSort: 2, fileUrl: 123}
+                ];
                 var addData = {
                     oper: typeStr,
                     classifyId: '${mainObj}' == 'auditorium' ? '1' : '0',
@@ -91,10 +95,7 @@
                     subcontent: '简介',
                     years: '2015',
                     areaId: '110000',
-                    sectionId: [
-                        { sectionName: '视屏名称', sectionSort: 1, fileUrl: 123},//id: 1,
-                        { sectionName: '视屏名称', sectionSort: 2, fileUrl: 123}
-                    ]
+                    sectionId: JSON.stringify(listPrame);
                 };
                 CommonFn.getData('/admin/gaokao360/ex/commonsave/${mainObj}', 'post', addData, function (res) {
                     if (res.rtnCode == '0000000') {
@@ -1003,6 +1004,4 @@
 
     function audAndGkpsy() {
     }
-    ;
-
 </script>
