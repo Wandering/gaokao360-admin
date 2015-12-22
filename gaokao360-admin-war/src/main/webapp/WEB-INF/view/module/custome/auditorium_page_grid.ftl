@@ -35,13 +35,13 @@
             <div class="modal-content">
                 <div class="widget-header">
                     <h5 class="widget-title">添加</h5>
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
-                            class="sr-only">Close</span></button>
+                    <#--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span-->
+                            <#--class="sr-only">Close</span></button>-->
                 </div>
-                <div class="modal-body" style="">
+                <div class="modal-body">
                     <div class="row" >
                         <div class="col-xs-12">
-                            <form class="form-horizontal" role="form">
+                            <form class="form-horizontal" role="form" id="auditoriumModal">
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label no-padding-right"> 省份：</label>
                                     <div class="col-sm-4">
