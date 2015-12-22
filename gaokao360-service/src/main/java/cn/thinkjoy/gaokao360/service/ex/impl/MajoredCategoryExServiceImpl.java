@@ -41,6 +41,13 @@ public class MajoredCategoryExServiceImpl extends AbstractPageService<IBaseDAO<M
         return createBizData4Page(getDao(),conditions,curPage,offset,rows);
     }
 
+    public Object fetch(String id){
+        MajoredCategoryDTO majoredCategoryDTO= majoredCategoryExDAO.fetch(id);
+        List list=majoredCategoryExDAO.queryListByParentId(majoredCategoryDTO.getId());
+        majoredCategoryDTO.setMajoredCategoryDTOs(list);
+        return majoredCategoryDTO;
+    }
+
     public BizData4Page createBizData4Page(IBaseDAO dao, Map<String, Object> conditions, int curPage, int offset, int rows){
         List<MajoredCategoryDTO> mainData = dao.queryPage(conditions, offset, rows, null, null,null);
         for(MajoredCategoryDTO majoredCategoryDTO:mainData){
@@ -68,6 +75,8 @@ public class MajoredCategoryExServiceImpl extends AbstractPageService<IBaseDAO<M
     }
 
     public void insertCategory(Map<String,Object> dataMap){
+        dataMap.put("parentId","1");
+        dataMap.put("level","1");
         majoredCategoryDAO.insertMap(dataMap);
         Long l=(Long)majoredCategoryDAO.selectMaxId();
         String majoredStr=(String)dataMap.get("majoredList");
@@ -77,11 +86,13 @@ public class MajoredCategoryExServiceImpl extends AbstractPageService<IBaseDAO<M
             majoredCategory.setName(str);
             majoredCategory.setLevel(2);
             majoredCategory.setParentId(l);
+            majoredCategoryDAO.insert(majoredCategory);
         }
 
     }
 
     public void updateCategory(Map<String,Object> dataMap){
+        dataMap.put("parentId","1");
         majoredCategoryDAO.updateMap(dataMap);
         Long l=(Long)dataMap.get("id");
         Map<String,Object> map = new HashMap<>();
@@ -94,6 +105,7 @@ public class MajoredCategoryExServiceImpl extends AbstractPageService<IBaseDAO<M
             majoredCategory.setName(str);
             majoredCategory.setLevel(2);
             majoredCategory.setParentId(l);
+            majoredCategoryDAO.insert(majoredCategory);
         }
 
     }
@@ -103,6 +115,7 @@ public class MajoredCategoryExServiceImpl extends AbstractPageService<IBaseDAO<M
         majoredCategoryDAO.deleteById(l);
         Map<String,Object> map = new HashMap<>();
         map.put("parentId",l);
+        majoredCategoryDAO.deleteByCondition(map);
     }
 //    @Override
 //    public void insert(BaseDomain entity) {

@@ -23,4 +23,6 @@ public interface IMajoredCategoryExService<D extends IBaseDAO<T>, T extends Base
     void updateCategory(Map<String,Object> dataMap);
 
     void deleteCategory(Map<String,Object> dataMap);
+
+    Object fetch(String id);
 }
