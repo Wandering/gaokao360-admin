@@ -77,25 +77,24 @@
         uploadFun2();
         UI.$addBtn.click(function () {
             $('#dialogLayer').modal('show');
-
             UI.$submitBtn.click(function () {
                 typeStr = 'add';
                 auditoriumValidate();
-//                classifyId :0，名师讲堂（1）还是高考心理（2）
-//                subjectId ,科目
-//                managerId ：1,名师讲堂（1）高高心理（3）
-//                teacher ：陈老师,哪个老师
-//                title ：数学,标题
-//                frontCover ：封面,
-//                subcontent ： 简介 ,
-//                years:2015 ,年份
-//                beikaochongciType ,高考名师讲堂/高考心理
-//                areaId 省份,
                 var addData = {
-                    oper: typeStr
-                    classifyId:${mainObj},
-                    subjectId:
-
+                    oper: typeStr,
+                    classifyId: '${mainObj}' == 'auditorium' ? '1' : '0',
+                    managerId: '${mainObj}' == 'auditorium' ? '1' : '0',
+                    subjectId: '科目',
+                    teacher: '主讲老师',
+                    title: '课程名称',
+                    frontCover: '封面图片',
+                    subcontent: '简介',
+                    years: '2015',
+                    areaId: '省份',
+                    sectionId: [
+                        {id: 1, sectionName: '视屏名称', sectionSort: 1, fileUrl: 123},
+                        {id: 1, sectionName: '视屏名称', sectionSort: 2, fileUrl: 123}
+                    ]
                 };
                 CommonFn.getData('/admin/gaokao360/ex/commonsave/${mainObj}', 'post', addData, function (res) {
                     if (res.rtnCode == '0000000') {
@@ -999,8 +998,11 @@
         updateTotalProgress();
 
     }
-    function auditoriumValidate() {}
+    function auditoriumValidate() {
+    }
 
-    function audAndGkpsy(){};
+    function audAndGkpsy() {
+    }
+    ;
 
 </script>
