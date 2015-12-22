@@ -95,7 +95,7 @@
                     subcontent: '简介',
                     years: '2015',
                     areaId: '110000',
-                    sectionId: JSON.stringify(listPrame);
+                    sectionId: JSON.stringify(listPrame)
                 };
                 CommonFn.getData('/admin/gaokao360/ex/commonsave/${mainObj}', 'post', addData, function (res) {
                     if (res.rtnCode == '0000000') {
