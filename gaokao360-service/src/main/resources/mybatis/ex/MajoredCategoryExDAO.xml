@@ -41,19 +41,9 @@ selectList
                 and id in (#{condition.whereSql})
             </if>
 
-            <if test="condition.id!=null">
-                ${condition.groupOp}   ${condition.id.field}  ${condition.id.op}  #{condition.id.data}
-            </if>
             <if test="condition.name!=null">
                 ${condition.groupOp}   ${condition.name.field}  ${condition.name.op}  #{condition.name.data}
             </if>
-            <if test="condition.level!=null">
-                ${condition.groupOp}   ${condition.level.field}  ${condition.level.op}  #{condition.level.data}
-            </if>
-            <if test="condition.parentId!=null">
-                ${condition.groupOp}   ${condition.parentId.field}  ${condition.parentId.op}  #{condition.parentId.data}
-            </if>
-
 
     </where>
         <if test="orderBy!=null">
@@ -74,19 +64,9 @@ selectList
     <select id="count" resultType="java.lang.Integer">
         SELECT count(id) FROM gk_majored_category WHERE  1=1 AND  (parentId =1 ||  parentId =2 )
        <where>
-           <if test="id!=null">
-               ${groupOp} ${id.field} ${id.op}  #{id.data}
-           </if>
            <if test="name!=null">
                ${groupOp} ${name.field} ${name.op}  #{name.data}
            </if>
-           <if test="level!=null">
-               ${groupOp} ${level.field} ${level.op}  #{level.data}
-           </if>
-           <if test="parentId!=null">
-               ${groupOp} ${parentId.field} ${parentId.op}  #{parentId.data}
-           </if>
-
        </where>
     </select>
     <select id="queryListByParentId" resultType="cn.thinkjoy.gaokao360.domain.GkBaseDomain">
