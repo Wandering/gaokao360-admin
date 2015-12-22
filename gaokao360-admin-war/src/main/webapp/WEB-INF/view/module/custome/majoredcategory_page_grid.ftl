@@ -52,7 +52,7 @@
                             <label for="majoredCategoryType" class="col-sm-1 control-label">专业类别</label>
                             <div class="col-sm-11">
                                 <textarea cols="30" rows="4" class="form-control" id="majoredCategoryType"
-                                          placeholder=""></textarea>
+                                          placeholder="注意:专业类别之间必须要以短号分割(、)"></textarea>
                             </div>
                         </div>
                     </form>
