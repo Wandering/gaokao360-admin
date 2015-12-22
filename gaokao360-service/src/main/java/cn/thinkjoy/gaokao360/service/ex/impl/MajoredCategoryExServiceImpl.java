@@ -41,6 +41,13 @@ public class MajoredCategoryExServiceImpl extends AbstractPageService<IBaseDAO<M
         return createBizData4Page(getDao(),conditions,curPage,offset,rows);
     }
 
+    public Object fetch(String id){
+        MajoredCategoryDTO majoredCategoryDTO= majoredCategoryExDAO.fetch(id);
+        List list=majoredCategoryExDAO.queryListByParentId(majoredCategoryDTO.getId());
+        majoredCategoryDTO.setMajoredCategoryDTOs(list);
+        return majoredCategoryDTO;
+    }
+
     public BizData4Page createBizData4Page(IBaseDAO dao, Map<String, Object> conditions, int curPage, int offset, int rows){
         List<MajoredCategoryDTO> mainData = dao.queryPage(conditions, offset, rows, null, null,null);
         for(MajoredCategoryDTO majoredCategoryDTO:mainData){

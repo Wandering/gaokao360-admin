@@ -239,6 +239,8 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     public Object queryOne(@PathVariable String mainObj,@RequestParam("id")String id){
         if("university".equals(mainObj)){
             return serviceMaps.get(mainObj+"ex").fetch(id);
+        }if("majoredcategory".equals(mainObj)){
+            return majoredCategoryExService.fetch(id);
         }else{
             return serviceMaps.get(mainObj).fetch(id);
         }
@@ -285,6 +287,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         }
         return st;
     }
+
 
     /**
      * 删除富文本html

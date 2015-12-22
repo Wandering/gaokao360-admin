@@ -60,7 +60,11 @@ selectList
         <include refid="Base_Column_List" />
         FROM gk_majored_category WHERE  1=1 AND  (parentId =1 ||  parentId =2 )
     </select>
-
+    <select id="fetch" resultType="cn.thinkjoy.gaokao360.dto.MajoredCategoryDTO">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM gk_majored_category WHERE  1=1 AND  (parentId =1 ||  parentId =2 ) AND  id=#{id}
+    </select>
     <select id="count" resultType="java.lang.Integer">
         SELECT count(id) FROM gk_majored_category WHERE  1=1 AND  (parentId =1 ||  parentId =2 )
        <where>
