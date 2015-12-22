@@ -54,6 +54,7 @@ selectList
         FROM gk_majored
         <where>
 
+            1=1
             <if test="condition.whereSql != null">
                 and id in (#{condition.whereSql})
             </if>
@@ -62,19 +63,17 @@ selectList
             </if>
             <if test="condition.queryparam!=null">
                 ${condition.groupOp}
-                (province.code like #{condition.queryparam.data}
-                OR schedule.name like #{condition.queryparam.data}
-                OR schedule.name like #{condition.queryparam.data}
-                OR schedule.salaryRank like #{condition.queryparam.data}
-                OR schedule.employedRank like #{condition.queryparam.data}
-                OR schedule.majoredType like #{condition.queryparam.data})
+                (code like #{condition.queryparam.data}
+                OR name like #{condition.queryparam.data}
+                OR name like #{condition.queryparam.data}
+                OR salaryRank like #{condition.queryparam.data}
+                OR employedRank like #{condition.queryparam.data}
+                OR majoredType like #{condition.queryparam.data})
             </if>
 
 
         </where>
-        <if test="orderBy!=null">
             ORDER BY id DESC
-        </if>
         <if test="offset != null">
             limit ${offset}, ${rows}
         </if>
@@ -83,18 +82,19 @@ selectList
     <select id="count" resultType="java.lang.Integer">
         SELECT count(id) FROM gk_majored
         <where>
+1=1
             <if test="subjectType!=null">
                 ${groupOp}   ${subjectType.field}  ${subjectType.op}  #{subjectType.data}
             </if>
             <if test="queryparam!=null">
                 ${groupOp}
-                (province.code like #{queryparam.data}
-                OR schedule.name like #{queryparam.data}
-                OR schedule.name like #{queryparam.data}
-                OR schedule.salaryRank like #{queryparam.data}
-                OR schedule.employedRank like #{queryparam.data}
-                OR schedule.majoredType like #{queryparam.data})
-                OR schedule.subjectType like #{queryparam.data})
+                (code like #{queryparam.data}
+                OR name like #{queryparam.data}
+                OR name like #{queryparam.data}
+                OR salaryRank like #{queryparam.data}
+                OR employedRank like #{queryparam.data}
+                OR majoredType like #{queryparam.data}
+                OR subjectType like #{queryparam.data})
             </if>
 
         </where>

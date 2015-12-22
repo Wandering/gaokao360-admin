@@ -1,23 +1,32 @@
 <script>
     <!-- 自定义js请写在这个文件  以下这个查询方法只是个例子，请按照业务需求修改 -->
     function buildRules() {
-        var areaId = $('#areaId').val();
-        var hotInformation = $('#hotInformation').val();
-//        var hotInformation = "0";
+        var areaId = $('#selProvince').find("option:selected").val();
+        var coursesubjectId = $('#selCourses').find("option:selected").val();
+        var queryparam = $('#examKeyWord').val();
         var rules = [];
         if (areaId != '' && areaId != null && areaId != undefined && areaId != "00") {
             var rule = {
-                'field': 'gkhot.areaId',
+                'field': 'course.areaId',
                 'op': 'eq',
                 'data': areaId
             };
             rules.push(rule);
         }
-        if (hotInformation != '' && hotInformation != null && hotInformation != undefined) {
+        if (coursesubjectId != '' && coursesubjectId != null && coursesubjectId != undefined && coursesubjectId!='00') {
             var rule = {
-                'field': 'gkhot.hotInformation',
-                'op': 'lk',
-                'data': hotInformation
+                'field': 'course.subjectId',
+                'op': 'eq',
+                'data': coursesubjectId
+            };
+            rules.push(rule);
+        }
+
+        if (queryparam != '' && queryparam != null && queryparam != undefined && queryparam!='00') {
+            var rule = {
+                'field': 'queryparam',
+                'op': 'eq',
+                'data': queryparam
             };
             rules.push(rule);
         }
