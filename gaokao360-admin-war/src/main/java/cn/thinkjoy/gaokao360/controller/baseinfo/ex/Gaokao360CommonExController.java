@@ -13,19 +13,20 @@ import cn.thinkjoy.common.managerui.controller.AbstractCommonController;
 import cn.thinkjoy.common.managerui.controller.helpers.BaseServiceMaps;
 import cn.thinkjoy.common.service.IBaseService;
 import cn.thinkjoy.common.utils.ActionEnum;
+import cn.thinkjoy.gaokao360.common.DomainReflex;
 import cn.thinkjoy.gaokao360.common.ServiceMaps;
 import cn.thinkjoy.gaokao360.domain.GkinformationGkhot;
 import cn.thinkjoy.gaokao360.domain.PolicyInterpretation;
 import cn.thinkjoy.gaokao360.domain.VideoSection;
-import cn.thinkjoy.gaokao360.service.IAdmissionBatchService;
-import cn.thinkjoy.gaokao360.service.IProvinceService;
-import cn.thinkjoy.gaokao360.service.ISubjectService;
-import cn.thinkjoy.gaokao360.service.IUniversityService;
+import cn.thinkjoy.gaokao360.service.*;
 import cn.thinkjoy.gaokao360.service.ex.IAdmissionBatchExService;
 import cn.thinkjoy.gaokao360.service.ex.IMajoredCategoryExService;
 import cn.thinkjoy.gaokao360.service.ex.IUniversityExService;
 import cn.thinkjoy.gaokao360.service.ex.IVideoSectionExService;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSONPObject;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +63,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     private IUniversityExService universityExService;
     @Autowired
     private IMajoredCategoryExService majoredCategoryExService;
+
 
     @Override
     protected void innerHandleDel(String mainObj, Map dataMap) {
@@ -185,38 +187,52 @@ public class Gaokao360CommonExController extends AbstractCommonController {
             admissionBatchExService.insertMap(dataMap);
         }else if("auditorium".equals(mainObj)){
             serviceMaps.get("videocourse").insertMap(dataMap);
-            Long lid = videoSectionExService.queryByMaxId();
+            Long lid =(Long)serviceMaps.get("videocourse").selectMaxId();
             String sectionId=null;
             if(dataMap.containsKey("sectionId")){
                 sectionId = (String)dataMap.get("sectionId");
             }
             if(sectionId!=null){
-                Object obj = JSON.parse(sectionId);
-                List<VideoSection> vs=(List<VideoSection>)obj;
-                for(VideoSection v:vs){
+                JSONArray jsonArray = null;
+                jsonArray = JSON.parseArray(sectionId);
+                List<HashMap<String,Object>> maps= handleJSONArray(jsonArray);
+                for(Map map:maps){
+                    VideoSection v = new VideoSection();
+                    try {
+                        DomainReflex.getObj(map,v);
+                    } catch (Exception e) {
+                        throw new BizException("","map转换异常");
+                    }
                     if(v.getId()!=null){
-                        serviceMaps.get("videocourse").update(v);
+                        serviceMaps.get("videosection").update(v);
                     }else{
-                        serviceMaps.get("videocourse").insert(v);
+                        serviceMaps.get("videosection").insert(v);
                     }
                 }
             }
 
         }else if("gkPsychology".equals(mainObj)){
             serviceMaps.get("videocourse").insertMap(dataMap);
-            Long lid = videoSectionExService.queryByMaxId();
+            Long lid = (Long)serviceMaps.get("videocourse").selectMaxId();
             String sectionId=null;
             if(dataMap.containsKey("sectionId")){
                 sectionId = (String)dataMap.get("sectionId");
             }
             if(sectionId!=null){
-                Object obj = JSON.parse(sectionId);
-                List<VideoSection> vs=(List<VideoSection>)obj;
-                for(VideoSection v:vs){
+                JSONArray jsonArray = null;
+                jsonArray = JSON.parseArray(sectionId);
+                List<HashMap<String,Object>> maps= handleJSONArray(jsonArray);
+                for(Map map:maps){
+                    VideoSection v = new VideoSection();
+                    try {
+                        DomainReflex.getObj(map,v);
+                    } catch (Exception e) {
+                        throw new BizException("","map转换异常");
+                    }
                     if(v.getId()!=null){
-                            serviceMaps.get("videocourse").update(v);
+                        serviceMaps.get("videosection").update(v);
                     }else{
-                        serviceMaps.get("videocourse").insert(v);
+                        serviceMaps.get("videosection").insert(v);
                     }
                 }
             }
@@ -246,6 +262,40 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         }
     }
 
+
+    // 将jsonString转化为hashmap
+    private HashMap<String, Object> fromJson2Map(String jsonString) {
+        HashMap jsonMap = JSON.parseObject(jsonString, HashMap.class);
+
+        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+        for(Iterator iter = jsonMap.keySet().iterator(); iter.hasNext();){
+            String key = (String)iter.next();
+            if(jsonMap.get(key) instanceof JSONArray){
+                JSONArray jsonArray = (JSONArray)jsonMap.get(key);
+                List list = handleJSONArray(jsonArray);
+                resultMap.put(key, list);
+            }else{
+                resultMap.put(key, jsonMap.get(key));
+            }
+        }
+        return resultMap;
+    }
+    private  List<HashMap<String, Object>> handleJSONArray(JSONArray jsonArray){
+        List list = new ArrayList();
+        for (Object object : jsonArray) {
+            JSONObject jsonObject = (JSONObject) object;
+            HashMap map = new HashMap<String, Object>();
+            for (Map.Entry entry : jsonObject.entrySet()) {
+                if(entry.getValue() instanceof  JSONArray){
+                    map.put((String)entry.getKey(), handleJSONArray((JSONArray)entry.getValue()));
+                }else{
+                    map.put((String)entry.getKey(), entry.getValue());
+                }
+            }
+            list.add(map);
+        }
+        return list;
+    }
     /**
      * 富文本转接接口
      * @return
@@ -335,13 +385,20 @@ public class Gaokao360CommonExController extends AbstractCommonController {
                 sectionId = (String)dataMap.get("sectionId");
             }
             if(sectionId!=null){
-                Object obj = JSON.parse(sectionId);
-                List<VideoSection> vs=(List<VideoSection>)obj;
-                for(VideoSection v:vs){
+                JSONArray jsonArray = null;
+                jsonArray = JSON.parseArray(sectionId);
+                List<HashMap<String,Object>> maps= handleJSONArray(jsonArray);
+                for(Map map:maps){
+                    VideoSection v = new VideoSection();
+                    try {
+                        DomainReflex.getObj(map,v);
+                    } catch (Exception e) {
+                        throw new BizException("","map转换异常");
+                    }
                     if(v.getId()!=null){
-                        serviceMaps.get("videocourse").update(v);
+                        serviceMaps.get("videosection").update(v);
                     }else{
-                        serviceMaps.get("videocourse").insert(v);
+                        serviceMaps.get("videosection").insert(v);
                     }
                 }
             }
@@ -353,13 +410,21 @@ public class Gaokao360CommonExController extends AbstractCommonController {
                 sectionId = (String)dataMap.get("sectionId");
             }
             if(sectionId!=null){
-                Object obj = JSON.parse(sectionId);
-                List<VideoSection> vs=(List<VideoSection>)obj;
-                for(VideoSection v:vs){
+                JSONArray jsonArray = null;
+                jsonArray = JSON.parseArray(sectionId);
+                List<HashMap<String,Object>> maps= handleJSONArray(jsonArray);
+
+                for(Map map:maps){
+                    VideoSection v = new VideoSection();
+                    try {
+                        DomainReflex.getObj(map,v);
+                    } catch (Exception e) {
+                        throw new BizException("","map转换异常");
+                    }
                     if(v.getId()!=null){
-                        serviceMaps.get("videocourse").update(v);
+                        serviceMaps.get("videosection").update(v);
                     }else{
-                        serviceMaps.get("videocourse").insert(v);
+                        serviceMaps.get("videosection").insert(v);
                     }
                 }
             }
