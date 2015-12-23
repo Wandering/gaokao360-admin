@@ -106,11 +106,10 @@
             });// 提交添加end
         });
 
+        //删除
+        CommonFn.deleteFun('#deleteBtn', '${mainObj}');
+    });//$ end
 
-    });
-
-    //删除
-    CommonFn.deleteFun('#deleteBtn', '${mainObj}');
     function uploadFun1() {
         var $wrap = $('#uploader1'),
 
