@@ -19,6 +19,7 @@
 <div class="navbar-header pull-left">
     <!-- #section:basics/navbar.layout.brand -->
     <a href="#" class="navbar-brand">
+        <i class="fa fa-globe"></i>
         <small>
             高考360数据平台
         </small>
