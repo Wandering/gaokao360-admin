@@ -8,9 +8,13 @@ package cn.thinkjoy.gaokao360.dao.ex;
 
 import cn.thinkjoy.common.dao.IBaseDAO;
 import cn.thinkjoy.gaokao360.domain.VideoSection;
+import cn.thinkjoy.gaokao360.dto.VideoSectionDTO;
+
+import java.util.List;
 
 public interface IVideoSectioneExDAO extends IBaseDAO<VideoSection>{
-    public VideoSection  queryByCourseId(Object courseId);
+    public VideoSection queryByCourseId(Object courseId);
     public Long  queryByMaxId();
     public Long updateCourseId(Object courseId, Object id);
+    public List<VideoSectionDTO> getVideoByCourseId(Object courseId);
 }

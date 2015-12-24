@@ -7,7 +7,6 @@
 
 package cn.thinkjoy.gaokao360.controller.baseinfo.ex;
 
-import cn.thinkjoy.common.domain.BaseDomain;
 import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.common.managerui.controller.AbstractCommonController;
 import cn.thinkjoy.common.managerui.controller.helpers.BaseServiceMaps;
@@ -17,8 +16,13 @@ import cn.thinkjoy.gaokao360.common.DomainReflex;
 import cn.thinkjoy.gaokao360.common.ServiceMaps;
 import cn.thinkjoy.gaokao360.domain.GkinformationGkhot;
 import cn.thinkjoy.gaokao360.domain.PolicyInterpretation;
+import cn.thinkjoy.gaokao360.domain.VideoCourse;
 import cn.thinkjoy.gaokao360.domain.VideoSection;
-import cn.thinkjoy.gaokao360.service.*;
+import cn.thinkjoy.gaokao360.dto.VideoCourseDTO;
+import cn.thinkjoy.gaokao360.dto.VideoSectionDTO;
+import cn.thinkjoy.gaokao360.service.IAdmissionBatchService;
+import cn.thinkjoy.gaokao360.service.IProvinceService;
+import cn.thinkjoy.gaokao360.service.ISubjectService;
 import cn.thinkjoy.gaokao360.service.ex.IAdmissionBatchExService;
 import cn.thinkjoy.gaokao360.service.ex.IMajoredCategoryExService;
 import cn.thinkjoy.gaokao360.service.ex.IUniversityExService;
@@ -26,7 +30,6 @@ import cn.thinkjoy.gaokao360.service.ex.IVideoSectionExService;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.JSONPObject;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,9 +40,10 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.io.*;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.*;
@@ -199,7 +203,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
                 for(Map map:maps){
                     VideoSection v = new VideoSection();
                     try {
-                        DomainReflex.getObj(map,v);
+                        DomainReflex.getObj(map, v);
                     } catch (Exception e) {
                         throw new BizException("","map转换异常");
                     }
@@ -225,7 +229,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
                 for(Map map:maps){
                     VideoSection v = new VideoSection();
                     try {
-                        DomainReflex.getObj(map,v);
+                        DomainReflex.getObj(map, v);
                     } catch (Exception e) {
                         throw new BizException("","map转换异常");
                     }
@@ -257,6 +261,16 @@ public class Gaokao360CommonExController extends AbstractCommonController {
             return serviceMaps.get(mainObj+"ex").fetch(id);
         }if("majoredcategory".equals(mainObj)){
             return majoredCategoryExService.fetch(id);
+        }if("auditorium".equals(mainObj)||"gkpsychology".equals(mainObj)){
+            VideoCourse videoCourse=(VideoCourse)serviceMaps.get("videocourse").fetch(id);
+            VideoCourseDTO videoCourseDTO = new VideoCourseDTO();
+            try {
+                DomainReflex.ObjToDTO(videoCourse, videoCourseDTO);
+            } catch (Exception e) {
+                throw new BizException("","类型转换异常");
+            }
+            videoCourseDTO.setVideoSectionDTO((List<VideoSectionDTO>) videoSectionExService.getVideoSectionByCourseId(id));
+            return videoCourseDTO;
         }else{
             return serviceMaps.get(mainObj).fetch(id);
         }
@@ -391,7 +405,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
                 for(Map map:maps){
                     VideoSection v = new VideoSection();
                     try {
-                        DomainReflex.getObj(map,v);
+                        DomainReflex.getObj(map, v);
                     } catch (Exception e) {
                         throw new BizException("","map转换异常");
                     }
@@ -417,7 +431,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
                 for(Map map:maps){
                     VideoSection v = new VideoSection();
                     try {
-                        DomainReflex.getObj(map,v);
+                        DomainReflex.getObj(map, v);
                     } catch (Exception e) {
                         throw new BizException("","map转换异常");
                     }
