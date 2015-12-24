@@ -108,11 +108,11 @@
                 return false;
             }
             if (teacherNameV == '') {
-                CommonFn.tipsDialog('温馨提示', '请输入主讲老师')
+                CommonFn.tipsDialog('温馨提示', '请输入主讲老师');
                 return false;
             }
             if (expertsIntroV == '') {
-                CommonFn.tipsDialog('温馨提示', '请输入专家介绍')
+                CommonFn.tipsDialog('温馨提示', '请输入专家介绍');
                 return false;
             }
             var addExamData = {
