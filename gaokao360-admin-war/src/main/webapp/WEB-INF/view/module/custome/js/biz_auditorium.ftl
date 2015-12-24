@@ -104,7 +104,6 @@
                     title: UI.$sectionTitle.val(),
                     frontCover: $("#__auditoriumId").attr('imgUrl'),
                     subcontent: UI.$expertsIntro.val(),
-                    years: '2015',
                     areaId: $('#selCourses2').find('option[select]').val(),
                     sectionId: JSON.stringify(listPrame)
                 };
