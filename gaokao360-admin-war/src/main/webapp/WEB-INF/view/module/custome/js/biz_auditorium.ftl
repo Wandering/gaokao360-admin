@@ -95,6 +95,12 @@
                     {sectionName: '视屏名称', sectionSort: 1, fileUrl: $("#__auditoriumId").attr('videoUrl')},
                     {sectionName: '视屏名称', sectionSort: 2, fileUrl: 123}
                 ];
+//                var videoUrlList = $('#__auditoriumId').attr('videoUrl');
+//
+//                var fileNameList = $('#__auditoriumId').attr('fileName');
+//                var videoSectionDTOs = ("#__auditoriumId").attr('videoInfo');
+//                console.info(videoSectionDTOs);
+
                 var addData = {
                     oper: typeStr,
                     classifyId: '${mainObj}' == 'auditorium' ? '1' : '0',
@@ -105,7 +111,7 @@
                     frontCover: $("#__auditoriumId").attr('imgUrl'),
                     subcontent: UI.$expertsIntro.val(),
                     areaId: $('#selCourses2').find('option[select]').val(),
-                    sectionId: JSON.stringify(listPrame)
+                    videoSectionDTOs: JSON.stringify(listPrame)
                 };
                 CommonFn.getData('/admin/gaokao360/ex/commonsave/${mainObj}', 'post', addData, function (res) {
                     if (res.rtnCode == '0000000') {
@@ -544,7 +550,7 @@
 
         uploader.onUploadSuccess = function (file, response) {
             console.log(response.bizData.file.fileUrl);
-            $('#__auditoriumId').attr('videoUrl', response.bizData.file.fileUrl);
+            $('#__auditoriumId').attr('imgUrl', response.bizData.file.fileUrl);
 //                alert(response.bizData.file.fileUrl)
 //                fileUrl = response.bizData.file.fileUrl;
 //                $('#swfUrl').val(fileUrl);
@@ -645,9 +651,9 @@
             paste: document.body,
             // 上传文件的类型
             accept: {
-                title: 'Images',
-                extensions: 'gif,jpg,jpeg,bmp,png',
-                mimeTypes: 'image/*'
+                title: 'video'
+//                ,extensions:'mp4,rmvb,swf,avi,3gp'
+//                ,mineTypes:'video/*'
             },
 
             // swf文件路径
@@ -660,7 +666,7 @@
             // server: 'http://webuploader.duapp.com/server/fileupload.php',
             server: 'http://cs-dev.thinkjoy.com.cn/rest/v1/uploadFile?userId=gk360&dirId=0&productCode=gk360&bizSystem=gk360&spaceName=gk360',
             // 验证文件总数量, 超出则不允许加入队列
-            fileNumLimit: 0,
+            fileNumLimit: 10,
             // 验证文件总大小是否超出限制, 超出则不允许加入队列
 //                fileSizeLimit: 5 * 1024 * 1024,
             // 验证单个文件大小是否超出限制, 超出则不允许加入队列
@@ -670,7 +676,7 @@
         function addFile(file) {
 
             var $li = $('<li id="' + file.id + '">' +
-                            '<p class="title">' + file.name + '</p>' +
+                            '<p class="title">' +  file.id + "==" + file.name + '</p>' +
                             '<p class="imgWrap"></p>' +
                             '<p class="progress"><span></span></p>' +
                             '</li>'),
@@ -944,8 +950,8 @@
             }
             else if (fileCount >= 2) {
                 $('ul.filelist li:eq(0)').find('span.cancel').click();
-                if ($('.state-complete').length == 1) {
-                    CommonFn.tipsDialog('温馨提示', '只能上传一个文件');
+                if ($('.state-complete').length == 10) {
+                    CommonFn.tipsDialog('温馨提示', '只能上传10个文件');
                     return false;
                 }
             }
@@ -986,14 +992,24 @@
         uploader.onError = function (code) {
             alert('错误: ' + code);
         };
-
+//        定义一个数组用来存放视屏list
+        var videoList = [];
+        var listJSON = {};
         uploader.onUploadSuccess = function (file, response) {
-            console.log(response.bizData.file.fileUrl);
-            $('#__auditoriumId').attr('imgUrl', response.bizData.file.fileUrl);
-//                alert(response.bizData.file.fileUrl)
-//                fileUrl = response.bizData.file.fileUrl;
-//                $('#swfUrl').val(fileUrl);
 
+            console.log(file.id)
+            console.log(file.name)
+
+            listJSON.url = response.bizData.file.fileUrl;
+            listJSON.name = (response.bizData.file.fileName).replace(/\.\w+$/, '');
+            videoList.push(listJSON);
+
+
+
+
+
+
+            localStorage.setItem('videoInfo', JSON.stringify(videoList));
         };
 
         $upload.on('click', function () {
