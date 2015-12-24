@@ -87,9 +87,6 @@
             $('#dialogLayer').modal('show');
             uploadFun1();
             uploadFun2();
-            $(document).on('click', '.uploadBtn1,.uploadBtn2', function () {
-                $(this).attr('data-flag', '1');
-            });
             UI.$submitBtn.click(function (e) {
                 e.preventDefault();
                 typeStr = 'add';
@@ -102,13 +99,13 @@
                     oper: typeStr,
                     classifyId: '${mainObj}' == 'auditorium' ? '1' : '0',
                     managerId: '${mainObj}' == 'auditorium' ? '1' : '0',
-                    subjectId: $('#selCourses2').find('option[selected]').attr('checked', 'checked')
+                    subjectId: $('#selCourses2').find('option[selected]').val(),
                     teacher: UI.$teacherName.val(),
                     title: UI.$sectionTitle.val(),
                     frontCover: $("#__auditoriumId").attr('imgUrl'),
-                    subcontent: UI.$expertsIntro,
+                    subcontent: UI.$expertsIntro.val(),
                     years: '2015',
-                    areaId: $('#selCourses2').find('option[select]').attr('checked', 'checked'),
+                    areaId: $('#selCourses2').find('option[select]').val(),
                     sectionId: JSON.stringify(listPrame)
                 };
                 CommonFn.getData('/admin/gaokao360/ex/commonsave/${mainObj}', 'post', addData, function (res) {
@@ -116,7 +113,7 @@
                         searchLoad();
                         $('#dialogLayer').modal('hide');
                     }
-                })
+                });
             });// 提交添加end
         });
 
@@ -127,11 +124,11 @@
 //        视屏,视屏封面添加验证
         var imgUrl = $("#__auditoriumId").attr('imgUrl');
         var videoUrl = $("#__auditoriumId").attr('videoUrl');
-        if (imgUrl == '') {
+        if (imgUrl == undefined) {
             CommonFn.tipsDialog('温馨提示', '视屏封面没有上传,无法提交');
             return false;
         }
-        if (videoUrl == '') {
+        if (videoUrl == undefined) {
             CommonFn.tipsDialog('温馨提示', '视屏还没有上传,无法提交');
             return false;
         }
