@@ -115,7 +115,7 @@
 
 
                 + '<div class="form-group">'
-                + '<label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 专家介绍：</label>'
+                + '<label class="col-sm-2 control-label no-padding-right" for="expertsIntro">上传文件：</label>'
                 + '<div class="col-sm-10">'
 
 
@@ -136,21 +136,9 @@
                 + '</div>'
                 + '</div>'
                 + '</div>'
-
-
-
-
-
-
                 + '</div>'
                 + '</div>'
-
-
-
                 + '<input type="hidden" value="" id="swfUrl">'
-
-
-
                 + '</form>'
                 + '</div>'
                 + '</div>';
@@ -218,7 +206,12 @@
             var selSubjectV = $("#selCourses2").find('option:selected').val();
             var selYearsV = $("#selYears2").find('option:selected').val();
             var examTitle = $('#examName').val().trim();
-            var fileUrl = $('#fileUrl').val();
+            var fileUrl = $('#swfUrl').val();
+            console.log(selProvinceV)
+            console.log(selSubjectV)
+            console.log(selYearsV)
+            console.log(examTitle)
+            console.log(fileUrl)
             if (selProvinceV == "00") {
                 CommonFn.tipsDialog('温馨提示', '请选择省份');
                 return false;
@@ -228,7 +221,7 @@
                 return false;
             }
             if (selYearsV == '00') {
-                CommonFn.tipsDialog('年份没有选择,请重新输入');
+                CommonFn.tipsDialog('温馨提示','年份没有选择,请重新输入');
                 return false;
             }
             if (examTitle.length > 10 || examTitle.length == 0) {
@@ -240,20 +233,15 @@
                 return false;
             }
             var addExamData = {
-                oper: typeStr,
                 years: selYearsV,
+                sort :"0", //排序
                 subjectId: selSubjectV,//课程名称
-                mbeikaochongciType: '真题密卷',
-                mbeikaochongciTypeId: 2,
-                paperName: "低调低调测试测试",
-                price: 0,
-                isAccept: 0,
-                resources: fileUrl,//url地址
-                resourcesExt: 'swf',
-                resourcesFilesize: '1200',//
-                downloadsManual: 0,
-                downloadsAutomatic: 0,
-                sort: 0,
+                paperName: examTitle,  //试卷名称
+                frontCover:fileUrl,
+                oper: typeStr,
+                subContent:"",
+                price:"0",
+                resources:"",
                 areaId:selProvinceV
             };
 
@@ -685,9 +673,9 @@
 
             uploader.onUploadSuccess = function (file, response) {
                 console.log(response.bizData.file.fileUrl)
-//                alert(response.bizData.file.fileUrl)
-                fileUrl = response.bizData.file.fileUrl;
-                $('#swfUrl').val(fileUrl);
+////                alert(response.bizData.file.fileUrl)
+//                fileUrl = response.bizData.file.fileUrl;
+                $('body').find('#swfUrl').val(response.bizData.file.fileUrl);
 
             };
 

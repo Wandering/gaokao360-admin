@@ -946,6 +946,7 @@
                     return this._container;
                 }
 
+
                 parent = $(opts.container || document.body);
                 container = $(document.createElement('div'));
 
