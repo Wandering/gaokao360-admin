@@ -66,6 +66,12 @@
             $addBtn: $('#addBtn')
             , $submitBtn: $('#submitBtn')
             , $editBtn: $('#editBtn')
+
+            , $selProvince2: $('#selProvince2')
+            , $selCourses2: $('#selCourses2')
+            , $teacherName: $('#teacherName')
+            , $expertsIntro: $('#expertsIntro')
+
         };
 //        课程,年份,省份
         $('#selCourses,#selCourses2').append(CommonFn.getSubject());
@@ -75,14 +81,21 @@
         // 添加
         uploadFun1();
         uploadFun2();
-        UI.$addBtn.click(function () {
+        UI.$addBtn.click(function (e) {
+            e.preventDefault();
             $('#dialogLayer').modal('show');
-            UI.$submitBtn.click(function () {
+            uploadFun1();
+            uploadFun2();
+            $(document).on('click', '.uploadBtn1,.uploadBtn2', function () {
+                $(this).attr('data-flag', '1');
+            });
+            UI.$submitBtn.click(function (e) {
+                e.preventDefault();
                 typeStr = 'add';
                 auditoriumValidate();
                 var listPrame = [
-                    { sectionName: '视屏名称', sectionSort: 1, fileUrl: 123},//id: 1,
-                    { sectionName: '视屏名称', sectionSort: 2, fileUrl: 123}
+                    {sectionName: '视屏名称', sectionSort: 1, fileUrl: $("#__auditoriumId").attr('videoUrl')},
+                    {sectionName: '视屏名称', sectionSort: 2, fileUrl: 123}
                 ];
                 var addData = {
                     oper: typeStr,
@@ -91,7 +104,7 @@
                     subjectId: 12,//'科目'
                     teacher: '主讲老师',
                     title: '课程名称',
-                    frontCover: '封面图片',
+                    frontCover: $("#__auditoriumId").attr('imgUrl'),
                     subcontent: '简介',
                     years: '2015',
                     areaId: '110000',
@@ -100,7 +113,7 @@
                 CommonFn.getData('/admin/gaokao360/ex/commonsave/${mainObj}', 'post', addData, function (res) {
                     if (res.rtnCode == '0000000') {
                         searchLoad();
-                        UI.$majoredCategoryModal.modal('hide');
+                        $('#dialogLayer').modal('hide');
                     }
                 })
             });// 提交添加end
@@ -109,7 +122,19 @@
         //删除
         CommonFn.deleteFun('#deleteBtn', '${mainObj}');
     });//$ end
-
+    function auditoriumValidate() {
+//        视屏,视屏封面添加验证
+        var imgUrl = $("#__auditoriumId").attr('imgUrl');
+        var videoUrl = $("#__auditoriumId").attr('videoUrl');
+        if (imgUrl == '') {
+            CommonFn.tipsDialog('温馨提示', '视屏封面没有上传,无法提交');
+            return false;
+        }
+        if (videoUrl == '') {
+            CommonFn.tipsDialog('温馨提示', '视屏还没有上传,无法提交');
+            return false;
+        }
+    }
     function uploadFun1() {
         var $wrap = $('#uploader1'),
 
@@ -521,7 +546,8 @@
         };
 
         uploader.onUploadSuccess = function (file, response) {
-            console.log(response.bizData.file.fileUrl)
+            console.log(response.bizData.file.fileUrl);
+            $('#__auditoriumId').attr('videoUrl', response.bizData.file.fileUrl);
 //                alert(response.bizData.file.fileUrl)
 //                fileUrl = response.bizData.file.fileUrl;
 //                $('#swfUrl').val(fileUrl);
@@ -880,8 +906,8 @@
 
                 case 'confirm':
                     $progress.hide();
-                    $upload.text('开始上传').addClass('disabled');
-//                        $upload.text('开始上传');
+                    $upload.text('开始上传');
+//                    $upload.text('开始上传').addClass('disabled');
 
                     stats = uploader.getStats();
                     if (stats.successNum && !stats.uploadFailNum) {
@@ -965,7 +991,8 @@
         };
 
         uploader.onUploadSuccess = function (file, response) {
-            console.log(response.bizData.file.fileUrl)
+            console.log(response.bizData.file.fileUrl);
+            $('#__auditoriumId').attr('imgUrl', response.bizData.file.fileUrl);
 //                alert(response.bizData.file.fileUrl)
 //                fileUrl = response.bizData.file.fileUrl;
 //                $('#swfUrl').val(fileUrl);
@@ -998,9 +1025,5 @@
         updateTotalProgress();
 
     }
-    function auditoriumValidate() {
-    }
 
-    function audAndGkpsy() {
-    }
 </script>

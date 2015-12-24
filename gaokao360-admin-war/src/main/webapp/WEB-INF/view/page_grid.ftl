@@ -14,7 +14,7 @@
             background-color: #F8F8F8 !important;
         }
         #gbox_grid-table{
-            width: 1193px!important;
+            max-width: 1193px!important;
             overflow: hidden!important;
         }
     </style>
