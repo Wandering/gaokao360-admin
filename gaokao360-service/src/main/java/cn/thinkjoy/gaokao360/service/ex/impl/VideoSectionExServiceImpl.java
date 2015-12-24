@@ -8,17 +8,18 @@ package cn.thinkjoy.gaokao360.service.ex.impl;
 
 import cn.thinkjoy.common.dao.IBaseDAO;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
-import cn.thinkjoy.gaokao360.dao.IVideoSectionDAO;
 import cn.thinkjoy.gaokao360.dao.ex.IVideoSectioneExDAO;
 import cn.thinkjoy.gaokao360.domain.VideoSection;
-import cn.thinkjoy.gaokao360.service.IVideoSectionService;
+import cn.thinkjoy.gaokao360.dto.VideoSectionDTO;
 import cn.thinkjoy.gaokao360.service.ex.IVideoSectionExService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service("VideoSectionExServiceImpl")
-public class VideoSectionExServiceImpl extends AbstractPageService<IBaseDAO<VideoSection>, VideoSection> implements IVideoSectionExService<IBaseDAO<VideoSection>,VideoSection>{
+public class VideoSectionExServiceImpl extends AbstractPageService<IBaseDAO<VideoSection>, VideoSection> implements IVideoSectionExService<IBaseDAO<VideoSection>,VideoSection> {
     @Autowired
     private IVideoSectioneExDAO videoSectioneExDAO;
 
@@ -35,6 +36,11 @@ public class VideoSectionExServiceImpl extends AbstractPageService<IBaseDAO<Vide
     @Override
     public void updateCourseId(Object courseId,Object id) {
         videoSectioneExDAO.updateCourseId(courseId,id);
+    }
+
+    @Override
+    public List<VideoSectionDTO> getVideoSectionByCourseId(Object courseId) {
+        return videoSectioneExDAO.getVideoByCourseId(courseId);
     }
 
     @Override

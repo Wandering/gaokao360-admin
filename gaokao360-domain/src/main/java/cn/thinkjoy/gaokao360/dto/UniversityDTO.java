@@ -1,7 +1,6 @@
 package cn.thinkjoy.gaokao360.dto;
 
 import cn.thinkjoy.gaokao360.domain.University;
-import cn.thinkjoy.gaokao360.domain.UniversitySort;
 
 /**
  * Created by admin on 2015/12/18.

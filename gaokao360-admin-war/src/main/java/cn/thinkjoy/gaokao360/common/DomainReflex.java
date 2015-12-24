@@ -1,6 +1,8 @@
 package cn.thinkjoy.gaokao360.common;
 
-import java.lang.reflect.*;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,7 +23,57 @@ import java.util.Map;
 public class DomainReflex {
 
 
+    public static Object ObjToDTO(Object o,Object dto) throws Exception {
+        Class clz=o.getClass();
+        Class clzDto=dto.getClass();
+        do{
+            Field[] fields =  clz.getDeclaredFields();
+            for(Field field : fields){
+                boolean isStatic = Modifier.isStatic(field.getModifiers());
+                if(isStatic)continue;
+                String key = field.getName();
+                Object value = clz.getMethod(getGetMethod(field.getName())).invoke(o);
+                setValueToObj(clz, field, getParamType(field),dto,value);
+            }
+            clz=clz.getSuperclass();
+        }while (clz!=null && clz.getName()!="Object");
+        return dto;
+    }
 
+    /**
+     * 将map参数填写到对象中
+     * @param clz
+     * @param field
+     * @param fieldclz
+     * @param obj
+     * @throws Exception
+     */
+    private static void setValueToObj(Class clz,Field field,Class fieldclz,Object obj,Object value) throws Exception {
+        String name = field.getName();
+        if(value==null){
+            return;
+        }else if(INTEGER.equals(fieldclz.getName())){
+            clz.getMethod(getSetMethod(name), new Class[]{fieldclz}).invoke(obj, Integer.valueOf(value.toString()));
+        }else if(STRING.equals(fieldclz.getName())){
+            clz.getMethod(getSetMethod(name), new Class[]{fieldclz}).invoke(obj, String.valueOf(value.toString()));
+        }else if(LONG.equals(fieldclz.getName())){
+            clz.getMethod(getSetMethod(name), new Class[]{fieldclz}).invoke(obj, Long.valueOf(value.toString()));
+        }else if(BYTE.equals(fieldclz.getName())){
+            clz.getMethod(getSetMethod(name), new Class[]{fieldclz}).invoke(obj, Byte.valueOf(value.toString()));
+        }else if(FLOAT.equals(fieldclz.getName())){
+            clz.getMethod(getSetMethod(name), new Class[]{fieldclz}).invoke(obj, Float.valueOf(value.toString()));
+        }else if(DOUBLE.equals(fieldclz.getName())){
+            clz.getMethod(getSetMethod(name), new Class[]{fieldclz}).invoke(obj, Double.valueOf(value.toString()));
+        }else if(OBJECT.equals(fieldclz.getName())){
+            clz.getMethod(getSetMethod(name), new Class[]{fieldclz}).invoke(obj, value.toString());
+        }else{
+            setValueToObjExt(clz, field, fieldclz, obj, value);
+        }
+
+    }
+    protected static void setValueToObjExt(Class clz,Field field,Class fieldclz,Object obj,Object value){
+        return;
+    }
     public static List objectRemoveRepeat(List list){
         if(list==null)return null;
         if(list.size()==0)return list;
