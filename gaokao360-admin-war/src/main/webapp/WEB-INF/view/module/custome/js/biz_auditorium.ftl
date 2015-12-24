@@ -71,6 +71,7 @@
             , $selCourses2: $('#selCourses2')
             , $teacherName: $('#teacherName')
             , $expertsIntro: $('#expertsIntro')
+            , $sectionTitle: $('#sectionTitle')
 
         };
 //        课程,年份,省份
@@ -101,13 +102,13 @@
                     oper: typeStr,
                     classifyId: '${mainObj}' == 'auditorium' ? '1' : '0',
                     managerId: '${mainObj}' == 'auditorium' ? '1' : '0',
-                    subjectId: 12,//'科目'
-                    teacher: '主讲老师',
-                    title: '课程名称',
+                    subjectId: $('#selCourses2').find('option[selected]').attr('checked', 'checked')
+                    teacher: UI.$teacherName.val(),
+                    title: UI.$sectionTitle.val(),
                     frontCover: $("#__auditoriumId").attr('imgUrl'),
-                    subcontent: '简介',
+                    subcontent: UI.$expertsIntro,
                     years: '2015',
-                    areaId: '110000',
+                    areaId: $('#selCourses2').find('option[select]').attr('checked', 'checked'),
                     sectionId: JSON.stringify(listPrame)
                 };
                 CommonFn.getData('/admin/gaokao360/ex/commonsave/${mainObj}', 'post', addData, function (res) {
