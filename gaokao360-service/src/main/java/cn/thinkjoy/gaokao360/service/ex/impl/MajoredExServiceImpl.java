@@ -30,7 +30,7 @@ public class MajoredExServiceImpl extends AbstractPageService<IBaseDAO<Majored>,
 
     @Override
     public IBaseDAO<Majored> getDao() {
-        return majoredDAO;
+        return majoredExDAO;
     }
 
     @Override

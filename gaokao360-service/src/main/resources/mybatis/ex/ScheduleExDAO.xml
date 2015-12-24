@@ -53,6 +53,9 @@ selectList
             <if test="condition.scheduleyears!=null">
                 ${condition.groupOp}   ${condition.scheduleyears.field}  ${condition.scheduleyears.op}  #{condition.scheduleyears.data}
             </if>
+            <if test="condition.scheduleareaId!=null">
+                ${condition.groupOp}   ${condition.scheduleareaId.field}  ${condition.scheduleareaId.op}  #{condition.scheduleareaId.data}
+            </if>
             <if test="condition.queryparam!=null">
                 ${condition.groupOp}  (province.name like #{condition.queryparam.data} OR schedule.month like #{condition.queryparam.data} OR schedule.years like #{condition.queryparam.data} OR schedule.content like #{condition.queryparam.data} )
             </if>
@@ -60,9 +63,7 @@ selectList
 
 
         </where>
-        <if test="orderBy!=null">
-            ORDER BY ${orderBy} ${sortBy}
-        </if>
+        ORDER BY id DESC
         <if test="offset != null">
             limit ${offset}, ${rows}
         </if>
@@ -81,7 +82,9 @@ selectList
             <if test="queryparam!=null">
                 ${groupOp}  (province.name like #{queryparam.data} OR schedule.month like #{queryparam.data} OR schedule.years like #{queryparam.data})
             </if>
-
+            <if test="scheduleareaId!=null">
+                ${groupOp}   ${scheduleareaId.field}  ${scheduleareaId.op}  #{scheduleareaId.data}
+            </if>
         </where>
     </select>
 </mapper>

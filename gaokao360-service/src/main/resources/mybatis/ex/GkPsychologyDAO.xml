@@ -73,7 +73,11 @@
                 ${condition.groupOp}   ${condition.courseareaId.field}  ${condition.courseareaId.op}  #{condition.courseareaId.data}
             </if>
             <if test="condition.queryparam!=null">
-                and (course.teacher like CONCAT('%', #{condition.queryparam.data} , '%')  OR course.subcontent like CONCAT('%', #{condition.queryparam.data} , '%')')
+                and (course.teacher like #{condition.queryparam.data}
+                province.name like #{condition.queryparam.data}
+                course.title like #{condition.queryparam.data}
+                gksubject.subjectName like #{condition.queryparam.data}
+                OR course.subcontent like #{condition.queryparam.data})
             </if>
 
 
@@ -96,10 +100,14 @@
                 ${groupOp}   ${coursesubjectId.field}  ${coursesubjectId.op}  #{coursesubjectId.data}
             </if>
             <if test="courseareaId!=null">
-                ${groupOp}   ${course.courseareaId.field}  ${course.courseareaId.op}  #{course.courseareaId.data}
+                ${groupOp}   ${courseareaId.field}  ${courseareaId.op}  #{courseareaId.data}
             </if>
             <if test="queryparam!=null">
-                and (course.teacher like CONCAT('%', #{queryparam.data} , '%')  OR course.subcontent like CONCAT('%', #{queryparam.data} , '%')')
+                and (course.teacher like #{queryparam.data}
+                province.name like #{queryparam.data}
+                course.title like #{queryparam.data}
+                gksubject.subjectName like #{queryparam.data}
+                OR course.subcontent like #{queryparam.data})
             </if>
         </where>
     </select>

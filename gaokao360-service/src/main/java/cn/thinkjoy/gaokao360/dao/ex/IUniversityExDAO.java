@@ -8,9 +8,11 @@ package cn.thinkjoy.gaokao360.dao.ex;
 
 import cn.thinkjoy.common.dao.IBaseDAO;
 import cn.thinkjoy.gaokao360.domain.University;
+import cn.thinkjoy.gaokao360.domain.UniversityDict;
 import cn.thinkjoy.gaokao360.dto.UniversityDTO;
 
 public interface IUniversityExDAO extends IBaseDAO<UniversityDTO>{
     Integer getMaxId();
-
+    UniversityDict getDictByName(String name);
+    Integer getDictMaxSort(String type);
 }

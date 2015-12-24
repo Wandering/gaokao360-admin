@@ -41,7 +41,11 @@ selectList
         other as other ,
         jobRat as jobRat ,
         incomeAve as incomeAve ,
-        jobMajoredRel as jobMajoredRel 
+        jobMajoredRel as jobMajoredRel ,
+        salaryRank as salaryRank ,
+        employedRank as employedRank ,
+        subjectTypeId as subjectTypeId ,
+        majoredTypeId as majoredTypeId 
     </sql>
     <insert id="insert" parameterType="Majored">
         INSERT INTO gk_majored (
@@ -60,7 +64,11 @@ selectList
         other,
         jobRat,
         incomeAve,
-        jobMajoredRel
+        jobMajoredRel,
+        salaryRank,
+        employedRank,
+        subjectTypeId,
+        majoredTypeId
         ) VALUES (
         #{code},
         #{name},
@@ -77,7 +85,11 @@ selectList
         #{other},
         #{jobRat},
         #{incomeAve},
-        #{jobMajoredRel}
+        #{jobMajoredRel},
+        #{salaryRank},
+        #{employedRank},
+        #{subjectTypeId},
+        #{majoredTypeId}
         )
             <selectKey resultType="java.lang.Long" keyProperty="id">
                 SELECT LAST_INSERT_ID() AS ID
@@ -136,6 +148,18 @@ selectList
             <if test="jobMajoredRel!=null">
                 jobMajoredRel = #{jobMajoredRel},
             </if>
+            <if test="salaryRank!=null">
+                salaryRank = #{salaryRank},
+            </if>
+            <if test="employedRank!=null">
+                employedRank = #{employedRank},
+            </if>
+            <if test="subjectTypeId!=null">
+                subjectTypeId = #{subjectTypeId},
+            </if>
+            <if test="majoredTypeId!=null">
+                majoredTypeId = #{majoredTypeId},
+            </if>
         </trim>
         WHERE
         id = #{id}
@@ -191,6 +215,18 @@ selectList
             </if>
             <if test="map.jobMajoredRel!=null">
                 jobMajoredRel = #{map.jobMajoredRel},
+            </if>
+            <if test="map.salaryRank!=null">
+                salaryRank = #{map.salaryRank},
+            </if>
+            <if test="map.employedRank!=null">
+                employedRank = #{map.employedRank},
+            </if>
+            <if test="map.subjectTypeId!=null">
+                subjectTypeId = #{map.subjectTypeId},
+            </if>
+            <if test="map.majoredTypeId!=null">
+                majoredTypeId = #{map.majoredTypeId},
             </if>
         </trim>
         WHERE
@@ -248,6 +284,18 @@ selectList
             <if test="update.jobMajoredRel!=null">
                 jobMajoredRel = #{update.jobMajoredRel},
             </if>
+            <if test="update.salaryRank!=null">
+                salaryRank = #{update.salaryRank},
+            </if>
+            <if test="update.employedRank!=null">
+                employedRank = #{update.employedRank},
+            </if>
+            <if test="update.subjectTypeId!=null">
+                subjectTypeId = #{update.subjectTypeId},
+            </if>
+            <if test="update.majoredTypeId!=null">
+                majoredTypeId = #{update.majoredTypeId},
+            </if>
         </trim>
 
         <trim prefix="WHERE" prefixOverrides="AND | OR">
@@ -302,6 +350,18 @@ selectList
             <if test="condition.jobMajoredRel!=null">
                 AND jobMajoredRel = #{condition.jobMajoredRel}
             </if>
+            <if test="condition.salaryRank!=null">
+                AND salaryRank = #{condition.salaryRank}
+            </if>
+            <if test="condition.employedRank!=null">
+                AND employedRank = #{condition.employedRank}
+            </if>
+            <if test="condition.subjectTypeId!=null">
+                AND subjectTypeId = #{condition.subjectTypeId}
+            </if>
+            <if test="condition.majoredTypeId!=null">
+                AND majoredTypeId = #{condition.majoredTypeId}
+            </if>
         </trim>
     </update>
 
@@ -322,7 +382,11 @@ selectList
                 other,
                 jobRat,
                 incomeAve,
-                jobMajoredRel
+                jobMajoredRel,
+                salaryRank,
+                employedRank,
+                subjectTypeId,
+                majoredTypeId
         ) VALUES (
                     #{map.code},
                     #{map.name},
@@ -339,7 +403,11 @@ selectList
                     #{map.other},
                     #{map.jobRat},
                     #{map.incomeAve},
-                    #{map.jobMajoredRel}
+                    #{map.jobMajoredRel},
+                    #{map.salaryRank},
+                    #{map.employedRank},
+                    #{map.subjectTypeId},
+                    #{map.majoredTypeId}
         )
     </insert>
 
@@ -363,6 +431,10 @@ selectList
             jobRat = #{jobRat},
             incomeAve = #{incomeAve},
             jobMajoredRel = #{jobMajoredRel},
+            salaryRank = #{salaryRank},
+            employedRank = #{employedRank},
+            subjectTypeId = #{subjectTypeId},
+            majoredTypeId = #{majoredTypeId},
         </trim>
         WHERE
         id = #{id} 
@@ -430,6 +502,18 @@ selectList
             </if>
             <if test="jobMajoredRel!=null">
                 AND jobMajoredRel = #{jobMajoredRel}
+            </if>
+            <if test="salaryRank!=null">
+                AND salaryRank = #{salaryRank}
+            </if>
+            <if test="employedRank!=null">
+                AND employedRank = #{employedRank}
+            </if>
+            <if test="subjectTypeId!=null">
+                AND subjectTypeId = #{subjectTypeId}
+            </if>
+            <if test="majoredTypeId!=null">
+                AND majoredTypeId = #{majoredTypeId}
             </if>
         </trim>
     </delete>
@@ -539,6 +623,18 @@ selectList
             <if test="condition.jobMajoredRel!=null">
                 ${condition.groupOp}   ${condition.jobMajoredRel.field}  ${condition.jobMajoredRel.op}  #{condition.jobMajoredRel.data}
             </if>
+            <if test="condition.salaryRank!=null">
+                ${condition.groupOp}   ${condition.salaryRank.field}  ${condition.salaryRank.op}  #{condition.salaryRank.data}
+            </if>
+            <if test="condition.employedRank!=null">
+                ${condition.groupOp}   ${condition.employedRank.field}  ${condition.employedRank.op}  #{condition.employedRank.data}
+            </if>
+            <if test="condition.subjectTypeId!=null">
+                ${condition.groupOp}   ${condition.subjectTypeId.field}  ${condition.subjectTypeId.op}  #{condition.subjectTypeId.data}
+            </if>
+            <if test="condition.majoredTypeId!=null">
+                ${condition.groupOp}   ${condition.majoredTypeId.field}  ${condition.majoredTypeId.op}  #{condition.majoredTypeId.data}
+            </if>
 
 
     </where>
@@ -606,6 +702,18 @@ selectList
             <if test="condition.jobMajoredRel!=null">
                 AND jobMajoredRel like CONCAT('%', #{condition.jobMajoredRel} , '%')
             </if>
+            <if test="condition.salaryRank!=null">
+                AND salaryRank like CONCAT('%', #{condition.salaryRank} , '%')
+            </if>
+            <if test="condition.employedRank!=null">
+                AND employedRank like CONCAT('%', #{condition.employedRank} , '%')
+            </if>
+            <if test="condition.subjectTypeId!=null">
+                AND subjectTypeId like CONCAT('%', #{condition.subjectTypeId} , '%')
+            </if>
+            <if test="condition.majoredTypeId!=null">
+                AND majoredTypeId like CONCAT('%', #{condition.majoredTypeId} , '%')
+            </if>
         </trim>
         <if test="orderBy!=null">
         ORDER BY ${orderBy} ${sortBy}
@@ -669,6 +777,18 @@ selectList
             <if test="condition.jobMajoredRel!=null">
                 AND jobMajoredRel = #{condition.jobMajoredRel}
             </if>
+            <if test="condition.salaryRank!=null">
+                AND salaryRank = #{condition.salaryRank}
+            </if>
+            <if test="condition.employedRank!=null">
+                AND employedRank = #{condition.employedRank}
+            </if>
+            <if test="condition.subjectTypeId!=null">
+                AND subjectTypeId = #{condition.subjectTypeId}
+            </if>
+            <if test="condition.majoredTypeId!=null">
+                AND majoredTypeId = #{condition.majoredTypeId}
+            </if>
         </trim>
         <if test="orderBy!=null">
         ORDER BY ${orderBy} ${sortBy}
@@ -731,6 +851,18 @@ selectList
             <if test="condition.jobMajoredRel!=null">
                 AND jobMajoredRel = #{condition.jobMajoredRel}
             </if>
+            <if test="condition.salaryRank!=null">
+                AND salaryRank = #{condition.salaryRank}
+            </if>
+            <if test="condition.employedRank!=null">
+                AND employedRank = #{condition.employedRank}
+            </if>
+            <if test="condition.subjectTypeId!=null">
+                AND subjectTypeId = #{condition.subjectTypeId}
+            </if>
+            <if test="condition.majoredTypeId!=null">
+                AND majoredTypeId = #{condition.majoredTypeId}
+            </if>
         </trim>
         <if test="orderBy!=null">
         ORDER BY ${orderBy} ${sortBy}
@@ -791,6 +923,18 @@ selectList
            </if>
            <if test="jobMajoredRel!=null">
                ${groupOp} ${jobMajoredRel.field} ${jobMajoredRel.op}  #{jobMajoredRel.data}
+           </if>
+           <if test="salaryRank!=null">
+               ${groupOp} ${salaryRank.field} ${salaryRank.op}  #{salaryRank.data}
+           </if>
+           <if test="employedRank!=null">
+               ${groupOp} ${employedRank.field} ${employedRank.op}  #{employedRank.data}
+           </if>
+           <if test="subjectTypeId!=null">
+               ${groupOp} ${subjectTypeId.field} ${subjectTypeId.op}  #{subjectTypeId.data}
+           </if>
+           <if test="majoredTypeId!=null">
+               ${groupOp} ${majoredTypeId.field} ${majoredTypeId.op}  #{majoredTypeId.data}
            </if>
 
        </where>

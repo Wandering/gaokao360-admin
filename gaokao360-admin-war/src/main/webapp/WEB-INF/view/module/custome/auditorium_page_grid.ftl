@@ -35,13 +35,13 @@
             <div class="modal-content">
                 <div class="widget-header">
                     <h5 class="widget-title">添加</h5>
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
-                            class="sr-only">Close</span></button>
+                    <#--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span-->
+                            <#--class="sr-only">Close</span></button>-->
                 </div>
-                <div class="modal-body" style="">
+                <div class="modal-body">
                     <div class="row" >
                         <div class="col-xs-12">
-                            <form class="form-horizontal" role="form">
+                            <form class="form-horizontal" role="form" id="auditoriumModal">
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label no-padding-right"> 省份：</label>
                                     <div class="col-sm-4">
@@ -67,10 +67,16 @@
                                         <textarea class="form-control" id="expertsIntro" placeholder="请输入专家介绍"></textarea>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label no-padding-right" for="sectionTitle"> 视屏名称：</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" id="sectionTitle" placeholder="请输视屏名称" class="form-control"/>
+                                    </div>
+                                </div>
 
 
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 封面图片：</label>
+                                    <label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 视屏封面图片：</label>
                                     <div class="col-sm-10">
 
                                         <div id="uploader1" class="wu-example">
@@ -95,11 +101,13 @@
                                 </div>
                                 <input type="hidden" value="" id="swfUrl1">
 
+
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 封面图片：</label>
+                                    <label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 视屏上传列表：</label>
                                     <div class="col-sm-10">
+
                                         <div id="uploader2" class="wu-example">
-                                            <div class="uploader-tips">(最多上传3个,MP4格式)</div>
+                                            <#--<div class="uploader-tips">(只能上传一个图片,可拖拽文件,大小小于3M)</div>-->
                                             <div class="queueList">
                                                 <div id="dndArea" class="placeholder">
                                                     <div id="uploaderBtn2">点击上传</div>
@@ -118,79 +126,19 @@
                                         </div>
                                     </div>
                                 </div>
-                                <input type="hidden" value="" id="swfUrl2">
                             </form>
                         </div>
                     </div>
                 </div>
+                <input type="hidden" id="__auditoriumId" />
                 <div class="modal-footer">
                     <button type="button" id="cancelBtn" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="button" id="submitBtn" class="btn btn-primary" id="answer_submit">确定</button>
+                    <button type="button" id="submitBtn" class="btn btn-primary">确定</button>
                 </div>
             </div>
 
         </div>
     </div>
     <!-- 自定义模态框end-->
-
-
-
-    <#--<div id="dialogLayer" style="position: absolute;left: 50%;top:50%;z-index: 99999;display: none;">-->
-        <#--<div class="form-group">-->
-            <#--<label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 封面图片：</label>-->
-            <#--<div class="col-sm-10">-->
-
-                <#--<div id="uploader1" class="wu-example">-->
-                    <#--<div class="uploader-tips">(只能上传一个图片,可拖拽文件,大小小于3M)</div>-->
-                    <#--<div class="queueList">-->
-                        <#--<div id="dndArea" class="placeholder">-->
-                            <#--<div id="uploaderBtn1">点击上传</div>-->
-                        <#--</div>-->
-                    <#--</div>-->
-                    <#--<div class="statusBar" style="display:none;">-->
-                        <#--<div class="progress">-->
-                            <#--<span class="text">0%</span>-->
-                            <#--<span class="percentage"></span>-->
-                        <#--</div>-->
-                        <#--<div class="info"></div>-->
-                        <#--<div class="btns">-->
-                            <#--<div class="uploadBtn1">上传封面</div>-->
-                        <#--</div>-->
-                    <#--</div>-->
-                <#--</div>-->
-            <#--</div>-->
-        <#--</div>-->
-        <#--<input type="hidden" value="" id="swfUrl1">-->
-
-
-        <#--<div class="form-group">-->
-            <#--<label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 封面图片：</label>-->
-            <#--<div class="col-sm-10">-->
-
-                <#--<div id="uploader2" class="wu-example">-->
-                    <#--<div class="uploader-tips">(只能上传一个图片,可拖拽文件,大小小于3M)</div>-->
-                    <#--<div class="queueList">-->
-                        <#--<div id="dndArea" class="placeholder">-->
-                            <#--<div id="uploaderBtn2">点击上传</div>-->
-                        <#--</div>-->
-                    <#--</div>-->
-                    <#--<div class="statusBar" style="display:none;">-->
-                        <#--<div class="progress">-->
-                            <#--<span class="text">0%</span>-->
-                            <#--<span class="percentage"></span>-->
-                        <#--</div>-->
-                        <#--<div class="info"></div>-->
-                        <#--<div class="btns">-->
-                            <#--<div class="uploadBtn2">上传视频</div>-->
-                        <#--</div>-->
-                    <#--</div>-->
-                <#--</div>-->
-            <#--</div>-->
-        <#--</div>-->
-        <#--<input type="hidden" value="" id="swfUrl2">-->
-
-    <#--</div>-->
-
-
 <#include 'page_grid.ftl'>
 </div><!-- /.page-content -->

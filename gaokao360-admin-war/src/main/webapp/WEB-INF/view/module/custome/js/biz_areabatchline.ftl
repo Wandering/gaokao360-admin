@@ -1,31 +1,22 @@
 <script>
     <!-- 自定义js请写在这个文件  以下这个查询方法只是个例子，请按照业务需求修改 -->
     function buildRules() {
-        var courseName = $('#courseName').val();
-        var status = $('#status').val();
-        var classfyId = $('#classfyId').val();
+        var areaId = $('#areaId').val();
+        var queryparam = $('#keywordSearch').val();
         var rules = [];
-        if (courseName != '' && courseName != null && courseName != undefined) {
+        if (areaId != '' && areaId != null && areaId != undefined && areaId != '00') {
             var rule = {
-                'field': 'courseName',
+                'field': 'line.areaId',
                 'op': 'eq',
-                'data': courseName
+                'data': areaId
             }
             rules.push(rule);
         }
-        if (status != '' && status != null && status != undefined) {
+        if (queryparam != '' && queryparam != null && queryparam != undefined) {
             var rule = {
-                'field': 'status',
-                'op': 'eq',
-                'data': status
-            }
-            rules.push(rule);
-        }
-        if (classfyId != '' && classfyId != null && classfyId != undefined) {
-            var rule = {
-                'field': 'classfyId',
-                'op': 'eq',
-                'data': classfyId
+                'field': 'queryparam',
+                'op': 'lk',
+                'data': queryparam
             }
             rules.push(rule);
         }
@@ -96,10 +87,10 @@
                 ue.destroy();
             });
             ue = UE.getEditor('editor');
-            $('#getContent').click(function () {
-                console.info(ue.hasContents());
-                console.info(ue.getContent());
-            });
+//            $('#getContent').click(function () {
+//                console.info(ue.hasContents());
+//                console.info(ue.getContent());
+//            });
         });//添加地区批次end
 
 

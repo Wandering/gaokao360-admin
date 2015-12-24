@@ -71,8 +71,8 @@ selectList
             <if test="condition.paperareaId!=null">
                 ${condition.groupOp}   ${condition.paperareaId.field}  ${condition.paperareaId.op}  #{condition.paperareaId.data}
             </if>
-            <if test="condition.paperpaperName!=null">
-                ${condition.groupOp}   ${condition.paperpaperName.field}  ${condition.paperpaperName.op}  #{condition.paperpaperName.data}
+            <if test="condition.queryparam!=null">
+                ${condition.groupOp}   (province.name like #{condition.queryparam.data} OR paper.paperName  like #{condition.queryparam.data} OR gksubject.subjectName like #{condition.queryparam.data})
             </if>
 
 
@@ -100,8 +100,8 @@ selectList
            <if test="paperareaId!=null">
                ${groupOp}   ${paperareaId.field}  ${paperareaId.op}  #{paperareaId.data}
            </if>
-           <if test="paperpaperName!=null">
-               ${groupOp}   ${paperpaperName.field}  ${paperpaperName.op}  #{paperpaperName.data}
+           <if test="queryparam!=null">
+               ${groupOp}   (province.name like #{queryparam.data} OR paper.paperName  like #{queryparam.data} OR gksubject.subjectName like #{queryparam.data})
            </if>
 
 

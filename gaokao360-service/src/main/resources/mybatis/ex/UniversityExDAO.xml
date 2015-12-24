@@ -64,10 +64,27 @@ selectList
             <if test="condition.whereSql != null">
                 and id in (#{condition.whereSql})
             </if>
+            <if test="condition.universityeducationLevel!=null">
+                ${condition.groupOp}   ${condition.universityeducationLevel.field}  ${condition.universityeducationLevel.op}  #{condition.universityeducationLevel.data}
+            </if>
+            <if test="condition.universityprovinceName!=null">
+                ${condition.groupOp}   ${condition.universityprovinceName.field}  ${condition.universityprovinceName.op}  #{condition.universityprovinceName.data}
+            </if>
+            <!--<if test="condition.universityprovinceId!=null">-->
+                <!--${condition.groupOp}   ${condition.universityprovinceId.field}  ${condition.universityprovinceId.op}  #{condition.universityprovinceId.data}-->
+            <!--</if>-->
+            <if test="condition.queryparam!=null">
+                ${condition.groupOp}   (province.name like #{condition.queryparam.data}
+                OR university.code like #{condition.queryparam.data}
+                OR university.name like #{condition.queryparam.data}
+                OR university.subjection like #{condition.queryparam.data}
+                OR university.type like #{condition.queryparam.data}
+                OR university.provinceName like #{condition.queryparam.data}
+                OR dict1.name like #{condition.queryparam.data})
+            </if>
+
         </where>
-        <if test="orderBy!=null">
-            ORDER BY ${orderBy} ${sortBy}
-        </if>
+            ORDER BY id DESC
         <if test="offset != null">
             limit ${offset}, ${rows}
         </if>
@@ -77,30 +94,66 @@ selectList
         SELECT
         <include refid="Base_Column_List" />
         from gk_university university
-        LEFT JOIN gk_province province  ON province.name = university.provinceName
+        LEFT JOIN gk_province province  ON province.id = university.provinceId
         LEFT JOIN gk_university_dict dict ON university.property=dict.dictId and dict.type='FEATURE'
         LEFT JOIN gk_university_sort sort ON sort.universityId=university.id
-        LEFT OUTER JOIN gk_university_dict dict1 ON university.educationLevel=dict1.dictId and dict1.type='EDULEVEL'
+        LEFT JOIN gk_university_dict dict1 ON university.educationLevel=dict1.dictId and dict1.type='EDULEVEL'
         AND id=#{id}
     </select>
 
     <select id="count" resultType="java.lang.Integer">
         SELECT count(university.id)
         from gk_university university
-        LEFT JOIN gk_province province  ON province.id = university.provinceId
+        LEFT JOIN gk_province province  ON province.name = university.provinceName
+        LEFT JOIN gk_university_dict dict ON university.property=dict.dictId and dict.type='FEATURE'
+        LEFT JOIN gk_university_sort sort ON sort.universityId=university.id
+        LEFT JOIN gk_university_dict dict1 ON university.educationLevel=dict1.dictId and dict1.type='EDULEVEL'
         <where>
-            <if test="scheduleareaId!=null">
-                ${groupOp}   ${scheduleareaId.field}  ${scheduleareaId.op}  #{scheduleareaId.data}
+            <if test="universityeducationLevel!=null">
+                ${groupOp}   ${universityeducationLevel.field}  ${universityeducationLevel.op}  #{universityeducationLevel.data}
             </if>
+            <if test="universityprovinceName!=null">
+                ${groupOp}   ${universityprovinceName.field}  ${universityprovinceName.op}  #{universityprovinceName.data}
+            </if>
+            <!--<if test="universityprovinceId!=null">-->
+                <!--${groupOp}   ${universityprovinceId.field}  ${universityprovinceId.op}  #{universityprovinceId.data}-->
+            <!--</if>-->
             <if test="queryparam!=null">
-                ${groupOp}  (province.name like #{queryparam.data} OR schedule.month like #{queryparam.data} OR schedule.years like #{queryparam.data})
+                ${groupOp}   (province.name like #{queryparam.data}
+                OR university.code like #{queryparam.data}
+                OR university.name like #{queryparam.data}
+                OR university.subjection like #{queryparam.data}
+                OR university.type like #{queryparam.data}
+                OR university.provinceName like #{queryparam.data}
+                OR dict1.name like #{queryparam.data})
             </if>
+
         </where>
     </select>
 
     <select id="getMaxId" resultType="java.lang.Integer">
         SELECT MAX(id)
+        from gk_university
+    </select>
+
+    <select id="fetch" resultType="cn.thinkjoy.gaokao360.dto.UniversityDTO">
+        SELECT
+        <include refid="Base_Column_List" />
         from gk_university university
+        LEFT JOIN gk_province province  ON province.name = university.provinceName
+        LEFT JOIN gk_university_dict dict ON university.property=dict.dictId and dict.type='FEATURE'
+        LEFT JOIN gk_university_sort sort ON sort.universityId=university.id
+        LEFT OUTER JOIN gk_university_dict dict1 ON university.educationLevel=dict1.dictId and dict1.type='EDULEVEL'
+        WHERE   university.id=#{id}
+    </select>
+    <select id="getDictByName" resultType="cn.thinkjoy.gaokao360.domain.UniversityDict">
+        SELECT
+        *
+        from gk_university_dict dict WHERE dict.type='FEATURE' AND name=#{name}
+
+    </select>
+    <select id="getDictMaxSort" resultType="Integer">
+         SELECT MAX(dictId) FROM gk_university_dict WHERE type=#{type}
     </select>
 
 </mapper>

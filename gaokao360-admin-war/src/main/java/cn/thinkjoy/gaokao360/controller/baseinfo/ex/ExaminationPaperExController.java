@@ -79,7 +79,7 @@ public class ExaminationPaperExController extends BaseController<IExaminationPap
 
     @Override
     protected String getViewTitle() {
-        return "密卷管理";
+        return "真题密卷";
     }
 
     @Override

@@ -19,6 +19,7 @@
 <div class="navbar-header pull-left">
     <!-- #section:basics/navbar.layout.brand -->
     <a href="#" class="navbar-brand">
+        <i class="fa fa-globe"></i>
         <small>
             高考360数据平台
         </small>
@@ -43,10 +44,10 @@
 <!-- #section:basics/navbar.user_menu -->
 <li class="light-blue">
     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-        <img class="nav-user-photo" src="${path}/assets/avatars/user.jpg" alt="Jason's Photo" />
+        <img class="nav-user-photo" src="${path}/assets/avatars/avatar4.png" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>Welcome,</small>
-									Jason
+                                        Steven Jobs
 								</span>
 
         <i class="ace-icon fa fa-caret-down"></i>
