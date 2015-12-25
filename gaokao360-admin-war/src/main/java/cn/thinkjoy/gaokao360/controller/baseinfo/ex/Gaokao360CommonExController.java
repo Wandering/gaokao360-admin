@@ -212,11 +212,8 @@ public class Gaokao360CommonExController extends AbstractCommonController {
                     } catch (Exception e) {
                         throw new BizException("","map转换异常");
                     }
-                    if(v.getId()!=null){
-                        serviceMaps.get("videosection").update(v);
-                    }else{
-                        serviceMaps.get("videosection").insert(v);
-                    }
+                    v.setCourseId(lid);
+                    serviceMaps.get("videosection").insert(v);
                 }
             }
         }else if("university".equals(mainObj)){
@@ -395,6 +392,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
                     } catch (Exception e) {
                         throw new BizException("","map转换异常");
                     }
+                    v.setCourseId(lid);
                     serviceMaps.get("videosection").insert(v);
                 }
             }
