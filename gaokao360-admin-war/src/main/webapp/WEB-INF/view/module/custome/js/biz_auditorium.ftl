@@ -77,6 +77,140 @@
     * 名师讲堂模块
     *
     * */
+
+
+
+
+
+
+
+    var dialogLayer = ''
+            +'<div class="modal fade in widget-box ui-widget  my-modal" id="dialogLayer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">'
+            +'<div class="modal-dialog">'
+            +'<div class="modal-content">'
+            +'<div class="widget-header">'
+            +'<h5 class="widget-title">添加</h5>'
+            <#--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span-->
+            <#--class="sr-only">Close</span></button>-->
+            +'</div>'
+            +'<div class="modal-body">'
+            +'<div class="row" >'
+            +'<div class="col-xs-12">'
+            +'<form class="form-horizontal" role="form" id="auditoriumModal">'
+            +'<div class="form-group">'
+            +'<label class="col-sm-2 control-label no-padding-right"> 省份：</label>'
+            +'<div class="col-sm-4">'
+            +'<select class="form-control" id="selProvince2"></select>'
+            +'</div>'
+            +'</div>'
+            +'<div class="form-group">'
+            +'<label class="col-sm-2 control-label no-padding-right"> 科目类别：</label>'
+            +'<div class="col-sm-4">'
+            +'<select class="form-control" id="selCourses2">'
+            +'</select>'
+            +'</div>'
+            +'</div>'
+            +'<div class="form-group">'
+            +'<label class="col-sm-2 control-label no-padding-right" for="teacherName"> 主讲老师：</label>'
+            +'<div class="col-sm-10">'
+            +'<input type="text" id="teacherName" placeholder="请输入主讲老师" class="form-control"/>'
+            +'</div>'
+            +'</div>'
+            +'<div class="form-group">'
+            +'<label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 专家介绍：</label>'
+            +'<div class="col-sm-10">'
+            +'<textarea class="form-control" id="expertsIntro" placeholder="请输入专家介绍"></textarea>'
+            +'</div>'
+            +'</div>'
+            +'<div class="form-group">'
+            +'<label class="col-sm-2 control-label no-padding-right" for="sectionTitle"> 视屏名称：</label>'
+            +'<div class="col-sm-10">'
+            +'<input type="text" id="sectionTitle" placeholder="请输视屏名称" class="form-control"/>'
+            +'</div>'
+            +'</div>'
+
+
+            +'<div class="form-group">'
+            +'<label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 视屏封面图片：</label>'
+            +'<div class="col-sm-10">'
+
+            +'<div id="uploader1" class="wu-example">'
+            +'<div class="uploader-tips">(只能上传一个图片,可拖拽文件,大小小于3M)</div>'
+            +'<div class="queueList">'
+            +'<div id="dndArea" class="placeholder">'
+            +'<div id="uploaderBtn1">点击上传</div>'
+            +'</div>'
+            +'</div>'
+            +'<div class="statusBar" style="display:none;">'
+            +'<div class="progress">'
+            +'<span class="text">0%</span>'
+            +'<span class="percentage"></span>'
+            +'</div>'
+            +'<div class="info"></div>'
+            +'<div class="btns">'
+            +'<div class="uploadBtn1">上传封面</div>'
+            +'</div>'
+            +'</div>'
+            +'</div>'
+            +'</div>'
+            +'</div>'
+            +'<input type="hidden" value="" id="imgUrlData">'
+
+
+            +'<div class="form-group">'
+            +'<label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 视屏上传列表：</label>'
+            +'<div class="col-sm-10">'
+
+            +'<div id="uploader2" class="wu-example">'
+            <#--<div class="uploader-tips">(只能上传一个图片,可拖拽文件,大小小于3M)</div>-->
+            +'<div class="queueList">'
+            +'<div id="dndArea" class="placeholder">'
+            +'<div id="uploaderBtn2">点击上传</div>'
+            +'</div>'
+            +'</div>'
+            +'<div class="statusBar" style="display:none;">'
+            +'<div class="progress">'
+            +'<span class="text">0%</span>'
+            +'<span class="percentage"></span>'
+            +'</div>'
+            +'<div class="info"></div>'
+            +'<div class="btns">'
+            +'<div class="uploadBtn2">上传视频</div>'
+            +'</div>'
+            +'</div>'
+            +'</div>'
+            +'</div>'
+            +'</div>'
+            +'<input type="hidden" value="" id="videoData" />'
+            +'</form>'
+            +'</div>'
+            +'</div>'
+            +'</div>'
+
+            +'<div class="modal-footer">'
+            +'<button type="button" id="cancelBtn" class="btn btn-default" data-dismiss="modal">取消</button>'
+            +'<button type="button" id="submitBtn" class="btn btn-primary">确定</button>'
+            +'</div>'
+            +'</div>'
+
+            +'</div>'
+            +'</div>'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     jQuery(function ($) {
         var typeStr;
         var rowId;
@@ -97,63 +231,265 @@
         $('#selYears').append(CommonFn.getYear());
         $('#selProvince,#selProvince2').html(CommonFn.getProvince());
 
-        // 添加
+
         uploadFun1();
         uploadFun2();
-        UI.$addBtn.click(function (e) {
-            e.preventDefault();
-            $('#dialogLayer').modal('show');
+        var addEditFun = function () {
+            var selProvinceV = $('#selProvince2 option:checked').val(),
+                    selCourses2V = $('#selCourses2 option:checked').val(),
+                    teacherNameV = $.trim($('#teacherName').val()),
+                    expertsIntroV = $('#expertsIntro').val(),
+                    sectionTitleV = $('#sectionTitle').val(),
+                    imgUrlDataV = $('#imgUrlData').val(),
+                    videoDataV = $('#videoData').val();
+
+            if (selProvinceV == "00") {
+                CommonFn.tipsDialog('温馨提示', '请选择省份');
+                return false;
+            }
+            if (selCourses2V == "00") {
+                CommonFn.tipsDialog('温馨提示', '请选择科目');
+                return false;
+            }
+            if (teacherNameV == "") {
+                CommonFn.tipsDialog('温馨提示', '请选择主讲老师');
+                return false;
+            }
+            if (expertsIntroV == "") {
+                CommonFn.tipsDialog('温馨提示', '请选择专家介绍');
+                return false;
+            }
+            if (sectionTitleV == "") {
+                CommonFn.tipsDialog('温馨提示', '请选择视频名称');
+                return false;
+            }
+            alert(imgUrlDataV)
+            if (imgUrlDataV == "") {
+                CommonFn.tipsDialog('温馨提示', '请上传视频封面');
+                return false;
+            }
+            if (videoDataV == "") {
+                CommonFn.tipsDialog('温馨提示', '请上传视频');
+                return false;
+            }
+            var sectionData = $('#sectionId').val();
+            var addData = {
+                oper: typeStr,
+                classifyId: '${mainObj}' == 'auditorium' ? '1' : '0',
+                managerId: '${mainObj}' == 'auditorium' ? '1' : '0',
+                subjectId: $('#selCourses2').find('option[selected]').val(),
+                teacher: UI.$teacherName.val(),
+                title: UI.$sectionTitle.val(),
+                frontCover: $("#imgUrlData").val(),
+                subcontent: UI.$expertsIntro.val(),
+                areaId: $('#selProvince2').find('option[select]').val(),
+                videoSectionDTOs:sectionData
+            };
+            $.ajax({
+                type: "POST",
+                url: '/admin/${bizSys}/commonsave/${mainObj}',
+                data: addData,
+                success: function (result) {
+                    if (result.rtnCode == "0000000") {
+                        searchLoad();
+                        $('#dialogLayer').modal("hide");
+                    }
+                }
+            });
+        };
+
+
+
+
+
+
+        // 添加
+//        uploadFun1();
+//        uploadFun2();
+        UI.$addBtn.click(function () {
+            $('#dialogLayer').modal('show')
+                    .find('input').val('')
+                    .end()
+                    .find('select option[value="00"]').attr('selected','selected')
+                    .end()
+                    .find('.filelist').html('')
+                    .end()
+                    .find('textarea').val('')
+                    .end()
+                    .find('.statusBar').hide();
+            typeStr = 'add';
             uploadFun1();
             uploadFun2();
-            UI.$submitBtn.click(function (e) {
-                e.preventDefault();
-                typeStr = 'add';
-                auditoriumValidate();
-                var listPrame = [
-                    {sectionName: '视屏名称', sectionSort: 1, fileUrl: $("#__auditoriumId").attr('videoUrl')},
-                    {sectionName: '视屏名称', sectionSort: 2, fileUrl: 123}
-                ];
-//                var videoUrlList = $('#__auditoriumId').attr('videoUrl');
-//
-//                var fileNameList = $('#__auditoriumId').attr('fileName');
-//                var videoSectionDTOs = ("#__auditoriumId").attr('videoInfo');
-//                console.info(videoSectionDTOs);
-
-                var sectionData = $('#sectionId').val();
-                var addData = {
-                    oper: typeStr,
-                    classifyId: '${mainObj}' == 'auditorium' ? '1' : '0',
-                    managerId: '${mainObj}' == 'auditorium' ? '1' : '0',
-                    subjectId: $('#selCourses2').find('option[selected]').val(),
-                    teacher: UI.$teacherName.val(),
-                    title: UI.$sectionTitle.val(),
-                    frontCover: $("#__auditoriumId").attr('imgUrl'),
-                    subcontent: UI.$expertsIntro.val(),
-                    areaId: $('#selCourses2').find('option[select]').val(),
-                    videoSectionDTOs:sectionData
-                };
-                CommonFn.getData('/admin/gaokao360/ex/commonsave/${mainObj}', 'post', addData, function (res) {
-                    if (res.rtnCode == '0000000') {
-                        searchLoad();
-                        $('#dialogLayer').modal('hide');
-                    }
-                });
-            });// 提交添加end
         });
+
+        UI.$editBtn.click(function (e) {
+            typeStr = "edit";
+            rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
+            var selTrN = $('tr.ui-state-highlight[role="row"]').length;
+            if (selTrN != 1) {
+                CommonFn.tipsDialog('温馨提示', '请选中一行后修改');
+                return false;
+            }
+            e.preventDefault();
+            $('#dialogLayer').modal('show');
+            // 当前行数据
+            var rowData = CommonFn.getRowData(rowId);
+            console.log(rowData);
+            $('#selProvince2').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
+            $('#selCourses2').find('option[value="' + rowData[0].subjectId + '"]').attr('selected', 'selected');
+            $('#teacherName').val(rowData[0].teacher);
+            $('#sectionTitle').val(rowData[0].title);
+            $('#expertsIntro').val(rowData[0].subcontent);
+            uploadFun1();
+            uploadFun2();
+
+        });
+
+        UI.$submitBtn.click(function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            addEditFun();
+
+
+
+            <#--e.preventDefault();-->
+
+            <#--var selProvinceV = $('#selProvince2 option:checked').val(),-->
+                    <#--selCourses2V = $('#selCourses2 option:checked').val(),-->
+                    <#--teacherNameV = $.trim($('#teacherName').val()),-->
+                    <#--expertsIntroV = $('#expertsIntro').val(),-->
+                    <#--sectionTitleV = $('#sectionTitle').val(),-->
+                    <#--imgUrlDataV = $('#imgUrlData').val(),-->
+                    <#--videoDataV = $('#videoData').val();-->
+
+            <#--if (selProvinceV == "00") {-->
+                <#--CommonFn.tipsDialog('温馨提示', '请选择省份');-->
+                <#--return false;-->
+            <#--}-->
+            <#--if (selCourses2V == "00") {-->
+                <#--CommonFn.tipsDialog('温馨提示', '请选择科目');-->
+                <#--return false;-->
+            <#--}-->
+            <#--if (teacherNameV == "") {-->
+                <#--CommonFn.tipsDialog('温馨提示', '请选择主讲老师');-->
+                <#--return false;-->
+            <#--}-->
+            <#--if (expertsIntroV == "") {-->
+                <#--CommonFn.tipsDialog('温馨提示', '请选择专家介绍');-->
+                <#--return false;-->
+            <#--}-->
+            <#--if (sectionTitleV == "") {-->
+                <#--CommonFn.tipsDialog('温馨提示', '请选择视频名称');-->
+                <#--return false;-->
+            <#--}-->
+            <#--alert(imgUrlDataV)-->
+            <#--if (imgUrlDataV == "") {-->
+                <#--CommonFn.tipsDialog('温馨提示', '请上传视频封面');-->
+                <#--return false;-->
+            <#--}-->
+            <#--if (videoDataV == "") {-->
+                <#--CommonFn.tipsDialog('温馨提示', '请上传视频');-->
+                <#--return false;-->
+            <#--}-->
+
+
+
+
+
+            <#--var sectionData = $('#sectionId').val();-->
+            <#--var addData = {-->
+                <#--oper: typeStr,-->
+                <#--classifyId: '${mainObj}' == 'auditorium' ? '1' : '0',-->
+                <#--managerId: '${mainObj}' == 'auditorium' ? '1' : '0',-->
+                <#--subjectId: $('#selCourses2').find('option[selected]').val(),-->
+                <#--teacher: UI.$teacherName.val(),-->
+                <#--title: UI.$sectionTitle.val(),-->
+                <#--frontCover: $("#__auditoriumId").attr('imgUrl'),-->
+                <#--subcontent: UI.$expertsIntro.val(),-->
+                <#--areaId: $('#selCourses2').find('option[select]').val(),-->
+                <#--videoSectionDTOs:sectionData-->
+            <#--};-->
+            <#--CommonFn.getData('/admin/gaokao360/ex/commonsave/${mainObj}', 'post', addData, function (res) {-->
+                <#--if (res.rtnCode == '0000000') {-->
+                    <#--searchLoad();-->
+<#--//                    $('#dialogLayer').modal('hide');-->
+                <#--}-->
+            <#--});-->
+        });
+
+
+
+        // 提交添加end
+        <#--UI.$submitBtn.click(function (e) {-->
+            <#--e.preventDefault();-->
+            <#--typeStr = 'add';-->
+            <#--auditoriumValidate();-->
+            <#--var sectionData = $('#sectionId').val();-->
+            <#--var addData = {-->
+                <#--oper: typeStr,-->
+                <#--classifyId: '${mainObj}' == 'auditorium' ? '1' : '0',-->
+                <#--managerId: '${mainObj}' == 'auditorium' ? '1' : '0',-->
+                <#--subjectId: $('#selCourses2').find('option[selected]').val(),-->
+                <#--teacher: UI.$teacherName.val(),-->
+                <#--title: UI.$sectionTitle.val(),-->
+                <#--frontCover: $("#__auditoriumId").attr('imgUrl'),-->
+                <#--subcontent: UI.$expertsIntro.val(),-->
+                <#--areaId: $('#selCourses2').find('option[select]').val(),-->
+                <#--videoSectionDTOs:sectionData-->
+            <#--};-->
+            <#--CommonFn.getData('/admin/gaokao360/ex/commonsave/${mainObj}', 'post', addData, function (res) {-->
+                <#--if (res.rtnCode == '0000000') {-->
+                    <#--searchLoad();-->
+                    <#--$('#dialogLayer').modal('hide');-->
+                <#--}-->
+            <#--});-->
+        <#--});// 提交添加end-->
+
+
+
+
+
+
+
 
         //删除
         CommonFn.deleteFun('#deleteBtn', '${mainObj}');
     });//$ end
     function auditoriumValidate() {
-//        视屏,视屏封面添加验证
-        var imgUrl = $("#__auditoriumId").attr('imgUrl');
-        var videoUrl = $("#__auditoriumId").attr('videoUrl');
-        if (imgUrl == undefined) {
-            CommonFn.tipsDialog('温馨提示', '视屏封面没有上传,无法提交');
+        var selProvinceV = $('#selProvince2 option:checked').val(),
+                selCourses2V = $('#selCourses2 option:checked').val(),
+                teacherNameV = $.trim($('#teacherName').val()),
+                expertsIntroV = $('#expertsIntro').val(),
+                sectionTitleV = $('#sectionTitle').val(),
+                imgUrlDataV = $('#imgUrlData').val(),
+                videoDataV = $('#videoData').val();
+
+        if (selProvinceV == "00") {
+            CommonFn.tipsDialog('温馨提示', '请选择省份');
             return false;
         }
-        if (videoUrl == undefined) {
-            CommonFn.tipsDialog('温馨提示', '视屏还没有上传,无法提交');
+        if (selCourses2V == "00") {
+            CommonFn.tipsDialog('温馨提示', '请选择科目');
+            return false;
+        }
+        if (teacherNameV == "") {
+            CommonFn.tipsDialog('温馨提示', '请选择主讲老师');
+            return false;
+        }
+        if (expertsIntroV == "") {
+            CommonFn.tipsDialog('温馨提示', '请选择专家介绍');
+            return false;
+        }
+        if (sectionTitleV == "") {
+            CommonFn.tipsDialog('温馨提示', '请选择视频名称');
+            return false;
+        }
+        if (imgUrlDataV == "") {
+            CommonFn.tipsDialog('温馨提示', '请上传视频封面');
+            return false;
+        }
+        if (videoDataV == "") {
+            CommonFn.tipsDialog('温馨提示', '请上传视频');
             return false;
         }
     }
@@ -483,7 +819,7 @@
 
                 case 'confirm':
                     $progress.hide();
-                    $upload.text('开始上传').addClass('disabled');
+//                    $upload.text('开始上传').addClass('disabled');
 //                        $upload.text('开始上传');
 
                     stats = uploader.getStats();
@@ -569,10 +905,7 @@
 
         uploader.onUploadSuccess = function (file, response) {
             console.log(response.bizData.file.fileUrl);
-            $('#__auditoriumId').attr('imgUrl', response.bizData.file.fileUrl);
-//                alert(response.bizData.file.fileUrl)
-//                fileUrl = response.bizData.file.fileUrl;
-//                $('#swfUrl').val(fileUrl);
+            $('#imgUrlData').val(response.bizData.file.fileUrl);
 
         };
 
@@ -670,7 +1003,7 @@
             paste: document.body,
             // 上传文件的类型
             accept: {
-                title: 'video'
+                title: 'Video'
 //                ,extensions:'mp4,rmvb,swf,avi,3gp'
 //                ,mineTypes:'video/*'
             },
@@ -697,26 +1030,19 @@
 
         function addFile(file) {
 
-
-
-
-
-
-
-
-
-
-
             var $li = $('<li id="' + file.id + '">' +
-                            '<p class="title">' + file.id + "==" + file.name + '</p>' +
-                            '<p class="imgWrap"></p>' +
+                            '<p class="title">名称:'+ file.name.substring(0,(file.name.length-4)) + '</p>' +
+//                            '<p class="imgWrap"></p>' +
+                            '第<input type="text" value="" class="numberTxt" />节' +
                             '<p class="progress"><span></span></p>' +
                             '</li>'),
-
                     $btns = $('<div class="file-panel">' +
                             '<span class="cancel">删除</span>' +
-                            '<span class="rotateRight">向右旋转</span>' +
-                            '<span class="rotateLeft">向左旋转</span></div>').appendTo($li),
+//                            '<span class="rotateRight">向右旋转</span>' +
+//                            '<span class="rotateLeft">向左旋转</span>' +
+                            '</div>').appendTo($li),
+
+
                     $prgress = $li.find('p.progress span'),
                     $wrap = $li.find('p.imgWrap'),
                     $info = $('<p class="error"></p>'),
@@ -799,13 +1125,13 @@
                 $li.removeClass('state-' + prev).addClass('state-' + cur);
             });
 
-            $li.on('mouseenter', function () {
-                $btns.stop().animate({height: 30});
-            });
-
-            $li.on('mouseleave', function () {
-                $btns.stop().animate({height: 0});
-            });
+//            $li.on('mouseenter', function () {
+//                $btns.stop().animate({height: 30});
+//            });
+//
+//            $li.on('mouseleave', function () {
+//                $btns.stop().animate({height: 0});
+//            });
 
             $btns.on('click', 'span', function () {
                 var index = $(this).index(),
@@ -1051,12 +1377,11 @@
         uploader.onUploadSuccess = function (file, response) {
             var fileUrl = response.bizData.file.fileUrl;
             listJSON = {
-                ids: file.id,
-                name: file.name,
-                url: fileUrl
+                sectionName: file.name.substring(0,(file.name.length-4)),
+                fileUrl: fileUrl
             };
             videoList.push(listJSON);
-            $('#sectionId').val(JSON.stringify(videoList));
+            $('#videoData').val(JSON.stringify(videoList));
         };
 
         $upload.on('click', function () {

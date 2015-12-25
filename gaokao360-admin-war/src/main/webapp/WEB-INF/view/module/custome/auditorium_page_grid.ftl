@@ -39,7 +39,7 @@
                             <#--class="sr-only">Close</span></button>-->
                 </div>
                 <div class="modal-body">
-                    <div class="row" >
+                    <div class="row" id="dialogLayer">
                         <div class="col-xs-12">
                             <form class="form-horizontal" role="form" id="auditoriumModal">
                                 <div class="form-group">
@@ -79,6 +79,7 @@
                                     <label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 视屏封面图片：</label>
                                     <div class="col-sm-10">
 
+                                        <div class="imglist"></div>
                                         <div id="uploader1" class="wu-example">
                                             <div class="uploader-tips">(只能上传一个图片,可拖拽文件,大小小于3M)</div>
                                             <div class="queueList">
@@ -99,7 +100,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <input type="hidden" value="" id="swfUrl1">
+                                <input type="hidden" value="" id="imgUrlData">
 
 
                                 <div class="form-group">
@@ -126,12 +127,12 @@
                                         </div>
                                     </div>
                                 </div>
+                                <input type="hidden" value="" id="videoData" />
                             </form>
                         </div>
                     </div>
                 </div>
-                <input type="hidden" id="__auditoriumId" />
-                <input type="hidden" id="sectionId" />
+
                 <div class="modal-footer">
                     <button type="button" id="cancelBtn" class="btn btn-default" data-dismiss="modal">取消</button>
                     <button type="button" id="submitBtn" class="btn btn-primary">确定</button>
