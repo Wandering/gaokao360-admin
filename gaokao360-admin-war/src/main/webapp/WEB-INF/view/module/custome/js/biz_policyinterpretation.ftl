@@ -694,7 +694,7 @@
                     },
                     cancel: {
                         label: "关闭",
-                        className: "btn-sm"
+                        className: "btn-sm",
                     }
                 }
             });
