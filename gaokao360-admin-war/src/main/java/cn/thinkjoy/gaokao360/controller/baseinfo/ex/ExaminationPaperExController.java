@@ -8,19 +8,20 @@
 package cn.thinkjoy.gaokao360.controller.baseinfo.ex;
 
 import cn.thinkjoy.common.domain.view.BizData4Page;
-import cn.thinkjoy.common.managerui.controller.AbstractAdminController;
 import cn.thinkjoy.gaokao360.controller.BaseController;
-import cn.thinkjoy.gaokao360.dto.ExaminationPaperDTO;
 import cn.thinkjoy.gaokao360.service.IExaminationPaperService;
 import cn.thinkjoy.gaokao360.service.ex.IExaminationPaperExService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value="/admin/gaokao360/ex")
@@ -29,6 +30,8 @@ public class ExaminationPaperExController extends BaseController<IExaminationPap
 
     @Autowired
     private IExaminationPaperExService examinationPaperExService;
+    @Autowired
+    private IExaminationPaperService examinationPaperService;
 
     /**
      * 页面主请求
@@ -53,6 +56,21 @@ public class ExaminationPaperExController extends BaseController<IExaminationPap
         return doPage(request, response);
     }
 
+    /**
+     * 获取所有的组织信息 名称、年份、科类不能重复
+     * @return
+     */
+    @RequestMapping(value="/paperIsExist")
+    @ResponseBody
+    public boolean paperIsExist(@RequestParam("paperName")String paperName,
+                                @RequestParam("years")String years,
+                                @RequestParam("subjectId")String subjectId){
+        Map<String,Object> map = new HashMap<>();
+        map.put("paperName",paperName);
+        map.put("years",years);
+        map.put("subjectId",subjectId);
+        return examinationPaperService.queryOne(map)==null;
+    }
 //    /**
 //     * 获取所有的组织信息
 //     * @return

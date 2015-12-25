@@ -22,8 +22,25 @@
         }
         return rules;
     }
-    function searchLoad() {
+    function searchLoad(flag) {
         var url = "/admin/${bizSys}/${mainObj}s";
+        var page = $('#grid-table').getGridParam('page'); // current page
+        var rows = $('#grid-table').getGridParam('rows'); // rows
+        var sidx = $('#grid-table').getGridParam('sidx'); // sidx
+        var sord = $('#grid-table').getGridParam('sord'); // sord
+
+
+        if (page == null || page == "") {
+            page = '1';
+        }
+
+        if (flag == 1 || typeof flag == "undefined") {
+            page = '1';
+        }
+
+        if (rows == null || rows == "") {
+            rows = '10';
+        }
 
         var rules = buildRules();
 
@@ -33,13 +50,12 @@
         };
 
         $("#grid-table").jqGrid('setGridParam', {
-            url: url,
             mtype: "POST",
             postData: "filters=" + JSON.stringify(filters),
-            page: 1
-        }).trigger("reloadGrid");
-
-
+            page: page,
+            rows: rows,
+            sidx: sidx,
+            sord: sord}).trigger("reloadGrid");
     }
 
     $("#search").click(function () {
@@ -79,7 +95,8 @@
         $('#selMajored,#selMajored2').append(majored);
 
 //        添加专业基本信息
-        majoredDom.$addBtn.click(function () {
+        majoredDom.$addBtn.click(function (e) {
+            e.preventDefault();
             typeStr = 'add';
             $('#majoredModal').modal('show');
             majoredDom.$selMajored2.change(function () {
@@ -152,6 +169,7 @@
             majoredDom.$excellentStudent.val(rowData[0].excellentStudent);
             majoredDom.$submitBtn.on(ace.click_event, function (e) {
                 e.preventDefault();
+//                验证
                 majoredValidate();
                 var addMajoredData = {
                     oper: typeStr
@@ -168,17 +186,12 @@
                     , workGuide: majoredDom.$employDirect.val()
                     , excellentStudent: majoredDom.$excellentStudent.val()
                 };
-                $.ajax({
-                    type: "POST",
-                    url: '/admin/gaokao360/ex/commonsave/${mainObj}',
-                    data: addMajoredData,
-                    success: function (result) {
-                        if (result.rtnCode == "0000000") {
-                            searchLoad();
-                            $('#majoredModal').modal('hide');
-                            $('#submitForm')[0].reset();
-                            $('#schoolIntroduce,#schoolArticle').html('');
-                        }
+                CommonFn.getData('/admin/gaokao360/ex/commonsave/${mainObj}','post',addMajoredData,function(res){
+                    if (res.rtnCode == "0000000") {
+                        searchLoad();
+                        $('#majoredModal').modal('hide');
+                        $('#submitForm')[0].reset();
+                        $('#schoolIntroduce,#schoolArticle').html('');
                     }
                 });
             });
@@ -187,6 +200,12 @@
 
 //        删除专业基本信息
         CommonFn.deleteFun('#deleteBtn', '${mainObj}');
+//        关闭清空form表单内容
+        majoredDom.$cancelBtn.click(function(e){
+            e.preventDefault();
+            $('#submitForm')[0].reset();
+            $('#schoolIntroduce,#schoolArticle').html('');
+        });
         function majoredValidate() {
             if (majoredDom.$majoredName.val().trim() == '') {
                 CommonFn.tipsDialog('温馨提示', '专业名称不能为空');

@@ -113,7 +113,7 @@ var CommonFn = {
                     placeholder: 'Custom PlaceHolder Text',
                     button_class: 'btn-inverse',
                     //choose_file:false,//hide choose file button
-                    button_text: 'Set choose_file:false to hide this',
+                    button_text: '选择上传图片',
                     button_insert_class: 'btn-pink',
                     button_insert: 'Insert Image'
                 },

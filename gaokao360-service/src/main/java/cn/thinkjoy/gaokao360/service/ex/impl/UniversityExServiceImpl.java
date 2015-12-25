@@ -52,7 +52,7 @@ public class UniversityExServiceImpl extends AbstractPageService<IBaseDAO<Univer
             universityDict.setName(property);
             universityDict.setType("FEATURE");
             Integer sort=universityExDAO.getDictMaxSort("FEATURE");
-            universityDict.setDictId(sort++);
+            universityDict.setDictId(++sort);
             universityDictDAO.insert(universityDict);
             dataMap.put("property",sort);
         }

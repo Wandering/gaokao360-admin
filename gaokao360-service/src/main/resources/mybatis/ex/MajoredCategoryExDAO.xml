@@ -66,8 +66,9 @@ selectList
         FROM gk_majored_category WHERE  1=1 AND  (parentId =1 ||  parentId =2 ) AND  id=#{id}
     </select>
     <select id="count" resultType="java.lang.Integer">
-        SELECT count(id) FROM gk_majored_category WHERE  1=1 AND  (parentId =1 ||  parentId =2 )
+        SELECT count(id) FROM gk_majored_category
        <where>
+           1=1 AND  (parentId =1 ||  parentId =2 )
            <if test="name!=null">
                ${groupOp} ${name.field} ${name.op}  #{name.data}
            </if>
@@ -76,7 +77,7 @@ selectList
     <select id="queryListByParentId" resultType="cn.thinkjoy.gaokao360.domain.GkBaseDomain">
         SELECT
         id,name
-        FROM gk_majored_category WHERE  1=1 AND  parentId =#{ParentId}
+        FROM gk_majored_category WHERE  1=1 AND  parentId =#{id}
     </select>
 
 

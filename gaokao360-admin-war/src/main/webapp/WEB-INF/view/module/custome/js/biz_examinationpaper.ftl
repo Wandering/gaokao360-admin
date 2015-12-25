@@ -1,8 +1,25 @@
 <script>
     <!-- 自定义js请写在这个文件  以下这个查询方法只是个例子，请按照业务需求修改 -->
 
-    function searchLoad() {
+    function searchLoad(flag) {
         var url = "/admin/${bizSys}/${mainObj}s";
+        var page = $('#grid-table').getGridParam('page'); // current page
+        var rows = $('#grid-table').getGridParam('rows'); // rows
+        var sidx = $('#grid-table').getGridParam('sidx'); // sidx
+        var sord = $('#grid-table').getGridParam('sord'); // sord
+
+
+        if (page == null || page == "") {
+            page = '1';
+        }
+
+        if (flag == 1 || typeof flag == "undefined") {
+            page = '1';
+        }
+
+        if (rows == null || rows == "") {
+            rows = '10';
+        }
 
         var rules = buildRules();
 
@@ -12,11 +29,12 @@
         };
 
         $("#grid-table").jqGrid('setGridParam', {
-            url: url,
             mtype: "POST",
             postData: "filters=" + JSON.stringify(filters),
-            page: 1
-        }).trigger("reloadGrid");
+            page: page,
+            rows: rows,
+            sidx: sidx,
+            sord: sord}).trigger("reloadGrid");
     }
     function buildRules() {
         var papersubjectId = $('#selCourses').val();
@@ -112,8 +130,6 @@
                 + '</div>'
 
 
-
-
                 + '<div class="form-group">'
                 + '<label class="col-sm-2 control-label no-padding-right" for="expertsIntro">上传文件：</label>'
                 + '<div class="col-sm-10">'
@@ -160,7 +176,7 @@
                         className: "btn-sm"
                     }
 
-                },
+                }
             });
 
             uploadFun();
@@ -201,17 +217,13 @@
         });
         //删除
         CommonFn.deleteFun('#deleteBtn', '${mainObj}');
+//        添加
         var addEditFun = function () {
             var selProvinceV = $('#selProvince2 option:checked').val();
             var selSubjectV = $("#selCourses2").find('option:selected').val();
             var selYearsV = $("#selYears2").find('option:selected').val();
             var examTitle = $('#examName').val().trim();
             var fileUrl = $('#swfUrl').val();
-            console.log(selProvinceV)
-            console.log(selSubjectV)
-            console.log(selYearsV)
-            console.log(examTitle)
-            console.log(fileUrl)
             if (selProvinceV == "00") {
                 CommonFn.tipsDialog('温馨提示', '请选择省份');
                 return false;
@@ -221,40 +233,61 @@
                 return false;
             }
             if (selYearsV == '00') {
-                CommonFn.tipsDialog('温馨提示','年份没有选择,请重新输入');
+                CommonFn.tipsDialog('温馨提示', '年份没有选择,请重新输入');
                 return false;
             }
             if (examTitle.length > 10 || examTitle.length == 0) {
                 CommonFn.tipsDialog('温馨提示', '真题密卷标题不符合要求,请重新输入');
                 return false;
             }
-            if(fileUrl==""){
+            if (fileUrl == "") {
                 CommonFn.tipsDialog('温馨提示', '请上传文件');
                 return false;
             }
             var addExamData = {
                 years: selYearsV,
-                sort :"0", //排序
+                sort: "0", //排序
                 subjectId: selSubjectV,//课程名称
                 paperName: examTitle,  //试卷名称
-                frontCover:fileUrl,
+                frontCover: '',
                 oper: typeStr,
-                subContent:"",
-                price:"0",
-                resources:"",
-                areaId:selProvinceV
+                subContent: "",
+                price: "0",
+                resources: fileUrl,
+                areaId: selProvinceV
             };
 
             if (typeStr == 'edit') {
                 addExamData.id = rowId;
             }
+            //            屏蔽重复添加
             $.ajax({
-                type: "POST",
-                url: '/admin/gaokao360/ex/commonsave/${mainObj}',
-                data: addExamData,
-                success: function (result) {
-                    if (result.rtnCode == "0000000") {
-                        searchLoad();
+                url: "/admin/gaokao360/ex/paperIsExist",
+                dataType: 'json',
+                type: 'post',
+                async: false,
+                data: {
+                    paperName: examTitle,
+                    subjectId: selSubjectV,
+                    years: selYearsV
+                },
+                success: function (res) {
+                    //返回为true就是没有存在可以继续添加
+                    if (!res.bizData) {
+//                        终止添加
+                        CommonFn.tipsDialog('温馨提示', '不能重复添加');
+                    }else{
+//                        继续添加
+                        $.ajax({
+                            type: "POST",
+                            url: '/admin/gaokao360/ex/commonsave/${mainObj}',
+                            data: addExamData,
+                            success: function (result) {
+                                if (result.rtnCode == "0000000") {
+                                    searchLoad();
+                                }
+                            }
+                        });
                     }
                 }
             });
@@ -628,7 +661,7 @@
                 }
                 else if (fileCount >= 2) {
                     $('ul.filelist li:eq(0)').find('span.cancel').click();
-                    if($('.state-complete').length==1){
+                    if ($('.state-complete').length == 1) {
                         CommonFn.tipsDialog('温馨提示', '只能上传一个文件');
                         return false;
                     }
@@ -703,17 +736,10 @@
 
             $upload.addClass('state-' + state);
             updateTotalProgress();
-
-
         }
 
-
-
-
-
-
-
-
+//        密卷名称,年份,科目(验证数据库不能存在相同数据)
+//        http://localhost:8080/admin/gaokao360/ex/paperIsExist?paperName=123&subjectId=2&years=2015
 
     });
 </script>

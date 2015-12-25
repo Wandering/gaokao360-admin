@@ -32,8 +32,25 @@
         }
         return rules;
     }
-    function searchLoad() {
+    function searchLoad(flag) {
         var url = "/admin/${bizSys}/${mainObj}s";
+        var page = $('#grid-table').getGridParam('page'); // current page
+        var rows = $('#grid-table').getGridParam('rows'); // rows
+        var sidx = $('#grid-table').getGridParam('sidx'); // sidx
+        var sord = $('#grid-table').getGridParam('sord'); // sord
+
+
+        if (page == null || page == "") {
+            page = '1';
+        }
+
+        if (flag == 1 || typeof flag == "undefined") {
+            page = '1';
+        }
+
+        if (rows == null || rows == "") {
+            rows = '10';
+        }
 
         var rules = buildRules();
 
@@ -43,13 +60,12 @@
         };
 
         $("#grid-table").jqGrid('setGridParam', {
-            url: url,
             mtype: "POST",
             postData: "filters=" + JSON.stringify(filters),
-            page: 1
-        }).trigger("reloadGrid");
-
-
+            page: page,
+            rows: rows,
+            sidx: sidx,
+            sord: sord}).trigger("reloadGrid");
     }
 
     $("#search").click(function () {
@@ -112,7 +128,7 @@
 //                    , images: schoolInfoDOM.$schoolPic.val()
                     , sort: schoolInfoDOM.$schoolRank.val()
                     , property: schoolInfoDOM.$schoolStatic.val()
-                    , educationLevel: $('#selEduLevel2 option:checked').val()
+                    , educationLevel: $('#selEduLevel2').find('option:selected').val()
                     , type: schoolInfoDOM.$schoolType.val()
                     , subjection: schoolInfoDOM.$schoolOwn.val()
                     , url: schoolInfoDOM.$schoolWeb.val()

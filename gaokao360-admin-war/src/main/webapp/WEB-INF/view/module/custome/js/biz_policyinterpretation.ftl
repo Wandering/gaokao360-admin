@@ -32,8 +32,25 @@
         }
         return rules;
     }
-    function searchLoad() {
+    function searchLoad(flag) {
         var url = "/admin/${bizSys}/${mainObj}s";
+        var page = $('#grid-table').getGridParam('page'); // current page
+        var rows = $('#grid-table').getGridParam('rows'); // rows
+        var sidx = $('#grid-table').getGridParam('sidx'); // sidx
+        var sord = $('#grid-table').getGridParam('sord'); // sord
+
+
+        if (page == null || page == "") {
+            page = '1';
+        }
+
+        if (flag == 1 || typeof flag == "undefined") {
+            page = '1';
+        }
+
+        if (rows == null || rows == "") {
+            rows = '10';
+        }
 
         var rules = buildRules();
 
@@ -43,13 +60,12 @@
         };
 
         $("#grid-table").jqGrid('setGridParam', {
-            url: url,
             mtype: "POST",
             postData: "filters=" + JSON.stringify(filters),
-            page: 1
-        }).trigger("reloadGrid");
-
-
+            page: page,
+            rows: rows,
+            sidx: sidx,
+            sord: sord}).trigger("reloadGrid");
     }
 
     $("#search").click(function () {
@@ -398,9 +414,9 @@
                         placeholder: 'Custom PlaceHolder Text',
                         button_class: 'btn-inverse',
                         //choose_file:false,//hide choose file button
-                        button_text: 'Set choose_file:false to hide this',
+                        button_text: '选择上传图片',
                         button_insert_class: 'btn-pink',
-                        button_insert: 'Insert Image'
+                        button_insert: '插入图片'
                     },
                     null,
                     {
@@ -657,7 +673,7 @@
                     admissionBatchId: policyInterGroupV,
                     content: policyContentUrl,
                     categoryName: policyInterTwoV,
-                    oper: 'add',
+                    oper: 'edit',
                     areaId: 0
                 };
                 policyInterpretation.getData(policyInterpretation.getInterfaceUrl.addPolicy, infoData, function (res) {
@@ -732,9 +748,9 @@
                         placeholder: 'Custom PlaceHolder Text',
                         button_class: 'btn-inverse',
                         //choose_file:false,//hide choose file button
-                        button_text: 'Set choose_file:false to hide this',
+                        button_text: '选择上传图片',
                         button_insert_class: 'btn-pink',
-                        button_insert: 'Insert Image'
+                        button_insert: '插入图片'
                     },
                     null,
                     {
