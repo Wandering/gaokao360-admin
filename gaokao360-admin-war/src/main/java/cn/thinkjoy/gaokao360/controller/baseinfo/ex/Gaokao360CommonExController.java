@@ -73,11 +73,15 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     protected void innerHandleDel(String mainObj, Map dataMap) {
         if("policyinterpretation".equals(mainObj)){
             PolicyInterpretation policyInterpretation = (PolicyInterpretation)serviceMaps.get(mainObj).fetch(dataMap.get("id"));
-            delFileUrl(policyInterpretation.getHtmlId());
+            if(policyInterpretation!=null && policyInterpretation.getHtmlId()!=null) {
+                delFileUrl(policyInterpretation.getHtmlId());
+            }
 
         }else if("gkinformationgkhot".equals(mainObj)){
             GkinformationGkhot gkinformationGkhot =(GkinformationGkhot)serviceMaps.get(mainObj).fetch(dataMap.get("id"));
-            delFileUrl(gkinformationGkhot.getHtmlId());
+            if(gkinformationGkhot!=null && gkinformationGkhot.getHtmlId()!=null) {
+                delFileUrl(gkinformationGkhot.getHtmlId());
+            }
         }
         if("auditorium".equals(mainObj)||"gkPsychology".equals(mainObj)){
             serviceMaps.get("videocourse").delete(dataMap.get("id"));
@@ -360,11 +364,15 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     protected void innerHandleUpdate(String mainObj, Map dataMap) {
         if("policyinterpretation".equals(mainObj)){
             PolicyInterpretation policyInterpretation = (PolicyInterpretation)serviceMaps.get(mainObj).fetch(dataMap.get("id"));
-            delFileUrl(policyInterpretation.getHtmlId());
+            if(policyInterpretation!=null && policyInterpretation.getHtmlId()!=null) {
+                delFileUrl(policyInterpretation.getHtmlId());
+            }
 
         }else if("gkinformationgkhot".equals(mainObj)){
             GkinformationGkhot gkinformationGkhot =(GkinformationGkhot)serviceMaps.get(mainObj).fetch(dataMap.get("id"));
-            delFileUrl(gkinformationGkhot.getHtmlId());
+            if(gkinformationGkhot!=null && gkinformationGkhot.getHtmlId()!=null) {
+                delFileUrl(gkinformationGkhot.getHtmlId());
+            }
         }
         if("auditorium".equals(mainObj)||"gkPsychology".equals(mainObj)){
             serviceMaps.get("videocourse").updateMap(dataMap);
