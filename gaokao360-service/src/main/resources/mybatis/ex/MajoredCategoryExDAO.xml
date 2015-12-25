@@ -77,7 +77,7 @@ selectList
     <select id="queryListByParentId" resultType="cn.thinkjoy.gaokao360.domain.GkBaseDomain">
         SELECT
         id,name
-        FROM gk_majored_category WHERE  1=1 AND  parentId =#{ParentId}
+        FROM gk_majored_category WHERE  1=1 AND  parentId =#{id}
     </select>
 
 
