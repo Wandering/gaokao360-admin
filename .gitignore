@@ -88,5 +88,7 @@
 *.iml
 /classes/
 /gaokao360-admin-war/build/
+/gaokao360-api/gaokao360-api.iml
+/gaokao360-domain/gaokao360-domain.iml
 
 
