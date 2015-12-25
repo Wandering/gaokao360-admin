@@ -650,8 +650,8 @@
         return ""
     }
     function showImage(cellvalue, options, cell) {
-        if(cell){
-            var strHtml = '<img src="'+cell+'" style="width: 100px">'
+        if(cellvalue){
+            var strHtml = '<img src="'+cellvalue+'" style="width: 100px">'
             return strHtml;
         }
         return ""
