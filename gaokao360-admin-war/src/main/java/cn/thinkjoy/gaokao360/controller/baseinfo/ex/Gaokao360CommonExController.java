@@ -79,13 +79,14 @@ public class Gaokao360CommonExController extends AbstractCommonController {
             GkinformationGkhot gkinformationGkhot =(GkinformationGkhot)serviceMaps.get(mainObj).fetch(dataMap.get("id"));
             delFileUrl(gkinformationGkhot.getHtmlId());
         }
-        if("auditorium".equals(mainObj)){
+        if("auditorium".equals(mainObj)||"gkPsychology".equals(mainObj)){
             serviceMaps.get("videocourse").delete(dataMap.get("id"));
-        }else if("gkPsychology".equals(mainObj)){
-            serviceMaps.get("videocourse").delete(dataMap.get("id"));
-        }else if("university".equals(mainObj)){
+            Map<String,Object> map=new HashMap<>();
+            map.put("courseId",dataMap.get("id"));
+            serviceMaps.get("videocourse").deleteByCondition(map);
+        }else if("university".equals(mainObj)) {
             universityExService.deleteUniversity(dataMap);
-        }else if("majoredcategory".equals(mainObj)){
+        }else if("majoredcategory".equals(mainObj)) {
             majoredCategoryExService.deleteCategory(dataMap);
         }else {
             getServiceMaps().get(mainObj).delete(dataMap.get("id"));
@@ -189,33 +190,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     protected void innerHandleAdd(String mainObj, Map dataMap) {
         if("admissionbatch".equals(mainObj)){
             admissionBatchExService.insertMap(dataMap);
-        }else if("auditorium".equals(mainObj)){
-            serviceMaps.get("videocourse").insertMap(dataMap);
-            Long lid =(Long)serviceMaps.get("videocourse").selectMaxId();
-            String sectionId=null;
-            if(dataMap.containsKey("sectionId")){
-                sectionId = (String)dataMap.get("sectionId");
-            }
-            if(sectionId!=null){
-                JSONArray jsonArray = null;
-                jsonArray = JSON.parseArray(sectionId);
-                List<HashMap<String,Object>> maps= handleJSONArray(jsonArray);
-                for(Map map:maps){
-                    VideoSection v = new VideoSection();
-                    try {
-                        DomainReflex.getObj(map, v);
-                    } catch (Exception e) {
-                        throw new BizException("","map转换异常");
-                    }
-                    if(v.getId()!=null){
-                        serviceMaps.get("videosection").update(v);
-                    }else{
-                        serviceMaps.get("videosection").insert(v);
-                    }
-                }
-            }
-
-        }else if("gkPsychology".equals(mainObj)){
+        }else if("auditorium".equals(mainObj)||"gkPsychology".equals(mainObj)){
             serviceMaps.get("videocourse").insertMap(dataMap);
             Long lid = (Long)serviceMaps.get("videocourse").selectMaxId();
             String sectionId=null;
@@ -391,7 +366,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
             GkinformationGkhot gkinformationGkhot =(GkinformationGkhot)serviceMaps.get(mainObj).fetch(dataMap.get("id"));
             delFileUrl(gkinformationGkhot.getHtmlId());
         }
-        if("auditorium".equals(mainObj)){
+        if("auditorium".equals(mainObj)||"gkPsychology".equals(mainObj)){
             serviceMaps.get("videocourse").updateMap(dataMap);
             Long lid = (Long)dataMap.get("id");
             String sectionId=null;
@@ -399,31 +374,8 @@ public class Gaokao360CommonExController extends AbstractCommonController {
                 sectionId = (String)dataMap.get("sectionId");
             }
             if(sectionId!=null){
-                JSONArray jsonArray = null;
-                jsonArray = JSON.parseArray(sectionId);
-                List<HashMap<String,Object>> maps= handleJSONArray(jsonArray);
-                for(Map map:maps){
-                    VideoSection v = new VideoSection();
-                    try {
-                        DomainReflex.getObj(map, v);
-                    } catch (Exception e) {
-                        throw new BizException("","map转换异常");
-                    }
-                    if(v.getId()!=null){
-                        serviceMaps.get("videosection").update(v);
-                    }else{
-                        serviceMaps.get("videosection").insert(v);
-                    }
-                }
-            }
-        }else if("gkPsychology".equals(mainObj)){
-            serviceMaps.get("videocourse").updateMap(dataMap);
-            Long lid = (Long)dataMap.get("id");
-            String sectionId=null;
-            if(dataMap.containsKey("sectionId")){
-                sectionId = (String)dataMap.get("sectionId");
-            }
-            if(sectionId!=null){
+                Map<String,Object> map1=new HashMap<>();
+                map1.put("courseId", dataMap.get("id"));
                 JSONArray jsonArray = null;
                 jsonArray = JSON.parseArray(sectionId);
                 List<HashMap<String,Object>> maps= handleJSONArray(jsonArray);
@@ -435,11 +387,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
                     } catch (Exception e) {
                         throw new BizException("","map转换异常");
                     }
-                    if(v.getId()!=null){
-                        serviceMaps.get("videosection").update(v);
-                    }else{
-                        serviceMaps.get("videosection").insert(v);
-                    }
+                    serviceMaps.get("videosection").insert(v);
                 }
             }
         }else if("university".equals(mainObj)){
