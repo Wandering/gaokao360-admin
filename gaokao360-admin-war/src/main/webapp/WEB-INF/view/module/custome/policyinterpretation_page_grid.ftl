@@ -1,21 +1,21 @@
-<!-- 增加过滤div + 主体表格 -->
-<#--<style>-->
-<#--&lt;#&ndash;富文本编辑器样式调整&ndash;&gt;-->
-<#--@media (min-width: 768px) {-->
-<#--.wysiwyg-style2 {-->
-<#--width: 750px !important;-->
-<#--resize: none;-->
-<#--}-->
-<#--}-->
+<#--<!-- 增加过滤div + 主体表格 &ndash;&gt;-->
+<style>
+    <#--富文本编辑器样式调整-->
+    @media (min-width: 768px) {
+        .wysiwyg-style2 {
+            width: 750px !important;
+            resize: none;
+        }
+    }
 
-<#--.modal-dialog {-->
-<#--width: 1000px !important;-->
-<#--}-->
+    .modal-dialog {
+        width: 1000px !important;
+    }
 
-<#--.hide {-->
-<#--display: none;-->
-<#--}-->
-<#--</style>-->
+    .hide {
+        display: none;
+    }
+</style>
 <div class="page-content">
     <!-- 搜索start-->
     <form class="form-inline" role="form" action="/admin/${bizSys}/${mainObj}s">

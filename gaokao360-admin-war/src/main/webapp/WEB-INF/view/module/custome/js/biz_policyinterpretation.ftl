@@ -398,9 +398,9 @@
                         placeholder: 'Custom PlaceHolder Text',
                         button_class: 'btn-inverse',
                         //choose_file:false,//hide choose file button
-                        button_text: 'Set choose_file:false to hide this',
+                        button_text: '选择上传图片',
                         button_insert_class: 'btn-pink',
-                        button_insert: 'Insert Image'
+                        button_insert: '插入图片'
                     },
                     null,
                     {
@@ -657,7 +657,7 @@
                     admissionBatchId: policyInterGroupV,
                     content: policyContentUrl,
                     categoryName: policyInterTwoV,
-                    oper: 'add',
+                    oper: 'edit',
                     areaId: 0
                 };
                 policyInterpretation.getData(policyInterpretation.getInterfaceUrl.addPolicy, infoData, function (res) {
@@ -732,9 +732,9 @@
                         placeholder: 'Custom PlaceHolder Text',
                         button_class: 'btn-inverse',
                         //choose_file:false,//hide choose file button
-                        button_text: 'Set choose_file:false to hide this',
+                        button_text: '选择上传图片',
                         button_insert_class: 'btn-pink',
-                        button_insert: 'Insert Image'
+                        button_insert: '插入图片'
                     },
                     null,
                     {

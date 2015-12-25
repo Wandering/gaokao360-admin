@@ -676,8 +676,10 @@
         function addFile(file) {
 
             var $li = $('<li id="' + file.id + '">' +
+
                             '<p class="title">' +  file.id + "==" + file.name + '</p>' +
-                            '<p class="imgWrap"></p>' +
+//                            '<p class="imgWrap"></p>' +
+                            '第<input type="number"  />节'+
                             '<p class="progress"><span></span></p>' +
                             '</li>'),
 

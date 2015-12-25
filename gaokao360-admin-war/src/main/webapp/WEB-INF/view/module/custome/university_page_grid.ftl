@@ -4,7 +4,7 @@
     <form class="form-inline" role="form" action="/admin/gaokao360/ex/gkpsychologys">
         <div class="row">
             <div class="form-group col-sm-2">
-                <input type="text" class="keywordSearch col-sm-7" placeholder="院校基本信息关键字查询" id="EduLevelKeyWord">
+                <input type="text" class="keywordSearch col-sm-7" placeholder="关键字查询" id="EduLevelKeyWord">
             </div>
             <div class="form-group col-sm-2">
                 <select class="form-control" id="selProvince"></select>
