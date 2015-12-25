@@ -59,9 +59,10 @@
         };
 
         $("#grid-table").jqGrid('setGridParam', {
-            url: url + "?filters=" + JSON.stringify(filters),
             page: page,
             rows: rows,
+            mtype: "POST",
+            postData: "filters=" + JSON.stringify(filters),
             sidx: sidx,
             sord: sord}).trigger("reloadGrid");
     }

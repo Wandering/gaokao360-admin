@@ -41,8 +41,9 @@
         };
 
         $("#grid-table").jqGrid('setGridParam', {
-            url: url + "?filters=" + JSON.stringify(filters),
             page: page,
+            mtype: "POST",
+            postData: "filters=" + JSON.stringify(filters),
             rows: rows,
             sidx: sidx,
             sord: sord}).trigger("reloadGrid");
