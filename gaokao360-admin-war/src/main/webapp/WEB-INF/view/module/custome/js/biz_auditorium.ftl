@@ -101,6 +101,7 @@
 //                var videoSectionDTOs = ("#__auditoriumId").attr('videoInfo');
 //                console.info(videoSectionDTOs);
 
+                var sectionData = $('#sectionId').val();
                 var addData = {
                     oper: typeStr,
                     classifyId: '${mainObj}' == 'auditorium' ? '1' : '0',
@@ -111,7 +112,7 @@
                     frontCover: $("#__auditoriumId").attr('imgUrl'),
                     subcontent: UI.$expertsIntro.val(),
                     areaId: $('#selCourses2').find('option[select]').val(),
-                    videoSectionDTOs: JSON.stringify(listPrame)
+                    videoSectionDTOs:sectionData
                 };
                 CommonFn.getData('/admin/gaokao360/ex/commonsave/${mainObj}', 'post', addData, function (res) {
                     if (res.rtnCode == '0000000') {
@@ -673,13 +674,24 @@
             fileSingleSizeLimit: 300 * 1024 * 1024
         });
         // 当有文件添加进来时执行，负责view的创建
+
+
+
         function addFile(file) {
 
-            var $li = $('<li id="' + file.id + '">' +
 
-                            '<p class="title">' +  file.id + "==" + file.name + '</p>' +
-//                            '<p class="imgWrap"></p>' +
-                            '第<input type="number"  />节'+
+
+
+
+
+
+
+
+
+
+            var $li = $('<li id="' + file.id + '">' +
+                            '<p class="title">' + file.id + "==" + file.name + '</p>' +
+                            '<p class="imgWrap"></p>' +
                             '<p class="progress"><span></span></p>' +
                             '</li>'),
 
@@ -708,6 +720,20 @@
 
                         $info.text(text).appendTo($li);
                     };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             if (file.getStatus() === 'invalid') {
                 showError(file.statusText);
@@ -813,7 +839,11 @@
             });
 
             $li.appendTo($queue);
+
+
+
         }
+
 
         // 负责view的销毁
         function removeFile(file) {
@@ -957,6 +987,9 @@
                     return false;
                 }
             }
+
+
+
             addFile(file);
             setState('ready');
             updateTotalProgress();
@@ -998,20 +1031,14 @@
         var videoList = [];
         var listJSON = {};
         uploader.onUploadSuccess = function (file, response) {
-
-            console.log(file.id)
-            console.log(file.name)
-
-            listJSON.url = response.bizData.file.fileUrl;
-            listJSON.name = (response.bizData.file.fileName).replace(/\.\w+$/, '');
+            var fileUrl = response.bizData.file.fileUrl;
+            listJSON = {
+                ids: file.id,
+                name: file.name,
+                url: fileUrl
+            };
             videoList.push(listJSON);
-
-
-
-
-
-
-            localStorage.setItem('videoInfo', JSON.stringify(videoList));
+            $('#sectionId').val(JSON.stringify(videoList));
         };
 
         $upload.on('click', function () {

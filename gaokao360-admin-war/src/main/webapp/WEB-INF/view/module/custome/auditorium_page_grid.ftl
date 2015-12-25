@@ -131,6 +131,7 @@
                     </div>
                 </div>
                 <input type="hidden" id="__auditoriumId" />
+                <input type="hidden" id="sectionId" />
                 <div class="modal-footer">
                     <button type="button" id="cancelBtn" class="btn btn-default" data-dismiss="modal">取消</button>
                     <button type="button" id="submitBtn" class="btn btn-primary">确定</button>
