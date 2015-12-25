@@ -164,6 +164,10 @@
                 CommonFn.tipsDialog('温馨提示', '请输入高考热点标题');
                 return false;
             }
+            if(hotTitleV.length>30){
+                CommonFn.tipsDialog('温馨提示', '请输入高考热点标题字数不能大于30个字');
+                return false;
+            }
             if (hotContentV == "") {
                 CommonFn.tipsDialog('温馨提示', '请输入高考热点内容');
                 return false;

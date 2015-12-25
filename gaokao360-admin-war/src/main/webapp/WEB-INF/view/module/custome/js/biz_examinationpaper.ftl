@@ -112,8 +112,6 @@
                 + '</div>'
 
 
-
-
                 + '<div class="form-group">'
                 + '<label class="col-sm-2 control-label no-padding-right" for="expertsIntro">上传文件：</label>'
                 + '<div class="col-sm-10">'
@@ -221,28 +219,28 @@
                 return false;
             }
             if (selYearsV == '00') {
-                CommonFn.tipsDialog('温馨提示','年份没有选择,请重新输入');
+                CommonFn.tipsDialog('温馨提示', '年份没有选择,请重新输入');
                 return false;
             }
             if (examTitle.length > 10 || examTitle.length == 0) {
                 CommonFn.tipsDialog('温馨提示', '真题密卷标题不符合要求,请重新输入');
                 return false;
             }
-            if(fileUrl==""){
+            if (fileUrl == "") {
                 CommonFn.tipsDialog('温馨提示', '请上传文件');
                 return false;
             }
             var addExamData = {
                 years: selYearsV,
-                sort :"0", //排序
+                sort: "0", //排序
                 subjectId: selSubjectV,//课程名称
                 paperName: examTitle,  //试卷名称
-                frontCover:fileUrl,
+                frontCover: fileUrl,
                 oper: typeStr,
-                subContent:"",
-                price:"0",
-                resources:"",
-                areaId:selProvinceV
+                subContent: "",
+                price: "0",
+                resources: "",
+                areaId: selProvinceV
             };
 
             if (typeStr == 'edit') {
@@ -628,7 +626,7 @@
                 }
                 else if (fileCount >= 2) {
                     $('ul.filelist li:eq(0)').find('span.cancel').click();
-                    if($('.state-complete').length==1){
+                    if ($('.state-complete').length == 1) {
                         CommonFn.tipsDialog('温馨提示', '只能上传一个文件');
                         return false;
                     }
@@ -703,16 +701,16 @@
 
             $upload.addClass('state-' + state);
             updateTotalProgress();
-
-
         }
 
-
-
-
-
-
-
+//        密卷名称,年份,科目(验证数据库不能存在相同数据)
+//        http://localhost:8080/admin/gaokao360/ex/paperIsExist?paperName=123&subjectId=2&years=2015
+        function validateRepeat(paperName,subjectId,years) {
+            CommonFn.getData('/admin/gaokao360/ex/paperIsExist','post',{
+//                paperName:paperNameV,
+//                subjectId:
+            })
+        }
 
 
     });

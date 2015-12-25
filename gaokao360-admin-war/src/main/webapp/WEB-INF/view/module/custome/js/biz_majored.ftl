@@ -79,7 +79,8 @@
         $('#selMajored,#selMajored2').append(majored);
 
 //        添加专业基本信息
-        majoredDom.$addBtn.click(function () {
+        majoredDom.$addBtn.click(function (e) {
+            e.preventDefault();
             typeStr = 'add';
             $('#majoredModal').modal('show');
             majoredDom.$selMajored2.change(function () {
@@ -152,6 +153,7 @@
             majoredDom.$excellentStudent.val(rowData[0].excellentStudent);
             majoredDom.$submitBtn.on(ace.click_event, function (e) {
                 e.preventDefault();
+//                验证
                 majoredValidate();
                 var addMajoredData = {
                     oper: typeStr
@@ -168,17 +170,12 @@
                     , workGuide: majoredDom.$employDirect.val()
                     , excellentStudent: majoredDom.$excellentStudent.val()
                 };
-                $.ajax({
-                    type: "POST",
-                    url: '/admin/gaokao360/ex/commonsave/${mainObj}',
-                    data: addMajoredData,
-                    success: function (result) {
-                        if (result.rtnCode == "0000000") {
-                            searchLoad();
-                            $('#majoredModal').modal('hide');
-                            $('#submitForm')[0].reset();
-                            $('#schoolIntroduce,#schoolArticle').html('');
-                        }
+                CommonFn.getData('/admin/gaokao360/ex/commonsave/${mainObj}','post',addMajoredData,function(res){
+                    if (res.rtnCode == "0000000") {
+                        searchLoad();
+                        $('#majoredModal').modal('hide');
+                        $('#submitForm')[0].reset();
+                        $('#schoolIntroduce,#schoolArticle').html('');
                     }
                 });
             });
@@ -187,6 +184,12 @@
 
 //        删除专业基本信息
         CommonFn.deleteFun('#deleteBtn', '${mainObj}');
+//        关闭清空form表单内容
+        majoredDom.$cancelBtn.click(function(e){
+            e.preventDefault();
+            $('#submitForm')[0].reset();
+            $('#schoolIntroduce,#schoolArticle').html('');
+        });
         function majoredValidate() {
             if (majoredDom.$majoredName.val().trim() == '') {
                 CommonFn.tipsDialog('温馨提示', '专业名称不能为空');

@@ -112,7 +112,7 @@
 //                    , images: schoolInfoDOM.$schoolPic.val()
                     , sort: schoolInfoDOM.$schoolRank.val()
                     , property: schoolInfoDOM.$schoolStatic.val()
-                    , educationLevel: $('#selEduLevel2 option:checked').val()
+                    , educationLevel: $('#selEduLevel2').find('option:selected').val()
                     , type: schoolInfoDOM.$schoolType.val()
                     , subjection: schoolInfoDOM.$schoolOwn.val()
                     , url: schoolInfoDOM.$schoolWeb.val()
