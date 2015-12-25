@@ -158,7 +158,7 @@
                         className: "btn-sm"
                     }
 
-                },
+                }
             });
 
             uploadFun();
@@ -199,17 +199,13 @@
         });
         //删除
         CommonFn.deleteFun('#deleteBtn', '${mainObj}');
+//        添加
         var addEditFun = function () {
             var selProvinceV = $('#selProvince2 option:checked').val();
             var selSubjectV = $("#selCourses2").find('option:selected').val();
             var selYearsV = $("#selYears2").find('option:selected').val();
             var examTitle = $('#examName').val().trim();
             var fileUrl = $('#swfUrl').val();
-            console.log(selProvinceV)
-            console.log(selSubjectV)
-            console.log(selYearsV)
-            console.log(examTitle)
-            console.log(fileUrl)
             if (selProvinceV == "00") {
                 CommonFn.tipsDialog('温馨提示', '请选择省份');
                 return false;
@@ -230,6 +226,7 @@
                 CommonFn.tipsDialog('温馨提示', '请上传文件');
                 return false;
             }
+//            validateRepeat(paperNameV,subjectIdV,yearsV)
             var addExamData = {
                 years: selYearsV,
                 sort: "0", //排序
@@ -242,10 +239,13 @@
                 resources: "",
                 areaId: selProvinceV
             };
-
             if (typeStr == 'edit') {
                 addExamData.id = rowId;
             }
+            alert(validateRepeat(examTitle,selSubjectV,selYearsV));
+//            if(!validateRepeat(examTitle,selSubjectV,selYearsV)){
+//                return false;
+//            }
             $.ajax({
                 type: "POST",
                 url: '/admin/gaokao360/ex/commonsave/${mainObj}',
@@ -705,10 +705,15 @@
 
 //        密卷名称,年份,科目(验证数据库不能存在相同数据)
 //        http://localhost:8080/admin/gaokao360/ex/paperIsExist?paperName=123&subjectId=2&years=2015
-        function validateRepeat(paperName,subjectId,years) {
+        function validateRepeat(paperNameV,subjectIdV,yearsV) {
             CommonFn.getData('/admin/gaokao360/ex/paperIsExist','post',{
-//                paperName:paperNameV,
-//                subjectId:
+                paperName:paperNameV,
+                subjectId:subjectIdV,
+                years:yearsV
+            },function(res){
+                if(res.rtnCode == '0000000'){
+                    return res.bizData
+                }
             })
         }
 
