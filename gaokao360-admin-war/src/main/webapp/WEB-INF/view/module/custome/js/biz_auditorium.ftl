@@ -218,7 +218,6 @@
             $addBtn: $('#addBtn')
             , $submitBtn: $('#submitBtn')
             , $editBtn: $('#editBtn')
-
             , $selProvince2: $('#selProvince2')
             , $selCourses2: $('#selCourses2')
             , $teacherName: $('#teacherName')
@@ -277,12 +276,12 @@
                 oper: typeStr,
                 classifyId: '${mainObj}' == 'auditorium' ? '1' : '0',
                 managerId: '${mainObj}' == 'auditorium' ? '1' : '0',
-                subjectId: $('#selCourses2').find('option[selected]').val(),
-                teacher: UI.$teacherName.val(),
-                title: UI.$sectionTitle.val(),
+                subjectId: selCourses2V,
+                teacher: teacherNameV,
+                title: sectionTitleV,
                 frontCover: $("#imgUrlData").val(),
-                subcontent: UI.$expertsIntro.val(),
-                areaId: $('#selProvince2').find('option[select]').val(),
+                subcontent: expertsIntroV,
+                areaId: selProvinceV,
                 videoSectionDTOs:sectionData
             };
             $.ajax({
@@ -323,6 +322,16 @@
         });
 
         UI.$editBtn.click(function (e) {
+            $('#dialogLayer').modal('show')
+                    .find('input').val('')
+                    .end()
+                    .find('select option[value="00"]').attr('selected','selected')
+                    .end()
+                    .find('.filelist').html('')
+                    .end()
+                    .find('textarea').val('')
+                    .end()
+                    .find('.statusBar').hide();
             typeStr = "edit";
             rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
             var selTrN = $('tr.ui-state-highlight[role="row"]').length;
@@ -340,6 +349,22 @@
             $('#teacherName').val(rowData[0].teacher);
             $('#sectionTitle').val(rowData[0].title);
             $('#expertsIntro').val(rowData[0].subcontent);
+
+            var liList = ''
+                    +'<li id="' + file.id + '">' +
+            '<p class="title">' + file.name + '</p>' +
+            '<p class="imgWrap"><img width="110" height="110" src="'+ rowData[0].frontCover +'"/></p>' +
+            '<div class="file-panel">' +
+            '<span class="cancel">删除</span>' +
+            '</li>';
+
+
+
+
+
+
+
+            $('#imglist').html('<img width="50" height="50" src="'+ rowData[0].frontCover +'"/><a href="javascript:;">删除</a>')
             uploadFun1();
             uploadFun2();
 

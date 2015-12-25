@@ -79,7 +79,7 @@
                                     <label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 视屏封面图片：</label>
                                     <div class="col-sm-10">
 
-                                        <div class="imglist"></div>
+                                        <div id="imglist"></div>
                                         <div id="uploader1" class="wu-example">
                                             <div class="uploader-tips">(只能上传一个图片,可拖拽文件,大小小于3M)</div>
                                             <div class="queueList">
