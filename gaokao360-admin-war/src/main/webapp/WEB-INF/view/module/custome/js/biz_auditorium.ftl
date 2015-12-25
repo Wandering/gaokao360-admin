@@ -272,6 +272,16 @@
                 return false;
             }
             var sectionData = $('#sectionId').val();
+
+
+
+            var imgUrl = '';
+            if($('#uploader1:hidden')){
+                imgUrl = $('#imglist').find('img').attr('src');
+            }else{
+                imgUrl = $('#imgUrlData').val();
+            }
+
             var addData = {
                 oper: typeStr,
                 classifyId: '${mainObj}' == 'auditorium' ? '1' : '0',
@@ -279,7 +289,7 @@
                 subjectId: selCourses2V,
                 teacher: teacherNameV,
                 title: sectionTitleV,
-                frontCover: $("#imgUrlData").val(),
+                frontCover: imgUrl,
                 subcontent: expertsIntroV,
                 areaId: selProvinceV,
                 videoSectionDTOs:sectionData
@@ -349,24 +359,15 @@
             $('#teacherName').val(rowData[0].teacher);
             $('#sectionTitle').val(rowData[0].title);
             $('#expertsIntro').val(rowData[0].subcontent);
-
-            var liList = ''
-                    +'<li id="' + file.id + '">' +
-            '<p class="title">' + file.name + '</p>' +
-            '<p class="imgWrap"><img width="110" height="110" src="'+ rowData[0].frontCover +'"/></p>' +
-            '<div class="file-panel">' +
-            '<span class="cancel">删除</span>' +
-            '</li>';
-
-
-
-
-
-
-
-            $('#imglist').html('<img width="50" height="50" src="'+ rowData[0].frontCover +'"/><a href="javascript:;">删除</a>')
+            $('#uploader1').hide();
+            $('#imglist').html('<img width="110" height="100" src="'+ rowData[0].frontCover +'"/><a href="javascript:;" id="updateImg">修改</a>');
             uploadFun1();
             uploadFun2();
+            $('#updateImg').show();
+            $('#updateImg').on('click',function(){
+                $(this).parent().hide();
+                $('#uploader1').show();
+            })
 
         });
 
