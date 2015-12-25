@@ -226,33 +226,50 @@
                 CommonFn.tipsDialog('温馨提示', '请上传文件');
                 return false;
             }
-//            validateRepeat(paperNameV,subjectIdV,yearsV)
             var addExamData = {
                 years: selYearsV,
                 sort: "0", //排序
                 subjectId: selSubjectV,//课程名称
                 paperName: examTitle,  //试卷名称
-                frontCover: fileUrl,
+                frontCover: '',
                 oper: typeStr,
                 subContent: "",
                 price: "0",
-                resources: "",
+                resources: fileUrl,
                 areaId: selProvinceV
             };
+
             if (typeStr == 'edit') {
                 addExamData.id = rowId;
             }
-            alert(validateRepeat(examTitle,selSubjectV,selYearsV));
-//            if(!validateRepeat(examTitle,selSubjectV,selYearsV)){
-//                return false;
-//            }
+            //            屏蔽重复添加
             $.ajax({
-                type: "POST",
-                url: '/admin/gaokao360/ex/commonsave/${mainObj}',
-                data: addExamData,
-                success: function (result) {
-                    if (result.rtnCode == "0000000") {
-                        searchLoad();
+                url: "/admin/gaokao360/ex/paperIsExist",
+                dataType: 'json',
+                type: 'post',
+                async: false,
+                data: {
+                    paperName: examTitle,
+                    subjectId: selSubjectV,
+                    years: selYearsV
+                },
+                success: function (res) {
+                    //返回为true就是没有存在可以继续添加
+                    if (!res.bizData) {
+//                        终止添加
+                        CommonFn.tipsDialog('温馨提示', '不能重复添加');
+                    }else{
+//                        继续添加
+                        $.ajax({
+                            type: "POST",
+                            url: '/admin/gaokao360/ex/commonsave/${mainObj}',
+                            data: addExamData,
+                            success: function (result) {
+                                if (result.rtnCode == "0000000") {
+                                    searchLoad();
+                                }
+                            }
+                        });
                     }
                 }
             });
@@ -705,18 +722,6 @@
 
 //        密卷名称,年份,科目(验证数据库不能存在相同数据)
 //        http://localhost:8080/admin/gaokao360/ex/paperIsExist?paperName=123&subjectId=2&years=2015
-        function validateRepeat(paperNameV,subjectIdV,yearsV) {
-            CommonFn.getData('/admin/gaokao360/ex/paperIsExist','post',{
-                paperName:paperNameV,
-                subjectId:subjectIdV,
-                years:yearsV
-            },function(res){
-                if(res.rtnCode == '0000000'){
-                    return res.bizData
-                }
-            })
-        }
-
 
     });
 </script>
