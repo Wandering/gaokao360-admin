@@ -280,7 +280,6 @@
                     + '</div>'
                     + '</div>'
                     + '</div>';
-
             var addPolicyInterpretationFun = function () {
                 var provinceV = $("#province2").find("option:selected").attr('value');
                 var policyInterTwoV = $.trim($('#policyInterTwo').val());
