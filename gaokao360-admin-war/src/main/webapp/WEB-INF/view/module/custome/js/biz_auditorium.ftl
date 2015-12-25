@@ -218,7 +218,6 @@
             $addBtn: $('#addBtn')
             , $submitBtn: $('#submitBtn')
             , $editBtn: $('#editBtn')
-
             , $selProvince2: $('#selProvince2')
             , $selCourses2: $('#selCourses2')
             , $teacherName: $('#teacherName')
@@ -273,16 +272,26 @@
                 return false;
             }
             var sectionData = $('#sectionId').val();
+
+
+
+            var imgUrl = '';
+            if($('#uploader1:hidden')){
+                imgUrl = $('#imglist').find('img').attr('src');
+            }else{
+                imgUrl = $('#imgUrlData').val();
+            }
+
             var addData = {
                 oper: typeStr,
                 classifyId: '${mainObj}' == 'auditorium' ? '1' : '0',
                 managerId: '${mainObj}' == 'auditorium' ? '1' : '0',
-                subjectId: $('#selCourses2').find('option[selected]').val(),
-                teacher: UI.$teacherName.val(),
-                title: UI.$sectionTitle.val(),
-                frontCover: $("#imgUrlData").val(),
-                subcontent: UI.$expertsIntro.val(),
-                areaId: $('#selProvince2').find('option[select]').val(),
+                subjectId: selCourses2V,
+                teacher: teacherNameV,
+                title: sectionTitleV,
+                frontCover: imgUrl,
+                subcontent: expertsIntroV,
+                areaId: selProvinceV,
                 videoSectionDTOs:sectionData
             };
             $.ajax({
@@ -323,6 +332,16 @@
         });
 
         UI.$editBtn.click(function (e) {
+            $('#dialogLayer').modal('show')
+                    .find('input').val('')
+                    .end()
+                    .find('select option[value="00"]').attr('selected','selected')
+                    .end()
+                    .find('.filelist').html('')
+                    .end()
+                    .find('textarea').val('')
+                    .end()
+                    .find('.statusBar').hide();
             typeStr = "edit";
             rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
             var selTrN = $('tr.ui-state-highlight[role="row"]').length;
@@ -340,8 +359,15 @@
             $('#teacherName').val(rowData[0].teacher);
             $('#sectionTitle').val(rowData[0].title);
             $('#expertsIntro').val(rowData[0].subcontent);
+            $('#uploader1').hide();
+            $('#imglist').html('<img width="110" height="100" src="'+ rowData[0].frontCover +'"/><a href="javascript:;" id="updateImg">修改</a>');
             uploadFun1();
             uploadFun2();
+            $('#updateImg').show();
+            $('#updateImg').on('click',function(){
+                $(this).parent().hide();
+                $('#uploader1').show();
+            })
 
         });
 
