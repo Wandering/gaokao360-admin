@@ -649,10 +649,13 @@
         console.log(rowObject)
         return ""
     }
-
-
-
-
+    function showImage(cellvalue, options, cell) {
+        if(cellvalue){
+            var strHtml = '<img src="'+cellvalue+'" style="width: 100px">'
+            return strHtml;
+        }
+        return ""
+    }
 
     var  mainObj = '${mainObj}';
 

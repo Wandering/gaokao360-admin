@@ -60,7 +60,11 @@ selectList
                 ${condition.groupOp}   ${condition.interpretationadmissionBatchId.field}  ${condition.interpretationadmissionBatchId.op}  #{condition.interpretationadmissionBatchId.data}
             </if>
             <if test="condition.queryparam!=null">
-                  ${condition.groupOp}  (interpretation.categoryName LIKE #{condition.queryparam.data}  OR interpretation.content LIKE  #{condition.queryparam.data})
+                  ${condition.groupOp}
+                (interpretation.categoryName LIKE #{condition.queryparam.data}
+                province.name LIKE #{condition.queryparam.data}
+                batch.name LIKE #{condition.queryparam.data}
+                OR interpretation.content LIKE  #{condition.queryparam.data})
             </if>
 
 
