@@ -192,6 +192,11 @@ public class Gaokao360CommonExController extends AbstractCommonController {
 
     @Override
     protected void innerHandleAdd(String mainObj, Map dataMap) {
+        if("areabatchline".equals(mainObj)){
+            Map<String,Object> map= new HashMap<>();
+            map.put("areaId",dataMap.get("areaId"));
+            serviceMaps.get("areabatchline").deleteByCondition(map);
+        }
         if("admissionbatch".equals(mainObj)){
             admissionBatchExService.insertMap(dataMap);
         }else if("auditorium".equals(mainObj)||"gkPsychology".equals(mainObj)){
@@ -218,7 +223,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
             }
         }else if("university".equals(mainObj)){
             universityExService.insertUniversity(dataMap);
-        }else if("majoredcategory".equals(mainObj)){
+        } else if("majoredcategory".equals(mainObj)){
             majoredCategoryExService.insertCategory(dataMap);
         }else{
             super.innerHandleAdd(mainObj, dataMap);
@@ -398,7 +403,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
             }
         }else if("university".equals(mainObj)){
             universityExService.updateUniversity(dataMap);
-        }else if("majoredcategory".equals(mainObj)){
+        } else if("majoredcategory".equals(mainObj)){
             majoredCategoryExService.updateCategory(dataMap);
         }else {
             super.innerHandleUpdate(mainObj, dataMap);
