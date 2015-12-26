@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.thinkjoy.zgk.dao.ex.IVideoSectioneExDAO">
+<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IVideoSectioneExDAO">
 <!--
 insert
 update
@@ -57,7 +57,7 @@ selectList
     </select>
 
 
-    <select id="getVideoByCourseId" parameterType="java.lang.Long" resultType="cn.thinkjoy.zgk.dto.VideoSectionDTO">
+    <select id="getVideoByCourseId" parameterType="java.lang.Long" resultType="cn.thinkjoy.gaokao360.dto.VideoSectionDTO">
         SELECT
         id as id ,
         courseId as courseId ,

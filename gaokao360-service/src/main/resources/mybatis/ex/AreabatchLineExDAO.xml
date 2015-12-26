@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.thinkjoy.zgk.dao.ex.IAreabatchLineExDAO">
+<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IAreabatchLineExDAO">
 <!--
 insert
 update
@@ -31,7 +31,7 @@ selectList
 		province.name as province
     </sql>
 
-    <select id="queryPage" resultType="cn.thinkjoy.zgk.dto.AreabatchLineDTO">
+    <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.AreabatchLineDTO">
         SELECT
         <include refid="Base_Column_List" />
         FROM zgk_areabatch_line line

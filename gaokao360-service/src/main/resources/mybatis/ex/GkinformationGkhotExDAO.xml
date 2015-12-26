@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.thinkjoy.zgk.dao.ex.IGkinformationGkhotExDAO">
+<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IGkinformationGkhotExDAO">
 <!--
 insert
 update
@@ -41,7 +41,7 @@ selectList
 
     </sql>
 
-    <select id="queryPage" resultType="cn.thinkjoy.zgk.dto.GkinformationGkhotDTO">
+    <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.GkinformationGkhotDTO">
         SELECT
         <include refid="Base_Column_List" />
         FROM zgk_gkinformation_gkhot gkhot

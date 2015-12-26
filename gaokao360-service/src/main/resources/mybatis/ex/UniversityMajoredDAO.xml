@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.thinkjoy.zgk.dao.ex.IUniversityMajoredDAO">
+<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IUniversityMajoredDAO">
     <!--
     insert
     update
@@ -35,7 +35,7 @@
         plan.universityName as universityName,
         report.batch1 as batch
     </sql>
-    <select id="queryPage" resultType="cn.thinkjoy.zgk.dto.UniversityMajoredDTO">
+    <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.UniversityMajoredDTO">
         SELECT
         <include refid="Base_Column_List"/>
         from zgk_majored majored

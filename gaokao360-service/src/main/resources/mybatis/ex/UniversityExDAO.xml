@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.thinkjoy.zgk.dao.ex.IUniversityExDAO">
+<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IUniversityExDAO">
 <!--
 insert
 update
@@ -51,7 +51,7 @@ selectList
 		sort.images as images,
 		dict1.name as eduLevelName
     </sql>
-    <select id="queryPage" resultType="cn.thinkjoy.zgk.dto.UniversityDTO">
+    <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.UniversityDTO">
         SELECT
         <include refid="Base_Column_List" />
         from zgk_university university
@@ -90,7 +90,7 @@ selectList
         </if>
     </select>
 
-    <select id="fatch" resultType="cn.thinkjoy.zgk.dto.UniversityDTO">
+    <select id="fatch" resultType="cn.thinkjoy.gaokao360.dto.UniversityDTO">
         SELECT
         <include refid="Base_Column_List" />
         from zgk_university university
@@ -136,7 +136,7 @@ selectList
         from zgk_university
     </select>
 
-    <select id="fetch" resultType="cn.thinkjoy.zgk.dto.UniversityDTO">
+    <select id="fetch" resultType="cn.thinkjoy.gaokao360.dto.UniversityDTO">
         SELECT
         <include refid="Base_Column_List" />
         from zgk_university university
@@ -146,7 +146,7 @@ selectList
         LEFT OUTER JOIN zgk_university_dict dict1 ON university.educationLevel=dict1.dictId and dict1.type='EDULEVEL'
         WHERE   university.id=#{id}
     </select>
-    <select id="getDictByName" resultType="cn.thinkjoy.zgk.domain.UniversityDict">
+    <select id="getDictByName" resultType="cn.thinkjoy.gaokao360.domain.UniversityDict">
         SELECT
         *
         from zgk_university_dict dict WHERE dict.type='FEATURE' AND name=#{name}

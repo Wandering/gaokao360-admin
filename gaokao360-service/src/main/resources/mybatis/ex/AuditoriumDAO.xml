@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.thinkjoy.zgk.dao.ex.IAuditoriumDAO">
+<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IAuditoriumDAO">
 <!--
 insert
 update
@@ -53,7 +53,7 @@ selectList
 
     </sql>
 
-    <select id="queryPage" resultType="cn.thinkjoy.zgk.dto.VideoCourseDTO">
+    <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.VideoCourseDTO">
         SELECT
         <include refid="Base_Column_List" />
         FROM zgk_video_course course
@@ -112,7 +112,7 @@ selectList
        </where>
     </select>
 
-    <select id="fetch" parameterType="java.lang.Long" resultType="cn.thinkjoy.zgk.dto.VideoCourseDTO">
+    <select id="fetch" parameterType="java.lang.Long" resultType="cn.thinkjoy.gaokao360.dto.VideoCourseDTO">
         SELECT
         <include refid="Base_Column_List" />
         FROM zgk_video_course course

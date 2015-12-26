@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.thinkjoy.zgk.dao.ex.IScheduleExDAO">
+<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IScheduleExDAO">
 <!--
 insert
 update
@@ -37,7 +37,7 @@ selectList
         schedule.lastModifier as lastModifier ,
         province.name as province
     </sql>
-    <select id="queryPage" resultType="cn.thinkjoy.zgk.dto.ScheduleDTO">
+    <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.ScheduleDTO">
         SELECT
         <include refid="Base_Column_List" />
         FROM zgk_schedule schedule

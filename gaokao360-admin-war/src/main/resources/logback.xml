@@ -54,7 +54,7 @@
 
     <appender name="SPECLOGGER-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/mubs-spec.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>logs/zgk-spec.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>30</maxHistory>
         </rollingPolicy>
         <encoder>
