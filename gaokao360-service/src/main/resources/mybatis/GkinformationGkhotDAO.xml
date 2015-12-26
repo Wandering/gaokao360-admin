@@ -34,10 +34,11 @@ selectList
         hotInformation as hotInformation ,
         informationSubContent as informationSubContent ,
         informationContent as informationContent ,
-        hotCount as hotCount ,
         areaId as areaId ,
         hotdate as hotdate ,
-        htmlId as htmlId 
+        htmlId as htmlId ,
+        imgUrl as imgUrl ,
+        type as type 
     </sql>
     <insert id="insert" parameterType="GkinformationGkhot">
         INSERT INTO zgk_gkinformation_gkhot (
@@ -49,10 +50,11 @@ selectList
         hotInformation,
         informationSubContent,
         informationContent,
-        hotCount,
         areaId,
         hotdate,
-        htmlId
+        htmlId,
+        imgUrl,
+        type
         ) VALUES (
         #{status},
         #{creator},
@@ -62,10 +64,11 @@ selectList
         #{hotInformation},
         #{informationSubContent},
         #{informationContent},
-        #{hotCount},
         #{areaId},
         #{hotdate},
-        #{htmlId}
+        #{htmlId},
+        #{imgUrl},
+        #{type}
         )
             <selectKey resultType="java.lang.Long" keyProperty="id">
                 SELECT LAST_INSERT_ID() AS ID
@@ -100,9 +103,6 @@ selectList
             <if test="informationContent!=null">
                 informationContent = #{informationContent},
             </if>
-            <if test="hotCount!=null">
-                hotCount = #{hotCount},
-            </if>
             <if test="areaId!=null">
                 areaId = #{areaId},
             </if>
@@ -111,6 +111,12 @@ selectList
             </if>
             <if test="htmlId!=null">
                 htmlId = #{htmlId},
+            </if>
+            <if test="imgUrl!=null">
+                imgUrl = #{imgUrl},
+            </if>
+            <if test="type!=null">
+                type = #{type},
             </if>
         </trim>
         WHERE
@@ -144,9 +150,6 @@ selectList
             <if test="map.informationContent!=null">
                 informationContent = #{map.informationContent},
             </if>
-            <if test="map.hotCount!=null">
-                hotCount = #{map.hotCount},
-            </if>
             <if test="map.areaId!=null">
                 areaId = #{map.areaId},
             </if>
@@ -155,6 +158,12 @@ selectList
             </if>
             <if test="map.htmlId!=null">
                 htmlId = #{map.htmlId},
+            </if>
+            <if test="map.imgUrl!=null">
+                imgUrl = #{map.imgUrl},
+            </if>
+            <if test="map.type!=null">
+                type = #{map.type},
             </if>
         </trim>
         WHERE
@@ -188,9 +197,6 @@ selectList
             <if test="update.informationContent!=null">
                 informationContent = #{update.informationContent},
             </if>
-            <if test="update.hotCount!=null">
-                hotCount = #{update.hotCount},
-            </if>
             <if test="update.areaId!=null">
                 areaId = #{update.areaId},
             </if>
@@ -199,6 +205,12 @@ selectList
             </if>
             <if test="update.htmlId!=null">
                 htmlId = #{update.htmlId},
+            </if>
+            <if test="update.imgUrl!=null">
+                imgUrl = #{update.imgUrl},
+            </if>
+            <if test="update.type!=null">
+                type = #{update.type},
             </if>
         </trim>
 
@@ -230,9 +242,6 @@ selectList
             <if test="condition.informationContent!=null">
                 AND informationContent = #{condition.informationContent}
             </if>
-            <if test="condition.hotCount!=null">
-                AND hotCount = #{condition.hotCount}
-            </if>
             <if test="condition.areaId!=null">
                 AND areaId = #{condition.areaId}
             </if>
@@ -241,6 +250,12 @@ selectList
             </if>
             <if test="condition.htmlId!=null">
                 AND htmlId = #{condition.htmlId}
+            </if>
+            <if test="condition.imgUrl!=null">
+                AND imgUrl = #{condition.imgUrl}
+            </if>
+            <if test="condition.type!=null">
+                AND type = #{condition.type}
             </if>
         </trim>
     </update>
@@ -255,10 +270,11 @@ selectList
                 hotInformation,
                 informationSubContent,
                 informationContent,
-                hotCount,
                 areaId,
                 hotdate,
-                htmlId
+                htmlId,
+                imgUrl,
+                type
         ) VALUES (
                     #{map.status},
                     #{map.creator},
@@ -268,10 +284,11 @@ selectList
                     #{map.hotInformation},
                     #{map.informationSubContent},
                     #{map.informationContent},
-                    #{map.hotCount},
                     #{map.areaId},
                     #{map.hotdate},
-                    #{map.htmlId}
+                    #{map.htmlId},
+                    #{map.imgUrl},
+                    #{map.type}
         )
     </insert>
 
@@ -287,10 +304,11 @@ selectList
             hotInformation = #{hotInformation},
             informationSubContent = #{informationSubContent},
             informationContent = #{informationContent},
-            hotCount = #{hotCount},
             areaId = #{areaId},
             hotdate = #{hotdate},
             htmlId = #{htmlId},
+            imgUrl = #{imgUrl},
+            type = #{type},
         </trim>
         WHERE
         id = #{id} 
@@ -335,9 +353,6 @@ selectList
             <if test="informationContent!=null">
                 AND informationContent = #{informationContent}
             </if>
-            <if test="hotCount!=null">
-                AND hotCount = #{hotCount}
-            </if>
             <if test="areaId!=null">
                 AND areaId = #{areaId}
             </if>
@@ -346,6 +361,12 @@ selectList
             </if>
             <if test="htmlId!=null">
                 AND htmlId = #{htmlId}
+            </if>
+            <if test="imgUrl!=null">
+                AND imgUrl = #{imgUrl}
+            </if>
+            <if test="type!=null">
+                AND type = #{type}
             </if>
         </trim>
     </delete>
@@ -396,7 +417,55 @@ selectList
 
     <select id="queryPage" resultType="GkinformationGkhot">
         SELECT
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                        <if test="selector.id!=null">
+                            , id
+                        </if>
+                        <if test="selector.status!=null">
+                            , status
+                        </if>
+                        <if test="selector.creator!=null">
+                            , creator
+                        </if>
+                        <if test="selector.createDate!=null">
+                            , createDate
+                        </if>
+                        <if test="selector.lastModifier!=null">
+                            , lastModifier
+                        </if>
+                        <if test="selector.lastModDate!=null">
+                            , lastModDate
+                        </if>
+                        <if test="selector.hotInformation!=null">
+                            , hotInformation
+                        </if>
+                        <if test="selector.informationSubContent!=null">
+                            , informationSubContent
+                        </if>
+                        <if test="selector.informationContent!=null">
+                            , informationContent
+                        </if>
+                        <if test="selector.areaId!=null">
+                            , areaId
+                        </if>
+                        <if test="selector.hotdate!=null">
+                            , hotdate
+                        </if>
+                        <if test="selector.htmlId!=null">
+                            , htmlId
+                        </if>
+                        <if test="selector.imgUrl!=null">
+                            , imgUrl
+                        </if>
+                        <if test="selector.type!=null">
+                            , type
+                        </if>
+            </trim>
+        </if>
+        <if test="selector==null">
         <include refid="Base_Column_List" />
+        </if>
         FROM zgk_gkinformation_gkhot
         <where>
 
@@ -431,9 +500,6 @@ selectList
             <if test="condition.informationContent!=null">
                 ${condition.groupOp}   ${condition.informationContent.field}  ${condition.informationContent.op}  #{condition.informationContent.data}
             </if>
-            <if test="condition.hotCount!=null">
-                ${condition.groupOp}   ${condition.hotCount.field}  ${condition.hotCount.op}  #{condition.hotCount.data}
-            </if>
             <if test="condition.areaId!=null">
                 ${condition.groupOp}   ${condition.areaId.field}  ${condition.areaId.op}  #{condition.areaId.data}
             </if>
@@ -442,6 +508,12 @@ selectList
             </if>
             <if test="condition.htmlId!=null">
                 ${condition.groupOp}   ${condition.htmlId.field}  ${condition.htmlId.op}  #{condition.htmlId.data}
+            </if>
+            <if test="condition.imgUrl!=null">
+                ${condition.groupOp}   ${condition.imgUrl.field}  ${condition.imgUrl.op}  #{condition.imgUrl.data}
+            </if>
+            <if test="condition.type!=null">
+                ${condition.groupOp}   ${condition.type.field}  ${condition.type.op}  #{condition.type.data}
             </if>
 
 
@@ -456,7 +528,55 @@ selectList
 
     <select id="like" parameterType="java.util.Map" resultType="GkinformationGkhot">
         SELECT
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                    <if test="selector.id!=null">
+                        , id
+                    </if>
+                    <if test="selector.status!=null">
+                        , status
+                    </if>
+                    <if test="selector.creator!=null">
+                        , creator
+                    </if>
+                    <if test="selector.createDate!=null">
+                        , createDate
+                    </if>
+                    <if test="selector.lastModifier!=null">
+                        , lastModifier
+                    </if>
+                    <if test="selector.lastModDate!=null">
+                        , lastModDate
+                    </if>
+                    <if test="selector.hotInformation!=null">
+                        , hotInformation
+                    </if>
+                    <if test="selector.informationSubContent!=null">
+                        , informationSubContent
+                    </if>
+                    <if test="selector.informationContent!=null">
+                        , informationContent
+                    </if>
+                    <if test="selector.areaId!=null">
+                        , areaId
+                    </if>
+                    <if test="selector.hotdate!=null">
+                        , hotdate
+                    </if>
+                    <if test="selector.htmlId!=null">
+                        , htmlId
+                    </if>
+                    <if test="selector.imgUrl!=null">
+                        , imgUrl
+                    </if>
+                    <if test="selector.type!=null">
+                        , type
+                    </if>
+            </trim>
+        </if>
+        <if test="selector==null">
             <include refid="Base_Column_List" />
+        </if>
         FROM zgk_gkinformation_gkhot
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
@@ -486,9 +606,6 @@ selectList
             <if test="condition.informationContent!=null">
                 AND informationContent like CONCAT('%', #{condition.informationContent} , '%')
             </if>
-            <if test="condition.hotCount!=null">
-                AND hotCount like CONCAT('%', #{condition.hotCount} , '%')
-            </if>
             <if test="condition.areaId!=null">
                 AND areaId like CONCAT('%', #{condition.areaId} , '%')
             </if>
@@ -497,6 +614,12 @@ selectList
             </if>
             <if test="condition.htmlId!=null">
                 AND htmlId like CONCAT('%', #{condition.htmlId} , '%')
+            </if>
+            <if test="condition.imgUrl!=null">
+                AND imgUrl like CONCAT('%', #{condition.imgUrl} , '%')
+            </if>
+            <if test="condition.type!=null">
+                AND type like CONCAT('%', #{condition.type} , '%')
             </if>
         </trim>
         <if test="orderBy!=null">
@@ -507,7 +630,55 @@ selectList
 
     <select id="queryList" parameterType="java.util.Map" resultType="GkinformationGkhot">
         SELECT
-        <include refid="Base_Column_List" />
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                <if test="selector.id!=null">
+                    , id
+                </if>
+                <if test="selector.status!=null">
+                    , status
+                </if>
+                <if test="selector.creator!=null">
+                    , creator
+                </if>
+                <if test="selector.createDate!=null">
+                    , createDate
+                </if>
+                <if test="selector.lastModifier!=null">
+                    , lastModifier
+                </if>
+                <if test="selector.lastModDate!=null">
+                    , lastModDate
+                </if>
+                <if test="selector.hotInformation!=null">
+                    , hotInformation
+                </if>
+                <if test="selector.informationSubContent!=null">
+                    , informationSubContent
+                </if>
+                <if test="selector.informationContent!=null">
+                    , informationContent
+                </if>
+                <if test="selector.areaId!=null">
+                    , areaId
+                </if>
+                <if test="selector.hotdate!=null">
+                    , hotdate
+                </if>
+                <if test="selector.htmlId!=null">
+                    , htmlId
+                </if>
+                <if test="selector.imgUrl!=null">
+                    , imgUrl
+                </if>
+                <if test="selector.type!=null">
+                    , type
+                </if>
+        </trim>
+    </if>
+<if test="selector==null">
+<include refid="Base_Column_List" />
+</if>
         FROM zgk_gkinformation_gkhot
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
@@ -537,9 +708,6 @@ selectList
             <if test="condition.informationContent!=null">
                 AND informationContent = #{condition.informationContent}
             </if>
-            <if test="condition.hotCount!=null">
-                AND hotCount = #{condition.hotCount}
-            </if>
             <if test="condition.areaId!=null">
                 AND areaId = #{condition.areaId}
             </if>
@@ -548,6 +716,12 @@ selectList
             </if>
             <if test="condition.htmlId!=null">
                 AND htmlId = #{condition.htmlId}
+            </if>
+            <if test="condition.imgUrl!=null">
+                AND imgUrl = #{condition.imgUrl}
+            </if>
+            <if test="condition.type!=null">
+                AND type = #{condition.type}
             </if>
         </trim>
         <if test="orderBy!=null">
@@ -557,7 +731,55 @@ selectList
 
     <select id="queryOne" parameterType="java.util.Map" resultType="GkinformationGkhot">
         SELECT
-        <include refid="Base_Column_List" />
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                    <if test="selector.id!=null">
+                        , id
+                    </if>
+                    <if test="selector.status!=null">
+                        , status
+                    </if>
+                    <if test="selector.creator!=null">
+                        , creator
+                    </if>
+                    <if test="selector.createDate!=null">
+                        , createDate
+                    </if>
+                    <if test="selector.lastModifier!=null">
+                        , lastModifier
+                    </if>
+                    <if test="selector.lastModDate!=null">
+                        , lastModDate
+                    </if>
+                    <if test="selector.hotInformation!=null">
+                        , hotInformation
+                    </if>
+                    <if test="selector.informationSubContent!=null">
+                        , informationSubContent
+                    </if>
+                    <if test="selector.informationContent!=null">
+                        , informationContent
+                    </if>
+                    <if test="selector.areaId!=null">
+                        , areaId
+                    </if>
+                    <if test="selector.hotdate!=null">
+                        , hotdate
+                    </if>
+                    <if test="selector.htmlId!=null">
+                        , htmlId
+                    </if>
+                    <if test="selector.imgUrl!=null">
+                        , imgUrl
+                    </if>
+                    <if test="selector.type!=null">
+                        , type
+                    </if>
+            </trim>
+        </if>
+        <if test="selector==null">
+            <include refid="Base_Column_List" />
+        </if>
         FROM zgk_gkinformation_gkhot
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
@@ -587,9 +809,6 @@ selectList
             <if test="condition.informationContent!=null">
                 AND informationContent = #{condition.informationContent}
             </if>
-            <if test="condition.hotCount!=null">
-                AND hotCount = #{condition.hotCount}
-            </if>
             <if test="condition.areaId!=null">
                 AND areaId = #{condition.areaId}
             </if>
@@ -598,6 +817,12 @@ selectList
             </if>
             <if test="condition.htmlId!=null">
                 AND htmlId = #{condition.htmlId}
+            </if>
+            <if test="condition.imgUrl!=null">
+                AND imgUrl = #{condition.imgUrl}
+            </if>
+            <if test="condition.type!=null">
+                AND type = #{condition.type}
             </if>
         </trim>
         <if test="orderBy!=null">
@@ -636,9 +861,6 @@ selectList
            <if test="informationContent!=null">
                ${groupOp} ${informationContent.field} ${informationContent.op}  #{informationContent.data}
            </if>
-           <if test="hotCount!=null">
-               ${groupOp} ${hotCount.field} ${hotCount.op}  #{hotCount.data}
-           </if>
            <if test="areaId!=null">
                ${groupOp} ${areaId.field} ${areaId.op}  #{areaId.data}
            </if>
@@ -647,6 +869,12 @@ selectList
            </if>
            <if test="htmlId!=null">
                ${groupOp} ${htmlId.field} ${htmlId.op}  #{htmlId.data}
+           </if>
+           <if test="imgUrl!=null">
+               ${groupOp} ${imgUrl.field} ${imgUrl.op}  #{imgUrl.data}
+           </if>
+           <if test="type!=null">
+               ${groupOp} ${type.field} ${type.op}  #{type.data}
            </if>
 
        </where>

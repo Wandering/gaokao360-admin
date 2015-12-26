@@ -88,6 +88,8 @@ public class Gaokao360CommonExController extends AbstractCommonController {
             Map<String,Object> map=new HashMap<>();
             map.put("courseId",dataMap.get("id"));
             serviceMaps.get("videocourse").deleteByCondition(map);
+        }else if("gkheadline".equals(mainObj)){
+            serviceMaps.get("gkinformationgkhot").delete(dataMap.get("id"));
         }else if("university".equals(mainObj)) {
             universityExService.deleteUniversity(dataMap);
         }else if("majoredcategory".equals(mainObj)) {

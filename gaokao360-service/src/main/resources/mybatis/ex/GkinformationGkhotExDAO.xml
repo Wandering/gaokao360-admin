@@ -34,10 +34,10 @@ selectList
         gkhot.hotInformation as hotInformation ,
         gkhot.informationSubContent as informationSubContent ,
         gkhot.informationContent as informationContent ,
-        gkhot.hotCount as hotCount ,
         gkhot.areaId as areaId,
         gkhot.hotdate as hotdate,
-		province.name as province
+		province.name as province,
+		gkhot.type as type
 
     </sql>
 
