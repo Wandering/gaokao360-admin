@@ -149,74 +149,7 @@
         });
         //删除
         CommonFn.deleteFun('#deleteBtn', '${mainObj}');
-        function addAndEditFn() {
-            var provinceV = $("#province2").find("option:selected").attr('value');
-            var policyInterTwoV = $.trim($('#policyInterTwo').val());
-            var policyInterDetailV = $('#policyInterDetail').html();
-            if (provinceV == "00") {
-                CommonFn.tipsDialog('温馨提示', '请选择省份');
-                return false;
-            }
-            var policyInterGroupV = '';
-            var selectPolicy = $("#policyInterGroup").find("option:selected").attr('value');
-            if (selectPolicy == '000') {
-                policyInterGroupV = $('#policyInterNew').val().trim();
-                if (policyInterGroupV == '') {
-                    CommonFn.tipsDialog('温馨提示', '新建政策一级分类不能为空');
-                    return false;
-                }
-                CommonFn.getData('policyInterpretation.getInterfaceUrl.addGroup', {
-                            name: policyInterGroupV,
-                            oper: 'add',
-                            areaId: 0
-                        },
-                        function (res) {
-                            if (res.rtnCode == '0000000') {
-                                console.info(res);
-                            }
-                        })
-            } else {
-                policyInterGroupV = selectPolicy;
-            }
-            if (selectPolicy == "000" || selectPolicy == "00") {
-                CommonFn.tipsDialog('温馨提示', '请选择政策一级分类');
-                return false;
-            }
-            if (policyInterTwoV == "") {
-                CommonFn.tipsDialog('温馨提示', '政策二级分类不能为空');
-                return false;
-            }
-            if (policyInterDetailV == "") {
-                CommonFn.tipsDialog('温馨提示', '请输入政策解读详情内容');
-                return false;
-            }
-            var policyContentHtml = CommonFn.getTextareaData(policyInterDetailV).join(''),
-                    policyContentUrl = CommonFn.getTextareaUrlData(policyContentHtml),
-                    htmlUrl = policyContentUrl[0],
-                    htmlId = policyContentUrl[1],
-                    infoData = {
-                        htmlId: htmlId,
-                        provinceId: provinceV,
-                        admissionBatchId: policyInterGroupV,
-                        content: htmlUrl,
-                        categoryName: policyInterTwoV,
-                        oper: typeStr,
-                        areaId: 0
-                    };
-            if (typeStr == 'edit') {
-                infoData.id = rowId;
-            }
-            $.ajax({
-                type: "POST",
-                url: '/admin/${bizSys}/commonsave/${mainObj}',
-                data: infoData,
-                success: function (result) {
-                    if (result.rtnCode == "0000000") {
-                        searchLoad();
-                    }
-                }
-            });
-        }
+
 
 
         //修改高考热点
@@ -328,6 +261,74 @@
                 + '</div>'
                 + '</div>'
                 + '</div>';
+        function addAndEditFn() {
+            var provinceV = $("#province2").find("option:selected").attr('value');
+            var policyInterTwoV = $('#policyInterTwo').val();
+            var policyInterDetailV = $('#policyInterDetail').html();
+            if (provinceV == "00") {
+                CommonFn.tipsDialog('温馨提示', '请选择省份');
+                return false;
+            }
+            var policyInterGroupV = '';
+            var selectPolicy = $("#policyInterGroup").find("option:selected").attr('value');
+            if (selectPolicy == '000') {
+                policyInterGroupV = $('#policyInterNew').val().trim();
+                if (policyInterGroupV == '') {
+                    CommonFn.tipsDialog('温馨提示', '新建政策一级分类不能为空');
+                    return false;
+                }
+                CommonFn.getData('policyInterpretation.getInterfaceUrl.addGroup', {
+                            name: policyInterGroupV,
+                            oper: 'add',
+                            areaId: 0
+                        },
+                        function (res) {
+                            if (res.rtnCode == '0000000') {
+                                console.info(res);
+                            }
+                        })
+            } else {
+                policyInterGroupV = selectPolicy;
+            }
+            if (selectPolicy == "000" || selectPolicy == "00") {
+                CommonFn.tipsDialog('温馨提示', '请选择政策一级分类');
+                return false;
+            }
+            if (policyInterTwoV == "") {
+                CommonFn.tipsDialog('温馨提示', '政策二级分类不能为空');
+                return false;
+            }
+            if (policyInterDetailV == "") {
+                CommonFn.tipsDialog('温馨提示', '请输入政策解读详情内容');
+                return false;
+            }
+            var policyContentHtml = CommonFn.getTextareaData(policyInterDetailV).join(''),
+                    policyContentUrl = CommonFn.getTextareaUrlData(policyContentHtml),
+                    htmlUrl = policyContentUrl[0],
+                    htmlId = policyContentUrl[1],
+                    infoData = {
+                        htmlId: htmlId,
+                        provinceId: provinceV,
+                        admissionBatchId: policyInterGroupV,
+                        content: htmlUrl,
+                        categoryName: policyInterTwoV,
+                        oper: typeStr,
+                        areaId: 0
+                    };
+            if (typeStr == 'edit') {
+                infoData.id = rowId;
+            }
+            $.ajax({
+                type: "POST",
+                url: '/admin/${bizSys}/commonsave/${mainObj}',
+                data: infoData,
+                success: function (result) {
+                    if (result.rtnCode == "0000000") {
+                        searchLoad();
+                    }
+                }
+            });
+        }
 
     })
 
