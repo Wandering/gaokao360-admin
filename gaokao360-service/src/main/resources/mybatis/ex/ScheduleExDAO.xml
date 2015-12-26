@@ -63,7 +63,7 @@ selectList
 
 
         </where>
-        ORDER BY id DESC
+        ORDER BY lastModDate DESC
         <if test="offset != null">
             limit ${offset}, ${rows}
         </if>

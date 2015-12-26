@@ -23,6 +23,13 @@ import java.util.Map;
 public class DomainReflex {
 
 
+    /**
+     * 将父类对象的值赋给子类对象
+     * @param o 父类对象
+     * @param dto 子类对象
+     * @return 子类对象
+     * @throws Exception 获取方法异常，赋值异常
+     */
     public static Object ObjToDTO(Object o,Object dto) throws Exception {
         Class clz=o.getClass();
         Class clzDto=dto.getClass();
