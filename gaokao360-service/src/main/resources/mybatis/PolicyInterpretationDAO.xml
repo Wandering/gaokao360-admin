@@ -36,7 +36,8 @@ selectList
         lastModifier as lastModifier ,
         lastModDate as lastModDate ,
         areaId as areaId ,
-        htmlId as htmlId 
+        htmlId as htmlId ,
+        subContent as subContent 
     </sql>
     <insert id="insert" parameterType="PolicyInterpretation">
         INSERT INTO zgk_policy_interpretation (
@@ -50,7 +51,8 @@ selectList
         lastModifier,
         lastModDate,
         areaId,
-        htmlId
+        htmlId,
+        subContent
         ) VALUES (
         #{provinceId},
         #{admissionBatchId},
@@ -62,7 +64,8 @@ selectList
         #{lastModifier},
         #{lastModDate},
         #{areaId},
-        #{htmlId}
+        #{htmlId},
+        #{subContent}
         )
             <selectKey resultType="java.lang.Long" keyProperty="id">
                 SELECT LAST_INSERT_ID() AS ID
@@ -106,6 +109,9 @@ selectList
             <if test="htmlId!=null">
                 htmlId = #{htmlId},
             </if>
+            <if test="subContent!=null">
+                subContent = #{subContent},
+            </if>
         </trim>
         WHERE
         id = #{id}
@@ -146,6 +152,9 @@ selectList
             </if>
             <if test="map.htmlId!=null">
                 htmlId = #{map.htmlId},
+            </if>
+            <if test="map.subContent!=null">
+                subContent = #{map.subContent},
             </if>
         </trim>
         WHERE
@@ -188,6 +197,9 @@ selectList
             <if test="update.htmlId!=null">
                 htmlId = #{update.htmlId},
             </if>
+            <if test="update.subContent!=null">
+                subContent = #{update.subContent},
+            </if>
         </trim>
 
         <trim prefix="WHERE" prefixOverrides="AND | OR">
@@ -227,6 +239,9 @@ selectList
             <if test="condition.htmlId!=null">
                 AND htmlId = #{condition.htmlId}
             </if>
+            <if test="condition.subContent!=null">
+                AND subContent = #{condition.subContent}
+            </if>
         </trim>
     </update>
 
@@ -242,7 +257,8 @@ selectList
                 lastModifier,
                 lastModDate,
                 areaId,
-                htmlId
+                htmlId,
+                subContent
         ) VALUES (
                     #{map.provinceId},
                     #{map.admissionBatchId},
@@ -254,7 +270,8 @@ selectList
                     #{map.lastModifier},
                     #{map.lastModDate},
                     #{map.areaId},
-                    #{map.htmlId}
+                    #{map.htmlId},
+                    #{map.subContent}
         )
     </insert>
 
@@ -273,6 +290,7 @@ selectList
             lastModDate = #{lastModDate},
             areaId = #{areaId},
             htmlId = #{htmlId},
+            subContent = #{subContent},
         </trim>
         WHERE
         id = #{id} 
@@ -326,6 +344,9 @@ selectList
             <if test="htmlId!=null">
                 AND htmlId = #{htmlId}
             </if>
+            <if test="subContent!=null">
+                AND subContent = #{subContent}
+            </if>
         </trim>
     </delete>
 
@@ -375,7 +396,52 @@ selectList
 
     <select id="queryPage" resultType="PolicyInterpretation">
         SELECT
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                        <if test="selector.id!=null">
+                            , id
+                        </if>
+                        <if test="selector.provinceId!=null">
+                            , provinceId
+                        </if>
+                        <if test="selector.admissionBatchId!=null">
+                            , admissionBatchId
+                        </if>
+                        <if test="selector.categoryName!=null">
+                            , categoryName
+                        </if>
+                        <if test="selector.content!=null">
+                            , content
+                        </if>
+                        <if test="selector.status!=null">
+                            , status
+                        </if>
+                        <if test="selector.creator!=null">
+                            , creator
+                        </if>
+                        <if test="selector.createDate!=null">
+                            , createDate
+                        </if>
+                        <if test="selector.lastModifier!=null">
+                            , lastModifier
+                        </if>
+                        <if test="selector.lastModDate!=null">
+                            , lastModDate
+                        </if>
+                        <if test="selector.areaId!=null">
+                            , areaId
+                        </if>
+                        <if test="selector.htmlId!=null">
+                            , htmlId
+                        </if>
+                        <if test="selector.subContent!=null">
+                            , subContent
+                        </if>
+            </trim>
+        </if>
+        <if test="selector==null">
         <include refid="Base_Column_List" />
+        </if>
         FROM zgk_policy_interpretation
         <where>
 
@@ -419,6 +485,9 @@ selectList
             <if test="condition.htmlId!=null">
                 ${condition.groupOp}   ${condition.htmlId.field}  ${condition.htmlId.op}  #{condition.htmlId.data}
             </if>
+            <if test="condition.subContent!=null">
+                ${condition.groupOp}   ${condition.subContent.field}  ${condition.subContent.op}  #{condition.subContent.data}
+            </if>
 
 
     </where>
@@ -432,7 +501,52 @@ selectList
 
     <select id="like" parameterType="java.util.Map" resultType="PolicyInterpretation">
         SELECT
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                    <if test="selector.id!=null">
+                        , id
+                    </if>
+                    <if test="selector.provinceId!=null">
+                        , provinceId
+                    </if>
+                    <if test="selector.admissionBatchId!=null">
+                        , admissionBatchId
+                    </if>
+                    <if test="selector.categoryName!=null">
+                        , categoryName
+                    </if>
+                    <if test="selector.content!=null">
+                        , content
+                    </if>
+                    <if test="selector.status!=null">
+                        , status
+                    </if>
+                    <if test="selector.creator!=null">
+                        , creator
+                    </if>
+                    <if test="selector.createDate!=null">
+                        , createDate
+                    </if>
+                    <if test="selector.lastModifier!=null">
+                        , lastModifier
+                    </if>
+                    <if test="selector.lastModDate!=null">
+                        , lastModDate
+                    </if>
+                    <if test="selector.areaId!=null">
+                        , areaId
+                    </if>
+                    <if test="selector.htmlId!=null">
+                        , htmlId
+                    </if>
+                    <if test="selector.subContent!=null">
+                        , subContent
+                    </if>
+            </trim>
+        </if>
+        <if test="selector==null">
             <include refid="Base_Column_List" />
+        </if>
         FROM zgk_policy_interpretation
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
@@ -471,6 +585,9 @@ selectList
             <if test="condition.htmlId!=null">
                 AND htmlId like CONCAT('%', #{condition.htmlId} , '%')
             </if>
+            <if test="condition.subContent!=null">
+                AND subContent like CONCAT('%', #{condition.subContent} , '%')
+            </if>
         </trim>
         <if test="orderBy!=null">
         ORDER BY ${orderBy} ${sortBy}
@@ -480,7 +597,52 @@ selectList
 
     <select id="queryList" parameterType="java.util.Map" resultType="PolicyInterpretation">
         SELECT
-        <include refid="Base_Column_List" />
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                <if test="selector.id!=null">
+                    , id
+                </if>
+                <if test="selector.provinceId!=null">
+                    , provinceId
+                </if>
+                <if test="selector.admissionBatchId!=null">
+                    , admissionBatchId
+                </if>
+                <if test="selector.categoryName!=null">
+                    , categoryName
+                </if>
+                <if test="selector.content!=null">
+                    , content
+                </if>
+                <if test="selector.status!=null">
+                    , status
+                </if>
+                <if test="selector.creator!=null">
+                    , creator
+                </if>
+                <if test="selector.createDate!=null">
+                    , createDate
+                </if>
+                <if test="selector.lastModifier!=null">
+                    , lastModifier
+                </if>
+                <if test="selector.lastModDate!=null">
+                    , lastModDate
+                </if>
+                <if test="selector.areaId!=null">
+                    , areaId
+                </if>
+                <if test="selector.htmlId!=null">
+                    , htmlId
+                </if>
+                <if test="selector.subContent!=null">
+                    , subContent
+                </if>
+        </trim>
+    </if>
+<if test="selector==null">
+<include refid="Base_Column_List" />
+</if>
         FROM zgk_policy_interpretation
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
@@ -518,6 +680,9 @@ selectList
             </if>
             <if test="condition.htmlId!=null">
                 AND htmlId = #{condition.htmlId}
+            </if>
+            <if test="condition.subContent!=null">
+                AND subContent = #{condition.subContent}
             </if>
         </trim>
         <if test="orderBy!=null">
@@ -527,7 +692,52 @@ selectList
 
     <select id="queryOne" parameterType="java.util.Map" resultType="PolicyInterpretation">
         SELECT
-        <include refid="Base_Column_List" />
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                    <if test="selector.id!=null">
+                        , id
+                    </if>
+                    <if test="selector.provinceId!=null">
+                        , provinceId
+                    </if>
+                    <if test="selector.admissionBatchId!=null">
+                        , admissionBatchId
+                    </if>
+                    <if test="selector.categoryName!=null">
+                        , categoryName
+                    </if>
+                    <if test="selector.content!=null">
+                        , content
+                    </if>
+                    <if test="selector.status!=null">
+                        , status
+                    </if>
+                    <if test="selector.creator!=null">
+                        , creator
+                    </if>
+                    <if test="selector.createDate!=null">
+                        , createDate
+                    </if>
+                    <if test="selector.lastModifier!=null">
+                        , lastModifier
+                    </if>
+                    <if test="selector.lastModDate!=null">
+                        , lastModDate
+                    </if>
+                    <if test="selector.areaId!=null">
+                        , areaId
+                    </if>
+                    <if test="selector.htmlId!=null">
+                        , htmlId
+                    </if>
+                    <if test="selector.subContent!=null">
+                        , subContent
+                    </if>
+            </trim>
+        </if>
+        <if test="selector==null">
+            <include refid="Base_Column_List" />
+        </if>
         FROM zgk_policy_interpretation
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
@@ -565,6 +775,9 @@ selectList
             </if>
             <if test="condition.htmlId!=null">
                 AND htmlId = #{condition.htmlId}
+            </if>
+            <if test="condition.subContent!=null">
+                AND subContent = #{condition.subContent}
             </if>
         </trim>
         <if test="orderBy!=null">
@@ -611,6 +824,9 @@ selectList
            </if>
            <if test="htmlId!=null">
                ${groupOp} ${htmlId.field} ${htmlId.op}  #{htmlId.data}
+           </if>
+           <if test="subContent!=null">
+               ${groupOp} ${subContent.field} ${subContent.op}  #{subContent.data}
            </if>
 
        </where>
