@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IMajoredCategoryExDAO">
+<mapper namespace="cn.thinkjoy.zgk.dao.ex.IMajoredCategoryExDAO">
 <!--
 insert
 update
@@ -31,10 +31,10 @@ selectList
         parentId as parentId 
     </sql>
 
-    <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.MajoredCategoryDTO">
+    <select id="queryPage" resultType="cn.thinkjoy.zgk.dto.MajoredCategoryDTO">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_majored_category
+        FROM zgk_majored_category
         <where>
             1=1 AND (parentId =1 ||  parentId =2 )
             <if test="condition.whereSql != null">
@@ -55,18 +55,18 @@ selectList
     </select>
 
 
-    <select id="queryList" resultType="cn.thinkjoy.gaokao360.dto.MajoredCategoryDTO">
+    <select id="queryList" resultType="cn.thinkjoy.zgk.dto.MajoredCategoryDTO">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_majored_category WHERE  1=1 AND  (parentId =1 ||  parentId =2 )
+        FROM zgk_majored_category WHERE  1=1 AND  (parentId =1 ||  parentId =2 )
     </select>
-    <select id="fetch" resultType="cn.thinkjoy.gaokao360.dto.MajoredCategoryDTO">
+    <select id="fetch" resultType="cn.thinkjoy.zgk.dto.MajoredCategoryDTO">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_majored_category WHERE  1=1 AND  (parentId =1 ||  parentId =2 ) AND  id=#{id}
+        FROM zgk_majored_category WHERE  1=1 AND  (parentId =1 ||  parentId =2 ) AND  id=#{id}
     </select>
     <select id="count" resultType="java.lang.Integer">
-        SELECT count(id) FROM gk_majored_category
+        SELECT count(id) FROM zgk_majored_category
        <where>
            1=1 AND  (parentId =1 ||  parentId =2 )
            <if test="name!=null">
@@ -74,10 +74,10 @@ selectList
            </if>
        </where>
     </select>
-    <select id="queryListByParentId" resultType="cn.thinkjoy.gaokao360.domain.GkBaseDomain">
+    <select id="queryListByParentId" resultType="cn.thinkjoy.zgk.domain.GkBaseDomain">
         SELECT
         id,name
-        FROM gk_majored_category WHERE  1=1 AND  parentId =#{id}
+        FROM zgk_majored_category WHERE  1=1 AND  parentId =#{id}
     </select>
 
 

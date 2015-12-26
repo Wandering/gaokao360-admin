@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IMajoredExDAO">
+<mapper namespace="cn.thinkjoy.zgk.dao.ex.IMajoredExDAO">
 <!--
 insert
 update
@@ -51,7 +51,7 @@ selectList
     <select id="queryPage" resultType="Majored">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_majored
+        FROM zgk_majored
         <where>
 
             1=1
@@ -80,7 +80,7 @@ selectList
     </select>
 
     <select id="count" resultType="java.lang.Integer">
-        SELECT count(id) FROM gk_majored
+        SELECT count(id) FROM zgk_majored
         <where>
 1=1
             <if test="subjectType!=null">
@@ -99,8 +99,8 @@ selectList
 
         </where>
     </select>
-    <select id="getMajoredListByName" resultType="cn.thinkjoy.gaokao360.domain.GkBaseDomain">
-        SELECT id,name,subjectType as type FROM gk_majored
+    <select id="getMajoredListByName" resultType="cn.thinkjoy.zgk.domain.GkBaseDomain">
+        SELECT id,name,subjectType as type FROM zgk_majored
          <where>
              <if test="name!=null">
                  AND (name like CONCAT('%', #{name} , '%'),name subjectType CONCAT('%', #{name} , '%'))

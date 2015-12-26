@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.thinkjoy.gaokao360.dao.IPolicyInterpretationDAO">
+<mapper namespace="cn.thinkjoy.zgk.dao.IPolicyInterpretationDAO">
 <!--
 insert
 update
@@ -39,7 +39,7 @@ selectList
         htmlId as htmlId 
     </sql>
     <insert id="insert" parameterType="PolicyInterpretation">
-        INSERT INTO gk_policy_interpretation (
+        INSERT INTO zgk_policy_interpretation (
         provinceId,
         admissionBatchId,
         categoryName,
@@ -71,7 +71,7 @@ selectList
 
     <!-- 更新 -->
     <update id="update" parameterType="PolicyInterpretation">
-        UPDATE gk_policy_interpretation
+        UPDATE zgk_policy_interpretation
         <trim prefix="SET" suffixOverrides=",">
             <if test="provinceId!=null">
                 provinceId = #{provinceId},
@@ -112,7 +112,7 @@ selectList
     </update>
 
     <update id="updateMap">
-        UPDATE gk_policy_interpretation
+        UPDATE zgk_policy_interpretation
         <trim prefix="SET" suffixOverrides=",">
             <if test="map.provinceId!=null">
                 provinceId = #{map.provinceId},
@@ -153,7 +153,7 @@ selectList
     </update>
 
     <update id="updateByCondition">
-        UPDATE gk_policy_interpretation
+        UPDATE zgk_policy_interpretation
         <trim prefix="SET" suffixOverrides=",">
             <if test="update.provinceId!=null">
                 provinceId = #{update.provinceId},
@@ -231,7 +231,7 @@ selectList
     </update>
 
     <insert id="insertMap" >
-        INSERT INTO gk_policy_interpretation (
+        INSERT INTO zgk_policy_interpretation (
                 provinceId,
                 admissionBatchId,
                 categoryName,
@@ -260,7 +260,7 @@ selectList
 
 
     <update id="updateNull" parameterType="PolicyInterpretation">
-        UPDATE gk_policy_interpretation
+        UPDATE zgk_policy_interpretation
         <trim prefix="SET" suffixOverrides=",">
             provinceId = #{provinceId},
             admissionBatchId = #{admissionBatchId},
@@ -280,7 +280,7 @@ selectList
 
     <!-- 按Id删除 -->
     <delete id="deleteById" parameterType="java.lang.Long">
-        DELETE FROM gk_policy_interpretation
+        DELETE FROM zgk_policy_interpretation
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND id = #{id}
         </trim>
@@ -288,7 +288,7 @@ selectList
 
 
     <delete id="deleteByCondition" parameterType="java.util.Map">
-        DELETE FROM gk_policy_interpretation
+        DELETE FROM zgk_policy_interpretation
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="id!=null">
                 AND id = #{id}
@@ -330,14 +330,14 @@ selectList
     </delete>
 
     <delete id="deleteByProperty" parameterType="java.util.Map">
-        DELETE FROM gk_policy_interpretation WHERE
+        DELETE FROM zgk_policy_interpretation WHERE
         ${property} = #{value}
     </delete>
 
     <select id="fetch" parameterType="java.lang.Long" resultType="PolicyInterpretation">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_policy_interpretation
+        FROM zgk_policy_interpretation
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND id = #{id}
         </trim>
@@ -346,7 +346,7 @@ selectList
     <select id="findOne" parameterType="java.util.Map" resultType="PolicyInterpretation">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_policy_interpretation WHERE
+        FROM zgk_policy_interpretation WHERE
         ${property} = #{value}
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
@@ -357,7 +357,7 @@ selectList
     <select id="findList" parameterType="java.util.Map" resultType="PolicyInterpretation">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_policy_interpretation WHERE
+        FROM zgk_policy_interpretation WHERE
         ${property} = #{value}
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
@@ -367,7 +367,7 @@ selectList
     <select id="findAll" resultType="PolicyInterpretation">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_policy_interpretation
+        FROM zgk_policy_interpretation
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
         </if>
@@ -376,7 +376,7 @@ selectList
     <select id="queryPage" resultType="PolicyInterpretation">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_policy_interpretation
+        FROM zgk_policy_interpretation
         <where>
 
             <if test="condition.whereSql != null">
@@ -433,7 +433,7 @@ selectList
     <select id="like" parameterType="java.util.Map" resultType="PolicyInterpretation">
         SELECT
             <include refid="Base_Column_List" />
-        FROM gk_policy_interpretation
+        FROM zgk_policy_interpretation
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id like CONCAT('%', #{condition.id} , '%')
@@ -481,7 +481,7 @@ selectList
     <select id="queryList" parameterType="java.util.Map" resultType="PolicyInterpretation">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_policy_interpretation
+        FROM zgk_policy_interpretation
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id = #{condition.id}
@@ -528,7 +528,7 @@ selectList
     <select id="queryOne" parameterType="java.util.Map" resultType="PolicyInterpretation">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_policy_interpretation
+        FROM zgk_policy_interpretation
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id = #{condition.id}
@@ -574,7 +574,7 @@ selectList
     </select>
 
     <select id="count" resultType="java.lang.Integer">
-        SELECT count(id) FROM gk_policy_interpretation
+        SELECT count(id) FROM zgk_policy_interpretation
        <where>
            <if test="id!=null">
                ${groupOp} ${id.field} ${id.op}  #{id.data}
@@ -619,7 +619,7 @@ selectList
     <select id="selectMaxId" resultType="java.lang.Long">
         SELECT
         MAX(id)
-        FROM gk_policy_interpretation
+        FROM zgk_policy_interpretation
     </select>
 
 </mapper>

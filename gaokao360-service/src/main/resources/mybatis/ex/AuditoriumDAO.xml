@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IAuditoriumDAO">
+<mapper namespace="cn.thinkjoy.zgk.dao.ex.IAuditoriumDAO">
 <!--
 insert
 update
@@ -53,13 +53,13 @@ selectList
 
     </sql>
 
-    <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.VideoCourseDTO">
+    <select id="queryPage" resultType="cn.thinkjoy.zgk.dto.VideoCourseDTO">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_video_course course
-        LEFT OUTER JOIN gk_video_classify classify ON classify.id = course.classifyId
-        LEFT OUTER JOIN gk_subject gksubject ON course.subjectId = gksubject.id
-        LEFT JOIN gk_province province ON course.areaId = province.id
+        FROM zgk_video_course course
+        LEFT OUTER JOIN zgk_video_classify classify ON classify.id = course.classifyId
+        LEFT OUTER JOIN zgk_subject gksubject ON course.subjectId = gksubject.id
+        LEFT JOIN zgk_province province ON course.areaId = province.id
 
         <where>
             course.classifyId=1
@@ -90,10 +90,10 @@ selectList
 
 
     <select id="count" resultType="java.lang.Integer">
-        SELECT count(course.id)  FROM gk_video_course course
-        LEFT OUTER JOIN gk_video_classify classify ON classify.id = course.classifyId
-        LEFT OUTER JOIN gk_subject gksubject ON course.subjectId = gksubject.id
-        LEFT JOIN gk_province province ON course.areaId = province.id
+        SELECT count(course.id)  FROM zgk_video_course course
+        LEFT OUTER JOIN zgk_video_classify classify ON classify.id = course.classifyId
+        LEFT OUTER JOIN zgk_subject gksubject ON course.subjectId = gksubject.id
+        LEFT JOIN zgk_province province ON course.areaId = province.id
        <where>
            course.classifyId=1
            <if test="coursesubjectId!=null">
@@ -112,13 +112,13 @@ selectList
        </where>
     </select>
 
-    <select id="fetch" parameterType="java.lang.Long" resultType="cn.thinkjoy.gaokao360.dto.VideoCourseDTO">
+    <select id="fetch" parameterType="java.lang.Long" resultType="cn.thinkjoy.zgk.dto.VideoCourseDTO">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_video_course course
-        LEFT OUTER JOIN gk_video_classify classify ON classify.id = course.classifyId
-        LEFT OUTER JOIN gk_subject gksubject ON course.subjectId = gksubject.id
-        LEFT JOIN gk_province province ON course.areaId = province.id
+        FROM zgk_video_course course
+        LEFT OUTER JOIN zgk_video_classify classify ON classify.id = course.classifyId
+        LEFT OUTER JOIN zgk_subject gksubject ON course.subjectId = gksubject.id
+        LEFT JOIN zgk_province province ON course.areaId = province.id
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND course.id = #{id}
         </trim>

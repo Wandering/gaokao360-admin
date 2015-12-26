@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.thinkjoy.gaokao360.dao.IAgentDAO">
+<mapper namespace="cn.thinkjoy.zgk.dao.IAgentDAO">
 <!--
 insert
 update
@@ -37,7 +37,7 @@ selectList
         areaId as areaId 
     </sql>
     <insert id="insert" parameterType="Agent">
-        INSERT INTO gk_agent (
+        INSERT INTO zgk_agent (
         status,
         creator,
         createDate,
@@ -65,7 +65,7 @@ selectList
 
     <!-- 更新 -->
     <update id="update" parameterType="Agent">
-        UPDATE gk_agent
+        UPDATE zgk_agent
         <trim prefix="SET" suffixOverrides=",">
             <if test="status!=null">
                 status = #{status},
@@ -100,7 +100,7 @@ selectList
     </update>
 
     <update id="updateMap">
-        UPDATE gk_agent
+        UPDATE zgk_agent
         <trim prefix="SET" suffixOverrides=",">
             <if test="map.status!=null">
                 status = #{map.status},
@@ -135,7 +135,7 @@ selectList
     </update>
 
     <update id="updateByCondition">
-        UPDATE gk_agent
+        UPDATE zgk_agent
         <trim prefix="SET" suffixOverrides=",">
             <if test="update.status!=null">
                 status = #{update.status},
@@ -201,7 +201,7 @@ selectList
     </update>
 
     <insert id="insertMap" >
-        INSERT INTO gk_agent (
+        INSERT INTO zgk_agent (
                 status,
                 creator,
                 createDate,
@@ -226,7 +226,7 @@ selectList
 
 
     <update id="updateNull" parameterType="Agent">
-        UPDATE gk_agent
+        UPDATE zgk_agent
         <trim prefix="SET" suffixOverrides=",">
             status = #{status},
             creator = #{creator},
@@ -244,7 +244,7 @@ selectList
 
     <!-- 按Id删除 -->
     <delete id="deleteById" parameterType="java.lang.Long">
-        DELETE FROM gk_agent
+        DELETE FROM zgk_agent
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND id = #{id}
         </trim>
@@ -252,7 +252,7 @@ selectList
 
 
     <delete id="deleteByCondition" parameterType="java.util.Map">
-        DELETE FROM gk_agent
+        DELETE FROM zgk_agent
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="id!=null">
                 AND id = #{id}
@@ -288,14 +288,14 @@ selectList
     </delete>
 
     <delete id="deleteByProperty" parameterType="java.util.Map">
-        DELETE FROM gk_agent WHERE
+        DELETE FROM zgk_agent WHERE
         ${property} = #{value}
     </delete>
 
     <select id="fetch" parameterType="java.lang.Long" resultType="Agent">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_agent
+        FROM zgk_agent
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND id = #{id}
         </trim>
@@ -304,7 +304,7 @@ selectList
     <select id="findOne" parameterType="java.util.Map" resultType="Agent">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_agent WHERE
+        FROM zgk_agent WHERE
         ${property} = #{value}
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
@@ -315,7 +315,7 @@ selectList
     <select id="findList" parameterType="java.util.Map" resultType="Agent">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_agent WHERE
+        FROM zgk_agent WHERE
         ${property} = #{value}
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
@@ -325,7 +325,7 @@ selectList
     <select id="findAll" resultType="Agent">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_agent
+        FROM zgk_agent
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
         </if>
@@ -334,7 +334,7 @@ selectList
     <select id="queryPage" resultType="Agent">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_agent
+        FROM zgk_agent
         <where>
 
             <if test="condition.whereSql != null">
@@ -385,7 +385,7 @@ selectList
     <select id="like" parameterType="java.util.Map" resultType="Agent">
         SELECT
             <include refid="Base_Column_List" />
-        FROM gk_agent
+        FROM zgk_agent
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id like CONCAT('%', #{condition.id} , '%')
@@ -427,7 +427,7 @@ selectList
     <select id="queryList" parameterType="java.util.Map" resultType="Agent">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_agent
+        FROM zgk_agent
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id = #{condition.id}
@@ -468,7 +468,7 @@ selectList
     <select id="queryOne" parameterType="java.util.Map" resultType="Agent">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_agent
+        FROM zgk_agent
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id = #{condition.id}
@@ -508,7 +508,7 @@ selectList
     </select>
 
     <select id="count" resultType="java.lang.Integer">
-        SELECT count(id) FROM gk_agent
+        SELECT count(id) FROM zgk_agent
        <where>
            <if test="id!=null">
                ${groupOp} ${id.field} ${id.op}  #{id.data}
@@ -547,7 +547,7 @@ selectList
     <select id="selectMaxId" resultType="java.lang.Long">
         SELECT
         MAX(id)
-        FROM gk_agent
+        FROM zgk_agent
     </select>
 
 </mapper>

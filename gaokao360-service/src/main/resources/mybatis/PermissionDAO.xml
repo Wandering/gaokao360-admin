@@ -6,8 +6,8 @@
     <!-- 鑾峰彇鐢ㄦ埛鑿滃崟 -->
     <select id="getResByPerm" resultType="Resource">
         select distinct res.* from
-        gaokao360_resource res left outer join gaokao360_role_resource rres on res.id = rres.resourceId
-        left outer join gaokao360_role_user ru on rres.roleId = ru.roleId
+        zgk_resource res left outer join zgk_role_resource rres on res.id = rres.resourceId
+        left outer join zgk_role_user ru on rres.roleId = ru.roleId
         where ru.userId = #{userId}
         order by res.orderNum
     </select>
@@ -15,9 +15,9 @@
     <!-- 鑾峰彇鐢ㄦ埛瀵瑰簲鑿滃崟鐨勬寜閽潈闄� -->
     <select id="getResActionByPerm" resultType="ResourceAction">
         select ra.* from
-        gaokao360_resource res left outer join gaokao360_role_resource rres on res.id = rres.resourceId
-        left outer join gaokao360_role_user ru on rres.roleId = ru.roleId
-        left outer join gaokao360_resource_action ra on rres.resourceActionId = ra.id
+        zgk_resource res left outer join zgk_role_resource rres on res.id = rres.resourceId
+        left outer join zgk_role_user ru on rres.roleId = ru.roleId
+        left outer join zgk_resource_action ra on rres.resourceActionId = ra.id
         <where>
             <if test="condition.userId != null">
                 and ru.userId in (#{condition.userId})
@@ -32,7 +32,7 @@
 
     <!-- 鑾峰彇鐢ㄦ埛瀵瑰簲鑿滃崟鐨勬寜閽潈闄� -->
     <select id="getDataByPerm" resultType="DatagroupData">
-        select dataId,dataModelId from gaokao360_user_data
+        select dataId,dataModelId from zgk_user_data
         where userId = #{condition.userId}
         and dataModelId = #{condition.dataModelId}
     </select>

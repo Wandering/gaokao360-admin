@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IGkinformationGkhotExDAO">
+<mapper namespace="cn.thinkjoy.zgk.dao.ex.IGkinformationGkhotExDAO">
 <!--
 insert
 update
@@ -41,11 +41,11 @@ selectList
 
     </sql>
 
-    <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.GkinformationGkhotDTO">
+    <select id="queryPage" resultType="cn.thinkjoy.zgk.dto.GkinformationGkhotDTO">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_gkinformation_gkhot gkhot
-        LEFT JOIN gk_province province on gkhot.areaId=province.id
+        FROM zgk_gkinformation_gkhot gkhot
+        LEFT JOIN zgk_province province on gkhot.areaId=province.id
         <where>
 
             <if test="condition.whereSql != null">
@@ -69,8 +69,8 @@ selectList
 
     <select id="count" resultType="java.lang.Integer">
         SELECT count(gkhot.id)
-        FROM gk_gkinformation_gkhot gkhot
-        LEFT JOIN gk_province province on gkhot.areaId=province.id
+        FROM zgk_gkinformation_gkhot gkhot
+        LEFT JOIN zgk_province province on gkhot.areaId=province.id
        <where>
 
            <if test="gkhothotInformation!=null">

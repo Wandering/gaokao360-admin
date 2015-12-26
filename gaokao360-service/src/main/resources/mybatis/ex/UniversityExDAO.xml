@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IUniversityExDAO">
+<mapper namespace="cn.thinkjoy.zgk.dao.ex.IUniversityExDAO">
 <!--
 insert
 update
@@ -51,14 +51,14 @@ selectList
 		sort.images as images,
 		dict1.name as eduLevelName
     </sql>
-    <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.UniversityDTO">
+    <select id="queryPage" resultType="cn.thinkjoy.zgk.dto.UniversityDTO">
         SELECT
         <include refid="Base_Column_List" />
-        from gk_university university
-        LEFT JOIN gk_province province  ON province.name = university.provinceName
-        LEFT JOIN gk_university_dict dict ON university.property=dict.dictId and dict.type='FEATURE'
-        LEFT JOIN gk_university_sort sort ON sort.universityId=university.id
-        LEFT OUTER JOIN gk_university_dict dict1 ON university.educationLevel=dict1.dictId and dict1.type='EDULEVEL'
+        from zgk_university university
+        LEFT JOIN zgk_province province  ON province.name = university.provinceName
+        LEFT JOIN zgk_university_dict dict ON university.property=dict.dictId and dict.type='FEATURE'
+        LEFT JOIN zgk_university_sort sort ON sort.universityId=university.id
+        LEFT OUTER JOIN zgk_university_dict dict1 ON university.educationLevel=dict1.dictId and dict1.type='EDULEVEL'
         <where>
 
             <if test="condition.whereSql != null">
@@ -90,24 +90,24 @@ selectList
         </if>
     </select>
 
-    <select id="fatch" resultType="cn.thinkjoy.gaokao360.dto.UniversityDTO">
+    <select id="fatch" resultType="cn.thinkjoy.zgk.dto.UniversityDTO">
         SELECT
         <include refid="Base_Column_List" />
-        from gk_university university
-        LEFT JOIN gk_province province  ON province.id = university.provinceId
-        LEFT JOIN gk_university_dict dict ON university.property=dict.dictId and dict.type='FEATURE'
-        LEFT JOIN gk_university_sort sort ON sort.universityId=university.id
-        LEFT JOIN gk_university_dict dict1 ON university.educationLevel=dict1.dictId and dict1.type='EDULEVEL'
+        from zgk_university university
+        LEFT JOIN zgk_province province  ON province.id = university.provinceId
+        LEFT JOIN zgk_university_dict dict ON university.property=dict.dictId and dict.type='FEATURE'
+        LEFT JOIN zgk_university_sort sort ON sort.universityId=university.id
+        LEFT JOIN zgk_university_dict dict1 ON university.educationLevel=dict1.dictId and dict1.type='EDULEVEL'
         AND id=#{id}
     </select>
 
     <select id="count" resultType="java.lang.Integer">
         SELECT count(university.id)
-        from gk_university university
-        LEFT JOIN gk_province province  ON province.name = university.provinceName
-        LEFT JOIN gk_university_dict dict ON university.property=dict.dictId and dict.type='FEATURE'
-        LEFT JOIN gk_university_sort sort ON sort.universityId=university.id
-        LEFT JOIN gk_university_dict dict1 ON university.educationLevel=dict1.dictId and dict1.type='EDULEVEL'
+        from zgk_university university
+        LEFT JOIN zgk_province province  ON province.name = university.provinceName
+        LEFT JOIN zgk_university_dict dict ON university.property=dict.dictId and dict.type='FEATURE'
+        LEFT JOIN zgk_university_sort sort ON sort.universityId=university.id
+        LEFT JOIN zgk_university_dict dict1 ON university.educationLevel=dict1.dictId and dict1.type='EDULEVEL'
         <where>
             <if test="universityeducationLevel!=null">
                 ${groupOp}   ${universityeducationLevel.field}  ${universityeducationLevel.op}  #{universityeducationLevel.data}
@@ -133,27 +133,27 @@ selectList
 
     <select id="getMaxId" resultType="java.lang.Integer">
         SELECT MAX(id)
-        from gk_university
+        from zgk_university
     </select>
 
-    <select id="fetch" resultType="cn.thinkjoy.gaokao360.dto.UniversityDTO">
+    <select id="fetch" resultType="cn.thinkjoy.zgk.dto.UniversityDTO">
         SELECT
         <include refid="Base_Column_List" />
-        from gk_university university
-        LEFT JOIN gk_province province  ON province.name = university.provinceName
-        LEFT JOIN gk_university_dict dict ON university.property=dict.dictId and dict.type='FEATURE'
-        LEFT JOIN gk_university_sort sort ON sort.universityId=university.id
-        LEFT OUTER JOIN gk_university_dict dict1 ON university.educationLevel=dict1.dictId and dict1.type='EDULEVEL'
+        from zgk_university university
+        LEFT JOIN zgk_province province  ON province.name = university.provinceName
+        LEFT JOIN zgk_university_dict dict ON university.property=dict.dictId and dict.type='FEATURE'
+        LEFT JOIN zgk_university_sort sort ON sort.universityId=university.id
+        LEFT OUTER JOIN zgk_university_dict dict1 ON university.educationLevel=dict1.dictId and dict1.type='EDULEVEL'
         WHERE   university.id=#{id}
     </select>
-    <select id="getDictByName" resultType="cn.thinkjoy.gaokao360.domain.UniversityDict">
+    <select id="getDictByName" resultType="cn.thinkjoy.zgk.domain.UniversityDict">
         SELECT
         *
-        from gk_university_dict dict WHERE dict.type='FEATURE' AND name=#{name}
+        from zgk_university_dict dict WHERE dict.type='FEATURE' AND name=#{name}
 
     </select>
     <select id="getDictMaxSort" resultType="Integer">
-         SELECT MAX(dictId) FROM gk_university_dict WHERE type=#{type}
+         SELECT MAX(dictId) FROM zgk_university_dict WHERE type=#{type}
     </select>
 
 </mapper>

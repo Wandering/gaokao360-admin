@@ -41,7 +41,7 @@ selectList
         bizModelName as bizModelName 
     </sql>
     <insert id="insert" parameterType="Resource">
-        INSERT INTO gaokao360_resource (
+        INSERT INTO zgk_resource (
         url,
         orderNum,
         parentId,
@@ -77,7 +77,7 @@ selectList
 
     <!-- 更新 -->
     <update id="update" parameterType="Resource">
-        UPDATE gaokao360_resource
+        UPDATE zgk_resource
         <trim prefix="SET" suffixOverrides=",">
             <if test="url!=null">
                 url = #{url},
@@ -124,7 +124,7 @@ selectList
     </update>
 
     <update id="updateMap">
-        UPDATE gaokao360_resource
+        UPDATE zgk_resource
         <trim prefix="SET" suffixOverrides=",">
             <if test="map.url!=null">
                 url = #{map.url},
@@ -171,7 +171,7 @@ selectList
     </update>
 
     <update id="updateByCondition">
-        UPDATE gaokao360_resource
+        UPDATE zgk_resource
         <trim prefix="SET" suffixOverrides=",">
             <if test="update.url!=null">
                 url = #{update.url},
@@ -261,7 +261,7 @@ selectList
     </update>
 
     <insert id="insertMap" >
-        INSERT INTO gaokao360_resource (
+        INSERT INTO zgk_resource (
                 url,
                 orderNum,
                 parentId,
@@ -294,7 +294,7 @@ selectList
 
 
     <update id="updateNull" parameterType="Resource">
-        UPDATE gaokao360_resource
+        UPDATE zgk_resource
         <trim prefix="SET" suffixOverrides=",">
             url = #{url},
             orderNum = #{orderNum},
@@ -316,7 +316,7 @@ selectList
 
     <!-- 按Id删除 -->
     <delete id="deleteById" parameterType="java.lang.Integer">
-        DELETE FROM gaokao360_resource
+        DELETE FROM zgk_resource
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND id = #{id}
         </trim>
@@ -324,7 +324,7 @@ selectList
 
 
     <delete id="deleteByCondition" parameterType="java.util.Map">
-        DELETE FROM gaokao360_resource
+        DELETE FROM zgk_resource
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="id!=null">
                 AND id = #{id}
@@ -372,14 +372,14 @@ selectList
     </delete>
 
     <delete id="deleteByProperty" parameterType="java.util.Map">
-        DELETE FROM gaokao360_resource WHERE
+        DELETE FROM zgk_resource WHERE
         ${property} = #{value}
     </delete>
 
     <select id="fetch" parameterType="java.lang.Integer" resultType="Resource">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gaokao360_resource
+        FROM zgk_resource
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND id = #{id}
         </trim>
@@ -388,7 +388,7 @@ selectList
     <select id="findOne" parameterType="java.util.Map" resultType="Resource">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gaokao360_resource WHERE
+        FROM zgk_resource WHERE
         ${property} = #{value}
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
@@ -399,7 +399,7 @@ selectList
     <select id="findList" parameterType="java.util.Map" resultType="Resource">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gaokao360_resource WHERE
+        FROM zgk_resource WHERE
         ${property} = #{value}
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
@@ -409,7 +409,7 @@ selectList
     <select id="findAll" resultType="Resource">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gaokao360_resource
+        FROM zgk_resource
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
         </if>
@@ -418,7 +418,7 @@ selectList
     <select id="queryPage" resultType="Resource">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gaokao360_resource
+        FROM zgk_resource
         <where>
 
             <if test="condition.whereSql != null">
@@ -481,7 +481,7 @@ selectList
     <select id="like" parameterType="java.util.Map" resultType="Resource">
         SELECT
             <include refid="Base_Column_List" />
-        FROM gaokao360_resource
+        FROM zgk_resource
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id like CONCAT('%', #{condition.id} , '%')
@@ -535,7 +535,7 @@ selectList
     <select id="queryList" parameterType="java.util.Map" resultType="Resource">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gaokao360_resource
+        FROM zgk_resource
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id = #{condition.id}
@@ -588,7 +588,7 @@ selectList
     <select id="queryOne" parameterType="java.util.Map" resultType="Resource">
         SELECT
             <include refid="Base_Column_List" />
-        FROM gaokao360_resource
+        FROM zgk_resource
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id = #{condition.id}
@@ -640,7 +640,7 @@ selectList
     </select>
 
     <select id="count" resultType="java.lang.Integer">
-        SELECT count(id) FROM gaokao360_resource
+        SELECT count(id) FROM zgk_resource
        <where>
            <if test="id!=null">
                ${groupOp} ${id.field} ${id.op}  #{id.data}
@@ -691,7 +691,7 @@ selectList
     <select id="selectMaxId" resultType="java.lang.Integer">
         SELECT
         MAX(id)
-        FROM gaokao360_resource
+        FROM zgk_resource
     </select>
 
 </mapper>

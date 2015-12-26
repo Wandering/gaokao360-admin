@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.thinkjoy.gaokao360.dao.IMajoredDAO">
+<mapper namespace="cn.thinkjoy.zgk.dao.IMajoredDAO">
 <!--
 insert
 update
@@ -48,7 +48,7 @@ selectList
         majoredTypeId as majoredTypeId 
     </sql>
     <insert id="insert" parameterType="Majored">
-        INSERT INTO gk_majored (
+        INSERT INTO zgk_majored (
         code,
         name,
         educationLevel,
@@ -98,7 +98,7 @@ selectList
 
     <!-- 更新 -->
     <update id="update" parameterType="Majored">
-        UPDATE gk_majored
+        UPDATE zgk_majored
         <trim prefix="SET" suffixOverrides=",">
             <if test="code!=null">
                 code = #{code},
@@ -166,7 +166,7 @@ selectList
     </update>
 
     <update id="updateMap">
-        UPDATE gk_majored
+        UPDATE zgk_majored
         <trim prefix="SET" suffixOverrides=",">
             <if test="map.code!=null">
                 code = #{map.code},
@@ -234,7 +234,7 @@ selectList
     </update>
 
     <update id="updateByCondition">
-        UPDATE gk_majored
+        UPDATE zgk_majored
         <trim prefix="SET" suffixOverrides=",">
             <if test="update.code!=null">
                 code = #{update.code},
@@ -366,7 +366,7 @@ selectList
     </update>
 
     <insert id="insertMap" >
-        INSERT INTO gk_majored (
+        INSERT INTO zgk_majored (
                 code,
                 name,
                 educationLevel,
@@ -413,7 +413,7 @@ selectList
 
 
     <update id="updateNull" parameterType="Majored">
-        UPDATE gk_majored
+        UPDATE zgk_majored
         <trim prefix="SET" suffixOverrides=",">
             code = #{code},
             name = #{name},
@@ -442,7 +442,7 @@ selectList
 
     <!-- 按Id删除 -->
     <delete id="deleteById" parameterType="java.lang.Long">
-        DELETE FROM gk_majored
+        DELETE FROM zgk_majored
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND id = #{id}
         </trim>
@@ -450,7 +450,7 @@ selectList
 
 
     <delete id="deleteByCondition" parameterType="java.util.Map">
-        DELETE FROM gk_majored
+        DELETE FROM zgk_majored
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="id!=null">
                 AND id = #{id}
@@ -519,14 +519,14 @@ selectList
     </delete>
 
     <delete id="deleteByProperty" parameterType="java.util.Map">
-        DELETE FROM gk_majored WHERE
+        DELETE FROM zgk_majored WHERE
         ${property} = #{value}
     </delete>
 
     <select id="fetch" parameterType="java.lang.Long" resultType="Majored">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_majored
+        FROM zgk_majored
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND id = #{id}
         </trim>
@@ -535,7 +535,7 @@ selectList
     <select id="findOne" parameterType="java.util.Map" resultType="Majored">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_majored WHERE
+        FROM zgk_majored WHERE
         ${property} = #{value}
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
@@ -546,7 +546,7 @@ selectList
     <select id="findList" parameterType="java.util.Map" resultType="Majored">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_majored WHERE
+        FROM zgk_majored WHERE
         ${property} = #{value}
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
@@ -556,7 +556,7 @@ selectList
     <select id="findAll" resultType="Majored">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_majored
+        FROM zgk_majored
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
         </if>
@@ -565,7 +565,7 @@ selectList
     <select id="queryPage" resultType="Majored">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_majored
+        FROM zgk_majored
         <where>
 
             <if test="condition.whereSql != null">
@@ -649,7 +649,7 @@ selectList
     <select id="like" parameterType="java.util.Map" resultType="Majored">
         SELECT
             <include refid="Base_Column_List" />
-        FROM gk_majored
+        FROM zgk_majored
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id like CONCAT('%', #{condition.id} , '%')
@@ -724,7 +724,7 @@ selectList
     <select id="queryList" parameterType="java.util.Map" resultType="Majored">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_majored
+        FROM zgk_majored
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id = #{condition.id}
@@ -798,7 +798,7 @@ selectList
     <select id="queryOne" parameterType="java.util.Map" resultType="Majored">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_majored
+        FROM zgk_majored
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id = #{condition.id}
@@ -871,7 +871,7 @@ selectList
     </select>
 
     <select id="count" resultType="java.lang.Integer">
-        SELECT count(id) FROM gk_majored
+        SELECT count(id) FROM zgk_majored
        <where>
            <if test="id!=null">
                ${groupOp} ${id.field} ${id.op}  #{id.data}
@@ -943,7 +943,7 @@ selectList
     <select id="selectMaxId" resultType="java.lang.Long">
         SELECT
         MAX(id)
-        FROM gk_majored
+        FROM zgk_majored
     </select>
 
 </mapper>

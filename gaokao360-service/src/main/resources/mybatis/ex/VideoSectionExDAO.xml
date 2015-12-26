@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IVideoSectioneExDAO">
+<mapper namespace="cn.thinkjoy.zgk.dao.ex.IVideoSectioneExDAO">
 <!--
 insert
 update
@@ -40,7 +40,7 @@ selectList
     <select id="queryByCourseId" parameterType="java.lang.Long" resultType="VideoSection">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_video_section
+        FROM zgk_video_section
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND courseId = #{courseId}
         </trim>
@@ -49,22 +49,22 @@ selectList
     <select id="queryByMaxId"  resultType="java.lang.Long">
         SELECT
         max(id)
-        FROM gk_video_course
+        FROM zgk_video_course
     </select>
 
     <select id="updateCourseId" parameterType="java.lang.Long" resultType="java.lang.Long">
-        UPDATE gk_video_section SET courseId=#{courseId} WHERE id=#{id}
+        UPDATE zgk_video_section SET courseId=#{courseId} WHERE id=#{id}
     </select>
 
 
-    <select id="getVideoByCourseId" parameterType="java.lang.Long" resultType="cn.thinkjoy.gaokao360.dto.VideoSectionDTO">
+    <select id="getVideoByCourseId" parameterType="java.lang.Long" resultType="cn.thinkjoy.zgk.dto.VideoSectionDTO">
         SELECT
         id as id ,
         courseId as courseId ,
         sectionName as sectionName ,
         sectionSort as sectionSort,
         fileUrl as fileUrl
-        FROM gk_video_section
+        FROM zgk_video_section
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND courseId = #{courseId}
         </trim>

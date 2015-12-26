@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.thinkjoy.gaokao360.dao.IEnrollReportDAO">
+<mapper namespace="cn.thinkjoy.zgk.dao.IEnrollReportDAO">
 <!--
 insert
 update
@@ -53,7 +53,7 @@ selectList
         enrollNumber as enrollNumber 
     </sql>
     <insert id="insert" parameterType="EnrollReport">
-        INSERT INTO gk_enroll_report (
+        INSERT INTO zgk_enroll_report (
         sortId,
         year,
         batchId,
@@ -113,7 +113,7 @@ selectList
 
     <!-- 更新 -->
     <update id="update" parameterType="EnrollReport">
-        UPDATE gk_enroll_report
+        UPDATE zgk_enroll_report
         <trim prefix="SET" suffixOverrides=",">
             <if test="sortId!=null">
                 sortId = #{sortId},
@@ -196,7 +196,7 @@ selectList
     </update>
 
     <update id="updateMap">
-        UPDATE gk_enroll_report
+        UPDATE zgk_enroll_report
         <trim prefix="SET" suffixOverrides=",">
             <if test="map.sortId!=null">
                 sortId = #{map.sortId},
@@ -279,7 +279,7 @@ selectList
     </update>
 
     <update id="updateByCondition">
-        UPDATE gk_enroll_report
+        UPDATE zgk_enroll_report
         <trim prefix="SET" suffixOverrides=",">
             <if test="update.sortId!=null">
                 sortId = #{update.sortId},
@@ -441,7 +441,7 @@ selectList
     </update>
 
     <insert id="insertMap" >
-        INSERT INTO gk_enroll_report (
+        INSERT INTO zgk_enroll_report (
                 sortId,
                 year,
                 batchId,
@@ -498,7 +498,7 @@ selectList
 
 
     <update id="updateNull" parameterType="EnrollReport">
-        UPDATE gk_enroll_report
+        UPDATE zgk_enroll_report
         <trim prefix="SET" suffixOverrides=",">
             sortId = #{sortId},
             year = #{year},
@@ -532,7 +532,7 @@ selectList
 
     <!-- 按Id删除 -->
     <delete id="deleteById" parameterType="java.lang.Long">
-        DELETE FROM gk_enroll_report
+        DELETE FROM zgk_enroll_report
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND id = #{id}
         </trim>
@@ -540,7 +540,7 @@ selectList
 
 
     <delete id="deleteByCondition" parameterType="java.util.Map">
-        DELETE FROM gk_enroll_report
+        DELETE FROM zgk_enroll_report
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="id!=null">
                 AND id = #{id}
@@ -624,14 +624,14 @@ selectList
     </delete>
 
     <delete id="deleteByProperty" parameterType="java.util.Map">
-        DELETE FROM gk_enroll_report WHERE
+        DELETE FROM zgk_enroll_report WHERE
         ${property} = #{value}
     </delete>
 
     <select id="fetch" parameterType="java.lang.Long" resultType="EnrollReport">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_enroll_report
+        FROM zgk_enroll_report
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND id = #{id}
         </trim>
@@ -640,7 +640,7 @@ selectList
     <select id="findOne" parameterType="java.util.Map" resultType="EnrollReport">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_enroll_report WHERE
+        FROM zgk_enroll_report WHERE
         ${property} = #{value}
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
@@ -651,7 +651,7 @@ selectList
     <select id="findList" parameterType="java.util.Map" resultType="EnrollReport">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_enroll_report WHERE
+        FROM zgk_enroll_report WHERE
         ${property} = #{value}
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
@@ -661,7 +661,7 @@ selectList
     <select id="findAll" resultType="EnrollReport">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_enroll_report
+        FROM zgk_enroll_report
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
         </if>
@@ -670,7 +670,7 @@ selectList
     <select id="queryPage" resultType="EnrollReport">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_enroll_report
+        FROM zgk_enroll_report
         <where>
 
             <if test="condition.whereSql != null">
@@ -769,7 +769,7 @@ selectList
     <select id="like" parameterType="java.util.Map" resultType="EnrollReport">
         SELECT
             <include refid="Base_Column_List" />
-        FROM gk_enroll_report
+        FROM zgk_enroll_report
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id like CONCAT('%', #{condition.id} , '%')
@@ -859,7 +859,7 @@ selectList
     <select id="queryList" parameterType="java.util.Map" resultType="EnrollReport">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_enroll_report
+        FROM zgk_enroll_report
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id = #{condition.id}
@@ -948,7 +948,7 @@ selectList
     <select id="queryOne" parameterType="java.util.Map" resultType="EnrollReport">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_enroll_report
+        FROM zgk_enroll_report
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id = #{condition.id}
@@ -1036,7 +1036,7 @@ selectList
     </select>
 
     <select id="count" resultType="java.lang.Integer">
-        SELECT count(id) FROM gk_enroll_report
+        SELECT count(id) FROM zgk_enroll_report
        <where>
            <if test="id!=null">
                ${groupOp} ${id.field} ${id.op}  #{id.data}
@@ -1123,7 +1123,7 @@ selectList
     <select id="selectMaxId" resultType="java.lang.Long">
         SELECT
         MAX(id)
-        FROM gk_enroll_report
+        FROM zgk_enroll_report
     </select>
 
 </mapper>

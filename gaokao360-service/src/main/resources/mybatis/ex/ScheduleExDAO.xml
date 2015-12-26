@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IScheduleExDAO">
+<mapper namespace="cn.thinkjoy.zgk.dao.ex.IScheduleExDAO">
 <!--
 insert
 update
@@ -37,11 +37,11 @@ selectList
         schedule.lastModifier as lastModifier ,
         province.name as province
     </sql>
-    <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.ScheduleDTO">
+    <select id="queryPage" resultType="cn.thinkjoy.zgk.dto.ScheduleDTO">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_schedule schedule
-        LEFT JOIN gk_province province ON province.id=schedule.areaId
+        FROM zgk_schedule schedule
+        LEFT JOIN zgk_province province ON province.id=schedule.areaId
         <where>
 
             <if test="condition.whereSql != null">
@@ -73,8 +73,8 @@ selectList
 
     <select id="count" resultType="java.lang.Integer">
         SELECT count(schedule.id)
-        FROM gk_schedule schedule
-        LEFT JOIN gk_province province ON province.id=schedule.areaId
+        FROM zgk_schedule schedule
+        LEFT JOIN zgk_province province ON province.id=schedule.areaId
         <where>
             <if test="scheduleareaId!=null">
                 ${groupOp}   ${scheduleareaId.field}  ${scheduleareaId.op}  #{scheduleareaId.data}

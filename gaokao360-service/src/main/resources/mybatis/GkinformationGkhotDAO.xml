@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.thinkjoy.gaokao360.dao.IGkinformationGkhotDAO">
+<mapper namespace="cn.thinkjoy.zgk.dao.IGkinformationGkhotDAO">
 <!--
 insert
 update
@@ -40,7 +40,7 @@ selectList
         htmlId as htmlId 
     </sql>
     <insert id="insert" parameterType="GkinformationGkhot">
-        INSERT INTO gk_gkinformation_gkhot (
+        INSERT INTO zgk_gkinformation_gkhot (
         status,
         creator,
         createDate,
@@ -74,7 +74,7 @@ selectList
 
     <!-- 更新 -->
     <update id="update" parameterType="GkinformationGkhot">
-        UPDATE gk_gkinformation_gkhot
+        UPDATE zgk_gkinformation_gkhot
         <trim prefix="SET" suffixOverrides=",">
             <if test="status!=null">
                 status = #{status},
@@ -118,7 +118,7 @@ selectList
     </update>
 
     <update id="updateMap">
-        UPDATE gk_gkinformation_gkhot
+        UPDATE zgk_gkinformation_gkhot
         <trim prefix="SET" suffixOverrides=",">
             <if test="map.status!=null">
                 status = #{map.status},
@@ -162,7 +162,7 @@ selectList
     </update>
 
     <update id="updateByCondition">
-        UPDATE gk_gkinformation_gkhot
+        UPDATE zgk_gkinformation_gkhot
         <trim prefix="SET" suffixOverrides=",">
             <if test="update.status!=null">
                 status = #{update.status},
@@ -246,7 +246,7 @@ selectList
     </update>
 
     <insert id="insertMap" >
-        INSERT INTO gk_gkinformation_gkhot (
+        INSERT INTO zgk_gkinformation_gkhot (
                 status,
                 creator,
                 createDate,
@@ -277,7 +277,7 @@ selectList
 
 
     <update id="updateNull" parameterType="GkinformationGkhot">
-        UPDATE gk_gkinformation_gkhot
+        UPDATE zgk_gkinformation_gkhot
         <trim prefix="SET" suffixOverrides=",">
             status = #{status},
             creator = #{creator},
@@ -298,7 +298,7 @@ selectList
 
     <!-- 按Id删除 -->
     <delete id="deleteById" parameterType="java.lang.Long">
-        DELETE FROM gk_gkinformation_gkhot
+        DELETE FROM zgk_gkinformation_gkhot
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND id = #{id}
         </trim>
@@ -306,7 +306,7 @@ selectList
 
 
     <delete id="deleteByCondition" parameterType="java.util.Map">
-        DELETE FROM gk_gkinformation_gkhot
+        DELETE FROM zgk_gkinformation_gkhot
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="id!=null">
                 AND id = #{id}
@@ -351,14 +351,14 @@ selectList
     </delete>
 
     <delete id="deleteByProperty" parameterType="java.util.Map">
-        DELETE FROM gk_gkinformation_gkhot WHERE
+        DELETE FROM zgk_gkinformation_gkhot WHERE
         ${property} = #{value}
     </delete>
 
     <select id="fetch" parameterType="java.lang.Long" resultType="GkinformationGkhot">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_gkinformation_gkhot
+        FROM zgk_gkinformation_gkhot
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND id = #{id}
         </trim>
@@ -367,7 +367,7 @@ selectList
     <select id="findOne" parameterType="java.util.Map" resultType="GkinformationGkhot">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_gkinformation_gkhot WHERE
+        FROM zgk_gkinformation_gkhot WHERE
         ${property} = #{value}
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
@@ -378,7 +378,7 @@ selectList
     <select id="findList" parameterType="java.util.Map" resultType="GkinformationGkhot">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_gkinformation_gkhot WHERE
+        FROM zgk_gkinformation_gkhot WHERE
         ${property} = #{value}
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
@@ -388,7 +388,7 @@ selectList
     <select id="findAll" resultType="GkinformationGkhot">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_gkinformation_gkhot
+        FROM zgk_gkinformation_gkhot
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
         </if>
@@ -397,7 +397,7 @@ selectList
     <select id="queryPage" resultType="GkinformationGkhot">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_gkinformation_gkhot
+        FROM zgk_gkinformation_gkhot
         <where>
 
             <if test="condition.whereSql != null">
@@ -457,7 +457,7 @@ selectList
     <select id="like" parameterType="java.util.Map" resultType="GkinformationGkhot">
         SELECT
             <include refid="Base_Column_List" />
-        FROM gk_gkinformation_gkhot
+        FROM zgk_gkinformation_gkhot
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id like CONCAT('%', #{condition.id} , '%')
@@ -508,7 +508,7 @@ selectList
     <select id="queryList" parameterType="java.util.Map" resultType="GkinformationGkhot">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_gkinformation_gkhot
+        FROM zgk_gkinformation_gkhot
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id = #{condition.id}
@@ -558,7 +558,7 @@ selectList
     <select id="queryOne" parameterType="java.util.Map" resultType="GkinformationGkhot">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_gkinformation_gkhot
+        FROM zgk_gkinformation_gkhot
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id = #{condition.id}
@@ -607,7 +607,7 @@ selectList
     </select>
 
     <select id="count" resultType="java.lang.Integer">
-        SELECT count(id) FROM gk_gkinformation_gkhot
+        SELECT count(id) FROM zgk_gkinformation_gkhot
        <where>
            <if test="id!=null">
                ${groupOp} ${id.field} ${id.op}  #{id.data}
@@ -655,7 +655,7 @@ selectList
     <select id="selectMaxId" resultType="java.lang.Long">
         SELECT
         MAX(id)
-        FROM gk_gkinformation_gkhot
+        FROM zgk_gkinformation_gkhot
     </select>
 
 </mapper>
