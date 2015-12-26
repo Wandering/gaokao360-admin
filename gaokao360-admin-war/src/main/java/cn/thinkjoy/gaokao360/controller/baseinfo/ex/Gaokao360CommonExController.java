@@ -197,7 +197,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         if("admissionbatch".equals(mainObj)){
             admissionBatchExService.insertMap(dataMap);
         }else if("gkheadline".equals(mainObj)){
-            dataMap.put("type",1);
+            dataMap.put("type", 1);
             serviceMaps.get("gkinformationgkhot").insertMap(dataMap);
         }else if("auditorium".equals(mainObj)||"gkPsychology".equals(mainObj)){
             serviceMaps.get("videocourse").insertMap(dataMap);
@@ -343,20 +343,13 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         String st =null;
         String path = request.getSession().getServletContext().getRealPath("/upload");
         String filename = "gk" + System.currentTimeMillis() + ".html";
-        String url = "http://cs-dev.thinkjoy.com.cn/rest/v1/uploadFile";
+        String url = "http://cs-dev.thinkjoy.com.cn/rest/v1/delFile?fileId="+id;
         try {
-            MultiValueMap<String, Object> param = new LinkedMultiValueMap<String, Object>();
             RestTemplate template = new RestTemplate();
             //这里大家可以用其他的httpClient均可以
-            param.add("productCode", "gk360");
-            param.add("bizSystem", "gk360");
-            param.add("spaceName ", "gk360");
-            param.add("userId ", "gk360");
-            param.add("dirId ", "0");
-            param.add("fileId ",id);
 
             template.getMessageConverters().add(new FastJsonHttpMessageConverter());
-            st = template.postForObject(url, param, String.class);
+            st = template.getForObject(url,String.class);
         }catch (Exception e){
             logger.error("删除错误");
         }
