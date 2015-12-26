@@ -129,7 +129,7 @@
             modifyData:'/admin/${bizSys}/${mainObj}queryone'
         },
         dynGetData: function (ajaxUrl, contentData) {
-            var returnStr = "";
+            var returnStr = [];
             $.ajaxSettings.async = false;
             $.ajax({
                 type: 'POST',
@@ -142,8 +142,8 @@
                         var jsonData = JSON.parse(result.bizData);
                         console.log(jsonData);
                         if (jsonData.rtnCode == '0000000') {
-                            returnStr += jsonData.bizData.file.fileUrl;
-//                            id = jsonData.bizData.file.id;
+                            returnStr.push(jsonData.bizData.file.fileUrl);
+                            returnStr.push(jsonData.bizData.file.id);
                         } else {
 
                         }
