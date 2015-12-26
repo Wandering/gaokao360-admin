@@ -194,6 +194,9 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     protected void innerHandleAdd(String mainObj, Map dataMap) {
         if("admissionbatch".equals(mainObj)){
             admissionBatchExService.insertMap(dataMap);
+        }else if("gkheadline".equals(mainObj)){
+            dataMap.put("type",1);
+            serviceMaps.get("gkinformationgkhot").insertMap(dataMap);
         }else if("auditorium".equals(mainObj)||"gkPsychology".equals(mainObj)){
             serviceMaps.get("videocourse").insertMap(dataMap);
             Long lid = (Long)serviceMaps.get("videocourse").selectMaxId();
@@ -218,7 +221,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
             }
         }else if("university".equals(mainObj)){
             universityExService.insertUniversity(dataMap);
-        }else if("majoredcategory".equals(mainObj)){
+        } else if("majoredcategory".equals(mainObj)){
             majoredCategoryExService.insertCategory(dataMap);
         }else{
             super.innerHandleAdd(mainObj, dataMap);
@@ -396,6 +399,8 @@ public class Gaokao360CommonExController extends AbstractCommonController {
                     serviceMaps.get("videosection").insert(v);
                 }
             }
+        }else if("gkheadline".equals(mainObj)){
+            serviceMaps.get("gkinformationgkhot").updateMap(dataMap);
         }else if("university".equals(mainObj)){
             universityExService.updateUniversity(dataMap);
         }else if("majoredcategory".equals(mainObj)){
