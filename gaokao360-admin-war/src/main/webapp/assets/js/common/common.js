@@ -45,6 +45,22 @@ var CommonFn = {
         $.ajaxSettings.async = true;
         return contentArr;
     },
+    //获取政策一级分类
+    getpolicy: function () {
+        var contentArr = [];
+        $.ajaxSettings.async = false;
+        CommonFn.getData('/admin/gaokao360/ex/getAdmissionBatch', 'get', {}, function (res) {
+            if (res.rtnCode == '0000000') {
+                $.each(res.bizData, function (i, v) {
+                    var id = res.bizData[i].id;
+                    var name = res.bizData[i].name;
+                    contentArr.push('<option value="' + id + '">' + name + '</option>');
+                });
+            }
+        });
+        $.ajaxSettings.async = true;
+        return contentArr;
+    },
     //获取学科分类
     getMajored: function () {
         var contentArr = ['<option value="00">请选择学科门类</option>'];
