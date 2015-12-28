@@ -240,9 +240,11 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     public Object queryOne(@PathVariable String mainObj,@RequestParam("id")String id){
         if("university".equals(mainObj)){
             return serviceMaps.get(mainObj+"ex").fetch(id);
-        }if("majoredcategory".equals(mainObj)){
+        }else if("majoredcategory".equals(mainObj)){
             return majoredCategoryExService.fetch(id);
-        }if("auditorium".equals(mainObj)||"gkpsychology".equals(mainObj)){
+        }else if("gkheadline".equals(mainObj)){
+            return serviceMaps.get("gkinformationgkhot").fetch(id);
+        }else if("auditorium".equals(mainObj)||"gkpsychology".equals(mainObj)){
             VideoCourse videoCourse=(VideoCourse)serviceMaps.get("videocourse").fetch(id);
             VideoCourseDTO videoCourseDTO = new VideoCourseDTO();
             try {
