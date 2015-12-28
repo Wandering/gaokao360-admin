@@ -263,7 +263,6 @@
                 CommonFn.tipsDialog('温馨提示', '请选择视频名称');
                 return false;
             }
-            alert(imgUrlDataV)
             if (imgUrlDataV == "") {
                 CommonFn.tipsDialog('温馨提示', '请上传视频封面');
                 return false;
@@ -272,12 +271,11 @@
                 CommonFn.tipsDialog('温馨提示', '请上传视频');
                 return false;
             }
-            var sectionData = $('#sectionId').val();
 
 
-            alert($('#imgUrlData').val())
+            alert(videoDataV)
+            alert(imgUrlDataV)
 
-            var imgUrl = $('#imgUrlData').val();
 //            var imgUrl = '';
 //            if($('#uploader1:hidden')){
 //                alert(23)
@@ -294,10 +292,10 @@
                 subjectId: selCourses2V,
                 teacher: teacherNameV,
                 title: sectionTitleV,
-                frontCover: imgUrl,
+                frontCover: imgUrlDataV,
                 subcontent: expertsIntroV,
                 areaId: selProvinceV,
-                videoSectionDTOs:sectionData
+                videoSectionDTOs:videoDataV
             };
             console.log(addData)
 
@@ -340,6 +338,16 @@
         });
 
         UI.$editBtn.click(function (e) {
+            e.preventDefault();
+            typeStr = "edit";
+            rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
+            var selTrN = $('tr.ui-state-highlight[role="row"]').length;
+            if (selTrN != 1) {
+                CommonFn.tipsDialog('温馨提示', '请选中一行后修改');
+                return false;
+            }
+            // 当前行数据
+            var rowData = CommonFn.getRowData(rowId);
             $('#dialogLayer').modal('show')
                     .find('input').val('')
                     .end()
@@ -350,17 +358,7 @@
                     .find('textarea').val('')
                     .end()
                     .find('.statusBar').hide();
-            typeStr = "edit";
-            rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
-            var selTrN = $('tr.ui-state-highlight[role="row"]').length;
-            if (selTrN != 1) {
-                CommonFn.tipsDialog('温馨提示', '请选中一行后修改');
-                return false;
-            }
-            e.preventDefault();
-            $('#dialogLayer').modal('show');
-            // 当前行数据
-            var rowData = CommonFn.getRowData(rowId);
+
             console.log(rowData);
             $('#selProvince2').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
             $('#selCourses2').find('option[value="' + rowData[0].subjectId + '"]').attr('selected', 'selected');
@@ -375,15 +373,15 @@
             $('#updateImg').on('click',function(){
                 $(this).parent().hide();
                 $('#uploader1').show();
-            })
-            $('#imgUrlData').val(rowData[0].frontCover)
+            });
+            $('#imgUrlData').val(rowData[0].frontCover);
 
             // 视频
             var videoData = rowData[0].videoSectionDTO;
             var videoArr = [];
             for(var i=0;i<videoData.length;i++){
                 videoArr.push('<div>'+ videoData[i].sectionName +'<a href="'+ videoData[i].fileUrl +'">点击查看</a><a href="javascript:;">删除</a></div>')
-                console.log(videoArr.join(''))
+                console.log(videoArr.join(''));
                 $('#videolist').html(videoArr)
             }
 
@@ -395,105 +393,7 @@
             e.stopPropagation();
             e.preventDefault();
             addEditFun();
-
-
-
-            <#--e.preventDefault();-->
-
-            <#--var selProvinceV = $('#selProvince2 option:checked').val(),-->
-                    <#--selCourses2V = $('#selCourses2 option:checked').val(),-->
-                    <#--teacherNameV = $.trim($('#teacherName').val()),-->
-                    <#--expertsIntroV = $('#expertsIntro').val(),-->
-                    <#--sectionTitleV = $('#sectionTitle').val(),-->
-                    <#--imgUrlDataV = $('#imgUrlData').val(),-->
-                    <#--videoDataV = $('#videoData').val();-->
-
-            <#--if (selProvinceV == "00") {-->
-                <#--CommonFn.tipsDialog('温馨提示', '请选择省份');-->
-                <#--return false;-->
-            <#--}-->
-            <#--if (selCourses2V == "00") {-->
-                <#--CommonFn.tipsDialog('温馨提示', '请选择科目');-->
-                <#--return false;-->
-            <#--}-->
-            <#--if (teacherNameV == "") {-->
-                <#--CommonFn.tipsDialog('温馨提示', '请选择主讲老师');-->
-                <#--return false;-->
-            <#--}-->
-            <#--if (expertsIntroV == "") {-->
-                <#--CommonFn.tipsDialog('温馨提示', '请选择专家介绍');-->
-                <#--return false;-->
-            <#--}-->
-            <#--if (sectionTitleV == "") {-->
-                <#--CommonFn.tipsDialog('温馨提示', '请选择视频名称');-->
-                <#--return false;-->
-            <#--}-->
-            <#--alert(imgUrlDataV)-->
-            <#--if (imgUrlDataV == "") {-->
-                <#--CommonFn.tipsDialog('温馨提示', '请上传视频封面');-->
-                <#--return false;-->
-            <#--}-->
-            <#--if (videoDataV == "") {-->
-                <#--CommonFn.tipsDialog('温馨提示', '请上传视频');-->
-                <#--return false;-->
-            <#--}-->
-
-
-
-
-
-            <#--var sectionData = $('#sectionId').val();-->
-            <#--var addData = {-->
-                <#--oper: typeStr,-->
-                <#--classifyId: '${mainObj}' == 'auditorium' ? '1' : '0',-->
-                <#--managerId: '${mainObj}' == 'auditorium' ? '1' : '0',-->
-                <#--subjectId: $('#selCourses2').find('option[selected]').val(),-->
-                <#--teacher: UI.$teacherName.val(),-->
-                <#--title: UI.$sectionTitle.val(),-->
-                <#--frontCover: $("#__auditoriumId").attr('imgUrl'),-->
-                <#--subcontent: UI.$expertsIntro.val(),-->
-                <#--areaId: $('#selCourses2').find('option[select]').val(),-->
-                <#--videoSectionDTOs:sectionData-->
-            <#--};-->
-            <#--CommonFn.getData('/admin/gaokao360/ex/commonsave/${mainObj}', 'post', addData, function (res) {-->
-                <#--if (res.rtnCode == '0000000') {-->
-                    <#--searchLoad();-->
-<#--//                    $('#dialogLayer').modal('hide');-->
-                <#--}-->
-            <#--});-->
         });
-
-
-
-        // 提交添加end
-        <#--UI.$submitBtn.click(function (e) {-->
-            <#--e.preventDefault();-->
-            <#--typeStr = 'add';-->
-            <#--auditoriumValidate();-->
-            <#--var sectionData = $('#sectionId').val();-->
-            <#--var addData = {-->
-                <#--oper: typeStr,-->
-                <#--classifyId: '${mainObj}' == 'auditorium' ? '1' : '0',-->
-                <#--managerId: '${mainObj}' == 'auditorium' ? '1' : '0',-->
-                <#--subjectId: $('#selCourses2').find('option[selected]').val(),-->
-                <#--teacher: UI.$teacherName.val(),-->
-                <#--title: UI.$sectionTitle.val(),-->
-                <#--frontCover: $("#__auditoriumId").attr('imgUrl'),-->
-                <#--subcontent: UI.$expertsIntro.val(),-->
-                <#--areaId: $('#selCourses2').find('option[select]').val(),-->
-                <#--videoSectionDTOs:sectionData-->
-            <#--};-->
-            <#--CommonFn.getData('/admin/gaokao360/ex/commonsave/${mainObj}', 'post', addData, function (res) {-->
-                <#--if (res.rtnCode == '0000000') {-->
-                    <#--searchLoad();-->
-                    <#--$('#dialogLayer').modal('hide');-->
-                <#--}-->
-            <#--});-->
-        <#--});// 提交添加end-->
-
-
-
-
 
 
 
