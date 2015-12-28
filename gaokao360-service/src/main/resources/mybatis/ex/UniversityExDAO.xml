@@ -26,39 +26,33 @@ selectList
 
     <sql id="Base_Column_List">
         university.id as id ,
-        university.code as code ,
         university.name as name ,
+        university.code as code ,
         university.subjection as subjection ,
-        university.educationLevel as educationLevel ,
-        university.property as property ,
+        university.areaid as areaid ,
         university.type as type ,
         university.url as url ,
-        university.address as address ,
-        university.contactPhone as contactPhone ,
-        university.entranceIntro as entranceIntro ,
-        university.universityIntro as universityIntro ,
-        university.provinceId as provinceId ,
-        university.provinceName as provinceName ,
-        university.cityId as cityId ,
-        university.cityName as cityName ,
-        university.countyId as countyId ,
-        university.countyName as countyName ,
-        university.batchType as batchType,
-		province.name as province ,
-		dict.name AS dictName,
-		sort.sort as sort,
-		sort.majoredCount as majoredCount,
-		sort.images as images,
-		dict1.name as eduLevelName
+        university.photo_url as photoUrl ,
+        university.property as property ,
+        university.rank as rank ,
+        university.educationLevel as educationLevel,
+        detail.address as address ,
+        detail.contactPhone as contactPhone ,
+        detail.universityIntro as universityIntro ,
+        detail.entranceIntro as entranceIntro ,
+        detail.featureMajor as featureMajor ,
+		typedict.name as typeName,
+		leveldict.name as levelName
     </sql>
     <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.UniversityDTO">
         SELECT
         <include refid="Base_Column_List" />
-        from zgk_university university
-        LEFT JOIN zgk_province province  ON province.name = university.provinceName
-        LEFT JOIN zgk_university_dict dict ON university.property=dict.dictId and dict.type='FEATURE'
-        LEFT JOIN zgk_university_sort sort ON sort.universityId=university.id
-        LEFT OUTER JOIN zgk_university_dict dict1 ON university.educationLevel=dict1.dictId and dict1.type='EDULEVEL'
+        FROM
+        zgk_university university
+        LEFT OUTER JOIN zgk_university_detail detail ON detail.id=university.id
+        LEFT JOIN zgk_province province ON province.id = university.areaid
+        LEFT JOIN zgk_data_dict typedict ON typedict.dictId=university.type AND typedict.type='UNIVERSITY_TYPE'
+        LEFT JOIN zgk_data_dict leveldict ON leveldict.dictId = university.educationLevel AND leveldict.type='EDUCATION_LEVEL'
         <where>
 
             <if test="condition.whereSql != null">
@@ -93,21 +87,23 @@ selectList
     <select id="fatch" resultType="cn.thinkjoy.gaokao360.dto.UniversityDTO">
         SELECT
         <include refid="Base_Column_List" />
-        from zgk_university university
-        LEFT JOIN zgk_province province  ON province.id = university.provinceId
-        LEFT JOIN zgk_university_dict dict ON university.property=dict.dictId and dict.type='FEATURE'
-        LEFT JOIN zgk_university_sort sort ON sort.universityId=university.id
-        LEFT JOIN zgk_university_dict dict1 ON university.educationLevel=dict1.dictId and dict1.type='EDULEVEL'
+        FROM
+        zgk_university university
+        LEFT OUTER JOIN zgk_university_detail detail ON detail.id=university.id
+        LEFT JOIN zgk_province province ON province.id = university.areaid
+        LEFT JOIN zgk_data_dict typedict ON typedict.dictId=university.type AND typedict.type='UNIVERSITY_TYPE'
+        LEFT JOIN zgk_data_dict leveldict ON leveldict.dictId = university.educationLevel AND leveldict.type='EDUCATION_LEVEL'
         AND id=#{id}
     </select>
 
     <select id="count" resultType="java.lang.Integer">
         SELECT count(university.id)
-        from zgk_university university
-        LEFT JOIN zgk_province province  ON province.name = university.provinceName
-        LEFT JOIN zgk_university_dict dict ON university.property=dict.dictId and dict.type='FEATURE'
-        LEFT JOIN zgk_university_sort sort ON sort.universityId=university.id
-        LEFT JOIN zgk_university_dict dict1 ON university.educationLevel=dict1.dictId and dict1.type='EDULEVEL'
+        FROM
+        zgk_university university
+        LEFT OUTER JOIN zgk_university_detail detail ON detail.id=university.id
+        LEFT JOIN zgk_province province ON province.id = university.areaid
+        LEFT JOIN zgk_data_dict typedict ON typedict.dictId=university.type AND typedict.type='UNIVERSITY_TYPE'
+        LEFT JOIN zgk_data_dict leveldict ON leveldict.dictId = university.educationLevel AND leveldict.type='EDUCATION_LEVEL'
         <where>
             <if test="universityeducationLevel!=null">
                 ${groupOp}   ${universityeducationLevel.field}  ${universityeducationLevel.op}  #{universityeducationLevel.data}
@@ -139,11 +135,12 @@ selectList
     <select id="fetch" resultType="cn.thinkjoy.gaokao360.dto.UniversityDTO">
         SELECT
         <include refid="Base_Column_List" />
-        from zgk_university university
-        LEFT JOIN zgk_province province  ON province.name = university.provinceName
-        LEFT JOIN zgk_university_dict dict ON university.property=dict.dictId and dict.type='FEATURE'
-        LEFT JOIN zgk_university_sort sort ON sort.universityId=university.id
-        LEFT OUTER JOIN zgk_university_dict dict1 ON university.educationLevel=dict1.dictId and dict1.type='EDULEVEL'
+        FROM
+        zgk_university university
+        LEFT OUTER JOIN zgk_university_detail detail ON detail.id=university.id
+        LEFT JOIN zgk_province province ON province.id = university.areaid
+        LEFT JOIN zgk_data_dict typedict ON typedict.dictId=university.type AND typedict.type='UNIVERSITY_TYPE'
+        LEFT JOIN zgk_data_dict leveldict ON leveldict.dictId = university.educationLevel AND leveldict.type='EDUCATION_LEVEL'
         WHERE   university.id=#{id}
     </select>
     <select id="getDictByName" resultType="cn.thinkjoy.gaokao360.domain.UniversityDict">

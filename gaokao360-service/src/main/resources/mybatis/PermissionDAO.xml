@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.thinkjoy.common.managerui.dao.IPermissionDAO">
 
-    <!-- 鑾峰彇鐢ㄦ埛鑿滃崟 -->
+    <!-- 获取用户菜单 -->
     <select id="getResByPerm" resultType="Resource">
         select distinct res.* from
         zgk_resource res left outer join zgk_role_resource rres on res.id = rres.resourceId
@@ -12,7 +12,7 @@
         order by res.orderNum
     </select>
 
-    <!-- 鑾峰彇鐢ㄦ埛瀵瑰簲鑿滃崟鐨勬寜閽潈闄� -->
+    <!-- 获取用户对应菜单的按钮权限 -->
     <select id="getResActionByPerm" resultType="ResourceAction">
         select ra.* from
         zgk_resource res left outer join zgk_role_resource rres on res.id = rres.resourceId
@@ -26,18 +26,23 @@
             <if test="condition.resourceId != null">
                 and ra.resourceId in (#{condition.resourceId})
             </if>
-
         </where>
     </select>
 
-    <!-- 鑾峰彇鐢ㄦ埛瀵瑰簲鑿滃崟鐨勬寜閽潈闄� -->
+    <!-- 根据用户所在数据组获取其对应的数据id集合 -->
     <select id="getDataByPerm" resultType="DatagroupData">
-        select dataId,dataModelId from zgk_user_data
-        where userId = #{condition.userId}
-        and dataModelId = #{condition.dataModelId}
+        select mdgd.* from zgk_datagroup_data mdgd
+        inner join zgk_user_datagroup mudg on mudg.datagroupId = mdgd.datagroupId
+
+        <where>
+            <if test="condition.userId != null">
+                and mudg.userId in (#{condition.userId})
+            </if>
+
+            <if test="condition.dataModelId != null">
+                and mdgd.dataModelId in (#{condition.dataModelId})
+            </if>
+        </where>
     </select>
-
-
-
 </mapper>
 

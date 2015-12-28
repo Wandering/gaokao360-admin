@@ -6,61 +6,74 @@ import cn.thinkjoy.gaokao360.domain.University;
  * Created by admin on 2015/12/18.
  */
 public class UniversityDTO extends University {
-    private String province;
-    private String majoredCount;
-    /** 排名 */
-    private String sort;
-    /** 图片 */
-    private String images;
-    private String  eduLevelName;
-    private String dictName;
+    /** 学校地址 */
+    private String address;
+    /** 联系电话 */
+    private String contactPhone;
+    /** 院校简介 */
+    private String universityIntro;
+    /** 报考指南 */
+    private String entranceIntro;
+    /** 特色专业 */
+    private String featureMajor;
+    /** 类型名称 */
+    private String typeName;
+    /** 层次名称 */
+    private String levelName;
 
-    public String getDictName() {
-        return dictName;
+    public String getAddress() {
+        return address;
     }
 
-    public void setDictName(String dictName) {
-        this.dictName = dictName;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getProvince() {
-        return province;
+    public String getContactPhone() {
+        return contactPhone;
     }
 
-    public void setProvince(String province) {
-        this.province = province;
+    public void setContactPhone(String contactPhone) {
+        this.contactPhone = contactPhone;
     }
 
-
-    public String getEduLevelName() {
-        return eduLevelName;
+    public String getUniversityIntro() {
+        return universityIntro;
     }
 
-    public void setEduLevelName(String eduLevelName) {
-        this.eduLevelName = eduLevelName;
+    public void setUniversityIntro(String universityIntro) {
+        this.universityIntro = universityIntro;
     }
 
-    public String getMajoredCount() {
-        return majoredCount;
+    public String getEntranceIntro() {
+        return entranceIntro;
     }
 
-    public void setMajoredCount(String majoredCount) {
-        this.majoredCount = majoredCount;
+    public void setEntranceIntro(String entranceIntro) {
+        this.entranceIntro = entranceIntro;
     }
 
-    public String getSort() {
-        return sort;
+    public String getFeatureMajor() {
+        return featureMajor;
     }
 
-    public void setSort(String sort) {
-        this.sort = sort;
+    public void setFeatureMajor(String featureMajor) {
+        this.featureMajor = featureMajor;
     }
 
-    public String getImages() {
-        return images;
+    public String getTypeName() {
+        return typeName;
     }
 
-    public void setImages(String images) {
-        this.images = images;
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
+
+    public String getLevelName() {
+        return levelName;
+    }
+
+    public void setLevelName(String levelName) {
+        this.levelName = levelName;
     }
 }
