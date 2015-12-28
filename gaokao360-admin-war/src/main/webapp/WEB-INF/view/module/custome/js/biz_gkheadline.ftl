@@ -81,13 +81,19 @@
                 + '</div>'
                 + '</div>'
                 + '<div class="form-group">'
-                + '<label class="col-sm-2 control-label no-padding-right" for="hotTitle"> 标题：</label>'
+                + '<label class="col-sm-2 control-label no-padding-right" for="hotTitle"> 头条标题：</label>'
                 + '<div class="col-sm-3">'
-                + '<input type="text" id="hotTitle" placeholder="请输入高考热点标题" class="" />'
+                + '<input type="text" id="hotTitle" placeholder="请输入高考头条标题" class="" />'
                 + '</div>'
                 + '</div>'
                 + '<div class="form-group">'
-                + '<label class="col-sm-2 control-label no-padding-right" for="hotContent"> 内容：</label>'
+                + '<label class="col-sm-2 control-label no-padding-right" for="hotTitle"> 头条热图：</label>'
+                + '<div class="col-sm-3">'
+                + '<input type="file" name="" id="">'
+                + '</div>'
+                + '</div>'
+                + '<div class="form-group">'
+                + '<label class="col-sm-2 control-label no-padding-right" for="hotContent"> 头条内容：</label>'
                 + '<div class="col-sm-10">'
                 + '<div id="hotContent" class="wysiwyg-editor"></div>'
                 + '</div>'
@@ -96,7 +102,7 @@
                 + '<label class="col-sm-2 control-label no-padding-right" for="hotContent"> 日期：</label>'
                 + '<div class="col-sm-4">'
                 + '<div class="input-group">'
-                + '<input class="form-control date-picker" placeholder="请选择高考热点日期" id="date-picker" type="text" data-date-format="yyyy-mm-dd" />'
+                + '<input class="form-control date-picker" placeholder="请选择高考头条日期" id="date-picker" type="text" data-date-format="yyyy-mm-dd" />'
                 + '<span class="input-group-addon">'
                 + '<i class="fa fa-calendar bigger-110"></i>'
                 + '</span>'
@@ -106,11 +112,11 @@
                 + '</form>'
                 + '</div>'
                 + '</div>';
-        // 添加高考热点
+        // 添加高考头条
         $("#addBtn").on(ace.click_event, function (e) {
             typeStr = "add";
             bootbox.dialog({
-                title: "添加高考热点",
+                title: "添加高考头条",
                 message: dialogHtml,
                 className: 'my-modal',
                 buttons: {
@@ -130,7 +136,7 @@
         });
 
 
-        //修改高考热点
+        //修改高考头条
         $("#editBtn").on(ace.click_event, function () {
             typeStr = "edit";
             rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
@@ -140,7 +146,7 @@
                 return false;
             }
             bootbox.dialog({
-                title: "修改高考热点",
+                title: "修改高考头条",
                 message: dialogHtml,
                 className: 'my-modal',
                 buttons: {
@@ -179,19 +185,19 @@
                 return false;
             }
             if (hotTitleV == "") {
-                CommonFn.tipsDialog('温馨提示', '请输入高考热点标题');
+                CommonFn.tipsDialog('温馨提示', '请输入高考头条标题');
                 return false;
             }
             if(hotTitleV.length>30){
-                CommonFn.tipsDialog('温馨提示', '请输入高考热点标题字数不能大于30个字');
+                CommonFn.tipsDialog('温馨提示', '请输入高考头条标题字数不能大于30个字');
                 return false;
             }
             if (hotContentV == "") {
-                CommonFn.tipsDialog('温馨提示', '请输入高考热点内容');
+                CommonFn.tipsDialog('温馨提示', '请输入高考头条内容');
                 return false;
             }
             if (datePickerV == "") {
-                CommonFn.tipsDialog('温馨提示', '请选择高考热点日期');
+                CommonFn.tipsDialog('温馨提示', '请选择高考头条日期');
                 return false;
             }
             var hotContentHtml = CommonFn.getTextareaData(hotContentV).join(''),
