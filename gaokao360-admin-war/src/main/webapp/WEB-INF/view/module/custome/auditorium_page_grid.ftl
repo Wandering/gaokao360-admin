@@ -124,6 +124,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div id="videolist"></div>
                                     </div>
                                 </div>
                                 <input type="hidden" value="" id="videoData" />

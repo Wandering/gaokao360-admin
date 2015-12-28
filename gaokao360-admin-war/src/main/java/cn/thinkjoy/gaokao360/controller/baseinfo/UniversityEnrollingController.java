@@ -2,15 +2,18 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  GkinformationGkhotController.java 2015-12-03 14:24:46 $
+ * $Id:  UniversityEnrollingController.java 2015-12-28 10:45:06 $
  */
 
-package cn.thinkjoy.gaokao360.controller.baseinfo.ex;
+package cn.thinkjoy.gaokao360.controller.baseinfo;
 
-import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.gaokao360.controller.BaseController;
-import cn.thinkjoy.gaokao360.service.ex.IGkheadlineService;
-import cn.thinkjoy.gaokao360.service.ex.IGkinformationGkhotExService;
+import cn.thinkjoy.gaokao360.service.IUniversityEnrollingService;
+import cn.thinkjoy.common.managerui.dao.IResourceGridDAO;
+import cn.thinkjoy.common.managerui.service.IResourceGridService;
+import cn.thinkjoy.common.domain.view.BizData4Page;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,14 +22,20 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+
+import cn.thinkjoy.common.managerui.controller.AbstractAdminController;
 
 @Controller
-@RequestMapping(value="/admin/gaokao360/ex")
-public class GkheadlineController extends BaseController<IGkheadlineService> {
+@RequestMapping(value="/admin/gaokao360")
+public class UniversityEnrollingController extends BaseController<IUniversityEnrollingService> {
 
 
     @Autowired
-    private IGkheadlineService gkheadlineService;
+    private IUniversityEnrollingService universityEnrollingService;
 
     /**
      * 页面主请求
@@ -34,7 +43,7 @@ public class GkheadlineController extends BaseController<IGkheadlineService> {
      * @param response
      * @return  返回菜单数据、表格描述元数据、当前主描述  如本页面为org
      */
-    @RequestMapping(value="/gkheadline")
+    @RequestMapping(value="/universityenrolling")
     public ModelAndView renderMainView(HttpServletRequest request,HttpServletResponse response){
 
 
@@ -45,30 +54,30 @@ public class GkheadlineController extends BaseController<IGkheadlineService> {
      * 获取所有的组织信息
      * @return
      */
-    @RequestMapping(value="/gkheadlines")
+    @RequestMapping(value="/universityenrollings")
     @ResponseBody
-    public BizData4Page findAllGkinformationGkhots(HttpServletRequest request,HttpServletResponse response){
+    public BizData4Page findAllUniversityEnrollings(HttpServletRequest request,HttpServletResponse response){
         return doPage(request, response);
     }
 
     @Override
-    protected IGkheadlineService getMainService() {
-        return gkheadlineService;
+    protected IUniversityEnrollingService getMainService() {
+        return universityEnrollingService;
     }
 
     @Override
     protected String getBizSys() {
-        return "gaokao360/ex";
+        return "gaokao360";
     }
 
     @Override
     protected String getMainObjName() {
-        return "gkheadline";
+        return "universityenrolling";
     }
 
     @Override
     protected String getViewTitle() {
-        return "高考头条";
+        return "学院招生信息";
     }
 
     @Override

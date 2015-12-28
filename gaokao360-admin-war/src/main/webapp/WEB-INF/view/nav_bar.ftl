@@ -21,7 +21,7 @@
     <a href="#" class="navbar-brand">
         <i class="fa fa-globe"></i>
         <small>
-            智高考数据平台
+            智高考v2.0数据管理平台
         </small>
     </a>
 

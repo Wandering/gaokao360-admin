@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IUniversityEnrollingExDAO">
+<!--
+insert
+update
+updateNull
+deleteById
+deleteByCondition
+deleteByProperty
+fetch
+findOne
+findList
+findAll
+queryPage
+like
+queryList
+queryOne
+count
+selectMaxId
+updateOrSave
+selectOne
+selectList
+-->
+
+    <sql id="Base_Column_List">
+           university.id as id,
+           university.areaid as areaid,
+           province.name as province,
+           university.name as name,
+           enrolling.year as year,
+           enrolling.batch as batch,
+           enrolling.university_major_type as universityMajorType,
+           enrolling.plan_enrolling_number as planEnrollingNumber,
+           enrolling.real_enrolling_number as realEnrollingNumber,
+           enrolling.length_of_schooling   as engthOfSchooling,
+           enrolling.school_fee            as schoolFee,
+           enrolling.highest_score         as highestScore,
+           enrolling.highest_precedence   as highestPrecedence,
+           enrolling.lowest_score          as lowestScore,
+           enrolling.lowest_precedence    as lowestPrecedence,
+           enrolling.average_score         as averageScore,
+           enrolling.average_precedence   as averagePrecedence,
+           batchdict.name   as batchname,
+           typedict.name   as typename
+
+    </sql>
+
+    <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.UniversityEnrollingDTO">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM
+        zgk_university university
+        LEFT OUTER JOIN zgk_university_enrolling enrolling ON university.id=enrolling.university_id
+        LEFT JOIN zgk_province province ON province.id=university.areaid
+        LEFT JOIN zgk_data_dict batchdict ON batchdict.dictId=enrolling.batch AND batchdict.type='MAJOR_BATCH'
+        LEFT JOIN zgk_data_dict typedict ON typedict.dictId=enrolling.batch AND typedict.type='UNIVERSITY_MAJOR_TYPE'
+        <!--<where>-->
+
+        <!--</where>-->
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(id)  FROM
+        zgk_university university
+        LEFT OUTER JOIN zgk_university_enrolling enrolling ON university.id=enrolling.university_id
+        LEFT JOIN zgk_province province ON province.id=university.areaid
+        LEFT JOIN zgk_data_dict batchdict ON batchdict.dictId=enrolling.batch AND batchdict.type='MAJOR_BATCH'
+        LEFT JOIN zgk_data_dict typedict ON typedict.dictId=enrolling.batch AND typedict.type='UNIVERSITY_MAJOR_TYPE'
+       <where>
+           <if test="id!=null">
+               ${groupOp} ${id.field} ${id.op}  #{id.data}
+           </if>
+           <if test="universityId!=null">
+               ${groupOp} ${universityId.field} ${universityId.op}  #{universityId.data}
+           </if>
+           <if test="majorName!=null">
+               ${groupOp} ${majorName.field} ${majorName.op}  #{majorName.data}
+           </if>
+           <if test="year!=null">
+               ${groupOp} ${year.field} ${year.op}  #{year.data}
+           </if>
+           <if test="batch!=null">
+               ${groupOp} ${batch.field} ${batch.op}  #{batch.data}
+           </if>
+           <if test="universityMajorType!=null">
+               ${groupOp} ${universityMajorType.field} ${universityMajorType.op}  #{universityMajorType.data}
+           </if>
+           <if test="planEnrollingNumber!=null">
+               ${groupOp} ${planEnrollingNumber.field} ${planEnrollingNumber.op}  #{planEnrollingNumber.data}
+           </if>
+           <if test="realEnrollingNumber!=null">
+               ${groupOp} ${realEnrollingNumber.field} ${realEnrollingNumber.op}  #{realEnrollingNumber.data}
+           </if>
+           <if test="lengthOfSchooling!=null">
+               ${groupOp} ${lengthOfSchooling.field} ${lengthOfSchooling.op}  #{lengthOfSchooling.data}
+           </if>
+           <if test="schoolFee!=null">
+               ${groupOp} ${schoolFee.field} ${schoolFee.op}  #{schoolFee.data}
+           </if>
+           <if test="highestScore!=null">
+               ${groupOp} ${highestScore.field} ${highestScore.op}  #{highestScore.data}
+           </if>
+           <if test="highestPrecedence!=null">
+               ${groupOp} ${highestPrecedence.field} ${highestPrecedence.op}  #{highestPrecedence.data}
+           </if>
+           <if test="lowestScore!=null">
+               ${groupOp} ${lowestScore.field} ${lowestScore.op}  #{lowestScore.data}
+           </if>
+           <if test="lowestPrecedence!=null">
+               ${groupOp} ${lowestPrecedence.field} ${lowestPrecedence.op}  #{lowestPrecedence.data}
+           </if>
+           <if test="averageScore!=null">
+               ${groupOp} ${averageScore.field} ${averageScore.op}  #{averageScore.data}
+           </if>
+           <if test="averagePrecedence!=null">
+               ${groupOp} ${averagePrecedence.field} ${averagePrecedence.op}  #{averagePrecedence.data}
+           </if>
+           <if test="createDate!=null">
+               ${groupOp} ${createDate.field} ${createDate.op}  #{createDate.data}
+           </if>
+           <if test="creator!=null">
+               ${groupOp} ${creator.field} ${creator.op}  #{creator.data}
+           </if>
+           <if test="lastModDate!=null">
+               ${groupOp} ${lastModDate.field} ${lastModDate.op}  #{lastModDate.data}
+           </if>
+           <if test="lastModifier!=null">
+               ${groupOp} ${lastModifier.field} ${lastModifier.op}  #{lastModifier.data}
+           </if>
+           <if test="isDelete!=null">
+               ${groupOp} ${isDelete.field} ${isDelete.op}  #{isDelete.data}
+           </if>
+
+       </where>
+    </select>
+
+</mapper>
+

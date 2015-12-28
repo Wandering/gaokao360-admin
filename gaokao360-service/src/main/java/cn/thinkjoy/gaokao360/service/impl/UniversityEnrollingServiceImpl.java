@@ -2,15 +2,15 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  UniversityServiceImpl.java 2015-12-28 14:38:15 $
+ * $Id:  UniversityEnrollingServiceImpl.java 2015-12-28 10:45:06 $
  */
 package cn.thinkjoy.gaokao360.service.impl;
 
 import cn.thinkjoy.common.domain.BaseDomain;
 import cn.thinkjoy.common.dao.IBaseDAO;
-import cn.thinkjoy.gaokao360.dao.IUniversityDAO;
-import cn.thinkjoy.gaokao360.domain.University;
-import cn.thinkjoy.gaokao360.service.IUniversityService;
+import cn.thinkjoy.gaokao360.dao.IUniversityEnrollingDAO;
+import cn.thinkjoy.gaokao360.domain.UniversityEnrolling;
+import cn.thinkjoy.gaokao360.service.IUniversityEnrollingService;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,14 +19,14 @@ import java.util.List;
 import java.util.Map;
 
 
-@Service("UniversityServiceImpl")
-public class UniversityServiceImpl extends AbstractPageService<IBaseDAO<University>, University> implements IUniversityService<IBaseDAO<University>,University>{
+@Service("UniversityEnrollingServiceImpl")
+public class UniversityEnrollingServiceImpl extends AbstractPageService<IBaseDAO<UniversityEnrolling>, UniversityEnrolling> implements IUniversityEnrollingService<IBaseDAO<UniversityEnrolling>,UniversityEnrolling>{
     @Autowired
-    private IUniversityDAO universityDAO;
+    private IUniversityEnrollingDAO universityEnrollingDAO;
 
     @Override
-    public IBaseDAO<University> getDao() {
-        return universityDAO;
+    public IBaseDAO<UniversityEnrolling> getDao() {
+        return universityEnrollingDAO;
     }
 
 //    @Override
@@ -80,8 +80,8 @@ public class UniversityServiceImpl extends AbstractPageService<IBaseDAO<Universi
 //    }
 //
 //    @Override
-//    public List<University> findAll() {
-//        return universityDAO.findAll();
+//    public List<UniversityEnrolling> findAll() {
+//        return universityEnrollingDAO.findAll();
 //    }
 //
 //    @Override
@@ -135,8 +135,8 @@ public class UniversityServiceImpl extends AbstractPageService<IBaseDAO<Universi
 //    }
 //
 //    @Override
-//    protected UniversityDAO getDao() {
-//        return universityDAO;
+//    protected UniversityEnrollingDAO getDao() {
+//        return universityEnrollingDAO;
 //    }
 //
 //    @Override

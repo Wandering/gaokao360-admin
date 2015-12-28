@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IGkinformationGkhotExDAO">
+<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IGkheadlineDAO">
 <!--
 insert
 update
@@ -48,7 +48,7 @@ selectList
         FROM zgk_gkinformation_gkhot gkhot
         LEFT JOIN zgk_province province on gkhot.areaId=province.id
         <where>
-            1=1 AND gkhot.type=0
+            1=1 AND  gkhot.type=1
             <if test="condition.whereSql != null">
                 and id in (#{condition.whereSql})
             </if>
@@ -62,7 +62,7 @@ selectList
 
 
     </where>
-        ORDER BY  lastModDate DESC
+        ORDER BY lastModDate DESC
         <if test="offset != null">
             limit ${offset}, ${rows}
         </if>
@@ -73,7 +73,7 @@ selectList
         FROM zgk_gkinformation_gkhot gkhot
         LEFT JOIN zgk_province province on gkhot.areaId=province.id
        <where>
-           1=1 AND gkhot.type=0
+           1=1 AND gkhot.type=1
            <if test="gkhothotInformation!=null">
                ${groupOp} ${gkhothotInformation.field} ${gkhothotInformation.op}  #{gkhothotInformation.data}
            </if>
