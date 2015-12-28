@@ -196,6 +196,7 @@
                     infoContet = CommonFn.getContentHtml(rowData[0].informationContent).join('');
             $('#selProvince').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
             $('#hotTitle').val(rowData[0].hotInformation);
+            $('#swfUrl').val(rowData[0].imgUrl);
             $('#hotContent').html(infoContet);
             $('#date-picker').val(rowData[0].hotdate);
             CommonFn.renderDate('#date-picker');
