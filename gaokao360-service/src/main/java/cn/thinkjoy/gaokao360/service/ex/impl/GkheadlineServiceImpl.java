@@ -2,28 +2,29 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  UniversityEnrollingServiceImpl.java 2015-12-28 10:45:06 $
+ * $Id:  GkinformationGkhotServiceImpl.java 2015-12-03 14:24:46 $
  */
 package cn.thinkjoy.gaokao360.service.ex.impl;
 
 import cn.thinkjoy.common.dao.IBaseDAO;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
-import cn.thinkjoy.gaokao360.dao.ex.IUniversityEnrollingExDAO;
-import cn.thinkjoy.gaokao360.domain.UniversityEnrolling;
-import cn.thinkjoy.gaokao360.dto.UniversityEnrollingDTO;
-import cn.thinkjoy.gaokao360.service.ex.IUniversityEnrollingExService;
+import cn.thinkjoy.gaokao360.dao.ex.IGkheadlineDAO;
+import cn.thinkjoy.gaokao360.dao.ex.IGkinformationGkhotExDAO;
+import cn.thinkjoy.gaokao360.dto.GkinformationGkhotDTO;
+import cn.thinkjoy.gaokao360.service.ex.IGkheadlineService;
+import cn.thinkjoy.gaokao360.service.ex.IGkinformationGkhotExService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-@Service("UniversityEnrollingExServiceImpl")
-public class UniversityEnrollingExServiceImpl extends AbstractPageService<IBaseDAO<UniversityEnrollingDTO>, UniversityEnrollingDTO> implements IUniversityEnrollingExService<IBaseDAO<UniversityEnrollingDTO>,UniversityEnrollingDTO> {
+@Service("GkheadlineServiceImpl")
+public class GkheadlineServiceImpl extends AbstractPageService<IBaseDAO<GkinformationGkhotDTO>, GkinformationGkhotDTO> implements IGkheadlineService<IBaseDAO<GkinformationGkhotDTO>,GkinformationGkhotDTO> {
     @Autowired
-    private IUniversityEnrollingExDAO universityEnrollingExDAO;
+    private IGkheadlineDAO gkheadlineDAO;
 
     @Override
-    public IBaseDAO<UniversityEnrollingDTO> getDao() {
-        return universityEnrollingExDAO;
+    public IBaseDAO<GkinformationGkhotDTO> getDao() {
+        return gkheadlineDAO;
     }
 
 //    @Override
@@ -77,8 +78,8 @@ public class UniversityEnrollingExServiceImpl extends AbstractPageService<IBaseD
 //    }
 //
 //    @Override
-//    public List<UniversityEnrolling> findAll() {
-//        return universityEnrollingDAO.findAll();
+//    public List<GkinformationGkhot> findAll() {
+//        return gkinformationGkhotDAO.findAll();
 //    }
 //
 //    @Override
@@ -132,8 +133,8 @@ public class UniversityEnrollingExServiceImpl extends AbstractPageService<IBaseD
 //    }
 //
 //    @Override
-//    protected UniversityEnrollingDAO getDao() {
-//        return universityEnrollingDAO;
+//    protected GkinformationGkhotDAO getDao() {
+//        return gkinformationGkhotDAO;
 //    }
 //
 //    @Override

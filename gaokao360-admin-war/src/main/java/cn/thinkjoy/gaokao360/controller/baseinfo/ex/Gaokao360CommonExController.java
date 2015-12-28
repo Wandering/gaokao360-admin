@@ -87,7 +87,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
             serviceMaps.get("videocourse").delete(dataMap.get("id"));
             Map<String,Object> map=new HashMap<>();
             map.put("courseId",dataMap.get("id"));
-            serviceMaps.get("videocourse").deleteByCondition(map);
+            serviceMaps.get("videosection").deleteByCondition(map);
         }else if("gkheadline".equals(mainObj)){
             serviceMaps.get("gkinformationgkhot").delete(dataMap.get("id"));
         }else if("university".equals(mainObj)) {
@@ -194,6 +194,11 @@ public class Gaokao360CommonExController extends AbstractCommonController {
 
     @Override
     protected void innerHandleAdd(String mainObj, Map dataMap) {
+        if("areabatchline".equals(mainObj)){
+            Map<String,Object> map= new HashMap<>();
+            map.put("areaId",dataMap.get("areaId"));
+            serviceMaps.get("areabatchline").deleteByCondition(map);
+        }
         if("admissionbatch".equals(mainObj)){
             admissionBatchExService.insertMap(dataMap);
         }else if("gkheadline".equals(mainObj)){
@@ -203,8 +208,8 @@ public class Gaokao360CommonExController extends AbstractCommonController {
             serviceMaps.get("videocourse").insertMap(dataMap);
             Long lid = (Long)serviceMaps.get("videocourse").selectMaxId();
             String sectionId=null;
-            if(dataMap.containsKey("sectionId")){
-                sectionId = (String)dataMap.get("sectionId");
+            if(dataMap.containsKey("videoSectionDTOs")){
+                sectionId = (String)dataMap.get("videoSectionDTOs");
             }
             if(sectionId!=null){
                 JSONArray jsonArray = null;
@@ -351,7 +356,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
             //这里大家可以用其他的httpClient均可以
 
             template.getMessageConverters().add(new FastJsonHttpMessageConverter());
-            st = template.getForObject(url,String.class);
+            st = template.getForObject(url, String.class);
         }catch (Exception e){
             logger.error("删除错误");
         }
@@ -375,8 +380,8 @@ public class Gaokao360CommonExController extends AbstractCommonController {
             serviceMaps.get("videocourse").updateMap(dataMap);
             Long lid = (Long)dataMap.get("id");
             String sectionId=null;
-            if(dataMap.containsKey("sectionId")){
-                sectionId = (String)dataMap.get("sectionId");
+            if(dataMap.containsKey("videoSectionDTOs")){
+                sectionId = (String)dataMap.get("videoSectionDTOs");
             }
             if(sectionId!=null){
                 Map<String,Object> map1=new HashMap<>();

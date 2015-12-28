@@ -8,8 +8,9 @@ package cn.thinkjoy.gaokao360.dao.ex;
 
 import cn.thinkjoy.common.dao.IBaseDAO;
 import cn.thinkjoy.gaokao360.domain.UniversityEnrolling;
+import cn.thinkjoy.gaokao360.dto.UniversityEnrollingDTO;
 
-public interface IUniversityEnrollingExDAO extends IBaseDAO<UniversityEnrolling>{
+public interface IUniversityEnrollingExDAO extends IBaseDAO<UniversityEnrollingDTO>{
 	
 
 }

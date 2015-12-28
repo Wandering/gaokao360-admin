@@ -9,6 +9,7 @@ package cn.thinkjoy.gaokao360.controller.baseinfo.ex;
 
 import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.gaokao360.controller.BaseController;
+import cn.thinkjoy.gaokao360.service.ex.IGkheadlineService;
 import cn.thinkjoy.gaokao360.service.ex.IGkinformationGkhotExService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,11 +22,11 @@ import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping(value="/admin/gaokao360/ex")
-public class GkheadlineController extends BaseController<IGkinformationGkhotExService> {
+public class GkheadlineController extends BaseController<IGkheadlineService> {
 
 
     @Autowired
-    private IGkinformationGkhotExService gkinformationGkhotExService;
+    private IGkheadlineService gkheadlineService;
 
     /**
      * 页面主请求
@@ -51,8 +52,8 @@ public class GkheadlineController extends BaseController<IGkinformationGkhotExSe
     }
 
     @Override
-    protected IGkinformationGkhotExService getMainService() {
-        return gkinformationGkhotExService;
+    protected IGkheadlineService getMainService() {
+        return gkheadlineService;
     }
 
     @Override
