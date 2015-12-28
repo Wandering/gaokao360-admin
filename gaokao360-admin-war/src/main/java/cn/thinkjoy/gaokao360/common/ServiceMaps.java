@@ -76,10 +76,12 @@ public class ServiceMaps extends BaseServiceMaps{
 
     @Autowired
     private IMajoredService majoredService;
+    @Autowired
+    private IVocabularyService vocabulary;
     @PostConstruct
     public void init(){
         super.init();
-        serviceMap.put("gkinformationgkhot",gkinformationGkhotService);
+        serviceMap.put("gkinformationgkhot", gkinformationGkhotService);
         serviceMap.put("examinationpaper",examinationPaperService);
         serviceMap.put("policyinterpretation",policyInterpretationService);
         serviceMap.put("videoclassify",videoClassifyService);
@@ -101,6 +103,7 @@ public class ServiceMaps extends BaseServiceMaps{
         serviceMap.put("majored",majoredService);
         serviceMap.put("majoredcategory",majoredCategoryService);
         serviceMap.put("majoredcategoryex",majoredCategoryExService);
+        serviceMap.put("vocabulary",vocabulary);
     }
 
 }
