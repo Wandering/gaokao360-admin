@@ -41,6 +41,7 @@
         <button class="btn btn-danger" id="deleteBtn"><i class="ace-icon fa fa-trash-o align-top bigger-125"></i>删除
         </button>
     </div>
+
 <#include 'page_grid.ftl'>
 </div>
     <!-- 搜索end -->
