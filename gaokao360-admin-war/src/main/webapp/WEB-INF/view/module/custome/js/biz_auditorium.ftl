@@ -363,11 +363,22 @@
             $('#imglist').html('<img width="110" height="100" src="'+ rowData[0].frontCover +'"/><a href="javascript:;" id="updateImg">修改</a>');
             uploadFun1();
             uploadFun2();
-            $('#updateImg').show();
+            $('#imglist').show();
             $('#updateImg').on('click',function(){
                 $(this).parent().hide();
                 $('#uploader1').show();
             })
+
+            // 视频
+            var videoData = rowData[0].videoSectionDTO;
+            var videoArr = [];
+            for(var i=0;i<videoData.length;i++){
+                videoArr.push('<div>'+ videoData[i].sectionName +'<a href="'+ videoData[i].fileUrl +'">点击查看</a><a href="javascript:;">删除</a></div>')
+                console.log(videoArr.join(''))
+                $('#videolist').html(videoArr)
+            }
+
+
 
         });
 

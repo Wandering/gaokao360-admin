@@ -148,11 +148,18 @@
             var rowData = CommonFn.getRowData(rowId);
             // 富媒体赋值
             var areaVal = CommonFn.getContentHtml(rowData[0].content);
+            console.info(areaVal);
             $('#selProvince2').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
             ue = UE.getEditor('editor');
-            ue.execCommand( 'inserthtml', areaVal);
-//            UE.getEditor('editor').setContent(areaVal,true)
+            ue.addListener("ready", function () {
+                // editor准备好之后才可以使用
+                ue.execCommand('insertHtml', areaVal);
+//                ue.setContent(areaVal)
+            });
+
         });
+
+
         var addEditFun = function () {
             var selProvinceV = $('#selProvince2 option:checked').val();
             var content = CommonFn.getTextareaDataTable(ue.getContent()).join('');
@@ -212,6 +219,8 @@
                 + '</div>'
                 + '</form>'
                 + '</div>'
+                + '<button onclick="insertHtml()">插入给定的内容</button>'
+
                 + '</div>';
     });//$ end
 
