@@ -231,6 +231,7 @@
         $('#selProvince,#selProvince2').html(CommonFn.getProvince());
 
 
+
         uploadFun1();
         uploadFun2();
         var addEditFun = function () {
@@ -274,13 +275,17 @@
             var sectionData = $('#sectionId').val();
 
 
+            alert($('#imgUrlData').val())
 
-            var imgUrl = '';
-            if($('#uploader1:hidden')){
-                imgUrl = $('#imglist').find('img').attr('src');
-            }else{
-                imgUrl = $('#imgUrlData').val();
-            }
+            var imgUrl = $('#imgUrlData').val();
+//            var imgUrl = '';
+//            if($('#uploader1:hidden')){
+//                alert(23)
+//                imgUrl = $('#imglist').find('img').attr('src');
+//            }else{
+//                alert(4)
+//                imgUrl = $('#imgUrlData').val();
+//            }
 
             var addData = {
                 oper: typeStr,
@@ -294,6 +299,8 @@
                 areaId: selProvinceV,
                 videoSectionDTOs:sectionData
             };
+            console.log(addData)
+
             $.ajax({
                 type: "POST",
                 url: '/admin/${bizSys}/commonsave/${mainObj}',
@@ -316,6 +323,7 @@
 //        uploadFun1();
 //        uploadFun2();
         UI.$addBtn.click(function () {
+            $('#imglist').html('').hide();
             $('#dialogLayer').modal('show')
                     .find('input').val('')
                     .end()
@@ -368,6 +376,7 @@
                 $(this).parent().hide();
                 $('#uploader1').show();
             })
+            $('#imgUrlData').val(rowData[0].frontCover)
 
             // 视频
             var videoData = rowData[0].videoSectionDTO;
