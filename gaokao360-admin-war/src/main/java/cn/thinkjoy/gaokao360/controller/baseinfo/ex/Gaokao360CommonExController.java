@@ -204,6 +204,9 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         }else if("gkheadline".equals(mainObj)){
             dataMap.put("type", 1);
             serviceMaps.get("gkinformationgkhot").insertMap(dataMap);
+        }else if("gkinformationgkhot".equals(mainObj)){
+            dataMap.put("type", 0);
+            serviceMaps.get("gkinformationgkhot").insertMap(dataMap);
         }else if("auditorium".equals(mainObj)||"gkPsychology".equals(mainObj)){
             serviceMaps.get("videocourse").insertMap(dataMap);
             Long lid = (Long)serviceMaps.get("videocourse").selectMaxId();
