@@ -203,8 +203,8 @@ public class Gaokao360CommonExController extends AbstractCommonController {
             serviceMaps.get("videocourse").insertMap(dataMap);
             Long lid = (Long)serviceMaps.get("videocourse").selectMaxId();
             String sectionId=null;
-            if(dataMap.containsKey("sectionId")){
-                sectionId = (String)dataMap.get("sectionId");
+            if(dataMap.containsKey("videoSectionDTOs")){
+                sectionId = (String)dataMap.get("videoSectionDTOs");
             }
             if(sectionId!=null){
                 JSONArray jsonArray = null;
@@ -380,8 +380,8 @@ public class Gaokao360CommonExController extends AbstractCommonController {
             serviceMaps.get("videocourse").updateMap(dataMap);
             Long lid = (Long)dataMap.get("id");
             String sectionId=null;
-            if(dataMap.containsKey("sectionId")){
-                sectionId = (String)dataMap.get("sectionId");
+            if(dataMap.containsKey("videoSectionDTOs")){
+                sectionId = (String)dataMap.get("videoSectionDTOs");
             }
             if(sectionId!=null){
                 Map<String,Object> map1=new HashMap<>();
