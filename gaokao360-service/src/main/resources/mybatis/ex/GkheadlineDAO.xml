@@ -37,7 +37,8 @@ selectList
         gkhot.areaId as areaId,
         gkhot.hotdate as hotdate,
 		province.name as province,
-		gkhot.type as type
+		gkhot.type as type,
+		gkhot.imgUrl as imgUrl
 
     </sql>
 
