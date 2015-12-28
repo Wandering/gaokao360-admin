@@ -68,6 +68,7 @@
             sidx: sidx,
             sord: sord}).trigger("reloadGrid");
     }
+
     // 搜索
     $("#search").click(function () {
         searchLoad();

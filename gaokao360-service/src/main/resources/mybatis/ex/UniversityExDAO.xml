@@ -42,7 +42,8 @@ selectList
         detail.entranceIntro as entranceIntro ,
         detail.featureMajor as featureMajor ,
 		typedict.name as typeName,
-		leveldict.name as levelName
+		leveldict.name as levelName,
+		province.name as province
     </sql>
     <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.UniversityDTO">
         SELECT

@@ -21,8 +21,18 @@ public class UniversityDTO extends University {
     /** 层次名称 */
     private String levelName;
 
+    /** 层次名称 */
+    private String province;
     public String getAddress() {
         return address;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
     }
 
     public void setAddress(String address) {
