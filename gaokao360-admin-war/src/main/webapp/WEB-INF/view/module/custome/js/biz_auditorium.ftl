@@ -276,15 +276,6 @@
             alert(videoDataV)
             alert(imgUrlDataV)
 
-//            var imgUrl = '';
-//            if($('#uploader1:hidden')){
-//                alert(23)
-//                imgUrl = $('#imglist').find('img').attr('src');
-//            }else{
-//                alert(4)
-//                imgUrl = $('#imgUrlData').val();
-//            }
-
             var addData = {
                 oper: typeStr,
                 classifyId: '${mainObj}' == 'auditorium' ? '1' : '0',
@@ -313,10 +304,6 @@
         };
 
 
-
-
-
-
         // 添加
 //        uploadFun1();
 //        uploadFun2();
@@ -337,6 +324,8 @@
             uploadFun2();
         });
 
+//        var editVideoList = [];
+//        var editListJSON = {};
         UI.$editBtn.click(function (e) {
             e.preventDefault();
             typeStr = "edit";
@@ -367,8 +356,7 @@
             $('#expertsIntro').val(rowData[0].subcontent);
             $('#uploader1').hide();
             $('#imglist').html('<img width="110" height="100" src="'+ rowData[0].frontCover +'"/><a href="javascript:;" id="updateImg">修改</a>');
-            uploadFun1();
-            uploadFun2();
+
             $('#imglist').show();
             $('#updateImg').on('click',function(){
                 $(this).parent().hide();
@@ -380,12 +368,26 @@
             var videoData = rowData[0].videoSectionDTO;
             var videoArr = [];
             for(var i=0;i<videoData.length;i++){
-                videoArr.push('<div>'+ videoData[i].sectionName +'<a href="'+ videoData[i].fileUrl +'">点击查看</a><a href="javascript:;">删除</a></div>')
+                videoArr.push('<div class="videoLi"><span class="vName" dataUrl="'+ videoData[i].fileUrl +'">'+ videoData[i].sectionName +'</span><a target="_blank" class="vUrl" href="'+ videoData[i].fileUrl +'">点击查看</a><a href="javascript:;" class="close-btn" dataUrl="'+ videoData[i].fileUrl +'">删除</a></div>')
                 console.log(videoArr.join(''));
-                $('#videolist').html(videoArr)
+                $('#videolist').html(videoArr);
             }
 
-
+            cx();
+            $('#videolist').on('click','.close-btn',function(){
+                $(this).parent().remove();
+                var name = $(this).attr('dataUrl');
+                var arrs = JSON.parse($('#videoData').val());
+                for (var i = 0; i < arrs.length; i++) {
+                    var cur_person = arrs[i];
+                    if (cur_person.fileUrl == name) {
+                        arrs.splice(i, 1);
+                    }
+                };
+                $('#videoData').val(JSON.stringify(arrs))
+            });
+            uploadFun1();
+            uploadFun2();
 
         });
 
@@ -401,6 +403,37 @@
         //删除
         CommonFn.deleteFun('#deleteBtn', '${mainObj}');
     });//$ end
+
+
+
+
+    function cx(){
+        $('#videoData').val('');
+        var newBoj = {};
+        var vArr = [];
+        var videoLiLen = $('.videoLi').length;
+        if(videoLiLen > 0){
+            for(var j=0;j< videoLiLen;j++){
+                var nName = $('.videoLi:eq('+ [j] +')').find('.vName').text();
+                var nUrl = $('.videoLi:eq('+ [j] +')').find('.vName').attr('dataUrl');
+                newBoj = {
+                    sectionName: nName,
+                    fileUrl: nUrl
+                };
+                vArr.push(newBoj);
+            }
+            $('#videoData').val(JSON.stringify(vArr))
+        }
+    }
+
+
+
+
+
+
+
+
+
     function auditoriumValidate() {
         var selProvinceV = $('#selProvince2 option:checked').val(),
                 selCourses2V = $('#selCourses2 option:checked').val(),
@@ -1326,7 +1359,22 @@
                 sectionName: file.name.substring(0,(file.name.length-4)),
                 fileUrl: fileUrl
             };
+
             videoList.push(listJSON);
+
+            var newBoj = {};
+            var videoLiLen = $('.videoLi').length;
+            if(videoLiLen > 0){
+                for(var j=0;j< videoLiLen;j++){
+                    var nName = $('.videoLi:eq('+ [j] +')').find('.vName').text();
+                    var nUrl = $('.videoLi:eq('+ [j] +')').find('.vName').attr('dataUrl');
+                    newBoj = {
+                        sectionName: nName,
+                        fileUrl: nUrl
+                    };
+                    videoList.push(newBoj);
+                }
+            }
             $('#videoData').val(JSON.stringify(videoList));
         };
 

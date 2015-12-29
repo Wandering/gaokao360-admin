@@ -142,5 +142,13 @@
         </div>
     </div>
     <!-- 自定义模态框end-->
+    <style>
+        .videoLi{
+            width:300px;
+            float: left;
+            height:30px;
+            line-height:30px;
+        }
+    </style>
 <#include 'page_grid.ftl'>
 </div><!-- /.page-content -->
