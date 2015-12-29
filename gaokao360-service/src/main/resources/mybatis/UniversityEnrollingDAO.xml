@@ -27,7 +27,6 @@ selectList
     <sql id="Base_Column_List">
         id as id ,
         university_id as universityId ,
-        major_name as majorName ,
         year as year ,
         batch as batch ,
         university_major_type as universityMajorType ,
@@ -50,7 +49,6 @@ selectList
     <insert id="insert" parameterType="UniversityEnrolling">
         INSERT INTO zgk_university_enrolling (
         university_id,
-        major_name,
         year,
         batch,
         university_major_type,
@@ -71,7 +69,6 @@ selectList
         is_delete
         ) VALUES (
         #{universityId},
-        #{majorName},
         #{year},
         #{batch},
         #{universityMajorType},
@@ -102,9 +99,6 @@ selectList
         <trim prefix="SET" suffixOverrides=",">
             <if test="universityId!=null">
                 university_id = #{universityId},
-            </if>
-            <if test="majorName!=null">
-                major_name = #{majorName},
             </if>
             <if test="year!=null">
                 year = #{year},
@@ -171,9 +165,6 @@ selectList
             <if test="map.universityId!=null">
                 university_id = #{map.universityId},
             </if>
-            <if test="map.majorName!=null">
-                major_name = #{map.majorName},
-            </if>
             <if test="map.year!=null">
                 year = #{map.year},
             </if>
@@ -239,9 +230,6 @@ selectList
             <if test="update.universityId!=null">
                 university_id = #{update.universityId},
             </if>
-            <if test="update.majorName!=null">
-                major_name = #{update.majorName},
-            </if>
             <if test="update.year!=null">
                 year = #{update.year},
             </if>
@@ -305,9 +293,6 @@ selectList
             <if test="condition.universityId!=null">
                 AND university_id = #{condition.universityId}
             </if>
-            <if test="condition.majorName!=null">
-                AND major_name = #{condition.majorName}
-            </if>
             <if test="condition.year!=null">
                 AND year = #{condition.year}
             </if>
@@ -368,7 +353,6 @@ selectList
     <insert id="insertMap" >
         INSERT INTO zgk_university_enrolling (
                 university_id,
-                major_name,
                 year,
                 batch,
                 university_major_type,
@@ -389,7 +373,6 @@ selectList
                 is_delete
         ) VALUES (
                     #{map.universityId},
-                    #{map.majorName},
                     #{map.year},
                     #{map.batch},
                     #{map.universityMajorType},
@@ -416,7 +399,6 @@ selectList
         UPDATE zgk_university_enrolling
         <trim prefix="SET" suffixOverrides=",">
             university_id = #{universityId},
-            major_name = #{majorName},
             year = #{year},
             batch = #{batch},
             university_major_type = #{universityMajorType},
@@ -457,9 +439,6 @@ selectList
             </if>
             <if test="universityId!=null">
                 AND university_id = #{universityId}
-            </if>
-            <if test="majorName!=null">
-                AND major_name = #{majorName}
             </if>
             <if test="year!=null">
                 AND year = #{year}
@@ -572,9 +551,6 @@ selectList
                         <if test="selector.universityId!=null">
                             , university_id
                         </if>
-                        <if test="selector.majorName!=null">
-                            , major_name
-                        </if>
                         <if test="selector.year!=null">
                             , year
                         </if>
@@ -646,9 +622,6 @@ selectList
             </if>
             <if test="condition.universityId!=null">
                 ${condition.groupOp}   ${condition.universityId.field}  ${condition.universityId.op}  #{condition.universityId.data}
-            </if>
-            <if test="condition.majorName!=null">
-                ${condition.groupOp}   ${condition.majorName.field}  ${condition.majorName.op}  #{condition.majorName.data}
             </if>
             <if test="condition.year!=null">
                 ${condition.groupOp}   ${condition.year.field}  ${condition.year.op}  #{condition.year.data}
@@ -725,9 +698,6 @@ selectList
                     <if test="selector.universityId!=null">
                         , university_id
                     </if>
-                    <if test="selector.majorName!=null">
-                        , major_name
-                    </if>
                     <if test="selector.year!=null">
                         , year
                     </if>
@@ -794,9 +764,6 @@ selectList
             </if>
             <if test="condition.universityId!=null">
                 AND university_id like CONCAT('%', #{condition.universityId} , '%')
-            </if>
-            <if test="condition.majorName!=null">
-                AND major_name like CONCAT('%', #{condition.majorName} , '%')
             </if>
             <if test="condition.year!=null">
                 AND year like CONCAT('%', #{condition.year} , '%')
@@ -869,9 +836,6 @@ selectList
                 <if test="selector.universityId!=null">
                     , university_id
                 </if>
-                <if test="selector.majorName!=null">
-                    , major_name
-                </if>
                 <if test="selector.year!=null">
                     , year
                 </if>
@@ -938,9 +902,6 @@ selectList
             </if>
             <if test="condition.universityId!=null">
                 AND university_id = #{condition.universityId}
-            </if>
-            <if test="condition.majorName!=null">
-                AND major_name = #{condition.majorName}
             </if>
             <if test="condition.year!=null">
                 AND year = #{condition.year}
@@ -1012,9 +973,6 @@ selectList
                     <if test="selector.universityId!=null">
                         , university_id
                     </if>
-                    <if test="selector.majorName!=null">
-                        , major_name
-                    </if>
                     <if test="selector.year!=null">
                         , year
                     </if>
@@ -1081,9 +1039,6 @@ selectList
             </if>
             <if test="condition.universityId!=null">
                 AND university_id = #{condition.universityId}
-            </if>
-            <if test="condition.majorName!=null">
-                AND major_name = #{condition.majorName}
             </if>
             <if test="condition.year!=null">
                 AND year = #{condition.year}
@@ -1154,9 +1109,6 @@ selectList
            </if>
            <if test="universityId!=null">
                ${groupOp} ${universityId.field} ${universityId.op}  #{universityId.data}
-           </if>
-           <if test="majorName!=null">
-               ${groupOp} ${majorName.field} ${majorName.op}  #{majorName.data}
            </if>
            <if test="year!=null">
                ${groupOp} ${year.field} ${year.op}  #{year.data}
