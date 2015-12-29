@@ -40,10 +40,18 @@
 <script src="${path}/assets/js/bootbox.js"></script>
 <script src="${path}/assets/js/bootstrap-wysiwyg.min.js"></script>
 
+
+<link rel="stylesheet" href="${path}/assets/css/jquery-ui.min.css" />
+<script src="${path}/assets/js/jquery-ui.min.js"></script>
+
+
+
+
 <!-- inline scripts related to this page -->
 <script type="text/javascript">
 
     jQuery(function($) {
+
         var currentGridId;
         $('.input-daterange').datepicker({autoclose:true});
         $(".close-btn").click(function () {
@@ -685,4 +693,8 @@
 
 <script src="${path}/assets/js/common/common.js"></script>
 
-<#--上传--
+<style>
+    .modal-body{
+        overflow: hidden;
+    }
+</style>
