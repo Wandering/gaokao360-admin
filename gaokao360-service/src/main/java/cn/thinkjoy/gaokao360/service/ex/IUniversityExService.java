@@ -19,5 +19,5 @@ public interface IUniversityExService<D extends IBaseDAO<T>, T extends BaseDomai
     void insertUniversity(Map<String,Object> dataMap);
     void updateUniversity(Map<String,Object> dataMap);
     void deleteUniversity(Map<String,Object> dataMap);
-    List<GkBaseDomain> getUniversityByName(String name);
+    List getUniversityByName(String name);
 }

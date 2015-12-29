@@ -146,11 +146,11 @@ selectList
         LEFT JOIN zgk_data_dict leveldict ON leveldict.dictId = university.educationLevel AND leveldict.type='EDUCATION_LEVEL'
         WHERE   university.id=#{id}
     </select>
-    <select id="getUniversityByName" resultType="cn.thinkjoy.gaokao360.domain.GkBaseDomain">
+    <select id="getUniversityByName" resultType="cn.thinkjoy.gaokao360.dto.GkQueryDomain">
         SELECT
         university.id as id,
-        university.name as name,
-        province.name as type
+        university.name as label,
+        province.name as category
         FROM
         zgk_university university
         LEFT JOIN zgk_province province ON province.id = university.areaid
