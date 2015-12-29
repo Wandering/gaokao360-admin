@@ -20,6 +20,6 @@ public interface IUniversityExDAO extends IBaseDAO<UniversityDTO>{
     Integer getMaxId();
     UniversityDict getDictByName(String name);
     Integer getDictMaxSort(String type);
-    List<GkBaseDomain> getUniversityByName(String name);
+    List getUniversityByName(String name);
     int insertDetail(@Param("map") Map<String, Object> entityMap);
 }

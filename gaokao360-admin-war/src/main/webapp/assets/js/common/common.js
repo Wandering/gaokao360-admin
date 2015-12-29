@@ -18,7 +18,8 @@ var CommonFn = {
         saveData: '/admin/gaokao360/ex/commonsave/' + mainObj,
         flashSwfUrl: '/assets/js/webuploader-0.1.5/Uploader.swf', // 上传选择按钮渲染
         uploaderUrl: 'http://cs-dev.thinkjoy.com.cn/rest/v1/uploadFile?userId=gk360&dirId=0&productCode=gk360&bizSystem=gk360&spaceName=gk360',
-        eduLevel: '/admin/gaokao360/ex/eduLevel'
+        eduLevel: '/admin/gaokao360/ex/eduLevel',
+        AllSchoolUrl: '/admin/gaokao360/ex/getUniversityByName'
     },
     getData: function (url, type, data, callback) {
         $.ajax({
@@ -323,8 +324,21 @@ var CommonFn = {
         });
         return contentArr;
     },
+    // 获取全国学校
+    getAllSchool: function (name) {
+        var contentArr = [];
+        contentArr.push('<option value="00">请选择年份</option>');
+        $.ajaxSettings.async = false;
+        CommonFn.getData(CommonFn.url.AllSchoolUrl, 'Post', {name:name}, function (result) {
+            contentArr.push(result.bizData);
+        });
+        return contentArr;
+    }
 
 
-    // 批次
+
+
+
+// 批次
 
 };

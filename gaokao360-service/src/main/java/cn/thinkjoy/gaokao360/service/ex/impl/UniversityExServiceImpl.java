@@ -60,7 +60,7 @@ public class UniversityExServiceImpl extends AbstractPageService<IBaseDAO<Univer
     }
 
     @Override
-    public List<GkBaseDomain> getUniversityByName(String name) {
+    public List getUniversityByName(String name) {
         return universityExDAO.getUniversityByName(name);
     }
 

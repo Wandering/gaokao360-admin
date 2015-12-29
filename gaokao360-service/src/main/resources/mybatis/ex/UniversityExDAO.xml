@@ -146,13 +146,16 @@ selectList
         LEFT JOIN zgk_data_dict leveldict ON leveldict.dictId = university.educationLevel AND leveldict.type='EDUCATION_LEVEL'
         WHERE   university.id=#{id}
     </select>
-    <select id="getUniversityByName" resultType="cn.thinkjoy.gaokao360.domain.GkBaseDomain">
+    <select id="getUniversityByName" resultType="cn.thinkjoy.gaokao360.dto.GkQueryDomain">
         SELECT
-        id as id,
-        name as name
+        university.id as id,
+        university.name as label,
+        province.name as category
         FROM
-        zgk_university
-        WHERE name LIKE CONCAT('%', #{name} , '%')
+        zgk_university university
+        LEFT JOIN zgk_province province ON province.id = university.areaid
+        WHERE university.name LIKE CONCAT('%', #{name} , '%')
+        ORDER BY category ASC
     </select>
     <select id="getDictByName" resultType="cn.thinkjoy.gaokao360.domain.UniversityDict">
         SELECT
