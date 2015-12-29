@@ -122,9 +122,10 @@
             // 当前行数据
             var rowData = CommonFn.getRowData(rowId);
             // 富媒体赋值
+//            var voaContent = CommonFn.getContentHtml(rowData[0].content).join('');
             $.trim($('#voaTitle').val(rowData[0].title));
             $('#voaSummary').val(rowData[0].summary);
-            $('#voaContent').html(CommonFn.getContentHtml(rowData[0].informationContent).join(''));
+            $('#voaContent').html(CommonFn.getContentHtml(rowData[0].content).join(''));
             $('#voaProvince').find('option[value="'+rowData[0].areaId+'"]').attr('selected','selected');
             CommonFn.renderTextarea('#voaContent');
         });
