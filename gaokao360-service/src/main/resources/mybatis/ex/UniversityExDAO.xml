@@ -148,11 +148,13 @@ selectList
     </select>
     <select id="getUniversityByName" resultType="cn.thinkjoy.gaokao360.domain.GkBaseDomain">
         SELECT
-        id as id,
-        name as name
+        university.id as id,
+        university.name as name,
+        province.name as type
         FROM
-        zgk_university
-        WHERE name LIKE CONCAT('%', #{name} , '%')
+        zgk_university university
+        LEFT JOIN zgk_province province ON province.id = university.areaid
+        WHERE university.name LIKE CONCAT('%', #{name} , '%')
     </select>
     <select id="getDictByName" resultType="cn.thinkjoy.gaokao360.domain.UniversityDict">
         SELECT
