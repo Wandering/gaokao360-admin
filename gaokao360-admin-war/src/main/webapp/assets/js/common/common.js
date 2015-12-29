@@ -323,10 +323,6 @@ var CommonFn = {
         });
         return contentArr;
     },
-    //
-    uploaderSwfFn: function () {
-
-    }
 
 
     // 批次
