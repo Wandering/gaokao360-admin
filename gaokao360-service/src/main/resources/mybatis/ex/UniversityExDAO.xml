@@ -155,6 +155,7 @@ selectList
         zgk_university university
         LEFT JOIN zgk_province province ON province.id = university.areaid
         WHERE university.name LIKE CONCAT('%', #{name} , '%')
+        ORDER BY category ASC
     </select>
     <select id="getDictByName" resultType="cn.thinkjoy.gaokao360.domain.UniversityDict">
         SELECT
