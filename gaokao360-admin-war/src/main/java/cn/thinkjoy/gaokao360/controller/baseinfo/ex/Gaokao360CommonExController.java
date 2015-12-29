@@ -231,7 +231,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
             }
         }else if("university".equals(mainObj)){
             universityExService.insertUniversity(dataMap);
-        }else if("university".equals(mainObj)){
+        }else if("universityenrolling".equals(mainObj)){
             universityExService.insertUniversity(dataMap);
         } else if("majoredcategory".equals(mainObj)){
             majoredCategoryExService.insertCategory(dataMap);
