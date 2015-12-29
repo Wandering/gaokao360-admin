@@ -58,7 +58,7 @@ public class UniversityEnrollingExController extends BaseController<IUniversityE
 
     @Override
     protected String getBizSys() {
-        return "gaokao360";
+        return "gaokao360/ex";
     }
 
     @Override

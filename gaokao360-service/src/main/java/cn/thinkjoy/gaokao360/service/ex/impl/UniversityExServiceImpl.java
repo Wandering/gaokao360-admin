@@ -9,6 +9,7 @@ package cn.thinkjoy.gaokao360.service.ex.impl;
 import cn.thinkjoy.common.dao.IBaseDAO;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
 import cn.thinkjoy.gaokao360.dao.IUniversityDAO;
+import cn.thinkjoy.gaokao360.dao.IUniversityDetailDAO;
 import cn.thinkjoy.gaokao360.dao.IUniversityDictDAO;
 import cn.thinkjoy.gaokao360.dao.IUniversitySortDAO;
 import cn.thinkjoy.gaokao360.dao.ex.IUniversityExDAO;
@@ -37,45 +38,29 @@ public class UniversityExServiceImpl extends AbstractPageService<IBaseDAO<Univer
     @Autowired
     private IUniversityDictDAO universityDictDAO;
 
+    @Autowired
+    private IUniversityDetailDAO universityDetailDAO;
+
     @Override
     public IBaseDAO<UniversityDTO> getDao() {
         return universityExDAO;
     }
 
     public void insertUniversity(Map<String,Object> dataMap){
-        String property=(String) dataMap.get("property");
-        UniversityDict universityDict=universityExDAO.getDictByName(property);
-        if(universityDict!=null){
-            dataMap.put("property",universityDict.getDictId());
-        }else {
-            universityDict=new UniversityDict();
-            universityDict.setName(property);
-            universityDict.setType("FEATURE");
-            Integer sort=universityExDAO.getDictMaxSort("FEATURE");
-            universityDict.setDictId(++sort);
-            universityDictDAO.insert(universityDict);
-            dataMap.put("property",sort);
-        }
         universityDAO.insertMap(dataMap);
-        dataMap.put("universityId", universityExDAO.getMaxId());
-        universitySortDAO.insertMap(dataMap);
+        Long lid = (Long)universityDAO.selectMaxId();
+        dataMap.put("id",lid);
+        universityExDAO.insertDetail(dataMap);
     }
 
     public void updateUniversity(Map<String,Object> dataMap){
-        universityDAO.insertMap(dataMap);
-        dataMap.put("universityId",dataMap.get("id"));
-        Map<String,Object> map = new HashMap<>();
-        map.put("universityId",dataMap.get("id"));
-        UniversitySort sort = (UniversitySort)universitySortDAO.queryOne(map,null,null);
-        dataMap.put("id",sort.getId());
-        universitySortDAO.updateMap(dataMap);
+        universityDAO.updateMap(dataMap);
+        universityDetailDAO.updateMap(dataMap);
     }
 
     public void deleteUniversity(Map<String,Object> dataMap){
         universityDAO.deleteById(dataMap.get("id"));
-        Map<String,Object> map = new HashMap<>();
-        map.put("universityId",dataMap.get("id"));
-        universitySortDAO.deleteByCondition(map);
+        universityDetailDAO.deleteById(dataMap.get("id"));
     }
 
 

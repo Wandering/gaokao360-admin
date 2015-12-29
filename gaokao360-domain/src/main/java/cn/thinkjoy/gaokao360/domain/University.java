@@ -34,9 +34,9 @@ public class University extends BaseDomain<Long>{
     private String url;
     /** 院校logo链接 */
     private String photoUrl;
-    /** 学校是否为985，211等 */
+    /** 学校是否为985，211等*/
     private String property;
-    /** 学校排名 */
+    /** 学校排名*/
     private Integer rank;
     /** 学历层次，本科或专科，对应字典表中的EDUCATION_LEVEL */
     private Integer educationLevel;

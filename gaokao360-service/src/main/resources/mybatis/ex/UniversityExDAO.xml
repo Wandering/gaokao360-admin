@@ -154,5 +154,24 @@ selectList
          SELECT MAX(dictId) FROM zgk_university_dict WHERE type=#{type}
     </select>
 
+    <insert id="insertDetail" parameterType="UniversityDetail">
+        INSERT INTO zgk_university_detail (id,
+        address,
+        contactPhone,
+        universityIntro,
+        entranceIntro,
+        featureMajor
+        ) VALUES (
+        #{id},
+        #{address},
+        #{contactPhone},
+        #{universityIntro},
+        #{entranceIntro},
+        #{featureMajor}
+        )
+        <selectKey resultType="java.lang.Long" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
 </mapper>
 
