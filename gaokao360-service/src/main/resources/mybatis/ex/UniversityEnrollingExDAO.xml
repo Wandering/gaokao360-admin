@@ -68,7 +68,7 @@ selectList
     </select>
 
     <select id="count" resultType="java.lang.Integer">
-        SELECT count(id)  FROM
+        SELECT count(university.id)  FROM
         zgk_university university
         LEFT OUTER JOIN zgk_university_enrolling enrolling ON university.id=enrolling.university_id
         LEFT JOIN zgk_province province ON province.id=university.areaid

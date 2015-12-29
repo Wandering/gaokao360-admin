@@ -70,7 +70,15 @@ public class UniversityExController extends BaseController<IUniversityExService>
         map.put("type","EDULEVEL");
         return universityDictService.queryList(map,"id","asc");
     }
-
+    /**
+     * 院校基本信息学历层次
+     * @return
+     */
+    @RequestMapping(value="/getUniversityByName",method = RequestMethod.POST)
+    @ResponseBody
+    public List getUniversityByName(String name){
+        return universityExService.getUniversityByName(name);
+    }
     @Override
     protected IUniversityExService getMainService() {
         return universityExService;

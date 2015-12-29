@@ -7,12 +7,19 @@
 package cn.thinkjoy.gaokao360.dao.ex;
 
 import cn.thinkjoy.common.dao.IBaseDAO;
+import cn.thinkjoy.gaokao360.domain.GkBaseDomain;
 import cn.thinkjoy.gaokao360.domain.University;
 import cn.thinkjoy.gaokao360.domain.UniversityDict;
 import cn.thinkjoy.gaokao360.dto.UniversityDTO;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+import java.util.Map;
 
 public interface IUniversityExDAO extends IBaseDAO<UniversityDTO>{
     Integer getMaxId();
     UniversityDict getDictByName(String name);
     Integer getDictMaxSort(String type);
+    List<GkBaseDomain> getUniversityByName(String name);
+    int insertDetail(@Param("map") Map<String, Object> entityMap);
 }

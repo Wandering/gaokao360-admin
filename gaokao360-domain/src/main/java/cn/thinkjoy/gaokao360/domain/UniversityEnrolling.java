@@ -2,7 +2,7 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  UniversityEnrolling.java 2015-12-28 10:45:06 $
+ * $Id:  UniversityEnrolling.java 2015-12-29 09:54:16 $
  */
 
 
@@ -22,8 +22,6 @@ import java.util.*;
 public class UniversityEnrolling extends CreateBaseDomain<Long>{
     /** 专业所属学校ID */
     private Long universityId;
-    /** 专业名称 */
-    private String majorName;
     /** 年份 */
     private Integer year;
     /** 批次，对应字典表MAJOR_BATCH类型 */
@@ -61,13 +59,6 @@ public class UniversityEnrolling extends CreateBaseDomain<Long>{
 
     public Long getUniversityId() {
         return this.universityId;
-    }
-    public void setMajorName(String value) {
-        this.majorName = value;
-    }
-
-    public String getMajorName() {
-        return this.majorName;
     }
     public void setYear(Integer value) {
         this.year = value;
@@ -174,7 +165,6 @@ public class UniversityEnrolling extends CreateBaseDomain<Long>{
 		return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
 			.append("Id",getId())
 			.append("UniversityId",getUniversityId())
-			.append("MajorName",getMajorName())
 			.append("Year",getYear())
 			.append("Batch",getBatch())
 			.append("UniversityMajorType",getUniversityMajorType())
