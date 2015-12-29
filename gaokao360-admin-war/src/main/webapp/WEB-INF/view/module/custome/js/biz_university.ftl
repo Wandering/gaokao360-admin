@@ -124,15 +124,15 @@
                     oper: typeStr
                     , code: schoolInfoDOM.$schoolCode.val()
                     , name: schoolInfoDOM.$schoolName.val()
-                    , images: 'http://img0.imgtn.bdimg.com/it/u=2127500600,2612092016&fm=21&gp=0.jpg'
-//                    , images: schoolInfoDOM.$schoolPic.val()
-                    , sort: schoolInfoDOM.$schoolRank.val()
+                    , photoUrl: 'http://img0.imgtn.bdimg.com/it/u=2127500600,2612092016&fm=21&gp=0.jpg'
+//                    , photoUrl: schoolInfoDOM.$schoolPic.val()
+                    , rank: schoolInfoDOM.$schoolRank.val()
                     , property: schoolInfoDOM.$schoolStatic.val()
                     , educationLevel: $('#selEduLevel2').find('option:selected').val()
                     , type: schoolInfoDOM.$schoolType.val()
                     , subjection: schoolInfoDOM.$schoolOwn.val()
                     , url: schoolInfoDOM.$schoolWeb.val()
-                    , provinceId: $('#schoolInProvince2 option:checked').val()
+                    , areaid: $('#schoolInProvince2 option:checked').val()
                     , provinceName: $('#schoolInProvince2 option:checked').html()
                     , address: schoolInfoDOM.$schoolAddress.val()
                     , contactPhone: schoolInfoDOM.$schoolTel.val()
@@ -177,13 +177,13 @@
             var rowData = CommonFn.getRowData(rowId);
             schoolInfoDOM.$schoolName.val(rowData[0].name);
             schoolInfoDOM.$schoolCode.val(rowData[0].code);
-            schoolInfoDOM.$schoolRank.val(rowData[0].sort);
+            schoolInfoDOM.$schoolRank.val(rowData[0].rank);
             schoolInfoDOM.$schoolStatic.val(rowData[0].property);
             $('#selEduLevel2').find('option[value="' + rowData[0].educationLevel + '"]').attr('selected', 'selected');
             schoolInfoDOM.$schoolType.val(rowData[0].type);
             schoolInfoDOM.$schoolOwn.val(rowData[0].subjection);
             schoolInfoDOM.$schoolWeb.val(rowData[0].url);
-            $('#schoolInProvince2').find('option[value="' + rowData[0].provinceId + '"]').attr('selected', 'selected');
+            $('#schoolInProvince2').find('option[value="' + rowData[0].areaid + '"]').attr('selected', 'selected');
             schoolInfoDOM.$schoolAddress.val(rowData[0].address);
             schoolInfoDOM.$schoolTel.val(rowData[0].contactPhone);
             schoolInfoDOM.$schoolIntroduce.html(rowData[0].universityIntro);
@@ -195,15 +195,15 @@
                     oper: typeStr
                     , code: schoolInfoDOM.$schoolCode.val()
                     , name: schoolInfoDOM.$schoolName.val()
-                    , images: 'http://img0.imgtn.bdimg.com/it/u=2127500600,2612092016&fm=21&gp=0.jpg'
-//                    , images: schoolInfoDOM.$schoolPic.val()
-                    , sort: schoolInfoDOM.$schoolRank.val()
+                    , photoUrl: 'http://img0.imgtn.bdimg.com/it/u=2127500600,2612092016&fm=21&gp=0.jpg'
+//                    , photoUrl: schoolInfoDOM.$schoolPic.val()
+                    , rank: schoolInfoDOM.$schoolRank.val()
                     , property: schoolInfoDOM.$schoolStatic.val()
                     , educationLevel: $('#selEduLevel2 option:checked').val()
                     , type: schoolInfoDOM.$schoolType.val()
                     , subjection: schoolInfoDOM.$schoolOwn.val()
                     , url: schoolInfoDOM.$schoolWeb.val()
-                    , provinceId: $('#schoolInProvince2 option:checked').val()
+                    , areaid: $('#schoolInProvince2 option:checked').val()
                     , provinceName: $('#schoolInProvince2 option:checked').html()
                     , address: schoolInfoDOM.$schoolAddress.val()
                     , contactPhone: schoolInfoDOM.$schoolTel.val()

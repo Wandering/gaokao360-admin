@@ -2,7 +2,7 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  Vocabulary.java 2015-12-26 18:23:55 $
+ * $Id:  Vocabulary.java 2015-12-29 16:40:42 $
  */
 
 
@@ -28,6 +28,8 @@ public class Vocabulary extends CreateBaseDomain<Long>{
     private String summary;
     /** 富文本内容 */
     private String content;
+    /** 内容在云盘中的ID */
+    private String htmlId;
     /** 排序 */
     private Integer sortId;
     /** 点击量 */
@@ -65,6 +67,13 @@ public class Vocabulary extends CreateBaseDomain<Long>{
     public String getContent() {
         return this.content;
     }
+    public void setHtmlId(String value) {
+        this.htmlId = value;
+    }
+
+    public String getHtmlId() {
+        return this.htmlId;
+    }
     public void setSortId(Integer value) {
         this.sortId = value;
     }
@@ -94,6 +103,7 @@ public class Vocabulary extends CreateBaseDomain<Long>{
 			.append("Title",getTitle())
 			.append("Summary",getSummary())
 			.append("Content",getContent())
+			.append("HtmlId",getHtmlId())
 			.append("SortId",getSortId())
 			.append("Status",getStatus())
 			.append("Creator",getCreator())
