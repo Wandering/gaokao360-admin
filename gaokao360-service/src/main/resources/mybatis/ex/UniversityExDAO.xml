@@ -120,9 +120,11 @@ selectList
                 OR university.code like #{queryparam.data}
                 OR university.name like #{queryparam.data}
                 OR university.subjection like #{queryparam.data}
-                OR university.type like #{queryparam.data}
-                OR university.provinceName like #{queryparam.data}
-                OR dict1.name like #{queryparam.data})
+                OR province.name like #{queryparam.data}
+                OR leveldict.name like #{queryparam.data}
+                OR university.rank like #{queryparam.data}
+                OR typedict.name like #{queryparam.data}
+                )
             </if>
 
         </where>
@@ -143,6 +145,14 @@ selectList
         LEFT JOIN zgk_data_dict typedict ON typedict.dictId=university.type AND typedict.type='UNIVERSITY_TYPE'
         LEFT JOIN zgk_data_dict leveldict ON leveldict.dictId = university.educationLevel AND leveldict.type='EDUCATION_LEVEL'
         WHERE   university.id=#{id}
+    </select>
+    <select id="getUniversityByName" resultType="cn.thinkjoy.gaokao360.domain.GkBaseDomain">
+        SELECT
+        id as id,
+        name as name
+        FROM
+        zgk_university
+        WHERE name LIKE CONCAT('%', #{name} , '%')
     </select>
     <select id="getDictByName" resultType="cn.thinkjoy.gaokao360.domain.UniversityDict">
         SELECT
