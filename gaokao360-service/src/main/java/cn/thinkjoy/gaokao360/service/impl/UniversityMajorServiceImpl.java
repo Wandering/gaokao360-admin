@@ -2,30 +2,31 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  AdmissionBatchServiceImpl.java 2015-12-09 16:15:38 $
+ * $Id:  UniversityMajorServiceImpl.java 2015-12-30 15:19:55 $
  */
-package cn.thinkjoy.gaokao360.service.ex.impl;
+package cn.thinkjoy.gaokao360.service.impl;
 
+import cn.thinkjoy.common.domain.BaseDomain;
 import cn.thinkjoy.common.dao.IBaseDAO;
+import cn.thinkjoy.gaokao360.dao.IUniversityMajorDAO;
+import cn.thinkjoy.gaokao360.domain.UniversityMajor;
+import cn.thinkjoy.gaokao360.service.IUniversityMajorService;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
-import cn.thinkjoy.gaokao360.dao.IAdmissionBatchDAO;
-import cn.thinkjoy.gaokao360.dao.ex.IUniversityMajoredDAO;
-import cn.thinkjoy.gaokao360.domain.AdmissionBatch;
-import cn.thinkjoy.gaokao360.dto.UniversityMajoredDTO;
-import cn.thinkjoy.gaokao360.service.IAdmissionBatchService;
-import cn.thinkjoy.gaokao360.service.ex.IUniversityMajoredService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
 
-@Service("UniversityMajoredServiceImpl")
-public class UniversityMajoredServiceImpl extends AbstractPageService<IBaseDAO<UniversityMajoredDTO>, UniversityMajoredDTO> implements IUniversityMajoredService<IBaseDAO<UniversityMajoredDTO>,UniversityMajoredDTO> {
+
+@Service("UniversityMajorServiceImpl")
+public class UniversityMajorServiceImpl extends AbstractPageService<IBaseDAO<UniversityMajor>, UniversityMajor> implements IUniversityMajorService<IBaseDAO<UniversityMajor>,UniversityMajor>{
     @Autowired
-    private IUniversityMajoredDAO universityMajoredDAO;
+    private IUniversityMajorDAO universityMajorDAO;
 
     @Override
-    public IBaseDAO<UniversityMajoredDTO> getDao() {
-        return universityMajoredDAO;
+    public IBaseDAO<UniversityMajor> getDao() {
+        return universityMajorDAO;
     }
 
 //    @Override
@@ -79,8 +80,8 @@ public class UniversityMajoredServiceImpl extends AbstractPageService<IBaseDAO<U
 //    }
 //
 //    @Override
-//    public List<AdmissionBatch> findAll() {
-//        return admissionBatchDAO.findAll();
+//    public List<UniversityMajor> findAll() {
+//        return universityMajorDAO.findAll();
 //    }
 //
 //    @Override
@@ -134,8 +135,8 @@ public class UniversityMajoredServiceImpl extends AbstractPageService<IBaseDAO<U
 //    }
 //
 //    @Override
-//    protected AdmissionBatchDAO getDao() {
-//        return admissionBatchDAO;
+//    protected UniversityMajorDAO getDao() {
+//        return universityMajorDAO;
 //    }
 //
 //    @Override

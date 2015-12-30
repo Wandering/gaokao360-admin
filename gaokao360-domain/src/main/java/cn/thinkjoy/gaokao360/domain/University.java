@@ -2,7 +2,7 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  University.java 2015-12-28 14:38:15 $
+ * $Id:  University.java 2015-12-30 11:42:40 $
  */
 
 
@@ -15,15 +15,17 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
-import cn.thinkjoy.common.domain.BaseDomain;
+import cn.thinkjoy.common.domain.CreateBaseDomain;
 
 import java.util.*;
 
-public class University extends BaseDomain<Long>{
+public class University extends CreateBaseDomain<Long>{
     /** 学校名称 */
     private String name;
     /** 学校国码 */
     private String code;
+    /** 院校省码 */
+    private String provinceCode;
     /** 隶属 */
     private String subjection;
     /** 位置 */
@@ -34,12 +36,14 @@ public class University extends BaseDomain<Long>{
     private String url;
     /** 院校logo链接 */
     private String photoUrl;
-    /** 学校是否为985，211等*/
+    /** 学校是否为985，211等 */
     private String property;
-    /** 学校排名*/
+    /** 学校排名 */
     private Integer rank;
     /** 学历层次，本科或专科，对应字典表中的EDUCATION_LEVEL */
     private Integer educationLevel;
+    /** 是否逻辑删除 */
+    private Boolean isDelete;
 
 	public University(){
 	}
@@ -56,6 +60,13 @@ public class University extends BaseDomain<Long>{
 
     public String getCode() {
         return this.code;
+    }
+    public void setProvinceCode(String value) {
+        this.provinceCode = value;
+    }
+
+    public String getProvinceCode() {
+        return this.provinceCode;
     }
     public void setSubjection(String value) {
         this.subjection = value;
@@ -113,12 +124,20 @@ public class University extends BaseDomain<Long>{
     public Integer getEducationLevel() {
         return this.educationLevel;
     }
+    public void setIsDelete(Boolean value) {
+        this.isDelete = value;
+    }
+
+    public Boolean getIsDelete() {
+        return this.isDelete;
+    }
 
 	public String toString() {
 		return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
 			.append("Id",getId())
 			.append("Name",getName())
 			.append("Code",getCode())
+			.append("ProvinceCode",getProvinceCode())
 			.append("Subjection",getSubjection())
 			.append("Areaid",getAreaid())
 			.append("Type",getType())
@@ -127,6 +146,11 @@ public class University extends BaseDomain<Long>{
 			.append("Property",getProperty())
 			.append("Rank",getRank())
 			.append("EducationLevel",getEducationLevel())
+			.append("CreateDate",getCreateDate())
+			.append("Creator",getCreator())
+			.append("LastModDate",getLastModDate())
+			.append("LastModifier",getLastModifier())
+			.append("IsDelete",getIsDelete())
 			.toString();
 	}
 	
