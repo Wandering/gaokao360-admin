@@ -13,7 +13,6 @@ import cn.thinkjoy.gaokao360.dao.IMajoredCategoryDAO;
 import cn.thinkjoy.gaokao360.dao.ex.IMajoredCategoryExDAO;
 import cn.thinkjoy.gaokao360.domain.MajoredCategory;
 import cn.thinkjoy.gaokao360.dto.MajoredCategoryDTO;
-import cn.thinkjoy.gaokao360.service.IMajoredCategoryService;
 import cn.thinkjoy.gaokao360.service.ex.IMajoredCategoryExService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

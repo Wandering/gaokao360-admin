@@ -85,15 +85,6 @@ public class ServiceMaps extends BaseServiceMaps{
     private IUniversityEnrollingService universityEnrollingService;
 
     @Autowired
-    private IProfessionService professionService;
-
-    @Autowired
-    private IProfessionDetailService professionDetailService;
-
-    @Autowired
-    private IProfessionTypeService professionTypeService;
-
-    @Autowired
     private IMajorService majorService;
     @Autowired
     private IMajorDetailService majorDetailService;
@@ -134,9 +125,7 @@ public class ServiceMaps extends BaseServiceMaps{
         serviceMap.put("majoredcategoryex",majoredCategoryExService);
         serviceMap.put("vocabulary",vocabulary);
         serviceMap.put("universityenrolling",universityEnrollingService);
-        serviceMap.put("profession",professionService);
-        serviceMap.put("professiondetail",professionDetailService);
-        serviceMap.put("professiontype",professionTypeService);
+
 
         serviceMap.put("majored",majoredExService);
         serviceMap.put("majorDetail",majorDetailService);
