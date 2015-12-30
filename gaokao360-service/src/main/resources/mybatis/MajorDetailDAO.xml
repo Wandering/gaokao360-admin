@@ -31,7 +31,9 @@ selectList
         schooling_duration as schoolingDuration ,
         offer_courses as offerCourses ,
         major_introduce as majorIntroduce ,
+        similar_majors as similarMajors ,
         specialisation as specialisation ,
+        outstanding_mentor as outstandingMentor ,
         createDate as createDate ,
         creator as creator ,
         lastModDate as lastModDate ,
@@ -45,7 +47,9 @@ selectList
         schooling_duration,
         offer_courses,
         major_introduce,
+        similar_majors,
         specialisation,
+        outstanding_mentor,
         createDate,
         creator,
         lastModDate,
@@ -57,7 +61,9 @@ selectList
         #{schoolingDuration},
         #{offerCourses},
         #{majorIntroduce},
+        #{similarMajors},
         #{specialisation},
+        #{outstandingMentor},
         #{createDate},
         #{creator},
         #{lastModDate},
@@ -88,8 +94,14 @@ selectList
             <if test="majorIntroduce!=null">
                 major_introduce = #{majorIntroduce},
             </if>
+            <if test="similarMajors!=null">
+                similar_majors = #{similarMajors},
+            </if>
             <if test="specialisation!=null">
                 specialisation = #{specialisation},
+            </if>
+            <if test="outstandingMentor!=null">
+                outstanding_mentor = #{outstandingMentor},
             </if>
             <if test="createDate!=null">
                 createDate = #{createDate},
@@ -129,8 +141,14 @@ selectList
             <if test="map.majorIntroduce!=null">
                 major_introduce = #{map.majorIntroduce},
             </if>
+            <if test="map.similarMajors!=null">
+                similar_majors = #{map.similarMajors},
+            </if>
             <if test="map.specialisation!=null">
                 specialisation = #{map.specialisation},
+            </if>
+            <if test="map.outstandingMentor!=null">
+                outstanding_mentor = #{map.outstandingMentor},
             </if>
             <if test="map.createDate!=null">
                 createDate = #{map.createDate},
@@ -170,8 +188,14 @@ selectList
             <if test="update.majorIntroduce!=null">
                 major_introduce = #{update.majorIntroduce},
             </if>
+            <if test="update.similarMajors!=null">
+                similar_majors = #{update.similarMajors},
+            </if>
             <if test="update.specialisation!=null">
                 specialisation = #{update.specialisation},
+            </if>
+            <if test="update.outstandingMentor!=null">
+                outstanding_mentor = #{update.outstandingMentor},
             </if>
             <if test="update.createDate!=null">
                 createDate = #{update.createDate},
@@ -209,8 +233,14 @@ selectList
             <if test="condition.majorIntroduce!=null">
                 AND major_introduce = #{condition.majorIntroduce}
             </if>
+            <if test="condition.similarMajors!=null">
+                AND similar_majors = #{condition.similarMajors}
+            </if>
             <if test="condition.specialisation!=null">
                 AND specialisation = #{condition.specialisation}
+            </if>
+            <if test="condition.outstandingMentor!=null">
+                AND outstanding_mentor = #{condition.outstandingMentor}
             </if>
             <if test="condition.createDate!=null">
                 AND createDate = #{condition.createDate}
@@ -237,7 +267,9 @@ selectList
                 schooling_duration,
                 offer_courses,
                 major_introduce,
+                similar_majors,
                 specialisation,
+                outstanding_mentor,
                 createDate,
                 creator,
                 lastModDate,
@@ -249,7 +281,9 @@ selectList
                     #{map.schoolingDuration},
                     #{map.offerCourses},
                     #{map.majorIntroduce},
+                    #{map.similarMajors},
                     #{map.specialisation},
+                    #{map.outstandingMentor},
                     #{map.createDate},
                     #{map.creator},
                     #{map.lastModDate},
@@ -267,7 +301,9 @@ selectList
             schooling_duration = #{schoolingDuration},
             offer_courses = #{offerCourses},
             major_introduce = #{majorIntroduce},
+            similar_majors = #{similarMajors},
             specialisation = #{specialisation},
+            outstanding_mentor = #{outstandingMentor},
             createDate = #{createDate},
             creator = #{creator},
             lastModDate = #{lastModDate},
@@ -308,8 +344,14 @@ selectList
             <if test="majorIntroduce!=null">
                 AND major_introduce = #{majorIntroduce}
             </if>
+            <if test="similarMajors!=null">
+                AND similar_majors = #{similarMajors}
+            </if>
             <if test="specialisation!=null">
                 AND specialisation = #{specialisation}
+            </if>
+            <if test="outstandingMentor!=null">
+                AND outstanding_mentor = #{outstandingMentor}
             </if>
             <if test="createDate!=null">
                 AND createDate = #{createDate}
@@ -395,8 +437,14 @@ selectList
                         <if test="selector.majorIntroduce!=null">
                             , major_introduce
                         </if>
+                        <if test="selector.similarMajors!=null">
+                            , similar_majors
+                        </if>
                         <if test="selector.specialisation!=null">
                             , specialisation
+                        </if>
+                        <if test="selector.outstandingMentor!=null">
+                            , outstanding_mentor
                         </if>
                         <if test="selector.createDate!=null">
                             , createDate
@@ -443,8 +491,14 @@ selectList
             <if test="condition.majorIntroduce!=null">
                 ${condition.groupOp}   ${condition.majorIntroduce.field}  ${condition.majorIntroduce.op}  #{condition.majorIntroduce.data}
             </if>
+            <if test="condition.similarMajors!=null">
+                ${condition.groupOp}   ${condition.similarMajors.field}  ${condition.similarMajors.op}  #{condition.similarMajors.data}
+            </if>
             <if test="condition.specialisation!=null">
                 ${condition.groupOp}   ${condition.specialisation.field}  ${condition.specialisation.op}  #{condition.specialisation.data}
+            </if>
+            <if test="condition.outstandingMentor!=null">
+                ${condition.groupOp}   ${condition.outstandingMentor.field}  ${condition.outstandingMentor.op}  #{condition.outstandingMentor.data}
             </if>
             <if test="condition.createDate!=null">
                 ${condition.groupOp}   ${condition.createDate.field}  ${condition.createDate.op}  #{condition.createDate.data}
@@ -494,8 +548,14 @@ selectList
                     <if test="selector.majorIntroduce!=null">
                         , major_introduce
                     </if>
+                    <if test="selector.similarMajors!=null">
+                        , similar_majors
+                    </if>
                     <if test="selector.specialisation!=null">
                         , specialisation
+                    </if>
+                    <if test="selector.outstandingMentor!=null">
+                        , outstanding_mentor
                     </if>
                     <if test="selector.createDate!=null">
                         , createDate
@@ -537,8 +597,14 @@ selectList
             <if test="condition.majorIntroduce!=null">
                 AND major_introduce like CONCAT('%', #{condition.majorIntroduce} , '%')
             </if>
+            <if test="condition.similarMajors!=null">
+                AND similar_majors like CONCAT('%', #{condition.similarMajors} , '%')
+            </if>
             <if test="condition.specialisation!=null">
                 AND specialisation like CONCAT('%', #{condition.specialisation} , '%')
+            </if>
+            <if test="condition.outstandingMentor!=null">
+                AND outstanding_mentor like CONCAT('%', #{condition.outstandingMentor} , '%')
             </if>
             <if test="condition.createDate!=null">
                 AND createDate like CONCAT('%', #{condition.createDate} , '%')
@@ -584,8 +650,14 @@ selectList
                 <if test="selector.majorIntroduce!=null">
                     , major_introduce
                 </if>
+                <if test="selector.similarMajors!=null">
+                    , similar_majors
+                </if>
                 <if test="selector.specialisation!=null">
                     , specialisation
+                </if>
+                <if test="selector.outstandingMentor!=null">
+                    , outstanding_mentor
                 </if>
                 <if test="selector.createDate!=null">
                     , createDate
@@ -627,8 +699,14 @@ selectList
             <if test="condition.majorIntroduce!=null">
                 AND major_introduce = #{condition.majorIntroduce}
             </if>
+            <if test="condition.similarMajors!=null">
+                AND similar_majors = #{condition.similarMajors}
+            </if>
             <if test="condition.specialisation!=null">
                 AND specialisation = #{condition.specialisation}
+            </if>
+            <if test="condition.outstandingMentor!=null">
+                AND outstanding_mentor = #{condition.outstandingMentor}
             </if>
             <if test="condition.createDate!=null">
                 AND createDate = #{condition.createDate}
@@ -673,8 +751,14 @@ selectList
                     <if test="selector.majorIntroduce!=null">
                         , major_introduce
                     </if>
+                    <if test="selector.similarMajors!=null">
+                        , similar_majors
+                    </if>
                     <if test="selector.specialisation!=null">
                         , specialisation
+                    </if>
+                    <if test="selector.outstandingMentor!=null">
+                        , outstanding_mentor
                     </if>
                     <if test="selector.createDate!=null">
                         , createDate
@@ -716,8 +800,14 @@ selectList
             <if test="condition.majorIntroduce!=null">
                 AND major_introduce = #{condition.majorIntroduce}
             </if>
+            <if test="condition.similarMajors!=null">
+                AND similar_majors = #{condition.similarMajors}
+            </if>
             <if test="condition.specialisation!=null">
                 AND specialisation = #{condition.specialisation}
+            </if>
+            <if test="condition.outstandingMentor!=null">
+                AND outstanding_mentor = #{condition.outstandingMentor}
             </if>
             <if test="condition.createDate!=null">
                 AND createDate = #{condition.createDate}
@@ -762,8 +852,14 @@ selectList
            <if test="majorIntroduce!=null">
                ${groupOp} ${majorIntroduce.field} ${majorIntroduce.op}  #{majorIntroduce.data}
            </if>
+           <if test="similarMajors!=null">
+               ${groupOp} ${similarMajors.field} ${similarMajors.op}  #{similarMajors.data}
+           </if>
            <if test="specialisation!=null">
                ${groupOp} ${specialisation.field} ${specialisation.op}  #{specialisation.data}
+           </if>
+           <if test="outstandingMentor!=null">
+               ${groupOp} ${outstandingMentor.field} ${outstandingMentor.op}  #{outstandingMentor.data}
            </if>
            <if test="createDate!=null">
                ${groupOp} ${createDate.field} ${createDate.op}  #{createDate.data}

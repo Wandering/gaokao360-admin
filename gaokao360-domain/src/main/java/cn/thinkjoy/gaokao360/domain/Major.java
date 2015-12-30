@@ -2,7 +2,7 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  Major.java 2015-12-29 16:07:16 $
+ * $Id:  Major.java 2015-12-29 18:11:59 $
  */
 
 

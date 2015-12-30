@@ -14,8 +14,10 @@ import cn.thinkjoy.gaokao360.domain.GkBaseDomain;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IMajoredExService<D extends IBaseDAO<T>, T extends BaseDomain> extends IBaseService<D, T>,IPageService<D, T>{
     List<GkBaseDomain> getMajoredListByName(Object name);
+    int insertMapDetail(Map<String, Object> entityMap);
 
 }

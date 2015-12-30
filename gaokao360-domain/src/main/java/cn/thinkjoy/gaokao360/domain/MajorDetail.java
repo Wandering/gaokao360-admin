@@ -2,7 +2,7 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  MajorDetail.java 2015-12-29 16:07:17 $
+ * $Id:  MajorDetail.java 2015-12-29 18:12:00 $
  */
 
 
@@ -30,10 +30,14 @@ public class MajorDetail extends CreateBaseDomain<Long>{
     private String offerCourses;
     /** 专业解读 */
     private String majorIntroduce;
+    /** 相近专业 */
+    private String similarMajors;
     /** 职业方向
 
 职业方向 */
     private String specialisation;
+    /** 优秀学长 */
+    private String outstandingMentor;
     /**  */
     private Boolean idDelete;
 
@@ -74,12 +78,26 @@ public class MajorDetail extends CreateBaseDomain<Long>{
     public String getMajorIntroduce() {
         return this.majorIntroduce;
     }
+    public void setSimilarMajors(String value) {
+        this.similarMajors = value;
+    }
+
+    public String getSimilarMajors() {
+        return this.similarMajors;
+    }
     public void setSpecialisation(String value) {
         this.specialisation = value;
     }
 
     public String getSpecialisation() {
         return this.specialisation;
+    }
+    public void setOutstandingMentor(String value) {
+        this.outstandingMentor = value;
+    }
+
+    public String getOutstandingMentor() {
+        return this.outstandingMentor;
     }
     public void setIdDelete(Boolean value) {
         this.idDelete = value;
@@ -97,7 +115,9 @@ public class MajorDetail extends CreateBaseDomain<Long>{
 			.append("SchoolingDuration",getSchoolingDuration())
 			.append("OfferCourses",getOfferCourses())
 			.append("MajorIntroduce",getMajorIntroduce())
+			.append("SimilarMajors",getSimilarMajors())
 			.append("Specialisation",getSpecialisation())
+			.append("OutstandingMentor",getOutstandingMentor())
 			.append("CreateDate",getCreateDate())
 			.append("Creator",getCreator())
 			.append("LastModDate",getLastModDate())

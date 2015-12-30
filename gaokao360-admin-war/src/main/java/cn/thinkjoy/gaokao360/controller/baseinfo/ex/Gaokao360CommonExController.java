@@ -23,10 +23,7 @@ import cn.thinkjoy.gaokao360.dto.VideoSectionDTO;
 import cn.thinkjoy.gaokao360.service.IAdmissionBatchService;
 import cn.thinkjoy.gaokao360.service.IProvinceService;
 import cn.thinkjoy.gaokao360.service.ISubjectService;
-import cn.thinkjoy.gaokao360.service.ex.IAdmissionBatchExService;
-import cn.thinkjoy.gaokao360.service.ex.IMajoredCategoryExService;
-import cn.thinkjoy.gaokao360.service.ex.IUniversityExService;
-import cn.thinkjoy.gaokao360.service.ex.IVideoSectionExService;
+import cn.thinkjoy.gaokao360.service.ex.*;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -54,8 +51,6 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     @Autowired
     private ServiceMaps serviceMaps;
     @Autowired
-    private IProvinceService provinceService;
-    @Autowired
     private ISubjectService subjectService;
     @Autowired
     private IAdmissionBatchService admissionBatchService;
@@ -67,6 +62,8 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     private IUniversityExService universityExService;
     @Autowired
     private IMajoredCategoryExService majoredCategoryExService;
+    @Autowired
+    private IMajoredExService majoredExService;
 
 
     @Override
@@ -90,6 +87,9 @@ public class Gaokao360CommonExController extends AbstractCommonController {
             serviceMaps.get("videosection").deleteByCondition(map);
         }else if("gkheadline".equals(mainObj)){
             serviceMaps.get("gkinformationgkhot").delete(dataMap.get("id"));
+        }else if("majored".equals(mainObj)){
+            serviceMaps.get("major").delete(dataMap.get("id"));
+            serviceMaps.get("majorDetail").delete(dataMap.get("id"));
         }else if("university".equals(mainObj)) {
             universityExService.deleteUniversity(dataMap);
         }else if("majoredcategory".equals(mainObj)) {
@@ -207,6 +207,11 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         }else if("gkinformationgkhot".equals(mainObj)){
             dataMap.put("type", 0);
             serviceMaps.get("gkinformationgkhot").insertMap(dataMap);
+        }else if("majored".equals(mainObj)){
+            serviceMaps.get("major").insertMap(dataMap);
+            Long lid =(Long)serviceMaps.get("major").selectMaxId();
+            dataMap.put("id",lid);
+            majoredExService.insertMapDetail(dataMap);
         }else if("auditorium".equals(mainObj)||"gkPsychology".equals(mainObj)){
             serviceMaps.get("videocourse").insertMap(dataMap);
             Long lid = (Long)serviceMaps.get("videocourse").selectMaxId();
@@ -252,6 +257,8 @@ public class Gaokao360CommonExController extends AbstractCommonController {
             return majoredCategoryExService.fetch(id);
         }else if("gkheadline".equals(mainObj)){
             return serviceMaps.get("gkinformationgkhot").fetch(id);
+        }else if("majored".equals(mainObj)){
+            return serviceMaps.get("majored"+"ex").fetch(id);
         }else if("auditorium".equals(mainObj)||"gkpsychology".equals(mainObj)){
             VideoCourse videoCourse=(VideoCourse)serviceMaps.get("videocourse").fetch(id);
             VideoCourseDTO videoCourseDTO = new VideoCourseDTO();
@@ -404,6 +411,9 @@ public class Gaokao360CommonExController extends AbstractCommonController {
                     serviceMaps.get("videosection").insert(v);
                 }
             }
+        }else if("majored".equals(mainObj)){
+            serviceMaps.get("major").updateMap(dataMap);
+            serviceMaps.get("majorDetail").updateMap(dataMap);
         }else if("gkheadline".equals(mainObj)){
             serviceMaps.get("gkinformationgkhot").updateMap(dataMap);
         }else if("university".equals(mainObj)){

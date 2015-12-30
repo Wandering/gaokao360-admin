@@ -2,19 +2,16 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  MajoredServiceImpl.java 2015-12-16 16:48:39 $
+ * $Id:  MajorServiceImpl.java 2015-12-29 18:11:59 $
  */
-package cn.thinkjoy.gaokao360.service.ex.impl;
+package cn.thinkjoy.gaokao360.service.impl;
 
+import cn.thinkjoy.common.domain.BaseDomain;
 import cn.thinkjoy.common.dao.IBaseDAO;
+import cn.thinkjoy.gaokao360.dao.IMajorDAO;
+import cn.thinkjoy.gaokao360.domain.Major;
+import cn.thinkjoy.gaokao360.service.IMajorService;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
-import cn.thinkjoy.gaokao360.dao.IMajoredDAO;
-import cn.thinkjoy.gaokao360.dao.ex.IMajoredExDAO;
-import cn.thinkjoy.gaokao360.domain.GkBaseDomain;
-import cn.thinkjoy.gaokao360.domain.Majored;
-import cn.thinkjoy.gaokao360.dto.MajorDTO;
-import cn.thinkjoy.gaokao360.service.IMajoredService;
-import cn.thinkjoy.gaokao360.service.ex.IMajoredExService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,29 +19,15 @@ import java.util.List;
 import java.util.Map;
 
 
-@Service("MajoredExServiceImpl")
-public class MajoredExServiceImpl extends AbstractPageService<IBaseDAO<MajorDTO>, MajorDTO> implements IMajoredExService<IBaseDAO<MajorDTO>,MajorDTO> {
+@Service("MajorServiceImpl")
+public class MajorServiceImpl extends AbstractPageService<IBaseDAO<Major>, Major> implements IMajorService<IBaseDAO<Major>,Major>{
     @Autowired
-    private IMajoredDAO majoredDAO;
-
-    @Autowired
-    private IMajoredExDAO majoredExDAO;
+    private IMajorDAO majorDAO;
 
     @Override
-    public IBaseDAO<MajorDTO> getDao() {
-        return majoredExDAO;
+    public IBaseDAO<Major> getDao() {
+        return majorDAO;
     }
-
-    @Override
-    public List<GkBaseDomain> getMajoredListByName(Object name) {
-        return majoredExDAO.getMajoredListByName(name);
-    }
-
-    @Override
-    public int insertMapDetail(Map<String, Object> entityMap) {
-        return majoredExDAO.insertMapDetail(entityMap);
-    }
-
 
 //    @Override
 //    public void insert(BaseDomain entity) {
@@ -97,8 +80,8 @@ public class MajoredExServiceImpl extends AbstractPageService<IBaseDAO<MajorDTO>
 //    }
 //
 //    @Override
-//    public List<Majored> findAll() {
-//        return majoredDAO.findAll();
+//    public List<Major> findAll() {
+//        return majorDAO.findAll();
 //    }
 //
 //    @Override
@@ -152,8 +135,8 @@ public class MajoredExServiceImpl extends AbstractPageService<IBaseDAO<MajorDTO>
 //    }
 //
 //    @Override
-//    protected MajoredDAO getDao() {
-//        return majoredDAO;
+//    protected MajorDAO getDao() {
+//        return majorDAO;
 //    }
 //
 //    @Override

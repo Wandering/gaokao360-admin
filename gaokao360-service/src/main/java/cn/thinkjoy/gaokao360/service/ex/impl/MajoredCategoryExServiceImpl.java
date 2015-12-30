@@ -96,8 +96,6 @@ public class MajoredCategoryExServiceImpl extends AbstractPageService<IBaseDAO<M
         majoredCategoryDAO.updateMap(dataMap);
         Long l=(Long)dataMap.get("id");
         Map<String,Object> map = new HashMap<>();
-        map.put("parentId",l);
-        majoredCategoryDAO.deleteByCondition(map);
         String majoredStr=(String)dataMap.get("majoredList");
         String[] majoredList=majoredStr.split("、");
         for(String str:majoredList){
@@ -105,6 +103,11 @@ public class MajoredCategoryExServiceImpl extends AbstractPageService<IBaseDAO<M
             majoredCategory.setName(str);
             majoredCategory.setLevel(2);
             majoredCategory.setParentId(l);
+//            if(){
+//                map=new HashMap<>();
+//                map.put("name",str);
+//                map.put("parentId",l);
+//            }
             majoredCategoryDAO.insert(majoredCategory);
         }
 
