@@ -103,12 +103,12 @@ public class MajoredCategoryExServiceImpl extends AbstractPageService<IBaseDAO<M
             majoredCategory.setName(str);
             majoredCategory.setLevel(2);
             majoredCategory.setParentId(l);
-//            if(){
-//                map=new HashMap<>();
-//                map.put("name",str);
-//                map.put("parentId",l);
-//            }
-            majoredCategoryDAO.insert(majoredCategory);
+            map=new HashMap<>();
+            map.put("name",str);
+            map.put("parentId",l);
+            if(majoredCategoryDAO.queryOne(map,"id","asc")==null) {
+                majoredCategoryDAO.insert(majoredCategory);
+            }
         }
 
     }
