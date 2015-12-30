@@ -10,7 +10,7 @@
                 'field': 'courseName',
                 'op': 'eq',
                 'data': courseName
-            }
+            };
             rules.push(rule);
         }
         if (status != '' && status != null && status != undefined) {
@@ -18,7 +18,7 @@
                 'field': 'status',
                 'op': 'eq',
                 'data': status
-            }
+            };
             rules.push(rule);
         }
         if (classfyId != '' && classfyId != null && classfyId != undefined) {
@@ -26,7 +26,7 @@
                 'field': 'classfyId',
                 'op': 'eq',
                 'data': classfyId
-            }
+            };
             rules.push(rule);
         }
         return rules;
@@ -552,7 +552,6 @@
             // 负责view的销毁
             function removeFile(file) {
                 var $li = $('#' + file.id);
-
                 delete percentages[file.id];
                 updateTotalProgress();
                 $li.off().find('.file-panel').off().end().remove();
