@@ -72,13 +72,13 @@
         });
         var dataJson = CommonFn.getAllSchool('');
         var dataArr = [];
-        var obj ={};
-        for(var i=0;i<dataJson.length;i++){
+        var obj = {};
+        for (var i = 0; i < dataJson.length; i++) {
             console.log(dataJson[i].id)
             obj = {
-                id:dataJson[i].id,
-                label:dataJson[i].label,
-                category:dataJson[i].category
+                id: dataJson[i].id,
+                label: dataJson[i].label,
+                category: dataJson[i].category
             };
             dataArr.push(obj);
         }
@@ -86,8 +86,8 @@
         $("#autoSearch").catcomplete({
             delay: 0,
             source: dataArr,
-            select:function(event, ui){
-                $('#autoSearch').attr('id',ui.item.id)
+            select: function (event, ui) {
+                $('#autoSearch').attr('id', ui.item.id)
             }
         });
 
@@ -109,13 +109,13 @@
         $('.subjectType-wenshi').html(getBatchData);
 
         // 增加招生批次明细
-        $('body').on('click','.subjectType-wenshi',function(){
-            $(this).next().show();
+        $('body').on('click', '.subjectType-wenshi', function () {
+            var checkedV = $(this).find('option:checked').val();
+            if(checkedV!==0){
+                $(this).next().show();
+            }
+
         });
-
-
-
-
 
 
 //        var dialogHtml = ''
