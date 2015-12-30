@@ -26,6 +26,7 @@ selectList
 
     <sql id="Base_Column_List">
         id as id ,
+        areaId as areaId ,
         university_id as universityId ,
         year as year ,
         batch as batch ,
@@ -48,6 +49,7 @@ selectList
     </sql>
     <insert id="insert" parameterType="UniversityEnrolling">
         INSERT INTO zgk_university_enrolling (
+        areaId,
         university_id,
         year,
         batch,
@@ -68,6 +70,7 @@ selectList
         lastModifier,
         is_delete
         ) VALUES (
+        #{areaId},
         #{universityId},
         #{year},
         #{batch},
@@ -97,6 +100,9 @@ selectList
     <update id="update" parameterType="UniversityEnrolling">
         UPDATE zgk_university_enrolling
         <trim prefix="SET" suffixOverrides=",">
+            <if test="areaId!=null">
+                areaId = #{areaId},
+            </if>
             <if test="universityId!=null">
                 university_id = #{universityId},
             </if>
@@ -162,6 +168,9 @@ selectList
     <update id="updateMap">
         UPDATE zgk_university_enrolling
         <trim prefix="SET" suffixOverrides=",">
+            <if test="map.areaId!=null">
+                areaId = #{map.areaId},
+            </if>
             <if test="map.universityId!=null">
                 university_id = #{map.universityId},
             </if>
@@ -227,6 +236,9 @@ selectList
     <update id="updateByCondition">
         UPDATE zgk_university_enrolling
         <trim prefix="SET" suffixOverrides=",">
+            <if test="update.areaId!=null">
+                areaId = #{update.areaId},
+            </if>
             <if test="update.universityId!=null">
                 university_id = #{update.universityId},
             </if>
@@ -290,6 +302,9 @@ selectList
             <if test="condition.id!=null">
                 AND id = #{condition.id}
             </if>
+            <if test="condition.areaId!=null">
+                AND areaId = #{condition.areaId}
+            </if>
             <if test="condition.universityId!=null">
                 AND university_id = #{condition.universityId}
             </if>
@@ -352,6 +367,7 @@ selectList
 
     <insert id="insertMap" >
         INSERT INTO zgk_university_enrolling (
+                areaId,
                 university_id,
                 year,
                 batch,
@@ -372,6 +388,7 @@ selectList
                 lastModifier,
                 is_delete
         ) VALUES (
+                    #{map.areaId},
                     #{map.universityId},
                     #{map.year},
                     #{map.batch},
@@ -398,6 +415,7 @@ selectList
     <update id="updateNull" parameterType="UniversityEnrolling">
         UPDATE zgk_university_enrolling
         <trim prefix="SET" suffixOverrides=",">
+            areaId = #{areaId},
             university_id = #{universityId},
             year = #{year},
             batch = #{batch},
@@ -436,6 +454,9 @@ selectList
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="id!=null">
                 AND id = #{id}
+            </if>
+            <if test="areaId!=null">
+                AND areaId = #{areaId}
             </if>
             <if test="universityId!=null">
                 AND university_id = #{universityId}
@@ -548,6 +569,9 @@ selectList
                         <if test="selector.id!=null">
                             , id
                         </if>
+                        <if test="selector.areaId!=null">
+                            , areaId
+                        </if>
                         <if test="selector.universityId!=null">
                             , university_id
                         </if>
@@ -619,6 +643,9 @@ selectList
 
             <if test="condition.id!=null">
                 ${condition.groupOp}   ${condition.id.field}  ${condition.id.op}  #{condition.id.data}
+            </if>
+            <if test="condition.areaId!=null">
+                ${condition.groupOp}   ${condition.areaId.field}  ${condition.areaId.op}  #{condition.areaId.data}
             </if>
             <if test="condition.universityId!=null">
                 ${condition.groupOp}   ${condition.universityId.field}  ${condition.universityId.op}  #{condition.universityId.data}
@@ -695,6 +722,9 @@ selectList
                     <if test="selector.id!=null">
                         , id
                     </if>
+                    <if test="selector.areaId!=null">
+                        , areaId
+                    </if>
                     <if test="selector.universityId!=null">
                         , university_id
                     </if>
@@ -761,6 +791,9 @@ selectList
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id like CONCAT('%', #{condition.id} , '%')
+            </if>
+            <if test="condition.areaId!=null">
+                AND areaId like CONCAT('%', #{condition.areaId} , '%')
             </if>
             <if test="condition.universityId!=null">
                 AND university_id like CONCAT('%', #{condition.universityId} , '%')
@@ -833,6 +866,9 @@ selectList
                 <if test="selector.id!=null">
                     , id
                 </if>
+                <if test="selector.areaId!=null">
+                    , areaId
+                </if>
                 <if test="selector.universityId!=null">
                     , university_id
                 </if>
@@ -899,6 +935,9 @@ selectList
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id = #{condition.id}
+            </if>
+            <if test="condition.areaId!=null">
+                AND areaId = #{condition.areaId}
             </if>
             <if test="condition.universityId!=null">
                 AND university_id = #{condition.universityId}
@@ -970,6 +1009,9 @@ selectList
                     <if test="selector.id!=null">
                         , id
                     </if>
+                    <if test="selector.areaId!=null">
+                        , areaId
+                    </if>
                     <if test="selector.universityId!=null">
                         , university_id
                     </if>
@@ -1036,6 +1078,9 @@ selectList
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id = #{condition.id}
+            </if>
+            <if test="condition.areaId!=null">
+                AND areaId = #{condition.areaId}
             </if>
             <if test="condition.universityId!=null">
                 AND university_id = #{condition.universityId}
@@ -1106,6 +1151,9 @@ selectList
        <where>
            <if test="id!=null">
                ${groupOp} ${id.field} ${id.op}  #{id.data}
+           </if>
+           <if test="areaId!=null">
+               ${groupOp} ${areaId.field} ${areaId.op}  #{areaId.data}
            </if>
            <if test="universityId!=null">
                ${groupOp} ${universityId.field} ${universityId.op}  #{universityId.data}

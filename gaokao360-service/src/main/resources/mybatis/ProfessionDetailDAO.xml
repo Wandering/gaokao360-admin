@@ -39,6 +39,7 @@
     </sql>
     <insert id="insert" parameterType="ProfessionDetail">
         INSERT INTO zgk_profession_detail (
+        id,
         relate_major,
         introduction,
         work_content,
@@ -50,6 +51,7 @@
         lastModifier,
         is_delete
         ) VALUES (
+        #{id},
         #{relateMajor},
         #{introduction},
         #{workContent},
@@ -61,9 +63,6 @@
         #{lastModifier},
         #{isDelete}
         )
-        <selectKey resultType="java.lang.Long" keyProperty="id">
-            SELECT LAST_INSERT_ID() AS ID
-        </selectKey>
     </insert>
 
     <!-- 更新 -->
@@ -217,6 +216,7 @@
 
     <insert id="insertMap" >
         INSERT INTO zgk_profession_detail (
+        id,
         relate_major,
         introduction,
         work_content,
@@ -228,6 +228,7 @@
         lastModifier,
         is_delete
         ) VALUES (
+        #{map.id},
         #{map.relateMajor},
         #{map.introduction},
         #{map.workContent},
