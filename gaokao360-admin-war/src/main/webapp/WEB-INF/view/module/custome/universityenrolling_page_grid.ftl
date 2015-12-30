@@ -34,67 +34,87 @@
     </div>
 
 
-
-
     <div class="row" id="dialogHtml" style="display: block;">
-    <div class="col-xs-12">
-        <form class="form-horizontal" role="form">
-            <div class="form-group">
-                <label class="col-sm-2 control-label no-padding-right"> 省份：</label>
-                <div class="col-sm-4">
-                    <select class="form-control" id="selProvince2"></select>
+        <div class="col-xs-12">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right"> 省份：</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" id="selProvince2"></select>
                     </div>
                 </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label no-padding-right"> 院校名称：</label>
-                <div class="col-sm-4">
-                    <input id="autoSearch" type="text" class="form-control" placeholder="请输入学校查询" />
-
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right"> 院校名称：</label>
+                    <div class="col-sm-4">
+                        <input id="autoSearch" type="text" class="form-control" placeholder="请输入学校查询"/>
                     </div>
                 </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label no-padding-right"> 年份：</label>
-                <div class="col-sm-4">
-                    <select class="form-control" id="selYears2"></select>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right"> 年份：</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" id="selYears2"></select>
                     </div>
                 </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label no-padding-right" for="examName"> 标题：</label>
-                <div class="col-sm-10">
-                    <input type="text" id="examName" placeholder="输入真题密卷标题（同一年份，同一课程，真题密卷名称不能重复）" class="form-control" />
-                    </div>
-                </div>
-
-
-            <div class="form-group">
-                <label class="col-sm-2 control-label no-padding-right" for="expertsIntro">上传文件：</label>
-                <div class="col-sm-10">
-
-
-                    <div id="uploader" class="wu-example">
-                        <div class="uploader-tips">(只能上传一个文件,可拖拽文件)</div>
-                        <div class="queueList">
-                            <div id="dndArea" class="placeholder">
-                                <div id="filePicker">点击上传</div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right"> 文史类招生：</label>
+                    <div class="col-sm-8">
+                        <div class="subjectTypeList">
+                            <select class="form-control subjectType-wenshi" style="width:50%"></select>
+                            <div class="form-group" style="display: none;">
+                                <div class="col-sm-10">
+                                    计划数：<input type="text" class="input-small" placeholder="计划数"/>
+                                    录取数：<input type="text" class="input-small" placeholder="录取数"/>
+                                    最高分：<input type="text" class="input-small" placeholder="最高分"/>
+                                    最高位次：<input type="text" class="input-small" placeholder="最高位次"/>
+                                    <br /><br />
+                                    最低分：<input type="text" class="input-small" placeholder="最低分"/>
+                                    最低位次：<input type="text" class="input-small" placeholder="最低位次"/>
+                                    平均分：<input type="text" class="input-small" placeholder="平均分"/>
+                                    平均位次：<input type="text" class="input-small" placeholder="平均位次"/>
+                                    <button class="btn btn-minier btn-pink" class="deleteSubjectTypeBtn">删除</button>
                                 </div>
                             </div>
-                        <div class="statusBar" style="display:none;">
-                            <div class="progress">
-                                <span class="text">0%</span>
-                                <span class="percentage"></span>
-                                </div><div class="info"></div>
-                            <div class="btns">
-                                <div class="uploadBtn">开始上传</div>
+                        </div>
+                        <div class="">
+                            <select class="form-control" style="width:50%" class="subjectType-wenshi"></select>
+                            <br/>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    计划数：<input type="text" class="input-small" placeholder="计划数"/>
+                                    录取数：<input type="text" class="input-small" placeholder="录取数"/>
+                                    最高分：<input type="text" class="input-small" placeholder="最高分"/>
+                                    最高位次：<input type="text" class="input-small" placeholder="最高位次"/>
+                                    <br /><br />
+                                    最低分：<input type="text" class="input-small" placeholder="最低分"/>
+                                    最低位次：<input type="text" class="input-small" placeholder="最低位次"/>
+                                    平均分：<input type="text" class="input-small" placeholder="平均分"/>
+                                    平均位次：<input type="text" class="input-small" placeholder="平均位次"/>
+                                    <button class="btn btn-minier btn-pink" class="deleteSubjectTypeBtn">删除</button>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-2">
+                        <button class="btn btn-sm btn-primary" id="subjectTypeBtn1">增加
+                        </button>
+                    </div>
                 </div>
-            <input type="hidden" value="" id="swfUrl">
+                <div id="subjectTypeForm1"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right"> 理工类招生：</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" id="subjectType-ligong"></select>
+                    </div>
+                    <div class="col-sm-4">
+                        <button class="btn btn-sm btn-primary" id="subjectTypeBtn2">增加
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group" id="subjectTypeForm1"></div>
             </form>
         </div>
     </div>
-    
-    
+
+
 <#include 'page_grid.ftl'>
 </div><!-- /.page-content -->
