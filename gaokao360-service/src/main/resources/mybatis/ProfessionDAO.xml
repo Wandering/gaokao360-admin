@@ -373,6 +373,64 @@ selectList
         </if>
     </select>
 
+    <select id="queryPage" resultType="java.util.HashMap">
+        select
+        zp.profession_name as professionName,
+        zpt.profession_type as professionType,
+        zptt.profession_type as professionSubType,
+        zp.salary_rank as salaryRank,
+        zp.hot_degree as hotDegree
+        from zgk_profession zp
+        left join zgk_profession_type zpt on zp.profession_type=zpt.id
+        left join zgk_profession_type zptt on zptt.pid = zpt.id and zptt.id = zp.profession_sub_type
+        <where>
+            <if test="condition.whereSql != null">
+                and zp.id in (#{condition.whereSql})
+            </if>
+
+            <if test="condition.id!=null">
+                ${condition.groupOp}   ${condition.id.field}  ${condition.id.op}  #{condition.id.data}
+            </if>
+            <if test="condition.professionType!=null">
+                ${condition.groupOp}   ${condition.professionType.field}  ${condition.professionType.op}  #{condition.professionType.data}
+            </if>
+            <if test="condition.professionSubType!=null">
+                ${condition.groupOp}   ${condition.professionSubType.field}  ${condition.professionSubType.op}  #{condition.professionSubType.data}
+            </if>
+            <if test="condition.professionName!=null">
+                ${condition.groupOp}   ${condition.professionName.field}  ${condition.professionName.op}  #{condition.professionName.data}
+            </if>
+            <if test="condition.professionDescription!=null">
+                ${condition.groupOp}   ${condition.professionDescription.field}  ${condition.professionDescription.op}  #{condition.professionDescription.data}
+            </if>
+            <if test="condition.hotDegree!=null">
+                ${condition.groupOp}   ${condition.hotDegree.field}  ${condition.hotDegree.op}  #{condition.hotDegree.data}
+            </if>
+            <if test="condition.salaryRank!=null">
+                ${condition.groupOp}   ${condition.salaryRank.field}  ${condition.salaryRank.op}  #{condition.salaryRank.data}
+            </if>
+            <if test="condition.createDate!=null">
+                ${condition.groupOp}   ${condition.createDate.field}  ${condition.createDate.op}  #{condition.createDate.data}
+            </if>
+            <if test="condition.creator!=null">
+                ${condition.groupOp}   ${condition.creator.field}  ${condition.creator.op}  #{condition.creator.data}
+            </if>
+            <if test="condition.lastModDate!=null">
+                ${condition.groupOp}   ${condition.lastModDate.field}  ${condition.lastModDate.op}  #{condition.lastModDate.data}
+            </if>
+            <if test="condition.lastModifier!=null">
+                ${condition.groupOp}   ${condition.lastModifier.field}  ${condition.lastModifier.op}  #{condition.lastModifier.data}
+            </if>
+            <if test="condition.idDelete!=null">
+                ${condition.groupOp}   ${condition.idDelete.field}  ${condition.idDelete.op}  #{condition.idDelete.data}
+            </if>
+        </where>
+        order by zp.salary_rank asc,zp.hot_degree desc
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+    <!--
     <select id="queryPage" resultType="Profession">
         SELECT
         <if test="selector!=null">
@@ -418,7 +476,7 @@ selectList
         <if test="selector==null">
         <include refid="Base_Column_List" />
         </if>
-        FROM zgk_profession
+        FROM zgk_profession zp
         <where>
 
             <if test="condition.whereSql != null">
@@ -471,7 +529,7 @@ selectList
             limit ${offset}, ${rows}
         </if>
     </select>
-
+    -->
     <select id="like" parameterType="java.util.Map" resultType="Profession">
         SELECT
         <if test="selector!=null">
