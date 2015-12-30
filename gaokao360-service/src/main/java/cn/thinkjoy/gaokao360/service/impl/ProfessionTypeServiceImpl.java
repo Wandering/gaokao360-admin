@@ -1,69 +1,30 @@
 /*
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
- * Project Name: gaokao360
- * $Id:  UniversityServiceImpl.java 2015-12-16 18:39:46 $
+ * Project Name: zgk
+ * $Id:  ProfessionTypeServiceImpl.java 2015-12-28 18:05:28 $
  */
-package cn.thinkjoy.gaokao360.service.ex.impl;
+package cn.thinkjoy.gaokao360.service.impl;
 
 import cn.thinkjoy.common.dao.IBaseDAO;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
-import cn.thinkjoy.gaokao360.dao.IUniversityDAO;
-import cn.thinkjoy.gaokao360.dao.IUniversityDetailDAO;
-import cn.thinkjoy.gaokao360.dao.IUniversityDictDAO;
-import cn.thinkjoy.gaokao360.dao.IUniversitySortDAO;
-import cn.thinkjoy.gaokao360.dao.ex.IUniversityExDAO;
-import cn.thinkjoy.gaokao360.domain.GkBaseDomain;
-import cn.thinkjoy.gaokao360.domain.University;
-import cn.thinkjoy.gaokao360.domain.UniversityDict;
-import cn.thinkjoy.gaokao360.domain.UniversitySort;
-import cn.thinkjoy.gaokao360.dto.UniversityDTO;
-import cn.thinkjoy.gaokao360.service.ex.IUniversityExService;
+
+import cn.thinkjoy.gaokao360.dao.IProfessionTypeDAO;
+import cn.thinkjoy.gaokao360.domain.ProfessionType;
+import cn.thinkjoy.gaokao360.service.IProfessionTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-
-@Service("UniversityExServiceImpl")
-public class UniversityExServiceImpl extends AbstractPageService<IBaseDAO<UniversityDTO>, UniversityDTO> implements IUniversityExService<IBaseDAO<UniversityDTO>,UniversityDTO>{
+@Service("ProfessionTypeServiceImpl")
+public class ProfessionTypeServiceImpl extends AbstractPageService<IBaseDAO<ProfessionType>, ProfessionType> implements IProfessionTypeService<IBaseDAO<ProfessionType>,ProfessionType> {
     @Autowired
-    private IUniversityExDAO universityExDAO;
-    @Autowired
-    private IUniversityDAO universityDAO;
-
-    @Autowired
-    private IUniversityDetailDAO universityDetailDAO;
+    private IProfessionTypeDAO professionTypeDAO;
 
     @Override
-    public IBaseDAO<UniversityDTO> getDao() {
-        return universityExDAO;
+    public IBaseDAO<ProfessionType> getDao() {
+        return professionTypeDAO;
     }
-
-    public void insertUniversity(Map<String,Object> dataMap){
-        universityDAO.insertMap(dataMap);
-        Long lid = (Long)universityDAO.selectMaxId();
-        dataMap.put("id",lid);
-        universityExDAO.insertDetail(dataMap);
-    }
-
-    public void updateUniversity(Map<String,Object> dataMap){
-        universityDAO.updateMap(dataMap);
-        universityDetailDAO.updateMap(dataMap);
-    }
-
-    public void deleteUniversity(Map<String,Object> dataMap){
-        universityDAO.deleteById(dataMap.get("id"));
-        universityDetailDAO.deleteById(dataMap.get("id"));
-    }
-
-    @Override
-    public List getUniversityByName(String name) {
-        return universityExDAO.getUniversityByName(name);
-    }
-
 
 //    @Override
 //    public void insert(BaseDomain entity) {
@@ -116,8 +77,8 @@ public class UniversityExServiceImpl extends AbstractPageService<IBaseDAO<Univer
 //    }
 //
 //    @Override
-//    public List<University> findAll() {
-//        return universityDAO.findAll();
+//    public List<ProfessionType> findAll() {
+//        return professionTypeDAO.findAll();
 //    }
 //
 //    @Override
@@ -171,8 +132,8 @@ public class UniversityExServiceImpl extends AbstractPageService<IBaseDAO<Univer
 //    }
 //
 //    @Override
-//    protected UniversityDAO getDao() {
-//        return universityDAO;
+//    protected ProfessionTypeDAO getDao() {
+//        return professionTypeDAO;
 //    }
 //
 //    @Override
