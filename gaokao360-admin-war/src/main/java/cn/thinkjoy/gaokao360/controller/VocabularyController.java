@@ -7,6 +7,7 @@
 
 package cn.thinkjoy.gaokao360.controller;
 
+import cn.thinkjoy.common.utils.SqlOrderEnum;
 import cn.thinkjoy.gaokao360.service.IVocabularyService;
 import cn.thinkjoy.common.managerui.dao.IResourceGridDAO;
 import cn.thinkjoy.common.managerui.service.IResourceGridService;
@@ -49,6 +50,17 @@ public class VocabularyController extends BaseController<IVocabularyService>{
         return doRenderMainView(request, response);
     }
 
+    @Override
+    protected void enhancePageConditions(HttpServletRequest request, Map conditions) {
+        Map map=Maps.newHashMap();
+        map.put("field","categoryId");
+        map.put("op","=");
+        map.put("data","2");
+        conditions.put("categoryId",map);
+        super.enhancePageConditions(request, conditions);
+    }
+
+
     /**
      * 获取所有的组织信息
      * @return
@@ -87,5 +99,25 @@ public class VocabularyController extends BaseController<IVocabularyService>{
     @Override
     public boolean getEnableDataPerm() {
         return true;
+    }
+
+    @Override
+    protected BizData4Page doPage(HttpServletRequest request, HttpServletResponse response) {
+        Integer page = 1;
+        if(request.getParameter("page") != null) {
+            page = Integer.valueOf(request.getParameter("page"));
+        }
+        Integer rows = 10;
+        if(request.getParameter("rows") != null) {
+            rows = Integer.valueOf(request.getParameter("rows"));
+        }
+
+        String uri = request.getRequestURI().substring(0, request.getRequestURI().length() - 1);
+        //获取参数
+        Map<String, Object> conditions = makeQueryCondition(request, response, uri);
+
+        enhancePageConditions(request,conditions);
+
+        return getMainService().queryPageByDataPerm(uri, conditions, page, (page - 1) * rows, rows, "createDate", SqlOrderEnum.DESC);
     }
 }
