@@ -53,7 +53,7 @@ public class DelUtil extends BaseCommonUtil{
         this.setDataMap(dataMap);
         runMethod(mainObj);
     }
-    public void gkPsychology(){
+    public void gkpsychology(){
         getServiceMaps().get("videocourse").delete(dataMap.get("id"));
         Map<String,Object> map=new HashMap<>();
         map.put("courseId",dataMap.get("id"));
@@ -85,7 +85,7 @@ public class DelUtil extends BaseCommonUtil{
     }
 
     public void runMethod(String mainObj) throws Exception {
-            this.getClass().getMethod(mainObj).invoke(null);
+        this.getClass().getMethod(mainObj).invoke(this);
     }
 
 }

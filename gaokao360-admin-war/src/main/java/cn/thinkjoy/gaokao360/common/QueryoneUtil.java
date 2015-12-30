@@ -67,7 +67,7 @@ public class QueryoneUtil extends BaseCommonUtil{
         return runMethod(mainObj,id);
     }
     public Object runMethod(String mainObj,Object id) throws Exception {
-            return this.getClass().getMethod(mainObj).invoke(id, Object.class);
+        return this.getClass().getMethod(mainObj,new Class[]{Object.class}).invoke(this,id);
     }
     /**
      * 下面是各个模块的查询单个方法，请使用mainObj来命名 例如areabatchline，会自动调用，否则会抛异常走默认接口
