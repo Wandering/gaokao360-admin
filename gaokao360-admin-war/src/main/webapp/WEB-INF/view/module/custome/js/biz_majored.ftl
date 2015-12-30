@@ -121,18 +121,18 @@
                 majoredValidate();
                 var addMajoredData = {
                     oper: typeStr
-                    , name: majoredDom.$majoredName.val()
-                    , code: majoredDom.$majoredCode.val()
-                    , subjectTypeId: $('#selMajored2').find('option:selected').val()
+                    , majorName: majoredDom.$majoredName.val()
+                    , majorCode: majoredDom.$majoredCode.val()
+                    , disciplineCategories: $('#selMajored2').find('option:selected').val()
                     , subjectType: $('#selMajored2').find('option:selected').html()
-                    , majoredTypeId: $('#subjectType').find('option:selected').val()
+                    , majorCategory: $('#subjectType').find('option:selected').val()
                     , majoredType: $('#subjectType').find('option:selected').html()
                     , salaryRank: majoredDom.$salaryRank.val()
-                    , employedRank: majoredDom.$jobsRank.val()
-                    , similarMajored: majoredDom.$sameMajored.val()
-                    , mainCourse: majoredDom.$mainMajored.val()
-                    , workGuide: majoredDom.$employDirect.val()
-                    , excellentStudent: majoredDom.$excellentStudent.val()
+                    , employmentRank: majoredDom.$jobsRank.val()
+                    , similarMajors: majoredDom.$sameMajored.val()
+                    , offerCourses: majoredDom.$mainMajored.val()
+                    , specialisation: majoredDom.$employDirect.val()
+                    , outstandingMentor: majoredDom.$excellentStudent.val()
                 };
                 CommonFn.getData('/admin/gaokao360/ex/commonsave/${mainObj}', 'POST', addMajoredData, function (res) {
                     if (res.rtnCode == "0000000") {
@@ -157,34 +157,36 @@
             $('#majoredModal').modal('show');
             // 获取当前行数据
             var rowData = CommonFn.getRowData(rowId);
-            majoredDom.$majoredName.val(rowData[0].name);
-            majoredDom.$majoredCode.val(rowData[0].code);
-            $('#selMajored2').find('option[value="' + rowData[0].majoredTypeId + '"]').attr('selected', 'selected');
-            $('#subjectType').find('option[value="' + rowData[0].subjectTypeId + '"]').attr('selected', 'selected');
-            majoredDom.$jobsRank.val(rowData[0].employedRank);
+            majoredDom.$majoredName.val(rowData[0].majorName);
+            majoredDom.$majoredCode.val(rowData[0].majorCode);
+            $('#selMajored2').find('option[value="' + rowData[0].subjectType + '"]').attr('selected', 'selected');
+            $('#subjectType').find('option[value="' + rowData[0].majorCategory + '"]').attr('selected', 'selected');
+            majoredDom.$jobsRank.val(rowData[0].employmentRank);
             majoredDom.$salaryRank.val(rowData[0].salaryRank);
-            majoredDom.$sameMajored.val(rowData[0].similarMajored);
-            majoredDom.$mainMajored.val(rowData[0].mainCourse);
-            majoredDom.$employDirect.val(rowData[0].workGuide);
-            majoredDom.$excellentStudent.val(rowData[0].excellentStudent);
+            majoredDom.$sameMajored.val(rowData[0].similarMajors);
+            majoredDom.$mainMajored.val(rowData[0].offerCourses);
+            majoredDom.$employDirect.val(rowData[0].specialisation);
+            majoredDom.$excellentStudent.val(rowData[0].outstandingMentor);
+
+
             majoredDom.$submitBtn.on(ace.click_event, function (e) {
                 e.preventDefault();
 //                验证
                 majoredValidate();
                 var addMajoredData = {
                     oper: typeStr
-                    , name: majoredDom.$majoredName.val()
-                    , code: majoredDom.$majoredCode.val()
-                    , subjectTypeId: $('#selMajored2').find('option:selected').val()
+                    , majorName: majoredDom.$majoredName.val()
+                    , majorCode: majoredDom.$majoredCode.val()
+                    , disciplineCategories: $('#selMajored2').find('option:selected').val()
                     , subjectType: $('#selMajored2').find('option:selected').html()
-                    , majoredTypeId: $('#subjectType').find('option:selected').val()
+                    , majorCategory: $('#subjectType').find('option:selected').val()
                     , majoredType: $('#subjectType').find('option:selected').html()
                     , salaryRank: majoredDom.$salaryRank.val()
-                    , employedRank: majoredDom.$jobsRank.val()
-                    , similarMajored: majoredDom.$sameMajored.val()
-                    , mainCourse: majoredDom.$mainMajored.val()
-                    , workGuide: majoredDom.$employDirect.val()
-                    , excellentStudent: majoredDom.$excellentStudent.val()
+                    , employmentRank: majoredDom.$jobsRank.val()
+                    , similarMajors: majoredDom.$sameMajored.val()
+                    , offerCourses: majoredDom.$mainMajored.val()
+                    , specialisation: majoredDom.$employDirect.val()
+                    , outstandingMentor: majoredDom.$excellentStudent.val()
                 };
                 CommonFn.getData('/admin/gaokao360/ex/commonsave/${mainObj}','post',addMajoredData,function(res){
                     if (res.rtnCode == "0000000") {
