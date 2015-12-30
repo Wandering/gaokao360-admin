@@ -8,6 +8,7 @@ package cn.thinkjoy.gaokao360.service.impl;
 
 
 import cn.thinkjoy.common.dao.IBaseDAO;
+import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
 import cn.thinkjoy.gaokao360.dao.IProfessionDAO;
 import cn.thinkjoy.gaokao360.domain.Profession;
@@ -15,6 +16,8 @@ import cn.thinkjoy.gaokao360.service.IProfessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
 
 
 @Service("ProfessionServiceImpl")
@@ -27,6 +30,28 @@ public class ProfessionServiceImpl extends AbstractPageService<IBaseDAO<Professi
         return professionDAO;
     }
 
+
+    public BizData4Page queryPageByDataPerm(String resUri, Map<String, Object> conditions, int curPage, int offset, int rows){
+        return createBizData4Page(getDao(),conditions,curPage,offset,rows);
+    }
+
+    public BizData4Page createBizData4Page(IBaseDAO dao, Map<String, Object> conditions, int curPage, int offset, int rows){
+        List<Map<String, String>> mainData = dao.queryPage(conditions, offset, rows, null, null,null);
+
+        int records = dao.count(conditions);
+        BizData4Page bizData4Page = new BizData4Page();
+        bizData4Page.setRows(mainData);
+        bizData4Page.setPage(curPage);
+        bizData4Page.setRecords(records);
+        int total = records / rows;
+        int mod = records % rows;
+        if(mod > 0){
+            total = total + 1;
+        }
+        bizData4Page.setTotal(total);
+
+        return bizData4Page;
+    }
 //    @Override
 //    public void insert(BaseDomain entity) {
 //

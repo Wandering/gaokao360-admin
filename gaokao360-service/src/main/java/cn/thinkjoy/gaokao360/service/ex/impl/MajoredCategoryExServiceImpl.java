@@ -13,7 +13,6 @@ import cn.thinkjoy.gaokao360.dao.IMajoredCategoryDAO;
 import cn.thinkjoy.gaokao360.dao.ex.IMajoredCategoryExDAO;
 import cn.thinkjoy.gaokao360.domain.MajoredCategory;
 import cn.thinkjoy.gaokao360.dto.MajoredCategoryDTO;
-import cn.thinkjoy.gaokao360.service.IMajoredCategoryService;
 import cn.thinkjoy.gaokao360.service.ex.IMajoredCategoryExService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -103,12 +102,12 @@ public class MajoredCategoryExServiceImpl extends AbstractPageService<IBaseDAO<M
             majoredCategory.setName(str);
             majoredCategory.setLevel(2);
             majoredCategory.setParentId(l);
-//            if(){
-//                map=new HashMap<>();
-//                map.put("name",str);
-//                map.put("parentId",l);
-//            }
-            majoredCategoryDAO.insert(majoredCategory);
+            map=new HashMap<>();
+            map.put("name",str);
+            map.put("parentId",l);
+            if(majoredCategoryDAO.queryOne(map,"id","asc")==null) {
+                majoredCategoryDAO.insert(majoredCategory);
+            }
         }
 
     }
