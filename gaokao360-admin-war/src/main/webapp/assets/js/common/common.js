@@ -333,6 +333,21 @@ var CommonFn = {
             contentArr.push(result.bizData);
         });
         return contentArr;
+    },
+    // 批次
+    getBatch:function(){
+        var contentArr = [];
+        contentArr.push('<option value="00">请选择批次</option>');
+        $.ajaxSettings.async = false;
+        CommonFn.getData(CommonFn.url.getBatchUrl, 'GET', {}, function (result) {
+            if (result.rtnCode == "0000000") {
+                for (var i=0;i<result.bizData.length;i++) {
+                    contentArr.push('<option value="' +result.bizData[i].dictId + '">' + result.bizData[i].name + '</option>');
+                }
+            }
+
+        });
+        return contentArr;
     }
 
 
