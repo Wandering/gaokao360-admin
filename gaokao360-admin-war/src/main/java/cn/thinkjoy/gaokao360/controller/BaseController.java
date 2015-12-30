@@ -9,6 +9,7 @@ package cn.thinkjoy.gaokao360.controller;
 
 
 import cn.thinkjoy.common.domain.BaseDomain;
+import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.common.managerui.controller.AbstractAdminController;
 import cn.thinkjoy.common.managerui.dao.IResourceActionDAO;
@@ -16,6 +17,7 @@ import cn.thinkjoy.common.managerui.domain.Resource;
 import cn.thinkjoy.common.managerui.domain.ResourceGrid;
 import cn.thinkjoy.common.managerui.service.IResourceActionService;
 import cn.thinkjoy.common.managerui.service.IRoleService;
+import cn.thinkjoy.common.utils.SqlOrderEnum;
 import cn.thinkjoy.gaokao360.common.ImportExcelUtil;
 import cn.thinkjoy.gaokao360.common.MenuUtils;
 import cn.thinkjoy.gaokao360.common.ServiceMaps;
@@ -71,6 +73,11 @@ public abstract class BaseController<T> extends AbstractAdminController {
             mav.addObject("isframe", isframe);
         else
             mav.addObject("isframe", "true");
+    }
+
+    @Override
+    protected BizData4Page doPage(HttpServletRequest request, HttpServletResponse response) {
+        return super.doPage(request,response);
     }
 
     public Map<String,Object> doImport(MultipartFile file,String mainObj){

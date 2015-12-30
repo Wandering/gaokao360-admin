@@ -31,8 +31,25 @@
         }
         return rules;
     }
-    function searchLoad() {
+    function searchLoad(flag) {
         var url = "/admin/${bizSys}/${mainObj}s";
+        var page = $('#grid-table').getGridParam('page'); // current page
+        var rows = $('#grid-table').getGridParam('rows'); // rows
+        var sidx = $('#grid-table').getGridParam('sidx'); // sidx
+        var sord = $('#grid-table').getGridParam('sord'); // sord
+
+
+        if (page == null || page == "") {
+            page = '1';
+        }
+
+        if (flag == 1 || typeof flag == "undefined") {
+            page = '1';
+        }
+
+        if (rows == null || rows == "") {
+            rows = '10';
+        }
 
         var rules = buildRules();
 
@@ -42,13 +59,12 @@
         };
 
         $("#grid-table").jqGrid('setGridParam', {
-            url: url,
             mtype: "POST",
             postData: "filters=" + JSON.stringify(filters),
-            page: 1
-        }).trigger("reloadGrid");
-
-
+            page: page,
+            rows: rows,
+            sidx: sidx,
+            sord: sord}).trigger("reloadGrid");
     }
 
     $("#search").click(function () {
@@ -122,9 +138,10 @@
             // 当前行数据
             var rowData = CommonFn.getRowData(rowId);
             // 富媒体赋值
+//            var voaContent = CommonFn.getContentHtml(rowData[0].content).join('');
             $.trim($('#voaTitle').val(rowData[0].title));
             $('#voaSummary').val(rowData[0].summary);
-            $('#voaContent').html(CommonFn.getContentHtml(rowData[0].informationContent).join(''));
+            $('#voaContent').html(CommonFn.getContentHtml(rowData[0].content).join(''));
             $('#voaProvince').find('option[value="'+rowData[0].areaId+'"]').attr('selected','selected');
             CommonFn.renderTextarea('#voaContent');
         });
