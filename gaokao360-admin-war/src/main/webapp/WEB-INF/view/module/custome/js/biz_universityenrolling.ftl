@@ -111,9 +111,7 @@
         // 增加招生批次明细
         $('body').on('click', '.subjectType-wenshi', function () {
             var checkedV = $(this).find('option:checked').val();
-            if(checkedV!=="00"){
-                $(this).next().show();
-            }
+            checkedV!=="00" ? $(this).next().show() : $(this).next().hide();
 
         });
 
