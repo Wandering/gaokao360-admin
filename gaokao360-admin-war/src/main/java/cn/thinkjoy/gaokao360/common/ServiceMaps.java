@@ -81,6 +81,16 @@ public class ServiceMaps extends BaseServiceMaps{
 
     @Autowired
     private IUniversityEnrollingService universityEnrollingService;
+
+    @Autowired
+    private IProfessionService professionService;
+
+    @Autowired
+    private IProfessionDetailService professionDetailService;
+
+    @Autowired
+    private IProfessionTypeService professionTypeService;
+
     @PostConstruct
     public void init(){
         super.init();
@@ -108,6 +118,10 @@ public class ServiceMaps extends BaseServiceMaps{
         serviceMap.put("majoredcategoryex",majoredCategoryExService);
         serviceMap.put("vocabulary",vocabulary);
         serviceMap.put("universityenrolling",universityEnrollingService);
+        serviceMap.put("profession",professionService);
+        serviceMap.put("professiondetail",professionDetailService);
+        serviceMap.put("professiontype",professionTypeService);
+
     }
 
 }
