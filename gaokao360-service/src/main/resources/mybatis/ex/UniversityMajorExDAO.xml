@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.thinkjoy.gaokao360.dao.IUniversityMajorDAO">
+<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IUniversityMajorExDAO">
     <!--
     insert
     update
@@ -41,42 +41,6 @@
         lastModifier as lastModifier ,
         isDelete as isDelete
     </sql>
-    <insert id="insert" parameterType="UniversityMajor">
-        INSERT INTO zgk_university_major (
-        universityId,
-        universityName,
-        majorId,
-        majorName,
-        majorType,
-        majorSubject,
-        educationLevel,
-        gainDegree,
-        majorRank,
-        createDate,
-        creator,
-        lastModDate,
-        lastModifier,
-        isDelete
-        ) VALUES (
-        #{universityId},
-        #{universityName},
-        #{majorId},
-        #{majorName},
-        #{majorType},
-        #{majorSubject},
-        #{educationLevel},
-        #{gainDegree},
-        #{majorRank},
-        #{createDate},
-        #{creator},
-        #{lastModDate},
-        #{lastModifier},
-        #{isDelete}
-        )
-        <selectKey resultType="java.lang.Long" keyProperty="id">
-            SELECT LAST_INSERT_ID() AS ID
-        </selectKey>
-    </insert>
 
     <!-- 更新 -->
     <update id="update" parameterType="UniversityMajor">
@@ -436,7 +400,7 @@
         </if>
     </select>
 
-    <select id="queryPage" resultType="UniversityMajor">
+    <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.UniversityMajorDTO">
         SELECT
         <if test="selector!=null">
             <trim prefixOverrides=",">
@@ -456,16 +420,19 @@
                     , majorName
                 </if>
                 <if test="selector.majorType!=null">
-                    , majorType
+                    , (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'MAJOR_TYPE' AND dd.dictId = majorType) as majorTypeName
                 </if>
                 <if test="selector.majorSubject!=null">
-                    , majorSubject
+                    ,
+                    (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'UNIVERSITY_MAJOR_TYPE' AND dd.dictId = majorSubject) as majorSubjectName
                 </if>
                 <if test="selector.educationLevel!=null">
-                    , educationLevel
+                    ,
+                    (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'EDULEVEL' AND dd.dictId = educationLevel) as educationLevelName
                 </if>
                 <if test="selector.gainDegree!=null">
-                    , gainDegree
+                    ,
+                    (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'GAIN_DEGREE' AND dd.dictId = gainDegree) as gainDegreeName
                 </if>
                 <if test="selector.majorRank!=null">
                     , majorRank
@@ -492,7 +459,6 @@
         </if>
         FROM zgk_university_major
         <where>
-
             <if test="condition.whereSql != null">
                 and id in (#{condition.whereSql})
             </if>

@@ -14,6 +14,7 @@ import cn.thinkjoy.gaokao360.service.IDataDictService;
 import cn.thinkjoy.gaokao360.service.IMajorService;
 import cn.thinkjoy.gaokao360.service.IUniversityMajorService;
 import cn.thinkjoy.gaokao360.service.IUniversityService;
+import cn.thinkjoy.gaokao360.service.ex.IUniversityMajorExService;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,19 +26,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 @Controller
 @RequestMapping(value="/admin/gaokao360/ex")
-public class UniversityMajorExController extends BaseController<IUniversityMajorService>{
+public class UniversityMajorExController extends BaseController<IUniversityMajorExService>{
 
 
     @Autowired
-    private IUniversityMajorService universityMajorService;
+    private IUniversityMajorExService universityMajorExService;
 
     @Autowired
     private IMajorService majorService;
@@ -116,8 +114,8 @@ public class UniversityMajorExController extends BaseController<IUniversityMajor
     }
 
     @Override
-    protected IUniversityMajorService getMainService() {
-        return universityMajorService;
+    protected IUniversityMajorExService getMainService() {
+        return universityMajorExService;
     }
 
     @Override
