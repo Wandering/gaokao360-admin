@@ -5,33 +5,33 @@
         var status = $('#status').val();
         var classfyId = $('#classfyId').val();
         var rules = [];
-        if (courseName != ''&&courseName!=null&&courseName!=undefined) {
+        if (courseName != '' && courseName != null && courseName != undefined) {
             var rule = {
                 'field': 'courseName',
                 'op': 'eq',
                 'data': courseName
-            }
+            };
             rules.push(rule);
         }
-        if (status != ''&&status!=null&&status!=undefined) {
+        if (status != '' && status != null && status != undefined) {
             var rule = {
                 'field': 'status',
                 'op': 'eq',
                 'data': status
-            }
+            };
             rules.push(rule);
         }
-        if (classfyId != ''&&classfyId!=null&&classfyId!=undefined) {
+        if (classfyId != '' && classfyId != null && classfyId != undefined) {
             var rule = {
                 'field': 'classfyId',
                 'op': 'eq',
                 'data': classfyId
-            }
+            };
             rules.push(rule);
         }
         return rules;
     }
-    function searchLoad(){
+    function searchLoad() {
         var url = "/admin/${bizSys}/${mainObj}s";
 
         var rules = buildRules();
@@ -41,7 +41,12 @@
             "rules": rules
         };
 
-        $("#grid-table").jqGrid('setGridParam', {url:url,mtype:"POST",postData:"filters="+JSON.stringify(filters),page: 1}).trigger("reloadGrid");
+        $("#grid-table").jqGrid('setGridParam', {
+            url: url,
+            mtype: "POST",
+            postData: "filters=" + JSON.stringify(filters),
+            page: 1
+        }).trigger("reloadGrid");
 
 
     }
@@ -52,36 +57,39 @@
     });
     jQuery(function ($) {
 
-        $.widget( "custom.catcomplete", $.ui.autocomplete, {
-            _renderMenu: function( ul, items ) {
+        $.widget("custom.catcomplete", $.ui.autocomplete, {
+            _renderMenu: function (ul, items) {
                 var that = this,
                         currentCategory = "";
-                $.each( items, function( index, item ) {
-                    if ( item.category != currentCategory ) {
-                        ul.append( "<li class='ui-autocomplete-category'>" + item.category + "</li>" );
+                $.each(items, function (index, item) {
+                    if (item.category != currentCategory) {
+                        ul.append("<li class='ui-autocomplete-category'>" + item.category + "</li>");
                         currentCategory = item.category;
                     }
-                    that._renderItemData( ul, item );
+                    that._renderItemData(ul, item);
                 });
             }
         });
-        var data = [
-            { id:"1",name: "anders", type: "" }
-        ];
-        $( "#autoSearch" ).catcomplete({
+        var dataJson = CommonFn.getAllSchool('');
+        var dataArr = [];
+        var obj ={};
+        for(var i=0;i<dataJson.length;i++){
+            console.log(dataJson[i].id)
+            obj = {
+                id:dataJson[i].id,
+                label:dataJson[i].label,
+                category:dataJson[i].category
+            };
+            dataArr.push(obj);
+        }
+        console.log(dataArr);
+        $("#autoSearch").catcomplete({
             delay: 0,
-            source: data
+            source: dataArr,
+            select:function(event, ui){
+                $('#autoSearch').attr('id',ui.item.id)
+            }
         });
-
-
-
-
-
-
-
-
-
-        console.log(CommonFn.getAllSchool(''));
 
 
         var typeStr;
@@ -96,6 +104,20 @@
         // 省份
         var provinceData = CommonFn.getProvince();
         $('#selProvince,#selProvince2').html(provinceData);
+        // 批次
+        var getBatchData = CommonFn.getBatch();
+        $('.subjectType-wenshi').html(getBatchData);
+
+        // 增加招生批次明细
+        $('body').on('click','.subjectType-wenshi',function(){
+            $(this).next().show();
+        });
+
+
+
+
+
+
 //        var dialogHtml = ''
 //                + '<div class="row">'
 //                + '<div class="col-xs-12">'
@@ -182,9 +204,6 @@
             });
 
             uploadFun();
-
-
-
 
 
         });
@@ -282,7 +301,7 @@
                     if (!res.bizData) {
 //                        终止添加
                         CommonFn.tipsDialog('温馨提示', '不能重复添加');
-                    }else{
+                    } else {
 //                        继续添加
                         $.ajax({
                             type: "POST",
@@ -533,7 +552,6 @@
             // 负责view的销毁
             function removeFile(file) {
                 var $li = $('#' + file.id);
-
                 delete percentages[file.id];
                 updateTotalProgress();
                 $li.off().find('.file-panel').off().end().remove();
