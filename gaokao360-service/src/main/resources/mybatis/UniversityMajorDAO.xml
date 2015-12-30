@@ -2,59 +2,62 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.thinkjoy.gaokao360.dao.IUniversityMajorDAO">
-<!--
-insert
-update
-updateNull
-deleteById
-deleteByCondition
-deleteByProperty
-fetch
-findOne
-findList
-findAll
-queryPage
-like
-queryList
-queryOne
-count
-selectMaxId
-updateOrSave
-selectOne
-selectList
--->
+    <!--
+    insert
+    update
+    updateNull
+    deleteById
+    deleteByCondition
+    deleteByProperty
+    fetch
+    findOne
+    findList
+    findAll
+    queryPage
+    like
+    queryList
+    queryOne
+    count
+    selectMaxId
+    updateOrSave
+    selectOne
+    selectList
+    -->
 
     <sql id="Base_Column_List">
         id as id ,
-        university_id as universityId ,
-        major_name as majorName ,
-        major_type as majorType ,
-        education_level as educationLevel ,
-        gain_degree as gainDegree ,
-        major_rank as majorRank ,
+        universityId as universityId ,
+        majorName as majorName ,
+        majorType as majorType ,
+        majorSubject as majorSubject ,
+        educationLevel as educationLevel ,
+        gainDegree as gainDegree ,
+        majorRank as majorRank ,
         createDate as createDate ,
         creator as creator ,
         lastModDate as lastModDate ,
         lastModifier as lastModifier ,
-        is_delete as isDelete 
+        isDelete as isDelete 
     </sql>
     <insert id="insert" parameterType="UniversityMajor">
         INSERT INTO zgk_university_major (
-        university_id,
-        major_name,
-        major_type,
-        education_level,
-        gain_degree,
-        major_rank,
+        universityId,
+        majorName,
+        majorType,
+        majorSubject,
+        educationLevel,
+        gainDegree,
+        majorRank,
         createDate,
         creator,
         lastModDate,
         lastModifier,
-        is_delete
+        isDelete
         ) VALUES (
         #{universityId},
         #{majorName},
         #{majorType},
+        #{majorSubject},
         #{educationLevel},
         #{gainDegree},
         #{majorRank},
@@ -64,9 +67,9 @@ selectList
         #{lastModifier},
         #{isDelete}
         )
-            <selectKey resultType="java.lang.Long" keyProperty="id">
-                SELECT LAST_INSERT_ID() AS ID
-            </selectKey>
+        <selectKey resultType="java.lang.Long" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
     </insert>
 
     <!-- 更新 -->
@@ -74,22 +77,25 @@ selectList
         UPDATE zgk_university_major
         <trim prefix="SET" suffixOverrides=",">
             <if test="universityId!=null">
-                university_id = #{universityId},
+                universityId = #{universityId},
             </if>
             <if test="majorName!=null">
-                major_name = #{majorName},
+                majorName = #{majorName},
             </if>
             <if test="majorType!=null">
-                major_type = #{majorType},
+                majorType = #{majorType},
+            </if>
+            <if test="majorSubject!=null">
+                majorSubject = #{majorSubject},
             </if>
             <if test="educationLevel!=null">
-                education_level = #{educationLevel},
+                educationLevel = #{educationLevel},
             </if>
             <if test="gainDegree!=null">
-                gain_degree = #{gainDegree},
+                gainDegree = #{gainDegree},
             </if>
             <if test="majorRank!=null">
-                major_rank = #{majorRank},
+                majorRank = #{majorRank},
             </if>
             <if test="createDate!=null">
                 createDate = #{createDate},
@@ -104,7 +110,7 @@ selectList
                 lastModifier = #{lastModifier},
             </if>
             <if test="isDelete!=null">
-                is_delete = #{isDelete},
+                isDelete = #{isDelete},
             </if>
         </trim>
         WHERE
@@ -115,22 +121,25 @@ selectList
         UPDATE zgk_university_major
         <trim prefix="SET" suffixOverrides=",">
             <if test="map.universityId!=null">
-                university_id = #{map.universityId},
+                universityId = #{map.universityId},
             </if>
             <if test="map.majorName!=null">
-                major_name = #{map.majorName},
+                majorName = #{map.majorName},
             </if>
             <if test="map.majorType!=null">
-                major_type = #{map.majorType},
+                majorType = #{map.majorType},
+            </if>
+            <if test="map.majorSubject!=null">
+                majorSubject = #{map.majorSubject},
             </if>
             <if test="map.educationLevel!=null">
-                education_level = #{map.educationLevel},
+                educationLevel = #{map.educationLevel},
             </if>
             <if test="map.gainDegree!=null">
-                gain_degree = #{map.gainDegree},
+                gainDegree = #{map.gainDegree},
             </if>
             <if test="map.majorRank!=null">
-                major_rank = #{map.majorRank},
+                majorRank = #{map.majorRank},
             </if>
             <if test="map.createDate!=null">
                 createDate = #{map.createDate},
@@ -145,7 +154,7 @@ selectList
                 lastModifier = #{map.lastModifier},
             </if>
             <if test="map.isDelete!=null">
-                is_delete = #{map.isDelete},
+                isDelete = #{map.isDelete},
             </if>
         </trim>
         WHERE
@@ -156,22 +165,25 @@ selectList
         UPDATE zgk_university_major
         <trim prefix="SET" suffixOverrides=",">
             <if test="update.universityId!=null">
-                university_id = #{update.universityId},
+                universityId = #{update.universityId},
             </if>
             <if test="update.majorName!=null">
-                major_name = #{update.majorName},
+                majorName = #{update.majorName},
             </if>
             <if test="update.majorType!=null">
-                major_type = #{update.majorType},
+                majorType = #{update.majorType},
+            </if>
+            <if test="update.majorSubject!=null">
+                majorSubject = #{update.majorSubject},
             </if>
             <if test="update.educationLevel!=null">
-                education_level = #{update.educationLevel},
+                educationLevel = #{update.educationLevel},
             </if>
             <if test="update.gainDegree!=null">
-                gain_degree = #{update.gainDegree},
+                gainDegree = #{update.gainDegree},
             </if>
             <if test="update.majorRank!=null">
-                major_rank = #{update.majorRank},
+                majorRank = #{update.majorRank},
             </if>
             <if test="update.createDate!=null">
                 createDate = #{update.createDate},
@@ -186,7 +198,7 @@ selectList
                 lastModifier = #{update.lastModifier},
             </if>
             <if test="update.isDelete!=null">
-                is_delete = #{update.isDelete},
+                isDelete = #{update.isDelete},
             </if>
         </trim>
 
@@ -195,22 +207,25 @@ selectList
                 AND id = #{condition.id}
             </if>
             <if test="condition.universityId!=null">
-                AND university_id = #{condition.universityId}
+                AND universityId = #{condition.universityId}
             </if>
             <if test="condition.majorName!=null">
-                AND major_name = #{condition.majorName}
+                AND majorName = #{condition.majorName}
             </if>
             <if test="condition.majorType!=null">
-                AND major_type = #{condition.majorType}
+                AND majorType = #{condition.majorType}
+            </if>
+            <if test="condition.majorSubject!=null">
+                AND majorSubject = #{condition.majorSubject}
             </if>
             <if test="condition.educationLevel!=null">
-                AND education_level = #{condition.educationLevel}
+                AND educationLevel = #{condition.educationLevel}
             </if>
             <if test="condition.gainDegree!=null">
-                AND gain_degree = #{condition.gainDegree}
+                AND gainDegree = #{condition.gainDegree}
             </if>
             <if test="condition.majorRank!=null">
-                AND major_rank = #{condition.majorRank}
+                AND majorRank = #{condition.majorRank}
             </if>
             <if test="condition.createDate!=null">
                 AND createDate = #{condition.createDate}
@@ -225,36 +240,38 @@ selectList
                 AND lastModifier = #{condition.lastModifier}
             </if>
             <if test="condition.isDelete!=null">
-                AND is_delete = #{condition.isDelete}
+                AND isDelete = #{condition.isDelete}
             </if>
         </trim>
     </update>
 
     <insert id="insertMap" >
         INSERT INTO zgk_university_major (
-                university_id,
-                major_name,
-                major_type,
-                education_level,
-                gain_degree,
-                major_rank,
-                createDate,
-                creator,
-                lastModDate,
-                lastModifier,
-                is_delete
+        universityId,
+        majorName,
+        majorType,
+        majorSubject,
+        educationLevel,
+        gainDegree,
+        majorRank,
+        createDate,
+        creator,
+        lastModDate,
+        lastModifier,
+        isDelete
         ) VALUES (
-                    #{map.universityId},
-                    #{map.majorName},
-                    #{map.majorType},
-                    #{map.educationLevel},
-                    #{map.gainDegree},
-                    #{map.majorRank},
-                    #{map.createDate},
-                    #{map.creator},
-                    #{map.lastModDate},
-                    #{map.lastModifier},
-                    #{map.isDelete}
+        #{map.universityId},
+        #{map.majorName},
+        #{map.majorType},
+        #{map.majorSubject},
+        #{map.educationLevel},
+        #{map.gainDegree},
+        #{map.majorRank},
+        #{map.createDate},
+        #{map.creator},
+        #{map.lastModDate},
+        #{map.lastModifier},
+        #{map.isDelete}
         )
     </insert>
 
@@ -262,20 +279,21 @@ selectList
     <update id="updateNull" parameterType="UniversityMajor">
         UPDATE zgk_university_major
         <trim prefix="SET" suffixOverrides=",">
-            university_id = #{universityId},
-            major_name = #{majorName},
-            major_type = #{majorType},
-            education_level = #{educationLevel},
-            gain_degree = #{gainDegree},
-            major_rank = #{majorRank},
+            universityId = #{universityId},
+            majorName = #{majorName},
+            majorType = #{majorType},
+            majorSubject = #{majorSubject},
+            educationLevel = #{educationLevel},
+            gainDegree = #{gainDegree},
+            majorRank = #{majorRank},
             createDate = #{createDate},
             creator = #{creator},
             lastModDate = #{lastModDate},
             lastModifier = #{lastModifier},
-            is_delete = #{isDelete},
+            isDelete = #{isDelete},
         </trim>
         WHERE
-        id = #{id} 
+        id = #{id}
     </update>
 
     <!-- 按Id删除 -->
@@ -294,22 +312,25 @@ selectList
                 AND id = #{id}
             </if>
             <if test="universityId!=null">
-                AND university_id = #{universityId}
+                AND universityId = #{universityId}
             </if>
             <if test="majorName!=null">
-                AND major_name = #{majorName}
+                AND majorName = #{majorName}
             </if>
             <if test="majorType!=null">
-                AND major_type = #{majorType}
+                AND majorType = #{majorType}
+            </if>
+            <if test="majorSubject!=null">
+                AND majorSubject = #{majorSubject}
             </if>
             <if test="educationLevel!=null">
-                AND education_level = #{educationLevel}
+                AND educationLevel = #{educationLevel}
             </if>
             <if test="gainDegree!=null">
-                AND gain_degree = #{gainDegree}
+                AND gainDegree = #{gainDegree}
             </if>
             <if test="majorRank!=null">
-                AND major_rank = #{majorRank}
+                AND majorRank = #{majorRank}
             </if>
             <if test="createDate!=null">
                 AND createDate = #{createDate}
@@ -324,7 +345,7 @@ selectList
                 AND lastModifier = #{lastModifier}
             </if>
             <if test="isDelete!=null">
-                AND is_delete = #{isDelete}
+                AND isDelete = #{isDelete}
             </if>
         </trim>
     </delete>
@@ -377,46 +398,49 @@ selectList
         SELECT
         <if test="selector!=null">
             <trim prefixOverrides=",">
-                        <if test="selector.id!=null">
-                            , id
-                        </if>
-                        <if test="selector.universityId!=null">
-                            , university_id
-                        </if>
-                        <if test="selector.majorName!=null">
-                            , major_name
-                        </if>
-                        <if test="selector.majorType!=null">
-                            , major_type
-                        </if>
-                        <if test="selector.educationLevel!=null">
-                            , education_level
-                        </if>
-                        <if test="selector.gainDegree!=null">
-                            , gain_degree
-                        </if>
-                        <if test="selector.majorRank!=null">
-                            , major_rank
-                        </if>
-                        <if test="selector.createDate!=null">
-                            , createDate
-                        </if>
-                        <if test="selector.creator!=null">
-                            , creator
-                        </if>
-                        <if test="selector.lastModDate!=null">
-                            , lastModDate
-                        </if>
-                        <if test="selector.lastModifier!=null">
-                            , lastModifier
-                        </if>
-                        <if test="selector.isDelete!=null">
-                            , is_delete
-                        </if>
+                <if test="selector.id!=null">
+                    , id
+                </if>
+                <if test="selector.universityId!=null">
+                    , universityId
+                </if>
+                <if test="selector.majorName!=null">
+                    , majorName
+                </if>
+                <if test="selector.majorType!=null">
+                    , majorType
+                </if>
+                <if test="selector.majorSubject!=null">
+                    , majorSubject
+                </if>
+                <if test="selector.educationLevel!=null">
+                    , educationLevel
+                </if>
+                <if test="selector.gainDegree!=null">
+                    , gainDegree
+                </if>
+                <if test="selector.majorRank!=null">
+                    , majorRank
+                </if>
+                <if test="selector.createDate!=null">
+                    , createDate
+                </if>
+                <if test="selector.creator!=null">
+                    , creator
+                </if>
+                <if test="selector.lastModDate!=null">
+                    , lastModDate
+                </if>
+                <if test="selector.lastModifier!=null">
+                    , lastModifier
+                </if>
+                <if test="selector.isDelete!=null">
+                    , isDelete
+                </if>
             </trim>
         </if>
         <if test="selector==null">
-        <include refid="Base_Column_List" />
+            <include refid="Base_Column_List" />
         </if>
         FROM zgk_university_major
         <where>
@@ -436,6 +460,9 @@ selectList
             </if>
             <if test="condition.majorType!=null">
                 ${condition.groupOp}   ${condition.majorType.field}  ${condition.majorType.op}  #{condition.majorType.data}
+            </if>
+            <if test="condition.majorSubject!=null">
+                ${condition.groupOp}   ${condition.majorSubject.field}  ${condition.majorSubject.op}  #{condition.majorSubject.data}
             </if>
             <if test="condition.educationLevel!=null">
                 ${condition.groupOp}   ${condition.educationLevel.field}  ${condition.educationLevel.op}  #{condition.educationLevel.data}
@@ -463,9 +490,9 @@ selectList
             </if>
 
 
-    </where>
+        </where>
         <if test="orderBy!=null">
-        ORDER BY ${orderBy} ${sortBy}
+            ORDER BY ${orderBy} ${sortBy}
         </if>
         <if test="offset != null">
             limit ${offset}, ${rows}
@@ -476,116 +503,29 @@ selectList
         SELECT
         <if test="selector!=null">
             <trim prefixOverrides=",">
-                    <if test="selector.id!=null">
-                        , id
-                    </if>
-                    <if test="selector.universityId!=null">
-                        , university_id
-                    </if>
-                    <if test="selector.majorName!=null">
-                        , major_name
-                    </if>
-                    <if test="selector.majorType!=null">
-                        , major_type
-                    </if>
-                    <if test="selector.educationLevel!=null">
-                        , education_level
-                    </if>
-                    <if test="selector.gainDegree!=null">
-                        , gain_degree
-                    </if>
-                    <if test="selector.majorRank!=null">
-                        , major_rank
-                    </if>
-                    <if test="selector.createDate!=null">
-                        , createDate
-                    </if>
-                    <if test="selector.creator!=null">
-                        , creator
-                    </if>
-                    <if test="selector.lastModDate!=null">
-                        , lastModDate
-                    </if>
-                    <if test="selector.lastModifier!=null">
-                        , lastModifier
-                    </if>
-                    <if test="selector.isDelete!=null">
-                        , is_delete
-                    </if>
-            </trim>
-        </if>
-        <if test="selector==null">
-            <include refid="Base_Column_List" />
-        </if>
-        FROM zgk_university_major
-        <trim prefix="WHERE" prefixOverrides="AND | OR">
-            <if test="condition.id!=null">
-                AND id like CONCAT('%', #{condition.id} , '%')
-            </if>
-            <if test="condition.universityId!=null">
-                AND university_id like CONCAT('%', #{condition.universityId} , '%')
-            </if>
-            <if test="condition.majorName!=null">
-                AND major_name like CONCAT('%', #{condition.majorName} , '%')
-            </if>
-            <if test="condition.majorType!=null">
-                AND major_type like CONCAT('%', #{condition.majorType} , '%')
-            </if>
-            <if test="condition.educationLevel!=null">
-                AND education_level like CONCAT('%', #{condition.educationLevel} , '%')
-            </if>
-            <if test="condition.gainDegree!=null">
-                AND gain_degree like CONCAT('%', #{condition.gainDegree} , '%')
-            </if>
-            <if test="condition.majorRank!=null">
-                AND major_rank like CONCAT('%', #{condition.majorRank} , '%')
-            </if>
-            <if test="condition.createDate!=null">
-                AND createDate like CONCAT('%', #{condition.createDate} , '%')
-            </if>
-            <if test="condition.creator!=null">
-                AND creator like CONCAT('%', #{condition.creator} , '%')
-            </if>
-            <if test="condition.lastModDate!=null">
-                AND lastModDate like CONCAT('%', #{condition.lastModDate} , '%')
-            </if>
-            <if test="condition.lastModifier!=null">
-                AND lastModifier like CONCAT('%', #{condition.lastModifier} , '%')
-            </if>
-            <if test="condition.isDelete!=null">
-                AND is_delete like CONCAT('%', #{condition.isDelete} , '%')
-            </if>
-        </trim>
-        <if test="orderBy!=null">
-        ORDER BY ${orderBy} ${sortBy}
-        </if>
-    </select>
-
-
-    <select id="queryList" parameterType="java.util.Map" resultType="UniversityMajor">
-        SELECT
-        <if test="selector!=null">
-            <trim prefixOverrides=",">
                 <if test="selector.id!=null">
                     , id
                 </if>
                 <if test="selector.universityId!=null">
-                    , university_id
+                    , universityId
                 </if>
                 <if test="selector.majorName!=null">
-                    , major_name
+                    , majorName
                 </if>
                 <if test="selector.majorType!=null">
-                    , major_type
+                    , majorType
+                </if>
+                <if test="selector.majorSubject!=null">
+                    , majorSubject
                 </if>
                 <if test="selector.educationLevel!=null">
-                    , education_level
+                    , educationLevel
                 </if>
                 <if test="selector.gainDegree!=null">
-                    , gain_degree
+                    , gainDegree
                 </if>
                 <if test="selector.majorRank!=null">
-                    , major_rank
+                    , majorRank
                 </if>
                 <if test="selector.createDate!=null">
                     , createDate
@@ -600,97 +540,104 @@ selectList
                     , lastModifier
                 </if>
                 <if test="selector.isDelete!=null">
-                    , is_delete
+                    , isDelete
                 </if>
-        </trim>
-    </if>
-<if test="selector==null">
-<include refid="Base_Column_List" />
-</if>
+            </trim>
+        </if>
+        <if test="selector==null">
+            <include refid="Base_Column_List" />
+        </if>
         FROM zgk_university_major
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
-                AND id = #{condition.id}
+                AND id like CONCAT('%', #{condition.id} , '%')
             </if>
             <if test="condition.universityId!=null">
-                AND university_id = #{condition.universityId}
+                AND universityId like CONCAT('%', #{condition.universityId} , '%')
             </if>
             <if test="condition.majorName!=null">
-                AND major_name = #{condition.majorName}
+                AND majorName like CONCAT('%', #{condition.majorName} , '%')
             </if>
             <if test="condition.majorType!=null">
-                AND major_type = #{condition.majorType}
+                AND majorType like CONCAT('%', #{condition.majorType} , '%')
+            </if>
+            <if test="condition.majorSubject!=null">
+                AND majorSubject like CONCAT('%', #{condition.majorSubject} , '%')
             </if>
             <if test="condition.educationLevel!=null">
-                AND education_level = #{condition.educationLevel}
+                AND educationLevel like CONCAT('%', #{condition.educationLevel} , '%')
             </if>
             <if test="condition.gainDegree!=null">
-                AND gain_degree = #{condition.gainDegree}
+                AND gainDegree like CONCAT('%', #{condition.gainDegree} , '%')
             </if>
             <if test="condition.majorRank!=null">
-                AND major_rank = #{condition.majorRank}
+                AND majorRank like CONCAT('%', #{condition.majorRank} , '%')
             </if>
             <if test="condition.createDate!=null">
-                AND createDate = #{condition.createDate}
+                AND createDate like CONCAT('%', #{condition.createDate} , '%')
             </if>
             <if test="condition.creator!=null">
-                AND creator = #{condition.creator}
+                AND creator like CONCAT('%', #{condition.creator} , '%')
             </if>
             <if test="condition.lastModDate!=null">
-                AND lastModDate = #{condition.lastModDate}
+                AND lastModDate like CONCAT('%', #{condition.lastModDate} , '%')
             </if>
             <if test="condition.lastModifier!=null">
-                AND lastModifier = #{condition.lastModifier}
+                AND lastModifier like CONCAT('%', #{condition.lastModifier} , '%')
             </if>
             <if test="condition.isDelete!=null">
-                AND is_delete = #{condition.isDelete}
+                AND isDelete like CONCAT('%', #{condition.isDelete} , '%')
             </if>
         </trim>
         <if test="orderBy!=null">
-        ORDER BY ${orderBy} ${sortBy}
+            ORDER BY ${orderBy} ${sortBy}
         </if>
     </select>
 
-    <select id="queryOne" parameterType="java.util.Map" resultType="UniversityMajor">
+
+    <select id="queryList" parameterType="java.util.Map" resultType="UniversityMajor">
         SELECT
         <if test="selector!=null">
             <trim prefixOverrides=",">
-                    <if test="selector.id!=null">
-                        , id
-                    </if>
-                    <if test="selector.universityId!=null">
-                        , university_id
-                    </if>
-                    <if test="selector.majorName!=null">
-                        , major_name
-                    </if>
-                    <if test="selector.majorType!=null">
-                        , major_type
-                    </if>
-                    <if test="selector.educationLevel!=null">
-                        , education_level
-                    </if>
-                    <if test="selector.gainDegree!=null">
-                        , gain_degree
-                    </if>
-                    <if test="selector.majorRank!=null">
-                        , major_rank
-                    </if>
-                    <if test="selector.createDate!=null">
-                        , createDate
-                    </if>
-                    <if test="selector.creator!=null">
-                        , creator
-                    </if>
-                    <if test="selector.lastModDate!=null">
-                        , lastModDate
-                    </if>
-                    <if test="selector.lastModifier!=null">
-                        , lastModifier
-                    </if>
-                    <if test="selector.isDelete!=null">
-                        , is_delete
-                    </if>
+                <if test="selector.id!=null">
+                    , id
+                </if>
+                <if test="selector.universityId!=null">
+                    , universityId
+                </if>
+                <if test="selector.majorName!=null">
+                    , majorName
+                </if>
+                <if test="selector.majorType!=null">
+                    , majorType
+                </if>
+                <if test="selector.majorSubject!=null">
+                    , majorSubject
+                </if>
+                <if test="selector.educationLevel!=null">
+                    , educationLevel
+                </if>
+                <if test="selector.gainDegree!=null">
+                    , gainDegree
+                </if>
+                <if test="selector.majorRank!=null">
+                    , majorRank
+                </if>
+                <if test="selector.createDate!=null">
+                    , createDate
+                </if>
+                <if test="selector.creator!=null">
+                    , creator
+                </if>
+                <if test="selector.lastModDate!=null">
+                    , lastModDate
+                </if>
+                <if test="selector.lastModifier!=null">
+                    , lastModifier
+                </if>
+                <if test="selector.isDelete!=null">
+                    , isDelete
+                </if>
             </trim>
         </if>
         <if test="selector==null">
@@ -702,22 +649,25 @@ selectList
                 AND id = #{condition.id}
             </if>
             <if test="condition.universityId!=null">
-                AND university_id = #{condition.universityId}
+                AND universityId = #{condition.universityId}
             </if>
             <if test="condition.majorName!=null">
-                AND major_name = #{condition.majorName}
+                AND majorName = #{condition.majorName}
             </if>
             <if test="condition.majorType!=null">
-                AND major_type = #{condition.majorType}
+                AND majorType = #{condition.majorType}
+            </if>
+            <if test="condition.majorSubject!=null">
+                AND majorSubject = #{condition.majorSubject}
             </if>
             <if test="condition.educationLevel!=null">
-                AND education_level = #{condition.educationLevel}
+                AND educationLevel = #{condition.educationLevel}
             </if>
             <if test="condition.gainDegree!=null">
-                AND gain_degree = #{condition.gainDegree}
+                AND gainDegree = #{condition.gainDegree}
             </if>
             <if test="condition.majorRank!=null">
-                AND major_rank = #{condition.majorRank}
+                AND majorRank = #{condition.majorRank}
             </if>
             <if test="condition.createDate!=null">
                 AND createDate = #{condition.createDate}
@@ -732,56 +682,154 @@ selectList
                 AND lastModifier = #{condition.lastModifier}
             </if>
             <if test="condition.isDelete!=null">
-                AND is_delete = #{condition.isDelete}
+                AND isDelete = #{condition.isDelete}
             </if>
         </trim>
         <if test="orderBy!=null">
-        ORDER BY ${orderBy} ${sortBy}
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryOne" parameterType="java.util.Map" resultType="UniversityMajor">
+        SELECT
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                <if test="selector.id!=null">
+                    , id
+                </if>
+                <if test="selector.universityId!=null">
+                    , universityId
+                </if>
+                <if test="selector.majorName!=null">
+                    , majorName
+                </if>
+                <if test="selector.majorType!=null">
+                    , majorType
+                </if>
+                <if test="selector.majorSubject!=null">
+                    , majorSubject
+                </if>
+                <if test="selector.educationLevel!=null">
+                    , educationLevel
+                </if>
+                <if test="selector.gainDegree!=null">
+                    , gainDegree
+                </if>
+                <if test="selector.majorRank!=null">
+                    , majorRank
+                </if>
+                <if test="selector.createDate!=null">
+                    , createDate
+                </if>
+                <if test="selector.creator!=null">
+                    , creator
+                </if>
+                <if test="selector.lastModDate!=null">
+                    , lastModDate
+                </if>
+                <if test="selector.lastModifier!=null">
+                    , lastModifier
+                </if>
+                <if test="selector.isDelete!=null">
+                    , isDelete
+                </if>
+            </trim>
+        </if>
+        <if test="selector==null">
+            <include refid="Base_Column_List" />
+        </if>
+        FROM zgk_university_major
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.universityId!=null">
+                AND universityId = #{condition.universityId}
+            </if>
+            <if test="condition.majorName!=null">
+                AND majorName = #{condition.majorName}
+            </if>
+            <if test="condition.majorType!=null">
+                AND majorType = #{condition.majorType}
+            </if>
+            <if test="condition.majorSubject!=null">
+                AND majorSubject = #{condition.majorSubject}
+            </if>
+            <if test="condition.educationLevel!=null">
+                AND educationLevel = #{condition.educationLevel}
+            </if>
+            <if test="condition.gainDegree!=null">
+                AND gainDegree = #{condition.gainDegree}
+            </if>
+            <if test="condition.majorRank!=null">
+                AND majorRank = #{condition.majorRank}
+            </if>
+            <if test="condition.createDate!=null">
+                AND createDate = #{condition.createDate}
+            </if>
+            <if test="condition.creator!=null">
+                AND creator = #{condition.creator}
+            </if>
+            <if test="condition.lastModDate!=null">
+                AND lastModDate = #{condition.lastModDate}
+            </if>
+            <if test="condition.lastModifier!=null">
+                AND lastModifier = #{condition.lastModifier}
+            </if>
+            <if test="condition.isDelete!=null">
+                AND isDelete = #{condition.isDelete}
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
         </if>
         limit 0,1
     </select>
 
     <select id="count" resultType="java.lang.Integer">
         SELECT count(id) FROM zgk_university_major
-       <where>
-           <if test="id!=null">
-               ${groupOp} ${id.field} ${id.op}  #{id.data}
-           </if>
-           <if test="universityId!=null">
-               ${groupOp} ${universityId.field} ${universityId.op}  #{universityId.data}
-           </if>
-           <if test="majorName!=null">
-               ${groupOp} ${majorName.field} ${majorName.op}  #{majorName.data}
-           </if>
-           <if test="majorType!=null">
-               ${groupOp} ${majorType.field} ${majorType.op}  #{majorType.data}
-           </if>
-           <if test="educationLevel!=null">
-               ${groupOp} ${educationLevel.field} ${educationLevel.op}  #{educationLevel.data}
-           </if>
-           <if test="gainDegree!=null">
-               ${groupOp} ${gainDegree.field} ${gainDegree.op}  #{gainDegree.data}
-           </if>
-           <if test="majorRank!=null">
-               ${groupOp} ${majorRank.field} ${majorRank.op}  #{majorRank.data}
-           </if>
-           <if test="createDate!=null">
-               ${groupOp} ${createDate.field} ${createDate.op}  #{createDate.data}
-           </if>
-           <if test="creator!=null">
-               ${groupOp} ${creator.field} ${creator.op}  #{creator.data}
-           </if>
-           <if test="lastModDate!=null">
-               ${groupOp} ${lastModDate.field} ${lastModDate.op}  #{lastModDate.data}
-           </if>
-           <if test="lastModifier!=null">
-               ${groupOp} ${lastModifier.field} ${lastModifier.op}  #{lastModifier.data}
-           </if>
-           <if test="isDelete!=null">
-               ${groupOp} ${isDelete.field} ${isDelete.op}  #{isDelete.data}
-           </if>
+        <where>
+            <if test="id!=null">
+                ${groupOp} ${id.field} ${id.op}  #{id.data}
+            </if>
+            <if test="universityId!=null">
+                ${groupOp} ${universityId.field} ${universityId.op}  #{universityId.data}
+            </if>
+            <if test="majorName!=null">
+                ${groupOp} ${majorName.field} ${majorName.op}  #{majorName.data}
+            </if>
+            <if test="majorType!=null">
+                ${groupOp} ${majorType.field} ${majorType.op}  #{majorType.data}
+            </if>
+            <if test="majorSubject!=null">
+                ${groupOp} ${majorSubject.field} ${majorSubject.op}  #{majorSubject.data}
+            </if>
+            <if test="educationLevel!=null">
+                ${groupOp} ${educationLevel.field} ${educationLevel.op}  #{educationLevel.data}
+            </if>
+            <if test="gainDegree!=null">
+                ${groupOp} ${gainDegree.field} ${gainDegree.op}  #{gainDegree.data}
+            </if>
+            <if test="majorRank!=null">
+                ${groupOp} ${majorRank.field} ${majorRank.op}  #{majorRank.data}
+            </if>
+            <if test="createDate!=null">
+                ${groupOp} ${createDate.field} ${createDate.op}  #{createDate.data}
+            </if>
+            <if test="creator!=null">
+                ${groupOp} ${creator.field} ${creator.op}  #{creator.data}
+            </if>
+            <if test="lastModDate!=null">
+                ${groupOp} ${lastModDate.field} ${lastModDate.op}  #{lastModDate.data}
+            </if>
+            <if test="lastModifier!=null">
+                ${groupOp} ${lastModifier.field} ${lastModifier.op}  #{lastModifier.data}
+            </if>
+            <if test="isDelete!=null">
+                ${groupOp} ${isDelete.field} ${isDelete.op}  #{isDelete.data}
+            </if>
 
-       </where>
+        </where>
     </select>
 
     <select id="selectMaxId" resultType="java.lang.Long">
