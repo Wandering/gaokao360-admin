@@ -80,7 +80,9 @@ public class Gaokao360CommonExController extends AbstractCommonController {
             }
         }
         try {
-            DelUtil.getInstance().innerHandleDel(mainObj, dataMap);
+            DelUtil delUtil = DelUtil.getInstance();
+            delUtil.setServiceMaps(serviceMaps);
+            delUtil.innerHandleDel(mainObj, dataMap);
         }catch (Exception e){
             getServiceMaps().get(mainObj).delete(dataMap.get("id"));
         }
@@ -102,15 +104,21 @@ public class Gaokao360CommonExController extends AbstractCommonController {
             }
         }
         try {
-            UpdateUtil.getInstance().innerHandleUpdate(mainObj, dataMap);
+            UpdateUtil updateUtil = UpdateUtil.getInstance();
+            updateUtil.setServiceMaps(serviceMaps);
+            updateUtil.innerHandleUpdate(mainObj, dataMap);
         } catch (Exception e) {
             super.innerHandleDel(mainObj,dataMap);
         }
     }
     @Override
     protected void innerHandleAdd(String mainObj, Map dataMap) {
+//        AddUtil.getInstance().universityenrolling();
         try {
-            AddUtil.getInstance().innerHandleAdd(mainObj,dataMap);
+            AddUtil addUtil = AddUtil.getInstance();
+            addUtil.setServiceMaps(serviceMaps);
+            addUtil.innerHandleAdd(mainObj,dataMap);
+
         }catch (Exception e){
             super.innerHandleAdd(mainObj, dataMap);
         }
@@ -217,7 +225,9 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     @ResponseBody
     public Object queryOne(@PathVariable String mainObj,@RequestParam("id")String id){
         try {
-            return QueryoneUtil.getInstance().innerHandleUQueryone(mainObj,id);
+            QueryoneUtil queryoneUtil = QueryoneUtil.getInstance();
+            queryoneUtil.setServiceMaps(serviceMaps);
+            return queryoneUtil.runMethod(mainObj,id);
         } catch (Exception e) {
             return serviceMaps.get(mainObj).fetch(id);
         }

@@ -54,14 +54,14 @@ public class UpdateUtil extends BaseCommonUtil{
         runMethod(mainObj);
     }
     public void runMethod(String mainObj) throws Exception {
-            this.getClass().getMethod(mainObj).invoke(null);
+        this.getClass().getMethod(mainObj).invoke(this);
     }
     /**
      * 下面是各个模块的修改方法，请使用mainObj来命名 例如areabatchline，会自动调用，否则会抛异常走默认接口
      */
 
 
-    public void gkPsychology(){
+    public void gkpsychology(){
         getServiceMaps().get("videocourse").updateMap(dataMap);
         Long lid = (Long)dataMap.get("id");
         String sectionId=null;
