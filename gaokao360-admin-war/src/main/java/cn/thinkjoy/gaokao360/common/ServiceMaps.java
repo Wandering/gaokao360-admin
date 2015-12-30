@@ -83,6 +83,16 @@ public class ServiceMaps extends BaseServiceMaps{
 
     @Autowired
     private IUniversityEnrollingService universityEnrollingService;
+
+    @Autowired
+    private IProfessionService professionService;
+
+    @Autowired
+    private IProfessionDetailService professionDetailService;
+
+    @Autowired
+    private IProfessionTypeService professionTypeService;
+
     @Autowired
     private IMajorService majorService;
     @Autowired
@@ -131,6 +141,10 @@ public class ServiceMaps extends BaseServiceMaps{
         serviceMap.put("majored",majoredExService);
         serviceMap.put("majorDetail",majorDetailService);
         serviceMap.put("major",majorService);
+        serviceMap.put("profession",professionService);
+        serviceMap.put("professiondetail",professionDetailService);
+        serviceMap.put("professiontype",professionTypeService);
+
     }
 
 }
