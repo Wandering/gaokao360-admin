@@ -2,7 +2,7 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  UniversityMajor.java 2015-12-30 16:09:54 $
+ * $Id:  UniversityMajor.java 2015-12-30 20:35:48 $
  */
 
 
@@ -22,6 +22,10 @@ import java.util.*;
 public class UniversityMajor extends CreateBaseDomain<Long>{
     /** 学校ID */
     private Long universityId;
+    /** 学校名称 */
+    private String universityName;
+    /** 专业Id */
+    private Long majorId;
     /** 专业名称 */
     private String majorName;
     /** 专业类型 */
@@ -35,7 +39,7 @@ public class UniversityMajor extends CreateBaseDomain<Long>{
     /** 专业排名 */
     private Integer majorRank;
     /**  */
-    private Boolean isDelete;
+    private String isDelete;
 
     public UniversityMajor(){
     }
@@ -45,6 +49,20 @@ public class UniversityMajor extends CreateBaseDomain<Long>{
 
     public Long getUniversityId() {
         return this.universityId;
+    }
+    public void setUniversityName(String value) {
+        this.universityName = value;
+    }
+
+    public String getUniversityName() {
+        return this.universityName;
+    }
+    public void setMajorId(Long value) {
+        this.majorId = value;
+    }
+
+    public Long getMajorId() {
+        return this.majorId;
     }
     public void setMajorName(String value) {
         this.majorName = value;
@@ -90,18 +108,20 @@ public class UniversityMajor extends CreateBaseDomain<Long>{
     }
 
 
-    public void setIsDelete(Boolean value) {
+    public void setIsDelete(String value) {
         this.isDelete = value;
     }
 
-    public Boolean getIsDelete() {
+    public String getIsDelete() {
         return this.isDelete;
     }
 
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
                 .append("Id",getId())
-                .append("UniversityId", getUniversityId())
+                .append("UniversityId",getUniversityId())
+                .append("UniversityName",getUniversityName())
+                .append("MajorId",getMajorId())
                 .append("MajorName",getMajorName())
                 .append("MajorType",getMajorType())
                 .append("MajorSubject",getMajorSubject())
@@ -127,7 +147,7 @@ public class UniversityMajor extends CreateBaseDomain<Long>{
         if(this == obj) return true;
         UniversityMajor other = (UniversityMajor)obj;
         return new EqualsBuilder()
-                .append(getId(),other.getId())
+                .append(getId(), other.getId())
                 .isEquals();
     }
 }

@@ -229,7 +229,7 @@ var CommonFn = {
                 contentArr.push('<option value="' + provinceId + '">' + provinceName + '</option>');
             }
         });
-        return contentArr;
+        return contentArr.join('');
     },
     // date
     renderDate: function (obj) {
@@ -310,7 +310,7 @@ var CommonFn = {
                 contentArr.push('<option value="' + subjectId + '">' + subjectName + '</option>');
             }
         });
-        return contentArr;
+        return contentArr.join('');
     },
     // 年份
     getYear: function () {
@@ -323,15 +323,16 @@ var CommonFn = {
                 contentArr.push('<option value="' + year + '">' + year + '</option>');
             }
         });
-        return contentArr;
+        return contentArr.join('');
     },
     // 获取全国学校
     getAllSchool: function (name) {
-        var contentArr = [];
-        contentArr.push('<option value="00">请选择年份</option>');
+        var contentArr = null;
         $.ajaxSettings.async = false;
         CommonFn.getData(CommonFn.url.AllSchoolUrl, 'Post', {name:name}, function (result) {
-            contentArr.push(result.bizData);
+            if (result.rtnCode == "0000000") {
+                contentArr = result.bizData;
+            }
         });
         return contentArr;
     },
@@ -348,7 +349,7 @@ var CommonFn = {
             }
 
         });
-        return contentArr;
+        return contentArr.join('');
     }
 
 
