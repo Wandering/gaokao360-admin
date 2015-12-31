@@ -2,7 +2,7 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  UniversityEnrolling.java 2015-12-29 09:54:16 $
+ * $Id:  UniversityEnrolling.java 2015-12-30 17:34:17 $
  */
 
 
@@ -20,6 +20,8 @@ import cn.thinkjoy.common.domain.CreateBaseDomain;
 import java.util.*;
 
 public class UniversityEnrolling extends CreateBaseDomain<Long>{
+    /**  */
+    private String areaId;
     /** 专业所属学校ID */
     private Long universityId;
     /** 年份 */
@@ -53,6 +55,13 @@ public class UniversityEnrolling extends CreateBaseDomain<Long>{
 
 	public UniversityEnrolling(){
 	}
+    public void setAreaId(String value) {
+        this.areaId = value;
+    }
+
+    public String getAreaId() {
+        return this.areaId;
+    }
     public void setUniversityId(Long value) {
         this.universityId = value;
     }
@@ -151,8 +160,6 @@ public class UniversityEnrolling extends CreateBaseDomain<Long>{
     public Integer getAveragePrecedence() {
         return this.averagePrecedence;
     }
-
-
     public void setIsDelete(Boolean value) {
         this.isDelete = value;
     }
@@ -164,6 +171,7 @@ public class UniversityEnrolling extends CreateBaseDomain<Long>{
 	public String toString() {
 		return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
 			.append("Id",getId())
+			.append("AreaId",getAreaId())
 			.append("UniversityId",getUniversityId())
 			.append("Year",getYear())
 			.append("Batch",getBatch())

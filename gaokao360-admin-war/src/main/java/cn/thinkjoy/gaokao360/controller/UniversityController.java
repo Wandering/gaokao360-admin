@@ -2,13 +2,11 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  UniversityController.java 2015-12-16 18:39:46 $
+ * $Id:  UniversityController.java 2015-12-30 11:42:40 $
  */
 
-package cn.thinkjoy.gaokao360.controller.baseinfo;
+package cn.thinkjoy.gaokao360.controller;
 
-import cn.thinkjoy.gaokao360.controller.BaseController;
-import cn.thinkjoy.gaokao360.service.IUniversityDictService;
 import cn.thinkjoy.gaokao360.service.IUniversityService;
 import cn.thinkjoy.common.managerui.dao.IResourceGridDAO;
 import cn.thinkjoy.common.managerui.service.IResourceGridService;
@@ -18,8 +16,6 @@ import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -39,8 +35,6 @@ public class UniversityController extends BaseController<IUniversityService> {
 
     @Autowired
     private IUniversityService universityService;
-    @Autowired
-    private IUniversityDictService universityDictService;
 
     /**
      * 页面主请求

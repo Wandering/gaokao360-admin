@@ -390,7 +390,7 @@ selectList
                             , discipline_categories
                         </if>
                         <if test="selector.majorName!=null">
-                            , major_name
+                            , major_name as majorName
                         </if>
                         <if test="selector.employmentRank!=null">
                             , employment_rank
@@ -579,7 +579,7 @@ selectList
                     , discipline_categories
                 </if>
                 <if test="selector.majorName!=null">
-                    , major_name
+                    , major_name as majorName
                 </if>
                 <if test="selector.employmentRank!=null">
                     , employment_rank

@@ -96,7 +96,8 @@
             beforeProcessing: function (data) {
                 if ("0000000" != data.rtnCode) {
                     //TODO
-                    alert("请求远程数据失败！" + data.msg)
+                    console.log("请求远程数据失败！" + data.msg)
+//                    alert("请求远程数据失败！" + data.msg)
                 }
             },
             loadComplete: function (data) { //完成服务器请求后，回调函数

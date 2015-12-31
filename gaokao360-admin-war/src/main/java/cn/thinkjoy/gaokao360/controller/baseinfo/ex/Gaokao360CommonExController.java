@@ -12,8 +12,7 @@ import cn.thinkjoy.common.managerui.controller.AbstractCommonController;
 import cn.thinkjoy.common.managerui.controller.helpers.BaseServiceMaps;
 import cn.thinkjoy.common.service.IBaseService;
 import cn.thinkjoy.common.utils.ActionEnum;
-import cn.thinkjoy.gaokao360.common.DomainReflex;
-import cn.thinkjoy.gaokao360.common.ServiceMaps;
+import cn.thinkjoy.gaokao360.common.*;
 import cn.thinkjoy.gaokao360.domain.GkinformationGkhot;
 import cn.thinkjoy.gaokao360.domain.PolicyInterpretation;
 import cn.thinkjoy.gaokao360.domain.VideoCourse;
@@ -80,26 +79,51 @@ public class Gaokao360CommonExController extends AbstractCommonController {
                 delFileUrl(gkinformationGkhot.getHtmlId());
             }
         }
-        if("auditorium".equals(mainObj)||"gkPsychology".equals(mainObj)){
-            serviceMaps.get("videocourse").delete(dataMap.get("id"));
-            Map<String,Object> map=new HashMap<>();
-            map.put("courseId",dataMap.get("id"));
-            serviceMaps.get("videosection").deleteByCondition(map);
-        }else if("gkheadline".equals(mainObj)){
-            serviceMaps.get("gkinformationgkhot").delete(dataMap.get("id"));
-        }else if("majored".equals(mainObj)){
-            serviceMaps.get("major").delete(dataMap.get("id"));
-            serviceMaps.get("majorDetail").delete(dataMap.get("id"));
-        }else if("university".equals(mainObj)) {
-            universityExService.deleteUniversity(dataMap);
-        }else if("majoredcategory".equals(mainObj)) {
-            majoredCategoryExService.deleteCategory(dataMap);
-        }else {
+        try {
+            DelUtil delUtil = DelUtil.getInstance();
+            delUtil.setServiceMaps(serviceMaps);
+            delUtil.innerHandleDel(mainObj, dataMap);
+        }catch (Exception e){
             getServiceMaps().get(mainObj).delete(dataMap.get("id"));
         }
 
     }
 
+    @Override
+    protected void innerHandleUpdate(String mainObj, Map dataMap) {
+        if("policyinterpretation".equals(mainObj)){
+            PolicyInterpretation policyInterpretation = (PolicyInterpretation)serviceMaps.get(mainObj).fetch(dataMap.get("id"));
+            if(policyInterpretation!=null && policyInterpretation.getHtmlId()!=null) {
+                delFileUrl(policyInterpretation.getHtmlId());
+            }
+
+        }else if("gkinformationgkhot".equals(mainObj)){
+            GkinformationGkhot gkinformationGkhot =(GkinformationGkhot)serviceMaps.get(mainObj).fetch(dataMap.get("id"));
+            if(gkinformationGkhot!=null && gkinformationGkhot.getHtmlId()!=null) {
+                delFileUrl(gkinformationGkhot.getHtmlId());
+            }
+        }
+        try {
+            UpdateUtil updateUtil = UpdateUtil.getInstance();
+            updateUtil.setServiceMaps(serviceMaps);
+            updateUtil.innerHandleUpdate(mainObj, dataMap);
+        } catch (Exception e) {
+            super.innerHandleDel(mainObj,dataMap);
+        }
+    }
+    @Override
+    protected void innerHandleAdd(String mainObj, Map dataMap) {
+//        AddUtil.getInstance().universityenrolling();
+        try {
+            AddUtil addUtil = AddUtil.getInstance();
+            addUtil.setServiceMaps(serviceMaps);
+            addUtil.innerHandleAdd(mainObj,dataMap);
+
+        }catch (Exception e){
+            super.innerHandleAdd(mainObj, dataMap);
+        }
+
+    }
     /**
      * 查询所有的科目
      * @return
@@ -192,57 +216,6 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         return  htmlString;
     }
 
-    @Override
-    protected void innerHandleAdd(String mainObj, Map dataMap) {
-        if("areabatchline".equals(mainObj)){
-            Map<String,Object> map= new HashMap<>();
-            map.put("areaId",dataMap.get("areaId"));
-            serviceMaps.get("areabatchline").deleteByCondition(map);
-        }
-        if("admissionbatch".equals(mainObj)){
-            admissionBatchExService.insertMap(dataMap);
-        }else if("gkheadline".equals(mainObj)){
-            dataMap.put("type", 1);
-            serviceMaps.get("gkinformationgkhot").insertMap(dataMap);
-        }else if("gkinformationgkhot".equals(mainObj)){
-            dataMap.put("type", 0);
-            serviceMaps.get("gkinformationgkhot").insertMap(dataMap);
-        }else if("majored".equals(mainObj)){
-            serviceMaps.get("major").insertMap(dataMap);
-            Long lid =(Long)serviceMaps.get("major").selectMaxId();
-            dataMap.put("id",lid);
-            majoredExService.insertMapDetail(dataMap);
-        }else if("auditorium".equals(mainObj)||"gkPsychology".equals(mainObj)){
-            serviceMaps.get("videocourse").insertMap(dataMap);
-            Long lid = (Long)serviceMaps.get("videocourse").selectMaxId();
-            String sectionId=null;
-            if(dataMap.containsKey("videoSectionDTOs")){
-                sectionId = (String)dataMap.get("videoSectionDTOs");
-            }
-            if(sectionId!=null){
-                JSONArray jsonArray = null;
-                jsonArray = JSON.parseArray(sectionId);
-                List<HashMap<String,Object>> maps= handleJSONArray(jsonArray);
-                for(Map map:maps){
-                    VideoSection v = new VideoSection();
-                    try {
-                        DomainReflex.getObj(map, v);
-                    } catch (Exception e) {
-                        throw new BizException("","map转换异常");
-                    }
-                    v.setCourseId(lid);
-                    serviceMaps.get("videosection").insert(v);
-                }
-            }
-        }else if("university".equals(mainObj)){
-            universityExService.insertUniversity(dataMap);
-        }else if("majoredcategory".equals(mainObj)){
-            majoredCategoryExService.insertCategory(dataMap);
-        }else{
-            super.innerHandleAdd(mainObj, dataMap);
-        }
-
-    }
 
     /**
      * 公共获取单条数据的方法
@@ -251,27 +224,14 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     @RequestMapping(value="/{mainObj}queryone")
     @ResponseBody
     public Object queryOne(@PathVariable String mainObj,@RequestParam("id")String id){
-        if("university".equals(mainObj)){
-            return serviceMaps.get(mainObj+"ex").fetch(id);
-        }else if("majoredcategory".equals(mainObj)){
-            return majoredCategoryExService.fetch(id);
-        }else if("gkheadline".equals(mainObj)){
-            return serviceMaps.get("gkinformationgkhot").fetch(id);
-        }else if("majored".equals(mainObj)){
-            return serviceMaps.get("majored"+"ex").fetch(id);
-        }else if("auditorium".equals(mainObj)||"gkpsychology".equals(mainObj)){
-            VideoCourse videoCourse=(VideoCourse)serviceMaps.get("videocourse").fetch(id);
-            VideoCourseDTO videoCourseDTO = new VideoCourseDTO();
-            try {
-                DomainReflex.ObjToDTO(videoCourse, videoCourseDTO);
-            } catch (Exception e) {
-                throw new BizException("","类型转换异常");
-            }
-            videoCourseDTO.setVideoSectionDTO((List<VideoSectionDTO>) videoSectionExService.getVideoSectionByCourseId(id));
-            return videoCourseDTO;
-        }else{
+        try {
+            QueryoneUtil queryoneUtil = QueryoneUtil.getInstance();
+            queryoneUtil.setServiceMaps(serviceMaps);
+            return queryoneUtil.runMethod(mainObj,id);
+        } catch (Exception e) {
             return serviceMaps.get(mainObj).fetch(id);
         }
+
     }
 
 
@@ -372,58 +332,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         }
         return st;
     }
-    @Override
-    protected void innerHandleUpdate(String mainObj, Map dataMap) {
-        if("policyinterpretation".equals(mainObj)){
-            PolicyInterpretation policyInterpretation = (PolicyInterpretation)serviceMaps.get(mainObj).fetch(dataMap.get("id"));
-            if(policyInterpretation!=null && policyInterpretation.getHtmlId()!=null) {
-                delFileUrl(policyInterpretation.getHtmlId());
-            }
 
-        }else if("gkinformationgkhot".equals(mainObj)){
-            GkinformationGkhot gkinformationGkhot =(GkinformationGkhot)serviceMaps.get(mainObj).fetch(dataMap.get("id"));
-            if(gkinformationGkhot!=null && gkinformationGkhot.getHtmlId()!=null) {
-                delFileUrl(gkinformationGkhot.getHtmlId());
-            }
-        }
-        if("auditorium".equals(mainObj)||"gkPsychology".equals(mainObj)){
-            serviceMaps.get("videocourse").updateMap(dataMap);
-            Long lid = (Long)dataMap.get("id");
-            String sectionId=null;
-            if(dataMap.containsKey("videoSectionDTOs")){
-                sectionId = (String)dataMap.get("videoSectionDTOs");
-            }
-            if(sectionId!=null){
-                Map<String,Object> map1=new HashMap<>();
-                map1.put("courseId", dataMap.get("id"));
-                JSONArray jsonArray = null;
-                jsonArray = JSON.parseArray(sectionId);
-                List<HashMap<String,Object>> maps= handleJSONArray(jsonArray);
-
-                for(Map map:maps){
-                    VideoSection v = new VideoSection();
-                    try {
-                        DomainReflex.getObj(map, v);
-                    } catch (Exception e) {
-                        throw new BizException("","map转换异常");
-                    }
-                    v.setCourseId(lid);
-                    serviceMaps.get("videosection").insert(v);
-                }
-            }
-        }else if("majored".equals(mainObj)){
-            serviceMaps.get("major").updateMap(dataMap);
-            serviceMaps.get("majorDetail").updateMap(dataMap);
-        }else if("gkheadline".equals(mainObj)){
-            serviceMaps.get("gkinformationgkhot").updateMap(dataMap);
-        }else if("university".equals(mainObj)){
-            universityExService.updateUniversity(dataMap);
-        }else if("majoredcategory".equals(mainObj)){
-            majoredCategoryExService.updateCategory(dataMap);
-        }else {
-            super.innerHandleUpdate(mainObj, dataMap);
-        }
-    }
 
 
     @Override

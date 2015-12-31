@@ -6,7 +6,9 @@
             <div class="form-group col-sm-2">
                 <input type="text" class="keywordSearch" placeholder="关键字查询" id="title">
             </div>
-
+            <div class="form-group col-sm-2">
+                按学历查询:&nbsp;&nbsp;<select name="" id=""></select>
+            </div>
             <div class="form-group col-sm-2">
                 <button type="button" class="btn btn-purple btn-sm" id="search">搜索<i
                         class="ace-icon fa fa-search icon-on-right bigger-110"></i></button>

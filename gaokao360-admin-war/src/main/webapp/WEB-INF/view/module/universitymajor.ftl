@@ -20,12 +20,12 @@
 <#include "breadcrumbs.ftl">
         <!-- /section:basics/content.breadcrumbs -->
 
-<#include "/module/custome/universitymajored_page_grid.ftl">
+<#include "/module/custome/universitymajor_page_grid.ftl">
     </div><!-- /.main-content -->
 
 <#include "footer.html">    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
         <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
     </a>
 </div><!-- /.main-container -->
-<#include "/module/custome/script/universitymajored_biz_script.ftl"></body>
+<#include "/module/custome/script/universitymajor_biz_script.ftl"></body>
 </html>
