@@ -34,86 +34,27 @@
     </div>
 
 
-    <div class="row" id="dialogHtml" style="display: block;">
-        <div class="col-xs-12">
-            <form class="form-horizontal" role="form">
-                <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right"> 省份：</label>
-                    <div class="col-sm-4">
-                        <select class="form-control" id="selProvince2"></select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right"> 院校名称：</label>
-                    <div class="col-sm-4">
-                        <input id="autoSearch" type="text" class="form-control" placeholder="请输入学校查询"/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right"> 年份：</label>
-                    <div class="col-sm-4">
-                        <select class="form-control" id="selYears2"></select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right"> 文史类招生：</label>
-                    <div class="col-sm-8">
-                        <div class="subjectTypeList">
-                            <select class="form-control subjectType-wenshi" style="width:50%"></select>
-                            <div class="form-group" style="display: none;">
-                                <div class="col-sm-10">
-                                    计划数：<input type="text" class="input-small" placeholder="计划数"/>
-                                    录取数：<input type="text" class="input-small" placeholder="录取数"/>
-                                    最高分：<input type="text" class="input-small" placeholder="最高分"/>
-                                    最高位次：<input type="text" class="input-small" placeholder="最高位次"/>
-                                    <br /><br />
-                                    最低分：<input type="text" class="input-small" placeholder="最低分"/>
-                                    最低位次：<input type="text" class="input-small" placeholder="最低位次"/>
-                                    平均分：<input type="text" class="input-small" placeholder="平均分"/>
-                                    平均位次：<input type="text" class="input-small" placeholder="平均位次"/>
-                                    <button class="btn btn-minier btn-pink" class="deleteSubjectTypeBtn">删除</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="">
-                            <select class="form-control" style="width:50%" class="subjectType-wenshi"></select>
-                            <br/>
-                            <div class="form-group">
-                                <div class="col-sm-10">
-                                    计划数：<input type="text" class="input-small" placeholder="计划数"/>
-                                    录取数：<input type="text" class="input-small" placeholder="录取数"/>
-                                    最高分：<input type="text" class="input-small" placeholder="最高分"/>
-                                    最高位次：<input type="text" class="input-small" placeholder="最高位次"/>
-                                    <br /><br />
-                                    最低分：<input type="text" class="input-small" placeholder="最低分"/>
-                                    最低位次：<input type="text" class="input-small" placeholder="最低位次"/>
-                                    平均分：<input type="text" class="input-small" placeholder="平均分"/>
-                                    平均位次：<input type="text" class="input-small" placeholder="平均位次"/>
-                                    <button class="btn btn-minier btn-pink" class="deleteSubjectTypeBtn">删除</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <button class="btn btn-sm btn-primary" id="subjectTypeBtn1">增加
-                        </button>
-                    </div>
-                </div>
-                <div id="subjectTypeForm1"></div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right"> 理工类招生：</label>
-                    <div class="col-sm-4">
-                        <select class="form-control" id="subjectType-ligong"></select>
-                    </div>
-                    <div class="col-sm-4">
-                        <button class="btn btn-sm btn-primary" id="subjectTypeBtn2">增加
-                        </button>
-                    </div>
-                </div>
-                <div class="form-group" id="subjectTypeForm1"></div>
-            </form>
-        </div>
-    </div>
+
+
+    <style>
+
+        .subjectTypeDetail{
+            display: none;
+        }
+        .subjectType{
+            display: inline-block;
+            margin:0 10px 10px 0;
+        }
+        .line{
+            height:1px;
+            font-size:0;
+            background: #ccc;
+            margin:10px 0;
+        }
+        .ui-front{
+            z-index:9999;
+        }
+    </style>
 
 
 <#include 'page_grid.ftl'>
