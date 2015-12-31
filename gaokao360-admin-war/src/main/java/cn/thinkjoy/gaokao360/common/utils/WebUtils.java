@@ -8,10 +8,10 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -19,10 +19,9 @@ import java.util.Map;
  */
 public class WebUtils {
 
-    public static String saveContentAsHtml(HttpServletRequest req, String content){
+    public static Map<String, Object> saveContentAsHtml(String path, String content){
         String result =null;
         String filename = "gk" + System.currentTimeMillis() + ".html";
-        String path = req.getSession().getServletContext().getRealPath("/upload");
         String url = "http://cs-dev.thinkjoy.com.cn/rest/v1/uploadFile";
         try {
             try {
@@ -51,15 +50,26 @@ public class WebUtils {
             if(file.exists()){
                 file.delete();
             }
-
         }
         Map<String, Object> obj = (Map<String, Object>)JSON.parse(result);
         Map<String,Object> data = (Map<String, Object>)obj.get("bizData");
+        Map<String, Object> resultMap = new HashMap<String, Object>();
         if(Boolean.parseBoolean(data.get("result")+""))
         {
-            Map<String, String> fileMap= (Map<String, String>)data.get("file");
-            result = fileMap.get("fileUrl");
+            resultMap= (Map<String, Object>)data.get("file");
         }
+        return resultMap;
+    }
+
+    public static String delFileUrl(Object id){
+        String result =null;
+        String url = "http://cs-dev.thinkjoy.com.cn/rest/v1/delFile?fileId="+id;
+        try {
+            RestTemplate template = new RestTemplate();
+            template.getMessageConverters().add(new FastJsonHttpMessageConverter());
+            result = template.getForObject(url, String.class);
+        }catch (Exception ex){}
         return result;
     }
+
 }
