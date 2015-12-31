@@ -39,7 +39,7 @@ public class UniversityMajor extends CreateBaseDomain<Long>{
     /** 专业排名 */
     private Integer majorRank;
     /**  */
-    private Boolean isDelete;
+    private String isDelete;
 
     public UniversityMajor(){
     }
@@ -108,11 +108,11 @@ public class UniversityMajor extends CreateBaseDomain<Long>{
     }
 
 
-    public void setIsDelete(Boolean value) {
+    public void setIsDelete(String value) {
         this.isDelete = value;
     }
 
-    public Boolean getIsDelete() {
+    public String getIsDelete() {
         return this.isDelete;
     }
 
