@@ -5,7 +5,7 @@
         var status = $('#status').val();
         var classfyId = $('#classfyId').val();
         var rules = [];
-        if (courseName != ''&&courseName!=null&&courseName!=undefined) {
+        if (courseName != '' && courseName != null && courseName != undefined) {
             var rule = {
                 'field': 'courseName',
                 'op': 'eq',
@@ -13,7 +13,7 @@
             }
             rules.push(rule);
         }
-        if (status != ''&&status!=null&&status!=undefined) {
+        if (status != '' && status != null && status != undefined) {
             var rule = {
                 'field': 'status',
                 'op': 'eq',
@@ -21,7 +21,7 @@
             }
             rules.push(rule);
         }
-        if (classfyId != ''&&classfyId!=null&&classfyId!=undefined) {
+        if (classfyId != '' && classfyId != null && classfyId != undefined) {
             var rule = {
                 'field': 'classfyId',
                 'op': 'eq',
@@ -31,7 +31,7 @@
         }
         return rules;
     }
-    function searchLoad(){
+    function searchLoad() {
         var url = "/admin/${bizSys}/${mainObj}s";
 
         var rules = buildRules();
@@ -41,7 +41,12 @@
             "rules": rules
         };
 
-        $("#grid-table").jqGrid('setGridParam', {url:url,mtype:"POST",postData:"filters="+JSON.stringify(filters),page: 1}).trigger("reloadGrid");
+        $("#grid-table").jqGrid('setGridParam', {
+            url: url,
+            mtype: "POST",
+            postData: "filters=" + JSON.stringify(filters),
+            page: 1
+        }).trigger("reloadGrid");
 
 
     }
@@ -59,13 +64,12 @@
     * */
 
     jQuery(function ($) {
-
+        var typeStr, rowId;
         var UI = {
             $addBtn: $('#addBtn')
             , $editBtn: $('#editBtn')
             , $deleteBtn: $('#deleteBtn')
         };
-        var typeStr, rowId;
 
 //        添加
         UI.$addBtn.on(ace.click_event, function () {
@@ -112,6 +116,14 @@
                     }
                 }
             });
+            // 获取当前行数据
+//            var rowData = CommonFn.getRowData(rowId);
+//            UI.$majoredCategoryName.val(rowData[0].name);
+//            var dataList = rowData[0].majoredCategoryDTOs;
+//            var list = '';
+//            for(var i in dataList){
+//                list += dataList[i].name+'、';
+//            }
         });
 //        当前行数据
         var rowData = CommonFn.getRowData(rowId);
@@ -121,6 +133,34 @@
         CommonFn.deleteFun('#deleteBtn', '${mainObj}');
 //          添加修改方法
         function addAndEditFun() {
+//            验证
+            var $professionType = $('#professionType').val().trim();
+            if ($professionType.length == '') {
+                CommonFn.tipsDialog('温馨提示', '行业名称不能为空');
+                return false;
+            }
+            if ($professionType.length > 8) {
+                CommonFn.tipsDialog('温馨提示', '行业名称不能大于8个字');
+                return false;
+            }
+            var $content = $('#content').val().trim();
+            if ($content.length == '') {
+                CommonFn.tipsDialog('温馨提示', '职业分类不能为空');
+                return false;
+            }
+            var data = {
+                oper: typeStr
+                , professionType: $('#professionType').val().trim()
+                , content: $('#content').val().trim()
+            };
+            CommonFn.getData('/admin/gaokao360/ex/commonsave/${mainObj}', 'post', data, function (res) {
+                if (res.rtnCode == '0000000') {
+                    searchLoad();
+                }
+            })
+
+
+
 
 
         }
@@ -131,22 +171,21 @@
                 + '<div class="col-xs-12">'
                 + '<form class="form-horizontal" role="form">'
                 + '<div class="form-group">'
-                + '<label class="col-sm-2 control-label no-padding-right" for=""> 行业名称：</label>'
-                + '<div class="col-sm-3">'
-                + '<input type="text" placeholder="行业名称最多不能超过8个字">'
+                + '<label class="col-sm-2 control-label no-padding-right" for="professionType"> 行业名称：</label>'
+                + '<div class="col-sm-5">'
+                + '<input type="text" placeholder="行业名称最多不能超过8个字" id="professionType" class="col-sm-9">'
                 + '</div>'
                 + '</div>'
                 + '<div class="form-group">'
-                + '<label class="col-sm-2 control-label no-padding-right" for=""> 职业大类：</label>'
+                + '<label class="col-sm-2 control-label no-padding-right" for="content"> 职业分类：</label>'
                 + '<div class="col-sm-9">'
-                + '<textarea  id=""  rows="5" class="col-sm-12"></textarea>'
+                + '<textarea  id="content"  rows="5" class="col-sm-12" placeholder="注意:职业分类之间必须以顿号相隔、"></textarea>'
                 + '</div>'
                 + '</div>'
                 + '</form>'
                 + '</div>'
                 + '</div>';
     });//$ end
-
 
 
 </script>
