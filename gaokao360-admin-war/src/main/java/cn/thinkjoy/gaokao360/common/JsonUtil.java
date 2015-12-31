@@ -3,42 +3,15 @@ package cn.thinkjoy.gaokao360.common;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 /**
  * Created by admin on 2015/12/30.
  */
-public class BaseCommonUtil {
-
-    private ServiceMaps serviceMaps;
-
-    public ServiceMaps getServiceMaps() {
-        return serviceMaps;
-    }
-
-    public void setServiceMaps(ServiceMaps serviceMaps) {
-        this.serviceMaps = serviceMaps;
-    }
-
-    Map dataMap;
-
-    public Map getDataMap() {
-        return dataMap;
-    }
-
-    public void setDataMap(Map dataMap) {
-        this.dataMap = dataMap;
-    }
+public class JsonUtil {
     // 将jsonString转化为hashmap
-    public HashMap<String, Object> fromJson2Map(String jsonString) {
+    public static HashMap<String, Object> fromJson2Map(String jsonString) {
         HashMap jsonMap = JSON.parseObject(jsonString, HashMap.class);
 
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
@@ -54,7 +27,7 @@ public class BaseCommonUtil {
         }
         return resultMap;
     }
-    public  List<HashMap<String, Object>> handleJSONArray(JSONArray jsonArray){
+    public static List<HashMap<String, Object>> handleJSONArray(JSONArray jsonArray){
         List list = new ArrayList();
         for (Object object : jsonArray) {
             JSONObject jsonObject = (JSONObject) object;

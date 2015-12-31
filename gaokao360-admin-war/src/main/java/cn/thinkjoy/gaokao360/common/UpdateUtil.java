@@ -54,14 +54,14 @@ public class UpdateUtil extends BaseCommonUtil{
         runMethod(mainObj);
     }
     public void runMethod(String mainObj) throws Exception {
-            this.getClass().getMethod(mainObj).invoke(null);
+        this.getClass().getMethod(mainObj).invoke(this);
     }
     /**
      * 下面是各个模块的修改方法，请使用mainObj来命名 例如areabatchline，会自动调用，否则会抛异常走默认接口
      */
 
 
-    public void gkPsychology(){
+    public void gkpsychology(){
         getServiceMaps().get("videocourse").updateMap(dataMap);
         Long lid = (Long)dataMap.get("id");
         String sectionId=null;
@@ -136,5 +136,22 @@ public class UpdateUtil extends BaseCommonUtil{
     public void majoredcategory(){
         majoredCategoryExService.updateCategory(dataMap);
     }
+    public void universityenrolling(){
+        String batchContent=null;
+        if(getDataMap().containsKey("batchContent")) {
+            batchContent = (String)getDataMap().get("batchContent");
+        }
+        if(batchContent!=null){
+            JSONArray jsonArray = null;
+            jsonArray = JSON.parseArray(batchContent);
+            List<HashMap<String,Object>> maps= super.handleJSONArray(jsonArray);
+            Map<String,Object> dataMap2 = new HashMap<>();
+            for(Map map:maps){
+                dataMap2.putAll(getDataMap());
+                dataMap2.putAll(map);
+                getServiceMaps().get("universityenrolling").updateMap(dataMap2);
+            }
+        }
 
+    }
 }
