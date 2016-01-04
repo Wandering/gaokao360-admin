@@ -17,6 +17,8 @@
     <!--<dubbo:registry address="zookeeper://10.172.7.71:2181" />-->
     <dubbo:registry address="${dubbo_zk_url}" file="/tmp/dubbo.cache"/>
 
-
+    <!--测试dubbo服务-->
+    <bean id="testServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.TestServiceImpl" />
+    <dubbo:service id="testService" interface="cn.thinkjoy.ITestService.ITestService" ref="testServiceImpl"/>
 
 </beans>
