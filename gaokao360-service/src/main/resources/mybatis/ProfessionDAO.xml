@@ -373,6 +373,27 @@ selectList
         </if>
     </select>
 
+    <select id="queryProfessionDetail" resultType="java.util.HashMap">
+        select
+        zp.id,
+        zp.profession_name as professionName,
+        zpt.profession_type as professionType,
+        zptt.profession_type as professionSubType,
+        zp.salary_rank as salaryRank,
+        zp.hot_degree as hotDegree,
+        substring(zpd.introduction,LOCATE('http',zpd.introduction)) as introduction,
+        substring(zpd.relate_major,LOCATE('http',zpd.relate_major)) as relateMajor,
+        substring(zpd.vocational_demand,LOCATE('http',zpd.vocational_demand)) as vocationalDemand,
+        substring(zpd.work_content,LOCATE('http',zpd.work_content)) as workContent,
+        substring(zpd.career_prospects,LOCATE('http',zpd.career_prospects)) as careerProspects
+        from zgk_profession zp
+        left join zgk_profession_type zpt on zp.profession_type=zpt.id
+        left join zgk_profession_type zptt on zptt.pid = zpt.id and zptt.id = zp.profession_sub_type
+        left join zgk_profession_detail zpd on zp.id = zpd.id
+        where
+        zp.id = #{id}
+    </select>
+
     <select id="queryPage" resultType="java.util.HashMap">
         select
         zp.id,
@@ -849,5 +870,19 @@ selectList
         FROM zgk_profession
     </select>
 
+    <select id="queryProfessionCategory" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+        select id,profession_type as Type
+        from zgk_profession_type
+        where 1=1
+            <if test="pid==null">
+                AND pid is null
+            </if>
+            <if test="pid!=null">
+                AND pid=#{pid}
+            </if>
+            <if test="type!=null">
+                AND profession_type like CONCAT('%', #{type} , '%')
+            </if>
+    </select>
 </mapper>
 

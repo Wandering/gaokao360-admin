@@ -17,8 +17,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -256,5 +255,48 @@ public class ProfessionController extends BaseController<IProfessionService> {
         }
     }
 
+    /**
+     * 职业分类
+     *
+     * @return
+     */
+    @RequestMapping(value = "/getProfessionCategory", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Map<String, String>> getProfessionCategory(HttpServletRequest request)
+    {
+        Map<String, Object> dataMap = Maps.newHashMap();
+        String prop;
+        Enumeration<String> names = request.getParameterNames();
+        while (names.hasMoreElements()) {
+            prop = names.nextElement();
+            dataMap.put(prop, request.getParameter(prop));
+        }
+        return professionService.findCategory(dataMap);
+    }
 
+    /**
+     * 查询职业详情
+     *
+     * @return
+     */
+    @RequestMapping(value = "/getProfessionDetail", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, String> findProfessionDetail(@RequestParam("professionId")int id)
+    {
+        return professionService.findProfessionDetail(id);
+    }
+
+    /**
+     * 删除职业信息
+     *
+     * @return
+     */
+    @RequestMapping(value = "/deleteProfession", method = RequestMethod.POST)
+    @ResponseBody
+    public String deleteProfession(@RequestParam("professionId")int id)
+    {
+        professionService.deleteById(id);
+        professionDetailService.deleteById(id);
+        return "success";
+    }
 }

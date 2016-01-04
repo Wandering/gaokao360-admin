@@ -52,6 +52,16 @@ public class ProfessionServiceImpl extends AbstractPageService<IBaseDAO<Professi
 
         return bizData4Page;
     }
+
+    public List<Map<String, String>> findCategory(Map<String, Object> dataMap)
+    {
+        return professionDAO.queryProfessionCategory(dataMap);
+    }
+
+    public Map<String, String> findProfessionDetail(int id)
+    {
+        return professionDAO.queryProfessionDetail(id);
+    }
 //    @Override
 //    public void insert(BaseDomain entity) {
 //
