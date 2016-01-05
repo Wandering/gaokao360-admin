@@ -17,8 +17,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping(value="/admin/zgk")
+@RequestMapping(value = "/admin/zgk")
 public class ProfessionController extends BaseController<IProfessionService> {
 
 
@@ -40,22 +39,24 @@ public class ProfessionController extends BaseController<IProfessionService> {
 
     /**
      * 页面主请求
+     *
      * @param request
      * @param response
-     * @return  返回菜单数据、表格描述元数据、当前主描述  如本页面为org
+     * @return 返回菜单数据、表格描述元数据、当前主描述  如本页面为org
      */
-    @RequestMapping(value="/profession")
-    public ModelAndView renderMainView(HttpServletRequest request,HttpServletResponse response){
+    @RequestMapping(value = "/profession")
+    public ModelAndView renderMainView(HttpServletRequest request, HttpServletResponse response) {
         return doRenderMainView(request, response);
     }
 
     /**
      * 获取所有的组织信息
+     *
      * @return
      */
-    @RequestMapping(value="/professions")
+    @RequestMapping(value = "/professions")
     @ResponseBody
-    public BizData4Page findAllProfessions(HttpServletRequest request,HttpServletResponse response){
+    public BizData4Page findAllProfessions(HttpServletRequest request, HttpServletResponse response) {
         return doPage(request, response);
     }
 
@@ -91,11 +92,12 @@ public class ProfessionController extends BaseController<IProfessionService> {
 
     /**
      * 添加职业信息
+     *
      * @return
      */
-    @RequestMapping(value="/addProfession")
+    @RequestMapping(value = "/addProfession")
     @ResponseBody
-    public String addProfessions(HttpServletRequest request){
+    public String addProfessions(HttpServletRequest request) {
         Map<String, Object> dataMap = Maps.newHashMap();
         JSONObject result = new JSONObject();
         String prop;
@@ -105,40 +107,35 @@ public class ProfessionController extends BaseController<IProfessionService> {
             dataMap.put(prop, request.getParameter(prop));
         }
         Object obj = professionService.findOne("profession_name", dataMap.get("professionName"));
-        if(null != obj)
-        {
-            result.put("result","The profession name is already exist!");
+        if (null != obj) {
+            result.put("result", "The profession name is already exist!");
             return result.toString();
         }
         obj = professionService.findOne("salary_rank", dataMap.get("salaryRank"));
-        if(null != obj)
-        {
-            result.put("result","The salary rank is already exist!");
+        if (null != obj) {
+            result.put("result", "The salary rank is already exist!");
             return result.toString();
         }
         dataMap.put("idDelete", false);
         int count = professionService.insertMap(dataMap);
-        if(1 == count)
-        {
+        if (1 == count) {
             String path = request.getSession().getServletContext().getRealPath("/upload");
             new addProfessionDetailThread(dataMap, path).start();
-        }else
-        {
-            result.put("result","Insert error!");
+        } else {
+            result.put("result", "Insert error!");
             return result.toString();
         }
 
-        result.put("result","success");
+        result.put("result", "success");
         return result.toString();
     }
 
 
-    class addProfessionDetailThread extends Thread
-    {
+    class addProfessionDetailThread extends Thread {
         private Map<String, Object> dataMap;
         private String path;
-        public addProfessionDetailThread(Map<String, Object> dataMap, String path)
-        {
+
+        public addProfessionDetailThread(Map<String, Object> dataMap, String path) {
             this.dataMap = dataMap;
             this.path = path;
         }
@@ -158,23 +155,22 @@ public class ProfessionController extends BaseController<IProfessionService> {
     }
 
     private void saveContentAsHtml(String path, Map<String, Object> dataMap, String key) {
-        if(null != dataMap.get(key) && !"".equals(dataMap.get(key)))
-        {
+        if (null != dataMap.get(key) && !"".equals(dataMap.get(key))) {
             Map<String, Object> map = WebUtils.saveContentAsHtml(path, String.valueOf(dataMap.get(key)));
-            if(null != map.get("id"))
-            {
-                dataMap.put(key, map.get("id")+"@@"+map.get("fileUrl"));
+            if (null != map.get("id")) {
+                dataMap.put(key, map.get("id") + "@@" + map.get("fileUrl"));
             }
         }
     }
 
     /**
      * 添加职业信息
+     *
      * @return
      */
-    @RequestMapping(value="/editProfession")
+    @RequestMapping(value = "/editProfession")
     @ResponseBody
-    public String editProfessions(HttpServletRequest request){
+    public String editProfessions(HttpServletRequest request) {
         Map<String, Object> dataMap = Maps.newHashMap();
         String prop;
         Enumeration<String> names = request.getParameterNames();
@@ -184,42 +180,38 @@ public class ProfessionController extends BaseController<IProfessionService> {
         }
         JSONObject result = new JSONObject();
         List<Profession> obj = professionService.findList("profession_name", dataMap.get("professionName"));
-        if((null != obj && obj.size() > 1) || (null != obj && obj.size()==1 && !dataMap.get("id").equals( obj.get(0).getId().toString())))
-        {
-            result.put("result","The profession name is already exist!");
+        if ((null != obj && obj.size() > 1) || (null != obj && obj.size() == 1 && !dataMap.get("id").equals(obj.get(0).getId().toString()))) {
+            result.put("result", "The profession name is already exist!");
             return result.toString();
         }
         obj = professionService.findList("salary_rank", dataMap.get("salaryRank"));
-        if((null != obj && obj.size() > 1) || (null != obj && obj.size()==1 && !dataMap.get("id").equals( obj.get(0).getId().toString())))
-        {
-            result.put("result","The salary rank is already exist!");
+        if ((null != obj && obj.size() > 1) || (null != obj && obj.size() == 1 && !dataMap.get("id").equals(obj.get(0).getId().toString()))) {
+            result.put("result", "The salary rank is already exist!");
             return result.toString();
         }
         dataMap.put("idDelete", false);
         int count = professionService.updateMap(dataMap);
-        if(count != 1)
-        {
-            result.put("result","Insert error!");
+        if (count != 1) {
+            result.put("result", "Insert error!");
             return result.toString();
 
-        }else
-        {
+        } else {
             String path = request.getSession().getServletContext().getRealPath("/upload");
             new editProfessionDetailThread(dataMap, path).start();
         }
-        result.put("result","success");
+        result.put("result", "success");
         return result.toString();
     }
 
-    class editProfessionDetailThread extends Thread
-    {
+    class editProfessionDetailThread extends Thread {
         private Map<String, Object> dataMap;
         private String path;
-        public editProfessionDetailThread(Map<String, Object> dataMap, String path)
-        {
+
+        public editProfessionDetailThread(Map<String, Object> dataMap, String path) {
             this.dataMap = dataMap;
             this.path = path;
         }
+
         @Override
         public void run() {
             ProfessionDetail profession = (ProfessionDetail) professionDetailService.findOne("id", dataMap.get("id"));
@@ -236,37 +228,75 @@ public class ProfessionController extends BaseController<IProfessionService> {
     }
 
     private void deleteOriginalFiles(ProfessionDetail profession) {
-        if(null != profession.getRelateMajor() && profession.getRelateMajor().indexOf("@@")>0)
-        {
+        if (null != profession.getRelateMajor() && profession.getRelateMajor().indexOf("@@") > 0) {
             String[] urlInfo = profession.getRelateMajor().split("@@");
             String urlId = urlInfo[0];
             WebUtils.delFileUrl(urlId);
         }
-        if(null != profession.getCareerProspects() && profession.getCareerProspects().indexOf("@@")>0)
-        {
+        if (null != profession.getCareerProspects() && profession.getCareerProspects().indexOf("@@") > 0) {
             String[] urlInfo = profession.getCareerProspects().split("@@");
             String urlId = urlInfo[0];
             WebUtils.delFileUrl(urlId);
         }
-        if(null != profession.getIntroduction() &&profession.getIntroduction().indexOf("@@")>0)
-        {
+        if (null != profession.getIntroduction() && profession.getIntroduction().indexOf("@@") > 0) {
             String[] urlInfo = profession.getIntroduction().split("@@");
             String urlId = urlInfo[0];
             WebUtils.delFileUrl(urlId);
         }
-        if(null != profession.getVocationalDemand() && profession.getVocationalDemand().indexOf("@@")>0)
-        {
+        if (null != profession.getVocationalDemand() && profession.getVocationalDemand().indexOf("@@") > 0) {
             String[] urlInfo = profession.getVocationalDemand().split("@@");
             String urlId = urlInfo[0];
             WebUtils.delFileUrl(urlId);
         }
-        if(null != profession.getWorkContent() && profession.getWorkContent().indexOf("@@")>0)
-        {
+        if (null != profession.getWorkContent() && profession.getWorkContent().indexOf("@@") > 0) {
             String[] urlInfo = profession.getWorkContent().split("@@");
             String urlId = urlInfo[0];
             WebUtils.delFileUrl(urlId);
         }
     }
 
+    /**
+     * 职业分类
+     *
+     * @return
+     */
+    @RequestMapping(value = "/getProfessionCategory", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Map<String, String>> getProfessionCategory(HttpServletRequest request)
+    {
+        Map<String, Object> dataMap = Maps.newHashMap();
+        String prop;
+        Enumeration<String> names = request.getParameterNames();
+        while (names.hasMoreElements()) {
+            prop = names.nextElement();
+            dataMap.put(prop, request.getParameter(prop));
+        }
+        return professionService.findCategory(dataMap);
+    }
 
+    /**
+     * 查询职业详情
+     *
+     * @return
+     */
+    @RequestMapping(value = "/getProfessionDetail", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, String> findProfessionDetail(@RequestParam("professionId")int id)
+    {
+        return professionService.findProfessionDetail(id);
+    }
+
+    /**
+     * 删除职业信息
+     *
+     * @return
+     */
+    @RequestMapping(value = "/deleteProfession", method = RequestMethod.POST)
+    @ResponseBody
+    public String deleteProfession(@RequestParam("professionId")int id)
+    {
+        professionService.deleteById(id);
+        professionDetailService.deleteById(id);
+        return "success";
+    }
 }
