@@ -435,7 +435,7 @@ selectList
                 AND zp.profession_sub_type=#{professionSubType}
             </if>
         </where>
-        order by zp.salary_rank asc,zp.hot_degree desc
+        order by zp.salary_rank asc
         <if test="offset != null">
             limit ${offset}, ${rows}
         </if>
@@ -494,7 +494,7 @@ selectList
                 ${condition.groupOp}   ${condition.idDelete.field}  ${condition.idDelete.op}  #{condition.idDelete.data}
             </if>
         </where>
-        order by zp.salary_rank asc,zp.hot_degree desc
+        order by zp.salary_rank asc
         <if test="offset != null">
             limit ${offset}, ${rows}
         </if>
