@@ -51,7 +51,7 @@ public class GkHotServiceImpl implements IGkHotService {
     }
 
     private List<GkHot> GkinformationGkhot2GkHot(List<GkinformationGkhot> gkinformationGkhots){
-
+        if(gkinformationGkhots==null)return null;
         List<GkHot> gkHots = new ArrayList<>();
         for(GkinformationGkhot gkinformationGkhot:gkinformationGkhots){
             gkHots.add(GkinformationGkhot2GkHot(gkinformationGkhot));
@@ -60,6 +60,7 @@ public class GkHotServiceImpl implements IGkHotService {
     }
 
     private GkHot GkinformationGkhot2GkHot(GkinformationGkhot gkinformationGkhot){
+        if(gkinformationGkhot==null)return null;
         GkHot gkHot = new GkHot();
         gkHot.setTitle(gkinformationGkhot.getHotInformation());
         gkHot.setContent(gkinformationGkhot.getInformationContent());

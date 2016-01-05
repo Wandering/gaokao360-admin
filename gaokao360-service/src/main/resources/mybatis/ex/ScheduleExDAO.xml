@@ -35,6 +35,7 @@ selectList
         schedule.lastModDate as lastModDate ,
         schedule.creator as creator ,
         schedule.lastModifier as lastModifier ,
+        schedule.title as title ,
         province.name as province
     </sql>
     <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.ScheduleDTO">
