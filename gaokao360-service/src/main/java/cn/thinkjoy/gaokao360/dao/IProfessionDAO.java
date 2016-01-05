@@ -17,4 +17,5 @@ public interface IProfessionDAO extends IBaseDAO<Profession> {
 
     List<Map<String, String>> queryProfessionCategory(Map<String, Object> dataMap);
     Map<String, String> queryProfessionDetail(int id);
+    List<Map<String, String>> queryPageList(Map<String, Object> dataMap);
 }
