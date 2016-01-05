@@ -4,7 +4,7 @@ import cn.thinkjoy.gaokao360.domain.Schedule;
 import cn.thinkjoy.gaokao360.service.IScheduleService;
 import cn.thinkjoy.zgk.domain.GkSchedule;
 import cn.thinkjoy.zgk.dto.GkScheduleDTO;
-import cn.thinkjoy.zgk.remote.IGkScheduleService1;
+import cn.thinkjoy.zgk.remote.IGkScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import java.util.*;
  * Created by admin on 2016/1/5.
  */
 @Service("GkScheduleServiceImpl")
-public class GkScheduleServiceImpl implements IGkScheduleService1 {
+public class GkScheduleServiceImpl implements IGkScheduleService {
 
     //设置是否加载内容，默认不加载
     private boolean isIgnore=false;

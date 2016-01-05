@@ -26,5 +26,5 @@
     <bean id="gkHotServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.GkHotServiceImpl" />
     <dubbo:service id="gkHotService" interface="cn.thinkjoy.zgk.remote.IGkHotService" ref="gkHotServiceImpl"/>
     <bean id="gkScheduleServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.GkScheduleServiceImpl" />
-    <dubbo:service id="gkScheduleService" interface="cn.thinkjoy.zgk.remote.IGkScheduleService1" ref="gkScheduleServiceImpl"/>
+    <dubbo:service id="gkScheduleService" interface="cn.thinkjoy.zgk.remote.IGkScheduleService" ref="gkScheduleServiceImpl"/>
 </beans>

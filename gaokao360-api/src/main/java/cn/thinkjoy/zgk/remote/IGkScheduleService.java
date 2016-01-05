@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by admin on 2016/1/4.
  */
-public interface IGkScheduleService1 {
+public interface IGkScheduleService {
 
     /**
      * 获取热点摘要列表 四个
