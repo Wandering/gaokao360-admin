@@ -273,7 +273,7 @@
         var addEditFun = function () {
             var selProvinceV = $('#selProvince2 option:checked').val();
             var selYearsV = $("#selYears2").find('option:selected').val();
-            var autoSearchV = $.trim($('.ui-autocomplete-input').val());
+            var autoSearchV = $.trim($('.ui-autocomplete-input').attr('id'));
             if (selProvinceV == "00") {
                 CommonFn.tipsDialog('温馨提示', '请选择省份');
                 return false;
@@ -313,7 +313,7 @@
                 };
                 batchData.push(batchType);
             };
-            console.log(batchData);
+
             var Datas = {
                 "areaId": selProvinceV,
                 "universityId": autoSearchV,
@@ -321,6 +321,7 @@
                 "batchContent":batchData,
                 "oper": typeStr
             };
+            console.log(Datas);
             if (typeStr == 'edit') {
                 Datas.id = rowId;
             }
