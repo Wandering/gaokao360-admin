@@ -5,9 +5,10 @@
  * $Id:  VocabularyController.java 2015-12-26 17:06:05 $
  */
 
-package cn.thinkjoy.gaokao360.controller;
+package cn.thinkjoy.gaokao360.controller.baseinfo;
 
 import cn.thinkjoy.common.utils.SqlOrderEnum;
+import cn.thinkjoy.gaokao360.controller.BaseController;
 import cn.thinkjoy.gaokao360.service.IVocabularyService;
 import cn.thinkjoy.common.managerui.dao.IResourceGridDAO;
 import cn.thinkjoy.common.managerui.service.IResourceGridService;
@@ -31,7 +32,7 @@ import cn.thinkjoy.common.managerui.controller.AbstractAdminController;
 
 @Controller
 @RequestMapping(value="/admin/gaokao360")
-public class VocabularyController extends BaseController<IVocabularyService>{
+public class VocabularyController extends BaseController<IVocabularyService> {
 
 
     @Autowired
