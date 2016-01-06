@@ -145,6 +145,8 @@ public class AddUtil extends BaseCommonUtil{
         String batchContent=null;
         if(getDataMap().containsKey("batchContent")) {
             batchContent = (String)getDataMap().get("batchContent");
+        }else{
+            throw new BizException("","参数异常分数信息不能为空");
         }
         if(batchContent!=null){
             JSONArray jsonArray = null;
