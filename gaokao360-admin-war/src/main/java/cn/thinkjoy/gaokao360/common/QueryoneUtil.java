@@ -114,7 +114,7 @@ public class QueryoneUtil extends BaseCommonUtil{
         return videoCourseDTO;
     }
 
-    public Object professiontype(){
+    public Object professiontype(Object id){
         Long l=(Long)dataMap.get("id");
         ProfessionType p = (ProfessionType)getServiceMaps().get("professiontype").fetch(l);
         Map<String,Object> map = new HashMap<>();
