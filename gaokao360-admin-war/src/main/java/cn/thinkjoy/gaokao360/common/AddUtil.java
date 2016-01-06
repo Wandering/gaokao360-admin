@@ -166,7 +166,7 @@ public class AddUtil extends BaseCommonUtil{
         dataMap.put("isDelete",false);
         getServiceMaps().get("professiontype").insertMap(dataMap);
         Long l=(Long)getServiceMaps().get("professiontype").selectMaxId();
-        if(content!=null && "".equals(content)){
+        if(content!=null && !"".equals(content)){
             String[] majoredList=content.split("、");
             for(String str:majoredList){
                 ProfessionType professionType = new ProfessionType();
@@ -176,6 +176,5 @@ public class AddUtil extends BaseCommonUtil{
                 getServiceMaps().get("professiontype").insert(professionType);
             }
         }
-        getServiceMaps().get("professiontype").insertMap(getDataMap());
     }
 }

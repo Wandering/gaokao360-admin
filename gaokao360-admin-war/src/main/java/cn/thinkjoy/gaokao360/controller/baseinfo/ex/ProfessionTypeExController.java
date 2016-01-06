@@ -5,10 +5,12 @@
  * $Id:  ProfessionTypeController.java 2015-12-28 18:05:28 $
  */
 
-package cn.thinkjoy.gaokao360.controller;
+package cn.thinkjoy.gaokao360.controller.baseinfo.ex;
 
 import cn.thinkjoy.common.domain.view.BizData4Page;
+import cn.thinkjoy.gaokao360.controller.BaseController;
 import cn.thinkjoy.gaokao360.service.IProfessionTypeService;
+import cn.thinkjoy.gaokao360.service.ex.IProfessionTypeExService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,13 +21,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
-@RequestMapping(value="/admin/zgk")
-public class ProfessionTypeController extends BaseController<IProfessionTypeService> {
+@RequestMapping(value="/admin/zgk/ex")
+public class ProfessionTypeExController extends BaseController<IProfessionTypeExService> {
 
 
     @Autowired
     private IProfessionTypeService professionTypeService;
 
+    @Autowired
+    private IProfessionTypeExService professionTypeExService;
     /**
      * 页面主请求
      * @param request
@@ -34,8 +38,6 @@ public class ProfessionTypeController extends BaseController<IProfessionTypeServ
      */
     @RequestMapping(value="/professiontype")
     public ModelAndView renderMainView(HttpServletRequest request,HttpServletResponse response){
-
-
         return doRenderMainView(request, response);
     }
 
@@ -50,13 +52,13 @@ public class ProfessionTypeController extends BaseController<IProfessionTypeServ
     }
 
     @Override
-    protected IProfessionTypeService getMainService() {
-        return professionTypeService;
+    protected IProfessionTypeExService getMainService() {
+        return professionTypeExService;
     }
 
     @Override
     protected String getBizSys() {
-        return "zgk";
+        return "zgk/ex";
     }
 
     @Override
