@@ -59,3 +59,7 @@
 
 <#include 'page_grid.ftl'>
 </div><!-- /.page-content -->
+
+<link rel="stylesheet" href="${path}/assets/css/jquery-ui.min.css" />
+<script src='${path}/assets/js/jquery.min.js'></script>
+<script src="${path}/assets/js/jquery-ui.min.js"></script>

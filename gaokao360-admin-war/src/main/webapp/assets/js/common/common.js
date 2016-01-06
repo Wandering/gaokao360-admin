@@ -20,7 +20,8 @@ var CommonFn = {
         uploaderUrl: 'http://cs-dev.thinkjoy.com.cn/rest/v1/uploadFile?userId=gk360&dirId=0&productCode=gk360&bizSystem=gk360&spaceName=gk360',
         eduLevel: '/admin/gaokao360/ex/eduLevel',
         AllSchoolUrl: '/admin/gaokao360/ex/getUniversityByName',
-        getBatchUrl: '/admin/gaokao360/geBatch'
+        getBatchUrl: '/admin/gaokao360/geBatch',
+        professionCategoryUrl: '/admin/zgk/getProfessionCategory'
     },
     getData: function (url, type, data, callback) {
         $.ajax({
@@ -226,6 +227,49 @@ var CommonFn = {
             for (var i = 0; i < result.bizData.length; i++) {
                 var provinceId = result.bizData[i].id;
                 var provinceName = result.bizData[i].name;
+                contentArr.push('<option value="' + provinceId + '">' + provinceName + '</option>');
+            }
+        });
+        return contentArr.join('');
+    },
+    // 所属行业
+    getProfessionCategory: function () {
+        var contentArr = [];
+        contentArr.push('<option value="00">请选择行业分类</option>');
+        $.ajaxSettings.async = false;
+        CommonFn.getData(CommonFn.url.professionCategoryUrl, 'GET', {}, function (result) {
+            console.log(result)
+            for (var i = 0; i < result.bizData.length; i++) {
+                var provinceId = result.bizData[i].id;
+                var provinceName = result.bizData[i].Type;
+                contentArr.push('<option value="' + provinceId + '">' + provinceName + '</option>');
+            }
+        });
+        return contentArr.join('');
+    },
+    getProfession: function (id) {
+        var contentArr = [];
+        contentArr.push('<option value="00">请选择行业分类</option>');
+        $.ajaxSettings.async = false;
+        CommonFn.getData(CommonFn.url.professionCategoryUrl+'?pid='+id, 'GET', {}, function (result) {
+            console.log(result);
+            for (var i = 0; i < result.bizData.length; i++) {
+                var provinceId = result.bizData[i].id;
+                var provinceName = result.bizData[i].Type;
+                contentArr.push('<option value="' + provinceId + '">' + provinceName + '</option>');
+            }
+        });
+        return contentArr.join('');
+    },
+    getProfessionHot: function (id) {
+        var contentArr = [];
+        contentArr.push('<option value="00">请选择行业分类</option>');
+        $.ajaxSettings.async = false;
+        CommonFn.getData(CommonFn.url.professionCategoryUrl+'?pid='+id, 'GET', {}, function (result) {
+            console.log(result);
+            for (var i = 0; i < result.bizData.length; i++) {
+                var provinceId = result.bizData[i].id;
+                var provinceName = result.bizData[i].Type;
                 contentArr.push('<option value="' + provinceId + '">' + provinceName + '</option>');
             }
         });

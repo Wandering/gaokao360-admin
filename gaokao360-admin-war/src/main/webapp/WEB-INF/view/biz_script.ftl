@@ -26,8 +26,6 @@
 <#--<script src="${path}/assets/js/require.js" defer async="true" ></script>-->
 <script src="${path}/assets/js/bootstrap.min.js"></script>
 
-<link rel="stylesheet" href="${path}/assets/css/jquery-ui.min.css" />
-<script src="${path}/assets/js/jquery-ui.min.js"></script>
 
 
 <!-- page specific plugin scripts -->
