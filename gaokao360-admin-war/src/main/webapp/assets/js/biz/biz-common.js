@@ -277,7 +277,7 @@ function formatdataURL(cellvalue){
 }
 
 function formatdataIdURL(cellvalue, options, rowObject){
-    return "<a href='"+rowObject.id+"' target='_blank' class='btn btn-sm btn-primary'>查看详情</a>";
+    return "<a href='/admin/zgk/professionDetail?id="+rowObject.id+"' target='_blank' class='btn btn-sm btn-primary'>查看详情</a>";
 }
 //合并省份
 function formatdataProvince1(cellvalue,options, rowObject){

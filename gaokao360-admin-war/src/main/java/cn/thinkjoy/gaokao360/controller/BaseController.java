@@ -145,4 +145,9 @@ public abstract class BaseController<T> extends AbstractAdminController {
         return new HashMap<>();
     }
 
+    protected ModelAndView doRenderDetailView(HttpServletRequest request,HttpServletResponse response) {
+        //request.getRequestURI()
+        ModelAndView mav = new ModelAndView("module/" + getPagePath() + getMainObjName() +"detail");
+        return mav;
+    }
 }

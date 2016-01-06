@@ -8,14 +8,12 @@
 package cn.thinkjoy.gaokao360.controller;
 
 import cn.thinkjoy.common.domain.view.BizData4Page;
-import cn.thinkjoy.gaokao360.common.QueryUtil;
 import cn.thinkjoy.gaokao360.common.utils.WebUtils;
 import cn.thinkjoy.gaokao360.domain.Profession;
 import cn.thinkjoy.gaokao360.domain.ProfessionDetail;
 import cn.thinkjoy.gaokao360.service.IProfessionDetailService;
 import cn.thinkjoy.gaokao360.service.IProfessionService;
 import com.google.common.collect.Maps;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,6 +47,11 @@ public class ProfessionController extends BaseController<IProfessionService> {
      * @param response
      * @return 返回菜单数据、表格描述元数据、当前主描述  如本页面为org
      */
+    @RequestMapping(value = "/professionDetail", method = RequestMethod.GET)
+    public ModelAndView renderDetailView(HttpServletRequest request, HttpServletResponse response) {
+        return doRenderDetailView(request, response);
+    }
+
     @RequestMapping(value = "/profession", method = RequestMethod.GET)
     public ModelAndView renderMainView(HttpServletRequest request, HttpServletResponse response) {
         return doRenderMainView(request, response);
