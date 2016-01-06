@@ -1,14 +1,15 @@
 /*
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
- * Project Name: gaokao360
- * $Id:  UniversityMajorController.java 2015-12-30 15:19:55 $
+ * Project Name: zgk
+ * $Id:  ProfessionDetailController.java 2015-12-28 18:05:28 $
  */
 
-package cn.thinkjoy.gaokao360.controller;
+package cn.thinkjoy.gaokao360.controller.baseinfo;
 
-import cn.thinkjoy.gaokao360.service.IUniversityMajorService;
 import cn.thinkjoy.common.domain.view.BizData4Page;
+import cn.thinkjoy.common.managerui.controller.AbstractAdminController;
+import cn.thinkjoy.gaokao360.service.IProfessionDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,12 +20,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
-@RequestMapping(value="/admin/gaokao360")
-public class UniversityMajorController extends BaseController<IUniversityMajorService>{
+@RequestMapping(value="/admin/zgk")
+public class ProfessionDetailController extends AbstractAdminController<IProfessionDetailService> {
 
 
     @Autowired
-    private IUniversityMajorService universityMajorService;
+    private IProfessionDetailService professionDetailService;
 
     /**
      * 页面主请求
@@ -32,7 +33,7 @@ public class UniversityMajorController extends BaseController<IUniversityMajorSe
      * @param response
      * @return  返回菜单数据、表格描述元数据、当前主描述  如本页面为org
      */
-    @RequestMapping(value="/universitymajor")
+    @RequestMapping(value="/professiondetail")
     public ModelAndView renderMainView(HttpServletRequest request,HttpServletResponse response){
 
 
@@ -43,35 +44,35 @@ public class UniversityMajorController extends BaseController<IUniversityMajorSe
      * 获取所有的组织信息
      * @return
      */
-    @RequestMapping(value="/universitymajors")
+    @RequestMapping(value="/professiondetails")
     @ResponseBody
-    public BizData4Page findAllUniversityMajors(HttpServletRequest request,HttpServletResponse response){
+    public BizData4Page findAllProfessionDetails(HttpServletRequest request,HttpServletResponse response){
         return doPage(request, response);
     }
 
     @Override
-    protected IUniversityMajorService getMainService() {
-        return universityMajorService;
+    protected IProfessionDetailService getMainService() {
+        return professionDetailService;
     }
 
     @Override
     protected String getBizSys() {
-        return "gaokao360";
+        return "zgk";
     }
 
     @Override
     protected String getMainObjName() {
-        return "universitymajor";
+        return "professiondetail";
     }
 
     @Override
     protected String getViewTitle() {
-        return "院校专业信息";
+        return "职业管理";
     }
 
     @Override
     protected String getParentTitle() {
-        return "数据模块";
+        return "职业扩展模块";
     }
 
     @Override

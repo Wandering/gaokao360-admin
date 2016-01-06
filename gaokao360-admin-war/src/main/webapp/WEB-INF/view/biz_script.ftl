@@ -647,20 +647,20 @@
     }
 
     function mergerCatejory(cellvalue, options, cell) {
-        if(cell){
+        if(cellvalue){
             var mergerStr="";
-            var rowObject=cell.majoredCategoryDTOs;
-            for(var i =0;i<rowObject.length;i++){
-                mergerStr+=rowObject[i].name+"、";
+            for(var i =0;i<cellvalue.length;i++){
+                mergerStr+=cellvalue[i].name+"、";
             }
             if(mergerStr!=""){
                 mergerStr=mergerStr.substring(0,mergerStr.length-1)
             }
             return mergerStr;
         }
-        console.log(rowObject)
+        console.log(cellvalue)
         return ""
     }
+
     function showImage(cellvalue, options, cell) {
         if(cellvalue){
             var strHtml = '<img src="'+cellvalue+'" style="width: 100px">'

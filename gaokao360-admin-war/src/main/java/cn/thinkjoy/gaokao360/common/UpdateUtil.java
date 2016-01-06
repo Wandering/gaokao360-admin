@@ -162,7 +162,7 @@ public class UpdateUtil extends BaseCommonUtil{
         dataMap.put("isDelete",false);
         getServiceMaps().get("professiontype").updateMap(dataMap);
         Long l=(Long)dataMap.get("id");
-        if(content!=null && "".equals(content)){
+        if(content!=null && !"".equals(content)){
             String[] majoredList=content.split("、");
             Map<String,Object> map=null;
             for(String str:majoredList){
