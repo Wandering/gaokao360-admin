@@ -8,6 +8,7 @@
 package cn.thinkjoy.gaokao360.controller;
 
 import cn.thinkjoy.common.domain.view.BizData4Page;
+import cn.thinkjoy.gaokao360.common.CustomerContextHolder;
 import cn.thinkjoy.gaokao360.common.utils.WebUtils;
 import cn.thinkjoy.gaokao360.domain.Profession;
 import cn.thinkjoy.gaokao360.domain.ProfessionDetail;
@@ -28,6 +29,8 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static cn.thinkjoy.gaokao360.common.CustomerContextHolder.*;
 
 @Controller
 @RequestMapping(value = "/admin/zgk")
@@ -158,8 +161,10 @@ public class ProfessionController extends BaseController<IProfessionService> {
         }
         int count = professionService.insertMap(dataMap);
         if (1 == count) {
-            String path = request.getSession().getServletContext().getRealPath("/upload");
-            new addProfessionDetailThread(dataMap, path).start();
+            Profession profession = (Profession) professionService.findOne("profession_name", dataMap.get("professionName"));
+            dataMap.put("isDelete", false);
+            dataMap.put("id", profession.getId());
+            professionDetailService.insertMap(dataMap);
         } else {
             result.put("result", "Add error!");
             return result;
@@ -170,37 +175,37 @@ public class ProfessionController extends BaseController<IProfessionService> {
     }
 
 
-    class addProfessionDetailThread extends Thread {
-        private Map<String, Object> dataMap;
-        private String path;
-
-        public addProfessionDetailThread(Map<String, Object> dataMap, String path) {
-            this.dataMap = dataMap;
-            this.path = path;
-        }
-
-        @Override
-        public void run() {
-            Profession profession = (Profession) professionService.findOne("profession_name", dataMap.get("professionName"));
-            dataMap.put("isDelete", false);
-            dataMap.put("id", profession.getId());
-            saveContentAsHtml(path, dataMap, "relateMajor");
-            saveContentAsHtml(path, dataMap, "introduction");
-            saveContentAsHtml(path, dataMap, "workContent");
-            saveContentAsHtml(path, dataMap, "vocationalDemand");
-            saveContentAsHtml(path, dataMap, "careerProspects");
-            professionDetailService.insertMap(dataMap);
-        }
-    }
-
-    private void saveContentAsHtml(String path, Map<String, Object> dataMap, String key) {
-        if (null != dataMap.get(key) && !"".equals(dataMap.get(key))) {
-            Map<String, Object> map = WebUtils.saveContentAsHtml(path, String.valueOf(dataMap.get(key)));
-            if (null != map.get("id")) {
-                dataMap.put(key, map.get("id") + "@@" + map.get("fileUrl"));
-            }
-        }
-    }
+//    class addProfessionDetailThread extends Thread {
+//        private Map<String, Object> dataMap;
+//        private String path;
+//
+//        public addProfessionDetailThread(Map<String, Object> dataMap, String path) {
+//            this.dataMap = dataMap;
+//            this.path = path;
+//        }
+//
+//        @Override
+//        public void run() {
+//            Profession profession = (Profession) professionService.findOne("profession_name", dataMap.get("professionName"));
+//            dataMap.put("isDelete", false);
+//            dataMap.put("id", profession.getId());
+//            saveContentAsHtml(path, dataMap, "relateMajor");
+//            saveContentAsHtml(path, dataMap, "introduction");
+//            saveContentAsHtml(path, dataMap, "workContent");
+//            saveContentAsHtml(path, dataMap, "vocationalDemand");
+//            saveContentAsHtml(path, dataMap, "careerProspects");
+//            professionDetailService.insertMap(dataMap);
+//        }
+//    }
+//
+//    private void saveContentAsHtml(String path, Map<String, Object> dataMap, String key) {
+//        if (null != dataMap.get(key) && !"".equals(dataMap.get(key))) {
+//            Map<String, Object> map = WebUtils.saveContentAsHtml(path, String.valueOf(dataMap.get(key)));
+//            if (null != map.get("id")) {
+//                dataMap.put(key, map.get("id") + "@@" + map.get("fileUrl"));
+//            }
+//        }
+//    }
 
     /**
      * 添加职业信息
@@ -235,64 +240,63 @@ public class ProfessionController extends BaseController<IProfessionService> {
             return result;
 
         } else {
-            String path = request.getSession().getServletContext().getRealPath("/upload");
-            new editProfessionDetailThread(dataMap, path).start();
+            professionDetailService.updateMap(dataMap);
         }
         result.put("result", "success");
         return result;
     }
 
-    class editProfessionDetailThread extends Thread {
-        private Map<String, Object> dataMap;
-        private String path;
-
-        public editProfessionDetailThread(Map<String, Object> dataMap, String path) {
-            this.dataMap = dataMap;
-            this.path = path;
-        }
-
-        @Override
-        public void run() {
-            ProfessionDetail profession = (ProfessionDetail) professionDetailService.findOne("id", dataMap.get("id"));
-            deleteOriginalFiles(profession);
-            dataMap.put("isDelete", false);
-            dataMap.put("id", profession.getId());
-            saveContentAsHtml(path, dataMap, "relateMajor");
-            saveContentAsHtml(path, dataMap, "introduction");
-            saveContentAsHtml(path, dataMap, "workContent");
-            saveContentAsHtml(path, dataMap, "vocationalDemand");
-            saveContentAsHtml(path, dataMap, "careerProspects");
-            professionDetailService.updateMap(dataMap);
-        }
-    }
-
-    private void deleteOriginalFiles(ProfessionDetail profession) {
-        if (null != profession.getRelateMajor() && profession.getRelateMajor().indexOf("@@") > 0) {
-            String[] urlInfo = profession.getRelateMajor().split("@@");
-            String urlId = urlInfo[0];
-            WebUtils.delFileUrl(urlId);
-        }
-        if (null != profession.getCareerProspects() && profession.getCareerProspects().indexOf("@@") > 0) {
-            String[] urlInfo = profession.getCareerProspects().split("@@");
-            String urlId = urlInfo[0];
-            WebUtils.delFileUrl(urlId);
-        }
-        if (null != profession.getIntroduction() && profession.getIntroduction().indexOf("@@") > 0) {
-            String[] urlInfo = profession.getIntroduction().split("@@");
-            String urlId = urlInfo[0];
-            WebUtils.delFileUrl(urlId);
-        }
-        if (null != profession.getVocationalDemand() && profession.getVocationalDemand().indexOf("@@") > 0) {
-            String[] urlInfo = profession.getVocationalDemand().split("@@");
-            String urlId = urlInfo[0];
-            WebUtils.delFileUrl(urlId);
-        }
-        if (null != profession.getWorkContent() && profession.getWorkContent().indexOf("@@") > 0) {
-            String[] urlInfo = profession.getWorkContent().split("@@");
-            String urlId = urlInfo[0];
-            WebUtils.delFileUrl(urlId);
-        }
-    }
+//    class editProfessionDetailThread extends Thread {
+//        private Map<String, Object> dataMap;
+//        private String path;
+//
+//        public editProfessionDetailThread(Map<String, Object> dataMap, String path) {
+//            this.dataMap = dataMap;
+//            this.path = path;
+//        }
+//
+//        @Override
+//        public void run() {
+//            ProfessionDetail profession = (ProfessionDetail) professionDetailService.findOne("id", dataMap.get("id"));
+//            deleteOriginalFiles(profession);
+//            dataMap.put("isDelete", false);
+//            dataMap.put("id", profession.getId());
+//            saveContentAsHtml(path, dataMap, "relateMajor");
+//            saveContentAsHtml(path, dataMap, "introduction");
+//            saveContentAsHtml(path, dataMap, "workContent");
+//            saveContentAsHtml(path, dataMap, "vocationalDemand");
+//            saveContentAsHtml(path, dataMap, "careerProspects");
+//            professionDetailService.updateMap(dataMap);
+//        }
+//    }
+//
+//    private void deleteOriginalFiles(ProfessionDetail profession) {
+//        if (null != profession.getRelateMajor() && profession.getRelateMajor().indexOf("@@") > 0) {
+//            String[] urlInfo = profession.getRelateMajor().split("@@");
+//            String urlId = urlInfo[0];
+//            WebUtils.delFileUrl(urlId);
+//        }
+//        if (null != profession.getCareerProspects() && profession.getCareerProspects().indexOf("@@") > 0) {
+//            String[] urlInfo = profession.getCareerProspects().split("@@");
+//            String urlId = urlInfo[0];
+//            WebUtils.delFileUrl(urlId);
+//        }
+//        if (null != profession.getIntroduction() && profession.getIntroduction().indexOf("@@") > 0) {
+//            String[] urlInfo = profession.getIntroduction().split("@@");
+//            String urlId = urlInfo[0];
+//            WebUtils.delFileUrl(urlId);
+//        }
+//        if (null != profession.getVocationalDemand() && profession.getVocationalDemand().indexOf("@@") > 0) {
+//            String[] urlInfo = profession.getVocationalDemand().split("@@");
+//            String urlId = urlInfo[0];
+//            WebUtils.delFileUrl(urlId);
+//        }
+//        if (null != profession.getWorkContent() && profession.getWorkContent().indexOf("@@") > 0) {
+//            String[] urlInfo = profession.getWorkContent().split("@@");
+//            String urlId = urlInfo[0];
+//            WebUtils.delFileUrl(urlId);
+//        }
+//    }
 
     /**
      * 职业分类
