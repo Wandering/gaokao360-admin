@@ -14,5 +14,6 @@ dependencies {
 //    compile "com.101tec:zkclient:$dubboZKClientVersion"
 
     compile project(':gaokao360-api')
+    compile project(':gaokao360-domain')
 
 }

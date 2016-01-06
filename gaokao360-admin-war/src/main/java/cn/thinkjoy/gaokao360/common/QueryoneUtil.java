@@ -1,8 +1,10 @@
 package cn.thinkjoy.gaokao360.common;
 
 import cn.thinkjoy.common.exception.BizException;
+import cn.thinkjoy.gaokao360.domain.ProfessionType;
 import cn.thinkjoy.gaokao360.domain.VideoCourse;
 import cn.thinkjoy.gaokao360.domain.VideoSection;
+import cn.thinkjoy.gaokao360.dto.ProfessionTypeDTO;
 import cn.thinkjoy.gaokao360.dto.VideoCourseDTO;
 import cn.thinkjoy.gaokao360.dto.VideoSectionDTO;
 import cn.thinkjoy.gaokao360.service.IAdmissionBatchService;
@@ -112,4 +114,19 @@ public class QueryoneUtil extends BaseCommonUtil{
         return videoCourseDTO;
     }
 
+    public Object professiontype(){
+        Long l=(Long)dataMap.get("id");
+        ProfessionType p = (ProfessionType)getServiceMaps().get("professiontype").fetch(l);
+        Map<String,Object> map = new HashMap<>();
+        map.put("pid",l);
+        List<ProfessionType> list=getServiceMaps().get("professiontype").queryList(map,"id","asc");
+        ProfessionTypeDTO professionTypeDTO = new ProfessionTypeDTO();
+        try {
+            professionTypeDTO=(ProfessionTypeDTO)DomainReflex.ObjToDTO(p,professionTypeDTO);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        professionTypeDTO.setChilds(list);
+        return professionTypeDTO;
+    }
 }

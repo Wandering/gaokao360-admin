@@ -43,6 +43,7 @@ selectList
         profession_type,
         profession_sub_type,
         profession_name,
+        profession_short,
         profession_description,
         hot_degree,
         salary_rank,
@@ -55,6 +56,7 @@ selectList
         #{professionType},
         #{professionSubType},
         #{professionName},
+        #{short},
         #{professionDescription},
         #{hotDegree},
         #{salary_rank},
@@ -81,6 +83,9 @@ selectList
             </if>
             <if test="professionName!=null">
                 profession_name = #{professionName},
+            </if>
+            <if test="short!=null">
+                profession_short = #{short},
             </if>
             <if test="professionDescription!=null">
                 profession_description = #{professionDescription},
@@ -123,6 +128,9 @@ selectList
             <if test="map.professionName!=null">
                 profession_name = #{map.professionName},
             </if>
+            <if test="map.short!=null">
+                profession_short = #{map.short},
+            </if>
             <if test="map.professionDescription!=null">
                 profession_description = #{map.professionDescription},
             </if>
@@ -164,6 +172,9 @@ selectList
             <if test="update.professionName!=null">
                 profession_name = #{update.professionName},
             </if>
+            <if test="update.short!=null">
+                profession_short = #{update.short},
+            </if>
             <if test="update.professionDescription!=null">
                 profession_description = #{update.professionDescription},
             </if>
@@ -203,6 +214,9 @@ selectList
             <if test="condition.professionName!=null">
                 AND profession_name = #{condition.professionName}
             </if>
+            <if test="condition.short!=null">
+                AND profession_short = #{condition.short}
+            </if>
             <if test="condition.professionDescription!=null">
                 AND profession_description = #{condition.professionDescription}
             </if>
@@ -235,6 +249,7 @@ selectList
                 profession_type,
                 profession_sub_type,
                 profession_name,
+                profession_short,
                 profession_description,
                 hot_degree,
                 salary_rank,
@@ -247,6 +262,7 @@ selectList
                     #{map.professionType},
                     #{map.professionSubType},
                     #{map.professionName},
+                    #{map.short},
                     #{map.professionDescription},
                     #{map.hotDegree},
                     #{map.salaryRank},
@@ -265,6 +281,7 @@ selectList
             profession_type = #{professionType},
             profession_sub_type = #{professionSubType},
             profession_name = #{professionName},
+            profession_short = #{short},
             profession_description = #{professionDescription},
             hot_degree = #{hotDegree},
             salary_rank = #{salaryRank},
@@ -373,13 +390,66 @@ selectList
         </if>
     </select>
 
-    <select id="queryPage" resultType="java.util.HashMap">
+    <select id="queryProfessionDetail" resultType="java.util.HashMap">
         select
+        zp.id,
         zp.profession_name as professionName,
         zpt.profession_type as professionType,
         zptt.profession_type as professionSubType,
         zp.salary_rank as salaryRank,
-        zp.hot_degree as hotDegree
+        zp.hot_degree as hotDegree,
+        substring(zpd.introduction,LOCATE('http',zpd.introduction)) as introduction,
+        substring(zpd.relate_major,LOCATE('http',zpd.relate_major)) as relateMajor,
+        substring(zpd.vocational_demand,LOCATE('http',zpd.vocational_demand)) as vocationalDemand,
+        substring(zpd.work_content,LOCATE('http',zpd.work_content)) as workContent,
+        substring(zpd.career_prospects,LOCATE('http',zpd.career_prospects)) as careerProspects
+        from zgk_profession zp
+        left join zgk_profession_type zpt on zp.profession_type=zpt.id
+        left join zgk_profession_type zptt on zptt.pid = zpt.id and zptt.id = zp.profession_sub_type
+        left join zgk_profession_detail zpd on zp.id = zpd.id
+        where
+        zp.id = #{id}
+    </select>
+
+    <select id="queryPageList" resultType="java.util.HashMap">
+        select
+        zp.id,
+        zp.profession_name as professionName,
+        zpt.profession_type as professionType,
+        zptt.profession_type as professionSubType,
+        zp.salary_rank as salaryRank,
+        zp.hot_degree as hotDegree,
+        zp.profession_short as professionShort
+        from zgk_profession zp
+        left join zgk_profession_type zpt on zp.profession_type=zpt.id
+        left join zgk_profession_type zptt on zptt.pid = zpt.id and zptt.id = zp.profession_sub_type
+        <where>
+              1=1
+            <if test="professionName!=null">
+                AND zp.profession_name like CONCAT('%', #{professionName}, '%')
+            </if>
+            <if test="professionType!=null">
+                AND zp.profession_type=#{professionType}
+            </if>
+            <if test="professionSubType!=null">
+                AND zp.profession_sub_type=#{professionSubType}
+            </if>
+        </where>
+        order by zp.salary_rank asc
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+    <select id="queryPage" resultType="java.util.HashMap">
+        select
+        zp.id,
+        zp.profession_name as professionName,
+        zpt.profession_type as professionType,
+        zptt.profession_type as professionSubType,
+        zp.salary_rank as salaryRank,
+        zp.hot_degree as hotDegree,
+        zp.profession_short as professionShort
         from zgk_profession zp
         left join zgk_profession_type zpt on zp.profession_type=zpt.id
         left join zgk_profession_type zptt on zptt.pid = zpt.id and zptt.id = zp.profession_sub_type
@@ -387,18 +457,17 @@ selectList
             <if test="condition.whereSql != null">
                 and zp.id in (#{condition.whereSql})
             </if>
-
             <if test="condition.id!=null">
                 ${condition.groupOp}   ${condition.id.field}  ${condition.id.op}  #{condition.id.data}
             </if>
+            <if test="condition.professionName!=null">
+                AND zp.profession_name like CONCAT('%', #{condition.professionName}, '%')
+            </if>
             <if test="condition.professionType!=null">
-                ${condition.groupOp}   ${condition.professionType.field}  ${condition.professionType.op}  #{condition.professionType.data}
+                AND zp.profession_type=#{condition.professionType}
             </if>
             <if test="condition.professionSubType!=null">
-                ${condition.groupOp}   ${condition.professionSubType.field}  ${condition.professionSubType.op}  #{condition.professionSubType.data}
-            </if>
-            <if test="condition.professionName!=null">
-                ${condition.groupOp}   ${condition.professionName.field}  ${condition.professionName.op}  #{condition.professionName.data}
+                AND zp.profession_sub_type=#{condition.professionSubType}
             </if>
             <if test="condition.professionDescription!=null">
                 ${condition.groupOp}   ${condition.professionDescription.field}  ${condition.professionDescription.op}  #{condition.professionDescription.data}
@@ -425,7 +494,7 @@ selectList
                 ${condition.groupOp}   ${condition.idDelete.field}  ${condition.idDelete.op}  #{condition.idDelete.data}
             </if>
         </where>
-        order by zp.salary_rank asc,zp.hot_degree desc
+        order by zp.salary_rank asc
         <if test="offset != null">
             limit ${offset}, ${rows}
         </if>
@@ -848,5 +917,19 @@ selectList
         FROM zgk_profession
     </select>
 
+    <select id="queryProfessionCategory" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+        select id,profession_type as Type
+        from zgk_profession_type
+        where 1=1
+            <if test="pid==null">
+                AND pid is null
+            </if>
+            <if test="pid!=null">
+                AND pid=#{pid}
+            </if>
+            <if test="type!=null">
+                AND profession_type like CONCAT('%', #{type} , '%')
+            </if>
+    </select>
 </mapper>
 

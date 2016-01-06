@@ -2,7 +2,7 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  Schedule.java 2015-12-17 14:00:27 $
+ * $Id:  Schedule.java 2016-01-05 11:24:15 $
  */
 
 
@@ -28,6 +28,8 @@ public class Schedule extends CreateBaseDomain<Long>{
     private String years;
     /** 内容 */
     private String content;
+    /** 标题 */
+    private String title;
 
 	public Schedule(){
 	}
@@ -59,6 +61,13 @@ public class Schedule extends CreateBaseDomain<Long>{
     public String getContent() {
         return this.content;
     }
+    public void setTitle(String value) {
+        this.title = value;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
 
 	public String toString() {
 		return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
@@ -72,6 +81,7 @@ public class Schedule extends CreateBaseDomain<Long>{
 			.append("Creator",getCreator())
 			.append("LastModifier",getLastModifier())
 			.append("Content",getContent())
+			.append("Title",getTitle())
 			.toString();
 	}
 	

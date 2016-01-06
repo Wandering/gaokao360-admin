@@ -178,6 +178,4 @@ public class AddUtil extends BaseCommonUtil{
         }
         getServiceMaps().get("professiontype").insertMap(getDataMap());
     }
-
-
 }

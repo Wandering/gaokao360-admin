@@ -34,7 +34,8 @@ selectList
         lastModDate as lastModDate ,
         creator as creator ,
         lastModifier as lastModifier ,
-        content as content 
+        content as content ,
+        title as title 
     </sql>
     <insert id="insert" parameterType="Schedule">
         INSERT INTO zgk_schedule (
@@ -46,7 +47,8 @@ selectList
         lastModDate,
         creator,
         lastModifier,
-        content
+        content,
+        title
         ) VALUES (
         #{areaId},
         #{month},
@@ -56,7 +58,8 @@ selectList
         #{lastModDate},
         #{creator},
         #{lastModifier},
-        #{content}
+        #{content},
+        #{title}
         )
             <selectKey resultType="java.lang.Long" keyProperty="id">
                 SELECT LAST_INSERT_ID() AS ID
@@ -94,6 +97,9 @@ selectList
             <if test="content!=null">
                 content = #{content},
             </if>
+            <if test="title!=null">
+                title = #{title},
+            </if>
         </trim>
         WHERE
         id = #{id}
@@ -128,6 +134,9 @@ selectList
             </if>
             <if test="map.content!=null">
                 content = #{map.content},
+            </if>
+            <if test="map.title!=null">
+                title = #{map.title},
             </if>
         </trim>
         WHERE
@@ -164,6 +173,9 @@ selectList
             <if test="update.content!=null">
                 content = #{update.content},
             </if>
+            <if test="update.title!=null">
+                title = #{update.title},
+            </if>
         </trim>
 
         <trim prefix="WHERE" prefixOverrides="AND | OR">
@@ -197,6 +209,9 @@ selectList
             <if test="condition.content!=null">
                 AND content = #{condition.content}
             </if>
+            <if test="condition.title!=null">
+                AND title = #{condition.title}
+            </if>
         </trim>
     </update>
 
@@ -210,7 +225,8 @@ selectList
                 lastModDate,
                 creator,
                 lastModifier,
-                content
+                content,
+                title
         ) VALUES (
                     #{map.areaId},
                     #{map.month},
@@ -220,7 +236,8 @@ selectList
                     #{map.lastModDate},
                     #{map.creator},
                     #{map.lastModifier},
-                    #{map.content}
+                    #{map.content},
+                    #{map.title}
         )
     </insert>
 
@@ -237,6 +254,7 @@ selectList
             creator = #{creator},
             lastModifier = #{lastModifier},
             content = #{content},
+            title = #{title},
         </trim>
         WHERE
         id = #{id} 
@@ -283,6 +301,9 @@ selectList
             </if>
             <if test="content!=null">
                 AND content = #{content}
+            </if>
+            <if test="title!=null">
+                AND title = #{title}
             </if>
         </trim>
     </delete>
@@ -333,7 +354,46 @@ selectList
 
     <select id="queryPage" resultType="Schedule">
         SELECT
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                        <if test="selector.id!=null">
+                            , id
+                        </if>
+                        <if test="selector.areaId!=null">
+                            , areaId
+                        </if>
+                        <if test="selector.month!=null">
+                            , month
+                        </if>
+                        <if test="selector.years!=null">
+                            , years
+                        </if>
+                        <if test="selector.status!=null">
+                            , status
+                        </if>
+                        <if test="selector.createDate!=null">
+                            , createDate
+                        </if>
+                        <if test="selector.lastModDate!=null">
+                            , lastModDate
+                        </if>
+                        <if test="selector.creator!=null">
+                            , creator
+                        </if>
+                        <if test="selector.lastModifier!=null">
+                            , lastModifier
+                        </if>
+                        <if test="selector.content!=null">
+                            , content
+                        </if>
+                        <if test="selector.title!=null">
+                            , title
+                        </if>
+            </trim>
+        </if>
+        <if test="selector==null">
         <include refid="Base_Column_List" />
+        </if>
         FROM zgk_schedule
         <where>
 
@@ -371,6 +431,9 @@ selectList
             <if test="condition.content!=null">
                 ${condition.groupOp}   ${condition.content.field}  ${condition.content.op}  #{condition.content.data}
             </if>
+            <if test="condition.title!=null">
+                ${condition.groupOp}   ${condition.title.field}  ${condition.title.op}  #{condition.title.data}
+            </if>
 
 
     </where>
@@ -384,7 +447,46 @@ selectList
 
     <select id="like" parameterType="java.util.Map" resultType="Schedule">
         SELECT
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                    <if test="selector.id!=null">
+                        , id
+                    </if>
+                    <if test="selector.areaId!=null">
+                        , areaId
+                    </if>
+                    <if test="selector.month!=null">
+                        , month
+                    </if>
+                    <if test="selector.years!=null">
+                        , years
+                    </if>
+                    <if test="selector.status!=null">
+                        , status
+                    </if>
+                    <if test="selector.createDate!=null">
+                        , createDate
+                    </if>
+                    <if test="selector.lastModDate!=null">
+                        , lastModDate
+                    </if>
+                    <if test="selector.creator!=null">
+                        , creator
+                    </if>
+                    <if test="selector.lastModifier!=null">
+                        , lastModifier
+                    </if>
+                    <if test="selector.content!=null">
+                        , content
+                    </if>
+                    <if test="selector.title!=null">
+                        , title
+                    </if>
+            </trim>
+        </if>
+        <if test="selector==null">
             <include refid="Base_Column_List" />
+        </if>
         FROM zgk_schedule
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
@@ -417,6 +519,9 @@ selectList
             <if test="condition.content!=null">
                 AND content like CONCAT('%', #{condition.content} , '%')
             </if>
+            <if test="condition.title!=null">
+                AND title like CONCAT('%', #{condition.title} , '%')
+            </if>
         </trim>
         <if test="orderBy!=null">
         ORDER BY ${orderBy} ${sortBy}
@@ -426,7 +531,46 @@ selectList
 
     <select id="queryList" parameterType="java.util.Map" resultType="Schedule">
         SELECT
-        <include refid="Base_Column_List" />
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                <if test="selector.id!=null">
+                    , id
+                </if>
+                <if test="selector.areaId!=null">
+                    , areaId
+                </if>
+                <if test="selector.month!=null">
+                    , month
+                </if>
+                <if test="selector.years!=null">
+                    , years
+                </if>
+                <if test="selector.status!=null">
+                    , status
+                </if>
+                <if test="selector.createDate!=null">
+                    , createDate
+                </if>
+                <if test="selector.lastModDate!=null">
+                    , lastModDate
+                </if>
+                <if test="selector.creator!=null">
+                    , creator
+                </if>
+                <if test="selector.lastModifier!=null">
+                    , lastModifier
+                </if>
+                <if test="selector.content!=null">
+                    , content
+                </if>
+                <if test="selector.title!=null">
+                    , title
+                </if>
+        </trim>
+    </if>
+<if test="selector==null">
+<include refid="Base_Column_List" />
+</if>
         FROM zgk_schedule
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
@@ -458,6 +602,9 @@ selectList
             </if>
             <if test="condition.content!=null">
                 AND content = #{condition.content}
+            </if>
+            <if test="condition.title!=null">
+                AND title = #{condition.title}
             </if>
         </trim>
         <if test="orderBy!=null">
@@ -467,7 +614,46 @@ selectList
 
     <select id="queryOne" parameterType="java.util.Map" resultType="Schedule">
         SELECT
-        <include refid="Base_Column_List" />
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                    <if test="selector.id!=null">
+                        , id
+                    </if>
+                    <if test="selector.areaId!=null">
+                        , areaId
+                    </if>
+                    <if test="selector.month!=null">
+                        , month
+                    </if>
+                    <if test="selector.years!=null">
+                        , years
+                    </if>
+                    <if test="selector.status!=null">
+                        , status
+                    </if>
+                    <if test="selector.createDate!=null">
+                        , createDate
+                    </if>
+                    <if test="selector.lastModDate!=null">
+                        , lastModDate
+                    </if>
+                    <if test="selector.creator!=null">
+                        , creator
+                    </if>
+                    <if test="selector.lastModifier!=null">
+                        , lastModifier
+                    </if>
+                    <if test="selector.content!=null">
+                        , content
+                    </if>
+                    <if test="selector.title!=null">
+                        , title
+                    </if>
+            </trim>
+        </if>
+        <if test="selector==null">
+            <include refid="Base_Column_List" />
+        </if>
         FROM zgk_schedule
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
@@ -499,6 +685,9 @@ selectList
             </if>
             <if test="condition.content!=null">
                 AND content = #{condition.content}
+            </if>
+            <if test="condition.title!=null">
+                AND title = #{condition.title}
             </if>
         </trim>
         <if test="orderBy!=null">
@@ -539,6 +728,9 @@ selectList
            </if>
            <if test="content!=null">
                ${groupOp} ${content.field} ${content.op}  #{content.data}
+           </if>
+           <if test="title!=null">
+               ${groupOp} ${title.field} ${title.op}  #{title.data}
            </if>
 
        </where>

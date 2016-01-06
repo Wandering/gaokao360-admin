@@ -315,7 +315,7 @@
                 batchData.push(batchType);
             };
 
-            console.log(batchData)
+            console.log(batchData);
             var Datas = {
                 "areaId": selProvinceV,
                 "universityId": autoSearchV,

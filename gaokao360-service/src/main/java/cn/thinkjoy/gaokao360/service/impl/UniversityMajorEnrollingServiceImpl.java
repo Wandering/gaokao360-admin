@@ -1,18 +1,17 @@
 /*
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
- * Project Name: zgk
- * $Id:  ProfessionServiceImpl.java 2015-12-28 18:05:26 $
+ * Project Name: gaokao360
+ * $Id:  UniversityMajorEnrollingServiceImpl.java 2015-12-31 10:09:48 $
  */
 package cn.thinkjoy.gaokao360.service.impl;
 
-
+import cn.thinkjoy.common.domain.BaseDomain;
 import cn.thinkjoy.common.dao.IBaseDAO;
-import cn.thinkjoy.common.domain.view.BizData4Page;
+import cn.thinkjoy.gaokao360.dao.IUniversityMajorEnrollingDAO;
+import cn.thinkjoy.gaokao360.domain.UniversityMajorEnrolling;
+import cn.thinkjoy.gaokao360.service.IUniversityMajorEnrollingService;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
-import cn.thinkjoy.gaokao360.dao.IProfessionDAO;
-import cn.thinkjoy.gaokao360.domain.Profession;
-import cn.thinkjoy.gaokao360.service.IProfessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,53 +19,16 @@ import java.util.List;
 import java.util.Map;
 
 
-@Service("ProfessionServiceImpl")
-public class ProfessionServiceImpl extends AbstractPageService<IBaseDAO<Profession>, Profession> implements IProfessionService<IBaseDAO<Profession>,Profession> {
+@Service("UniversityMajorEnrollingServiceImpl")
+public class UniversityMajorEnrollingServiceImpl extends AbstractPageService<IBaseDAO<UniversityMajorEnrolling>, UniversityMajorEnrolling> implements IUniversityMajorEnrollingService<IBaseDAO<UniversityMajorEnrolling>,UniversityMajorEnrolling>{
     @Autowired
-    private IProfessionDAO professionDAO;
+    private IUniversityMajorEnrollingDAO universityMajorEnrollingDAO;
 
     @Override
-    public IBaseDAO<Profession> getDao() {
-        return professionDAO;
+    public IBaseDAO<UniversityMajorEnrolling> getDao() {
+        return universityMajorEnrollingDAO;
     }
 
-    @Override
-    public BizData4Page queryPageByDataPerm(String resUri, Map<String, Object> conditions, int curPage, int offset, int rows){
-        return createBizData4Page(getDao(),conditions,curPage,offset,rows);
-    }
-
-    public BizData4Page createBizData4Page(IBaseDAO dao, Map<String, Object> conditions, int curPage, int offset, int rows){
-        List<Map<String, String>> mainData = dao.queryPage(conditions, offset, rows, null, null,null);
-
-        int records = dao.count(conditions);
-        BizData4Page bizData4Page = new BizData4Page();
-        bizData4Page.setRows(mainData);
-        bizData4Page.setPage(curPage);
-        bizData4Page.setRecords(records);
-        int total = records / rows;
-        int mod = records % rows;
-        if(mod > 0){
-            total = total + 1;
-        }
-        bizData4Page.setTotal(total);
-
-        return bizData4Page;
-    }
-
-    public List<Map<String, String>> findCategory(Map<String, Object> dataMap)
-    {
-        return professionDAO.queryProfessionCategory(dataMap);
-    }
-
-    public Map<String, String> findProfessionDetail(int id)
-    {
-        return professionDAO.queryProfessionDetail(id);
-    }
-
-    public List<Map<String, String>> findPageList(Map<String, Object> dataMap)
-    {
-        return professionDAO.queryPageList(dataMap);
-    }
 //    @Override
 //    public void insert(BaseDomain entity) {
 //
@@ -118,8 +80,8 @@ public class ProfessionServiceImpl extends AbstractPageService<IBaseDAO<Professi
 //    }
 //
 //    @Override
-//    public List<Profession> findAll() {
-//        return professionDAO.findAll();
+//    public List<UniversityMajorEnrolling> findAll() {
+//        return universityMajorEnrollingDAO.findAll();
 //    }
 //
 //    @Override
@@ -173,8 +135,8 @@ public class ProfessionServiceImpl extends AbstractPageService<IBaseDAO<Professi
 //    }
 //
 //    @Override
-//    protected ProfessionDAO getDao() {
-//        return professionDAO;
+//    protected UniversityMajorEnrollingDAO getDao() {
+//        return universityMajorEnrollingDAO;
 //    }
 //
 //    @Override

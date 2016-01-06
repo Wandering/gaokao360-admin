@@ -128,7 +128,9 @@
 //          添加修改方法
         function addAndEditFun() {
             var MajoredNameList = $('#MajoredNameList').find('option:selected').attr('value');
+            var MajoredNameListText = $('#MajoredNameList').find('option:selected').text();
             var UniversityNameList = $('#UniversityNameList').find('option:selected').attr('value');
+            var UniversityNameListText = $('#UniversityNameList').find('option:selected').text();
             var MAJOR_TYPE = $('#MAJOR_TYPE').find('option:selected').attr('value');
             var UNIVERSITY_MAJOR_TYPE = $('#UNIVERSITY_MAJOR_TYPE').find('option:selected').attr('value');
 
@@ -160,7 +162,18 @@
                 return false;
             }
 
-            var data = {oper: typeStr};
+            var data = {
+                oper: 'add',
+                universityId: UniversityNameList,
+                universityName: UniversityNameListText,
+                majorId: MajoredNameList,
+                majorName: MajoredNameListText,
+                majorType: MAJOR_TYPE,
+                majorSubject: UNIVERSITY_MAJOR_TYPE,
+                educationLevel: eduLevel,
+                gainDegree: GAIN_DEGREE,
+                isDelete: 0
+            };
             if (typeStr == 'edit') {
                 data.id = rowId;
             }

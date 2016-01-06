@@ -1,6 +1,7 @@
 package cn.thinkjoy.gaokao360.common;
 
 import cn.thinkjoy.common.exception.BizException;
+import cn.thinkjoy.gaokao360.domain.ProfessionType;
 import cn.thinkjoy.gaokao360.domain.VideoSection;
 import cn.thinkjoy.gaokao360.service.IAdmissionBatchService;
 import cn.thinkjoy.gaokao360.service.ISubjectService;
@@ -153,5 +154,29 @@ public class UpdateUtil extends BaseCommonUtil{
             }
         }
 
+    }
+
+    public void professiontype(){
+        String content = (String)getDataMap().get("content");
+        dataMap.put("pid","0");
+        dataMap.put("isDelete",false);
+        getServiceMaps().get("professiontype").updateMap(dataMap);
+        Long l=(Long)dataMap.get("id");
+        if(content!=null && "".equals(content)){
+            String[] majoredList=content.split("、");
+            Map<String,Object> map=null;
+            for(String str:majoredList){
+                ProfessionType professionType = new ProfessionType();
+                professionType.setProfessionType(str);
+                professionType.setPid(l);
+                professionType.setIsDelete(false);
+                map=new HashMap<>();
+                map.put("pid",l);
+                map.put("name",str);
+                if(getServiceMaps().get("professiontype").queryOne(map)!=null) {
+                    getServiceMaps().get("professiontype").insert(professionType);
+                }
+            }
+        }
     }
 }
