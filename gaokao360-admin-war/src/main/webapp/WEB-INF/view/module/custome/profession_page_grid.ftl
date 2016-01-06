@@ -29,22 +29,6 @@
 
             <div class="col-sm-4">
                 <div class="form-group">
-                    <label class="col-sm-4 control-label">时间:</label>
-
-                    <div class="col-sm-8">
-                        <div class="input-daterange input-group" data-date-format="yyyy-mm-dd">
-                            <input type="text" class="input-sm form-control" name="start" id="startCommitTime"/>
-                                <span class="input-group-addon">
-                                    <i class="fa fa-exchange"></i>
-                                </span>
-                            <input type="text" class="input-sm form-control" name="end" id="endCommitTime"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-4">
-                <div class="form-group">
                     <div class="col-sm-4" style="width:200px;">
                         <button type="button" class="btn btn-purple btn-sm" id="search">
                             搜索

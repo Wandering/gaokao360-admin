@@ -30,7 +30,7 @@ public class ProfessionServiceImpl extends AbstractPageService<IBaseDAO<Professi
         return professionDAO;
     }
 
-
+    @Override
     public BizData4Page queryPageByDataPerm(String resUri, Map<String, Object> conditions, int curPage, int offset, int rows){
         return createBizData4Page(getDao(),conditions,curPage,offset,rows);
     }
@@ -51,6 +51,21 @@ public class ProfessionServiceImpl extends AbstractPageService<IBaseDAO<Professi
         bizData4Page.setTotal(total);
 
         return bizData4Page;
+    }
+
+    public List<Map<String, String>> findCategory(Map<String, Object> dataMap)
+    {
+        return professionDAO.queryProfessionCategory(dataMap);
+    }
+
+    public Map<String, String> findProfessionDetail(int id)
+    {
+        return professionDAO.queryProfessionDetail(id);
+    }
+
+    public List<Map<String, String>> findPageList(Map<String, Object> dataMap)
+    {
+        return professionDAO.queryPageList(dataMap);
     }
 //    @Override
 //    public void insert(BaseDomain entity) {

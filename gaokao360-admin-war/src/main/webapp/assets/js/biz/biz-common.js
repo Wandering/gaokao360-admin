@@ -275,6 +275,10 @@ function formatdataURL(cellvalue){
     }
     return "<a href='"+cellvalue+"' target='_blank' class='btn btn-sm btn-primary'>查看详情</a>";
 }
+
+function formatdataIdURL(cellvalue, options, rowObject){
+    return "<a href='/admin/zgk/professionDetail?id="+rowObject.id+"' target='_blank' class='btn btn-sm btn-primary'>查看详情</a>";
+}
 //合并省份
 function formatdataProvince1(cellvalue,options, rowObject){
     if(cellvalue == null || cellvalue=='' ||cellvalue ==0){

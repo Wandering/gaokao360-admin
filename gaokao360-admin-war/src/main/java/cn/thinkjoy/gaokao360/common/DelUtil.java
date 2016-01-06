@@ -2,6 +2,7 @@ package cn.thinkjoy.gaokao360.common;
 
 import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.gaokao360.domain.GkinformationGkhot;
+import cn.thinkjoy.gaokao360.domain.ProfessionType;
 import cn.thinkjoy.gaokao360.domain.VideoSection;
 import cn.thinkjoy.gaokao360.service.IAdmissionBatchService;
 import cn.thinkjoy.gaokao360.service.ISubjectService;
@@ -84,6 +85,12 @@ public class DelUtil extends BaseCommonUtil{
         majoredCategoryExService.deleteCategory(dataMap);
     }
 
+    public void professiontype(){
+        getServiceMaps().get("professiontype").delete(dataMap.get("id"));
+        Map<String,Object> map = new HashMap<>();
+        map.put("pid",dataMap.get("id"));
+        getServiceMaps().get("professiontype").deleteByCondition(map);
+    }
     public void runMethod(String mainObj) throws Exception {
         this.getClass().getMethod(mainObj).invoke(this);
     }
