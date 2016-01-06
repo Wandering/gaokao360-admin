@@ -286,7 +286,6 @@
                 CommonFn.tipsDialog('温馨提示', '年份没有选择,请重新输入');
                 return false;
             }
-
             var batchData = [];
             var batchType = {}
             for(var i=0;i<$('.subjectTypeList').length;i++){
@@ -314,7 +313,6 @@
                 };
                 batchData.push(batchType);
             };
-
             console.log(batchData);
             var Datas = {
                 "areaId": selProvinceV,
@@ -323,7 +321,6 @@
                 "batchContent":batchData,
                 "oper": typeStr
             };
-
             if (typeStr == 'edit') {
                 Datas.id = rowId;
             }
