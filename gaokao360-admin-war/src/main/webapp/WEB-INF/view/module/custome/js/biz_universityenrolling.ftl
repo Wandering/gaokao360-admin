@@ -252,6 +252,7 @@
 //        添加
         var addEditFun = function () {
             var selProvinceV = $('#selProvince2 option:checked').val();
+            alert(selProvinceV)
             var selYearsV = $("#selYears2").find('option:selected').val();
             var autoSearchId = $('.ui-autocomplete-input').attr('dataId');
 
