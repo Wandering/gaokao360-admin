@@ -394,7 +394,7 @@ selectList
         select
         zp.id,
         zp.profession_name as professionName,
-        zp. profession_type aa professionTypeId,
+        zp. profession_type as professionTypeId,
         zpt.profession_type as professionType,
         zp.profession_sub_type as professionSubTypeId,
         zptt.profession_type as professionSubType,
