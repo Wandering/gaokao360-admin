@@ -191,12 +191,15 @@
                     "professionId" : rowId
                 },
                 success: function (result) {
-                    console.log(result.professionName)
+                    console.log(result)
                     if (result.rtnCode == "0000000") {
                         var dataJson = result.bizData;
                         $('#hotTitle').val(dataJson.professionName);
-                        $('#selProfession2 option[value="'+ dataJson.professionType +'"]').attr('selected','true');
-                        $('#selProfession3 option[value="'+ dataJson.hotDegree +'"]').attr('selected','true');
+                        $('#selProfession2 option[value="'+ dataJson.professionTypeId +'"]').attr('selected','true');
+
+                        var professionData = CommonFn.getProfession(dataJson.professionTypeId);
+                        $('#selProfession3').show().html(professionData);
+                        $('#selProfession3 option[value="'+ dataJson.professionSubTypeId +'"]').attr('selected','true');
                         $('#selProfessionHot option[value="1"]').attr('selected','true');
                         $('#salary-ranking').val(dataJson.salaryRank);
                         $('#hotContent-profession').html(dataJson.relateMajor);
@@ -302,15 +305,15 @@
             }
             var Datas = {
                 "professionType": selProfession2V,
-                professionSubType: selProfession3V,
-                professionName: hotTitleV,
-                hotDegree: selProfessionHotV,
-                salaryRank: salaryRankingV,
-                relateMajor: hotContentProfessionV,
-                introduction: hotContentIntroV,
-                workContent: hotContentContentV,
-                vocationalDemand: hotContentRequirementsV,
-                careerProspects: hotContentProspectsV,
+                "professionSubType": selProfession3V,
+                "professionName": hotTitleV,
+                "hotDegree": selProfessionHotV,
+                "salaryRank": salaryRankingV,
+                "relateMajor": hotContentProfessionV,
+                "introduction": hotContentIntroV,
+                "workContent": hotContentContentV,
+                "vocationalDemand": hotContentRequirementsV,
+                "careerProspects": hotContentProspectsV,
             };
             return Datas;
         };
@@ -331,19 +334,19 @@
             });
         };
         var editFun = function () {
-
-
-
-//            $.ajax({
-//                type: "POST",
-//                url: '/admin/zgk/editProfession',
-//                data: Datas,
-//                success: function (result) {
-//                    if (result.rtnCode == "0000000") {
-////                        searchLoad();
-//                    }
-//                }
-//            });
+            var Datas = validationFun();
+            Datas.id = rowId;
+            console.log(Datas)
+            $.ajax({
+                type: "POST",
+                url: '/admin/zgk/editProfession',
+                data: Datas,
+                success: function (result) {
+                    if (result.rtnCode == "0000000") {
+                        searchLoad();
+                    }
+                }
+            });
         };
     });
 
