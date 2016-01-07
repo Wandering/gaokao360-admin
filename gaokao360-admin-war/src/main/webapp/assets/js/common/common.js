@@ -263,7 +263,7 @@ var CommonFn = {
     },
     getProfessionHot: function (id) {
         var contentArr = [];
-        contentArr.push('<option value="00">请选择行业分类</option>');
+        contentArr.push('<option value="00">请选择职业分类</option>');
         $.ajaxSettings.async = false;
         CommonFn.getData(CommonFn.url.professionCategoryUrl+'?pid='+id, 'GET', {}, function (result) {
             console.log(result);

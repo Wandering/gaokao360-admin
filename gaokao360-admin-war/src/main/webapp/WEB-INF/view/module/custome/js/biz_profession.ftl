@@ -116,7 +116,7 @@
                 + '          <div class="form-group">'
                 + '              <label class="col-sm-2 control-label no-padding-right"> 薪资排名：</label>'
                 + '              <div class="col-sm-4">'
-                + '                  <input id="autoSearch" type="text" class="form-control" placeholder="请输入薪资排名"/>'
+                + '                  <input id="salary-ranking" type="text" class="form-control" placeholder="请输入薪资排名"/>'
                 + '          </div>'
                 + '          </div>'
                 + '          <div class="form-group">'
@@ -184,19 +184,15 @@
 
                 }
             });
-
             professionFn();
             CommonFn.renderTextarea('#hotContent-profession');
             CommonFn.renderTextarea('#hotContent-intro');
             CommonFn.renderTextarea('#hotContent3-content');
             CommonFn.renderTextarea('#hotContent-requirements');
             CommonFn.renderTextarea('#hotContent-prospects');
-
-
         });
         //修改
         $("#editBtn").on(ace.click_event, function () {
-            typeStr = "edit";
             rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
             var selTrN = $('tr.ui-state-highlight[role="row"]').length;
             if (selTrN != 1) {
@@ -211,7 +207,7 @@
                     "success": {
                         "label": "<i class='ace-icon fa fa-check'></i> 提交",
                         "className": "btn-sm btn-success",
-                        "callback": addEditFun
+                        "callback": editFun
                     },
                     cancel: {
                         label: "关闭",
@@ -219,76 +215,133 @@
                     }
                 }
             });
-            // 当前行数据
-            var rowData = CommonFn.getRowData(rowId)
-            console.log(rowData)
-            $('#selProvince2').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
-            $('#selCourses2').find('option[value="' + rowData[0].subjectId + '"]').attr('selected', 'selected');
-            $('#selYears2').find('option[value="' + rowData[0].years + '"]').attr('selected', 'selected');
-            $('#examName').val(rowData[0].paperName);
+            professionFn();
+            CommonFn.renderTextarea('#hotContent-profession');
+            CommonFn.renderTextarea('#hotContent-intro');
+            CommonFn.renderTextarea('#hotContent3-content');
+            CommonFn.renderTextarea('#hotContent-requirements');
+            CommonFn.renderTextarea('#hotContent-prospects');
         });
         //删除
         CommonFn.deleteFun('#deleteBtn', '${mainObj}');
+
+
+//        $(obj).on(ace.click_event, function () {
+//            var rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
+//            var selTrN = $('tr.ui-state-highlight[role="row"]').length;
+//            if (selTrN != 1) {
+//                CommonFn.tipsDialog('温馨提示', '请选中一行后在删除');
+//                return false;
+//            }
+//            bootbox.dialog({
+//                title: "删除",
+//                message: "确定删除该条数据",
+//                buttons: {
+//                    "success": {
+//                        "label": "<i class='ace-icon fa fa-check'></i> 确定",
+//                        "className": "btn-sm btn-success",
+//                        "callback": function () {
+//                            $.ajax({
+//                                type: "POST",
+//                                url: CommonFn.url.deleteData + deleteData,
+//                                data: {
+//                                    oper: 'del',
+//                                    id: rowId
+//                                },
+//                                success: function (result) {
+//                                    console.log(result);
+//                                    if (result.rtnCode == "0000000") {
+//                                        searchLoad();
+//                                    }
+//                                }
+//                            });
+//                        }
+//                    },
+//                    cancel: {
+//                        label: "关闭",
+//                        className: "btn-sm"
+//                    }
+//                }
+//            });
+//        });
+
+
+
+
+        var validationFun =function(){
+            var hotTitleV = $.trim($('#hotTitle').val());
+            var selProfession2V = $('#selProfession2 option:checked').val();
+            var selProfession3V = $('#selProfession3 option:checked').val();
+            var selProfessionHotV = $('#selProfessionHot option:checked').val();
+            var salaryRankingV = $.trim($('#salary-ranking').val());
+            var hotContentProfessionV = $('#hotContent-profession').html();
+            var hotContentIntroV = $('#hotContent-intro').html();
+            var hotContentContentV = $('#hotContent3-content').html();
+            var hotContentRequirementsV = $('#hotContent-requirements').html();
+            var hotContentProspectsV = $('#hotContent-prospects').html();
+
+            if (hotTitleV == "") {
+                CommonFn.tipsDialog('温馨提示', '请输入职业名称');
+                return false;
+            }
+            if (selProfession2V == "00") {
+                CommonFn.tipsDialog('温馨提示', '请选择行业分类');
+                return false;
+            }
+            if (selProfession3V == "00") {
+                CommonFn.tipsDialog('温馨提示', '请选择职业分类');
+                return false;
+            }
+            if (selProfessionHotV == "00") {
+                CommonFn.tipsDialog('温馨提示', '请选择职业热度');
+                return false;
+            }
+            if (salaryRankingV == "") {
+                CommonFn.tipsDialog('温馨提示', '请输入薪资排名');
+                return false;
+            }
+            if (hotContentProfessionV == "") {
+                CommonFn.tipsDialog('温馨提示', '请输入相关专业');
+                return false;
+            }
+            if (hotContentIntroV == "") {
+                CommonFn.tipsDialog('温馨提示', '请输入职业简介');
+                return false;
+            }
+            if (hotContentContentV == "") {
+                CommonFn.tipsDialog('温馨提示', '请输入工作内容');
+                return false;
+            }
+            if (hotContentRequirementsV == "") {
+                CommonFn.tipsDialog('温馨提示', '请输入从业要求');
+                return false;
+            }
+            if (hotContentProspectsV == "") {
+                CommonFn.tipsDialog('温馨提示', '请输入从业前景');
+                return false;
+            }
+            var Datas = {
+                "professionType": selProfession2V,
+                professionSubType: selProfession3V,
+                professionName: hotTitleV,
+                hotDegree: selProfessionHotV,
+                salaryRank: salaryRankingV,
+                relateMajor: hotContentProfessionV,
+                introduction: hotContentIntroV,
+                workContent: hotContentContentV,
+                vocationalDemand: hotContentRequirementsV,
+                careerProspects: hotContentProspectsV,
+            };
+            return Datas;
+        };
+
 //        添加
         var addEditFun = function () {
-            var selProvinceV = $('#selProvince2 option:checked').val();
-            var selYearsV = $("#selYears2").find('option:selected').val();
-            var autoSearchV = $.trim($('.ui-autocomplete-input').attr('id'));
-            if (selProvinceV == "00") {
-                CommonFn.tipsDialog('温馨提示', '请选择省份');
-                return false;
-            }
-            if (autoSearchV == "") {
-                CommonFn.tipsDialog('温馨提示', '请输入院校名称');
-                return false;
-            }
-            if (selYearsV == '00') {
-                CommonFn.tipsDialog('温馨提示', '年份没有选择,请重新输入');
-                return false;
-            }
-            var batchData = [];
-            var batchType = {}
-            for (var i = 0; i < $('.subjectTypeList').length; i++) {
-                var universityMajorTypeV = $('.subjectTypeList:eq(' + i + ')').attr('dataid');
-                var batchV = $('.subjectTypeList:eq(' + i + ')').find('.subjectType option:checked').val();
-                var planEnrollingNumberV = $('.subjectTypeList:eq(' + i + ')').find('.planEnrollingNumber').val();
-                var realEnrollingNumberV = $('.subjectTypeList:eq(' + i + ')').find('.realEnrollingNumber').val();
-                var highestScoreV = $('.subjectTypeList:eq(' + i + ')').find('.highestScore').val();
-                var highestPrecedenceV = $('.subjectTypeList:eq(' + i + ')').find('.highestPrecedence').val();
-                var lowestScoreV = $('.subjectTypeList:eq(' + i + ')').find('.lowestScore').val();
-                var lowestPrecedenceV = $('.subjectTypeList:eq(' + i + ')').find('.lowestPrecedence').val();
-                var averageScoreV = $('.subjectTypeList:eq(' + i + ')').find('.averageScore').val();
-                var averagePrecedenceV = $('.subjectTypeList:eq(' + i + ')').find('.averagePrecedence').val();
-                batchType = {
-                    "universityMajorType": universityMajorTypeV,
-                    "batch": batchV,
-                    "planEnrollingNumber": planEnrollingNumberV,
-                    "realEnrollingNumber": realEnrollingNumberV,
-                    "highestScore": highestScoreV,
-                    "highestPrecedence": highestPrecedenceV,
-                    "lowestScore": lowestScoreV,
-                    "lowestPrecedence": lowestPrecedenceV,
-                    "averageScore": averageScoreV,
-                    "averagePrecedence": averagePrecedenceV
-                };
-                batchData.push(batchType);
-            }
-            ;
-
-            var Datas = {
-                "areaId": selProvinceV,
-                "universityId": autoSearchV,
-                "year": selYearsV,
-                "batchContent": batchData,
-                "oper": typeStr
-            };
-            console.log(Datas);
-            if (typeStr == 'edit') {
-                Datas.id = rowId;
-            }
+            var Datas = validationFun();
+            console.log(Datas)
             $.ajax({
                 type: "POST",
-                url: '/admin/${bizSys}/commonsave/${mainObj}',
+                url: '/admin/zgk/addProfession',
                 data: Datas,
                 success: function (result) {
                     if (result.rtnCode == "0000000") {
@@ -296,6 +349,45 @@
                     }
                 }
             });
+        };
+        var editFun = function () {
+            alert(88)
+            $.ajax({
+                type: "GET",
+                url: '/admin/zgk/getProfessionDetail',
+                data: {
+                    "professionId" : rowId
+                },
+                success: function (result) {
+                    console.log(22)
+                    console.log(result)
+                    if (result.rtnCode == "0000000") {
+//                        var
+//                        $('#hotTitle').val();
+//                        var selProfession2V = $('#selProfession2 option:checked').val();
+//                        var selProfession3V = $('#selProfession3 option:checked').val();
+//                        var selProfessionHotV = $('#selProfessionHot option:checked').val();
+//                        var salaryRankingV = $.trim($('#salary-ranking').val());
+//                        var hotContentProfessionV = $('#hotContent-profession').html();
+//                        var hotContentIntroV = $('#hotContent-intro').html();
+//                        var hotContentContentV = $('#hotContent3-content').html();
+//                        var hotContentRequirementsV = $('#hotContent-requirements').html();
+//                        var hotContentProspectsV = $('#hotContent-prospects').html();
+                    }
+                }
+            });
+
+
+//            $.ajax({
+//                type: "POST",
+//                url: '/admin/zgk/editProfession',
+//                data: Datas,
+//                success: function (result) {
+//                    if (result.rtnCode == "0000000") {
+////                        searchLoad();
+//                    }
+//                }
+//            });
         };
     });
 
