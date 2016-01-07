@@ -74,9 +74,9 @@ selectList
             </if>
             <if test="condition.queryparam!=null">
                 and (course.teacher like #{condition.queryparam.data}
-                province.name like #{condition.queryparam.data}
-                course.title like #{condition.queryparam.data}
-                gksubject.subjectName like #{condition.queryparam.data}
+                OR province.name like #{condition.queryparam.data}
+                OR course.title like #{condition.queryparam.data}
+                OR gksubject.subjectName like #{condition.queryparam.data}
                 OR course.subcontent like #{condition.queryparam.data})
             </if>
 

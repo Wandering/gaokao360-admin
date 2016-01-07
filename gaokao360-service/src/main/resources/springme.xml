@@ -115,9 +115,9 @@
 
     <bean id="switchDataSourceHandler" class="cn.thinkjoy.gaokao360.common.SwitchDataSourceHandler"/>
 
-    <aop:config proxy-target-class="true">
+    <aop:config proxy-target-class="false">
         <aop:aspect ref="switchDataSourceHandler">
-            <aop:pointcut id="differentiation" expression="execution(* cn.thinkjoy.gaokao360.service.differentiation..*(..))"/>
+            <aop:pointcut id="differentiation" expression="execution(* cn.thinkjoy.gaokao360.service.differentiation..*(..))||execution(* cn.thinkjoy.common.service..*(..))"/>
             <aop:before pointcut-ref="differentiation" method="switchDB"/>
             <aop:after pointcut-ref="differentiation" method="switchDBBack"/>
         </aop:aspect>
