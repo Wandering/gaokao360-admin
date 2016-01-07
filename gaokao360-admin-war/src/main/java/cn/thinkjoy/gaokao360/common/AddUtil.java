@@ -151,6 +151,9 @@ public class AddUtil extends BaseCommonUtil{
             List<HashMap<String,Object>> maps= super.handleJSONArray(jsonArray);
             Map<String,Object> dataMap2 = new HashMap<>();
             for(Map map:maps){
+                if("00".equals(map.get("batch"))||map.containsValue("batch")){
+                    continue;
+                }
                 dataMap2.putAll(getDataMap());
                 dataMap2.putAll(map);
                 getServiceMaps().get("universityenrolling").insertMap(dataMap2);
