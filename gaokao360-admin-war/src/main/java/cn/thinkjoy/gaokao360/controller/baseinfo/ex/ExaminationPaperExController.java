@@ -9,8 +9,8 @@ package cn.thinkjoy.gaokao360.controller.baseinfo.ex;
 
 import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.gaokao360.controller.BaseController;
-import cn.thinkjoy.gaokao360.service.IExaminationPaperService;
-import cn.thinkjoy.gaokao360.service.ex.IExaminationPaperExService;
+import cn.thinkjoy.gaokao360.service.differentiation.IExaminationPaperService;
+import cn.thinkjoy.gaokao360.service.differentiation.ex.IExaminationPaperExService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

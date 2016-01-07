@@ -26,7 +26,9 @@
 
     <!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
     <context:annotation-config/>
-    <context:component-scan base-package="cn.thinkjoy"/>
+    <context:component-scan base-package="cn.thinkjoy">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
     <aop:aspectj-autoproxy/>
 
     <!-- 引入dubbo配置文件 请根据需要更改-->
@@ -37,7 +39,7 @@
     <import resource="classpath*:spring-iauth.xml"/>
 
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"/>
+        <property name="dataSource" ref="dynamicDataSource"/>
         <qualifier value="platform"/>
     </bean>
 
@@ -46,7 +48,7 @@
 
     <!-- MyBatis配置 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
+        <property name="dataSource" ref="dynamicDataSource"/>
         <!-- 自动扫描domain目录, 省掉Configuration.xml里的手工配置 -->
         <property name="typeAliasesPackage" value="cn.thinkjoy.common.managerui.domain,cn.thinkjoy.gaokao360.domain,cn.thinkjoy.gaokao360.dto"/>
         <!-- 显式指定Mapper文件位置 -->
@@ -56,7 +58,7 @@
     <mybatis:scan base-package="cn.thinkjoy.common.managerui.dao;cn.thinkjoy.gaokao360.dao" factory-ref="sqlSessionFactory"/>
 
 
-    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+    <bean id="parentDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <!-- 基本属性 url、user、password -->
         <property name="url" value="${jdbc_url}"/>
         <property name="username" value="${jdbc_user}"/>
@@ -88,6 +90,38 @@
         <!-- 配置监控统计拦截的filters -->
         <property name="filters" value="stat"/>
     </bean>
+
+    <bean id="zjDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_zj}"/>
+    </bean>
+    <bean id="gdDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_gd}"/>
+    </bean>
+    <bean id="hbDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_hb}"/>
+    </bean>
+
+    <bean id="dynamicDataSource" class="cn.thinkjoy.gaokao360.common.DynamicDataSource">
+        <!-- 通过key-value的形式来关联数据源 -->
+        <property name="targetDataSources">
+            <map>
+                <entry value-ref="zjDataSource" key="zj"></entry>
+                <entry value-ref="gdDataSource" key="gd"></entry>
+                <entry value-ref="hbDataSource" key="hb"></entry>
+            </map>
+        </property>
+        <property name="defaultTargetDataSource" ref="parentDataSource"/>
+    </bean>
+
+    <bean id="switchDataSourceHandler" class="cn.thinkjoy.gaokao360.common.SwitchDataSourceHandler"/>
+
+    <aop:config proxy-target-class="true">
+        <aop:aspect ref="switchDataSourceHandler">
+            <aop:pointcut id="differentiation" expression="execution(* cn.thinkjoy.gaokao360.service.differentiation..*(..))"/>
+            <aop:before pointcut-ref="differentiation" method="switchDB"/>
+            <aop:after pointcut-ref="differentiation" method="switchDBBack"/>
+        </aop:aspect>
+    </aop:config>
 
     <import resource="classpath:dubbo/gaokao360-dubbo-consumer.xml"/>
     <import resource="classpath:dubbo/gaokao360-dubbo-provider.xml"/>

@@ -7,6 +7,7 @@
 
 package cn.thinkjoy.gaokao360.controller.baseinfo;
 
+import cn.thinkjoy.gaokao360.service.common.IUniversityMajorEnrollingService;
 import cn.thinkjoy.gaokao360.controller.BaseController;
 import cn.thinkjoy.gaokao360.service.IUniversityMajorEnrollingService;
 import cn.thinkjoy.common.managerui.dao.IResourceGridDAO;
@@ -77,7 +78,7 @@ public class UniversityMajorEnrollingController extends BaseController<IUniversi
 
     @Override
     protected String getViewTitle() {
-        return "专业招生信息";
+        return "学院招生信息";
     }
 
     @Override

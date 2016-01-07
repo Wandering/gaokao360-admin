@@ -3,21 +3,19 @@ package cn.thinkjoy.gaokao360.common;
 import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.gaokao360.domain.ProfessionType;
 import cn.thinkjoy.gaokao360.domain.VideoCourse;
-import cn.thinkjoy.gaokao360.domain.VideoSection;
 import cn.thinkjoy.gaokao360.dto.ProfessionTypeDTO;
 import cn.thinkjoy.gaokao360.dto.VideoCourseDTO;
 import cn.thinkjoy.gaokao360.dto.VideoSectionDTO;
-import cn.thinkjoy.gaokao360.service.IAdmissionBatchService;
-import cn.thinkjoy.gaokao360.service.ISubjectService;
-import cn.thinkjoy.gaokao360.service.ex.*;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
+import cn.thinkjoy.gaokao360.service.differentiation.IAdmissionBatchService;
+import cn.thinkjoy.gaokao360.service.common.ISubjectService;
+import cn.thinkjoy.gaokao360.service.differentiation.ex.IAdmissionBatchExService;
+import cn.thinkjoy.gaokao360.service.differentiation.ex.IVideoSectionExService;
+import cn.thinkjoy.gaokao360.service.common.ex.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * Created by admin on 2015/12/30.
@@ -114,8 +112,8 @@ public class QueryoneUtil extends BaseCommonUtil{
         return videoCourseDTO;
     }
 
-    public Object professiontype(){
-        Long l=(Long)dataMap.get("id");
+    public Object professiontype(Object id){
+        Long l=Long.valueOf(id.toString());
         ProfessionType p = (ProfessionType)getServiceMaps().get("professiontype").fetch(l);
         Map<String,Object> map = new HashMap<>();
         map.put("pid",l);

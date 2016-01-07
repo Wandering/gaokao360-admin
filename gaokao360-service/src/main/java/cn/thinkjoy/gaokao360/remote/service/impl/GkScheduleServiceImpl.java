@@ -1,7 +1,7 @@
 package cn.thinkjoy.gaokao360.remote.service.impl;
 
 import cn.thinkjoy.gaokao360.domain.Schedule;
-import cn.thinkjoy.gaokao360.service.IScheduleService;
+import cn.thinkjoy.gaokao360.service.differentiation.IScheduleService;
 import cn.thinkjoy.zgk.domain.GkSchedule;
 import cn.thinkjoy.zgk.dto.GkScheduleDTO;
 import cn.thinkjoy.zgk.remote.IGkScheduleService;
