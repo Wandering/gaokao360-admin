@@ -8,17 +8,18 @@
 
 package cn.thinkjoy.gaokao360.common;
 
-import cn.thinkjoy.common.service.IBaseService;
 
-
-import cn.thinkjoy.gaokao360.service.*;
-import cn.thinkjoy.gaokao360.service.ex.*;
-import com.google.common.collect.Maps;
+import cn.thinkjoy.gaokao360.service.common.*;
+import cn.thinkjoy.gaokao360.service.differentiation.*;
+import cn.thinkjoy.gaokao360.service.differentiation.ex.IExaminationPaperExService;
+import cn.thinkjoy.gaokao360.service.differentiation.ex.IGkPsychologyService;
+import cn.thinkjoy.gaokao360.service.differentiation.ex.IGkinformationGkhotExService;
+import cn.thinkjoy.gaokao360.service.differentiation.ex.IPolicyInterpretationExService;
+import cn.thinkjoy.gaokao360.service.common.ex.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.util.Map;
 
 import cn.thinkjoy.common.managerui.controller.helpers.BaseServiceMaps;
 

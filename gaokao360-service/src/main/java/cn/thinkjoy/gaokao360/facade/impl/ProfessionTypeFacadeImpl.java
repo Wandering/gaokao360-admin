@@ -7,7 +7,7 @@
 package cn.thinkjoy.gaokao360.facade.impl;
 
 import cn.thinkjoy.gaokao360.facade.IProfessionTypeFacade;
-import cn.thinkjoy.gaokao360.service.IProfessionTypeService;
+import cn.thinkjoy.gaokao360.service.common.IProfessionTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -8,10 +8,8 @@
 package cn.thinkjoy.gaokao360.controller.baseinfo.ex;
 
 import cn.thinkjoy.common.domain.view.BizData4Page;
-import cn.thinkjoy.common.managerui.controller.AbstractAdminController;
 import cn.thinkjoy.gaokao360.controller.BaseController;
-import cn.thinkjoy.gaokao360.service.IVideoCourseService;
-import cn.thinkjoy.gaokao360.service.ex.IGkPsychologyService;
+import cn.thinkjoy.gaokao360.service.differentiation.ex.IGkPsychologyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

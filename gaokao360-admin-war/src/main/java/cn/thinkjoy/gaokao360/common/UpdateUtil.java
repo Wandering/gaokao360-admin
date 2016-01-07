@@ -3,9 +3,11 @@ package cn.thinkjoy.gaokao360.common;
 import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.gaokao360.domain.ProfessionType;
 import cn.thinkjoy.gaokao360.domain.VideoSection;
-import cn.thinkjoy.gaokao360.service.IAdmissionBatchService;
-import cn.thinkjoy.gaokao360.service.ISubjectService;
-import cn.thinkjoy.gaokao360.service.ex.*;
+import cn.thinkjoy.gaokao360.service.differentiation.IAdmissionBatchService;
+import cn.thinkjoy.gaokao360.service.common.ISubjectService;
+import cn.thinkjoy.gaokao360.service.differentiation.ex.IAdmissionBatchExService;
+import cn.thinkjoy.gaokao360.service.differentiation.ex.IVideoSectionExService;
+import cn.thinkjoy.gaokao360.service.common.ex.*;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -141,6 +143,8 @@ public class UpdateUtil extends BaseCommonUtil{
         String batchContent=null;
         if(getDataMap().containsKey("batchContent")) {
             batchContent = (String)getDataMap().get("batchContent");
+        }else{
+            throw new BizException("","参数异常分数信息不能为空");
         }
         if(batchContent!=null){
             JSONArray jsonArray = null;

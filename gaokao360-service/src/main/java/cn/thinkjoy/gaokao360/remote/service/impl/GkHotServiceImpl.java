@@ -1,12 +1,9 @@
 package cn.thinkjoy.gaokao360.remote.service.impl;
 
-import cn.thinkjoy.common.domain.SearchField;
-import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.common.utils.SqlOrderEnum;
-import cn.thinkjoy.gaokao360.common.ERRORCODE;
 import cn.thinkjoy.gaokao360.common.QueryUtil;
 import cn.thinkjoy.gaokao360.domain.GkinformationGkhot;
-import cn.thinkjoy.gaokao360.service.IGkinformationGkhotService;
+import cn.thinkjoy.gaokao360.service.differentiation.IGkinformationGkhotService;
 import cn.thinkjoy.zgk.domain.GkHot;
 import cn.thinkjoy.zgk.remote.IGkHotService;
 import org.springframework.beans.factory.annotation.Autowired;
