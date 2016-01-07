@@ -338,4 +338,15 @@ public class ProfessionController extends BaseController<IProfessionService> {
         professionDetailService.deleteById(id);
         return "success";
     }
+
+    @Override
+    protected void enhancePageConditions(HttpServletRequest request, Map conditions) {
+        String prop;
+        Enumeration<String> names = request.getParameterNames();
+        while (names.hasMoreElements()) {
+            prop = names.nextElement();
+            conditions.put(prop, request.getParameter(prop));
+        }
+    }
+
 }
