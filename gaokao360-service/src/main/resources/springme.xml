@@ -26,7 +26,9 @@
 
     <!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
     <context:annotation-config/>
-    <context:component-scan base-package="cn.thinkjoy"/>
+    <context:component-scan base-package="cn.thinkjoy">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
     <aop:aspectj-autoproxy/>
 
     <!-- 引入dubbo配置文件 请根据需要更改-->
@@ -110,6 +112,16 @@
         </property>
         <property name="defaultTargetDataSource" ref="parentDataSource"/>
     </bean>
+
+    <bean id="switchDataSourceHandler" class="cn.thinkjoy.gaokao360.common.SwitchDataSourceHandler"/>
+
+    <aop:config proxy-target-class="true">
+        <aop:aspect ref="switchDataSourceHandler">
+            <aop:pointcut id="differentiation" expression="execution(* cn.thinkjoy.gaokao360.service.differentiation..*(..))"/>
+            <aop:before pointcut-ref="differentiation" method="switchDB"/>
+            <aop:after pointcut-ref="differentiation" method="switchDBBack"/>
+        </aop:aspect>
+    </aop:config>
 
     <import resource="classpath:dubbo/gaokao360-dubbo-consumer.xml"/>
     <import resource="classpath:dubbo/gaokao360-dubbo-provider.xml"/>

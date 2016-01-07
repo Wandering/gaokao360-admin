@@ -9,7 +9,7 @@ package cn.thinkjoy.gaokao360.controller.baseinfo;
 
 import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.common.managerui.controller.AbstractAdminController;
-import cn.thinkjoy.gaokao360.service.IProfessionDetailService;
+import cn.thinkjoy.gaokao360.service.common.IProfessionDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

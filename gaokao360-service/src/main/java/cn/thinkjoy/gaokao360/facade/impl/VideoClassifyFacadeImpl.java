@@ -7,7 +7,7 @@
 package cn.thinkjoy.gaokao360.facade.impl;
 
 import cn.thinkjoy.gaokao360.facade.IVideoClassifyFacade;
-import cn.thinkjoy.gaokao360.service.IVideoClassifyService;
+import cn.thinkjoy.gaokao360.service.differentiation.IVideoClassifyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

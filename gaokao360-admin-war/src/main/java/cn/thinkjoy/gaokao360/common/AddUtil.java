@@ -1,20 +1,17 @@
 package cn.thinkjoy.gaokao360.common;
 
 import cn.thinkjoy.common.exception.BizException;
-import cn.thinkjoy.common.service.IBaseService;
 import cn.thinkjoy.gaokao360.domain.ProfessionType;
 import cn.thinkjoy.gaokao360.domain.VideoSection;
-import cn.thinkjoy.gaokao360.service.IAdmissionBatchService;
-import cn.thinkjoy.gaokao360.service.ISubjectService;
-import cn.thinkjoy.gaokao360.service.ex.*;
+import cn.thinkjoy.gaokao360.service.differentiation.IAdmissionBatchService;
+import cn.thinkjoy.gaokao360.service.common.ISubjectService;
+import cn.thinkjoy.gaokao360.service.differentiation.ex.IAdmissionBatchExService;
+import cn.thinkjoy.gaokao360.service.differentiation.ex.IVideoSectionExService;
+import cn.thinkjoy.gaokao360.service.common.ex.*;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
-import scala.util.parsing.combinator.testing.Str;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 /**

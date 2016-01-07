@@ -8,12 +8,9 @@
 package cn.thinkjoy.gaokao360.controller;
 
 import cn.thinkjoy.common.domain.view.BizData4Page;
-import cn.thinkjoy.gaokao360.common.CustomerContextHolder;
-import cn.thinkjoy.gaokao360.common.utils.WebUtils;
 import cn.thinkjoy.gaokao360.domain.Profession;
-import cn.thinkjoy.gaokao360.domain.ProfessionDetail;
-import cn.thinkjoy.gaokao360.service.IProfessionDetailService;
-import cn.thinkjoy.gaokao360.service.IProfessionService;
+import cn.thinkjoy.gaokao360.service.common.IProfessionDetailService;
+import cn.thinkjoy.gaokao360.service.common.IProfessionService;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,8 +26,6 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static cn.thinkjoy.gaokao360.common.CustomerContextHolder.*;
 
 @Controller
 @RequestMapping(value = "/admin/zgk")
