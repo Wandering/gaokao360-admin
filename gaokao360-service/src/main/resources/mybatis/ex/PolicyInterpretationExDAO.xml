@@ -62,8 +62,8 @@ selectList
             <if test="condition.queryparam!=null">
                   ${condition.groupOp}
                 (interpretation.categoryName LIKE #{condition.queryparam.data}
-                province.name LIKE #{condition.queryparam.data}
-                batch.name LIKE #{condition.queryparam.data}
+                OR province.name LIKE #{condition.queryparam.data}
+                OR batch.name LIKE #{condition.queryparam.data}
                 OR interpretation.content LIKE  #{condition.queryparam.data})
             </if>
 

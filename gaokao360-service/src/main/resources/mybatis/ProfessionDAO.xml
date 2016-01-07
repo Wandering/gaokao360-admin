@@ -394,7 +394,9 @@ selectList
         select
         zp.id,
         zp.profession_name as professionName,
+        zp. profession_type as professionTypeId,
         zpt.profession_type as professionType,
+        zp.profession_sub_type as professionSubTypeId,
         zptt.profession_type as professionSubType,
         zp.salary_rank as salaryRank,
         zp.hot_degree as hotDegree,
@@ -468,6 +470,13 @@ selectList
             </if>
             <if test="condition.professionSubType!=null">
                 AND zp.profession_sub_type=#{condition.professionSubType}
+            </if>
+            <if test="condition.queryparam!=null">
+                and (zp.profession_name like CONCAT('%', #{condition.queryparam}, '%')
+                OR zpt.profession_type like CONCAT('%', #{condition.queryparam}, '%')
+                OR zptt.profession_type like CONCAT('%', #{condition.queryparam}, '%')
+                OR zp.salary_rank = #{condition.queryparam}
+                OR zp.hot_degree = #{condition.queryparam})
             </if>
             <if test="condition.professionDescription!=null">
                 ${condition.groupOp}   ${condition.professionDescription.field}  ${condition.professionDescription.op}  #{condition.professionDescription.data}

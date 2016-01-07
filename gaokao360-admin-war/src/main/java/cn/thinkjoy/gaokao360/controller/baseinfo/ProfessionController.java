@@ -5,9 +5,10 @@
  * $Id:  ProfessionController.java 2015-12-28 18:05:26 $
  */
 
-package cn.thinkjoy.gaokao360.controller;
+package cn.thinkjoy.gaokao360.controller.baseinfo;
 
 import cn.thinkjoy.common.domain.view.BizData4Page;
+import cn.thinkjoy.gaokao360.controller.BaseController;
 import cn.thinkjoy.gaokao360.domain.Profession;
 import cn.thinkjoy.gaokao360.service.common.IProfessionDetailService;
 import cn.thinkjoy.gaokao360.service.common.IProfessionService;
@@ -337,4 +338,15 @@ public class ProfessionController extends BaseController<IProfessionService> {
         professionDetailService.deleteById(id);
         return "success";
     }
+
+    @Override
+    protected void enhancePageConditions(HttpServletRequest request, Map conditions) {
+        String prop;
+        Enumeration<String> names = request.getParameterNames();
+        while (names.hasMoreElements()) {
+            prop = names.nextElement();
+            conditions.put(prop, request.getParameter(prop));
+        }
+    }
+
 }

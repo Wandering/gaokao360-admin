@@ -1,23 +1,16 @@
 <div class="page-content">
     <!-- 搜索start-->
-    <form class="form-horizontal" role="form" action="/admin/${bizSys}/${mainObj}s">
-        <div class="col-xs-12">
-            <div class="col-sm-2">
-                <div class="form-group">
-                    <div class="col-sm-2">
-                        <input type="text" class="" placeholder="关键字查询" id="keywords">
-                    </div>
-                </div>
+    <form class="form-inline" role="form" action="/admin/${bizSys}/${mainObj}s">
+        <div class="row">
+            <div class="form-group col-sm-2">
+                <input type="text" class="" placeholder="关键字查询" id="keywords">
             </div>
-
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">所属行业:</label>
-
-                    <div class="col-sm-8">
-                        <select class="form-control" id="selProfession"></select>
-                    </div>
-                </div>
+            <div class="form-group col-sm-2">
+                <select class="form-control" id="selProfession"></select>
+            </div>
+            <div class="form-group col-sm-2">
+                <button type="button" class="btn btn-purple btn-sm" id="search">搜索<i
+                        class="ace-icon fa fa-search icon-on-right bigger-110"></i></button>
             </div>
         </div>
     </form>
@@ -34,3 +27,4 @@
     <!-- 搜索end -->
 <#include 'page_grid.ftl'>
 </div><!-- /.page-content -->
+
