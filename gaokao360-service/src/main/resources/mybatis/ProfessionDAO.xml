@@ -400,47 +400,17 @@ selectList
         zptt.profession_type as professionSubType,
         zp.salary_rank as salaryRank,
         zp.hot_degree as hotDegree,
-        substring(zpd.introduction,LOCATE('http',zpd.introduction)) as introduction,
-        substring(zpd.relate_major,LOCATE('http',zpd.relate_major)) as relateMajor,
-        substring(zpd.vocational_demand,LOCATE('http',zpd.vocational_demand)) as vocationalDemand,
-        substring(zpd.work_content,LOCATE('http',zpd.work_content)) as workContent,
-        substring(zpd.career_prospects,LOCATE('http',zpd.career_prospects)) as careerProspects
+        zpd.introduction as introduction,
+        zpd.relate_major as relateMajor,
+        zpd.vocational_demand as vocationalDemand,
+        zpd.work_content as workContent,
+        zpd.career_prospects as careerProspects
         from zgk_profession zp
         left join zgk_profession_type zpt on zp.profession_type=zpt.id
         left join zgk_profession_type zptt on zptt.pid = zpt.id and zptt.id = zp.profession_sub_type
         left join zgk_profession_detail zpd on zp.id = zpd.id
         where
         zp.id = #{id}
-    </select>
-
-    <select id="queryPageList" resultType="java.util.HashMap">
-        select
-        zp.id,
-        zp.profession_name as professionName,
-        zpt.profession_type as professionType,
-        zptt.profession_type as professionSubType,
-        zp.salary_rank as salaryRank,
-        zp.hot_degree as hotDegree,
-        zp.profession_short as professionShort
-        from zgk_profession zp
-        left join zgk_profession_type zpt on zp.profession_type=zpt.id
-        left join zgk_profession_type zptt on zptt.pid = zpt.id and zptt.id = zp.profession_sub_type
-        <where>
-              1=1
-            <if test="professionName!=null">
-                AND zp.profession_name like CONCAT('%', #{professionName}, '%')
-            </if>
-            <if test="professionType!=null">
-                AND zp.profession_type=#{professionType}
-            </if>
-            <if test="professionSubType!=null">
-                AND zp.profession_sub_type=#{professionSubType}
-            </if>
-        </where>
-        order by zp.salary_rank asc
-        <if test="offset != null">
-            limit ${offset}, ${rows}
-        </if>
     </select>
 
     <select id="queryPage" resultType="java.util.HashMap">

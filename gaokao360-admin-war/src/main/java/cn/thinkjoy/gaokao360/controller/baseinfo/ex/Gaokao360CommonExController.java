@@ -139,9 +139,11 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     @ResponseBody
     public List getYears(@PathVariable String mainObj){
         List list = new ArrayList();
-        list.add("2015");
-        list.add("2014");
-        list.add("2013");
+        Calendar a=Calendar.getInstance();
+        int year=a.get(Calendar.YEAR);
+        list.add(year);
+        list.add(year-1);
+        list.add(year-2);
         return list;
     }
     /**

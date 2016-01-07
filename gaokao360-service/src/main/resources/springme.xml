@@ -113,16 +113,6 @@
         <property name="defaultTargetDataSource" ref="parentDataSource"/>
     </bean>
 
-    <bean id="switchDataSourceHandler" class="cn.thinkjoy.gaokao360.common.SwitchDataSourceHandler"/>
-
-    <aop:config proxy-target-class="false">
-        <aop:aspect ref="switchDataSourceHandler">
-            <aop:pointcut id="differentiation" expression="execution(* cn.thinkjoy.gaokao360.service.differentiation..*(..))||execution(* cn.thinkjoy.common.service..*(..))"/>
-            <aop:before pointcut-ref="differentiation" method="switchDB"/>
-            <aop:after pointcut-ref="differentiation" method="switchDBBack"/>
-        </aop:aspect>
-    </aop:config>
-
     <import resource="classpath:dubbo/gaokao360-dubbo-consumer.xml"/>
     <import resource="classpath:dubbo/gaokao360-dubbo-provider.xml"/>
 
