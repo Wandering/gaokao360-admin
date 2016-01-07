@@ -1,76 +1,39 @@
 <script>
     <!-- 自定义js请写在这个文件  以下这个查询方法只是个例子，请按照业务需求修改 -->
     function buildRules() {
-        var courseName = $('#courseName').val();
-        var status = $('#status').val();
-        var classfyId = $('#classfyId').val();
+        var keywords = $('#keywords').val();
+        var selProfession = $('#selProfession option:checked').val();
         var rules = [];
-        if (courseName != '' && courseName != null && courseName != undefined) {
+        if (keywords != '' && keywords != null && keywords != undefined) {
             var rule = {
                 'field': 'courseName',
                 'op': 'eq',
-                'data': courseName
+                'data': keywords
             }
             rules.push(rule);
         }
-        if (status != '' && status != null && status != undefined) {
+        if (selProfession != '00' && selProfession != null && selProfession != undefined) {
             var rule = {
                 'field': 'status',
                 'op': 'eq',
-                'data': status
-            }
-            rules.push(rule);
-        }
-        if (classfyId != '' && classfyId != null && classfyId != undefined) {
-            var rule = {
-                'field': 'classfyId',
-                'op': 'eq',
-                'data': classfyId
+                'data': selProfession
             }
             rules.push(rule);
         }
         return rules;
     }
-    function searchLoad() {
-        var url = "/admin/${bizSys}/${mainObj}s";
-
-        var rules = buildRules();
-
-        var filters = {
-            'groupOp': 'AND',
-            "rules": rules
-        };
-
-        $("#grid-table").jqGrid('setGridParam', {
-            url: url,
-            mtype: "POST",
-            postData: "filters=" + JSON.stringify(filters),
-            page: 1
-        }).trigger("reloadGrid");
-
-
-    }
-
     $("#search").click(function () {
         searchLoad();
-
     });
-
-
     jQuery(function ($) {
         var typeStr;
         var rowId;
-
-
         //  行业分类
         var professionCategoryData = CommonFn.getProfessionCategory();
         $('#selProfession').append(professionCategoryData);
-
         //  职业热度
         var professionHotData = CommonFn.getProfessionHot();
         $('#selProfessionHot').append(professionHotData);
-
-
         // 课程
         var subjectData = CommonFn.getSubject();
         $('#selCourses').append(subjectData);
@@ -221,49 +184,66 @@
             CommonFn.renderTextarea('#hotContent3-content');
             CommonFn.renderTextarea('#hotContent-requirements');
             CommonFn.renderTextarea('#hotContent-prospects');
+            $.ajax({
+                type: "GET",
+                url: '/admin/zgk/getProfessionDetail',
+                data: {
+                    "professionId" : rowId
+                },
+                success: function (result) {
+                    console.log(result.professionName)
+                    if (result.rtnCode == "0000000") {
+                        var dataJson = result.bizData;
+                        $('#hotTitle').val(dataJson.professionName);
+                        $('#selProfession2 option[value="'+ dataJson.professionType +'"]').attr('selected','true');
+                        $('#selProfession3 option[value="'+ dataJson.hotDegree +'"]').attr('selected','true');
+                        $('#selProfessionHot option[value="1"]').attr('selected','true');
+                        $('#salary-ranking').val(dataJson.salaryRank);
+                        $('#hotContent-profession').html(dataJson.relateMajor);
+                        $('#hotContent-intro').html(dataJson.introduction);
+                        $('#hotContent3-content').html(dataJson.workContent);
+                        $('#hotContent-requirements').html(dataJson.vocationalDemand);
+                        $('#hotContent-prospects').html(dataJson.careerProspects);
+                    }
+                }
+            });
         });
         //删除
-        CommonFn.deleteFun('#deleteBtn', '${mainObj}');
 
-
-//        $(obj).on(ace.click_event, function () {
-//            var rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
-//            var selTrN = $('tr.ui-state-highlight[role="row"]').length;
-//            if (selTrN != 1) {
-//                CommonFn.tipsDialog('温馨提示', '请选中一行后在删除');
-//                return false;
-//            }
-//            bootbox.dialog({
-//                title: "删除",
-//                message: "确定删除该条数据",
-//                buttons: {
-//                    "success": {
-//                        "label": "<i class='ace-icon fa fa-check'></i> 确定",
-//                        "className": "btn-sm btn-success",
-//                        "callback": function () {
-//                            $.ajax({
-//                                type: "POST",
-//                                url: CommonFn.url.deleteData + deleteData,
-//                                data: {
-//                                    oper: 'del',
-//                                    id: rowId
-//                                },
-//                                success: function (result) {
-//                                    console.log(result);
-//                                    if (result.rtnCode == "0000000") {
-//                                        searchLoad();
-//                                    }
-//                                }
-//                            });
-//                        }
-//                    },
-//                    cancel: {
-//                        label: "关闭",
-//                        className: "btn-sm"
-//                    }
-//                }
-//            });
-//        });
+        $('#deleteBtn').on(ace.click_event, function () {
+            var rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
+            var selTrN = $('tr.ui-state-highlight[role="row"]').length;
+            if (selTrN != 1) {
+                CommonFn.tipsDialog('温馨提示', '请选中一行后在删除');
+                return false;
+            }
+            bootbox.dialog({
+                title: "删除",
+                message: "确定删除该条数据",
+                buttons: {
+                    "success": {
+                        "label": "<i class='ace-icon fa fa-check'></i> 确定",
+                        "className": "btn-sm btn-success",
+                        "callback": function () {
+                            $.ajax({
+                                type: "POST",
+                                url: '/admin/zgk/deleteProfession?professionId='+rowId,
+                                success: function (result) {
+                                    console.log(result);
+                                    if (result.rtnCode == "0000000") {
+                                        searchLoad();
+                                    }
+                                }
+                            });
+                        }
+                    },
+                    cancel: {
+                        label: "关闭",
+                        className: "btn-sm"
+                    }
+                }
+            });
+        });
 
 
 
@@ -351,31 +331,7 @@
             });
         };
         var editFun = function () {
-            alert(88)
-            $.ajax({
-                type: "GET",
-                url: '/admin/zgk/getProfessionDetail',
-                data: {
-                    "professionId" : rowId
-                },
-                success: function (result) {
-                    console.log(22)
-                    console.log(result)
-                    if (result.rtnCode == "0000000") {
-//                        var
-//                        $('#hotTitle').val();
-//                        var selProfession2V = $('#selProfession2 option:checked').val();
-//                        var selProfession3V = $('#selProfession3 option:checked').val();
-//                        var selProfessionHotV = $('#selProfessionHot option:checked').val();
-//                        var salaryRankingV = $.trim($('#salary-ranking').val());
-//                        var hotContentProfessionV = $('#hotContent-profession').html();
-//                        var hotContentIntroV = $('#hotContent-intro').html();
-//                        var hotContentContentV = $('#hotContent3-content').html();
-//                        var hotContentRequirementsV = $('#hotContent-requirements').html();
-//                        var hotContentProspectsV = $('#hotContent-prospects').html();
-                    }
-                }
-            });
+
 
 
 //            $.ajax({

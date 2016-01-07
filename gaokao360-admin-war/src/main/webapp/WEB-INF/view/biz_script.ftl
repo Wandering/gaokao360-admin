@@ -1,11 +1,7 @@
-
-
-
-
 <!--[if !IE]> -->
 <script type="text/javascript">
-    window.jQuery || document.write("<script src='${path}/assets/js/jquery.min.js'>"+"<"+"/script>");
-    window.onload=function(){
+    window.jQuery || document.write("<script src='${path}/assets/js/jquery.min.js'>" + "<" + "/script>");
+    window.onload = function () {
         $("#ace-settings-sidebar").trigger("click");//固定左侧菜单
         $("#ace-settings-navbar").trigger("click");//固定头部导航栏
         $("#ace-settings-breadcrumbs").trigger("click");//固定子菜单
@@ -17,15 +13,14 @@
 
 <!--[if IE]>
 <script type="text/javascript">
-    window.jQuery || document.write("<script src='${path}/assets/js/jquery1x.min.js'>"+"<"+"/script>");
+    window.jQuery || document.write("<script src='${path}/assets/js/jquery1x.min.js'>" + "<" + "/script>");
 </script>
 <![endif]-->
 <script type="text/javascript">
-    if('ontouchstart' in document.documentElement) document.write("<script src='${path}/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    if ('ontouchstart' in document.documentElement) document.write("<script src='${path}/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
 </script>
 <#--<script src="${path}/assets/js/require.js" defer async="true" ></script>-->
 <script src="${path}/assets/js/bootstrap.min.js"></script>
-
 
 
 <!-- page specific plugin scripts -->
@@ -43,18 +38,13 @@
 <script src="${path}/assets/js/bootstrap-wysiwyg.min.js"></script>
 
 
-
-
-
-
-
 <!-- inline scripts related to this page -->
 <script type="text/javascript">
 
-    jQuery(function($) {
+    jQuery(function ($) {
 
         var currentGridId;
-        $('.input-daterange').datepicker({autoclose:true});
+        $('.input-daterange').datepicker({autoclose: true});
         $(".close-btn").click(function () {
             var $this = $(this);
             var pt = $this.closest(".treeFixed");
@@ -66,13 +56,13 @@
 
         //resize to fit page size
         $(window).on('resize.jqGrid', function () {
-            $(grid_selector).jqGrid( 'setGridWidth', $(".page-content").width() );
+            $(grid_selector).jqGrid('setGridWidth', $(".page-content").width());
         })
         //resize on sidebar collapse/expand
         var parent_column = $(grid_selector).closest('[class*="col-"]');
-        $(document).on('settings.ace.jqGrid' , function(ev, event_name, collapsed) {
-            if( event_name === 'sidebar_collapsed' || event_name === 'main_container_fixed' ) {
-                $(grid_selector).jqGrid( 'setGridWidth', parent_column.width() );
+        $(document).on('settings.ace.jqGrid', function (ev, event_name, collapsed) {
+            if (event_name === 'sidebar_collapsed' || event_name === 'main_container_fixed') {
+                $(grid_selector).jqGrid('setGridWidth', parent_column.width());
             }
         })
 
@@ -113,7 +103,7 @@
             },
             onSelectRow: function (id, status) {
                 //当前行id
-                console.log("第"+id);
+                console.log("第" + id);
                 if (status) {
                     currentGridId = id;
                 }
@@ -146,8 +136,17 @@
 //            },
 
             <#list cols as col>
-                {name: '${col.colId}', index: '${col.colId}', width:${col.width}, sortable: false, editable: ${col.editable}, edittype: "${col.edittype}",
-                    editrules:${col.editrules}, editoptions:${col.editoptions}, formatter:${col.formatter}, formatoptions:${col.formatoptions},
+                {
+                    name: '${col.colId}',
+                    index: '${col.colId}',
+                    width:${col.width},
+                    sortable: false,
+                    editable: ${col.editable},
+                    edittype: "${col.edittype}",
+                    editrules:${col.editrules},
+                    editoptions:${col.editoptions},
+                    formatter:${col.formatter},
+                    formatoptions:${col.formatoptions},
                     hidden:${(col.hide==1)?string('true','false')}
                 }
 
@@ -195,203 +194,203 @@
         $(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
 
 
-
         //enable search/filter toolbar
         //jQuery(grid_selector).jqGrid('filterToolbar',{defaultSearch:true,stringResult:true})
         //jQuery(grid_selector).filterToolbar({});
 
 
         //switch element when editing inline
-        function aceSwitch( cellvalue, options, cell ) {
-            setTimeout(function(){
-                $(cell) .find('input[type=checkbox]')
+        function aceSwitch(cellvalue, options, cell) {
+            setTimeout(function () {
+                $(cell).find('input[type=checkbox]')
                         .addClass('ace ace-switch ace-switch-5')
                         .after('<span class="lbl"></span>');
             }, 0);
         }
+
         //enable datepicker
-        function pickDate( cellvalue, options, cell ) {
-            setTimeout(function(){
-                $(cell) .find('input[type=text]')
-                        .datepicker({format:'yyyy-mm-dd' , autoclose:true});
+        function pickDate(cellvalue, options, cell) {
+            setTimeout(function () {
+                $(cell).find('input[type=text]')
+                        .datepicker({format: 'yyyy-mm-dd', autoclose: true});
             }, 0);
         }
 
         $(".ui-jqgrid-titlebar").hide();
         //navButtons
-            jQuery(grid_selector).jqGrid('navGrid',pager_selector,
-                    { 	//navbar options
-                        edit: ${actions?seq_contains("edit")?string("false", "false")}, //决定是否显示true
-                        editicon : 'ace-icon fa fa-pencil blue',
-                        add: ${actions?seq_contains("add")?string("false", "false")},
-                        addicon : 'ace-icon fa fa-plus-circle purple',
-                        del: ${actions?seq_contains("del")?string("false", "false")},
-                        delicon : 'ace-icon fa fa-trash-o red',
-                        search: false,
-                        searchicon : 'ace-icon fa fa-search orange',
-                        refresh: false,
-                        refreshicon : 'ace-icon fa fa-refresh green',
-                        view: false,
-                        viewicon : 'ace-icon fa fa-search-plus grey'
-                    },
-                    {
-                        //edit record form
-                        closeAfterEdit: true,
-                        width: 700,
-                        recreateForm: true,
-                        beforeShowForm : function(e) {
-                            var form = $(e[0]);
-                            form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
-                            style_edit_form(form);
-                            if(isExitsFunction("enhanceBeforeShowForm")) { //如果有定义，执行之增强
-                                enhanceBeforeShowForm(form);
-                            }
-                        },
-                        onclickSubmit:function(params, postdata){
-                            if(isExitsFunction("enhancePostData")) { //如果有定义，执行之增强
-                                postdata = enhancePostData(params, postdata);
-                            }
-                            return postdata;
-                        },
-                        afterSubmit:function(response,postdata){
-                            var rst = response.responseText;
-                            if(null!=rst&&rst!=undefined&&rst!=''){
-                                var result = response.responseJSON;
-                                if(result.rtnCode!="0000000"){
-                                    return [false,result.msg];
-                                }
-                            }else{
-                                return [false,'服务器内部错误!'];
-                            }
-                            return [true,''] ;
-                        }
-                    },
-                    {
-                        //new record form
-                        width: 700,
-                        closeAfterAdd: true,
-                        recreateForm: true,
-                        viewPagerButtons: false,
-                        beforeShowForm : function(e) {
-                            var form = $(e[0]);
-                            //console.log(form);
-                            form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar')
-                                    .wrapInner('<div class="widget-header" />')
-                            style_edit_form(form);
-                            if(isExitsFunction("newBeforeShowForm")) { //如果有定义，执行之增强
-                                newBeforeShowForm(form);
-                            }
-                        },
-                        onclickSubmit:function(params, postdata){
-                            if(isExitsFunction("enhancePostData")) { //如果有定义，执行之增强
-                                postdata = enhancePostData(params, postdata);
-                            }
-                            return postdata;
-                        },
-                        afterSubmit:function(response,postdata){
-                            var rst = response.responseText;
-                            if(null!=rst&&rst!=undefined&&rst!=''){
-                                var result = response.responseJSON;
-                                if(result.rtnCode!="0000000"){
-                                    return [false,result.msg];
-                                }
-                            }else{
-                                return [false,'服务器内部错误!'];
-                            }
-                            return [true,''] ;
-                        }
-                    },
-                    {
-                        //delete record form
-                        recreateForm: true,
-                    <#--url:"/admin/commondel/${mainObj}",-->
-                        beforeShowForm : function(e) {
-                            var form = $(e[0]);
-                            //console.log(form);
-                            if(form.data('styled')) return false;
-
-                            form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
-                            style_delete_form(form);
-
-                            form.data('styled', true);
-                        },
-                        onClick : function(e) {
-                            alert(1);
-                        },
-                        afterSubmit:function(response,postdata){
-                            var rst = response.responseText;
-                            if(null!=rst&&rst!=undefined&&rst!=''){
-                                var result = response.responseJSON;
-                                if(result.rtnCode!="0000000"){
-                                    return [false,result.msg];
-                                }
-                            }else{
-                                return [false,'服务器内部错误!'];
-                            }
-                            return [true,''] ;
-                        }
-                    },
-                    {
-                        //search form
-                        recreateForm: true,
-                        afterShowSearch: function(e){
-                            var form = $(e[0]);
-                            form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
-                            style_search_form(form);
-                        },
-                        afterRedraw: function(){
-                            style_search_filters($(this));
-                        }
-                        ,
-                        multipleSearch: true,
-                        /**
-                         multipleGroup:true,
-                         showQuery: true
-                         */
-                    },
-                    {
-                        //view record form
-                        recreateForm: true,
-                        beforeShowForm: function(e){
-                            var form = $(e[0]);
-                            form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
-                        }
+    jQuery(grid_selector).jqGrid('navGrid', pager_selector,
+            { 	//navbar options
+                edit: ${actions?seq_contains("edit")?string("false", "false")}, //决定是否显示true
+                editicon: 'ace-icon fa fa-pencil blue',
+                add: ${actions?seq_contains("add")?string("false", "false")},
+                addicon: 'ace-icon fa fa-plus-circle purple',
+                del: ${actions?seq_contains("del")?string("false", "false")},
+                delicon: 'ace-icon fa fa-trash-o red',
+                search: false,
+                searchicon: 'ace-icon fa fa-search orange',
+                refresh: false,
+                refreshicon: 'ace-icon fa fa-refresh green',
+                view: false,
+                viewicon: 'ace-icon fa fa-search-plus grey'
+            },
+            {
+                //edit record form
+                closeAfterEdit: true,
+                width: 700,
+                recreateForm: true,
+                beforeShowForm: function (e) {
+                    var form = $(e[0]);
+                    form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+                    style_edit_form(form);
+                    if (isExitsFunction("enhanceBeforeShowForm")) { //如果有定义，执行之增强
+                        enhanceBeforeShowForm(form);
                     }
-                    ,
-                    {
-                        //import record form
-                        recreateForm: true,
-                        beforeShowForm: function(e){
-                            var form = $(e[0]);
-                            form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
-                        }
+                },
+                onclickSubmit: function (params, postdata) {
+                    if (isExitsFunction("enhancePostData")) { //如果有定义，执行之增强
+                        postdata = enhancePostData(params, postdata);
                     }
-            )
+                    return postdata;
+                },
+                afterSubmit: function (response, postdata) {
+                    var rst = response.responseText;
+                    if (null != rst && rst != undefined && rst != '') {
+                        var result = response.responseJSON;
+                        if (result.rtnCode != "0000000") {
+                            return [false, result.msg];
+                        }
+                    } else {
+                        return [false, '服务器内部错误!'];
+                    }
+                    return [true, ''];
+                }
+            },
+            {
+                //new record form
+                width: 700,
+                closeAfterAdd: true,
+                recreateForm: true,
+                viewPagerButtons: false,
+                beforeShowForm: function (e) {
+                    var form = $(e[0]);
+                    //console.log(form);
+                    form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar')
+                            .wrapInner('<div class="widget-header" />')
+                    style_edit_form(form);
+                    if (isExitsFunction("newBeforeShowForm")) { //如果有定义，执行之增强
+                        newBeforeShowForm(form);
+                    }
+                },
+                onclickSubmit: function (params, postdata) {
+                    if (isExitsFunction("enhancePostData")) { //如果有定义，执行之增强
+                        postdata = enhancePostData(params, postdata);
+                    }
+                    return postdata;
+                },
+                afterSubmit: function (response, postdata) {
+                    var rst = response.responseText;
+                    if (null != rst && rst != undefined && rst != '') {
+                        var result = response.responseJSON;
+                        if (result.rtnCode != "0000000") {
+                            return [false, result.msg];
+                        }
+                    } else {
+                        return [false, '服务器内部错误!'];
+                    }
+                    return [true, ''];
+                }
+            },
+            {
+                //delete record form
+                recreateForm: true,
+            <#--url:"/admin/commondel/${mainObj}",-->
+                beforeShowForm: function (e) {
+                    var form = $(e[0]);
+                    //console.log(form);
+                    if (form.data('styled')) return false;
+
+                    form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+                    style_delete_form(form);
+
+                    form.data('styled', true);
+                },
+                onClick: function (e) {
+                    alert(1);
+                },
+                afterSubmit: function (response, postdata) {
+                    var rst = response.responseText;
+                    if (null != rst && rst != undefined && rst != '') {
+                        var result = response.responseJSON;
+                        if (result.rtnCode != "0000000") {
+                            return [false, result.msg];
+                        }
+                    } else {
+                        return [false, '服务器内部错误!'];
+                    }
+                    return [true, ''];
+                }
+            },
+            {
+                //search form
+                recreateForm: true,
+                afterShowSearch: function (e) {
+                    var form = $(e[0]);
+                    form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+                    style_search_form(form);
+                },
+                afterRedraw: function () {
+                    style_search_filters($(this));
+                }
+                ,
+                multipleSearch: true,
+                /**
+                 multipleGroup:true,
+                 showQuery: true
+                 */
+            },
+            {
+                //view record form
+                recreateForm: true,
+                beforeShowForm: function (e) {
+                    var form = $(e[0]);
+                    form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+                }
+            }
+            ,
+            {
+                //import record form
+                recreateForm: true,
+                beforeShowForm: function (e) {
+                    var form = $(e[0]);
+                    form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+                }
+            }
+    )
 
     <#--<#if actions?seq_contains("import")>-->
-            <#--.navButtonAdd(pager_selector,{-->
-                <#--id:"import-action",-->
-                <#--title:"Import Records",-->
-                <#--caption:"",-->
-                <#--buttonicon:"ace-icon fa fa-search-plus grey",-->
-                <#--onClickButton: function(){-->
-                    <#--alert("Deleting Row");-->
-                <#--},-->
-                <#--position:"last"-->
-            <#--})-->
+    <#--.navButtonAdd(pager_selector,{-->
+    <#--id:"import-action",-->
+    <#--title:"Import Records",-->
+    <#--caption:"",-->
+    <#--buttonicon:"ace-icon fa fa-search-plus grey",-->
+    <#--onClickButton: function(){-->
+    <#--alert("Deleting Row");-->
+    <#--},-->
+    <#--position:"last"-->
+    <#--})-->
     <#--</#if>-->
 
     <#--<#if actions?seq_contains("export")>-->
-            <#--.navButtonAdd(pager_selector,{-->
-                <#--id:"export-action",-->
-                <#--title:"Export template",-->
-                <#--caption:"",-->
-                <#--buttonicon:"ace-icon fa fa-search-plus grey",-->
-                <#--onClickButton: function(){-->
-                    <#--alert("Deleting Row");-->
-                <#--},-->
-                <#--position:"last"-->
-            <#--})-->
+    <#--.navButtonAdd(pager_selector,{-->
+    <#--id:"export-action",-->
+    <#--title:"Export template",-->
+    <#--caption:"",-->
+    <#--buttonicon:"ace-icon fa fa-search-plus grey",-->
+    <#--onClickButton: function(){-->
+    <#--alert("Deleting Row");-->
+    <#--},-->
+    <#--position:"last"-->
+    <#--})-->
     <#--</#if>-->
 
     <#if actions?seq_contains("resource_assign")>
@@ -463,7 +462,7 @@
                                     sy = $("#sy").attr("checked") ? "s" : "",
                                     pn = $("#pn").attr("checked") ? "p" : "",
                                     sn = $("#sn").attr("checked") ? "s" : "",
-                                    type = { "Y": py + sy, "N": pn + sn};
+                                    type = {"Y": py + sy, "N": pn + sn};
                             zTree.setting.check.chkboxType = type;
                             showCode('setting.check.chkboxType = { "Y" : "' + type.Y + '", "N" : "' + type.N + '" };');
                             var checked = zTree.getNodes()[0].checked;
@@ -519,7 +518,7 @@
 
         function style_edit_form(form) {
             //enable datepicker on "sdate" field and switches for "stock" field
-            form.find('input[name=sdate]').datepicker({format:'yyyy-mm-dd' , autoclose:true})
+            form.find('input[name=sdate]').datepicker({format: 'yyyy-mm-dd', autoclose: true})
                     .end().find('input[name=stock]')
                     .addClass('ace ace-switch ace-switch-5').after('<span class="lbl"></span>');
             //don't wrap inside a label element, the checkbox value won't be submitted (POST'ed)
@@ -550,6 +549,7 @@
             form.find('.add-group').addClass('btn btn-xs btn-success');
             form.find('.delete-group').addClass('btn btn-xs btn-danger');
         }
+
         function style_search_form(form) {
             var dialog = form.closest('.ui-jqdialog');
             var buttons = dialog.find('.EditTable')
@@ -560,7 +560,7 @@
 
         function beforeDeleteCallback(e) {
             var form = $(e[0]);
-            if(form.data('styled')) return false;
+            if (form.data('styled')) return false;
 
             form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
             style_delete_form(form);
@@ -575,19 +575,18 @@
         }
 
 
-
         //it causes some flicker when reloading or navigating grid
         //it may be possible to have some custom formatter to do this as the grid is being created to prevent this
         //or go back to default browser checkbox styles for the grid
         function styleCheckbox(table) {
-             $(table).find('input:checkbox').addClass('ace')
-             .wrap('<label />')
-             .after('<span class="lbl align-top" />')
+            $(table).find('input:checkbox').addClass('ace')
+                    .wrap('<label />')
+                    .after('<span class="lbl align-top" />')
 
 
-             $('.ui-jqgrid-labels th[id*="_cb"]:first-child')
-             .find('input.cbox[type=checkbox]').addClass('ace')
-             .wrap('<label />').after('<span class="lbl align-top" />');
+            $('.ui-jqgrid-labels th[id*="_cb"]:first-child')
+                    .find('input.cbox[type=checkbox]').addClass('ace')
+                    .wrap('<label />').after('<span class="lbl align-top" />');
         }
 
 
@@ -614,22 +613,22 @@
         function updatePagerIcons(table) {
             var replacement =
             {
-                'ui-icon-seek-first' : 'ace-icon fa fa-angle-double-left bigger-140',
-                'ui-icon-seek-prev' : 'ace-icon fa fa-angle-left bigger-140',
-                'ui-icon-seek-next' : 'ace-icon fa fa-angle-right bigger-140',
-                'ui-icon-seek-end' : 'ace-icon fa fa-angle-double-right bigger-140'
+                'ui-icon-seek-first': 'ace-icon fa fa-angle-double-left bigger-140',
+                'ui-icon-seek-prev': 'ace-icon fa fa-angle-left bigger-140',
+                'ui-icon-seek-next': 'ace-icon fa fa-angle-right bigger-140',
+                'ui-icon-seek-end': 'ace-icon fa fa-angle-double-right bigger-140'
             };
-            $('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function(){
+            $('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function () {
                 var icon = $(this);
                 var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
 
-                if($class in replacement) icon.attr('class', 'ui-icon '+replacement[$class]);
+                if ($class in replacement) icon.attr('class', 'ui-icon ' + replacement[$class]);
             })
         }
 
         function enableTooltips(table) {
-            $('.navtable .ui-pg-button').tooltip({container:'body'});
-            $(table).find('.ui-pg-div').tooltip({container:'body'});
+            $('.navtable .ui-pg-button').tooltip({container: 'body'});
+            $(table).find('.ui-pg-div').tooltip({container: 'body'});
         }
 
         //var selr = jQuery(grid_selector).jqGrid('getGridParam','selrow');
@@ -645,13 +644,13 @@
     }
 
     function mergerCatejory(cellvalue, options, cell) {
-        if(cellvalue){
-            var mergerStr="";
-            for(var i =0;i<cellvalue.length;i++){
-                mergerStr+=cellvalue[i].name+"、";
+        if (cellvalue) {
+            var mergerStr = "";
+            for (var i = 0; i < cellvalue.length; i++) {
+                mergerStr += cellvalue[i].name + "、";
             }
-            if(mergerStr!=""){
-                mergerStr=mergerStr.substring(0,mergerStr.length-1)
+            if (mergerStr != "") {
+                mergerStr = mergerStr.substring(0, mergerStr.length - 1)
             }
             return mergerStr;
         }
@@ -660,19 +659,19 @@
     }
 
     function showImage(cellvalue, options, cell) {
-        if(cellvalue){
-            var strHtml = '<img src="'+cellvalue+'" style="width: 100px">'
+        if (cellvalue) {
+            var strHtml = '<img src="' + cellvalue + '" style="width: 100px">'
             return strHtml;
         }
         return ""
     }
 
-    var  mainObj = '${mainObj}';
+    var mainObj = '${mainObj}';
 
 </script>
 
-<link rel="stylesheet" href="${path}/assets/css/ace.onpage-help.css" />
-<link rel="stylesheet" href="${path}/docs/assets/js/themes/sunburst.css" />
+<link rel="stylesheet" href="${path}/assets/css/ace.onpage-help.css"/>
+<link rel="stylesheet" href="${path}/docs/assets/js/themes/sunburst.css"/>
 
 <script type="text/javascript"> ace.vars['base'] = '..'; </script>
 <script src="${path}/assets/js/ace/ace.onpage-help.js"></script>
@@ -696,7 +695,42 @@
 <script src="${path}/assets/js/common/common.js"></script>
 
 <style>
-    .modal-body{
+    .modal-body {
         overflow: hidden;
     }
 </style>
+
+<script>
+    function searchLoad(flag) {
+        var url = "/admin/${bizSys}/${mainObj}s";
+        var page = $('#grid-table').getGridParam('page'); // current page
+        var rows = $('#grid-table').getGridParam('rows'); // rows
+        var sidx = $('#grid-table').getGridParam('sidx'); // sidx
+        var sord = $('#grid-table').getGridParam('sord'); // sord
+
+        if (page == null || page == "") {
+            page = '1';
+        }
+
+        if (flag == 1 || typeof flag == "undefined") {
+            page = '1';
+        }
+
+        if (rows == null || rows == "") {
+            rows = '10';
+        }
+
+        var rules = buildRules();
+
+        var filters = {
+            'groupOp': 'AND',
+            "rules": rules
+        };
+        $("#grid-table").jqGrid('setGridParam', {
+            url: url + "?filters=" + JSON.stringify(filters),
+            page: page,
+            rows: rows,
+            sidx: sidx,
+            sord: sord}).trigger("reloadGrid");
+    }
+</script>

@@ -1,7 +1,7 @@
 <!-- 增加过滤div + 主体表格 -->
 <div class="page-content">
     <!-- 搜索start-->
-    <form class="form-inline" role="form" action="/admin/${bizSys}/${mainObj}s">
+    <form class="form-inline">
         <div class="row">
             <div class="form-group col-sm-2">
                 <input type="text" class="keywordSearch" placeholder="关键字查询" id="hotInformation">
