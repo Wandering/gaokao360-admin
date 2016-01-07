@@ -104,12 +104,12 @@
                 + '              <label class="col-sm-2 control-label no-padding-right"> 职业热度：</label>'
                 + '              <div class="col-sm-4">'
                 + '                  <select class="form-control" id="selProfessionHot">'
-                + '                           <option value="00">请选择职业热度</option>
-                + '                           <option value="1">1</option>
-                + '                           <option value="2">2</option>
-                + '                           <option value="3">3</option>
-                + '                           <option value="4">4</option>
-                + '                           <option value="5">5</option>
+                + '                           <option value="00">请选择职业热度</option>'
+                + '                           <option value="1">1</option>'
+                + '                           <option value="2">2</option>'
+                + '                           <option value="3">3</option>'
+                + '                           <option value="4">4</option>'
+                + '                           <option value="5">5</option>'
                 + '                  </select>'
                 + '              </div>'
                 + '          </div>'

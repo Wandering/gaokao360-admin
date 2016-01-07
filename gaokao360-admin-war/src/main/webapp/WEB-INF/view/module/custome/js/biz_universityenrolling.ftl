@@ -193,7 +193,7 @@
                 delay: 0,
                 source: dataArr,
                 select: function (event, ui) {
-                    $('#autoSearch').attr('id', ui.item.id)
+                    $('#autoSearch').attr('dataId', ui.item.id)
                 }
             });
         }
@@ -290,13 +290,14 @@
         var addEditFun = function () {
             var selProvinceV = $('#selProvince2 option:checked').val();
             var selYearsV = $("#selYears2").find('option:selected').val();
-            var autoSearchV = $.trim($('.ui-autocomplete-input').attr('id'));
+            var autoSearchId = $('.ui-autocomplete-input').attr('dataId');
+
             if (selProvinceV == "00") {
                 CommonFn.tipsDialog('温馨提示', '请选择省份');
                 return false;
             }
-            if (autoSearchV == "") {
-                CommonFn.tipsDialog('温馨提示', '请输入院校名称');
+            if ( autoSearchId=="") {
+                CommonFn.tipsDialog('温馨提示', '请输入正确的院校名称');
                 return false;
             }
             if (selYearsV == '00') {
@@ -331,11 +332,16 @@
                 batchData.push(batchType);
             };
 
+            batchData = JSON.stringify(batchData)
+
+            console.log(batchData)
+
+
             var Datas = {
                 "areaId": selProvinceV,
-                "universityId": autoSearchV,
+                "universityId": autoSearchId,
                 "year": selYearsV,
-                "batchContent":batchData,
+                "batchContent":batchData ,
                 "oper": typeStr
             };
             console.log(Datas);
@@ -347,8 +353,9 @@
                 url: '/admin/${bizSys}/commonsave/${mainObj}',
                 data: Datas,
                 success: function (result) {
+                    console.log(result)
                     if (result.rtnCode == "0000000") {
-                        searchLoad();
+//                        searchLoad();
                     }
                 }
             });
