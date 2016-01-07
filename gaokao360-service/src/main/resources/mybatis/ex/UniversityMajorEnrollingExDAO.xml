@@ -693,7 +693,7 @@ selectList
             year as year ,
             (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'BATCHTYPE' AND dd.dictId = batch) as batchName
             , (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'ADMISSION_BATCH_TYPE' AND dd.dictId = admissionBatchId) as admissionBatchName
-            , (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'MAJOR_TYPE' AND dd.dictId = university_major_type) as majorTypeName,
+            , (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'UNIVERSITY_MAJOR_TYPE' AND dd.dictId = university_major_type) as majorTypeName,
             plan_enrolling_number as planEnrollingNumber ,
             real_enrolling_number as realEnrollingNumber ,
             (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'LENGTH_OF_SCHOOLING' AND dd.dictId = length_of_schooling) as lengthOfSchoolingName,

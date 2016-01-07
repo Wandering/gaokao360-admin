@@ -176,4 +176,32 @@ public class AddUtil extends BaseCommonUtil{
             }
         }
     }
+
+    public void universitymajorenrolling(){
+        String batchContent=null;
+        if(getDataMap().containsKey("batchContent")) {
+            batchContent = (String)getDataMap().get("batchContent");
+        }else{
+            throw new BizException("","参数异常分数信息不能为空");
+        }
+        if(batchContent!=null){
+            JSONArray jsonArray = null;
+            jsonArray = JSON.parseArray(batchContent);
+            List<HashMap<String,Object>> maps= super.handleJSONArray(jsonArray);
+            Map<String,Object> dataMap2 = new HashMap<>();
+            for(Map map:maps){
+                dataMap2.putAll(getDataMap());
+                dataMap2.putAll(map);
+                dataMap2.put("isDelete",0);
+                getServiceMaps().get("universitymajorenrolling").insertMap(dataMap2);
+            }
+        }
+
+    }
+    public static void main(String[] args){
+        JSONArray jsonArray = null;
+        String batchContent="[{batch:1,universityMajorType:1,planEnrollingNumber:5000,realEnrollingNumber:4000}]";
+        jsonArray = JSON.parseArray(batchContent);
+        System.out.println(jsonArray);
+    }
 }
