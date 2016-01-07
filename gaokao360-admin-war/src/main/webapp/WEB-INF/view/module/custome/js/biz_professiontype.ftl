@@ -31,8 +31,25 @@
         }
         return rules;
     }
-    function searchLoad() {
+    function searchLoad(flag) {
         var url = "/admin/${bizSys}/${mainObj}s";
+        var page = $('#grid-table').getGridParam('page'); // current page
+        var rows = $('#grid-table').getGridParam('rows'); // rows
+        var sidx = $('#grid-table').getGridParam('sidx'); // sidx
+        var sord = $('#grid-table').getGridParam('sord'); // sord
+
+
+        if (page == null || page == "") {
+            page = '1';
+        }
+
+        if (flag == 1 || typeof flag == "undefined") {
+            page = '1';
+        }
+
+        if (rows == null || rows == "") {
+            rows = '10';
+        }
 
         var rules = buildRules();
 
@@ -42,13 +59,12 @@
         };
 
         $("#grid-table").jqGrid('setGridParam', {
-            url: url,
             mtype: "POST",
             postData: "filters=" + JSON.stringify(filters),
-            page: 1
-        }).trigger("reloadGrid");
-
-
+            page: page,
+            rows: rows,
+            sidx: sidx,
+            sord: sord}).trigger("reloadGrid");
     }
 
     $("#search").click(function () {
@@ -70,6 +86,9 @@
             , $editBtn: $('#editBtn')
             , $deleteBtn: $('#deleteBtn')
         };
+
+
+
 
 //        添加
         UI.$addBtn.on(ace.click_event, function () {
@@ -117,24 +136,22 @@
                 }
             });
             // 获取当前行数据
-//            var rowData = CommonFn.getRowData(rowId);
-//            UI.$majoredCategoryName.val(rowData[0].name);
-//            var dataList = rowData[0].majoredCategoryDTOs;
-//            var list = '';
-//            for(var i in dataList){
-//                list += dataList[i].name+'、';
-//            }
+            var rowData = CommonFn.getRowData(rowId);
+            console.log(rowData)
+            $('#professionType').val(rowData[0].professionType);
+            var dataList = rowData[0].majoredCategoryDTOs;
+            var list = '';
+            for(var i in dataList){
+                list += dataList[i].name+'、';
+            }
         });
-//        当前行数据
-        var rowData = CommonFn.getRowData(rowId);
 
-
-//        删除
+//      删除
         CommonFn.deleteFun('#deleteBtn', '${mainObj}');
 //          添加修改方法
         function addAndEditFun() {
 //            验证
-            var $professionType = $('#professionType').val().trim();
+            var $professionType = $.trim($('#professionType').val());
             if ($professionType.length == '') {
                 CommonFn.tipsDialog('温馨提示', '行业名称不能为空');
                 return false;
@@ -143,15 +160,15 @@
                 CommonFn.tipsDialog('温馨提示', '行业名称不能大于8个字');
                 return false;
             }
-            var $content = $('#content').val().trim();
+            var $content = $.trim($('#content').val());
             if ($content.length == '') {
                 CommonFn.tipsDialog('温馨提示', '职业分类不能为空');
                 return false;
             }
             var data = {
                 oper: typeStr
-                , professionType: $('#professionType').val().trim()
-                , content: $('#content').val().trim()
+                , professionType: $.trim($('#professionType').val())
+                , content: $.trim($('#content').val())
             };
             CommonFn.getData('/admin/gaokao360/ex/commonsave/${mainObj}', 'post', data, function (res) {
                 if (res.rtnCode == '0000000') {

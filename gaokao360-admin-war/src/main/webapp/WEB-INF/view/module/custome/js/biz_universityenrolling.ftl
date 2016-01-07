@@ -31,8 +31,25 @@
         }
         return rules;
     }
-    function searchLoad() {
+    function searchLoad(flag) {
         var url = "/admin/${bizSys}/${mainObj}s";
+        var page = $('#grid-table').getGridParam('page'); // current page
+        var rows = $('#grid-table').getGridParam('rows'); // rows
+        var sidx = $('#grid-table').getGridParam('sidx'); // sidx
+        var sord = $('#grid-table').getGridParam('sord'); // sord
+
+
+        if (page == null || page == "") {
+            page = '1';
+        }
+
+        if (flag == 1 || typeof flag == "undefined") {
+            page = '1';
+        }
+
+        if (rows == null || rows == "") {
+            rows = '10';
+        }
 
         var rules = buildRules();
 
@@ -42,13 +59,12 @@
         };
 
         $("#grid-table").jqGrid('setGridParam', {
-            url: url,
             mtype: "POST",
             postData: "filters=" + JSON.stringify(filters),
-            page: 1
-        }).trigger("reloadGrid");
-
-
+            page: page,
+            rows: rows,
+            sidx: sidx,
+            sord: sord}).trigger("reloadGrid");
     }
 
     $("#search").click(function () {
@@ -177,7 +193,7 @@
                 delay: 0,
                 source: dataArr,
                 select: function (event, ui) {
-                    $('#autoSearch').attr('id', ui.item.id)
+                    $('#autoSearch').attr('dataId', ui.item.id)
                 }
             });
         }
@@ -262,6 +278,7 @@
             });
             // 当前行数据
             var rowData = CommonFn.getRowData(rowId)
+            console.log(rowData)
             $('#selProvince2').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
             $('#selCourses2').find('option[value="' + rowData[0].subjectId + '"]').attr('selected', 'selected');
             $('#selYears2').find('option[value="' + rowData[0].years + '"]').attr('selected', 'selected');
@@ -273,20 +290,20 @@
         var addEditFun = function () {
             var selProvinceV = $('#selProvince2 option:checked').val();
             var selYearsV = $("#selYears2").find('option:selected').val();
-            var autoSearchV = $.trim($('.ui-autocomplete-input').val());
+            var autoSearchId = $('.ui-autocomplete-input').attr('dataId');
+
             if (selProvinceV == "00") {
                 CommonFn.tipsDialog('温馨提示', '请选择省份');
                 return false;
             }
-            if (autoSearchV == "") {
-                CommonFn.tipsDialog('温馨提示', '请输入院校名称');
+            if ( autoSearchId=="") {
+                CommonFn.tipsDialog('温馨提示', '请输入正确的院校名称');
                 return false;
             }
             if (selYearsV == '00') {
                 CommonFn.tipsDialog('温馨提示', '年份没有选择,请重新输入');
                 return false;
             }
-
             var batchData = [];
             var batchType = {}
             for(var i=0;i<$('.subjectTypeList').length;i++){
@@ -315,15 +332,19 @@
                 batchData.push(batchType);
             };
 
-            console.log(batchData);
+            batchData = JSON.stringify(batchData)
+
+            console.log(batchData)
+
+
             var Datas = {
                 "areaId": selProvinceV,
-                "universityId": autoSearchV,
+                "universityId": autoSearchId,
                 "year": selYearsV,
-                "batchContent":batchData,
+                "batchContent":batchData ,
                 "oper": typeStr
             };
-
+            console.log(Datas);
             if (typeStr == 'edit') {
                 Datas.id = rowId;
             }
@@ -332,8 +353,9 @@
                 url: '/admin/${bizSys}/commonsave/${mainObj}',
                 data: Datas,
                 success: function (result) {
+                    console.log(result)
                     if (result.rtnCode == "0000000") {
-                        searchLoad();
+//                        searchLoad();
                     }
                 }
             });

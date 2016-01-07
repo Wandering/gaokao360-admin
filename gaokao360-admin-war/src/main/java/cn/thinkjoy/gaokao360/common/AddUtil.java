@@ -151,6 +151,9 @@ public class AddUtil extends BaseCommonUtil{
             List<HashMap<String,Object>> maps= super.handleJSONArray(jsonArray);
             Map<String,Object> dataMap2 = new HashMap<>();
             for(Map map:maps){
+                if("00".equals(map.get("batch"))||map.containsValue("batch")){
+                    continue;
+                }
                 dataMap2.putAll(getDataMap());
                 dataMap2.putAll(map);
                 getServiceMaps().get("universityenrolling").insertMap(dataMap2);
@@ -161,7 +164,6 @@ public class AddUtil extends BaseCommonUtil{
 
     public void professiontype(){
         String content = (String)getDataMap().get("content");
-        dataMap.put("pid","0");
         dataMap.put("isDelete",false);
         getServiceMaps().get("professiontype").insertMap(dataMap);
         Long l=(Long)getServiceMaps().get("professiontype").selectMaxId();

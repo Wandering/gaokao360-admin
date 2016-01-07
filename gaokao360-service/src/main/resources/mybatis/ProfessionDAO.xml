@@ -922,7 +922,7 @@ selectList
         from zgk_profession_type
         where 1=1
             <if test="pid==null">
-                AND pid=0
+                AND pid is null
             </if>
             <if test="pid!=null">
                 AND pid=#{pid}
