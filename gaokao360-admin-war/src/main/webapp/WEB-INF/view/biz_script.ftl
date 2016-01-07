@@ -26,6 +26,8 @@
 <#--<script src="${path}/assets/js/require.js" defer async="true" ></script>-->
 <script src="${path}/assets/js/bootstrap.min.js"></script>
 
+
+
 <!-- page specific plugin scripts -->
 <script src="${path}/assets/js/date-time/bootstrap-datepicker.min.js"></script>
 <script src="${path}/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
@@ -41,8 +43,7 @@
 <script src="${path}/assets/js/bootstrap-wysiwyg.min.js"></script>
 
 
-<link rel="stylesheet" href="${path}/assets/css/jquery-ui.min.css" />
-<script src="${path}/assets/js/jquery-ui.min.js"></script>
+
 
 
 
