@@ -67,29 +67,6 @@ public class ProfessionController extends BaseController<IProfessionService> {
         return doPage(request, response);
     }
 
-
-
-    @RequestMapping(value = "/professionList", method = RequestMethod.GET)
-    @ResponseBody
-    public List<Map<String, Object>> listProfessions(HttpServletRequest request, HttpServletResponse response) {
-        Map<String,Object> paramMap = new HashMap<>();
-        Enumeration<String> names = request.getParameterNames();
-        String prop;
-        while (names.hasMoreElements()) {
-            prop = names.nextElement();
-            paramMap.put(prop, request.getParameter(prop));
-        }
-        if(null == request.getParameter("offset")|| "".equals(request.getParameter("offset")))
-        {
-            paramMap.put("offset",0);
-        }
-        if(null == request.getParameter("row")|| "".equals(request.getParameter("row")))
-        {
-            paramMap.put("rows", 10);
-        }
-        return professionService.findPageList(paramMap);
-    }
-
     @Override
     protected IProfessionService getMainService() {
         return professionService;

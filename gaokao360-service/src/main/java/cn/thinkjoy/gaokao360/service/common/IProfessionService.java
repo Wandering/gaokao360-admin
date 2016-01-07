@@ -17,5 +17,4 @@ import java.util.Map;
 public interface IProfessionService<D extends IBaseDAO<T>, T extends BaseDomain> extends IBaseService<D, T>,IPageService<D, T>{
     List<Map<String, String>> findCategory(Map<String, Object> dataMap);
     Map<String, String> findProfessionDetail(int id);
-    List<Map<String, String>> findPageList(Map<String, Object> dataMap);
 }
