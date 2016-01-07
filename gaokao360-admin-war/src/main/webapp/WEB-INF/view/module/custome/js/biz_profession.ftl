@@ -6,15 +6,15 @@
         var rules = [];
         if (keywords != '' && keywords != null && keywords != undefined) {
             var rule = {
-                'field': 'courseName',
-                'op': 'eq',
+                'field': 'queryparam',
+                'op': 'lk',
                 'data': keywords
             }
             rules.push(rule);
         }
         if (selProfession != '00' && selProfession != null && selProfession != undefined) {
             var rule = {
-                'field': 'status',
+                'field': 'professionType',
                 'op': 'eq',
                 'data': selProfession
             }
