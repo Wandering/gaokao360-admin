@@ -54,9 +54,20 @@ public class UniversityMajorEnrolling extends CreateBaseDomain<Long>{
     private Integer averagePrecedence;
     /**  */
     private Boolean isDelete;
+    /** 区域Id */
+    private long areaId;
 
 	public UniversityMajorEnrolling(){
 	}
+
+    public long getAreaId() {
+        return areaId;
+    }
+
+    public void setAreaId(long areaId) {
+        this.areaId = areaId;
+    }
+
     public void setUniversityId(Long value) {
         this.universityId = value;
     }
