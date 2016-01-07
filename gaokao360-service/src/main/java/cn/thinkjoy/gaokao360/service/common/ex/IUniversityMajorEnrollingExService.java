@@ -5,7 +5,7 @@
  * $Id:  UniversityMajorEnrollingService.java 2015-12-31 10:09:48 $
  */
 
-package cn.thinkjoy.gaokao360.service.ex;
+package cn.thinkjoy.gaokao360.service.common.ex;
 import cn.thinkjoy.common.dao.IBaseDAO;
 import cn.thinkjoy.common.domain.BaseDomain;
 import cn.thinkjoy.common.service.IBaseService;
