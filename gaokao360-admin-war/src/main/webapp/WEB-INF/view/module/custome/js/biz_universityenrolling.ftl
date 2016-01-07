@@ -31,45 +31,8 @@
         }
         return rules;
     }
-    function searchLoad(flag) {
-        var url = "/admin/${bizSys}/${mainObj}s";
-        var page = $('#grid-table').getGridParam('page'); // current page
-        var rows = $('#grid-table').getGridParam('rows'); // rows
-        var sidx = $('#grid-table').getGridParam('sidx'); // sidx
-        var sord = $('#grid-table').getGridParam('sord'); // sord
-
-
-        if (page == null || page == "") {
-            page = '1';
-        }
-
-        if (flag == 1 || typeof flag == "undefined") {
-            page = '1';
-        }
-
-        if (rows == null || rows == "") {
-            rows = '10';
-        }
-
-        var rules = buildRules();
-
-        var filters = {
-            'groupOp': 'AND',
-            "rules": rules
-        };
-
-        $("#grid-table").jqGrid('setGridParam', {
-            mtype: "POST",
-            postData: "filters=" + JSON.stringify(filters),
-            page: page,
-            rows: rows,
-            sidx: sidx,
-            sord: sord}).trigger("reloadGrid");
-    }
-
     $("#search").click(function () {
         searchLoad();
-
     });
     jQuery(function ($) {
         var typeStr;
@@ -304,32 +267,33 @@
                 CommonFn.tipsDialog('温馨提示', '年份没有选择,请重新输入');
                 return false;
             }
+
             var batchData = [];
             var batchType = {}
             for(var i=0;i<$('.subjectTypeList').length;i++){
-                var universityMajorTypeV = $('.subjectTypeList:eq('+ i +')').attr('dataid');
-                var batchV = $('.subjectTypeList:eq('+ i +')').find('.subjectType option:checked').val();
-                var planEnrollingNumberV = $('.subjectTypeList:eq('+ i +')').find('.planEnrollingNumber').val();
-                var realEnrollingNumberV = $('.subjectTypeList:eq('+ i +')').find('.realEnrollingNumber').val();
-                var highestScoreV = $('.subjectTypeList:eq('+ i +')').find('.highestScore').val();
-                var highestPrecedenceV = $('.subjectTypeList:eq('+ i +')').find('.highestPrecedence').val();
-                var lowestScoreV = $('.subjectTypeList:eq('+ i +')').find('.lowestScore').val();
-                var lowestPrecedenceV = $('.subjectTypeList:eq('+ i +')').find('.lowestPrecedence').val();
-                var averageScoreV = $('.subjectTypeList:eq('+ i +')').find('.averageScore').val();
-                var averagePrecedenceV = $('.subjectTypeList:eq('+ i +')').find('.averagePrecedence').val();
-                batchType = {
-                    "universityMajorType":universityMajorTypeV,
-                    "batch": batchV,
-                    "planEnrollingNumber": planEnrollingNumberV,
-                    "realEnrollingNumber": realEnrollingNumberV,
-                    "highestScore": highestScoreV,
-                    "highestPrecedence": highestPrecedenceV,
-                    "lowestScore": lowestScoreV,
-                    "lowestPrecedence": lowestPrecedenceV,
-                    "averageScore": averageScoreV,
-                    "averagePrecedence": averagePrecedenceV
-                };
-                batchData.push(batchType);
+                    var universityMajorTypeV = $('.subjectTypeList:eq('+ i +')').attr('dataid');
+                    var batchV = $('.subjectTypeList:eq('+ i +')').find('.subjectType option:checked').val();
+                    var planEnrollingNumberV = $('.subjectTypeList:eq('+ i +')').find('.planEnrollingNumber').val();
+                    var realEnrollingNumberV = $('.subjectTypeList:eq('+ i +')').find('.realEnrollingNumber').val();
+                    var highestScoreV = $('.subjectTypeList:eq('+ i +')').find('.highestScore').val();
+                    var highestPrecedenceV = $('.subjectTypeList:eq('+ i +')').find('.highestPrecedence').val();
+                    var lowestScoreV = $('.subjectTypeList:eq('+ i +')').find('.lowestScore').val();
+                    var lowestPrecedenceV = $('.subjectTypeList:eq('+ i +')').find('.lowestPrecedence').val();
+                    var averageScoreV = $('.subjectTypeList:eq('+ i +')').find('.averageScore').val();
+                    var averagePrecedenceV = $('.subjectTypeList:eq('+ i +')').find('.averagePrecedence').val();
+                    batchType = {
+                        "universityMajorType":universityMajorTypeV,
+                        "batch": batchV,
+                        "planEnrollingNumber": planEnrollingNumberV,
+                        "realEnrollingNumber": realEnrollingNumberV,
+                        "highestScore": highestScoreV,
+                        "highestPrecedence": highestPrecedenceV,
+                        "lowestScore": lowestScoreV,
+                        "lowestPrecedence": lowestPrecedenceV,
+                        "averageScore": averageScoreV,
+                        "averagePrecedence": averagePrecedenceV
+                    };
+                    batchData.push(batchType);
             };
 
             batchData = JSON.stringify(batchData)
@@ -355,7 +319,7 @@
                 success: function (result) {
                     console.log(result)
                     if (result.rtnCode == "0000000") {
-//                        searchLoad();
+                        searchLoad();
                     }
                 }
             });
