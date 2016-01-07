@@ -70,7 +70,7 @@ selectList
         </if>
         FROM zgk_profession_type
         <where>
-            pid=0
+            (pid=0||pid IS NULL)
             <if test="condition.whereSql != null">
                 and id in (#{condition.whereSql})
             </if>

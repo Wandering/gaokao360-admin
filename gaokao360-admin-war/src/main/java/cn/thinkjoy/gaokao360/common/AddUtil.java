@@ -164,7 +164,6 @@ public class AddUtil extends BaseCommonUtil{
 
     public void professiontype(){
         String content = (String)getDataMap().get("content");
-        dataMap.put("pid","0");
         dataMap.put("isDelete",false);
         getServiceMaps().get("professiontype").insertMap(dataMap);
         Long l=(Long)getServiceMaps().get("professiontype").selectMaxId();
