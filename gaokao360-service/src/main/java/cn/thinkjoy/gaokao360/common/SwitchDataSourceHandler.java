@@ -21,11 +21,9 @@ public class SwitchDataSourceHandler {
     @Before("execution(* cn.thinkjoy.gaokao360.service.differentiation..*(..))||execution(* cn.thinkjoy.common.service..*(..))")
     public void switchDB(JoinPoint jionpoint)
     {
-
         if(matchPackageType(jionpoint)){
-            CustomerContextHolder.setContextType(UserAreaContext.getCurrentUserArea());
+            CustomerContextHolder.setContextType(UserAreaContext.getCurrentUserArea("jay"));
         }
-
     }
 
     @After("execution(* cn.thinkjoy.gaokao360.service.differentiation..*(..))||execution(* cn.thinkjoy.common.service..*(..))")

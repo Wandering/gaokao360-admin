@@ -1,34 +1,42 @@
 package cn.thinkjoy.gaokao360.common;
 
+import cn.thinkjoy.cloudstack.cache.IRedisRepository;
 import cn.thinkjoy.cloudstack.cache.RedisRepositoryFactory;
 import cn.thinkjoy.common.managerui.domain.UserDatagroup;
 import cn.thinkjoy.common.utils.UserContext;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
 
 /**
  * Created by admin on 2016/1/7.
  */
+@Component
 public class UserAreaContext {
-//    RedisRepositoryFactory
-    public static String getCurrentUserArea(){
-//        return UserContext.getCurrentUser();
-        return null;
-    }
+    private static IRedisRepository store;
 
-    public static void setCurrentUserArea(String area,String key){
+    @PostConstruct
+    private void initStore()
+    {
         try {
-            RedisRepositoryFactory.getRepository("zgk",key,area);
+            store = RedisRepositoryFactory.getRepository("zgk", "user", "area");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    /**
-     * 应该显示调用
-     */
-    public static void removeCurrentUserArea() {
+    public static String getCurrentUserArea(String key) {
 
-//        RedisRepositoryFactory.remove();
+        return store.get(key) + "";
     }
 
+    public static void setCurrentUserArea(String key, String area) {
+        try {
+            store = RedisRepositoryFactory.getRepository("zgk", "user", "area");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        store.set(key, area);
+    }
 
 }
