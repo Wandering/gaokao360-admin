@@ -6,6 +6,8 @@ import cn.thinkjoy.gaokao360.service.differentiation.ex.IAdmissionBatchExService
 import cn.thinkjoy.gaokao360.service.differentiation.ex.IVideoSectionExService;
 import cn.thinkjoy.gaokao360.service.common.ex.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,6 +15,8 @@ import java.util.Map;
 /**
  * Created by admin on 2015/12/30.
  */
+@Transactional
+@Component
 public class DelUtil extends BaseCommonUtil{
 
     @Autowired
@@ -32,18 +36,7 @@ public class DelUtil extends BaseCommonUtil{
     @Autowired
     private IAdmissionBatchExService admissionBatchExService;
 
-    private static DelUtil instance=null;
-    public static DelUtil getInstance(){
-        if(instance==null){
-            synchronized(DelUtil.class){
-                if(instance==null){
-                    instance=new DelUtil();
-                }
-            }
-        }
-        return instance;
-    }
-    private DelUtil(){
+    public DelUtil(){
     }
     public void innerHandleDel(String mainObj, Map dataMap) throws Exception {
         this.setDataMap(dataMap);

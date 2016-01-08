@@ -11,6 +11,8 @@ import cn.thinkjoy.gaokao360.service.common.ex.*;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +21,8 @@ import java.util.Map;
 /**
  * Created by admin on 2015/12/30.
  */
+@Transactional
+@Component
 public class UpdateUtil extends BaseCommonUtil{
 
     @Autowired
@@ -38,18 +42,7 @@ public class UpdateUtil extends BaseCommonUtil{
     @Autowired
     private IAdmissionBatchExService admissionBatchExService;
 
-    private static UpdateUtil instance=null;
-    public static UpdateUtil getInstance(){
-        if(instance==null){
-            synchronized(UpdateUtil.class){
-                if(instance==null){
-                    instance=new UpdateUtil();
-                }
-            }
-        }
-        return instance;
-    }
-    private UpdateUtil(){
+    public UpdateUtil(){
     }
 
     public void innerHandleUpdate(String mainObj, Map dataMap) throws Exception {

@@ -60,8 +60,14 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     private IMajoredCategoryExService majoredCategoryExService;
     @Autowired
     private IMajoredExService majoredExService;
-
-
+    @Autowired
+    private AddUtil addUtil;
+    @Autowired
+    private DelUtil delUtil;
+    @Autowired
+    private UpdateUtil updateUtil;
+    @Autowired
+    private QueryoneUtil queryoneUtil;
     @Override
     protected void innerHandleDel(String mainObj, Map dataMap) {
         if("policyinterpretation".equals(mainObj)){
@@ -77,8 +83,6 @@ public class Gaokao360CommonExController extends AbstractCommonController {
             }
         }
         try {
-            DelUtil delUtil = DelUtil.getInstance();
-            delUtil.setServiceMaps(serviceMaps);
             delUtil.innerHandleDel(mainObj, dataMap);
         }catch (Exception e){
             getServiceMaps().get(mainObj).delete(dataMap.get("id"));
@@ -101,8 +105,6 @@ public class Gaokao360CommonExController extends AbstractCommonController {
             }
         }
         try {
-            UpdateUtil updateUtil = UpdateUtil.getInstance();
-            updateUtil.setServiceMaps(serviceMaps);
             updateUtil.innerHandleUpdate(mainObj, dataMap);
         } catch (Exception e) {
             super.innerHandleDel(mainObj,dataMap);
@@ -112,8 +114,6 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     protected void innerHandleAdd(String mainObj, Map dataMap) {
 //        AddUtil.getInstance().universityenrolling();
         try {
-            AddUtil addUtil = AddUtil.getInstance();
-            addUtil.setServiceMaps(serviceMaps);
             addUtil.innerHandleAdd(mainObj,dataMap);
 
         }catch (Exception e){
@@ -224,8 +224,6 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     @ResponseBody
     public Object queryOne(@PathVariable String mainObj,@RequestParam("id")String id){
         try {
-            QueryoneUtil queryoneUtil = QueryoneUtil.getInstance();
-            queryoneUtil.setServiceMaps(serviceMaps);
             return queryoneUtil.runMethod(mainObj,id);
         } catch (Exception e) {
             return serviceMaps.get(mainObj).fetch(id);

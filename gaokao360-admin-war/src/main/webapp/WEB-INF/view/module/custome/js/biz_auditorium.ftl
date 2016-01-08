@@ -244,8 +244,8 @@
 
             var addData = {
                 oper: typeStr,
-                classifyId: '${mainObj}' == 'auditorium' ? '1' : '0',
-                managerId: '${mainObj}' == 'auditorium' ? '1' : '0',
+                classifyId: '${mainObj}' == 'auditorium' ? '1' : '2',
+                managerId: '${mainObj}' == 'auditorium' ? '1' : '2',
                 subjectId: selCourses2V,
                 teacher: teacherNameV,
                 title: sectionTitleV,
