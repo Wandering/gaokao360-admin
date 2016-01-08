@@ -4,7 +4,7 @@
     <form class="form-inline">
         <div class="row">
             <div class="form-group col-sm-2">
-                <input type="text" class="keywordSearch" placeholder="关键字查询" id="hotInformation">
+                <input type="text" class="keywordSearch" placeholder="热点标题查询" id="hotInformation">
             </div>
             <div class="form-group col-sm-2">
                 <select class="form-control" id="areaId"></select>

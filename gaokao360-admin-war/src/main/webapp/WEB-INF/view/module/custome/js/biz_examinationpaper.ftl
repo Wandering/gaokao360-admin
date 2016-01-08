@@ -1,41 +1,4 @@
 <script>
-    <!-- 自定义js请写在这个文件  以下这个查询方法只是个例子，请按照业务需求修改 -->
-
-    function searchLoad(flag) {
-        var url = "/admin/${bizSys}/${mainObj}s";
-        var page = $('#grid-table').getGridParam('page'); // current page
-        var rows = $('#grid-table').getGridParam('rows'); // rows
-        var sidx = $('#grid-table').getGridParam('sidx'); // sidx
-        var sord = $('#grid-table').getGridParam('sord'); // sord
-
-
-        if (page == null || page == "") {
-            page = '1';
-        }
-
-        if (flag == 1 || typeof flag == "undefined") {
-            page = '1';
-        }
-
-        if (rows == null || rows == "") {
-            rows = '10';
-        }
-
-        var rules = buildRules();
-
-        var filters = {
-            'groupOp': 'AND',
-            "rules": rules
-        };
-
-        $("#grid-table").jqGrid('setGridParam', {
-            mtype: "POST",
-            postData: "filters=" + JSON.stringify(filters),
-            page: page,
-            rows: rows,
-            sidx: sidx,
-            sord: sord}).trigger("reloadGrid");
-    }
     function buildRules() {
         var papersubjectId = $('#selCourses').val();
         var paperyears = $('#selYears').val();
@@ -208,7 +171,8 @@
                 }
             });
             // 当前行数据
-            var rowData = CommonFn.getRowData(rowId)
+            var rowData = CommonFn.getRowData(rowId);
+            console.log(rowData)
             $('#selProvince2').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
             $('#selCourses2').find('option[value="' + rowData[0].subjectId + '"]').attr('selected', 'selected');
             $('#selYears2').find('option[value="' + rowData[0].years + '"]').attr('selected', 'selected');

@@ -33,41 +33,6 @@
 //        console.log(rules);
         return rules;
     }
-    function searchLoad(flag) {
-        var url = "/admin/${bizSys}/${mainObj}s";
-        var page = $('#grid-table').getGridParam('page'); // current page
-        var rows = $('#grid-table').getGridParam('rows'); // rows
-        var sidx = $('#grid-table').getGridParam('sidx'); // sidx
-        var sord = $('#grid-table').getGridParam('sord'); // sord
-
-
-        if (page == null || page == "") {
-            page = '1';
-        }
-
-        if (flag == 1 || typeof flag == "undefined") {
-            page = '1';
-        }
-
-        if (rows == null || rows == "") {
-            rows = '10';
-        }
-
-        var rules = buildRules();
-
-        var filters = {
-            'groupOp': 'AND',
-            "rules": rules
-        };
-
-        $("#grid-table").jqGrid('setGridParam', {
-            mtype: "POST",
-            postData: "filters=" + JSON.stringify(filters),
-            page: page,
-            rows: rows,
-            sidx: sidx,
-            sord: sord}).trigger("reloadGrid");
-    }
 
     // 搜索
     $("#search").click(function () {
@@ -232,6 +197,7 @@
         $('#selProvince,#selProvince2').html(CommonFn.getProvince());
 
 
+
         uploadFun1();
         uploadFun2();
         var addEditFun = function () {
@@ -263,7 +229,6 @@
                 CommonFn.tipsDialog('温馨提示', '请选择视频名称');
                 return false;
             }
-            alert(imgUrlDataV)
             if (imgUrlDataV == "") {
                 CommonFn.tipsDialog('温馨提示', '请上传视频封面');
                 return false;
@@ -272,16 +237,10 @@
                 CommonFn.tipsDialog('温馨提示', '请上传视频');
                 return false;
             }
-            var sectionData = $('#sectionId').val();
 
 
-
-            var imgUrl = '';
-            if($('#uploader1:hidden')){
-                imgUrl = $('#imglist').find('img').attr('src');
-            }else{
-                imgUrl = $('#imgUrlData').val();
-            }
+            alert(videoDataV)
+            alert(imgUrlDataV)
 
             var addData = {
                 oper: typeStr,
@@ -290,11 +249,13 @@
                 subjectId: selCourses2V,
                 teacher: teacherNameV,
                 title: sectionTitleV,
-                frontCover: imgUrl,
+                frontCover: imgUrlDataV,
                 subcontent: expertsIntroV,
                 areaId: selProvinceV,
-                videoSectionDTOs:sectionData
+                videoSectionDTOs:videoDataV
             };
+            console.log(addData)
+
             $.ajax({
                 type: "POST",
                 url: '/admin/${bizSys}/commonsave/${mainObj}',
@@ -309,14 +270,11 @@
         };
 
 
-
-
-
-
         // 添加
 //        uploadFun1();
 //        uploadFun2();
         UI.$addBtn.click(function () {
+            $('#imglist').html('').hide();
             $('#dialogLayer').modal('show')
                     .find('input').val('')
                     .end()
@@ -332,7 +290,20 @@
             uploadFun2();
         });
 
+//        var editVideoList = [];
+//        var editListJSON = {};
         UI.$editBtn.click(function (e) {
+            e.preventDefault();
+            typeStr = "edit";
+            rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
+            var selTrN = $('tr.ui-state-highlight[role="row"]').length;
+            if (selTrN != 1) {
+                CommonFn.tipsDialog('温馨提示', '请选中一行后修改');
+                return false;
+            }
+            // 当前行数据
+            var rowData = CommonFn.getRowData(rowId);
+            console.log(rowData)
             $('#dialogLayer').modal('show')
                     .find('input').val('')
                     .end()
@@ -343,17 +314,7 @@
                     .find('textarea').val('')
                     .end()
                     .find('.statusBar').hide();
-            typeStr = "edit";
-            rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
-            var selTrN = $('tr.ui-state-highlight[role="row"]').length;
-            if (selTrN != 1) {
-                CommonFn.tipsDialog('温馨提示', '请选中一行后修改');
-                return false;
-            }
-            e.preventDefault();
-            $('#dialogLayer').modal('show');
-            // 当前行数据
-            var rowData = CommonFn.getRowData(rowId);
+
             console.log(rowData);
             $('#selProvince2').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
             $('#selCourses2').find('option[value="' + rowData[0].subjectId + '"]').attr('selected', 'selected');
@@ -362,24 +323,38 @@
             $('#expertsIntro').val(rowData[0].subcontent);
             $('#uploader1').hide();
             $('#imglist').html('<img width="110" height="100" src="'+ rowData[0].frontCover +'"/><a href="javascript:;" id="updateImg">修改</a>');
-            uploadFun1();
-            uploadFun2();
+
             $('#imglist').show();
             $('#updateImg').on('click',function(){
                 $(this).parent().hide();
                 $('#uploader1').show();
-            })
+            });
+            $('#imgUrlData').val(rowData[0].frontCover);
 
             // 视频
             var videoData = rowData[0].videoSectionDTO;
             var videoArr = [];
             for(var i=0;i<videoData.length;i++){
-                videoArr.push('<div>'+ videoData[i].sectionName +'<a href="'+ videoData[i].fileUrl +'">点击查看</a><a href="javascript:;">删除</a></div>')
-                console.log(videoArr.join(''))
-                $('#videolist').html(videoArr)
+                videoArr.push('<div class="videoLi"><span class="vName" dataUrl="'+ videoData[i].fileUrl +'">'+ videoData[i].sectionName +'</span><a target="_blank" class="vUrl" href="'+ videoData[i].fileUrl +'">点击查看</a><a href="javascript:;" class="close-btn" dataUrl="'+ videoData[i].fileUrl +'">删除</a></div>')
+                console.log(videoArr.join(''));
+                $('#videolist').html(videoArr);
             }
 
-
+            cx();
+            $('#videolist').on('click','.close-btn',function(){
+                $(this).parent().remove();
+                var name = $(this).attr('dataUrl');
+                var arrs = JSON.parse($('#videoData').val());
+                for (var i = 0; i < arrs.length; i++) {
+                    var cur_person = arrs[i];
+                    if (cur_person.fileUrl == name) {
+                        arrs.splice(i, 1);
+                    }
+                };
+                $('#videoData').val(JSON.stringify(arrs))
+            });
+            uploadFun1();
+            uploadFun2();
 
         });
 
@@ -387,105 +362,7 @@
             e.stopPropagation();
             e.preventDefault();
             addEditFun();
-
-
-
-            <#--e.preventDefault();-->
-
-            <#--var selProvinceV = $('#selProvince2 option:checked').val(),-->
-                    <#--selCourses2V = $('#selCourses2 option:checked').val(),-->
-                    <#--teacherNameV = $.trim($('#teacherName').val()),-->
-                    <#--expertsIntroV = $('#expertsIntro').val(),-->
-                    <#--sectionTitleV = $('#sectionTitle').val(),-->
-                    <#--imgUrlDataV = $('#imgUrlData').val(),-->
-                    <#--videoDataV = $('#videoData').val();-->
-
-            <#--if (selProvinceV == "00") {-->
-                <#--CommonFn.tipsDialog('温馨提示', '请选择省份');-->
-                <#--return false;-->
-            <#--}-->
-            <#--if (selCourses2V == "00") {-->
-                <#--CommonFn.tipsDialog('温馨提示', '请选择科目');-->
-                <#--return false;-->
-            <#--}-->
-            <#--if (teacherNameV == "") {-->
-                <#--CommonFn.tipsDialog('温馨提示', '请选择主讲老师');-->
-                <#--return false;-->
-            <#--}-->
-            <#--if (expertsIntroV == "") {-->
-                <#--CommonFn.tipsDialog('温馨提示', '请选择专家介绍');-->
-                <#--return false;-->
-            <#--}-->
-            <#--if (sectionTitleV == "") {-->
-                <#--CommonFn.tipsDialog('温馨提示', '请选择视频名称');-->
-                <#--return false;-->
-            <#--}-->
-            <#--alert(imgUrlDataV)-->
-            <#--if (imgUrlDataV == "") {-->
-                <#--CommonFn.tipsDialog('温馨提示', '请上传视频封面');-->
-                <#--return false;-->
-            <#--}-->
-            <#--if (videoDataV == "") {-->
-                <#--CommonFn.tipsDialog('温馨提示', '请上传视频');-->
-                <#--return false;-->
-            <#--}-->
-
-
-
-
-
-            <#--var sectionData = $('#sectionId').val();-->
-            <#--var addData = {-->
-                <#--oper: typeStr,-->
-                <#--classifyId: '${mainObj}' == 'auditorium' ? '1' : '0',-->
-                <#--managerId: '${mainObj}' == 'auditorium' ? '1' : '0',-->
-                <#--subjectId: $('#selCourses2').find('option[selected]').val(),-->
-                <#--teacher: UI.$teacherName.val(),-->
-                <#--title: UI.$sectionTitle.val(),-->
-                <#--frontCover: $("#__auditoriumId").attr('imgUrl'),-->
-                <#--subcontent: UI.$expertsIntro.val(),-->
-                <#--areaId: $('#selCourses2').find('option[select]').val(),-->
-                <#--videoSectionDTOs:sectionData-->
-            <#--};-->
-            <#--CommonFn.getData('/admin/gaokao360/ex/commonsave/${mainObj}', 'post', addData, function (res) {-->
-                <#--if (res.rtnCode == '0000000') {-->
-                    <#--searchLoad();-->
-<#--//                    $('#dialogLayer').modal('hide');-->
-                <#--}-->
-            <#--});-->
         });
-
-
-
-        // 提交添加end
-        <#--UI.$submitBtn.click(function (e) {-->
-            <#--e.preventDefault();-->
-            <#--typeStr = 'add';-->
-            <#--auditoriumValidate();-->
-            <#--var sectionData = $('#sectionId').val();-->
-            <#--var addData = {-->
-                <#--oper: typeStr,-->
-                <#--classifyId: '${mainObj}' == 'auditorium' ? '1' : '0',-->
-                <#--managerId: '${mainObj}' == 'auditorium' ? '1' : '0',-->
-                <#--subjectId: $('#selCourses2').find('option[selected]').val(),-->
-                <#--teacher: UI.$teacherName.val(),-->
-                <#--title: UI.$sectionTitle.val(),-->
-                <#--frontCover: $("#__auditoriumId").attr('imgUrl'),-->
-                <#--subcontent: UI.$expertsIntro.val(),-->
-                <#--areaId: $('#selCourses2').find('option[select]').val(),-->
-                <#--videoSectionDTOs:sectionData-->
-            <#--};-->
-            <#--CommonFn.getData('/admin/gaokao360/ex/commonsave/${mainObj}', 'post', addData, function (res) {-->
-                <#--if (res.rtnCode == '0000000') {-->
-                    <#--searchLoad();-->
-                    <#--$('#dialogLayer').modal('hide');-->
-                <#--}-->
-            <#--});-->
-        <#--});// 提交添加end-->
-
-
-
-
 
 
 
@@ -493,6 +370,37 @@
         //删除
         CommonFn.deleteFun('#deleteBtn', '${mainObj}');
     });//$ end
+
+
+
+
+    function cx(){
+        $('#videoData').val('');
+        var newBoj = {};
+        var vArr = [];
+        var videoLiLen = $('.videoLi').length;
+        if(videoLiLen > 0){
+            for(var j=0;j< videoLiLen;j++){
+                var nName = $('.videoLi:eq('+ [j] +')').find('.vName').text();
+                var nUrl = $('.videoLi:eq('+ [j] +')').find('.vName').attr('dataUrl');
+                newBoj = {
+                    sectionName: nName,
+                    fileUrl: nUrl
+                };
+                vArr.push(newBoj);
+            }
+            $('#videoData').val(JSON.stringify(vArr))
+        }
+    }
+
+
+
+
+
+
+
+
+
     function auditoriumValidate() {
         var selProvinceV = $('#selProvince2 option:checked').val(),
                 selCourses2V = $('#selCourses2 option:checked').val(),
@@ -1418,7 +1326,22 @@
                 sectionName: file.name.substring(0,(file.name.length-4)),
                 fileUrl: fileUrl
             };
+
             videoList.push(listJSON);
+
+            var newBoj = {};
+            var videoLiLen = $('.videoLi').length;
+            if(videoLiLen > 0){
+                for(var j=0;j< videoLiLen;j++){
+                    var nName = $('.videoLi:eq('+ [j] +')').find('.vName').text();
+                    var nUrl = $('.videoLi:eq('+ [j] +')').find('.vName').attr('dataUrl');
+                    newBoj = {
+                        sectionName: nName,
+                        fileUrl: nUrl
+                    };
+                    videoList.push(newBoj);
+                }
+            }
             $('#videoData').val(JSON.stringify(videoList));
         };
 

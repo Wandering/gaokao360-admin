@@ -70,7 +70,7 @@
                 + '                  <select class="form-control" id="selYears2">' + yearsData + '</select>'
                 + '              </div>'
                 + '          </div>'
-                + '          <div class="form-group">'
+                + '          <div class="form-group" id="subjectType1">'
                 + '              <label class="col-sm-2 control-label no-padding-right"> 文史类招生：</label>'
                 + '              <div class="col-sm-9" id="subjectType-main1">'
                 + '                  <div class="subjectTypeList" dataId="1">'
@@ -96,7 +96,7 @@
                 + '                  <button class="btn btn-sm btn-primary" id="subjectTypeBtn1">增加</button>'
                 + '              </div>'
                 + '          </div>'
-                + '          <div class="form-group">'
+                + '          <div class="form-group" id="subjectType2">'
                 + '              <label class="col-sm-2 control-label no-padding-right"> 理工类招生：</label>'
                 + '              <div class="col-sm-9" id="subjectType-main2">'
                 + '                  <div class="subjectTypeList" dataId="2" >'
@@ -164,11 +164,12 @@
 
         function subjectTypeFn(n) {
             var subjectTypeList = $('#subjectType-main' + n).find('.subjectTypeList').html();
+            console.log(subjectTypeList)
             // 增加招生批次明细
-            $('body').on('click', '#subjectTypeBtn' + n, function (event) {
+            $('#subjectTypeBtn'+n).on('click', function (event) {
                 event.stopPropagation();
                 event.preventDefault();
-                $('#subjectType-main' + n).append('<div class="subjectTypeList">' + subjectTypeList + '</div>');
+                $('#subjectType-main' + n).append('<div class="subjectTypeList" dataId="'+ n +'">' + subjectTypeList + '</div>');
             });
             $('#subjectType-main' + n).find('.deleteSubjectTypeBtn:eq(0)').hide();
 
@@ -212,7 +213,6 @@
             subjectTypeFn(1);
             subjectTypeFn(2);
 
-
         });
         //修改
         $("#editBtn").on(ace.click_event, function () {
@@ -243,10 +243,41 @@
             // 当前行数据
             var rowData = CommonFn.getRowData(rowId)
             console.log(rowData)
-//            $('#selProvince2').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
-//            $('#selCourses2').find('option[value="' + rowData[0].subjectId + '"]').attr('selected', 'selected');
-//            $('#selYears2').find('option[value="' + rowData[0].years + '"]').attr('selected', 'selected');
-//            $('#examName').val(rowData[0].paperName);
+            $('#selProvince2').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
+            $('#selYears2').find('option[value="' + rowData[0].year + '"]').attr('selected', 'selected');
+            console.log(rowData[0].universityMajorType)
+            if(rowData[0].universityMajorType=="1"){
+                $('#subjectType1').show();
+                $('#subjectType2').hide();
+                var oParent = $('#subjectType-main1');
+                oParent.find('.subjectType option[value="' + rowData[0].batch + '"]').attr('selected', 'selected');
+                oParent.find('.subjectTypeDetail').show();
+                $('.planEnrollingNumber').val(rowData[0].planEnrollingNumber);
+                $('.realEnrollingNumber').val(rowData[0].realEnrollingNumber);
+                $('.highestScore').val(rowData[0].highestScore);
+                $('.highestPrecedence').val(rowData[0].highestPrecedence);
+                $('.lowestScore').val(rowData[0].lowestScore);
+                $('.lowestPrecedence').val(rowData[0].lowestPrecedence);
+                $('.averageScore').val(rowData[0].averageScore);
+                $('.averagePrecedence').val(rowData[0].averagePrecedence);
+
+            }else if(rowData[0].universityMajorType=="2"){
+                $('#subjectType1').hide();
+                $('#subjectType2').show();
+                var oParent = $('#subjectType-main2');
+                oParent.find('.subjectType option[value="' + rowData[0].batch + '"]').attr('selected', 'selected');
+                oParent.find('.subjectTypeDetail').show();
+                $('.planEnrollingNumber').val(rowData[0].planEnrollingNumber);
+                $('.realEnrollingNumber').val(rowData[0].realEnrollingNumber);
+                $('.highestScore').val(rowData[0].highestScore);
+                $('.highestPrecedence').val(rowData[0].highestPrecedence);
+                $('.lowestScore').val(rowData[0].lowestScore);
+                $('.lowestPrecedence').val(rowData[0].lowestPrecedence);
+                $('.averageScore').val(rowData[0].averageScore);
+                $('.averagePrecedence').val(rowData[0].averagePrecedence);
+            }
+            subjectTypeFn(1);
+            subjectTypeFn(2);
         });
         //删除
         CommonFn.deleteFun('#deleteBtn', '${mainObj}');
@@ -267,6 +298,106 @@
             if (selYearsV == '00') {
                 CommonFn.tipsDialog('温馨提示', '年份没有选择,请重新输入');
                 return false;
+            }
+
+            for(var i=0;i<$('#subjectType-main1 .subjectType').length;i++){
+                var values = $('#subjectType-main1 .subjectType:eq('+ i +')').find('option:selected').val();
+                var $parentDetail = $('#subjectType-main1 .subjectTypeDetail:eq('+ i +')');
+                var planEnrollingNumberV = $.trim($parentDetail.find('.planEnrollingNumber').val());
+                var realEnrollingNumberV = $.trim($parentDetail.find('.realEnrollingNumber').val());
+                var highestScoreV = $.trim($parentDetail.find('.highestScore').val());
+                var highestPrecedenceV = $.trim($parentDetail.find('.highestPrecedence').val());
+                var lowestScoreV = $.trim($parentDetail.find('.lowestScore').val());
+                var lowestPrecedenceV = $.trim($parentDetail.find('.lowestPrecedence').val());
+                var averageScoreV = $.trim($parentDetail.find('.averageScore').val());
+                var averagePrecedenceV = $.trim($parentDetail.find('.averagePrecedence').val());
+
+                if(values=="00"){
+                    CommonFn.tipsDialog('温馨提示', '请选择文史类招生批次');
+                    return false;
+                }
+                if(planEnrollingNumberV==""){
+                    CommonFn.tipsDialog('温馨提示', '请填写文史类计划数');
+                    return false;
+                }
+                if(realEnrollingNumberV==""){
+                    CommonFn.tipsDialog('温馨提示', '请填写文史类录取数');
+                    return false;
+                }
+                if(highestScoreV==""){
+                    CommonFn.tipsDialog('温馨提示', '请填写文史类最高分');
+                    return false;
+                }
+                if(highestPrecedenceV==""){
+                    CommonFn.tipsDialog('温馨提示', '请填写文史类最高位次');
+                    return false;
+                }
+                if(lowestScoreV==""){
+                    CommonFn.tipsDialog('温馨提示', '请填写文史类最低分');
+                    return false;
+                }
+                if(lowestPrecedenceV==""){
+                    CommonFn.tipsDialog('温馨提示', '请填写文史类最低位次');
+                    return false;
+                }
+                if(averageScoreV==""){
+                    CommonFn.tipsDialog('温馨提示', '请填写文史类平均分');
+                    return false;
+                }
+                if(averagePrecedenceV==""){
+                    CommonFn.tipsDialog('温馨提示', '请填写文史类平均位次');
+                    return false;
+                }
+            }
+
+            for(var i=0;i<$('#subjectType-main2 .subjectType').length;i++){
+                var values = $('#subjectType-main2 .subjectType:eq('+ i +')').find('option:selected').val();
+                var $parentDetail = $('#subjectType-main2 .subjectTypeDetail:eq('+ i +')');
+                var planEnrollingNumberV = $.trim($parentDetail.find('.planEnrollingNumber').val());
+                var realEnrollingNumberV = $.trim($parentDetail.find('.realEnrollingNumber').val());
+                var highestScoreV = $.trim($parentDetail.find('.highestScore').val());
+                var highestPrecedenceV = $.trim($parentDetail.find('.highestPrecedence').val());
+                var lowestScoreV = $.trim($parentDetail.find('.lowestScore').val());
+                var lowestPrecedenceV = $.trim($parentDetail.find('.lowestPrecedence').val());
+                var averageScoreV = $.trim($parentDetail.find('.averageScore').val());
+                var averagePrecedenceV = $.trim($parentDetail.find('.averagePrecedence').val());
+
+                if(values=="00"){
+                    CommonFn.tipsDialog('温馨提示', '请选择理工类招生批次');
+                    return false;
+                }
+                if(planEnrollingNumberV==""){
+                    CommonFn.tipsDialog('温馨提示', '请填写理工类计划数');
+                    return false;
+                }
+                if(realEnrollingNumberV==""){
+                    CommonFn.tipsDialog('温馨提示', '请填写理工类录取数');
+                    return false;
+                }
+                if(highestScoreV==""){
+                    CommonFn.tipsDialog('温馨提示', '请填写理工类最高分');
+                    return false;
+                }
+                if(highestPrecedenceV==""){
+                    CommonFn.tipsDialog('温馨提示', '请填写理工类最高位次');
+                    return false;
+                }
+                if(lowestScoreV==""){
+                    CommonFn.tipsDialog('温馨提示', '请填写理工类最低分');
+                    return false;
+                }
+                if(lowestPrecedenceV==""){
+                    CommonFn.tipsDialog('温馨提示', '请填写理工类最低位次');
+                    return false;
+                }
+                if(averageScoreV==""){
+                    CommonFn.tipsDialog('温馨提示', '请填写理工类平均分');
+                    return false;
+                }
+                if(averagePrecedenceV==""){
+                    CommonFn.tipsDialog('温馨提示', '请填写理工类平均位次');
+                    return false;
+                }
             }
 
             var batchData = [];

@@ -21,7 +21,10 @@ var CommonFn = {
         eduLevel: '/admin/gaokao360/ex/eduLevel',
         AllSchoolUrl: '/admin/gaokao360/ex/getUniversityByName',
         getBatchUrl: '/admin/gaokao360/geBatch',
-        professionCategoryUrl: '/admin/zgk/getProfessionCategory'
+        professionCategoryUrl: '/admin/zgk/getProfessionCategory',
+        dictListUrl: '/admin/gaokao360/ex/getDataDictList?type=UNIVERSITY_MAJOR_TYPE', // 科类
+        majoredUrl: '/admin/gaokao360/ex/getMajoredNameList', // 所有专业
+        getNature: '/admin/gaokao360/ex/getDataDictList?type=ADMISSION_BATCH_TYPE' // 招生性质
     },
     getData: function (url, type, data, callback) {
         $.ajax({
@@ -380,12 +383,56 @@ var CommonFn = {
         });
         return contentArr;
     },
+    // 获取所有专业
+    getSpeciality: function () {
+        var contentArr = [];
+        contentArr.push('<option value="00">请选择专业</option>');
+        $.ajaxSettings.async = false;
+        CommonFn.getData(CommonFn.url.majoredUrl, 'GET', {}, function (result) {
+            for (var i = 0; i < result.bizData.length; i++) {
+                var specialityId = result.bizData[i].id;
+                var specialityName = result.bizData[i].majorName;
+                contentArr.push('<option value="' + specialityId + '">' + specialityName + '</option>');
+            }
+        });
+        return contentArr.join('');
+    },
     // 批次
     getBatch:function(){
         var contentArr = [];
         contentArr.push('<option value="00">请选择批次</option>');
         $.ajaxSettings.async = false;
         CommonFn.getData(CommonFn.url.getBatchUrl, 'GET', {}, function (result) {
+            if (result.rtnCode == "0000000") {
+                for (var i=0;i<result.bizData.length;i++) {
+                    contentArr.push('<option value="' +result.bizData[i].dictId + '">' + result.bizData[i].name + '</option>');
+                }
+            }
+
+        });
+        return contentArr.join('');
+    },
+    // 科类
+    getSubjectType:function(){
+        var contentArr = [];
+        contentArr.push('<option value="00">请选择批次</option>');
+        $.ajaxSettings.async = false;
+        CommonFn.getData(CommonFn.url.dictListUrl, 'GET', {}, function (result) {
+            if (result.rtnCode == "0000000") {
+                for (var i=0;i<result.bizData.length;i++) {
+                    contentArr.push('<option value="' +result.bizData[i].dictId + '">' + result.bizData[i].name + '</option>');
+                }
+            }
+
+        });
+        return contentArr.join('');
+    },
+    // 招生性质
+    getNature:function(){
+        var contentArr = [];
+        contentArr.push('<option value="00">请选择招生性质</option>');
+        $.ajaxSettings.async = false;
+        CommonFn.getData(CommonFn.url.getNature, 'GET', {}, function (result) {
             if (result.rtnCode == "0000000") {
                 for (var i=0;i<result.bizData.length;i++) {
                     contentArr.push('<option value="' +result.bizData[i].dictId + '">' + result.bizData[i].name + '</option>');
