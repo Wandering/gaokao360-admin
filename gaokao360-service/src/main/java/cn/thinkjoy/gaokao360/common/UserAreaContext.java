@@ -2,8 +2,6 @@ package cn.thinkjoy.gaokao360.common;
 
 import cn.thinkjoy.cloudstack.cache.IRedisRepository;
 import cn.thinkjoy.cloudstack.cache.RedisRepositoryFactory;
-import cn.thinkjoy.common.managerui.domain.UserDatagroup;
-import cn.thinkjoy.common.utils.UserContext;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;

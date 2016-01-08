@@ -24,7 +24,8 @@ public class UserAreaContextHolder {
         try{
             Object id = UserContext.getCurrentUser().getId();
             String area= permissionExService.getUserAreaByUserId(id);
-            UserAreaContext.setCurrentUserArea("jay",area);
+            UserAreaContext.setCurrentUserArea(UserContext.getCurrentUser().getId()+":"
+                    +UserContext.getCurrentUser().getName(), area);
         }catch (Exception e){
             System.out.println("出错了！！！！");
         }

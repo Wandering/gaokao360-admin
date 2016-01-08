@@ -1,6 +1,7 @@
 package cn.thinkjoy.gaokao360.common;
 
 
+import cn.thinkjoy.common.utils.UserContext;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
@@ -22,7 +23,8 @@ public class SwitchDataSourceHandler {
     public void switchDB(JoinPoint jionpoint)
     {
         if(matchPackageType(jionpoint)){
-            CustomerContextHolder.setContextType(UserAreaContext.getCurrentUserArea("jay"));
+            CustomerContextHolder.setContextType(UserAreaContext.getCurrentUserArea(
+                    UserContext.getCurrentUser().getId()+":"+UserContext.getCurrentUser().getName()));
         }
     }
 
