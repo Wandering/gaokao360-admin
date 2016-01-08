@@ -55,7 +55,7 @@
 
     <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
         <li>
-            <a href="#">
+            <a href="${path}/admin/logout">
                 <i class="ace-icon fa fa-power-off"></i>
                 退出
             </a>

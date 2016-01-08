@@ -181,7 +181,6 @@
                 data: infoData,
                 success: function (result) {
                     if (result.rtnCode == "0000000") {
-                        alert("3333")
                         searchLoad();
                     }
                 }
