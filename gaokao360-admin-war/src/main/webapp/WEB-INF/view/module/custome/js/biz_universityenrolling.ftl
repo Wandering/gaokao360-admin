@@ -218,6 +218,7 @@
         $("#editBtn").on(ace.click_event, function () {
             typeStr = "edit";
             rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
+            console.log(rowId)
             var selTrN = $('tr.ui-state-highlight[role="row"]').length;
             if (selTrN != 1) {
                 CommonFn.tipsDialog('温馨提示', '请选中一行后修改');
@@ -242,17 +243,16 @@
             // 当前行数据
             var rowData = CommonFn.getRowData(rowId)
             console.log(rowData)
-            $('#selProvince2').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
-            $('#selCourses2').find('option[value="' + rowData[0].subjectId + '"]').attr('selected', 'selected');
-            $('#selYears2').find('option[value="' + rowData[0].years + '"]').attr('selected', 'selected');
-            $('#examName').val(rowData[0].paperName);
+//            $('#selProvince2').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
+//            $('#selCourses2').find('option[value="' + rowData[0].subjectId + '"]').attr('selected', 'selected');
+//            $('#selYears2').find('option[value="' + rowData[0].years + '"]').attr('selected', 'selected');
+//            $('#examName').val(rowData[0].paperName);
         });
         //删除
         CommonFn.deleteFun('#deleteBtn', '${mainObj}');
 //        添加
         var addEditFun = function () {
             var selProvinceV = $('#selProvince2 option:checked').val();
-            alert(selProvinceV)
             var selYearsV = $("#selYears2").find('option:selected').val();
             var autoSearchId = $('.ui-autocomplete-input').attr('dataId');
 
