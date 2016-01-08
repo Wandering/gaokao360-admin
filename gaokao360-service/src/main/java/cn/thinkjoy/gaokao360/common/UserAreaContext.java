@@ -26,16 +26,10 @@ public class UserAreaContext {
     }
 
     public static String getCurrentUserArea(String key) {
-
         return store.get(key) + "";
     }
 
     public static void setCurrentUserArea(String key, String area) {
-        try {
-            store = RedisRepositoryFactory.getRepository("zgk", "user", "area");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         store.set(key, area);
     }
 
