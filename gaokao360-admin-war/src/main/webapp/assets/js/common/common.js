@@ -24,7 +24,9 @@ var CommonFn = {
         professionCategoryUrl: '/admin/zgk/getProfessionCategory',
         dictListUrl: '/admin/gaokao360/ex/getDataDictList?type=UNIVERSITY_MAJOR_TYPE', // 科类
         majoredUrl: '/admin/gaokao360/ex/getMajoredNameList', // 所有专业
-        getNature: '/admin/gaokao360/ex/getDataDictList?type=ADMISSION_BATCH_TYPE' // 招生性质
+        getNature: '/admin/gaokao360/ex/getDataDictList?type=ADMISSION_BATCH_TYPE', // 招生性质
+        getUniversityNameList: '/admin/gaokao360/ex/getUniversityNameList', // 开设院校
+        getMajoredType: '/admin/gaokao360/ex/getDataDictList?type=MAJOR_TYPE' // 专业类型
     },
     getData: function (url, type, data, callback) {
         $.ajax({
@@ -382,6 +384,21 @@ var CommonFn = {
             }
         });
         return contentArr;
+    },
+    // 获取开设院校
+    getUniversityNameList: function () {
+        var contentArr = [];
+        contentArr.push('<option value="00">请选择开设院校</option>');
+        $.ajaxSettings.async = false;
+        CommonFn.getData(CommonFn.url.getUniversityNameList, 'GET', {}, function (result) {
+            console.log(result)
+            for (var i = 0; i < result.bizData.length; i++) {
+                var specialityId = result.bizData[i].id;
+                var specialityName = result.bizData[i].name;
+                contentArr.push('<option value="' + specialityId + '">' + specialityName + '</option>');
+            }
+        });
+        return contentArr.join('');
     },
     // 获取所有专业
     getSpeciality: function () {
