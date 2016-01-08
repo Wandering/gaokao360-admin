@@ -568,6 +568,7 @@ selectList
     <select id="fetch" parameterType="java.lang.Long" resultType="UniversityMajorEnrollingDTO">
         SELECT
         <include refid="Base_Column_List" />
+        ,(SELECT name FROM zgk_university uu where uu.id=university_id) as universityName
         FROM zgk_university_major_enrolling
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND id = #{id}
