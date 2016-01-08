@@ -23,7 +23,7 @@ public class SwitchDataSourceHandler {
     {
 
         if(matchPackageType(jionpoint)){
-            CustomerContextHolder.setContextType("gd");
+            CustomerContextHolder.setContextType(UserAreaContext.getCurrentUserArea());
         }
 
     }

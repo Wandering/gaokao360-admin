@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IPermissionExDAO">
+    <!-- 根据用户所在数据组获取其对应的所在省份 -->
+    <select id="getUserAreaByUserId" resultType="java.lang.String">
+        select area FROM zgk_datagroup mdgd
+        inner join zgk_user_datagroup mudg on mudg.datagroupId = mdgd.id
+        WHERE mudg.userId=#{id}
+    </select>
+</mapper>
+

@@ -200,10 +200,5 @@ public class AddUtil extends BaseCommonUtil{
         }
 
     }
-    public static void main(String[] args){
-        JSONArray jsonArray = null;
-        String batchContent="[{batch:1,universityMajorType:1,planEnrollingNumber:5000,realEnrollingNumber:4000}]";
-        jsonArray = JSON.parseArray(batchContent);
-        System.out.println(jsonArray);
-    }
+
 }
