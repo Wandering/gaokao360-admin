@@ -141,5 +141,73 @@ selectList
        </where>
     </select>
 
+    <update id="updateMap">
+        UPDATE zgk_university_enrolling
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="map.areaId!=null">
+                areaId = #{map.areaId},
+            </if>
+            <if test="map.universityId!=null">
+                university_id = #{map.universityId},
+            </if>
+            <if test="map.year!=null">
+                year = #{map.year},
+            </if>
+            <if test="map.batch!=null">
+                batch = #{map.batch},
+            </if>
+            <if test="map.universityMajorType!=null">
+                university_major_type = #{map.universityMajorType},
+            </if>
+            <if test="map.planEnrollingNumber!=null">
+                plan_enrolling_number = #{map.planEnrollingNumber},
+            </if>
+            <if test="map.realEnrollingNumber!=null">
+                real_enrolling_number = #{map.realEnrollingNumber},
+            </if>
+            <if test="map.lengthOfSchooling!=null">
+                length_of_schooling = #{map.lengthOfSchooling},
+            </if>
+            <if test="map.schoolFee!=null">
+                school_fee = #{map.schoolFee},
+            </if>
+            <if test="map.highestScore!=null">
+                highest_score = #{map.highestScore},
+            </if>
+            <if test="map.highestPrecedence!=null">
+                highest_precedence = #{map.highestPrecedence},
+            </if>
+            <if test="map.lowestScore!=null">
+                lowest_score = #{map.lowestScore},
+            </if>
+            <if test="map.lowestPrecedence!=null">
+                lowest_precedence = #{map.lowestPrecedence},
+            </if>
+            <if test="map.averageScore!=null">
+                average_score = #{map.averageScore},
+            </if>
+            <if test="map.averagePrecedence!=null">
+                average_precedence = #{map.averagePrecedence},
+            </if>
+            <if test="map.createDate!=null">
+                createDate = #{map.createDate},
+            </if>
+            <if test="map.creator!=null">
+                creator = #{map.creator},
+            </if>
+            <if test="map.lastModDate!=null">
+                lastModDate = #{map.lastModDate},
+            </if>
+            <if test="map.lastModifier!=null">
+                lastModifier = #{map.lastModifier},
+            </if>
+            <if test="map.isDelete!=null">
+                is_delete = #{map.isDelete},
+            </if>
+        </trim>
+        WHERE
+        id = #{map.id}
+    </update>
+
 </mapper>
 
