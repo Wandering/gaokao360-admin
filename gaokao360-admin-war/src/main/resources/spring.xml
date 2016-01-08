@@ -27,5 +27,7 @@
             </props>
         </property>
     </bean>
-
+    <!--<context:component-scan base-package="cn.thinkjoy.common.managerui.iauth.client">-->
+        <!--<context:exclude-filter type="regex" expression="org.springframework.stereotype.Component"/>-->
+    <!--</context:component-scan>-->
 </beans>

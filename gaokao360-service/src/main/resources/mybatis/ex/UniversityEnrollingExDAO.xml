@@ -25,7 +25,7 @@ selectList
 -->
 
     <sql id="Base_Column_List">
-           university.id as id,
+           enrolling.id as id,
            university.areaid as areaid,
            province.name as province,
            university.name as name,
@@ -43,7 +43,8 @@ selectList
            enrolling.average_score         as averageScore,
            enrolling.average_precedence   as averagePrecedence,
            batchdict.name   as batchname,
-           typedict.name   as typename
+           typedict.name   as typename,
+           enrolling.lastModDate as lastModDate
 
     </sql>
 
@@ -53,25 +54,23 @@ selectList
         FROM
         zgk_university_enrolling enrolling
         LEFT OUTER JOIN zgk_university university ON university.id=enrolling.university_id
-        LEFT JOIN zgk_province province ON province.id=university.areaid
+        LEFT JOIN zgk_province province ON province.id=enrolling.areaid
         LEFT JOIN zgk_data_dict batchdict ON batchdict.dictId=enrolling.batch AND batchdict.type='MAJOR_BATCH'
         LEFT JOIN zgk_data_dict typedict ON typedict.dictId=enrolling.batch AND typedict.type='UNIVERSITY_MAJOR_TYPE'
         <!--<where>-->
 
         <!--</where>-->
-        <if test="orderBy!=null">
-        ORDER BY ${orderBy} ${sortBy}
-        </if>
+        ORDER BY  lastModDate DESC
         <if test="offset != null">
             limit ${offset}, ${rows}
         </if>
     </select>
 
     <select id="count" resultType="java.lang.Integer">
-        SELECT count(university.id)  FROM
-        zgk_university university
-        LEFT OUTER JOIN zgk_university_enrolling enrolling ON university.id=enrolling.university_id
-        LEFT JOIN zgk_province province ON province.id=university.areaid
+        SELECT count(enrolling.id)  FROM
+        zgk_university_enrolling enrolling
+        LEFT OUTER JOIN zgk_university university ON university.id=enrolling.university_id
+        LEFT JOIN zgk_province province ON province.id=enrolling.areaid
         LEFT JOIN zgk_data_dict batchdict ON batchdict.dictId=enrolling.batch AND batchdict.type='MAJOR_BATCH'
         LEFT JOIN zgk_data_dict typedict ON typedict.dictId=enrolling.batch AND typedict.type='UNIVERSITY_MAJOR_TYPE'
        <where>

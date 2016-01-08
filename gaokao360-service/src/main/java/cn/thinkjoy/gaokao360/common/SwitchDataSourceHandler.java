@@ -1,7 +1,12 @@
 package cn.thinkjoy.gaokao360.common;
 
 
+import cn.thinkjoy.common.utils.UserContext;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.springframework.stereotype.Component;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -9,18 +14,20 @@ import java.util.regex.Pattern;
 /**
  * Created by liusven on 16/1/6.
  */
+@Component
+@Aspect
 public class SwitchDataSourceHandler {
     private String regularPackage="cn.thinkjoy.gaokao360.service.differentiation..*(..)";
 
+    @Before("execution(* cn.thinkjoy.gaokao360.service.differentiation..*(..))||execution(* cn.thinkjoy.common.service..*(..))")
     public void switchDB(JoinPoint jionpoint)
     {
-
         if(matchPackageType(jionpoint)){
-            CustomerContextHolder.setContextType("gd");
+            CustomerContextHolder.setContextType(UserAreaContext.getCurrentUserArea());
         }
-
     }
 
+    @After("execution(* cn.thinkjoy.gaokao360.service.differentiation..*(..))||execution(* cn.thinkjoy.common.service..*(..))")
     public void switchDBBack()
     {
         CustomerContextHolder.clearContextType();

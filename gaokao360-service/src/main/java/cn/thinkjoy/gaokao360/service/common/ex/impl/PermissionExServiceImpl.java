@@ -1,44 +1,33 @@
 /*
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
- * Project Name: zgk
- * $Id:  ProfessionServiceImpl.java 2015-12-28 18:05:26 $
+ * Project Name: gaokao360
+ * $Id:  AgentServiceImpl.java 2015-12-15 17:52:12 $
  */
-package cn.thinkjoy.gaokao360.service.common.impl;
-
+package cn.thinkjoy.gaokao360.service.common.ex.impl;
 
 import cn.thinkjoy.common.dao.IBaseDAO;
-import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
-import cn.thinkjoy.gaokao360.dao.IProfessionDAO;
-import cn.thinkjoy.gaokao360.domain.Profession;
-import cn.thinkjoy.gaokao360.service.common.IProfessionService;
+import cn.thinkjoy.gaokao360.dao.ex.IAgentExDAO;
+import cn.thinkjoy.gaokao360.dao.ex.IPermissionExDAO;
+import cn.thinkjoy.gaokao360.dto.AgentDTO;
+import cn.thinkjoy.gaokao360.service.common.ex.IAgentExService;
+import cn.thinkjoy.gaokao360.service.common.ex.IPermissionExService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
+import java.util.Objects;
 
 
-@Service("ProfessionServiceImpl")
-public class ProfessionServiceImpl extends AbstractPageService<IBaseDAO<Profession>, Profession> implements IProfessionService<IBaseDAO<Profession>,Profession> {
+@Service("PermissionExServiceImpl")
+public class PermissionExServiceImpl implements IPermissionExService{
     @Autowired
-    private IProfessionDAO professionDAO;
+    private IPermissionExDAO permissionExDAO;
 
-    @Override
-    public IBaseDAO<Profession> getDao() {
-        return professionDAO;
+    public String getUserAreaByUserId(Object id){
+        return permissionExDAO.getUserAreaByUserId(id);
     }
 
-    public List<Map<String, String>> findCategory(Map<String, Object> dataMap)
-    {
-        return professionDAO.queryProfessionCategory(dataMap);
-    }
-
-    public Map<String, String> findProfessionDetail(int id)
-    {
-        return professionDAO.queryProfessionDetail(id);
-    }
 //    @Override
 //    public void insert(BaseDomain entity) {
 //
@@ -90,8 +79,8 @@ public class ProfessionServiceImpl extends AbstractPageService<IBaseDAO<Professi
 //    }
 //
 //    @Override
-//    public List<Profession> findAll() {
-//        return professionDAO.findAll();
+//    public List<Agent> findAll() {
+//        return agentDAO.findAll();
 //    }
 //
 //    @Override
@@ -145,8 +134,8 @@ public class ProfessionServiceImpl extends AbstractPageService<IBaseDAO<Professi
 //    }
 //
 //    @Override
-//    protected ProfessionDAO getDao() {
-//        return professionDAO;
+//    protected AgentDAO getDao() {
+//        return agentDAO;
 //    }
 //
 //    @Override
