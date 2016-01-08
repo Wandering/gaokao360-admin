@@ -2,6 +2,7 @@ package cn.thinkjoy.gaokao360.common;
 
 import cn.thinkjoy.cloudstack.cache.IRedisRepository;
 import cn.thinkjoy.cloudstack.cache.RedisRepositoryFactory;
+import cn.thinkjoy.common.domain.UserDomain;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -11,24 +12,46 @@ import javax.annotation.PostConstruct;
  */
 @Component
 public class UserAreaContext {
-    private static IRedisRepository store;
 
-    @PostConstruct
-    private void initStore()
-    {
-        try {
-            store = RedisRepositoryFactory.getRepository("zgk", "user", "area");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+    private static ThreadLocal<String> context = new ThreadLocal<String>();
+
+    public static String getCurrentUserArea(){
+        return context.get();
     }
 
-    public static String getCurrentUserArea(String key) {
-        return store.get(key) + "";
+    public static void setCurrentUserArea(String area){
+        //缓存记录
+//        SessionCacheFactory.getInstance().put(user.getName(), user);
+        context.set(area);
     }
 
-    public static void setCurrentUserArea(String key, String area) {
-        store.set(key, area);
+    /**
+     * 应该显示调用
+     */
+    public static void removeCurrentUseraArea() {
+        context.remove();
     }
+
+
+//    private static IRedisRepository store;
+
+//    @PostConstruct
+//    private void initStore()
+//    {
+//        try {
+//            store = RedisRepositoryFactory.getRepository("zgk", "user", "area");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public static String getCurrentUserArea(String key) {
+//        return store.get(key) + "";
+//    }
+//
+//    public static void setCurrentUserArea(String key, String area) {
+//        store.set(key, area);
+//    }
 
 }

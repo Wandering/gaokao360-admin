@@ -23,8 +23,7 @@ public class SwitchDataSourceHandler {
     public void switchDB(JoinPoint jionpoint)
     {
         if(matchPackageType(jionpoint)){
-            CustomerContextHolder.setContextType(UserAreaContext.getCurrentUserArea(
-                    UserContext.getCurrentUser().getId()+":"+UserContext.getCurrentUser().getName()));
+            CustomerContextHolder.setContextType(UserAreaContext.getCurrentUserArea());
         }
     }
 
