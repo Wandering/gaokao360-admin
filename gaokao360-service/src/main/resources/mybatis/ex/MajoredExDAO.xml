@@ -27,8 +27,8 @@ selectList
     <sql id="Base_Column_List">
         major.id as id ,
         major.major_type as majorType ,
-        major.major_category as majorCategory ,
-        major.discipline_categories as disciplineCategories ,
+        genre.name as majorCategory ,
+        category.name as disciplineCategories ,
         major.major_name as majorName ,
         major.employment_rank as employmentRank ,
         major.salary_rank as salaryRank ,
