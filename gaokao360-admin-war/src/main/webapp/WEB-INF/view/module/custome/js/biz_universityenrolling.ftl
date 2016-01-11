@@ -1,31 +1,31 @@
 <script>
     <!-- 自定义js请写在这个文件  以下这个查询方法只是个例子，请按照业务需求修改 -->
     function buildRules() {
-        var courseName = $('#courseName').val();
-        var status = $('#status').val();
-        var classfyId = $('#classfyId').val();
+        var queryparam = $('#examKeyWord').val();
+        var selYears = $('#selYears').val();
+        var selProvince = $('#selProvince').val();
         var rules = [];
-        if (courseName != '' && courseName != null && courseName != undefined) {
+        if (queryparam != '' && queryparam != null && queryparam != undefined) {
             var rule = {
-                'field': 'courseName',
-                'op': 'eq',
-                'data': courseName
+                'field': 'queryparam',
+                'op': 'lk',
+                'data': queryparam
             };
             rules.push(rule);
         }
-        if (status != '' && status != null && status != undefined) {
+        if (selYears != '00' && selYears != null && selYears != undefined) {
             var rule = {
-                'field': 'status',
+                'field': 'enrolling.year',
                 'op': 'eq',
-                'data': status
+                'data': selYears
             };
             rules.push(rule);
         }
-        if (classfyId != '' && classfyId != null && classfyId != undefined) {
+        if (selProvince != '00' && selProvince != null && selProvince != undefined) {
             var rule = {
-                'field': 'classfyId',
+                'field': 'province.name',
                 'op': 'eq',
-                'data': classfyId
+                'data': selProvince
             };
             rules.push(rule);
         }

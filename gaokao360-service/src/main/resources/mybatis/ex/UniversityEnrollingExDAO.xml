@@ -57,9 +57,26 @@ selectList
         LEFT JOIN zgk_province province ON province.id=enrolling.areaid
         LEFT JOIN zgk_data_dict batchdict ON batchdict.dictId=enrolling.batch AND batchdict.type='MAJOR_BATCH'
         LEFT JOIN zgk_data_dict typedict ON typedict.dictId=enrolling.batch AND typedict.type='UNIVERSITY_MAJOR_TYPE'
-        <!--<where>-->
-
-        <!--</where>-->
+        <where>
+            <if test="condition.whereSql != null">
+                and id in (#{condition.whereSql})
+            </if>
+            <if test="condition.queryparam!=null">
+                AND
+                (
+                province.name  LIKE  #{condition.queryparam.data},
+                OR batchdict.name  LIKE  #{condition.queryparam.data},
+                OR typedict.name  LIKE  #{condition.queryparam.data},
+                OR enrolling.year  LIKE  #{condition.queryparam.data},
+                )
+            </if>
+            <if test="condition.enrollingyear!=null">
+                ${condition.groupOp} ${condition.enrollingyear.field} ${condition.enrollingyear.op}  #{condition.enrollingyear.data}
+            </if>
+            <if test="condition.provincename!=null">
+                ${condition.groupOp} ${condition.provincename.field} ${condition.provincename.op}  #{condition.provincename.data}
+            </if>
+        </where>
         ORDER BY  lastModDate DESC
         <if test="offset != null">
             limit ${offset}, ${rows}
@@ -74,70 +91,21 @@ selectList
         LEFT JOIN zgk_data_dict batchdict ON batchdict.dictId=enrolling.batch AND batchdict.type='MAJOR_BATCH'
         LEFT JOIN zgk_data_dict typedict ON typedict.dictId=enrolling.batch AND typedict.type='UNIVERSITY_MAJOR_TYPE'
        <where>
-           <if test="id!=null">
-               ${groupOp} ${id.field} ${id.op}  #{id.data}
+           <if test="queryparam!=null">
+               AND
+               (
+               province.name  LIKE  #{queryparam.data},
+               OR batchdict.name  LIKE  #{queryparam.data},
+               OR typedict.name  LIKE  #{queryparam.data},
+               OR enrolling.year  LIKE  #{queryparam.data},
+               )
            </if>
-           <if test="universityId!=null">
-               ${groupOp} ${universityId.field} ${universityId.op}  #{universityId.data}
+           <if test="enrollingyear!=null">
+               ${groupOp} ${enrollingyear.field} ${enrollingyear.op}  #{enrollingyear.data}
            </if>
-           <if test="majorName!=null">
-               ${groupOp} ${majorName.field} ${majorName.op}  #{majorName.data}
+           <if test="provincename!=null">
+               ${groupOp} ${provincename.field} ${provincename.op}  #{provincename.data}
            </if>
-           <if test="year!=null">
-               ${groupOp} ${year.field} ${year.op}  #{year.data}
-           </if>
-           <if test="batch!=null">
-               ${groupOp} ${batch.field} ${batch.op}  #{batch.data}
-           </if>
-           <if test="universityMajorType!=null">
-               ${groupOp} ${universityMajorType.field} ${universityMajorType.op}  #{universityMajorType.data}
-           </if>
-           <if test="planEnrollingNumber!=null">
-               ${groupOp} ${planEnrollingNumber.field} ${planEnrollingNumber.op}  #{planEnrollingNumber.data}
-           </if>
-           <if test="realEnrollingNumber!=null">
-               ${groupOp} ${realEnrollingNumber.field} ${realEnrollingNumber.op}  #{realEnrollingNumber.data}
-           </if>
-           <if test="lengthOfSchooling!=null">
-               ${groupOp} ${lengthOfSchooling.field} ${lengthOfSchooling.op}  #{lengthOfSchooling.data}
-           </if>
-           <if test="schoolFee!=null">
-               ${groupOp} ${schoolFee.field} ${schoolFee.op}  #{schoolFee.data}
-           </if>
-           <if test="highestScore!=null">
-               ${groupOp} ${highestScore.field} ${highestScore.op}  #{highestScore.data}
-           </if>
-           <if test="highestPrecedence!=null">
-               ${groupOp} ${highestPrecedence.field} ${highestPrecedence.op}  #{highestPrecedence.data}
-           </if>
-           <if test="lowestScore!=null">
-               ${groupOp} ${lowestScore.field} ${lowestScore.op}  #{lowestScore.data}
-           </if>
-           <if test="lowestPrecedence!=null">
-               ${groupOp} ${lowestPrecedence.field} ${lowestPrecedence.op}  #{lowestPrecedence.data}
-           </if>
-           <if test="averageScore!=null">
-               ${groupOp} ${averageScore.field} ${averageScore.op}  #{averageScore.data}
-           </if>
-           <if test="averagePrecedence!=null">
-               ${groupOp} ${averagePrecedence.field} ${averagePrecedence.op}  #{averagePrecedence.data}
-           </if>
-           <if test="createDate!=null">
-               ${groupOp} ${createDate.field} ${createDate.op}  #{createDate.data}
-           </if>
-           <if test="creator!=null">
-               ${groupOp} ${creator.field} ${creator.op}  #{creator.data}
-           </if>
-           <if test="lastModDate!=null">
-               ${groupOp} ${lastModDate.field} ${lastModDate.op}  #{lastModDate.data}
-           </if>
-           <if test="lastModifier!=null">
-               ${groupOp} ${lastModifier.field} ${lastModifier.op}  #{lastModifier.data}
-           </if>
-           <if test="isDelete!=null">
-               ${groupOp} ${isDelete.field} ${isDelete.op}  #{isDelete.data}
-           </if>
-
        </where>
     </select>
     <select id="fetch" parameterType="java.lang.Long" resultType="UniversityEnrolling">
