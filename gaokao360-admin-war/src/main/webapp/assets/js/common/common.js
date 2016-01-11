@@ -57,7 +57,7 @@ var CommonFn = {
     },
     //获取政策一级分类
     getpolicy: function () {
-        var contentArr = [];
+        var contentArr = ['<option value="00">选择政策一级分类</option><option value="000">+新建政策分类+</option>'];
         $.ajaxSettings.async = false;
         CommonFn.getData('/admin/gaokao360/ex/getAdmissionBatch', 'get', {}, function (res) {
             if (res.rtnCode == '0000000') {

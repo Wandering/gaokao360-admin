@@ -50,6 +50,7 @@
             //            百度编辑器
             typeStr = "add";
             bootbox.dialog({
+                closeButton: false,
                 title: "添加地区批次线",
                 message: dialogHtml,
                 className: 'my-modal',
@@ -67,8 +68,6 @@
                         }
                     }
                 }
-            }).on("click", ".bootbox-close-button", function () {
-                ue.destroy();
             });
             ue = UE.getEditor('editor');
 //            $('#getContent').click(function () {
@@ -107,8 +106,6 @@
                         }
                     }
                 }
-            }).on("click", ".bootbox-close-button", function () {
-                ue.destroy();
             });
             // 当前行数据
             var rowData = CommonFn.getRowData(rowId);
@@ -117,11 +114,12 @@
             console.info(areaVal);
             $('#selProvince2').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
             ue = UE.getEditor('editor');
-            ue.addListener("ready", function () {
-                // editor准备好之后才可以使用
-                ue.execCommand('insertHtml', areaVal);
-//                ue.setContent(areaVal)
-            });
+//            ue.addListener("ready", function () {
+//                // editor准备好之后才可以使用
+//                ue.execCommand('insertHtml', areaVal);
+////                ue.setContent(areaVal)
+//            });
+            ue.execCommand( 'inserthtml', '<h1>2222</h1>');
 
         });
 

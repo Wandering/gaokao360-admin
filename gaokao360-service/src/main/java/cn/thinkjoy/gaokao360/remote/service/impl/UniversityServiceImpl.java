@@ -1,9 +1,12 @@
 package cn.thinkjoy.gaokao360.remote.service.impl;
 
 import cn.thinkjoy.common.utils.SqlOrderEnum;
+import cn.thinkjoy.gaokao360.domain.University;
 import cn.thinkjoy.gaokao360.domain.UniversityDetail;
 import cn.thinkjoy.gaokao360.service.common.IDataDictService;
 import cn.thinkjoy.gaokao360.service.common.IProvinceService;
+import cn.thinkjoy.gaokao360.service.common.IUniversityDictService;
+import cn.thinkjoy.gaokao360.service.common.ex.IUniversityExService;
 import cn.thinkjoy.zgk.remote.IUniversityService;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,9 @@ public class UniversityServiceImpl implements IUniversityService {
 
     @Autowired
     private cn.thinkjoy.gaokao360.service.common.IUniversityService universityService;
+
+    @Autowired
+    private IUniversityExService universityExService;
 
     @Autowired
     private IProvinceService provinceService;
@@ -43,6 +49,16 @@ public class UniversityServiceImpl implements IUniversityService {
         if(sqlOrderEnumStr.equalsIgnoreCase("DESC"))
             sqlOrderEnum=SqlOrderEnum.DESC;
         return universityService.queryPage(condition, offset, rows, orederBy, sqlOrderEnum, selectorpage);
+    }
+
+    /**
+     * 查询院校详情
+     * @param id
+     * @return
+     */
+    @Override
+    public Object getUniversityById(long id){
+        return universityExService.fetch(id);
     }
 
     /**
