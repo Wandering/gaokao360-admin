@@ -20,13 +20,15 @@ var CommonFn = {
         uploaderUrl: 'http://cs-dev.thinkjoy.com.cn/rest/v1/uploadFile?userId=gk360&dirId=0&productCode=gk360&bizSystem=gk360&spaceName=gk360',
         eduLevel: '/admin/gaokao360/ex/eduLevel',
         AllSchoolUrl: '/admin/gaokao360/ex/getUniversityByName',
-        getBatchUrl: '/admin/gaokao360/ex/getDataDictList?type=EDULEVEL',
+        getBatchUrl: '/admin/gaokao360/geBatch',
         professionCategoryUrl: '/admin/zgk/getProfessionCategory',
         dictListUrl: '/admin/gaokao360/ex/getDataDictList?type=UNIVERSITY_MAJOR_TYPE', // 科类
         majoredUrl: '/admin/gaokao360/ex/getMajoredNameList', // 所有专业
         getNature: '/admin/gaokao360/ex/getDataDictList?type=ADMISSION_BATCH_TYPE', // 招生性质
         getUniversityNameList: '/admin/gaokao360/ex/getUniversityNameList', // 开设院校
-        getMajoredType: '/admin/gaokao360/ex/getDataDictList?type=MAJOR_TYPE' // 专业类型
+        getMajoredTypeUrl: '/admin/gaokao360/ex/getDataDictList?type=MAJOR_TYPE', // 专业类型
+        getEdulevelUrl: '/admin/gaokao360/ex/getDataDictList?type=EDULEVEL', // 学历层次
+        getDegreeUrl: '/admin/gaokao360/ex/getDataDictList?type=GAIN_DEGREE' // 学位
     },
     getData: function (url, type, data, callback) {
         $.ajax({
@@ -429,10 +431,42 @@ var CommonFn = {
         });
         return contentArr.join('');
     },
+    // 学历层次
+    getEdulevel:function(){
+        var contentArr = [];
+        contentArr.push('<option value="00">请选择学历层次</option>');
+        $.ajaxSettings.async = false;
+        CommonFn.getData(CommonFn.url.getEdulevelUrl, 'GET', {}, function (result) {
+            console.log(result)
+            if (result.rtnCode == "0000000") {
+                for (var i=0;i<result.bizData.length;i++) {
+                    contentArr.push('<option value="' +result.bizData[i].dictId + '">' + result.bizData[i].name + '</option>');
+                }
+            }
+
+        });
+        return contentArr.join('');
+    },
+    // 学位
+    getDegree:function(){
+        var contentArr = [];
+        contentArr.push('<option value="00">请选择学历层次</option>');
+        $.ajaxSettings.async = false;
+        CommonFn.getData(CommonFn.url.getDegreeUrl, 'GET', {}, function (result) {
+            console.log(result)
+            if (result.rtnCode == "0000000") {
+                for (var i=0;i<result.bizData.length;i++) {
+                    contentArr.push('<option value="' +result.bizData[i].dictId + '">' + result.bizData[i].name + '</option>');
+                }
+            }
+
+        });
+        return contentArr.join('');
+    },
     // 科类
     getSubjectType:function(){
         var contentArr = [];
-        contentArr.push('<option value="00">请选择批次</option>');
+        contentArr.push('<option value="00">请选择科类</option>');
         $.ajaxSettings.async = false;
         CommonFn.getData(CommonFn.url.dictListUrl, 'GET', {}, function (result) {
             if (result.rtnCode == "0000000") {
@@ -447,9 +481,9 @@ var CommonFn = {
     // 专业类型
     getMajoredType:function(){
         var contentArr = [];
-        contentArr.push('<option value="00">请选择批次</option>');
+        contentArr.push('<option value="00">请选择专业类型</option>');
         $.ajaxSettings.async = false;
-        CommonFn.getData(CommonFn.url.dictListUrl, 'GET', {}, function (result) {
+        CommonFn.getData(CommonFn.url.getMajoredTypeUrl, 'GET', {}, function (result) {
             if (result.rtnCode == "0000000") {
                 for (var i=0;i<result.bizData.length;i++) {
                     contentArr.push('<option value="' +result.bizData[i].dictId + '">' + result.bizData[i].name + '</option>');

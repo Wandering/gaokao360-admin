@@ -133,20 +133,15 @@
                 return false;
             }
             var data = {
-                oper: typeStr
-                , professionType: $('#professionType').val()
-                , content: $('#content').val()
+                oper: typeStr,
+                professionType: $('#professionType').val(),
+                content: $('#content').val()
             };
             CommonFn.getData('/admin/gaokao360/ex/commonsave/${mainObj}', 'post', data, function (res) {
                 if (res.rtnCode == '0000000') {
                     searchLoad();
                 }
             })
-
-
-
-
-
         }
 
 //        dialog弹框
