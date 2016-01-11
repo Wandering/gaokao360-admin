@@ -11,12 +11,16 @@ import cn.thinkjoy.gaokao360.service.common.ex.*;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
 /**
  * Created by admin on 2015/12/30.
  */
+@Transactional
+@Component
 public class AddUtil extends BaseCommonUtil{
 
     @Autowired
@@ -36,18 +40,7 @@ public class AddUtil extends BaseCommonUtil{
     @Autowired
     private IAdmissionBatchExService admissionBatchExService;
 
-    private static AddUtil instance=null;
-    public static AddUtil getInstance(){
-        if(instance==null){
-            synchronized(AddUtil.class){
-                if(instance==null){
-                    instance=new AddUtil();
-                }
-            }
-        }
-        return instance;
-    }
-    private AddUtil(){
+    public AddUtil(){
     }
     public void innerHandleAdd(String mainObj, Map dataMap) throws Exception {
         this.setDataMap(dataMap);
