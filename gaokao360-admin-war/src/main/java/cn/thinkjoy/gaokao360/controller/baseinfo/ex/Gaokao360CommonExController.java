@@ -92,17 +92,21 @@ public class Gaokao360CommonExController extends AbstractCommonController {
 
     @Override
     protected void innerHandleUpdate(String mainObj, Map dataMap) {
-        if("policyinterpretation".equals(mainObj)){
-            PolicyInterpretation policyInterpretation = (PolicyInterpretation)serviceMaps.get(mainObj).fetch(dataMap.get("id"));
-            if(policyInterpretation!=null && policyInterpretation.getHtmlId()!=null) {
-                delFileUrl(policyInterpretation.getHtmlId());
-            }
+        try {
+            if ("policyinterpretation".equals(mainObj)) {
+                PolicyInterpretation policyInterpretation = (PolicyInterpretation) serviceMaps.get(mainObj).fetch(dataMap.get("id"));
+                if (policyInterpretation != null && policyInterpretation.getHtmlId() != null) {
+                    delFileUrl(policyInterpretation.getHtmlId());
+                }
 
-        }else if("gkinformationgkhot".equals(mainObj)){
-            GkinformationGkhot gkinformationGkhot =(GkinformationGkhot)serviceMaps.get(mainObj).fetch(dataMap.get("id"));
-            if(gkinformationGkhot!=null && gkinformationGkhot.getHtmlId()!=null) {
-                delFileUrl(gkinformationGkhot.getHtmlId());
+            } else if ("gkinformationgkhot".equals(mainObj)) {
+                GkinformationGkhot gkinformationGkhot = (GkinformationGkhot) serviceMaps.get(mainObj).fetch(dataMap.get("id"));
+                if (gkinformationGkhot != null && gkinformationGkhot.getHtmlId() != null) {
+                    delFileUrl(gkinformationGkhot.getHtmlId());
+                }
             }
+        }catch (Exception e){
+            logger.debug("出错了");
         }
         try {
             updateUtil.innerHandleUpdate(mainObj, dataMap);
@@ -315,10 +319,10 @@ public class Gaokao360CommonExController extends AbstractCommonController {
      */
     public String delFileUrl(Object id){
         String st =null;
+        try {
         String path = request.getSession().getServletContext().getRealPath("/upload");
         String filename = "gk" + System.currentTimeMillis() + ".html";
         String url = "http://cs-dev.thinkjoy.com.cn/rest/v1/delFile?fileId="+id;
-        try {
             RestTemplate template = new RestTemplate();
             //这里大家可以用其他的httpClient均可以
 
