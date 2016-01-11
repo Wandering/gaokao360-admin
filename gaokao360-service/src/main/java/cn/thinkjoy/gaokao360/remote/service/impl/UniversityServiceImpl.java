@@ -1,7 +1,11 @@
 package cn.thinkjoy.gaokao360.remote.service.impl;
 
 import cn.thinkjoy.common.utils.SqlOrderEnum;
+import cn.thinkjoy.gaokao360.domain.UniversityDetail;
+import cn.thinkjoy.gaokao360.service.common.IDataDictService;
+import cn.thinkjoy.gaokao360.service.common.IProvinceService;
 import cn.thinkjoy.zgk.remote.IUniversityService;
+import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +21,22 @@ public class UniversityServiceImpl implements IUniversityService {
     @Autowired
     private cn.thinkjoy.gaokao360.service.common.IUniversityService universityService;
 
+    @Autowired
+    private IProvinceService provinceService;
+
+    @Autowired
+    private IDataDictService dataDictService;
+
+    /**
+     * 查询学校列表
+     * @param condition
+     * @param offset
+     * @param rows
+     * @param orederBy
+     * @param sqlOrderEnumStr
+     * @param selectorpage
+     * @return
+     */
     @Override
     public List getUniversityList(Map<String, Object> condition, int offset, int rows, String orederBy, String sqlOrderEnumStr, Map<String, Object> selectorpage) {
         SqlOrderEnum sqlOrderEnum=SqlOrderEnum.ASC;
@@ -24,4 +44,29 @@ public class UniversityServiceImpl implements IUniversityService {
             sqlOrderEnum=SqlOrderEnum.DESC;
         return universityService.queryPage(condition, offset, rows, orederBy, sqlOrderEnum, selectorpage);
     }
+
+    /**
+     * 查询所有省份
+     * @return
+     */
+    @Override
+    public List getProvinceName(){
+        return provinceService.findAll();
+    }
+
+    /**
+     * 字典表通用查询
+     * @param type
+     * @return
+     */
+    @Override
+    public List getDataDictListByType(String type){
+        Map<String,Object> condition = Maps.newHashMap();
+        condition.put("type",type);
+        Map<String,Object> selector = Maps.newHashMap();
+        selector.put("dictId","dictId");
+        selector.put("name","name");
+        return  dataDictService.queryList(condition,"dictId", SqlOrderEnum.ASC.toString(),selector);
+    }
+
 }
