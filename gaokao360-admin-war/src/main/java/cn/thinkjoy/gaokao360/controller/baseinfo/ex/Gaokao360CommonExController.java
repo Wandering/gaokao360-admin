@@ -111,7 +111,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         try {
             updateUtil.innerHandleUpdate(mainObj, dataMap);
         } catch (Exception e) {
-            super.innerHandleDel(mainObj,dataMap);
+            super.innerHandleUpdate(mainObj,dataMap);
         }
     }
     @Override
