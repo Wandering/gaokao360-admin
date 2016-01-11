@@ -1,5 +1,6 @@
 package cn.thinkjoy.gaokao360.common;
 
+import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.gaokao360.service.differentiation.IAdmissionBatchService;
 import cn.thinkjoy.gaokao360.service.common.ISubjectService;
 import cn.thinkjoy.gaokao360.service.differentiation.ex.IAdmissionBatchExService;
@@ -31,6 +32,8 @@ public class DelUtil extends BaseCommonUtil{
     private IMajoredCategoryExService majoredCategoryExService;
     @Autowired
     private IMajoredExService majoredExService;
+    @Autowired
+    private IProfessionTypeExService professionTypeExService;
 
 
     @Autowired
@@ -74,6 +77,10 @@ public class DelUtil extends BaseCommonUtil{
     }
 
     public void professiontype(){
+        Integer count = professionTypeExService.getOccupy(dataMap.get("id"));
+        if(count!=0){
+            throw new BizException(ERRORCODE.RESOURCEOCCUPY.getCode(),ERRORCODE.RESOURCEOCCUPY.getMessage());
+        }
         getServiceMaps().get("professiontype").delete(dataMap.get("id"));
         Map<String,Object> map = new HashMap<>();
         map.put("pid",dataMap.get("id"));

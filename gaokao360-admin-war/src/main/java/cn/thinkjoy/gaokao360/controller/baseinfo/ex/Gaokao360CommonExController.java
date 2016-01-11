@@ -87,8 +87,10 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         }
         try {
             delUtil.innerHandleDel(mainObj, dataMap);
+        }catch(BizException e){
+            throw e;
         }catch (Exception e){
-            getServiceMaps().get(mainObj).delete(dataMap.get("id"));
+                getServiceMaps().get(mainObj).delete(dataMap.get("id"));
         }
 
     }
