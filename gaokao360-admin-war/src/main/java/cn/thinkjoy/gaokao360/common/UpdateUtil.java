@@ -14,9 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by admin on 2015/12/30.
@@ -160,10 +158,31 @@ public class UpdateUtil extends BaseCommonUtil{
         dataMap.put("pid","0");
         dataMap.put("isDelete",false);
         getServiceMaps().get("professiontype").updateMap(dataMap);
-        Long l=(Long)dataMap.get("id");
+        Long l=Long.valueOf((String)dataMap.get("id"));
         if(content!=null && !"".equals(content)){
-            String[] majoredList=content.split("、");
             Map<String,Object> map=null;
+            String[] majoredList=content.split("、");
+            map=new HashMap<>();
+            map.put("pid",l);
+            StringBuilder sStr=new StringBuilder();
+            List<ProfessionType> professionTypes=getServiceMaps().get("professiontype").queryList(map,"id","asc");
+            for(String str:majoredList){
+                for(ProfessionType professionType:professionTypes){
+                    if(professionType.getProfessionType().equals(str)){
+                        sStr.append(professionType.getId()+":");
+                    }
+                }
+            }
+            String[] notdelStr1=sStr.toString().split(":");
+            sStr=new StringBuilder();
+            for(ProfessionType professionType:professionTypes){
+                    sStr.append(professionType.getId()+":");
+            }
+            String[] notdelStr2=sStr.toString().split(":");
+            List<String> list=compare(notdelStr1,notdelStr2);
+            for(String str:list){
+                getServiceMaps().get("professiontype").deleteById(str);
+            }
             for(String str:majoredList){
                 ProfessionType professionType = new ProfessionType();
                 professionType.setProfessionType(str);
@@ -171,11 +190,12 @@ public class UpdateUtil extends BaseCommonUtil{
                 professionType.setIsDelete(false);
                 map=new HashMap<>();
                 map.put("pid",l);
-                map.put("name",str);
-                if(getServiceMaps().get("professiontype").queryOne(map)!=null) {
+                map.put("professionType", str);
+                if(getServiceMaps().get("professiontype").queryOne(map)==null) {
                     getServiceMaps().get("professiontype").insert(professionType);
                 }
             }
+
         }
     }
 
@@ -199,5 +219,17 @@ public class UpdateUtil extends BaseCommonUtil{
             }
         }
 
+    }
+
+
+    public <T> List<T> compare(T[] t1, T[] t2) {
+        List<T> list1 = Arrays.asList(t1);
+        List<T> list2 = new ArrayList<T>();
+        for (T t : t2) {
+            if (!list1.contains(t)) {
+                list2.add(t);
+            }
+        }
+        return list2;
     }
 }

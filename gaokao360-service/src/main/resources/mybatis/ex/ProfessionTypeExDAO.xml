@@ -79,25 +79,7 @@ selectList
                 ${condition.groupOp}   ${condition.id.field}  ${condition.id.op}  #{condition.id.data}
             </if>
             <if test="condition.professionType!=null">
-                ${condition.groupOp}   ${condition.professionType.field}  ${condition.professionType.op}  #{condition.professionType.data}
-            </if>
-            <if test="condition.pid!=null">
-                ${condition.groupOp}   ${condition.pid.field}  ${condition.pid.op}  #{condition.pid.data}
-            </if>
-            <if test="condition.createDate!=null">
-                ${condition.groupOp}   ${condition.createDate.field}  ${condition.createDate.op}  #{condition.createDate.data}
-            </if>
-            <if test="condition.creator!=null">
-                ${condition.groupOp}   ${condition.creator.field}  ${condition.creator.op}  #{condition.creator.data}
-            </if>
-            <if test="condition.lastModDate!=null">
-                ${condition.groupOp}   ${condition.lastModDate.field}  ${condition.lastModDate.op}  #{condition.lastModDate.data}
-            </if>
-            <if test="condition.lastModifier!=null">
-                ${condition.groupOp}   ${condition.lastModifier.field}  ${condition.lastModifier.op}  #{condition.lastModifier.data}
-            </if>
-            <if test="condition.isDelete!=null">
-                ${condition.groupOp}   ${condition.isDelete.field}  ${condition.isDelete.op}  #{condition.isDelete.data}
+                AND   profession_type  LIKE  #{condition.professionType.data}
             </if>
 
 
