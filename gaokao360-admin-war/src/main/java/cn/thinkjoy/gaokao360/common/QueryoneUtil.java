@@ -12,6 +12,7 @@ import cn.thinkjoy.gaokao360.service.differentiation.ex.IAdmissionBatchExService
 import cn.thinkjoy.gaokao360.service.differentiation.ex.IVideoSectionExService;
 import cn.thinkjoy.gaokao360.service.common.ex.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +25,7 @@ import java.util.Map;
  */
 @Transactional
 @Component
+@Scope("prototype")
 public class QueryoneUtil extends BaseCommonUtil{
 
     @Autowired
