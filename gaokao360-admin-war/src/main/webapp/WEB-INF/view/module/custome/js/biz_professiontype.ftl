@@ -6,7 +6,7 @@
         var rules = [];
         if (professionType != '' && professionType != null && professionType != undefined) {
             var rule = {
-                'field': 'professionType',
+                'field': 'queryparam',
                 'op': 'lk',
                 'data': professionType
             }
