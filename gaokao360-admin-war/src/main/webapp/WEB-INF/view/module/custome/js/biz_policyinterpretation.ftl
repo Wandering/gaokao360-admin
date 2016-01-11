@@ -59,7 +59,7 @@
         };
 //       获取政策一级分类和省份信息
         var policyData = CommonFn.getpolicy();
-//        UI.$eduLevel.append(policyData);
+        var policyData2 = CommonFn.getpolicy();
         var province = CommonFn.getProvince();
         UI.$province.append(province);
 //        添加政策解读
@@ -109,31 +109,9 @@
                     }
                 }
             });
-//            $('#policyInterGroup').append(policyData);
+            $('#policyInterGroup').append(policyData2);
 //            实例化编辑器
             CommonFn.renderTextarea('#policyInterDetail');
-            <#--$(document).on('click', '#add-group', function () {-->
-                <#--var newGroupName = $('#policyInterNew').val().trim();-->
-                <#--var dataGroup = {-->
-                    <#--name: newGroupName-->
-                    <#--, oper: 'add'-->
-                    <#--, areaId: 0-->
-                <#--};-->
-                <#--CommonFn.getData('/admin/${bizSys}/commonsave/admissionbatch', 'post', dataGroup, function (res) {-->
-                    <#--if (res.rtnCode == '0000000') {-->
-                        <#--$('#newPolicy').hide();-->
-                        <#--CommonFn.getData('/admin/${bizSys}/getAdmissionBatch', 'post', {}, function (res) {-->
-                            <#--var options = '';-->
-                            <#--$.each(res.bizData, function (i, v) {-->
-                                <#--if (v.name == newGroupName) {-->
-                                    <#--options += '<option value="' + v.id + '">' + newGroupName + '</option>';-->
-                                    <#--$('#policyInterGroup').append(options).find('option[value="' + v.id + '"]').attr('selected', 'selected')-->
-                                <#--}-->
-                            <#--})-->
-                        <#--})-->
-                    <#--}-->
-                <#--});-->
-            <#--});-->
             // 当前行数据
             var rowData = CommonFn.getRowData(rowId);
             $('#province2').find('option[value="' + rowData[0].provinceId + '"]').attr('selected', 'selected');
@@ -142,7 +120,6 @@
             // 富媒体赋值
             $('#policyInterDetail').html(CommonFn.getContentHtml(rowData[0].content).join(''));
         });
-
 
 
         //删除
@@ -158,24 +135,27 @@
         // 创建提交
         $(document).on('click', '#add-group', function () {
             var newGroupName = $.trim($('#policyInterNew').val());
+            if(newGroupName == ""){
+                CommonFn.tipsDialog('温馨提示', '新建政策分类不能为空');
+                return false;
+            }
             $.ajax({
-                url:'/admin/gaokao360/ex/addAdmissionBatch?name='+newGroupName,
-                type:'POST',
-                dataType:'json',
-                success:function(rest){
-                    console.log(rest)
+                url: '/admin/gaokao360/ex/addAdmissionBatch?name=' + newGroupName,
+                type: 'POST',
+                dataType: 'json',
+                success: function (res) {
+                    console.log(res)
+                    if (res.rtnCode == '0000000') {
+                        var id = res.bizData.id;
+                        var name = res.bizData.name;
+                        $('#newPolicy').hide();
+                        $('#policyInterGroup').append('<option value="' + id + '">' + name + '</option>');
+                        $('#policyInterGroup').find('option[value="' + id + '"]').attr('selected', 'selected');
+                    }
                 }
             })
 
         });
-
-
-
-
-
-
-
-
 
 
         var dialogHtml = ''
