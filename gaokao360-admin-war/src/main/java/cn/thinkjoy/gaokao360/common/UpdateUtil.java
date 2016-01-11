@@ -59,7 +59,7 @@ public class UpdateUtil extends BaseCommonUtil{
 
     public void gkpsychology(){
         getServiceMaps().get("videocourse").updateMap(dataMap);
-        Long lid = (Long)dataMap.get("id");
+        Long lid = Long.valueOf((String)dataMap.get("id"));
         String sectionId=null;
         if(dataMap.containsKey("videoSectionDTOs")){
             sectionId = (String)dataMap.get("videoSectionDTOs");
@@ -67,6 +67,7 @@ public class UpdateUtil extends BaseCommonUtil{
         if(sectionId!=null){
             Map<String,Object> map1=new HashMap<>();
             map1.put("courseId", dataMap.get("id"));
+            getServiceMaps().get("videosection").deleteByCondition(map1);
             JSONArray jsonArray = null;
             jsonArray = JSON.parseArray(sectionId);
             List<HashMap<String,Object>> maps= handleJSONArray(jsonArray);
@@ -87,14 +88,15 @@ public class UpdateUtil extends BaseCommonUtil{
 
     public void auditorium(){
         getServiceMaps().get("videocourse").updateMap(dataMap);
-        Long lid = (Long)dataMap.get("id");
+        Long lid = Long.valueOf((String)dataMap.get("id"));
         String sectionId=null;
         if(dataMap.containsKey("videoSectionDTOs")){
             sectionId = (String)dataMap.get("videoSectionDTOs");
         }
         if(sectionId!=null){
             Map<String,Object> map1=new HashMap<>();
-            map1.put("courseId", dataMap.get("id"));
+            map1.put("courseId", dataMap.get("id"));;
+            getServiceMaps().get("videosection").deleteByCondition(map1);
             JSONArray jsonArray = null;
             jsonArray = JSON.parseArray(sectionId);
             List<HashMap<String,Object>> maps= handleJSONArray(jsonArray);

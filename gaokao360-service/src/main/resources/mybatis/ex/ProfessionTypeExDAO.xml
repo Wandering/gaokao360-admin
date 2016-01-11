@@ -113,6 +113,7 @@ selectList
     <select id="count" resultType="java.lang.Integer">
         SELECT count(id) FROM zgk_profession_type
        <where>
+           (pid=0||pid IS NULL)
            <if test="id!=null">
                ${groupOp} ${id.field} ${id.op}  #{id.data}
            </if>
