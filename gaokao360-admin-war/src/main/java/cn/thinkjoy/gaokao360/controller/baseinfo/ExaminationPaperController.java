@@ -7,17 +7,23 @@
 
 package cn.thinkjoy.gaokao360.controller.baseinfo;
 
+import cn.thinkjoy.gaokao360.common.DomainReflex;
 import cn.thinkjoy.gaokao360.controller.BaseController;
+import cn.thinkjoy.gaokao360.dao.IAdmissionBatchDAO;
+import cn.thinkjoy.gaokao360.domain.AdmissionBatch;
+import cn.thinkjoy.gaokao360.service.differentiation.IAdmissionBatchService;
 import cn.thinkjoy.gaokao360.service.differentiation.IExaminationPaperService;
 import cn.thinkjoy.common.domain.view.BizData4Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value="/admin/gaokao360")
@@ -39,6 +45,7 @@ public class ExaminationPaperController extends BaseController<IExaminationPaper
 
         return doRenderMainView(request, response);
     }
+
 
 
     /**
