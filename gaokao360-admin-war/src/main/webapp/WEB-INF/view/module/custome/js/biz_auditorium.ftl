@@ -44,12 +44,6 @@
     *
     * */
 
-
-
-
-
-
-
     var dialogLayer = ''
             +'<div class="modal fade in widget-box ui-widget  my-modal" id="dialogLayer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">'
             +'<div class="modal-dialog">'
@@ -200,74 +194,7 @@
 
         uploadFun1();
         uploadFun2();
-        var addEditFun = function () {
-            var selProvinceV = $('#selProvince2 option:checked').val(),
-                    selCourses2V = $('#selCourses2 option:checked').val(),
-                    teacherNameV = $.trim($('#teacherName').val()),
-                    expertsIntroV = $('#expertsIntro').val(),
-                    sectionTitleV = $('#sectionTitle').val(),
-                    imgUrlDataV = $('#imgUrlData').val(),
-                    videoDataV = $('#videoData').val();
 
-            if (selProvinceV == "00") {
-                CommonFn.tipsDialog('温馨提示', '请选择省份');
-                return false;
-            }
-            if (selCourses2V == "00") {
-                CommonFn.tipsDialog('温馨提示', '请选择科目');
-                return false;
-            }
-            if (teacherNameV == "") {
-                CommonFn.tipsDialog('温馨提示', '请选择主讲老师');
-                return false;
-            }
-            if (expertsIntroV == "") {
-                CommonFn.tipsDialog('温馨提示', '请选择专家介绍');
-                return false;
-            }
-            if (sectionTitleV == "") {
-                CommonFn.tipsDialog('温馨提示', '请选择视频名称');
-                return false;
-            }
-            if (imgUrlDataV == "") {
-                CommonFn.tipsDialog('温馨提示', '请上传视频封面');
-                return false;
-            }
-            if (videoDataV == "") {
-                CommonFn.tipsDialog('温馨提示', '请上传视频');
-                return false;
-            }
-
-
-            alert(videoDataV)
-            alert(imgUrlDataV)
-
-            var addData = {
-                oper: typeStr,
-                classifyId: '${mainObj}' == 'auditorium' ? '1' : '0',
-                managerId: '${mainObj}' == 'auditorium' ? '1' : '0',
-                subjectId: selCourses2V,
-                teacher: teacherNameV,
-                title: sectionTitleV,
-                frontCover: imgUrlDataV,
-                subcontent: expertsIntroV,
-                areaId: selProvinceV,
-                videoSectionDTOs:videoDataV
-            };
-            console.log(addData)
-
-            $.ajax({
-                type: "POST",
-                url: '/admin/${bizSys}/commonsave/${mainObj}',
-                data: addData,
-                success: function (result) {
-                    if (result.rtnCode == "0000000") {
-                        searchLoad();
-                        $('#dialogLayer').modal("hide");
-                    }
-                }
-            });
-        };
 
 
         // 添加
@@ -365,6 +292,77 @@
         });
 
 
+        var addEditFun = function () {
+            var selProvinceV = $('#selProvince2 option:checked').val(),
+                    selCourses2V = $('#selCourses2 option:checked').val(),
+                    teacherNameV = $.trim($('#teacherName').val()),
+                    expertsIntroV = $('#expertsIntro').val(),
+                    sectionTitleV = $('#sectionTitle').val(),
+                    imgUrlDataV = $('#imgUrlData').val(),
+                    videoDataV = $('#videoData').val();
+
+            if (selProvinceV == "00") {
+                CommonFn.tipsDialog('温馨提示', '请选择省份');
+                return false;
+            }
+            if (selCourses2V == "00") {
+                CommonFn.tipsDialog('温馨提示', '请选择科目');
+                return false;
+            }
+            if (teacherNameV == "") {
+                CommonFn.tipsDialog('温馨提示', '请选择主讲老师');
+                return false;
+            }
+            if (expertsIntroV == "") {
+                CommonFn.tipsDialog('温馨提示', '请选择专家介绍');
+                return false;
+            }
+            if (sectionTitleV == "") {
+                CommonFn.tipsDialog('温馨提示', '请选择视频名称');
+                return false;
+            }
+            if (imgUrlDataV == "") {
+                CommonFn.tipsDialog('温馨提示', '请上传视频封面');
+                return false;
+            }
+            if (videoDataV == "") {
+                CommonFn.tipsDialog('温馨提示', '请上传视频');
+                return false;
+            }
+
+
+            alert(videoDataV)
+            alert(imgUrlDataV)
+
+            var addData = {
+                oper: typeStr,
+                classifyId: '${mainObj}' == 'auditorium' ? '1' : '2',
+                managerId: '${mainObj}' == 'auditorium' ? '1' : '2',
+                subjectId: selCourses2V,
+                teacher: teacherNameV,
+                title: sectionTitleV,
+                frontCover: imgUrlDataV,
+                subcontent: expertsIntroV,
+                areaId: selProvinceV,
+                videoSectionDTOs:videoDataV
+            };
+            console.log(addData)
+            if (typeStr == 'edit') {
+                addData.id = rowId;
+            }
+
+            $.ajax({
+                type: "POST",
+                url: '/admin/${bizSys}/commonsave/${mainObj}',
+                data: addData,
+                success: function (result) {
+                    if (result.rtnCode == "0000000") {
+                        searchLoad();
+                        $('#dialogLayer').modal("hide");
+                    }
+                }
+            });
+        };
 
 
         //删除
@@ -439,6 +437,11 @@
             return false;
         }
     }
+
+
+
+
+
     function uploadFun1() {
         var $wrap = $('#uploader1'),
 

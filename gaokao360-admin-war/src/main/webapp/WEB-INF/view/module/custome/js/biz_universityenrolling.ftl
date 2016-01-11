@@ -312,7 +312,7 @@
                 var averageScoreV = $.trim($parentDetail.find('.averageScore').val());
                 var averagePrecedenceV = $.trim($parentDetail.find('.averagePrecedence').val());
 
-                if(values=="00"){
+                if(values=="00"  && $('#subjectType1:visible')==true){
                     CommonFn.tipsDialog('温馨提示', '请选择文史类招生批次');
                     return false;
                 }
@@ -362,7 +362,7 @@
                 var averageScoreV = $.trim($parentDetail.find('.averageScore').val());
                 var averagePrecedenceV = $.trim($parentDetail.find('.averagePrecedence').val());
 
-                if(values=="00"){
+                if(values=="00"  && $('#subjectType2:visible')==true){
                     CommonFn.tipsDialog('温馨提示', '请选择理工类招生批次');
                     return false;
                 }

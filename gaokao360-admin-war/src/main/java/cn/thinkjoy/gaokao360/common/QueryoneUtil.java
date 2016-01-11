@@ -12,6 +12,8 @@ import cn.thinkjoy.gaokao360.service.differentiation.ex.IAdmissionBatchExService
 import cn.thinkjoy.gaokao360.service.differentiation.ex.IVideoSectionExService;
 import cn.thinkjoy.gaokao360.service.common.ex.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +22,8 @@ import java.util.Map;
 /**
  * Created by admin on 2015/12/30.
  */
+@Transactional
+@Component
 public class QueryoneUtil extends BaseCommonUtil{
 
     @Autowired
@@ -40,18 +44,7 @@ public class QueryoneUtil extends BaseCommonUtil{
     @Autowired
     private IAdmissionBatchExService admissionBatchExService;
 
-    private static QueryoneUtil instance=null;
-    public static QueryoneUtil getInstance(){
-        if(instance==null){
-            synchronized(QueryoneUtil.class){
-                if(instance==null){
-                    instance=new QueryoneUtil();
-                }
-            }
-        }
-        return instance;
-    }
-    private QueryoneUtil(){
+    public QueryoneUtil(){
     }
 
     public String getMainObj() {

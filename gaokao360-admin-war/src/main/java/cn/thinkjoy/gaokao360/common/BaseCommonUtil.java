@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,8 +17,10 @@ import java.util.*;
 /**
  * Created by admin on 2015/12/30.
  */
+@Component
 public class BaseCommonUtil {
 
+    @Autowired
     private ServiceMaps serviceMaps;
 
     public ServiceMaps getServiceMaps() {

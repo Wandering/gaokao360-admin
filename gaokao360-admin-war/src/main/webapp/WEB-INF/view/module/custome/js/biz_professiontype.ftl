@@ -105,11 +105,12 @@
             var rowData = CommonFn.getRowData(rowId);
             console.log(rowData)
             $('#professionType').val(rowData[0].professionType);
-            var dataList = rowData[0].majoredCategoryDTOs;
+            var dataList = rowData[0].childs;
             var list = '';
-            for(var i in dataList){
-                list += dataList[i].name+'、';
+            for(var i=0;i<dataList.length;i++){
+                list += dataList[i].professionType+'、';
             }
+            $('#content').val(list);
         });
 
 //      删除
@@ -133,8 +134,8 @@
             }
             var data = {
                 oper: typeStr
-                , professionType: $.trim($('#professionType').val())
-                , content: $.trim($('#content').val())
+                , professionType: $('#professionType').val()
+                , content: $('#content').val()
             };
             CommonFn.getData('/admin/gaokao360/ex/commonsave/${mainObj}', 'post', data, function (res) {
                 if (res.rtnCode == '0000000') {
