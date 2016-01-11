@@ -158,23 +158,15 @@
         // 创建提交
         $(document).on('click', '#add-group', function () {
             var newGroupName = $.trim($('#policyInterNew').val());
-            var dataGroup = {
-                name: newGroupName
-            };
-            <#--CommonFn.getData('/admin/${bizSys}/commonsave/admissionbatch', 'post', dataGroup, function (res) {-->
-                <#--if (res.rtnCode == '0000000') {-->
-                    <#--$('#newPolicy').hide();-->
-                    <#--CommonFn.getData('/admin/${bizSys}/getAdmissionBatch', 'post', {}, function (res) {-->
-                        <#--var options = '';-->
-                        <#--$.each(res.bizData, function (i, v) {-->
-                            <#--if (v.name == newGroupName) {-->
-                                <#--options += '<option value="' + v.id + '">' + newGroupName + '</option>';-->
-                                <#--$('#policyInterGroup').append(options).find('option[value="' + v.id + '"]').attr('selected', 'selected')-->
-                            <#--}-->
-                        <#--})-->
-                    <#--})-->
-                <#--}-->
-            <#--});-->
+            $.ajax({
+                url:'/admin/gaokao360/ex/addAdmissionBatch?name='+newGroupName,
+                type:'POST',
+                dataType:'json',
+                success:function(rest){
+                    console.log(rest)
+                }
+            })
+
         });
 
 
