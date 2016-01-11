@@ -85,18 +85,6 @@ selectList
         </if>
     </select>
 
-    <select id="fatch" resultType="cn.thinkjoy.gaokao360.dto.UniversityDTO">
-        SELECT
-        <include refid="Base_Column_List" />
-        FROM
-        zgk_university university
-        LEFT OUTER JOIN zgk_university_detail detail ON detail.id=university.id
-        LEFT JOIN zgk_province province ON province.id = university.areaid
-        LEFT JOIN zgk_data_dict typedict ON typedict.dictId=university.type AND typedict.type='UNIVERSITY_TYPE'
-        LEFT JOIN zgk_data_dict leveldict ON leveldict.dictId = university.educationLevel AND leveldict.type='EDUCATION_LEVEL'
-        AND id=#{id}
-    </select>
-
     <select id="count" resultType="java.lang.Integer">
         SELECT count(university.id)
         FROM
