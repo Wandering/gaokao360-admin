@@ -330,10 +330,6 @@
                 return false;
             }
 
-
-            alert(videoDataV)
-            alert(imgUrlDataV)
-
             var addData = {
                 oper: typeStr,
                 classifyId: '${mainObj}' == 'auditorium' ? '1' : '2',
