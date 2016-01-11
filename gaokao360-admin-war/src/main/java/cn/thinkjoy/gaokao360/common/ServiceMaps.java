@@ -80,9 +80,6 @@ public class ServiceMaps extends BaseServiceMaps{
     @Autowired
     private IVocabularyService vocabulary;
     @Autowired
-    private IMajoredExService majoredExService;
-
-    @Autowired
     private IUniversityEnrollingService universityEnrollingService;
     @Autowired
     private IMajorService majorService;
@@ -103,6 +100,10 @@ public class ServiceMaps extends BaseServiceMaps{
 
     @Autowired
     private IUniversityMajorEnrollingExService universityMajorEnrollingExService;
+
+
+    @Autowired
+    private IMajoredExService majoredExService;
 
     @PostConstruct
     public void init(){
@@ -126,7 +127,6 @@ public class ServiceMaps extends BaseServiceMaps{
         serviceMap.put("areabatchline",areabatchLineService);
         serviceMap.put("universityex",universityExService);
         serviceMap.put("university",universityService);
-        serviceMap.put("majored",majoredService);
         serviceMap.put("majoredcategory",majoredCategoryService);
         serviceMap.put("majoredcategoryex",majoredCategoryExService);
         serviceMap.put("vocabulary",vocabulary);
@@ -135,7 +135,8 @@ public class ServiceMaps extends BaseServiceMaps{
         serviceMap.put("professiondetail",professionDetailService);
         serviceMap.put("professiontype",professionTypeService);
 
-        serviceMap.put("majored",majoredExService);
+        serviceMap.put("majored",majoredService);
+        serviceMap.put("majoredex",majoredExService);
         serviceMap.put("majorDetail",majorDetailService);
         serviceMap.put("major",majorService);
         serviceMap.put("universitymajor",universityMajorExService);
