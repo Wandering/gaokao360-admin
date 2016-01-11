@@ -64,52 +64,9 @@
             e.preventDefault();
             typeStr = 'add';
             $('#majoredModal').modal('show');
-            majoredDom.$selMajored2.change(function () {
-                var majoredId = $(this).find('option:selected').val();
-                var majoredName = $(this).find('option:selected').html();
-                CommonFn.getData('/admin/gaokao360/ex/getMajoredCategoryByPid', 'GET', {
-                    id: majoredId,
-                    name: majoredName
-                }, function (res) {
-                    if (res.rtnCode == "0000000") {
-                        var dataJson = res.bizData;
-                        var dataHTML = [];
-                        $.each(dataJson, function (i, v) {
-                            dataHTML.push('<option value="' + v.id + '">' + v.name + '</option>');
-                        });
-                        $('#subjectType').html(dataHTML);
-                    }
-                })
-            });
-            majoredDom.$submitBtn.click(function (e) {
-                e.preventDefault();
-                majoredValidate();
-                var addMajoredData = {
-                    oper: typeStr
-                    , majorName: majoredDom.$majoredName.val()
-                    , majorCode: majoredDom.$majoredCode.val()
-                    , disciplineCategories: $('#selMajored2').find('option:selected').val()
-                    , subjectType: $('#selMajored2').find('option:selected').html()
-                    , majorCategory: $('#subjectType').find('option:selected').val()
-                    , majoredType: $('#subjectType').find('option:selected').html()
-                    , salaryRank: majoredDom.$salaryRank.val()
-                    , employmentRank: majoredDom.$jobsRank.val()
-                    , similarMajors: majoredDom.$sameMajored.val()
-                    , offerCourses: majoredDom.$mainMajored.val()
-                    , specialisation: majoredDom.$employDirect.val()
-                    , outstandingMentor: majoredDom.$excellentStudent.val()
-                };
-                CommonFn.getData('/admin/gaokao360/ex/commonsave/${mainObj}', 'POST', addMajoredData, function (res) {
-                    if (res.rtnCode == "0000000") {
-                        searchLoad();
-                        $('#majoredModal').modal('hide');
-                        $('#submitForm')[0].reset();
-                        $('#schoolIntroduce,#schoolArticle').html('');
-                    }
-                });
-            })
 
-        });//添加 end
+
+        });
 //        修改专业基本信息
         majoredDom.$editBtn.click(function () {
             typeStr = "edit";
@@ -122,6 +79,7 @@
             $('#majoredModal').modal('show');
             // 获取当前行数据
             var rowData = CommonFn.getRowData(rowId);
+            console.log(rowData)
             majoredDom.$majoredName.val(rowData[0].majorName);
             majoredDom.$majoredCode.val(rowData[0].majorCode);
             $('#selMajored2').find('option[value="' + rowData[0].subjectType + '"]').attr('selected', 'selected');
@@ -168,6 +126,63 @@
 //        删除专业基本信息
         CommonFn.deleteFun('#deleteBtn', '${mainObj}');
 //        关闭清空form表单内容
+
+        majoredDom.$selMajored2.change(function () {
+            var majoredId = $(this).find('option:selected').val();
+            var majoredName = $(this).find('option:selected').html();
+            CommonFn.getData('/admin/gaokao360/ex/getMajoredCategoryByPid', 'GET', {
+                id: majoredId,
+                name: majoredName
+            }, function (res) {
+                if (res.rtnCode == "0000000") {
+                    var dataJson = res.bizData;
+                    var dataHTML = [];
+                    $.each(dataJson, function (i, v) {
+                        dataHTML.push('<option value="' + v.id + '">' + v.name + '</option>');
+                    });
+                    $('#subjectType').html(dataHTML);
+                }
+            })
+        });
+        majoredDom.$submitBtn.click(function (e) {
+            e.preventDefault();
+            majoredValidate();
+            var addMajoredData = {
+                oper: typeStr
+                , majorName: majoredDom.$majoredName.val()
+                , majorCode: majoredDom.$majoredCode.val()
+                , disciplineCategories: $('#selMajored2').find('option:selected').val()
+                , subjectType: $('#selMajored2').find('option:selected').html()
+                , majorCategory: $('#subjectType').find('option:selected').val()
+                , majoredType: $('#subjectType').find('option:selected').html()
+                , salaryRank: majoredDom.$salaryRank.val()
+                , employmentRank: majoredDom.$jobsRank.val()
+                , similarMajors: majoredDom.$sameMajored.val()
+                , offerCourses: majoredDom.$mainMajored.val()
+                , specialisation: majoredDom.$employDirect.val()
+                , outstandingMentor: majoredDom.$excellentStudent.val()
+            };
+            CommonFn.getData('/admin/gaokao360/ex/commonsave/${mainObj}', 'POST', addMajoredData, function (res) {
+                if (res.rtnCode == "0000000") {
+                    searchLoad();
+                    $('#majoredModal').modal('hide');
+                    $('#submitForm')[0].reset();
+                    $('#schoolIntroduce,#schoolArticle').html('');
+                }
+            });
+        })
+
+
+
+
+
+
+
+
+
+
+
+
         majoredDom.$cancelBtn.click(function(e){
             e.preventDefault();
             $('#submitForm')[0].reset();

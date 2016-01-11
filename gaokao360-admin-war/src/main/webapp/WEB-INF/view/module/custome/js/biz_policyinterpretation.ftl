@@ -59,15 +59,11 @@
         };
 //       获取政策一级分类和省份信息
         var policyData = CommonFn.getpolicy();
-        UI.$eduLevel.append(policyData);
+//        UI.$eduLevel.append(policyData);
         var province = CommonFn.getProvince();
         UI.$province.append(province);
 //        添加政策解读
         UI.$addBtn.on(ace.click_event, function () {
-            $(document).on('change', '#policyInterGroup', function () {
-                var groupV = $('#policyInterGroup').find('option:selected').attr('value');
-                groupV == '000' ? $('#newPolicy').removeClass('hide') : $('#newPolicy').addClass('hide');
-            });
             typeStr = "add";
             bootbox.dialog({
                 title: "添加政策解读",
@@ -85,36 +81,8 @@
                     }
                 }
             });
-            $('#policyInterGroup').append(policyData);
-//            实例化编辑器
             CommonFn.renderTextarea('#policyInterDetail');
-            $(document).on('click', '#add-group', function () {
-                var newGroupName = $('#policyInterNew').val().trim();
-                var dataGroup = {
-                    name: newGroupName
-                    , oper: 'add'
-                    , areaId: 0
-                };
-                CommonFn.getData('/admin/${bizSys}/commonsave/admissionbatch', 'post', dataGroup, function (res) {
-                    if (res.rtnCode == '0000000') {
-                        $('#newPolicy').hide();
-                        CommonFn.getData('/admin/${bizSys}/getAdmissionBatch', 'post', {}, function (res) {
-                            var options = '';
-                            $.each(res.bizData, function (i, v) {
-                                if (v.name == newGroupName) {
-                                    options += '<option value="' + v.id + '">' + newGroupName + '</option>';
-                                    $('#policyInterGroup').append(options).find('option[value="' + v.id + '"]').attr('selected', 'selected')
-                                }
-                            })
-                        })
-                    }
-                });
-            });
         });
-        //删除
-        CommonFn.deleteFun('#deleteBtn', '${mainObj}');
-
-
 
         //修改高考热点
         UI.$editBtn.on(ace.click_event, function () {
@@ -141,39 +109,81 @@
                     }
                 }
             });
-            $('#policyInterGroup').append(policyData);
+//            $('#policyInterGroup').append(policyData);
 //            实例化编辑器
             CommonFn.renderTextarea('#policyInterDetail');
-            $(document).on('click', '#add-group', function () {
-                var newGroupName = $('#policyInterNew').val().trim();
-                var dataGroup = {
-                    name: newGroupName
-                    , oper: 'add'
-                    , areaId: 0
-                };
-                CommonFn.getData('/admin/${bizSys}/commonsave/admissionbatch', 'post', dataGroup, function (res) {
-                    if (res.rtnCode == '0000000') {
-                        $('#newPolicy').hide();
-                        CommonFn.getData('/admin/${bizSys}/getAdmissionBatch', 'post', {}, function (res) {
-                            var options = '';
-                            $.each(res.bizData, function (i, v) {
-                                if (v.name == newGroupName) {
-                                    options += '<option value="' + v.id + '">' + newGroupName + '</option>';
-                                    $('#policyInterGroup').append(options).find('option[value="' + v.id + '"]').attr('selected', 'selected')
-                                }
-                            })
-                        })
-                    }
-                });
-            });
+            <#--$(document).on('click', '#add-group', function () {-->
+                <#--var newGroupName = $('#policyInterNew').val().trim();-->
+                <#--var dataGroup = {-->
+                    <#--name: newGroupName-->
+                    <#--, oper: 'add'-->
+                    <#--, areaId: 0-->
+                <#--};-->
+                <#--CommonFn.getData('/admin/${bizSys}/commonsave/admissionbatch', 'post', dataGroup, function (res) {-->
+                    <#--if (res.rtnCode == '0000000') {-->
+                        <#--$('#newPolicy').hide();-->
+                        <#--CommonFn.getData('/admin/${bizSys}/getAdmissionBatch', 'post', {}, function (res) {-->
+                            <#--var options = '';-->
+                            <#--$.each(res.bizData, function (i, v) {-->
+                                <#--if (v.name == newGroupName) {-->
+                                    <#--options += '<option value="' + v.id + '">' + newGroupName + '</option>';-->
+                                    <#--$('#policyInterGroup').append(options).find('option[value="' + v.id + '"]').attr('selected', 'selected')-->
+                                <#--}-->
+                            <#--})-->
+                        <#--})-->
+                    <#--}-->
+                <#--});-->
+            <#--});-->
             // 当前行数据
             var rowData = CommonFn.getRowData(rowId);
             $('#province2').find('option[value="' + rowData[0].provinceId + '"]').attr('selected', 'selected');
-            $('#policyInterGroup').find('option[value="'+ rowData[0].admissionBatchId+'"]').attr('selected', 'selected');
+            $('#policyInterGroup').find('option[value="' + rowData[0].admissionBatchId + '"]').attr('selected', 'selected');
             $('#policyInterTwo').val(rowData[0].categoryName);
             // 富媒体赋值
             $('#policyInterDetail').html(CommonFn.getContentHtml(rowData[0].content).join(''));
         });
+
+
+
+        //删除
+        CommonFn.deleteFun('#deleteBtn', '${mainObj}');
+
+
+        // 显示隐藏创建
+        $(document).on('change', '#policyInterGroup', function () {
+            var groupV = $('#policyInterGroup').find('option:selected').attr('value');
+            groupV == '000' ? $('#newPolicy').removeClass('hide') : $('#newPolicy').addClass('hide');
+        });
+
+        // 创建提交
+        $(document).on('click', '#add-group', function () {
+            var newGroupName = $.trim($('#policyInterNew').val());
+            var dataGroup = {
+                name: newGroupName
+            };
+            <#--CommonFn.getData('/admin/${bizSys}/commonsave/admissionbatch', 'post', dataGroup, function (res) {-->
+                <#--if (res.rtnCode == '0000000') {-->
+                    <#--$('#newPolicy').hide();-->
+                    <#--CommonFn.getData('/admin/${bizSys}/getAdmissionBatch', 'post', {}, function (res) {-->
+                        <#--var options = '';-->
+                        <#--$.each(res.bizData, function (i, v) {-->
+                            <#--if (v.name == newGroupName) {-->
+                                <#--options += '<option value="' + v.id + '">' + newGroupName + '</option>';-->
+                                <#--$('#policyInterGroup').append(options).find('option[value="' + v.id + '"]').attr('selected', 'selected')-->
+                            <#--}-->
+                        <#--})-->
+                    <#--})-->
+                <#--}-->
+            <#--});-->
+        });
+
+
+
+
+
+
+
+
 
 
         var dialogHtml = ''
@@ -191,8 +201,8 @@
                 + '<label class="col-sm-2 control-label no-padding-right" for="policyInterOne">'
                 + '政策一级分类：</label>'
                 + '<div class="col-sm-2">'
-                + '<select class="form-control" id="policyInterGroup">' + '<option value="00">选择政策一级分类</option>' + '<option value="000">+新建政策分类+</option>'
-                + '</select>'
+//                + '<select class="form-control" id="policyInterGroup">' + '<option value="00">选择政策一级分类</option>' + '<option value="000">+新建政策分类+</option>'
+                + '<select class="form-control" id="policyInterGroup">' + policyData + '</select>'
                 + '</div>'
                 + '</div>'
                 + '<div class="form-group hide" id="newPolicy">'
@@ -225,6 +235,7 @@
                 + '</div>'
                 + '</div>'
                 + '</div>';
+
         function addAndEditFn() {
             var provinceV = $("#province2").find("option:selected").attr('value');
             var policyInterTwoV = $('#policyInterTwo').val();
