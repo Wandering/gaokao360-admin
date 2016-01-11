@@ -47,6 +47,18 @@ selectList
         type.name as typeName
     </sql>
 
+    <select id="fetch" resultType="cn.thinkjoy.gaokao360.dto.MajorDTO">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_major major
+        LEFT OUTER JOIN zgk_major_detail detail ON detail.id=major.id
+        LEFT JOIN zgk_majored_category  genre ON genre.id=major.discipline_categories
+        LEFT JOIN zgk_majored_category  category ON category.id=major.major_category
+        LEFT JOIN zgk_majored_category  type ON type.id=major.major_type AND (type.id=0 OR type.id=1)
+        <where>
+            major.id=#{id}
+        </where>
+    </select>
     <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.MajorDTO">
         SELECT
         <include refid="Base_Column_List" />
@@ -76,12 +88,11 @@ selectList
 
 
         </where>
-            ORDER BY id DESC
+        ORDER BY id DESC
         <if test="offset != null">
             limit ${offset}, ${rows}
         </if>
     </select>
-
     <select id="count" resultType="java.lang.Integer">
         SELECT count(major.id)        FROM zgk_major major
         LEFT OUTER JOIN zgk_major_detail detail ON detail.id=major.id

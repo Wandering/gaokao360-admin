@@ -78,8 +78,8 @@ selectList
             <if test="condition.id!=null">
                 ${condition.groupOp}   ${condition.id.field}  ${condition.id.op}  #{condition.id.data}
             </if>
-            <if test="condition.professionType!=null">
-                AND   profession_type  LIKE  #{condition.professionType.data}
+            <if test="condition.queryparam!=null">
+                AND   profession_type  LIKE  #{condition.queryparam.data}
             </if>
 
 
