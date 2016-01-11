@@ -38,9 +38,7 @@
                 + '<div class="form-group">'
                 + '<label class="col-sm-2 control-label no-padding-right"> 选择省份：</label>'
                 + '<div class="col-sm-3">'
-                + '<select class="form-control" id="selProvince">';
-        dialogHtml += provinceData
-                + '</select>'
+                + '<select class="form-control" id="selProvince">'+ provinceData +'</select>'
                 + '</div>'
                 + '</div>'
                 + '<div class="form-group">'

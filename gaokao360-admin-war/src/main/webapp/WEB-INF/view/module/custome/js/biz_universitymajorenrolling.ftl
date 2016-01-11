@@ -217,7 +217,7 @@
         $("#addBtn").on(ace.click_event, function (e) {
             typeStr = "add";
             bootbox.dialog({
-                title: "添加真题密卷",
+                title: "添加专业招生信息",
                 message: dialogHtml,
                 className: 'my-modal',
                 buttons: {
@@ -253,7 +253,7 @@
                 return false;
             }
             bootbox.dialog({
-                title: "修改高考热点",
+                title: "修改专业招生信息",
                 message: dialogHtml,
                 className: 'my-modal',
                 buttons: {
@@ -270,7 +270,7 @@
             });
             // 当前行数据
             var rowData = CommonFn.getRowData(rowId)
-            console.log(rowData)
+            console.log(rowData);
             $('#selProvince2').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
             $('#selYears2').find('option[value="' + rowData[0].year + '"]').attr('selected', 'selected');
             $('#selSpecialty').find('option[value="' + rowData[0].majorId + '"]').attr('selected', 'selected');
@@ -311,6 +311,7 @@
                 $('.averageScore').val(rowData[0].averageScore);
                 $('.averagePrecedence').val(rowData[0].averagePrecedence);
             }
+            catcompleteFn();
             subjectTypeFn(1);
             subjectTypeFn(2);
         });
@@ -356,7 +357,7 @@
                 var averageScoreV = $.trim($parentDetail.find('.averageScore').val());
                 var averagePrecedenceV = $.trim($parentDetail.find('.averagePrecedence').val());
 
-                if(values=="00" && $('#subjectType1:visible')){
+                if(values=="00" && $('#subjectType1:visible')==true){
                     CommonFn.tipsDialog('温馨提示', '请选择文史类招生批次');
                     return false;
                 }
@@ -407,7 +408,6 @@
                 var averagePrecedenceV = $.trim($parentDetail.find('.averagePrecedence').val());
 
                 if(values=="00" && $('#subjectType2:visible')==true){
-                    alert(88)
                     CommonFn.tipsDialog('温馨提示', '请选择理工类招生批次');
                     return false;
                 }
