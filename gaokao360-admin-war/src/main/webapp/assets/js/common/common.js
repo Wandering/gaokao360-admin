@@ -20,7 +20,7 @@ var CommonFn = {
         uploaderUrl: 'http://cs-dev.thinkjoy.com.cn/rest/v1/uploadFile?userId=gk360&dirId=0&productCode=gk360&bizSystem=gk360&spaceName=gk360',
         eduLevel: '/admin/gaokao360/ex/eduLevel',
         AllSchoolUrl: '/admin/gaokao360/ex/getUniversityByName',
-        getBatchUrl: '/admin/gaokao360/geBatch',
+        getBatchUrl: '/admin/gaokao360/ex/getDataDictList?type=EDULEVEL',
         professionCategoryUrl: '/admin/zgk/getProfessionCategory',
         dictListUrl: '/admin/gaokao360/ex/getDataDictList?type=UNIVERSITY_MAJOR_TYPE', // 科类
         majoredUrl: '/admin/gaokao360/ex/getMajoredNameList', // 所有专业
