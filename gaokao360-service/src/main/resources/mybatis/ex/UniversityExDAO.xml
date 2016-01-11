@@ -53,7 +53,7 @@ selectList
         LEFT OUTER JOIN zgk_university_detail detail ON detail.id=university.id
         LEFT JOIN zgk_province province ON province.id = university.areaid
         LEFT JOIN zgk_data_dict typedict ON typedict.dictId=university.type AND typedict.type='UNIVERSITY_TYPE'
-        LEFT JOIN zgk_data_dict leveldict ON leveldict.dictId = university.educationLevel AND leveldict.type='EDUCATION_LEVEL'
+        LEFT JOIN zgk_data_dict leveldict ON leveldict.dictId = university.educationLevel AND leveldict.type='EDULEVEL'
         <where>
 
             <if test="condition.whereSql != null">
@@ -131,7 +131,7 @@ selectList
         LEFT OUTER JOIN zgk_university_detail detail ON detail.id=university.id
         LEFT JOIN zgk_province province ON province.id = university.areaid
         LEFT JOIN zgk_data_dict typedict ON typedict.dictId=university.type AND typedict.type='UNIVERSITY_TYPE'
-        LEFT JOIN zgk_data_dict leveldict ON leveldict.dictId = university.educationLevel AND leveldict.type='EDUCATION_LEVEL'
+        LEFT JOIN zgk_data_dict leveldict ON leveldict.dictId = university.educationLevel AND leveldict.type='EDULEVEL'
         WHERE   university.id=#{id}
     </select>
     <select id="getUniversityByName" resultType="cn.thinkjoy.gaokao360.dto.GkQueryDomain">

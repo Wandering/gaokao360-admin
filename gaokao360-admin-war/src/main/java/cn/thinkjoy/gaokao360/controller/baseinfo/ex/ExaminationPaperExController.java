@@ -8,7 +8,10 @@
 package cn.thinkjoy.gaokao360.controller.baseinfo.ex;
 
 import cn.thinkjoy.common.domain.view.BizData4Page;
+import cn.thinkjoy.gaokao360.common.DomainReflex;
 import cn.thinkjoy.gaokao360.controller.BaseController;
+import cn.thinkjoy.gaokao360.domain.AdmissionBatch;
+import cn.thinkjoy.gaokao360.service.differentiation.IAdmissionBatchService;
 import cn.thinkjoy.gaokao360.service.differentiation.IExaminationPaperService;
 import cn.thinkjoy.gaokao360.service.differentiation.ex.IExaminationPaperExService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +30,8 @@ import java.util.Map;
 @RequestMapping(value="/admin/gaokao360/ex")
 public class ExaminationPaperExController extends BaseController<IExaminationPaperExService> {
 
-
+    @Autowired
+    private IAdmissionBatchService admissionBatchService;
     @Autowired
     private IExaminationPaperExService examinationPaperExService;
     @Autowired
@@ -55,7 +59,25 @@ public class ExaminationPaperExController extends BaseController<IExaminationPap
     public BizData4Page findAllExaminationPapers(HttpServletRequest request,HttpServletResponse response){
         return doPage(request, response);
     }
+    /**
+     *
+     * @return
+     */
+    @RequestMapping(value="/addAdmissionBatch")
+    @ResponseBody
+    public Object renderMainView(@RequestParam("name")String name){
+        Map<String,Object> map = new HashMap<>();
+        map.put("name",name);
+        admissionBatchService.insertMap(map);
+        AdmissionBatch admissionBatch=null;
 
+        try {
+           admissionBatch=(AdmissionBatch)admissionBatchService.queryOne(map);
+        }catch (Exception e){
+            System.out.println("出错了！");
+        }
+        return admissionBatch;
+    }
     /**
      * 获取所有的组织信息 名称、年份、科类不能重复
      * @return
