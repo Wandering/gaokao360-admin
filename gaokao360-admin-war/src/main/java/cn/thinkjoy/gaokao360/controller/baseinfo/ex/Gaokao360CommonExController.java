@@ -70,6 +70,9 @@ public class Gaokao360CommonExController extends AbstractCommonController {
     private QueryoneUtil queryoneUtil;
     @Override
     protected void innerHandleDel(String mainObj, Map dataMap) {
+        if(!dataMap.containsKey("id")){
+            throw new BizException(ERRORCODE.IDISNOTNULL.getCode(),ERRORCODE.IDISNOTNULL.getMessage());
+        }
         if("policyinterpretation".equals(mainObj)){
             PolicyInterpretation policyInterpretation = (PolicyInterpretation)serviceMaps.get(mainObj).fetch(dataMap.get("id"));
             if(policyInterpretation!=null && policyInterpretation.getHtmlId()!=null) {
@@ -92,6 +95,9 @@ public class Gaokao360CommonExController extends AbstractCommonController {
 
     @Override
     protected void innerHandleUpdate(String mainObj, Map dataMap) {
+        if(!dataMap.containsKey("id")){
+            throw new BizException(ERRORCODE.IDISNOTNULL.getCode(),ERRORCODE.IDISNOTNULL.getMessage());
+        }
         try {
             if ("policyinterpretation".equals(mainObj)) {
                 PolicyInterpretation policyInterpretation = (PolicyInterpretation) serviceMaps.get(mainObj).fetch(dataMap.get("id"));
