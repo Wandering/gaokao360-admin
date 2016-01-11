@@ -12,10 +12,12 @@ import cn.thinkjoy.gaokao360.dao.IProfessionDetailDAO;
 import cn.thinkjoy.gaokao360.domain.ProfessionDetail;
 import cn.thinkjoy.gaokao360.service.common.IProfessionDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 
 @Service("ProfessionDetailServiceImpl")
+@Scope("prototype")
 public class ProfessionDetailServiceImpl extends AbstractPageService<IBaseDAO<ProfessionDetail>, ProfessionDetail> implements IProfessionDetailService<IBaseDAO<ProfessionDetail>,ProfessionDetail> {
     @Autowired
     private IProfessionDetailDAO professionDetailDAO;

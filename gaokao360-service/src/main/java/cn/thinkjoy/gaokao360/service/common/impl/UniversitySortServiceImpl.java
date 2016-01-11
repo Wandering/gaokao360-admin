@@ -12,10 +12,12 @@ import cn.thinkjoy.gaokao360.domain.UniversitySort;
 import cn.thinkjoy.gaokao360.service.common.IUniversitySortService;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 
 @Service("UniversitySortServiceImpl")
+@Scope("prototype")
 public class UniversitySortServiceImpl extends AbstractPageService<IBaseDAO<UniversitySort>, UniversitySort> implements IUniversitySortService<IBaseDAO<UniversitySort>,UniversitySort>{
     @Autowired
     private IUniversitySortDAO universitySortDAO;

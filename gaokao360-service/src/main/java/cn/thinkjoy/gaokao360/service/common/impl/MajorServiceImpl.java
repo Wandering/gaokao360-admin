@@ -12,10 +12,12 @@ import cn.thinkjoy.gaokao360.domain.Major;
 import cn.thinkjoy.gaokao360.service.common.IMajorService;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 
 @Service("MajorServiceImpl")
+@Scope("prototype")
 public class MajorServiceImpl extends AbstractPageService<IBaseDAO<Major>, Major> implements IMajorService<IBaseDAO<Major>,Major>{
     @Autowired
     private IMajorDAO majorDAO;

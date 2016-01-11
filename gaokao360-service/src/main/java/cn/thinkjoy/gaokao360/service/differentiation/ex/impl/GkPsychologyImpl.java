@@ -12,10 +12,12 @@ import cn.thinkjoy.gaokao360.dao.ex.IGkPsychologyDAO;
 import cn.thinkjoy.gaokao360.dto.VideoCourseDTO;
 import cn.thinkjoy.gaokao360.service.differentiation.ex.IGkPsychologyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 
 @Service("GkPsychologyImpl")
+@Scope("prototype")
 public class GkPsychologyImpl extends AbstractPageService<IBaseDAO<VideoCourseDTO>, VideoCourseDTO> implements IGkPsychologyService<IBaseDAO<VideoCourseDTO>,VideoCourseDTO> {
     @Autowired
     private IGkPsychologyDAO gkPsychologyDAO;
