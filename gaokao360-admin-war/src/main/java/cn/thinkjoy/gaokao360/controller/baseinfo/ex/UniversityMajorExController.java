@@ -16,6 +16,7 @@ import cn.thinkjoy.gaokao360.service.common.IUniversityService;
 import cn.thinkjoy.gaokao360.service.common.ex.IUniversityMajorExService;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,6 +30,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@Scope("prototype")
 @RequestMapping(value="/admin/gaokao360/ex")
 public class UniversityMajorExController extends BaseController<IUniversityMajorExService>{
 

@@ -12,10 +12,12 @@ import cn.thinkjoy.gaokao360.domain.MajorRank;
 import cn.thinkjoy.gaokao360.service.common.IMajorRankService;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 
 @Service("MajorRankServiceImpl")
+@Scope("prototype")
 public class MajorRankServiceImpl extends AbstractPageService<IBaseDAO<MajorRank>, MajorRank> implements IMajorRankService<IBaseDAO<MajorRank>,MajorRank>{
     @Autowired
     private IMajorRankDAO majorRankDAO;

@@ -12,10 +12,12 @@ import cn.thinkjoy.gaokao360.dao.ex.IGkheadlineDAO;
 import cn.thinkjoy.gaokao360.dto.GkinformationGkhotDTO;
 import cn.thinkjoy.gaokao360.service.differentiation.ex.IGkheadlineService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 
 @Service("GkheadlineServiceImpl")
+@Scope("prototype")
 public class GkheadlineServiceImpl extends AbstractPageService<IBaseDAO<GkinformationGkhotDTO>, GkinformationGkhotDTO> implements IGkheadlineService<IBaseDAO<GkinformationGkhotDTO>,GkinformationGkhotDTO> {
     @Autowired
     private IGkheadlineDAO gkheadlineDAO;

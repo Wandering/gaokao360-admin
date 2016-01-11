@@ -12,10 +12,12 @@ import cn.thinkjoy.gaokao360.domain.AreabatchLine;
 import cn.thinkjoy.gaokao360.service.common.IAreabatchLineService;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 
 @Service("AreabatchLineServiceImpl")
+@Scope("prototype")
 public class AreabatchLineServiceImpl extends AbstractPageService<IBaseDAO<AreabatchLine>, AreabatchLine> implements IAreabatchLineService<IBaseDAO<AreabatchLine>,AreabatchLine>{
     @Autowired
     private IAreabatchLineDAO areabatchLineDAO;

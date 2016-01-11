@@ -12,10 +12,12 @@ import cn.thinkjoy.gaokao360.dao.ex.IUniversityEnrollingExDAO;
 import cn.thinkjoy.gaokao360.dto.UniversityEnrollingDTO;
 import cn.thinkjoy.gaokao360.service.common.ex.IUniversityEnrollingExService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 
 @Service("UniversityEnrollingExServiceImpl")
+@Scope("prototype")
 public class UniversityEnrollingExServiceImpl extends AbstractPageService<IBaseDAO<UniversityEnrollingDTO>, UniversityEnrollingDTO> implements IUniversityEnrollingExService<IBaseDAO<UniversityEnrollingDTO>,UniversityEnrollingDTO> {
     @Autowired
     private IUniversityEnrollingExDAO universityEnrollingExDAO;

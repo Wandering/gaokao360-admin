@@ -12,10 +12,12 @@ import cn.thinkjoy.gaokao360.domain.Province;
 import cn.thinkjoy.gaokao360.service.common.IProvinceService;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 
 @Service("ProvinceServiceImpl")
+@Scope("prototype")
 public class ProvinceServiceImpl extends AbstractPageService<IBaseDAO<Province>, Province> implements IProvinceService<IBaseDAO<Province>,Province>{
     @Autowired
     private IProvinceDAO provinceDAO;

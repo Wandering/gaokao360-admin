@@ -12,10 +12,12 @@ import cn.thinkjoy.gaokao360.domain.UniversityDict;
 import cn.thinkjoy.gaokao360.service.common.IUniversityDictService;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 
 @Service("UniversityDictServiceImpl")
+@Scope("prototype")
 public class UniversityDictServiceImpl extends AbstractPageService<IBaseDAO<UniversityDict>, UniversityDict> implements IUniversityDictService<IBaseDAO<UniversityDict>,UniversityDict>{
     @Autowired
     private IUniversityDictDAO universityDictDAO;

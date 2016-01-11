@@ -12,10 +12,12 @@ import cn.thinkjoy.gaokao360.domain.Subject;
 import cn.thinkjoy.gaokao360.service.common.ISubjectService;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 
 @Service("SubjectServiceImpl")
+@Scope("prototype")
 public class SubjectServiceImpl extends AbstractPageService<IBaseDAO<Subject>, Subject> implements ISubjectService<IBaseDAO<Subject>,Subject>{
     @Autowired
     private ISubjectDAO subjectDAO;

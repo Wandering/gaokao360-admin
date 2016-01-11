@@ -12,10 +12,12 @@ import cn.thinkjoy.gaokao360.domain.MajorEmployment;
 import cn.thinkjoy.gaokao360.service.common.IMajorEmploymentService;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 
 @Service("MajorEmploymentServiceImpl")
+@Scope("prototype")
 public class MajorEmploymentServiceImpl extends AbstractPageService<IBaseDAO<MajorEmployment>, MajorEmployment> implements IMajorEmploymentService<IBaseDAO<MajorEmployment>,MajorEmployment>{
     @Autowired
     private IMajorEmploymentDAO majorEmploymentDAO;

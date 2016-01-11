@@ -14,6 +14,7 @@ import cn.thinkjoy.gaokao360.service.common.IProfessionDetailService;
 import cn.thinkjoy.gaokao360.service.common.IProfessionService;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,6 +30,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@Scope("prototype")
 @RequestMapping(value = "/admin/zgk")
 public class ProfessionController extends BaseController<IProfessionService> {
 

@@ -15,6 +15,7 @@ import cn.thinkjoy.gaokao360.service.differentiation.IAdmissionBatchService;
 import cn.thinkjoy.gaokao360.service.differentiation.IExaminationPaperService;
 import cn.thinkjoy.common.domain.view.BizData4Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,6 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 @Controller
+@Scope("prototype")
 @RequestMapping(value="/admin/gaokao360")
 public class ExaminationPaperController extends BaseController<IExaminationPaperService> {
 

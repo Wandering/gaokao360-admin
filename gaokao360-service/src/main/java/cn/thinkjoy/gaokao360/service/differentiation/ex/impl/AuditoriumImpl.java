@@ -12,10 +12,12 @@ import cn.thinkjoy.gaokao360.dao.ex.IAuditoriumDAO;
 import cn.thinkjoy.gaokao360.dto.VideoCourseDTO;
 import cn.thinkjoy.gaokao360.service.common.ex.IAuditoriumService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 
 @Service("AuditoriumImpl")
+@Scope("prototype")
 public class AuditoriumImpl extends AbstractPageService<IBaseDAO<VideoCourseDTO>, VideoCourseDTO> implements IAuditoriumService<IBaseDAO<VideoCourseDTO>,VideoCourseDTO> {
     @Autowired
     private IAuditoriumDAO auditoriumDAO;
