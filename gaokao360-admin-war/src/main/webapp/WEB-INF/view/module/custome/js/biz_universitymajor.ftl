@@ -60,6 +60,21 @@
         // 开设院校
         var universityNameListData = CommonFn.getUniversityNameList();
 
+        // 学历层次
+        var edulevelData = CommonFn.getEdulevel();
+//        console.log(edulevelData)
+
+        // 学位
+        var degreeData = CommonFn.getDegree();
+//        console.log(degreeData)
+
+        // 科类
+        var subjectTypeData = CommonFn.getSubjectType();
+        console.log(subjectTypeData)
+        // 专业类型
+        var majoredTypeData = CommonFn.getMajoredType();
+        console.log(majoredTypeData)
+
 
 //        添加院校专业信息
         UI.$addBtn.on(ace.click_event, function () {
@@ -80,7 +95,6 @@
                     }
                 }
             });
-            selOptions();
         });
 //        修改院校专业信息
         UI.$editBtn.on(ace.click_event, function () {
@@ -107,7 +121,6 @@
                     }
                 }
             });
-            selOptions();
             // 获取当前行数据
             var rowData = CommonFn.getRowData(rowId);
             console.log(rowData);
@@ -202,86 +215,33 @@
                 + '<div class="form-group">'
                 + '<label class="col-sm-2 control-label no-padding-right" for=""> 专业类型：</label>'
                 + '<div class="col-sm-5">'
-                + '<select name="" id="MAJOR_TYPE"  class="col-sm-10">  </select>'
+                + '<select name="" id="MAJOR_TYPE"  class="col-sm-10">'+ majoredTypeData +'</select>'
                 + '</div>'
                 + '</div>'
                 + '<div class="form-group">'
                 + '<label class="col-sm-2 control-label no-padding-right" for=""> 科类：</label>'
                 + '<div class="col-sm-5">'
-                + '<select name="" id="UNIVERSITY_MAJOR_TYPE"  class="col-sm-10"></select>'
+                + '<select name="" id="UNIVERSITY_MAJOR_TYPE"  class="col-sm-10">'+ subjectTypeData +'</select>'
                 + '</div>'
                 + '</div>'
 
                 + '<div class="form-group">'
                 + '<label class="col-sm-2 control-label no-padding-right" for=""> 学历层次：</label>'
                 + '<div class="col-sm-5">'
-                + '<select name="" id="eduLevel"  class="col-sm-10"></select>'
+                + '<select name="" id="eduLevel"  class="col-sm-10"> '+ edulevelData +' </select>'
                 + '</div>'
                 + '</div>'
 
                 + '<div class="form-group">'
                 + '<label class="col-sm-2 control-label no-padding-right" for=""> 学位：</label>'
                 + '<div class="col-sm-5">'
-                + '<select name="" id="GAIN_DEGREE"  class="col-sm-10"></select>'
+                + '<select name="" id="GAIN_DEGREE"  class="col-sm-10">'+ degreeData +'</select>'
                 + '</div>'
                 + '</div>'
 
                 + '</form>'
                 + '</div>'
                 + '</div>';
-
-        function selOptions() {
-            //        专业名称
-//            CommonFn.getData('/admin/gaokao360/ex/getMajoredNameList', 'get', {}, function (res) {
-//                var list = res.bizData;
-//                var options = ['<option value="00">请选择专业名称</option>'];
-//                $.each(list, function (i, v) {
-//                    options.push('<option value="' + v.id + '">' + v.majorName + '</option>');
-//                });
-//                $('#MajoredNameList').html(options);
-//            });
-
-//        开设院校名称
-//            CommonFn.getData('/admin/gaokao360/ex/getUniversityNameList', 'get', {}, function (res) {
-//                var list = res.bizData;
-//                var options = ['<option value="00">请选择开设院校名称</option>'];
-//                $.each(list, function (i, v) {
-//                    options.push('<option value="' + v.id + '">' + v.name + '</option>');
-//                });
-//                $('#UniversityNameList').html(options);
-//            });
-//        专业类型
-            CommonFn.getData('/admin/gaokao360/ex/getDataDictList?type=MAJOR_TYPE', 'get', {}, function (res) {
-                var list = res.bizData;
-                var options = ['<option value="00">请选择专业类型</option>'];
-                $.each(list, function (i, v) {
-                    options.push('<option value="' + v.dictId + '">' + v.name + '</option>');
-                });
-                $('#MAJOR_TYPE').html(options);
-            });
-//        科类
-            CommonFn.getData('/admin/gaokao360/ex/getDataDictList?type=UNIVERSITY_MAJOR_TYPE', 'get', {}, function (res) {
-                var list = res.bizData;
-                var options = ['<option value="00">请选择科类</option>'];
-                $.each(list, function (i, v) {
-                    options.push('<option value="' + v.dictId + '">' + v.name + '</option>');
-                });
-                $('#UNIVERSITY_MAJOR_TYPE').html(options);
-            });
-//        学位
-            CommonFn.getData('/admin/gaokao360/ex/getDataDictList?type=GAIN_DEGREE', 'get', {}, function (res) {
-                var list = res.bizData;
-                var options = ['<option value="00">请选择学位</option>'];
-                $.each(list, function (i, v) {
-                    options.push('<option value="' + v.dictId + '">' + v.name + '</option>');
-                });
-                $('#GAIN_DEGREE').html(options);
-            });
-//        学历层次
-            $('#eduLevel').html(CommonFn.getEduLevel());
-        }
-
-
     });//$ end
 
 

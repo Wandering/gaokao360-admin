@@ -35,8 +35,8 @@
             <div class="modal-content">
                 <div class="widget-header">
                     <h5 class="widget-title">添加院校基本信息</h5>
-                    <#--<button type="button" class="close" data-dismiss="modal"><span-->
-                            <#--aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>-->
+                <#--<button type="button" class="close" data-dismiss="modal"><span-->
+                <#--aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>-->
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal" id="submitForm">
@@ -47,12 +47,32 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="schoolPic" class="col-sm-1 control-label">院校图片</label>
+                            <label class="col-sm-1 control-label no-padding-right" for="expertsIntro">院校图片</label>
                             <div class="col-sm-11">
-                                <img id="schoolPic" class="editable img-responsive editable-click editable-empty"
-                                     alt="Alex's Avatar" src="${path}/assets/avatars/profile-pic.jpg"></img>
+
+                                <div id="uploader1" class="wu-example">
+                                    <div class="uploader-tips">(只能上传一个图片,可拖拽文件,大小小于3M)</div>
+                                    <div class="queueList">
+                                        <div id="dndArea" class="placeholder">
+                                            <div id="uploaderBtn1">点击上传</div>
+                                        </div>
+                                    </div>
+                                    <div class="statusBar" style="display:none;">
+                                        <div class="progress">
+                                            <span class="text">0%</span>
+                                            <span class="percentage"></span>
+                                        </div>
+                                        <div class="info"></div>
+                                        <div class="btns">
+                                            <div class="uploadBtn1">上传封面</div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <input type="hidden" value="" id="imgUrlData">
+
+
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">

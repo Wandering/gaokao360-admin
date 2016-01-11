@@ -116,9 +116,9 @@
                 return false;
             }
             var data = {
-                oper: typeStr
-                , professionType: $('#professionType').val()
-                , content: $('#content').val()
+                oper: typeStr,
+                professionType: $('#professionType').val(),
+                content: $('#content').val()
             };
             if(typeStr=='edit'){
                 data.id=rowId;
@@ -128,11 +128,6 @@
                     searchLoad();
                 }
             })
-
-
-
-
-
         }
 
 //        dialog弹框
