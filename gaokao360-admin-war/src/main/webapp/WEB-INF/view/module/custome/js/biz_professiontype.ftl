@@ -1,31 +1,14 @@
 <script>
     <!-- 自定义js请写在这个文件  以下这个查询方法只是个例子，请按照业务需求修改 -->
     function buildRules() {
-        var courseName = $('#courseName').val();
-        var status = $('#status').val();
-        var classfyId = $('#classfyId').val();
+        var professionType = $('#title').val();
+        console.log(professionType)
         var rules = [];
-        if (courseName != '' && courseName != null && courseName != undefined) {
+        if (professionType != '' && professionType != null && professionType != undefined) {
             var rule = {
-                'field': 'courseName',
-                'op': 'eq',
-                'data': courseName
-            }
-            rules.push(rule);
-        }
-        if (status != '' && status != null && status != undefined) {
-            var rule = {
-                'field': 'status',
-                'op': 'eq',
-                'data': status
-            }
-            rules.push(rule);
-        }
-        if (classfyId != '' && classfyId != null && classfyId != undefined) {
-            var rule = {
-                'field': 'classfyId',
-                'op': 'eq',
-                'data': classfyId
+                'field': 'professionType',
+                'op': 'lk',
+                'data': professionType
             }
             rules.push(rule);
         }
@@ -137,6 +120,9 @@
                 professionType: $('#professionType').val(),
                 content: $('#content').val()
             };
+            if(typeStr=='edit'){
+                data.id=rowId;
+            }
             CommonFn.getData('/admin/gaokao360/ex/commonsave/${mainObj}', 'post', data, function (res) {
                 if (res.rtnCode == '0000000') {
                     searchLoad();

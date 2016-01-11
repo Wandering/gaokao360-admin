@@ -5,7 +5,8 @@ package cn.thinkjoy.gaokao360.common;
  */
 public enum  ERRORCODE {
 
-    PARAM_NOTEXIST("0100001", "查询参数不存在");
+    PARAM_NOTEXIST("0100001", "查询参数不存在"),
+    IDISNOTNULL("0100002", "id不能为空");
     /** The code. */
     private final String code;
 

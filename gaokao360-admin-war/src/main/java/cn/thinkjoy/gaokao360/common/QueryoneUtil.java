@@ -38,11 +38,14 @@ public class QueryoneUtil extends BaseCommonUtil{
     private IMajoredCategoryExService majoredCategoryExService;
     @Autowired
     private IMajoredExService majoredExService;
+    @Autowired
+    private IAdmissionBatchExService admissionBatchExService;
+    @Autowired
+    private IUniversityEnrollingExService universityEnrollingExService;
 
     private String mainObj;
 
-    @Autowired
-    private IAdmissionBatchExService admissionBatchExService;
+
 
     public QueryoneUtil(){
     }
@@ -119,5 +122,8 @@ public class QueryoneUtil extends BaseCommonUtil{
         }
         professionTypeDTO.setChilds(list);
         return professionTypeDTO;
+    }
+    public Object universityenrolling(Object id){
+        return universityEnrollingExService.fetch(id);
     }
 }
