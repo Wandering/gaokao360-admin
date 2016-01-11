@@ -57,6 +57,10 @@ public class ProfessionTypeExServiceImpl extends AbstractPageService<IBaseDAO<Pr
     public List queryListByParentId(Object id) {
         return professionTypeExDAO.queryListByParentId(id);
     }
+    @Override
+    public Integer getOccupy(Object id) {
+        return professionTypeExDAO.getOccupy(id);
+    }
 
 //    @Override
 //    public void insert(BaseDomain entity) {

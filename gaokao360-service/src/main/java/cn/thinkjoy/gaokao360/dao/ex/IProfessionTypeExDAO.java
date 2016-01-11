@@ -16,4 +16,5 @@ import java.util.List;
 public interface IProfessionTypeExDAO extends IBaseDAO<ProfessionTypeDTO> {
 
     public List queryListByParentId(Object id);
+    public Integer getOccupy(Object id);
 }
