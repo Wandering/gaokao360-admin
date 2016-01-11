@@ -69,7 +69,7 @@ var CommonFn = {
             }
         });
         $.ajaxSettings.async = true;
-        return contentArr;
+        return contentArr.join('');
     },
     //获取学科分类
     getMajored: function () {
