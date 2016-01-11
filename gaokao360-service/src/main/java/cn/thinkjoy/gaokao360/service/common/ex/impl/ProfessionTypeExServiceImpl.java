@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
-
+@Service("professionTypeExService")
 @Scope("prototype")
 public class ProfessionTypeExServiceImpl extends AbstractPageService<IBaseDAO<ProfessionTypeDTO>, ProfessionTypeDTO> implements IProfessionTypeExService<IBaseDAO<ProfessionTypeDTO>,ProfessionTypeDTO> {
     @Autowired
