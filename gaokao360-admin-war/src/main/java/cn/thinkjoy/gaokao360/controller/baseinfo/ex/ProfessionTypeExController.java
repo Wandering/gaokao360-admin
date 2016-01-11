@@ -12,6 +12,7 @@ import cn.thinkjoy.gaokao360.controller.BaseController;
 import cn.thinkjoy.gaokao360.service.common.IProfessionTypeService;
 import cn.thinkjoy.gaokao360.service.common.ex.IProfessionTypeExService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
+@Scope("prototype")
 @RequestMapping(value="/admin/zgk/ex")
 public class ProfessionTypeExController extends BaseController<IProfessionTypeExService> {
 

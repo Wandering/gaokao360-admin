@@ -10,6 +10,7 @@ package cn.thinkjoy.gaokao360.controller.baseinfo;
 import cn.thinkjoy.gaokao360.service.common.IDataDictService;
 import cn.thinkjoy.common.domain.view.BizData4Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,6 +25,7 @@ import java.util.Map;
 import cn.thinkjoy.common.managerui.controller.AbstractAdminController;
 
 @Controller
+@Scope("prototype")
 @RequestMapping(value="/admin/gaokao360")
 public class DataDictController extends AbstractAdminController<IDataDictService>{
 
