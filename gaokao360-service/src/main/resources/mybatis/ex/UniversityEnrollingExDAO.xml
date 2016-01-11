@@ -140,7 +140,19 @@ selectList
 
        </where>
     </select>
-
+    <select id="fetch" parameterType="java.lang.Long" resultType="UniversityEnrolling">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM
+        zgk_university_enrolling enrolling
+        LEFT OUTER JOIN zgk_university university ON university.id=enrolling.university_id
+        LEFT JOIN zgk_province province ON province.id=enrolling.areaid
+        LEFT JOIN zgk_data_dict batchdict ON batchdict.dictId=enrolling.batch AND batchdict.type='MAJOR_BATCH'
+        LEFT JOIN zgk_data_dict typedict ON typedict.dictId=enrolling.batch AND typedict.type='UNIVERSITY_MAJOR_TYPE'
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND enrolling.id = #{id}
+        </trim>
+    </select>
     <update id="updateMap">
         UPDATE zgk_university_enrolling
         <trim prefix="SET" suffixOverrides=",">

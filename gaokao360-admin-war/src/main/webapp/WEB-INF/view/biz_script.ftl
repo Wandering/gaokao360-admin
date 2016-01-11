@@ -660,7 +660,7 @@
 
     function showImage(cellvalue, options, cell) {
         if (cellvalue) {
-            var strHtml = '<img src="' + cellvalue + '" style="width: 100px">'
+            var strHtml = '<a href="'+ cellvalue +'" target="_blank"><img src="' + cellvalue + '" style="width: 100px"></a>'
             return strHtml;
         }
         return ""

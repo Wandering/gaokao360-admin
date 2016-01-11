@@ -54,11 +54,6 @@ public class AddUtil extends BaseCommonUtil{
      * 下面是各个模块的添加方法，请使用mainObj来命名 例如areabatchline，会自动调用，否则会抛异常走默认接口
      */
 
-    public void areabatchline(){
-        Map<String,Object> map= new HashMap<>();
-        map.put("areaId",getDataMap().get("areaId"));
-        getServiceMaps().get("areabatchline").deleteByCondition(map);
-    }
     public void admissionbatch(){
         admissionBatchExService.insertMap(getDataMap());
     }
