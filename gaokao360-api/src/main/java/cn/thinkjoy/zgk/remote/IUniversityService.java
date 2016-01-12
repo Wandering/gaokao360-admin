@@ -17,4 +17,6 @@ public interface IUniversityService {
     List getProvinceName();
 
     List getDataDictListByType(String type);
+
+    List queryPage(String serviceName,Map<String,Object> condition,int offset, int rows,String orderBy, String sqlOrderEnumStr,Map<String,Object> selectorpage);
 }
