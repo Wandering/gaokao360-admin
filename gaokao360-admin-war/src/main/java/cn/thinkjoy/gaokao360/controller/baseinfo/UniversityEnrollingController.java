@@ -69,7 +69,7 @@ public class UniversityEnrollingController extends BaseController<IUniversityEnr
 
     @Override
     protected String getViewTitle() {
-        return "学院招生信息";
+        return "院校招生信息";
     }
 
     @Override

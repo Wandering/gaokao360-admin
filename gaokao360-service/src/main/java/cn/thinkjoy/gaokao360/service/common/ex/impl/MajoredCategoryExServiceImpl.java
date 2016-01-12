@@ -95,7 +95,7 @@ public class MajoredCategoryExServiceImpl extends AbstractPageService<IBaseDAO<M
     public void updateCategory(Map<String,Object> dataMap){
         dataMap.put("parentId","1");
         majoredCategoryDAO.updateMap(dataMap);
-        Long l=(Long)dataMap.get("id");
+        Long l=Long.parseLong((String)dataMap.get("id"));
         Map<String,Object> map = new HashMap<>();
         String majoredStr=(String)dataMap.get("majoredList");
         String[] majoredList=majoredStr.split("、");
@@ -115,7 +115,7 @@ public class MajoredCategoryExServiceImpl extends AbstractPageService<IBaseDAO<M
     }
 
     public void deleteCategory(Map<String,Object> dataMap){
-        Long l=(Long)dataMap.get("id");
+        Long l=Long.parseLong((String)dataMap.get("id"));
         majoredCategoryDAO.deleteById(l);
         Map<String,Object> map = new HashMap<>();
         map.put("parentId",l);

@@ -7,7 +7,10 @@ public enum  ERRORCODE {
 
     PARAM_NOTEXIST("0100001", "查询参数不存在"),
     IDISNOTNULL("0100002", "id不能为空"),
-    RESOURCEOCCUPY("0100003", "资源被占用");
+    RESOURCEOCCUPY("0100003", "资源被占用"),
+    UPDATEEXCEPTION("0100005", "修改异常"),
+    DELETEEXCEPTION("0100006", "删除异常"),
+    ADDEXCEPTION("0100004", "添加异常");
     /** The code. */
     private final String code;
 

@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 /**
@@ -45,11 +46,11 @@ public class UpdateUtil extends BaseCommonUtil{
     public UpdateUtil(){
     }
 
-    public void innerHandleUpdate(String mainObj, Map dataMap) throws Exception {
+    public void innerHandleUpdate(String mainObj, Map dataMap) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         this.setDataMap(dataMap);
         runMethod(mainObj);
     }
-    public void runMethod(String mainObj) throws Exception {
+    public void runMethod(String mainObj) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         this.getClass().getMethod(mainObj).invoke(this);
     }
     /**

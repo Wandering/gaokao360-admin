@@ -37,7 +37,17 @@ public class Vocabulary extends CreateBaseDomain<Long>{
     /** 区域Id */
     private Long areaId;
 
-	public Vocabulary(){
+    private String areaName;
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
+    }
+
+    public Vocabulary(){
 	}
     public void setCategoryId(Long value) {
         this.categoryId = value;
@@ -112,6 +122,7 @@ public class Vocabulary extends CreateBaseDomain<Long>{
 			.append("LastModDate",getLastModDate())
 			.append("Hits",getHits())
 			.append("AreaId",getAreaId())
+			.append("AreaName",getAreaName())
 			.toString();
 	}
 	
