@@ -109,9 +109,8 @@ selectList
                 OR university.name like #{queryparam.data}
                 OR university.subjection like #{queryparam.data}
                 OR province.name like #{queryparam.data}
-                OR leveldict.name like #{queryparam.data}
-                OR university.rank like #{queryparam.data}
                 OR typedict.name like #{queryparam.data}
+                OR leveldict.name like #{queryparam.data})
                 )
             </if>
 
