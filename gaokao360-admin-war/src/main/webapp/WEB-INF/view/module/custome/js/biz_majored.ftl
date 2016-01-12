@@ -1,10 +1,10 @@
 <script>
     <!-- 自定义js请写在这个文件  以下这个查询方法只是个例子，请按照业务需求修改 -->
     function buildRules() {
-        var subjectType = $('#selMajored').find("option:selected").html();
+        var subjectType = $('#selMajored').find("option:selected").val();
         var queryparam = $('#majoredKeyWord').val();
         var rules = [];
-        if (subjectType != '' && subjectType != null && subjectType != undefined && subjectType != '00' && subjectType != '请选择学科门类') {
+        if (subjectType != '00' && subjectType != null && subjectType != undefined && subjectType != '00' && subjectType != '请选择学科门类') {
             var rule = {
                 'field': 'subjectType',
                 'op': 'eq',

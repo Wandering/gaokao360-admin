@@ -74,15 +74,17 @@ selectList
                 and id in (#{condition.whereSql})
             </if>
             <if test="condition.subjectType!=null">
-                ${condition.groupOp}   category.name  ${condition.subjectType.op}  #{condition.subjectType.data}
+                ${condition.groupOp}   major.major_category  ${condition.subjectType.op}  #{condition.subjectType.data}
             </if>
             <if test="condition.queryparam!=null">
                 ${condition.groupOp}
-                (code like #{condition.queryparam.data}
-                OR name like #{condition.queryparam.data}
-                OR name like #{condition.queryparam.data}
-                OR salaryRank like #{condition.queryparam.data}
-                OR employedRank like #{condition.queryparam.data}
+                ( detail.major_code like #{condition.queryparam.data}
+                OR  major.major_name like #{condition.queryparam.data}
+                OR major.salary_rank like #{condition.queryparam.data}
+                OR major.employment_rank like #{condition.queryparam.data}
+                OR category.name like #{condition.queryparam.data}
+                OR genre.name like #{condition.queryparam.data}
+                OR type.name like #{condition.queryparam.data}
                 OR majoredType like #{condition.queryparam.data})
             </if>
 
@@ -102,17 +104,18 @@ selectList
         <where>
 1=1
             <if test="subjectType!=null">
-                ${groupOp}   category.name  ${subjectType.op}  #{subjectType.data}
+                ${groupOp}   major.major_category  ${subjectType.op}  #{subjectType.data}
             </if>
             <if test="queryparam!=null">
                 ${groupOp}
-                (code like #{queryparam.data}
-                OR name like #{queryparam.data}
-                OR name like #{queryparam.data}
-                OR salaryRank like #{queryparam.data}
-                OR employedRank like #{queryparam.data}
-                OR majoredType like #{queryparam.data}
-                OR subjectType like #{queryparam.data})
+                ( detail.major_code like #{queryparam.data}
+                OR  major.major_name like #{queryparam.data}
+                OR major.salary_rank like #{queryparam.data}
+                OR major.employment_rank like #{queryparam.data}
+                OR category.name like #{queryparam.data}
+                OR genre.name like #{queryparam.data}
+                OR type.name like #{queryparam.data}
+                OR majoredType like #{queryparam.data})
             </if>
 
         </where>

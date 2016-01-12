@@ -26,7 +26,7 @@ selectList
 
     <sql id="Base_Column_List">
            enrolling.id as id,
-           university.areaid as areaid,
+           enrolling.areaid as areaid,
            province.name as province,
            university.name as name,
            enrolling.year as year,
@@ -43,7 +43,7 @@ selectList
            enrolling.average_score         as averageScore,
            enrolling.average_precedence   as averagePrecedence,
            batchdict.name   as batchname,
-           typedict.name   as typename,
+           typedict.name   as universityMajorTypeName,
            enrolling.lastModDate as lastModDate
 
     </sql>
