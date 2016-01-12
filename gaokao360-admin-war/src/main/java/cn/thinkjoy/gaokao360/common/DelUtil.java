@@ -1,14 +1,17 @@
 package cn.thinkjoy.gaokao360.common;
 
+import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.gaokao360.service.differentiation.IAdmissionBatchService;
 import cn.thinkjoy.gaokao360.service.common.ISubjectService;
 import cn.thinkjoy.gaokao360.service.differentiation.ex.IAdmissionBatchExService;
 import cn.thinkjoy.gaokao360.service.differentiation.ex.IVideoSectionExService;
 import cn.thinkjoy.gaokao360.service.common.ex.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,6 +20,7 @@ import java.util.Map;
  */
 @Transactional
 @Component
+@Scope("prototype")
 public class DelUtil extends BaseCommonUtil{
 
     @Autowired
@@ -31,6 +35,8 @@ public class DelUtil extends BaseCommonUtil{
     private IMajoredCategoryExService majoredCategoryExService;
     @Autowired
     private IMajoredExService majoredExService;
+    @Autowired
+    private IProfessionTypeExService professionTypeExService;
 
 
     @Autowired
@@ -38,7 +44,7 @@ public class DelUtil extends BaseCommonUtil{
 
     public DelUtil(){
     }
-    public void innerHandleDel(String mainObj, Map dataMap) throws Exception {
+    public void innerHandleDel(String mainObj, Map dataMap) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         this.setDataMap(dataMap);
         runMethod(mainObj);
     }
@@ -74,12 +80,16 @@ public class DelUtil extends BaseCommonUtil{
     }
 
     public void professiontype(){
+        Integer count = professionTypeExService.getOccupy(dataMap.get("id"));
+        if(count!=0){
+            throw new BizException(ERRORCODE.RESOURCEOCCUPY.getCode(),ERRORCODE.RESOURCEOCCUPY.getMessage());
+        }
         getServiceMaps().get("professiontype").delete(dataMap.get("id"));
         Map<String,Object> map = new HashMap<>();
         map.put("pid",dataMap.get("id"));
         getServiceMaps().get("professiontype").deleteByCondition(map);
     }
-    public void runMethod(String mainObj) throws Exception {
+    public void runMethod(String mainObj) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         this.getClass().getMethod(mainObj).invoke(this);
     }
 

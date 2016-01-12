@@ -11,9 +11,11 @@ import cn.thinkjoy.gaokao360.service.common.ex.*;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 /**
@@ -21,6 +23,7 @@ import java.util.*;
  */
 @Transactional
 @Component
+@Scope("prototype")
 public class AddUtil extends BaseCommonUtil{
 
     @Autowired
@@ -42,11 +45,12 @@ public class AddUtil extends BaseCommonUtil{
 
     public AddUtil(){
     }
-    public void innerHandleAdd(String mainObj, Map dataMap) throws Exception {
+    public void innerHandleAdd(String mainObj, Map dataMap) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         this.setDataMap(dataMap);
+
         runMethod(mainObj);
     }
-    public void runMethod(String mainObj) throws Exception {
+    public void runMethod(String mainObj) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         this.getClass().getMethod(mainObj).invoke(this);
     }
 

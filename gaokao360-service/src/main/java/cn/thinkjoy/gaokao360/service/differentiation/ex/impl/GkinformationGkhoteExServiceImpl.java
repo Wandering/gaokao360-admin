@@ -12,10 +12,12 @@ import cn.thinkjoy.gaokao360.dao.ex.IGkinformationGkhotExDAO;
 import cn.thinkjoy.gaokao360.dto.GkinformationGkhotDTO;
 import cn.thinkjoy.gaokao360.service.differentiation.ex.IGkinformationGkhotExService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 
 @Service("GkinformationGkhotExServiceImpl")
+@Scope("prototype")
 public class GkinformationGkhoteExServiceImpl extends AbstractPageService<IBaseDAO<GkinformationGkhotDTO>, GkinformationGkhotDTO> implements IGkinformationGkhotExService<IBaseDAO<GkinformationGkhotDTO>,GkinformationGkhotDTO> {
     @Autowired
     private IGkinformationGkhotExDAO gkinformationGkhotExDAO;

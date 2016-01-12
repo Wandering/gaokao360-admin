@@ -26,6 +26,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
@@ -42,6 +43,7 @@ import java.net.URL;
 import java.util.*;
 
 @Controller
+@Scope("prototype")
 @RequestMapping(value="/admin/gaokao360/ex")
 public class Gaokao360CommonExController extends AbstractCommonController {
     @Autowired
@@ -87,8 +89,13 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         }
         try {
             delUtil.innerHandleDel(mainObj, dataMap);
-        }catch (Exception e){
+        }catch(BizException e){
+            throw e;
+        }catch (NoSuchMethodException e){
             getServiceMaps().get(mainObj).delete(dataMap.get("id"));
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new BizException(ERRORCODE.DELETEEXCEPTION.getCode(),ERRORCODE.DELETEEXCEPTION.getMessage());
         }
 
     }
@@ -116,18 +123,26 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         }
         try {
             updateUtil.innerHandleUpdate(mainObj, dataMap);
-        } catch (Exception e) {
+        }catch (BizException e){
+            throw e;
+        } catch (NoSuchMethodException e) {
             super.innerHandleUpdate(mainObj,dataMap);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new BizException(ERRORCODE.UPDATEEXCEPTION.getCode(),ERRORCODE.UPDATEEXCEPTION.getMessage());
         }
     }
     @Override
     protected void innerHandleAdd(String mainObj, Map dataMap) {
-//        AddUtil.getInstance().universityenrolling();
         try {
             addUtil.innerHandleAdd(mainObj,dataMap);
-
-        }catch (Exception e){
+        } catch (BizException e){
+            throw e;
+        }catch (NoSuchMethodException e){
             super.innerHandleAdd(mainObj, dataMap);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new BizException(ERRORCODE.ADDEXCEPTION.getCode(),ERRORCODE.ADDEXCEPTION.getMessage());
         }
 
     }

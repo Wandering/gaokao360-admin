@@ -12,10 +12,12 @@ import cn.thinkjoy.gaokao360.dao.ex.IAdmissionBatchExDAO;
 import cn.thinkjoy.gaokao360.domain.AdmissionBatch;
 import cn.thinkjoy.gaokao360.service.differentiation.ex.IAdmissionBatchExService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 
 @Service("AdmissionBatchExServiceImpl")
+@Scope("prototype")
 public class AdmissionBatchExServiceImpl extends AbstractPageService<IBaseDAO<AdmissionBatch>, AdmissionBatch> implements IAdmissionBatchExService<IBaseDAO<AdmissionBatch>,AdmissionBatch>{
     @Autowired
     private IAdmissionBatchExDAO admissionBatchExDAO;

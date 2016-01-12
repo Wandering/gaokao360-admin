@@ -20,6 +20,26 @@ public class MajorDTO extends Major {
     /** 优秀学长 */
     private String outstandingMentor;
 
+    private String categoryName;
+
+    private String genreName;
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public String getGenreName() {
+        return genreName;
+    }
+
+    public void setGenreName(String genreName) {
+        this.genreName = genreName;
+    }
+
     public String getMajorCode() {
         return majorCode;
     }

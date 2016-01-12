@@ -99,28 +99,9 @@ selectList
            <if test="id!=null">
                ${groupOp} ${id.field} ${id.op}  #{id.data}
            </if>
-           <if test="professionType!=null">
-               ${groupOp} ${professionType.field} ${professionType.op}  #{professionType.data}
+           <if test="queryparam!=null">
+               AND   profession_type  LIKE  #{queryparam.data}
            </if>
-           <if test="pid!=null">
-               ${groupOp} ${pid.field} ${pid.op}  #{pid.data}
-           </if>
-           <if test="createDate!=null">
-               ${groupOp} ${createDate.field} ${createDate.op}  #{createDate.data}
-           </if>
-           <if test="creator!=null">
-               ${groupOp} ${creator.field} ${creator.op}  #{creator.data}
-           </if>
-           <if test="lastModDate!=null">
-               ${groupOp} ${lastModDate.field} ${lastModDate.op}  #{lastModDate.data}
-           </if>
-           <if test="lastModifier!=null">
-               ${groupOp} ${lastModifier.field} ${lastModifier.op}  #{lastModifier.data}
-           </if>
-           <if test="isDelete!=null">
-               ${groupOp} ${isDelete.field} ${isDelete.op}  #{isDelete.data}
-           </if>
-
        </where>
     </select>
 
@@ -195,6 +176,13 @@ selectList
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
         </if>
+    </select>
+    <select id="getOccupy" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT
+        COUNT(type.id)
+        FROM zgk_profession_type type
+        INNER JOIN zgk_profession profession ON profession.profession_type=type.id
+        WHERE type.id =#{id}
     </select>
 
 </mapper>

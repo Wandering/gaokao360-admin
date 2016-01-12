@@ -27,12 +27,11 @@ public class GkHotServiceImpl implements IGkHotService {
      * @return
      */
     @Override
-    public List<GkHot> getGkHotList(String areaId,String type,Integer num) {
+    public List<GkHot> getGkHotList(String type,Integer num) {
         if(num!=null){num=10;}
         List<GkinformationGkhot> gkinformationGkhots = null;
         Map<String,Object> map = new HashMap<>();
         map.put("groupOp","and");
-        QueryUtil.setMapOp(map,"areaId","=",areaId);
         QueryUtil.setMapOp(map,"type","=",type);
         gkinformationGkhots= gkinformationGkhotService.listByPage(map,0,num,"hotdate", SqlOrderEnum.DESC);
         return GkinformationGkhot2GkHot(gkinformationGkhots);

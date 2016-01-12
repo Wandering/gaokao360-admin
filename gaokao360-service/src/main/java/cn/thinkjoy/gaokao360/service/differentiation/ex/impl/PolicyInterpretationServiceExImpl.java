@@ -12,10 +12,12 @@ import cn.thinkjoy.gaokao360.dao.ex.IPolicyInterpretationExDAO;
 import cn.thinkjoy.gaokao360.dto.PolicyInterpretationDTO;
 import cn.thinkjoy.gaokao360.service.differentiation.ex.IPolicyInterpretationExService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 
 @Service("PolicyInterpretationExServiceImpl")
+@Scope("prototype")
 public class PolicyInterpretationServiceExImpl extends AbstractPageService<IBaseDAO<PolicyInterpretationDTO>, PolicyInterpretationDTO> implements IPolicyInterpretationExService<IBaseDAO<PolicyInterpretationDTO>,PolicyInterpretationDTO>{
     @Autowired
     private IPolicyInterpretationExDAO policyInterpretationExDAO;

@@ -13,6 +13,7 @@ import cn.thinkjoy.gaokao360.dto.UniversityMajorDTO;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
 import cn.thinkjoy.gaokao360.service.common.ex.IUniversityMajorExService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +21,7 @@ import java.util.Map;
 
 
 @Service("UniversityMajorExServiceImpl")
+@Scope("prototype")
 public class UniversityMajorExServiceImpl extends AbstractPageService<IBaseDAO<UniversityMajorDTO>, UniversityMajorDTO> implements IUniversityMajorExService<IBaseDAO<UniversityMajorDTO>,UniversityMajorDTO> {
     @Autowired
     private IUniversityMajorExDAO universityMajorExDAO;

@@ -12,10 +12,12 @@ import cn.thinkjoy.gaokao360.domain.ExaminationPaper;
 import cn.thinkjoy.gaokao360.service.differentiation.IExaminationPaperService;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 
 @Service("ExaminationPaperServiceImpl")
+@Scope("prototype")
 public class ExaminationPaperServiceImpl extends AbstractPageService<IBaseDAO<ExaminationPaper>, ExaminationPaper> implements IExaminationPaperService<IBaseDAO<ExaminationPaper>,ExaminationPaper>{
     @Autowired
     private IExaminationPaperDAO examinationPaperDAO;

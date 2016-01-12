@@ -1,31 +1,31 @@
 <script>
     <!-- 自定义js请写在这个文件  以下这个查询方法只是个例子，请按照业务需求修改 -->
     function buildRules() {
-        var courseName = $('#courseName').val();
-        var status = $('#status').val();
-        var classfyId = $('#classfyId').val();
+        var queryparam = $('#examKeyWord').val();
+        var selYears = $('#selYears').val();
+        var selProvince = $('#selProvince').val();
         var rules = [];
-        if (courseName != '' && courseName != null && courseName != undefined) {
+        if (queryparam != '' && queryparam != null && queryparam != undefined) {
             var rule = {
-                'field': 'courseName',
-                'op': 'eq',
-                'data': courseName
+                'field': 'queryparam',
+                'op': 'lk',
+                'data': queryparam
             };
             rules.push(rule);
         }
-        if (status != '' && status != null && status != undefined) {
+        if (selYears != '00' && selYears != null && selYears != undefined) {
             var rule = {
-                'field': 'status',
+                'field': 'enrolling.year',
                 'op': 'eq',
-                'data': status
+                'data': selYears
             };
             rules.push(rule);
         }
-        if (classfyId != '' && classfyId != null && classfyId != undefined) {
+        if (selProvince != '00' && selProvince != null && selProvince != undefined) {
             var rule = {
-                'field': 'classfyId',
+                'field': 'university.areaid',
                 'op': 'eq',
-                'data': classfyId
+                'data': selProvince
             };
             rules.push(rule);
         }
@@ -144,7 +144,6 @@
             var dataArr = [];
             var obj = {};
             for (var i = 0; i < dataJson.length; i++) {
-                console.log(dataJson[i].label)
                 obj = {
                     id: dataJson[i].id,
                     label: dataJson[i].label,
@@ -164,7 +163,6 @@
 
         function subjectTypeFn(n) {
             var subjectTypeList = $('#subjectType-main' + n).find('.subjectTypeList').html();
-            console.log(subjectTypeList)
             // 增加招生批次明细
             $('#subjectTypeBtn'+n).on('click', function (event) {
                 event.stopPropagation();
@@ -193,7 +191,7 @@
         $("#addBtn").on(ace.click_event, function (e) {
             typeStr = "add";
             bootbox.dialog({
-                title: "添加真题密卷",
+                title: "添加院校招生信息",
                 message: dialogHtml,
                 className: 'my-modal',
                 buttons: {
@@ -218,14 +216,13 @@
         $("#editBtn").on(ace.click_event, function () {
             typeStr = "edit";
             rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
-            console.log(rowId)
             var selTrN = $('tr.ui-state-highlight[role="row"]').length;
             if (selTrN != 1) {
                 CommonFn.tipsDialog('温馨提示', '请选中一行后修改');
                 return false;
             }
             bootbox.dialog({
-                title: "修改高考热点",
+                title: "修改院校招生信息",
                 message: dialogHtml,
                 className: 'my-modal',
                 buttons: {
@@ -245,7 +242,6 @@
             console.log(rowData)
             $('#selProvince2').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
             $('#selYears2').find('option[value="' + rowData[0].year + '"]').attr('selected', 'selected');
-            console.log(rowData[0].universityMajorType)
             if(rowData[0].universityMajorType=="1"){
                 $('#subjectType1').show();
                 $('#subjectType2').hide();
@@ -276,6 +272,7 @@
                 $('.averageScore').val(rowData[0].averageScore);
                 $('.averagePrecedence').val(rowData[0].averagePrecedence);
             }
+            catcompleteFn();
             subjectTypeFn(1);
             subjectTypeFn(2);
         });
@@ -287,18 +284,18 @@
             var selYearsV = $("#selYears2").find('option:selected').val();
             var autoSearchId = $('.ui-autocomplete-input').attr('dataId');
 
-            if (selProvinceV == "00") {
-                CommonFn.tipsDialog('温馨提示', '请选择省份');
-                return false;
-            }
-            if ( autoSearchId=="") {
-                CommonFn.tipsDialog('温馨提示', '请输入正确的院校名称');
-                return false;
-            }
-            if (selYearsV == '00') {
-                CommonFn.tipsDialog('温馨提示', '年份没有选择,请重新输入');
-                return false;
-            }
+//            if (selProvinceV == "00") {
+//                CommonFn.tipsDialog('温馨提示', '请选择省份');
+//                return false;
+//            }
+//            if ( autoSearchId=="") {
+//                CommonFn.tipsDialog('温馨提示', '请输入正确的院校名称');
+//                return false;
+//            }
+//            if (selYearsV == '00') {
+//                CommonFn.tipsDialog('温馨提示', '年份没有选择,请重新输入');
+//                return false;
+//            }
 
             for(var i=0;i<$('#subjectType-main1 .subjectType').length;i++){
                 var values = $('#subjectType-main1 .subjectType:eq('+ i +')').find('option:selected').val();
@@ -312,7 +309,7 @@
                 var averageScoreV = $.trim($parentDetail.find('.averageScore').val());
                 var averagePrecedenceV = $.trim($parentDetail.find('.averagePrecedence').val());
 
-                if(values=="00"  && $('#subjectType1:visible')==true){
+                if(values=="00" && $('#subjectType1').is(':visible')){
                     CommonFn.tipsDialog('温馨提示', '请选择文史类招生批次');
                     return false;
                 }
@@ -362,7 +359,7 @@
                 var averageScoreV = $.trim($parentDetail.find('.averageScore').val());
                 var averagePrecedenceV = $.trim($parentDetail.find('.averagePrecedence').val());
 
-                if(values=="00"  && $('#subjectType2:visible')==true){
+                if(values=="00"  && $('#subjectType2').is(':visible')){
                     CommonFn.tipsDialog('温馨提示', '请选择理工类招生批次');
                     return false;
                 }
@@ -413,6 +410,9 @@
                     var lowestPrecedenceV = $('.subjectTypeList:eq('+ i +')').find('.lowestPrecedence').val();
                     var averageScoreV = $('.subjectTypeList:eq('+ i +')').find('.averageScore').val();
                     var averagePrecedenceV = $('.subjectTypeList:eq('+ i +')').find('.averagePrecedence').val();
+                if(batchV!=="00"){
+
+
                     batchType = {
                         "universityMajorType":universityMajorTypeV,
                         "batch": batchV,
@@ -426,11 +426,11 @@
                         "averagePrecedence": averagePrecedenceV
                     };
                     batchData.push(batchType);
+                }
             };
 
             batchData = JSON.stringify(batchData)
 
-            console.log(batchData)
 
 
             var Datas = {
@@ -449,7 +449,6 @@
                 url: '/admin/${bizSys}/commonsave/${mainObj}',
                 data: Datas,
                 success: function (result) {
-                    console.log(result)
                     if (result.rtnCode == "0000000") {
                         searchLoad();
                     }

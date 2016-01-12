@@ -14,6 +14,7 @@ import cn.thinkjoy.gaokao360.domain.GkBaseDomain;
 import cn.thinkjoy.gaokao360.dto.MajorDTO;
 import cn.thinkjoy.gaokao360.service.common.ex.IMajoredExService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +22,7 @@ import java.util.Map;
 
 
 @Service("MajoredExServiceImpl")
+@Scope("prototype")
 public class MajoredExServiceImpl extends AbstractPageService<IBaseDAO<MajorDTO>, MajorDTO> implements IMajoredExService<IBaseDAO<MajorDTO>,MajorDTO> {
     @Autowired
     private IMajoredDAO majoredDAO;

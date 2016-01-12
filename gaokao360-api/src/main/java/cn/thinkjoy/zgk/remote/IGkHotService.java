@@ -5,6 +5,7 @@ import cn.thinkjoy.zgk.domain.GkHot;
 import java.util.List;
 
 /**
+ * 高考热点dubbo
  * Created by admin on 2016/1/4.
  */
 public interface IGkHotService {
@@ -13,7 +14,7 @@ public interface IGkHotService {
      * 获取热点摘要列表 四个
      * @return
      */
-    List<GkHot> getGkHotList(String areaId,String type,Integer num);
+    List<GkHot> getGkHotList(String type,Integer num);
 
     /**
      * 获取详情

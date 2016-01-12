@@ -433,20 +433,20 @@ selectList
                 ${condition.groupOp}   ${condition.id.field}  ${condition.id.op}  #{condition.id.data}
             </if>
             <if test="condition.professionName!=null">
-                AND zp.profession_name like CONCAT('%', #{condition.professionName}, '%')
+                AND zp.profession_name like CONCAT('%', #{condition.professionName.data}, '%')
             </if>
             <if test="condition.professionType!=null">
-                AND zp.profession_type=#{condition.professionType}
+                AND zp.profession_type=#{condition.professionType.data}
             </if>
             <if test="condition.professionSubType!=null">
-                AND zp.profession_sub_type=#{condition.professionSubType}
+                AND zp.profession_sub_type=#{condition.professionSubType.data}
             </if>
             <if test="condition.queryparam!=null">
-                and (zp.profession_name like CONCAT('%', #{condition.queryparam}, '%')
-                OR zpt.profession_type like CONCAT('%', #{condition.queryparam}, '%')
-                OR zptt.profession_type like CONCAT('%', #{condition.queryparam}, '%')
-                OR zp.salary_rank = #{condition.queryparam}
-                OR zp.hot_degree = #{condition.queryparam})
+                and (zp.profession_name like CONCAT('%', #{condition.queryparam.data}, '%')
+                OR zpt.profession_type like CONCAT('%', #{condition.queryparam.data}, '%')
+                OR zptt.profession_type like CONCAT('%', #{condition.queryparam.data}, '%')
+                OR zp.salary_rank = #{condition.queryparam.data}
+                OR zp.hot_degree = #{condition.queryparam.data})
             </if>
             <if test="condition.professionDescription!=null">
                 ${condition.groupOp}   ${condition.professionDescription.field}  ${condition.professionDescription.op}  #{condition.professionDescription.data}
@@ -854,10 +854,10 @@ selectList
                ${groupOp} ${id.field} ${id.op}  #{id.data}
            </if>
            <if test="professionType!=null">
-               ${groupOp} ${professionType.field} ${professionType.op}  #{professionType.data}
+               AND  profession_type = #{professionType.data}
            </if>
            <if test="professionSubType!=null">
-               ${groupOp} ${professionSubType.field} ${professionSubType.op}  #{professionSubType.data}
+               AND  profession_sub_type =  #{professionSubType.data}
            </if>
            <if test="professionName!=null">
                ${groupOp} ${professionName.field} ${professionName.op}  #{professionName.data}

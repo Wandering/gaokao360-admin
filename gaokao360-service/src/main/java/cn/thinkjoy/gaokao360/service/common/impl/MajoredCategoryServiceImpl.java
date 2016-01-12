@@ -12,10 +12,12 @@ import cn.thinkjoy.gaokao360.domain.MajoredCategory;
 import cn.thinkjoy.gaokao360.service.common.IMajoredCategoryService;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 
 @Service("MajoredCategoryServiceImpl")
+@Scope("prototype")
 public class MajoredCategoryServiceImpl extends AbstractPageService<IBaseDAO<MajoredCategory>, MajoredCategory> implements IMajoredCategoryService<IBaseDAO<MajoredCategory>,MajoredCategory>{
     @Autowired
     private IMajoredCategoryDAO majoredCategoryDAO;

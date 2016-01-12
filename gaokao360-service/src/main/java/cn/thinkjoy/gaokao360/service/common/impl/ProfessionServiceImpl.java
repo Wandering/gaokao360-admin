@@ -14,6 +14,7 @@ import cn.thinkjoy.gaokao360.dao.IProfessionDAO;
 import cn.thinkjoy.gaokao360.domain.Profession;
 import cn.thinkjoy.gaokao360.service.common.IProfessionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +22,7 @@ import java.util.Map;
 
 
 @Service("ProfessionServiceImpl")
+@Scope("prototype")
 public class ProfessionServiceImpl extends AbstractPageService<IBaseDAO<Profession>, Profession> implements IProfessionService<IBaseDAO<Profession>,Profession> {
     @Autowired
     private IProfessionDAO professionDAO;

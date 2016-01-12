@@ -12,10 +12,12 @@ import cn.thinkjoy.gaokao360.domain.MajoredScoreLine;
 import cn.thinkjoy.gaokao360.service.common.IMajoredScoreLineService;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 
 @Service("MajoredScoreLineServiceImpl")
+@Scope("prototype")
 public class MajoredScoreLineServiceImpl extends AbstractPageService<IBaseDAO<MajoredScoreLine>, MajoredScoreLine> implements IMajoredScoreLineService<IBaseDAO<MajoredScoreLine>,MajoredScoreLine>{
     @Autowired
     private IMajoredScoreLineDAO majoredScoreLineDAO;

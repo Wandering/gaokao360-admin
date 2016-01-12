@@ -12,10 +12,12 @@ import cn.thinkjoy.gaokao360.domain.DataDict;
 import cn.thinkjoy.gaokao360.service.common.IDataDictService;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 
 @Service("DataDictServiceImpl")
+@Scope("prototype")
 public class DataDictServiceImpl extends AbstractPageService<IBaseDAO<DataDict>, DataDict> implements IDataDictService<IBaseDAO<DataDict>,DataDict>{
     @Autowired
     private IDataDictDAO dataDictDAO;

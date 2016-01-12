@@ -15,4 +15,5 @@ import java.util.List;
 
 public interface IProfessionTypeExService<D extends IBaseDAO<T>, T extends BaseDomain> extends IBaseService<D, T>,IPageService<D, T>{
     public List queryListByParentId(Object id);
+    public Integer getOccupy(Object id);
 }

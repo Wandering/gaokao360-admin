@@ -12,10 +12,12 @@ import cn.thinkjoy.gaokao360.domain.Vocabulary;
 import cn.thinkjoy.gaokao360.service.common.IVocabularyService;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 
 @Service("VocabularyServiceImpl")
+@Scope("prototype")
 public class VocabularyServiceImpl extends AbstractPageService<IBaseDAO<Vocabulary>, Vocabulary> implements IVocabularyService<IBaseDAO<Vocabulary>,Vocabulary>{
     @Autowired
     private IVocabularyDAO vocabularyDAO;
