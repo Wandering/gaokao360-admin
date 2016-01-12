@@ -357,7 +357,7 @@
                 var averageScoreV = $.trim($parentDetail.find('.averageScore').val());
                 var averagePrecedenceV = $.trim($parentDetail.find('.averagePrecedence').val());
 
-                if(values=="00" && $('#subjectType1:visible')==true){
+                if(values=="00" && $('#subjectType1').is(':visible')){
                     CommonFn.tipsDialog('温馨提示', '请选择文史类招生批次');
                     return false;
                 }
@@ -407,7 +407,7 @@
                 var averageScoreV = $.trim($parentDetail.find('.averageScore').val());
                 var averagePrecedenceV = $.trim($parentDetail.find('.averagePrecedence').val());
 
-                if(values=="00" && $('#subjectType2:visible')==true){
+                if(values=="00" && $('#subjectType2').is(':visible')){
                     CommonFn.tipsDialog('温馨提示', '请选择理工类招生批次');
                     return false;
                 }
@@ -461,19 +461,22 @@
                 var lowestPrecedenceV = $('.subjectTypeList:eq('+ i +')').find('.lowestPrecedence').val();
                 var averageScoreV = $('.subjectTypeList:eq('+ i +')').find('.averageScore').val();
                 var averagePrecedenceV = $('.subjectTypeList:eq('+ i +')').find('.averagePrecedence').val();
-                batchType = {
-                    "universityMajorType":universityMajorTypeV,
-                    "batch": batchV,
-                    "planEnrollingNumber": planEnrollingNumberV,
-                    "realEnrollingNumber": realEnrollingNumberV,
-                    "highestScore": highestScoreV,
-                    "highestPrecedence": highestPrecedenceV,
-                    "lowestScore": lowestScoreV,
-                    "lowestPrecedence": lowestPrecedenceV,
-                    "averageScore": averageScoreV,
-                    "averagePrecedence": averagePrecedenceV
-                };
-                batchData.push(batchType);
+                if(batchV!=="00"){
+                    batchType = {
+                        "universityMajorType":universityMajorTypeV,
+                        "batch": batchV,
+                        "planEnrollingNumber": planEnrollingNumberV,
+                        "realEnrollingNumber": realEnrollingNumberV,
+                        "highestScore": highestScoreV,
+                        "highestPrecedence": highestPrecedenceV,
+                        "lowestScore": lowestScoreV,
+                        "lowestPrecedence": lowestPrecedenceV,
+                        "averageScore": averageScoreV,
+                        "averagePrecedence": averagePrecedenceV
+                    };
+                    batchData.push(batchType);
+                }
+
             };
 
             batchData = JSON.stringify(batchData)
