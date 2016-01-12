@@ -53,7 +53,17 @@ public class UniversityEnrolling extends CreateBaseDomain<Long>{
     /**  */
     private Boolean isDelete;
 
-	public UniversityEnrolling(){
+    private String universityMajorTypeName;
+
+    public String getUniversityMajorTypeName() {
+        return universityMajorTypeName;
+    }
+
+    public void setUniversityMajorTypeName(String universityMajorTypeName) {
+        this.universityMajorTypeName = universityMajorTypeName;
+    }
+
+    public UniversityEnrolling(){
 	}
     public void setAreaId(String value) {
         this.areaId = value;
