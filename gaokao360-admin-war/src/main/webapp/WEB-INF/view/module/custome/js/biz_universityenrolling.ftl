@@ -193,7 +193,7 @@
         $("#addBtn").on(ace.click_event, function (e) {
             typeStr = "add";
             bootbox.dialog({
-                title: "添加真题密卷",
+                title: "添加院校招生信息",
                 message: dialogHtml,
                 className: 'my-modal',
                 buttons: {
@@ -225,7 +225,7 @@
                 return false;
             }
             bootbox.dialog({
-                title: "修改高考热点",
+                title: "修改院校招生信息",
                 message: dialogHtml,
                 className: 'my-modal',
                 buttons: {
@@ -276,6 +276,7 @@
                 $('.averageScore').val(rowData[0].averageScore);
                 $('.averagePrecedence').val(rowData[0].averagePrecedence);
             }
+            catcompleteFn();
             subjectTypeFn(1);
             subjectTypeFn(2);
         });
