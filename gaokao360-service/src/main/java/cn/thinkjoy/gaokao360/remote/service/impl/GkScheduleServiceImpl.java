@@ -22,7 +22,7 @@ public class GkScheduleServiceImpl implements IGkScheduleService {
     private IScheduleService scheduleService;
 
     @Override
-    public List<GkScheduleDTO> getScheduleList(String areaId, Integer num) {
+    public List<GkScheduleDTO> getScheduleList(Integer num) {
         Calendar calendar=Calendar.getInstance();
         Map<String,Object> map = null;
         GkScheduleDTO gkScheduleDTO=null;
@@ -34,7 +34,6 @@ public class GkScheduleServiceImpl implements IGkScheduleService {
             map=new HashMap<>();
             map.put("years",year);
             map.put("month",month);
-            map.put("areaId",areaId);
             gkScheduleDTO=new GkScheduleDTO();
             gkScheduleDTO.setMonth(String.valueOf(month));
             gkScheduleDTO.setYears(String.valueOf(year));
