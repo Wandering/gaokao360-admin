@@ -155,7 +155,7 @@
                 return false;
             }
             bootbox.dialog({
-                title: "修改高考热点",
+                title: "修改真题密卷",
                 message: dialogHtml,
                 className: 'my-modal',
                 buttons: {

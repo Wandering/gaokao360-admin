@@ -14,6 +14,7 @@ import cn.thinkjoy.gaokao360.domain.MajoredCategory;
 import cn.thinkjoy.gaokao360.service.common.IMajoredCategoryService;
 import cn.thinkjoy.gaokao360.service.common.ex.IMajoredCategoryExService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @Controller
+@Scope("prototype")
 @RequestMapping(value="/admin/gaokao360/ex")
 public class MajoredCategoryExController extends BaseController<IMajoredCategoryExService> {
 

@@ -12,10 +12,12 @@ import cn.thinkjoy.gaokao360.domain.Agent;
 import cn.thinkjoy.gaokao360.service.common.IAgentService;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 
 @Service("AgentServiceImpl")
+@Scope("prototype")
 public class AgentServiceImpl extends AbstractPageService<IBaseDAO<Agent>, Agent> implements IAgentService<IBaseDAO<Agent>,Agent>{
     @Autowired
     private IAgentDAO agentDAO;

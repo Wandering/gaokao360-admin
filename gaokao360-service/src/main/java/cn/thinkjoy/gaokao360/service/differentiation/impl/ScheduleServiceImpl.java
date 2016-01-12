@@ -12,10 +12,12 @@ import cn.thinkjoy.gaokao360.domain.Schedule;
 import cn.thinkjoy.gaokao360.service.differentiation.IScheduleService;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 
 @Service("ScheduleServiceImpl")
+@Scope("prototype")
 public class ScheduleServiceImpl extends AbstractPageService<IBaseDAO<Schedule>, Schedule> implements IScheduleService<IBaseDAO<Schedule>,Schedule>{
     @Autowired
     private IScheduleDAO scheduleDAO;

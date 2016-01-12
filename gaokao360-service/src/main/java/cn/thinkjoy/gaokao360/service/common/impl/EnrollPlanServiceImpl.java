@@ -12,10 +12,12 @@ import cn.thinkjoy.gaokao360.domain.EnrollPlan;
 import cn.thinkjoy.gaokao360.service.common.IEnrollPlanService;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 
 @Service("EnrollPlanServiceImpl")
+@Scope("prototype")
 public class EnrollPlanServiceImpl extends AbstractPageService<IBaseDAO<EnrollPlan>, EnrollPlan> implements IEnrollPlanService<IBaseDAO<EnrollPlan>,EnrollPlan>{
     @Autowired
     private IEnrollPlanDAO enrollPlanDAO;

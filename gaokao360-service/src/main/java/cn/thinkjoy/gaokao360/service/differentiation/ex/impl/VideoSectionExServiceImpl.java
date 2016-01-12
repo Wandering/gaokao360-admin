@@ -13,12 +13,14 @@ import cn.thinkjoy.gaokao360.domain.VideoSection;
 import cn.thinkjoy.gaokao360.dto.VideoSectionDTO;
 import cn.thinkjoy.gaokao360.service.differentiation.ex.IVideoSectionExService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 
 @Service("VideoSectionExServiceImpl")
+@Scope("prototype")
 public class VideoSectionExServiceImpl extends AbstractPageService<IBaseDAO<VideoSection>, VideoSection> implements IVideoSectionExService<IBaseDAO<VideoSection>,VideoSection> {
     @Autowired
     private IVideoSectioneExDAO videoSectioneExDAO;

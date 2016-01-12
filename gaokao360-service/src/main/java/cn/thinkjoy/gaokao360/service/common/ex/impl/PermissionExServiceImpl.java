@@ -14,12 +14,14 @@ import cn.thinkjoy.gaokao360.dto.AgentDTO;
 import cn.thinkjoy.gaokao360.service.common.ex.IAgentExService;
 import cn.thinkjoy.gaokao360.service.common.ex.IPermissionExService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 
 
 @Service("PermissionExServiceImpl")
+@Scope("prototype")
 public class PermissionExServiceImpl implements IPermissionExService{
     @Autowired
     private IPermissionExDAO permissionExDAO;

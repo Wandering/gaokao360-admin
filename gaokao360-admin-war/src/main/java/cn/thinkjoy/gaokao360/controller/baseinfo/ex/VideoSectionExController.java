@@ -14,6 +14,7 @@ import cn.thinkjoy.gaokao360.service.differentiation.IVideoSectionService;
 import cn.thinkjoy.gaokao360.service.differentiation.ex.IVideoSectionExService;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,6 +29,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
+@Scope("prototype")
 @RequestMapping(value="/admin/gaokao360/ex")
 public class VideoSectionExController extends BaseController<IVideoSectionExService> {
 

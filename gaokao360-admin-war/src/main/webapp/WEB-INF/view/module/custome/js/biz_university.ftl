@@ -48,6 +48,18 @@
     jQuery(function () {
         var typeStr;
         var rowId;
+
+
+
+
+
+
+
+
+
+
+
+
         var UI = {
             $selProvince: $('#selProvince')
             , $selEduLevel: $('#selEduLevel')
@@ -77,124 +89,272 @@
         var eduLevelData = CommonFn.getEdulevel();
         $('#selEduLevel,#selEduLevel2').html(eduLevelData);
 //        实例化院校简介,院校章程富文本编辑器
-        CommonFn.renderTextarea('#schoolIntroduce');
-        CommonFn.renderTextarea('#schoolArticle');
+
 //        添加院校层次信息
-        UI.$addBtn.click(function () {
+//        UI.$addBtn.click(function () {
+//            $('#filelist').html();
+//            typeStr = "add";
+//            $('#edit_answer_modal').modal('show');
+//        });//添加end
+
+
+        var  dialogHtml = ''
+                + '<div class="row" id="dialogHtml">'
+                + '    <div class="col-xs-12">'
+                + '      <form class="form-horizontal" role="form">'
+                    +'       <div class="form-group"> '
+                    +'          <label for="schoolName" class="col-sm-2 control-label">院校名称</label>'
+                    +'          <div class="col-sm-6">'
+                    +'              <input type="text" class="form-control" id="schoolName" placeholder="院校名称不能超过15个字">'
+                    +'          </div>'
+                    +'       </div>'
+                    +'       <div class="form-group">'
+                    +'          <label class="col-sm-2 control-label no-padding-right" for="expertsIntro">院校图片</label>'
+                    +'          <div class="col-sm-9">'
+                        +'        <div id="uploader1" class="wu-example">'
+                        +'          <div class="uploader-tips">(只能上传一个图片,可拖拽文件,大小小于3M)</div>'
+                            +'        <div class="queueList">'
+                                +'        <div id="dndArea" class="placeholder">'
+                                +'        <div id="uploaderBtn1">点击上传</div>'
+                                +'        </div>'
+                                +'        </div>'
+                                +'        <div class="statusBar" style="display:none;">'
+                                    +'        <div class="progress">'
+                                    +'        <span class="text">0%</span>'
+                                    +'        <span class="percentage"></span>'
+                                    +'        </div>'
+                                    +'          <div class="info"></div>'
+                                        +'        <div class="btns">'
+                                        +'            <div class="uploadBtn1">上传封面</div>'
+                                        +'        </div>'
+                                    +'          </div>'
+                                +'        </div>'
+                            +'        </div>'
+                        +'        </div>'
+                    +'          <input type="hidden" value="" id="imgUrlData">'
+                +'                    <div class="form-group">'
+                +'                        <label for="schoolCode" class="col-sm-2 control-label">院校代码</label>'
+                +'                        <div class="col-sm-6">'
+                +'                            <input type="text" class="form-control" id="schoolCode"'
+                +'                                   placeholder="8位数字/符号/英文字母">'
+                +'                        </div>'
+                +'                    </div>'
+                +'                    <div class="form-group">'
+                +'                        <label for="schoolRank" class="col-sm-2 control-label">院校排名</label>'
+                +'                        <div class="col-sm-6">'
+                +'                            <input type="text" class="form-control" id="schoolRank" placeholder="请输入6位数字">'
+                +'                        </div>'
+                +'                        </div>'
+                +'                        <div class="form-group">'
+                +'                        <label for="schoolStatic" class="col-sm-2 control-label">院校特征</label>'
+                +'                        <div class="col-sm-6">'
+                +'                        <input type="text" class="form-control" id="schoolStatic"'
+                +'                        placeholder="请输入内容不能超过10个字">'
+                +'                        </div>'
+                +'                        </div>'
+                +'                        <div class="form-group">'
+                +'                        <label for="selEduLevel2" class="col-sm-2 control-label">学历层次</label>'
+                +'                        <div class="col-sm-6">'
+                +'                        <select class="form-control" id="selEduLevel2">'+ eduLevelData +'</select>'
+                +'                        </div>'
+                +'                        </div>'
+                +'                        <div class="form-group">'
+                +'                        <label for="schoolType" class="col-sm-2 control-label">院校类型</label>'
+                +'                        <div class="col-sm-6">'
+                +'                        <input type="text" class="form-control" id="schoolType"'
+                +'                        placeholder="请输入内容不能超过10个字">'
+                +'                        </div>'
+                +'                        </div>'
+                +'                        <div class="form-group">'
+                +'                        <label for="schoolOwn" class="col-sm-2 control-label">院校隶属</label>'
+                +'                        <div class="col-sm-6">'
+                +'                        <input type="text" class="form-control" id="schoolOwn"'
+                +'                        placeholder="请输入内容不能超过10个字">'
+                +'                        </div>'
+                +'                        </div>'
+                +'                        <div class="form-group">'
+                +'                        <label for="schoolWeb" class="col-sm-2 control-label">院校网址</label>'
+                +'                        <div class="col-sm-6">'
+                +'                        <input type="text" class="form-control" id="schoolWeb" placeholder="请输入内容不能超过30个字">'
+                +'                        </div>'
+                +'                        </div>'
+                +'                        <div class="form-group">'
+                +'                        <label for="schoolInProvince" class="col-sm-2 control-label">所在省份</label>'
+                +'                        <div class="col-sm-6">'
+                +'                        <select class="form-control" id="schoolInProvince2">'+ provinceData +'</select>'
+                +'                        </div>'
+                +'                        </div>'
+                +'                        <div class="form-group">'
+                +'                        <label for="schoolAddress" class="col-sm-2 control-label">院校地址</label>'
+                +'                        <div class="col-sm-6">'
+                +'                        <textarea cols="30" rows="3" class="form-control" id="schoolAddress"'
+                +'                        placeholder="请输入内容不能超过120个字"></textarea>'
+                +'                        </div>'
+                +'                        </div>'
+                +'                        <div class="form-group">'
+                +'                        <label for="schoolPic" class="col-sm-2 control-label">联系电话</label>'
+                +'                        <div class="col-sm-6">'
+                +'                        <input type="text" class="form-control" id="schoolTel"'
+                +'                        placeholder="区号+号码，区号以0开头，3位或4位号码由7位或8位数字">'
+                +'                        </div>'
+                +'                        </div>'
+                +'                        <div class="form-group">'
+                +'                        <label for="schoolIntroduce" class="col-sm-2 control-label">院校简介</label>'
+                +'                        <div class="col-sm-10">'
+                +'                        <div id="schoolIntroduce" class="wysiwyg-editor"></div>'
+                +'                        </div>'
+                +'                        </div>'
+                +''
+                +'                        <div class="form-group">'
+                +'                        <label for="schoolArticle" class="col-sm-2 control-label">院校章程</label>'
+                +'                        <div class="col-sm-10">'
+                +'                        <div class="wysiwyg-editor" id="schoolArticle"></div>'
+                +'                        </div>'
+                +'                        </div>'
+                +'                        </form>'
+                +'                        </div>'
+                +'                        </div>';
+
+        $("#addBtn").on(ace.click_event, function (e) {
             typeStr = "add";
-            $('#edit_answer_modal').modal('show');
-            UI.$submitBtn.on(ace.click_event, function (e) {
-                e.preventDefault();
-                universityValidate();
-                var addUniversityData = {
-                    oper: typeStr
-                    , code: schoolInfoDOM.$schoolCode.val()
-                    , name: schoolInfoDOM.$schoolName.val()
-                    , photoUrl: $('#imgUrlData').val()
-//                    , photoUrl: schoolInfoDOM.$schoolPic.val()
-                    , rank: schoolInfoDOM.$schoolRank.val()
-                    , property: schoolInfoDOM.$schoolStatic.val()
-                    , educationLevel: $('#selEduLevel2').find('option:selected').val()
-                    , type: schoolInfoDOM.$schoolType.val()
-                    , subjection: schoolInfoDOM.$schoolOwn.val()
-                    , url: schoolInfoDOM.$schoolWeb.val()
-                    , areaid: $('#schoolInProvince2 option:checked').val()
-                    , provinceName: $('#schoolInProvince2 option:checked').html()
-                    , address: schoolInfoDOM.$schoolAddress.val()
-                    , contactPhone: schoolInfoDOM.$schoolTel.val()
-                    , universityIntro: schoolInfoDOM.$schoolIntroduce.html()
-                    , entranceIntro: schoolInfoDOM.$schoolArticle.html()
-                };
-                $.ajax({
-                    type: "POST",
-                    url: '/admin/gaokao360/ex/commonsave/${mainObj}',
-                    data: addUniversityData,
-                    success: function (result) {
-                        if (result.rtnCode == "0000000") {
-                            searchLoad();
-                        }
+            bootbox.dialog({
+                title: "添加真题密卷",
+                message: dialogHtml,
+                className: 'my-modal',
+                buttons: {
+                    "success": {
+                        "label": "<i class='ace-icon fa fa-check'></i> 提交",
+                        "className": "btn-sm btn-success",
+                        "callback": addEditFun
+                    },
+                    cancel: {
+                        label: "关闭",
+                        className: "btn-sm"
                     }
-                });
-                $('#edit_answer_modal').modal('hide');
-                $('#submitForm')[0].reset();
-                $('#schoolIntroduce,#schoolArticle').html('');
+
+                }
             });
             uploadFun1();
-        });//添加end
+            CommonFn.renderTextarea('#schoolIntroduce');
+            CommonFn.renderTextarea('#schoolArticle');
+        });
+
+
+
+
+
+        <#--UI.$submitBtn.on(ace.click_event, function (e) {-->
+            <#--e.preventDefault();-->
+            <#--universityValidate();-->
+            <#--var addUniversityData = {-->
+                <#--oper: typeStr-->
+                <#--, code: schoolInfoDOM.$schoolCode.val()-->
+                <#--, name: schoolInfoDOM.$schoolName.val()-->
+                <#--, photoUrl: $('#imgUrlData').val()-->
+                <#--, rank: schoolInfoDOM.$schoolRank.val()-->
+                <#--, property: schoolInfoDOM.$schoolStatic.val()-->
+                <#--, educationLevel: $('#selEduLevel2').find('option:selected').val()-->
+                <#--, type: schoolInfoDOM.$schoolType.val()-->
+                <#--, subjection: schoolInfoDOM.$schoolOwn.val()-->
+                <#--, url: schoolInfoDOM.$schoolWeb.val()-->
+                <#--, areaid: $('#schoolInProvince2 option:checked').val()-->
+                <#--, provinceName: $('#schoolInProvince2 option:checked').html()-->
+                <#--, address: schoolInfoDOM.$schoolAddress.val()-->
+                <#--, contactPhone: schoolInfoDOM.$schoolTel.val()-->
+                <#--, universityIntro: schoolInfoDOM.$schoolIntroduce.html()-->
+                <#--, entranceIntro: schoolInfoDOM.$schoolArticle.html()-->
+            <#--};-->
+            <#--$.ajax({-->
+                <#--type: "POST",-->
+                <#--url: '/admin/gaokao360/ex/commonsave/${mainObj}',-->
+                <#--data: addUniversityData,-->
+                <#--success: function (result) {-->
+                    <#--if (result.rtnCode == "0000000") {-->
+                        <#--searchLoad();-->
+                        <#--$('#edit_answer_modal').modal('hide');-->
+                        <#--$('#schoolIntroduce,#schoolArticle,.filelist').html('');-->
+                    <#--}-->
+                <#--}-->
+            <#--});-->
+
+        <#--});-->
+
+
+
 //      删除院校基本信息
         CommonFn.deleteFun('#deleteBtn', '${mainObj}');
 //      取消提交
-        $(document).on('click', '#cancelBtn', function (e) {
-            e.preventDefault();
-//          重置表单信息
-            $('#submitForm')[0].reset();
-            $('#schoolIntroduce,#schoolArticle').html('');
-        });
+//        $(document).on('click', '#cancelBtn', function (e) {
+//            e.preventDefault();
+////          重置表单信息
+//            $('#submitForm')[0].reset();
+//            $('#schoolIntroduce,#schoolArticle').html('');
+//        });
 //      修改院校基本信息
-        UI.$editBtn.click(function () {
-            typeStr = "edit";
-            rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
-            var selTrN = $('tr.ui-state-highlight[role="row"]').length;
-            if (selTrN != 1) {
-                CommonFn.tipsDialog('温馨提示', '请选中一行后修改');
-                return false;
-            }
-            $('#edit_answer_modal').modal('show');
-            // 获取当前行数据
-            var rowData = CommonFn.getRowData(rowId);
-            schoolInfoDOM.$schoolName.val(rowData[0].name);
-            schoolInfoDOM.$schoolCode.val(rowData[0].code);
-            schoolInfoDOM.$schoolRank.val(rowData[0].rank);
-            schoolInfoDOM.$schoolStatic.val(rowData[0].property);
-            $('#selEduLevel2').find('option[value="' + rowData[0].educationLevel + '"]').attr('selected', 'selected');
-            schoolInfoDOM.$schoolType.val(rowData[0].type);
-            schoolInfoDOM.$schoolOwn.val(rowData[0].subjection);
-            schoolInfoDOM.$schoolWeb.val(rowData[0].url);
-            $('#schoolInProvince2').find('option[value="' + rowData[0].areaid + '"]').attr('selected', 'selected');
-            schoolInfoDOM.$schoolAddress.val(rowData[0].address);
-            schoolInfoDOM.$schoolTel.val(rowData[0].contactPhone);
-            schoolInfoDOM.$schoolIntroduce.html(rowData[0].universityIntro);
-            schoolInfoDOM.$schoolArticle.html(rowData[0].entranceIntro);
-            UI.$submitBtn.on(ace.click_event, function (e) {
-                e.preventDefault();
-                universityValidate();
-                var addUniversityData = {
-                    oper: typeStr
-                    , code: schoolInfoDOM.$schoolCode.val()
-                    , name: schoolInfoDOM.$schoolName.val()
-                    , photoUrl: 'http://img0.imgtn.bdimg.com/it/u=2127500600,2612092016&fm=21&gp=0.jpg'
-//                    , photoUrl: schoolInfoDOM.$schoolPic.val()
-                    , rank: schoolInfoDOM.$schoolRank.val()
-                    , property: schoolInfoDOM.$schoolStatic.val()
-                    , educationLevel: $('#selEduLevel2 option:checked').val()
-                    , type: schoolInfoDOM.$schoolType.val()
-                    , subjection: schoolInfoDOM.$schoolOwn.val()
-                    , url: schoolInfoDOM.$schoolWeb.val()
-                    , areaid: $('#schoolInProvince2 option:checked').val()
-                    , provinceName: $('#schoolInProvince2 option:checked').html()
-                    , address: schoolInfoDOM.$schoolAddress.val()
-                    , contactPhone: schoolInfoDOM.$schoolTel.val()
-                    , universityIntro: schoolInfoDOM.$schoolIntroduce.html()
-                    , entranceIntro: schoolInfoDOM.$schoolArticle.html()
-                };
-                $.ajax({
-                    type: "POST",
-                    url: '/admin/gaokao360/ex/commonsave/${mainObj}',
-                    data: addUniversityData,
-                    success: function (result) {
-                        if (result.rtnCode == "0000000") {
-                            searchLoad();
-                        }
-                    }
-                });
-            });
+        <#--UI.$editBtn.click(function () {-->
+            <#--typeStr = "edit";-->
+            <#--rowId = $('tr.ui-state-highlight[role="row"]').attr('id');-->
+            <#--var selTrN = $('tr.ui-state-highlight[role="row"]').length;-->
+            <#--if (selTrN != 1) {-->
+                <#--CommonFn.tipsDialog('温馨提示', '请选中一行后修改');-->
+                <#--return false;-->
+            <#--}-->
+            <#--$('#edit_answer_modal').modal('show');-->
+            <#--// 获取当前行数据-->
+            <#--var rowData = CommonFn.getRowData(rowId);-->
+            <#--schoolInfoDOM.$schoolName.val(rowData[0].name);-->
+            <#--schoolInfoDOM.$schoolCode.val(rowData[0].code);-->
+            <#--schoolInfoDOM.$schoolRank.val(rowData[0].rank);-->
+            <#--schoolInfoDOM.$schoolStatic.val(rowData[0].property);-->
+            <#--$('#selEduLevel2').find('option[value="' + rowData[0].educationLevel + '"]').attr('selected', 'selected');-->
+            <#--schoolInfoDOM.$schoolType.val(rowData[0].type);-->
+            <#--schoolInfoDOM.$schoolOwn.val(rowData[0].subjection);-->
+            <#--schoolInfoDOM.$schoolWeb.val(rowData[0].url);-->
+            <#--$('#schoolInProvince2').find('option[value="' + rowData[0].areaid + '"]').attr('selected', 'selected');-->
+            <#--schoolInfoDOM.$schoolAddress.val(rowData[0].address);-->
+            <#--schoolInfoDOM.$schoolTel.val(rowData[0].contactPhone);-->
+            <#--schoolInfoDOM.$schoolIntroduce.html(rowData[0].universityIntro);-->
+            <#--schoolInfoDOM.$schoolArticle.html(rowData[0].entranceIntro);-->
+            <#--UI.$submitBtn.on(ace.click_event, function (e) {-->
+                <#--e.preventDefault();-->
+                <#--universityValidate();-->
+                <#--var addUniversityData = {-->
+                    <#--oper: typeStr-->
+                    <#--, code: schoolInfoDOM.$schoolCode.val()-->
+                    <#--, name: schoolInfoDOM.$schoolName.val()-->
+                    <#--, photoUrl: 'http://img0.imgtn.bdimg.com/it/u=2127500600,2612092016&fm=21&gp=0.jpg'-->
+<#--//                    , photoUrl: schoolInfoDOM.$schoolPic.val()-->
+                    <#--, rank: schoolInfoDOM.$schoolRank.val()-->
+                    <#--, property: schoolInfoDOM.$schoolStatic.val()-->
+                    <#--, educationLevel: $('#selEduLevel2 option:checked').val()-->
+                    <#--, type: schoolInfoDOM.$schoolType.val()-->
+                    <#--, subjection: schoolInfoDOM.$schoolOwn.val()-->
+                    <#--, url: schoolInfoDOM.$schoolWeb.val()-->
+                    <#--, areaid: $('#schoolInProvince2 option:checked').val()-->
+                    <#--, provinceName: $('#schoolInProvince2 option:checked').html()-->
+                    <#--, address: schoolInfoDOM.$schoolAddress.val()-->
+                    <#--, contactPhone: schoolInfoDOM.$schoolTel.val()-->
+                    <#--, universityIntro: schoolInfoDOM.$schoolIntroduce.html()-->
+                    <#--, entranceIntro: schoolInfoDOM.$schoolArticle.html()-->
+                <#--};-->
+                <#--$.ajax({-->
+                    <#--type: "POST",-->
+                    <#--url: '/admin/gaokao360/ex/commonsave/${mainObj}',-->
+                    <#--data: addUniversityData,-->
+                    <#--success: function (result) {-->
+                        <#--if (result.rtnCode == "0000000") {-->
+                            <#--searchLoad();-->
+                        <#--}-->
+                    <#--}-->
+                <#--});-->
+            <#--});-->
 
-        });//修改end
+        <#--});//修改end-->
 //      验证函数
-        function universityValidate() {
+        function addEditFun() {
 //                院校名称
-            var schoolName = $('#schoolName').val();
-            if (schoolName.trim().length == 0) {
+            var schoolName = $.trim($('#schoolName').val());
+            if (schoolName == "") {
                 CommonFn.tipsDialog('温馨提示', '院校名称输入不能为空');
                 return false;
             }
@@ -202,10 +362,8 @@
                 CommonFn.tipsDialog('温馨提示', '院校名称输入不能大于15个字');
                 return false;
             }
-//                院校头像
-            var schoolPic = $('#schoolPic').attr('src');
-            if (schoolPic == '') {
-                CommonFn.tipsDialog('温馨提示', '院校头像不能为空');
+            if($('#imgUrlData').val()==""){
+                CommonFn.tipsDialog('温馨提示', '请上传院校图片');
                 return false;
             }
 //                院校代码
@@ -240,11 +398,11 @@
                 CommonFn.tipsDialog('温馨提示', '院校特征输入不能大于10个字');
                 return false;
             }
-//                学历层次
-            var selEduLevel2 = $('#selEduLevel2').val().trim();
-            var selEduLevel2 = $('#selEduLevel2').find('option:selected').val();
-            if (schoolStatic.length > 10) {
-                CommonFn.tipsDialog('温馨提示', '学历层次必须选择');
+
+            var selEduLevel2V = $('#selEduLevel2').find('option:selected').val();
+
+            if(selEduLevel2V=="00"){
+                CommonFn.tipsDialog('温馨提示', '请选择学历层次');
                 return false;
             }
 //                院校类型
@@ -323,6 +481,55 @@
                 CommonFn.tipsDialog('温馨提示', '院校章程输入不能为空');
                 return false;
             }
+            var schoolIntroduceV = $('#schoolIntroduce').html();
+
+            var schoolIntroduceHtml = CommonFn.getTextareaData(schoolIntroduceV).join(''),
+                    schoolIntroduceHtmlUrl = CommonFn.getTextareaUrlData(schoolIntroduceHtml),
+                    schoolIntroduceUrl = schoolIntroduceHtmlUrl[0],
+                    schoolIntroducelId = schoolIntroduceHtmlUrl[1];
+
+            var schoolArticleV = $('#schoolArticle').html();
+            var schoolArticleHtml = CommonFn.getTextareaData(schoolArticleV).join(''),
+                    schoolArticleHtmlUrl = CommonFn.getTextareaUrlData(schoolArticleHtml),
+                    schoolArticleUrl = schoolArticleHtmlUrl[0],
+                    schoolArticleId = schoolArticleHtmlUrl[1];
+
+            var addUniversityData = {
+                oper: typeStr
+                , code: $.trim($('#schoolCode').val())
+                , name: $.trim($('#schoolName').val())
+                , photoUrl: $('#imgUrlData').val()
+                , rank: $.trim($('#schoolRank').val())
+                , property: $.trim($('#schoolStatic').val())
+                , educationLevel: $('#selEduLevel2').find('option:selected').val()
+                , type: $.trim($('#schoolType').val())
+                , subjection: $.trim($('#schoolOwn').val())
+                , url: $.trim($('#schoolWeb').val())
+                , areaid: $('#schoolInProvince2 option:checked').val()
+                , provinceName: $('#schoolInProvince2 option:checked').html()
+                , address: $.trim($('#schoolAddress').val())
+                , contactPhone: $.trim($('#schoolTel').val())
+                , universityIntro:schoolIntroduceUrl
+                , entranceIntro:schoolArticleUrl
+            };
+
+
+            if (typeStr == 'edit') {
+                addUniversityData.id = rowId;
+            }
+            $.ajax({
+                type: "POST",
+                url: '/admin/gaokao360/ex/commonsave/${mainObj}',
+                data: addUniversityData,
+                success: function (result) {
+                    if (result.rtnCode == "0000000") {
+                        searchLoad();
+                    }
+                }
+            });
+
+
+
         }//验证函数end
 
 

@@ -59,7 +59,6 @@
         };
 //       获取政策一级分类和省份信息
         var policyData = CommonFn.getpolicy();
-        var policyData2 = CommonFn.getpolicy();
         var province = CommonFn.getProvince();
         UI.$province.append(province);
 //        添加政策解读
@@ -101,7 +100,7 @@
                     "success": {
                         "label": "<i class='ace-icon fa fa-check'></i> 提交",
                         "className": "btn-sm btn-success",
-                        "callback": addAndEditFn()
+                        "callback": addAndEditFn
                     },
                     cancel: {
                         label: "关闭",
@@ -109,7 +108,7 @@
                     }
                 }
             });
-            $('#policyInterGroup').append(policyData2);
+            $('#policyInterGroup').html(CommonFn.getpolicy());
 //            实例化编辑器
             CommonFn.renderTextarea('#policyInterDetail');
             // 当前行数据
@@ -174,7 +173,7 @@
                 + '政策一级分类：</label>'
                 + '<div class="col-sm-2">'
 //                + '<select class="form-control" id="policyInterGroup">' + '<option value="00">选择政策一级分类</option>' + '<option value="000">+新建政策分类+</option>'
-                + '<select class="form-control" id="policyInterGroup">' + policyData + '</select>'
+                + '<select class="form-control" id="policyInterGroup">'+ policyData +'</select>'
                 + '</div>'
                 + '</div>'
                 + '<div class="form-group hide" id="newPolicy">'
@@ -210,41 +209,27 @@
 
         function addAndEditFn() {
             var provinceV = $("#province2").find("option:selected").attr('value');
+            var policyInterGroupV = $("#policyInterGroup").find("option:selected").attr('value');
             var policyInterTwoV = $('#policyInterTwo').val();
             var policyInterDetailV = $('#policyInterDetail').html();
             if (provinceV == "00") {
                 CommonFn.tipsDialog('温馨提示', '请选择省份');
                 return false;
             }
-            var policyInterGroupV = '';
             var selectPolicy = $("#policyInterGroup").find("option:selected").attr('value');
-            if (selectPolicy == '000') {
-                policyInterGroupV = $('#policyInterNew').val().trim();
-                if (policyInterGroupV == '') {
-                    CommonFn.tipsDialog('温馨提示', '新建政策一级分类不能为空');
-                    return false;
-                }
-                CommonFn.getData('policyInterpretation.getInterfaceUrl.addGroup', {
-                            name: policyInterGroupV,
-                            oper: 'add',
-                            areaId: 0
-                        },
-                        function (res) {
-                            if (res.rtnCode == '0000000') {
-                                console.info(res);
-                            }
-                        })
-            } else {
-                policyInterGroupV = selectPolicy;
-            }
-            if (selectPolicy == "000" || selectPolicy == "00") {
+            if (selectPolicy == "00") {
                 CommonFn.tipsDialog('温馨提示', '请选择政策一级分类');
                 return false;
             }
-            if (policyInterTwoV == "") {
+            if (policyInterTwoV == "" && $('#newPolicy:visible')) {
                 CommonFn.tipsDialog('温馨提示', '政策二级分类不能为空');
                 return false;
             }
+            if ($('#newPolicy').is(':visible')) {
+                CommonFn.tipsDialog('温馨提示', '请选择政策一级分类');
+                return false;
+            }
+
             if (policyInterDetailV == "") {
                 CommonFn.tipsDialog('温馨提示', '请输入政策解读详情内容');
                 return false;

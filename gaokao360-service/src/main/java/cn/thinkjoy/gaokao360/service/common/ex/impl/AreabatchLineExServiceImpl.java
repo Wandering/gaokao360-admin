@@ -12,10 +12,12 @@ import cn.thinkjoy.gaokao360.dao.ex.IAreabatchLineExDAO;
 import cn.thinkjoy.gaokao360.dto.AreabatchLineDTO;
 import cn.thinkjoy.gaokao360.service.common.ex.IAreabatchLineExService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 
 @Service("AreabatchLineExServiceImpl")
+@Scope("prototype")
 public class AreabatchLineExServiceImpl extends AbstractPageService<IBaseDAO<AreabatchLineDTO>, AreabatchLineDTO> implements IAreabatchLineExService<IBaseDAO<AreabatchLineDTO>,AreabatchLineDTO> {
     @Autowired
     private IAreabatchLineExDAO areabatchLineExDAO;

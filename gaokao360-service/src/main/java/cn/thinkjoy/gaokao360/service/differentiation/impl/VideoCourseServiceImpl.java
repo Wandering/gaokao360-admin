@@ -12,10 +12,12 @@ import cn.thinkjoy.gaokao360.domain.VideoCourse;
 import cn.thinkjoy.gaokao360.service.differentiation.IVideoCourseService;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 
 @Service("VideoCourseServiceImpl")
+@Scope("prototype")
 public class VideoCourseServiceImpl extends AbstractPageService<IBaseDAO<VideoCourse>, VideoCourse> implements IVideoCourseService<IBaseDAO<VideoCourse>,VideoCourse>{
     @Autowired
     private IVideoCourseDAO videoCourseDAO;
