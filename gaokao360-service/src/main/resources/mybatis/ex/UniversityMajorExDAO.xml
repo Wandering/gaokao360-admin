@@ -483,6 +483,10 @@
             <if test="condition.universityId!=null">
                 ${condition.groupOp}   ${condition.universityId.field}  ${condition.universityId.op}  #{condition.universityId.data}
             </if>
+            <if test="condition.keywordSearch!=null">
+                AND  universityName  ${condition.keywordSearch.op}  #{condition.keywordSearch.data}
+                OR  majorName  ${condition.keywordSearch.op}  #{condition.keywordSearch.data}
+            </if>
             <if test="condition.universityName!=null">
                 ${condition.groupOp}   ${condition.universityName.field}  ${condition.universityName.op}  #{condition.universityName.data}
             </if>

@@ -713,6 +713,7 @@ selectList
             areaId as areaId
         </if>
         FROM zgk_university_major_enrolling
+        LEFT JOIN (select id as uid,name as universityName FROM zgk_university) uu ON uu.uid=university_id
         <where>
 
             <if test="condition.whereSql != null">
@@ -724,6 +725,9 @@ selectList
             </if>
             <if test="condition.universityId!=null">
                 ${condition.groupOp}   ${condition.universityId.field}  ${condition.universityId.op}  #{condition.universityId.data}
+            </if>
+            <if test="condition.universityName!=null">
+                ${condition.groupOp}   ${condition.universityName.field}  ${condition.universityName.op}  #{condition.universityName.data}
             </if>
             <if test="condition.majorId!=null">
                 ${condition.groupOp}   ${condition.majorId.field}  ${condition.majorId.op}  #{condition.majorId.data}

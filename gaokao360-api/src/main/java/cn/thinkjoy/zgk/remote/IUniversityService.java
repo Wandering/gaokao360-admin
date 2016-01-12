@@ -9,6 +9,8 @@ import java.util.Map;
 public interface IUniversityService {
     List getUniversityList(Map<String, Object> condition, int offset, int rows, String orederBy, String sqlOrderEnumStr, Map<String, Object> selectorpage);
 
+    List getUniversityMajorListByUniversityId(long id,Map<String,Object> condition,int offset, int rows,String orderBy, String sqlOrderEnumStr,Map<String,Object> selectorpage);
+
     Object getUniversityById(long id);
 
     List getProvinceName();

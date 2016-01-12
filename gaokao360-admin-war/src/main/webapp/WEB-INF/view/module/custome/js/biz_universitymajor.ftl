@@ -1,31 +1,22 @@
 <script>
     <!-- 自定义js请写在这个文件  以下这个查询方法只是个例子，请按照业务需求修改 -->
     function buildRules() {
-        var courseName = $('#courseName').val();
-        var status = $('#status').val();
-        var classfyId = $('#classfyId').val();
+        var keywordSearch = $('#keywordSearch').val();
+        var getEduLevel = $('#getEduLevel').val();
         var rules = [];
-        if (courseName != '' && courseName != null && courseName != undefined) {
+        if (keywordSearch != '' && keywordSearch != null && keywordSearch != undefined ) {
             var rule = {
-                'field': 'courseName',
-                'op': 'eq',
-                'data': courseName
+                'field': 'keywordSearch',
+                'op': 'lk',
+                'data': keywordSearch
             }
             rules.push(rule);
         }
-        if (status != '' && status != null && status != undefined) {
+        if (getEduLevel != '' && getEduLevel != null && getEduLevel != undefined && getEduLevel != '00') {
             var rule = {
-                'field': 'status',
+                'field': 'majorSubject',
                 'op': 'eq',
-                'data': status
-            }
-            rules.push(rule);
-        }
-        if (classfyId != '' && classfyId != null && classfyId != undefined) {
-            var rule = {
-                'field': 'classfyId',
-                'op': 'eq',
-                'data': classfyId
+                'data': getEduLevel
             }
             rules.push(rule);
         }
