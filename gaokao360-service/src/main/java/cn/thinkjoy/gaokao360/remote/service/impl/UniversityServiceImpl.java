@@ -1,12 +1,10 @@
 package cn.thinkjoy.gaokao360.remote.service.impl;
 
 import cn.thinkjoy.common.utils.SqlOrderEnum;
-import cn.thinkjoy.gaokao360.domain.University;
-import cn.thinkjoy.gaokao360.domain.UniversityDetail;
 import cn.thinkjoy.gaokao360.service.common.IDataDictService;
 import cn.thinkjoy.gaokao360.service.common.IProvinceService;
-import cn.thinkjoy.gaokao360.service.common.IUniversityDictService;
 import cn.thinkjoy.gaokao360.service.common.ex.IUniversityExService;
+import cn.thinkjoy.gaokao360.service.common.ex.IUniversityMajorExService;
 import cn.thinkjoy.zgk.remote.IUniversityService;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +30,9 @@ public class UniversityServiceImpl implements IUniversityService {
 
     @Autowired
     private IDataDictService dataDictService;
+
+    @Autowired
+    private IUniversityMajorExService universityMajorExService;
 
     /**
      * 查询学校列表
@@ -59,6 +60,30 @@ public class UniversityServiceImpl implements IUniversityService {
     @Override
     public Object getUniversityById(long id){
         return universityExService.fetch(id);
+    }
+
+    /**
+     * 获取开设专业列表
+     * @param id
+     * @param condition
+     * @param offset
+     * @param rows
+     * @param orderBy
+     * @param sqlOrderEnumStr
+     * @param selectorpage
+     * @return
+     */
+    @Override
+    public List getUniversityMajorListByUniversityId(long id,
+                                                     Map<String,Object> condition,
+                                                     int offset, int rows,
+                                                     String orderBy, String sqlOrderEnumStr,
+                                                     Map<String,Object> selectorpage){
+        SqlOrderEnum sqlOrderEnum=SqlOrderEnum.ASC;
+        if (sqlOrderEnumStr.equalsIgnoreCase("desc")){
+            sqlOrderEnum=SqlOrderEnum.DESC;
+        }
+        return universityMajorExService.queryPage(condition, offset, rows, orderBy, sqlOrderEnum, selectorpage);
     }
 
     /**
