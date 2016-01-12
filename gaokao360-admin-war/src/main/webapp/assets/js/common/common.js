@@ -28,7 +28,8 @@ var CommonFn = {
         getUniversityNameList: '/admin/gaokao360/ex/getUniversityNameList', // 开设院校
         getMajoredTypeUrl: '/admin/gaokao360/ex/getDataDictList?type=MAJOR_TYPE', // 专业类型
         getEdulevelUrl: '/admin/gaokao360/ex/getDataDictList?type=EDULEVEL', // 学历层次
-        getDegreeUrl: '/admin/gaokao360/ex/getDataDictList?type=GAIN_DEGREE' // 学位
+        getDegreeUrl: '/admin/gaokao360/ex/getDataDictList?type=GAIN_DEGREE', // 学位
+        getuniversityTypeUrl: '/admin/gaokao360/ex/getDataDictList?type=UNIVERSITY_TYPE' // 院校类型
     },
     getData: function (url, type, data, callback) {
         $.ajax({
@@ -412,6 +413,21 @@ var CommonFn = {
                 var specialityId = result.bizData[i].id;
                 var specialityName = result.bizData[i].majorName;
                 contentArr.push('<option value="' + specialityId + '">' + specialityName + '</option>');
+            }
+        });
+        return contentArr.join('');
+    },
+    // 获取院校类型
+    getuniversityType: function () {
+        var contentArr = [];
+        contentArr.push('<option value="00">请选择院校类型</option>');
+        $.ajaxSettings.async = false;
+        CommonFn.getData(CommonFn.url.getuniversityTypeUrl, 'GET', {}, function (result) {
+            console.log(result)
+            for (var i = 0; i < result.bizData.length; i++) {
+                var universityTypeId = result.bizData[i].dictId;
+                var universityTypeName = result.bizData[i].name;
+                contentArr.push('<option value="' + universityTypeId + '">' + universityTypeName + '</option>');
             }
         });
         return contentArr.join('');

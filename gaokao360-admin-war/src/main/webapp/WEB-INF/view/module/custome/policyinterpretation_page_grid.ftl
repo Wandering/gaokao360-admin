@@ -24,7 +24,7 @@
                 <input type="text" class="" placeholder="关键字查询" id="keyWord">
             </div>
             <div class="form-group col-sm-2">
-                <select class="form-control" id="eduLevel"><option value="00">请选择政策一级分类</option></select>
+                <select class="form-control" id="eduLevel"></select>
             </div>
             <div class="form-group col-sm-2">
                 <select class="form-control" id="province"></select>

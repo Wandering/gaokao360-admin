@@ -196,7 +196,6 @@
                         var dataJson = result.bizData;
                         $('#hotTitle').val(dataJson.professionName);
                         $('#selProfession2 option[value="'+ dataJson.professionTypeId +'"]').attr('selected','true');
-
                         var professionData = CommonFn.getProfession(dataJson.professionTypeId);
                         $('#selProfession3').show().html(professionData);
                         $('#selProfession3 option[value="'+ dataJson.professionSubTypeId +'"]').attr('selected','true');
@@ -212,46 +211,14 @@
             });
         });
         //删除
-
-        $('#deleteBtn').on(ace.click_event, function () {
-            var rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
-            var selTrN = $('tr.ui-state-highlight[role="row"]').length;
-            if (selTrN != 1) {
-                CommonFn.tipsDialog('温馨提示', '请选中一行后在删除');
-                return false;
-            }
-            bootbox.dialog({
-                title: "删除",
-                message: "确定删除该条数据",
-                buttons: {
-                    "success": {
-                        "label": "<i class='ace-icon fa fa-check'></i> 确定",
-                        "className": "btn-sm btn-success",
-                        "callback": function () {
-                            $.ajax({
-                                type: "POST",
-                                url: '/admin/zgk/deleteProfession?professionId='+rowId,
-                                success: function (result) {
-                                    console.log(result);
-                                    if (result.rtnCode == "0000000") {
-                                        searchLoad();
-                                    }
-                                }
-                            });
-                        }
-                    },
-                    cancel: {
-                        label: "关闭",
-                        className: "btn-sm"
-                    }
-                }
-            });
-        });
+        CommonFn.deleteFun('#deleteBtn', '${mainObj}');
 
 
 
 
-        var validationFun =function(){
+
+//        添加
+        var addEditFun = function () {
             var hotTitleV = $.trim($('#hotTitle').val());
             var selProfession2V = $('#selProfession2 option:checked').val();
             var selProfession3V = $('#selProfession3 option:checked').val();
@@ -315,13 +282,6 @@
                 "vocationalDemand": hotContentRequirementsV,
                 "careerProspects": hotContentProspectsV,
             };
-            return Datas;
-        };
-
-//        添加
-        var addEditFun = function () {
-            var Datas = validationFun();
-            console.log(Datas)
             $.ajax({
                 type: "POST",
                 url: '/admin/zgk/addProfession',
@@ -334,7 +294,69 @@
             });
         };
         var editFun = function () {
-            var Datas = validationFun();
+            var hotTitleV = $.trim($('#hotTitle').val());
+            var selProfession2V = $('#selProfession2 option:checked').val();
+            var selProfession3V = $('#selProfession3 option:checked').val();
+            var selProfessionHotV = $('#selProfessionHot option:checked').val();
+            var salaryRankingV = $.trim($('#salary-ranking').val());
+            var hotContentProfessionV = $('#hotContent-profession').html();
+            var hotContentIntroV = $('#hotContent-intro').html();
+            var hotContentContentV = $('#hotContent3-content').html();
+            var hotContentRequirementsV = $('#hotContent-requirements').html();
+            var hotContentProspectsV = $('#hotContent-prospects').html();
+
+            if (hotTitleV == "") {
+                CommonFn.tipsDialog('温馨提示', '请输入职业名称');
+                return false;
+            }
+            if (selProfession2V == "00") {
+                CommonFn.tipsDialog('温馨提示', '请选择行业分类');
+                return false;
+            }
+            if (selProfession3V == "00") {
+                CommonFn.tipsDialog('温馨提示', '请选择职业分类');
+                return false;
+            }
+            if (selProfessionHotV == "00") {
+                CommonFn.tipsDialog('温馨提示', '请选择职业热度');
+                return false;
+            }
+            if (salaryRankingV == "") {
+                CommonFn.tipsDialog('温馨提示', '请输入薪资排名');
+                return false;
+            }
+            if (hotContentProfessionV == "") {
+                CommonFn.tipsDialog('温馨提示', '请输入相关专业');
+                return false;
+            }
+            if (hotContentIntroV == "") {
+                CommonFn.tipsDialog('温馨提示', '请输入职业简介');
+                return false;
+            }
+            if (hotContentContentV == "") {
+                CommonFn.tipsDialog('温馨提示', '请输入工作内容');
+                return false;
+            }
+            if (hotContentRequirementsV == "") {
+                CommonFn.tipsDialog('温馨提示', '请输入从业要求');
+                return false;
+            }
+            if (hotContentProspectsV == "") {
+                CommonFn.tipsDialog('温馨提示', '请输入从业前景');
+                return false;
+            }
+            var Datas = {
+                "professionType": selProfession2V,
+                "professionSubType": selProfession3V,
+                "professionName": hotTitleV,
+                "hotDegree": selProfessionHotV,
+                "salaryRank": salaryRankingV,
+                "relateMajor": hotContentProfessionV,
+                "introduction": hotContentIntroV,
+                "workContent": hotContentContentV,
+                "vocationalDemand": hotContentRequirementsV,
+                "careerProspects": hotContentProspectsV
+            };
             Datas.id = rowId;
             console.log(Datas)
             $.ajax({
