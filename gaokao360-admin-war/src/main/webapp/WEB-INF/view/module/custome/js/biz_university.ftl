@@ -291,121 +291,12 @@
             var entranceIntroText = CommonFn.getContentHtml(rowData[0].entranceIntro).join('');
             $('#schoolArticle').html(entranceIntroText);
         });
-
-
-
-
-
-        <#--UI.$submitBtn.on(ace.click_event, function (e) {-->
-            <#--e.preventDefault();-->
-            <#--universityValidate();-->
-            <#--var addUniversityData = {-->
-                <#--oper: typeStr-->
-                <#--, code: schoolInfoDOM.$schoolCode.val()-->
-                <#--, name: schoolInfoDOM.$schoolName.val()-->
-                <#--, photoUrl: $('#imgUrlData').val()-->
-                <#--, rank: schoolInfoDOM.$schoolRank.val()-->
-                <#--, property: schoolInfoDOM.$schoolStatic.val()-->
-                <#--, educationLevel: $('#selEduLevel2').find('option:selected').val()-->
-                <#--, type: schoolInfoDOM.$schoolType.val()-->
-                <#--, subjection: schoolInfoDOM.$schoolOwn.val()-->
-                <#--, url: schoolInfoDOM.$schoolWeb.val()-->
-                <#--, areaid: $('#schoolInProvince2 option:checked').val()-->
-                <#--, provinceName: $('#schoolInProvince2 option:checked').html()-->
-                <#--, address: schoolInfoDOM.$schoolAddress.val()-->
-                <#--, contactPhone: schoolInfoDOM.$schoolTel.val()-->
-                <#--, universityIntro: schoolInfoDOM.$schoolIntroduce.html()-->
-                <#--, entranceIntro: schoolInfoDOM.$schoolArticle.html()-->
-            <#--};-->
-            <#--$.ajax({-->
-                <#--type: "POST",-->
-                <#--url: '/admin/gaokao360/ex/commonsave/${mainObj}',-->
-                <#--data: addUniversityData,-->
-                <#--success: function (result) {-->
-                    <#--if (result.rtnCode == "0000000") {-->
-                        <#--searchLoad();-->
-                        <#--$('#edit_answer_modal').modal('hide');-->
-                        <#--$('#schoolIntroduce,#schoolArticle,.filelist').html('');-->
-                    <#--}-->
-                <#--}-->
-            <#--});-->
-
-        <#--});-->
-
-
-
-//      删除院校基本信息
+        //删除院校基本信息
         CommonFn.deleteFun('#deleteBtn', '${mainObj}');
-//      取消提交
-//        $(document).on('click', '#cancelBtn', function (e) {
-//            e.preventDefault();
-////          重置表单信息
-//            $('#submitForm')[0].reset();
-//            $('#schoolIntroduce,#schoolArticle').html('');
-//        });
-//      修改院校基本信息
-        <#--UI.$editBtn.click(function () {-->
-            <#--typeStr = "edit";-->
-            <#--rowId = $('tr.ui-state-highlight[role="row"]').attr('id');-->
-            <#--var selTrN = $('tr.ui-state-highlight[role="row"]').length;-->
-            <#--if (selTrN != 1) {-->
-                <#--CommonFn.tipsDialog('温馨提示', '请选中一行后修改');-->
-                <#--return false;-->
-            <#--}-->
-            <#--$('#edit_answer_modal').modal('show');-->
-            <#--// 获取当前行数据-->
-            <#--var rowData = CommonFn.getRowData(rowId);-->
-            <#--schoolInfoDOM.$schoolName.val(rowData[0].name);-->
-            <#--schoolInfoDOM.$schoolCode.val(rowData[0].code);-->
-            <#--schoolInfoDOM.$schoolRank.val(rowData[0].rank);-->
-            <#--schoolInfoDOM.$schoolStatic.val(rowData[0].property);-->
-            <#--$('#selEduLevel2').find('option[value="' + rowData[0].educationLevel + '"]').attr('selected', 'selected');-->
-            <#--schoolInfoDOM.$schoolType.val(rowData[0].type);-->
-            <#--schoolInfoDOM.$schoolOwn.val(rowData[0].subjection);-->
-            <#--schoolInfoDOM.$schoolWeb.val(rowData[0].url);-->
-            <#--$('#schoolInProvince2').find('option[value="' + rowData[0].areaid + '"]').attr('selected', 'selected');-->
-            <#--schoolInfoDOM.$schoolAddress.val(rowData[0].address);-->
-            <#--schoolInfoDOM.$schoolTel.val(rowData[0].contactPhone);-->
-            <#--schoolInfoDOM.$schoolIntroduce.html(rowData[0].universityIntro);-->
-            <#--schoolInfoDOM.$schoolArticle.html(rowData[0].entranceIntro);-->
-            <#--UI.$submitBtn.on(ace.click_event, function (e) {-->
-                <#--e.preventDefault();-->
-                <#--universityValidate();-->
-                <#--var addUniversityData = {-->
-                    <#--oper: typeStr-->
-                    <#--, code: schoolInfoDOM.$schoolCode.val()-->
-                    <#--, name: schoolInfoDOM.$schoolName.val()-->
-                    <#--, photoUrl: 'http://img0.imgtn.bdimg.com/it/u=2127500600,2612092016&fm=21&gp=0.jpg'-->
-<#--//                    , photoUrl: schoolInfoDOM.$schoolPic.val()-->
-                    <#--, rank: schoolInfoDOM.$schoolRank.val()-->
-                    <#--, property: schoolInfoDOM.$schoolStatic.val()-->
-                    <#--, educationLevel: $('#selEduLevel2 option:checked').val()-->
-                    <#--, type: schoolInfoDOM.$schoolType.val()-->
-                    <#--, subjection: schoolInfoDOM.$schoolOwn.val()-->
-                    <#--, url: schoolInfoDOM.$schoolWeb.val()-->
-                    <#--, areaid: $('#schoolInProvince2 option:checked').val()-->
-                    <#--, provinceName: $('#schoolInProvince2 option:checked').html()-->
-                    <#--, address: schoolInfoDOM.$schoolAddress.val()-->
-                    <#--, contactPhone: schoolInfoDOM.$schoolTel.val()-->
-                    <#--, universityIntro: schoolInfoDOM.$schoolIntroduce.html()-->
-                    <#--, entranceIntro: schoolInfoDOM.$schoolArticle.html()-->
-                <#--};-->
-                <#--$.ajax({-->
-                    <#--type: "POST",-->
-                    <#--url: '/admin/gaokao360/ex/commonsave/${mainObj}',-->
-                    <#--data: addUniversityData,-->
-                    <#--success: function (result) {-->
-                        <#--if (result.rtnCode == "0000000") {-->
-                            <#--searchLoad();-->
-                        <#--}-->
-                    <#--}-->
-                <#--});-->
-            <#--});-->
-
-        <#--});//修改end-->
-//      验证函数
+        //取消提交
+        //验证函数
         function addEditFun() {
-//                院校名称
+        //院校名称
             var schoolName = $.trim($('#schoolName').val());
             if (schoolName == "") {
                 CommonFn.tipsDialog('温馨提示', '院校名称输入不能为空');
@@ -419,7 +310,7 @@
                 CommonFn.tipsDialog('温馨提示', '请上传院校图片');
                 return false;
             }
-//                院校代码
+        //院校代码
             var schoolCode = $('#schoolCode').val().trim();
             var regCode = /^[0-9a-zA-Z]*$/g;
             if (schoolCode.length == '') {

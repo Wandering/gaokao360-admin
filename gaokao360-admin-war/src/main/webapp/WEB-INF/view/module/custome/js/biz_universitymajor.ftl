@@ -124,6 +124,7 @@
             // 获取当前行数据
             var rowData = CommonFn.getRowData(rowId);
             console.log(rowData);
+            $('#majoredrank').val(rowData[0].majorRank);
             $('#MajoredNameList').find('option[value="' + rowData[0].majorId + '"]').attr('selected', 'selected');
             $('#UniversityNameList').find('option[value="' + rowData[0].universityId + '"]').attr('selected', 'selected');
             $('#MAJOR_TYPE').find('option[value="' + rowData[0].majorType + '"]').attr('selected', 'selected');
@@ -159,6 +160,10 @@
                 CommonFn.tipsDialog('温馨提示', '专业类型没有选择');
                 return false;
             }
+            if ($.trim($('#majoredrank').val()) == '') {
+                CommonFn.tipsDialog('温馨提示', '请输入院校排名');
+                return false;
+            }
             if (UNIVERSITY_MAJOR_TYPE == '00') {
                 CommonFn.tipsDialog('温馨提示', '科类没有选择');
                 return false;
@@ -182,7 +187,8 @@
                 majorSubject: UNIVERSITY_MAJOR_TYPE,
                 educationLevel: eduLevel,
                 gainDegree: GAIN_DEGREE,
-                isDelete: 0
+                isDelete: 0,
+                majorRank:$('#majoredrank').val()
             };
             if (typeStr == 'edit') {
                 data.id = rowId;
@@ -216,6 +222,12 @@
                 + '<label class="col-sm-2 control-label no-padding-right" for=""> 专业类型：</label>'
                 + '<div class="col-sm-5">'
                 + '<select name="" id="MAJOR_TYPE"  class="col-sm-10">'+ majoredTypeData +'</select>'
+                + '</div>'
+                + '</div>'
+                + '<div class="form-group">'
+                + '<label class="col-sm-2 control-label no-padding-right" for=""> 专业排名：</label>'
+                + '<div class="col-sm-5">'
+                + '<input type="text" id="majoredrank" placeholder="请输入专业排名" class="" />'
                 + '</div>'
                 + '</div>'
                 + '<div class="form-group">'
