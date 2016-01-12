@@ -59,6 +59,7 @@
         };
 //       获取政策一级分类和省份信息
         var policyData = CommonFn.getpolicy();
+        $('#eduLevel').html(policyData).find('option:eq(1)').remove();
         var province = CommonFn.getProvince();
         UI.$province.append(province);
 //        添加政策解读

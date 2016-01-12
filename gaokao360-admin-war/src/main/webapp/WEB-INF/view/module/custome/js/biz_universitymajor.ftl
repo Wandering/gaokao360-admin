@@ -62,6 +62,7 @@
 
         // 学历层次
         var edulevelData = CommonFn.getEdulevel();
+        $('#getEduLevel').html(edulevelData);
 //        console.log(edulevelData)
 
         // 学位
