@@ -74,7 +74,7 @@ selectList
                 and id in (#{condition.whereSql})
             </if>
             <if test="condition.subjectType!=null">
-                ${condition.groupOp}   major.major_category  ${condition.subjectType.op}  #{condition.subjectType.data}
+                ${condition.groupOp}   major.discipline_categories  ${condition.subjectType.op}  #{condition.subjectType.data}
             </if>
             <if test="condition.queryparam!=null">
                 ${condition.groupOp}
@@ -104,7 +104,7 @@ selectList
         <where>
 1=1
             <if test="subjectType!=null">
-                ${groupOp}   major.major_category  ${subjectType.op}  #{subjectType.data}
+                ${groupOp}   major.discipline_categories  ${subjectType.op}  #{subjectType.data}
             </if>
             <if test="queryparam!=null">
                 ${groupOp}
