@@ -285,18 +285,21 @@
             var selYearsV = $("#selYears2").find('option:selected').val();
             var autoSearchId = $('.ui-autocomplete-input').attr('dataId');
 
-            if (selProvinceV == "00") {
-                CommonFn.tipsDialog('温馨提示', '请选择省份');
-                return false;
-            }
-            if ( autoSearchId=="") {
-                CommonFn.tipsDialog('温馨提示', '请输入正确的院校名称');
-                return false;
-            }
-            if (selYearsV == '00') {
-                CommonFn.tipsDialog('温馨提示', '年份没有选择,请重新输入');
-                return false;
-            }
+//            if (selProvinceV == "00") {
+//                CommonFn.tipsDialog('温馨提示', '请选择省份');
+//                return false;
+//            }
+//            if ( autoSearchId=="") {
+//                CommonFn.tipsDialog('温馨提示', '请输入正确的院校名称');
+//                return false;
+//            }
+//            if (selYearsV == '00') {
+//                CommonFn.tipsDialog('温馨提示', '年份没有选择,请重新输入');
+//                return false;
+//            }
+
+
+
 
             for(var i=0;i<$('#subjectType-main1 .subjectType').length;i++){
                 var values = $('#subjectType-main1 .subjectType:eq('+ i +')').find('option:selected').val();
@@ -431,6 +434,12 @@
             };
 
             batchData = JSON.stringify(batchData)
+
+
+            if(batchData.length==0){
+                CommonFn.tipsDialog('温馨提示', '至少选择一类招生信息');
+                return false;
+            }
 
 
 
