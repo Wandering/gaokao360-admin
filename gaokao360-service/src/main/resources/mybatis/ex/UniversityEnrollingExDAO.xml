@@ -28,6 +28,7 @@ selectList
            enrolling.id as id,
            enrolling.areaid as areaid,
            province.name as province,
+           university.id as universityId,
            university.name as name,
            enrolling.year as year,
            enrolling.batch as batch,

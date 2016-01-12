@@ -1,31 +1,49 @@
 <script>
     <!-- 自定义js请写在这个文件  以下这个查询方法只是个例子，请按照业务需求修改 -->
     function buildRules() {
-        var courseName = $('#courseName').val();
-        var status = $('#status').val();
-        var classfyId = $('#classfyId').val();
+        var keywordSearch = $('#keywordSearch').val();
+        var selCourses = $('#selCourses').val();
+        var selYears = $('#selYears').val();
+        var selEduLevel = $('#selEduLevel').val();
+        var selProvince = $('#selProvince').val();
         var rules = [];
-        if (courseName != ''&&courseName!=null&&courseName!=undefined) {
+        if (keywordSearch != ''&&keywordSearch!=null&&keywordSearch!=undefined) {
             var rule = {
-                'field': 'courseName',
-                'op': 'eq',
-                'data': courseName
+                'field': 'universityName',
+                'op': 'lk',
+                'data': keywordSearch
             }
             rules.push(rule);
         }
-        if (status != ''&&status!=null&&status!=undefined) {
+        if (selCourses != ''&&selCourses!=null&&selCourses!=undefined&&selCourses!='00') {
             var rule = {
-                'field': 'status',
+                'field': 'batch',
                 'op': 'eq',
-                'data': status
+                'data': selCourses
             }
             rules.push(rule);
         }
-        if (classfyId != ''&&classfyId!=null&&classfyId!=undefined) {
+        if (selYears != ''&&selYears!=null&&selYears!=undefined&&selYears!='00') {
             var rule = {
-                'field': 'classfyId',
+                'field': 'year',
                 'op': 'eq',
-                'data': classfyId
+                'data': selYears
+            }
+            rules.push(rule);
+        }
+        if (selEduLevel != ''&&selEduLevel!=null&&selEduLevel!=undefined&&selEduLevel!='00') {
+            var rule = {
+                'field': 'universityMajorType',
+                'op': 'eq',
+                'data': selEduLevel
+            }
+            rules.push(rule);
+        }
+        if (selProvince != ''&&selProvince!=null&&selProvince!=undefined&&selProvince!='00') {
+            var rule = {
+                'field': 'areaId',
+                'op': 'eq',
+                'data': selProvince
             }
             rules.push(rule);
         }
@@ -357,7 +375,7 @@
                 var averageScoreV = $.trim($parentDetail.find('.averageScore').val());
                 var averagePrecedenceV = $.trim($parentDetail.find('.averagePrecedence').val());
 
-                if(values=="00" && $('#subjectType1:visible')==true){
+                if(values=="00" && $('#subjectType1').is(':visible')){
                     CommonFn.tipsDialog('温馨提示', '请选择文史类招生批次');
                     return false;
                 }
@@ -407,7 +425,7 @@
                 var averageScoreV = $.trim($parentDetail.find('.averageScore').val());
                 var averagePrecedenceV = $.trim($parentDetail.find('.averagePrecedence').val());
 
-                if(values=="00" && $('#subjectType2:visible')==true){
+                if(values=="00" && $('#subjectType2').is(':visible')){
                     CommonFn.tipsDialog('温馨提示', '请选择理工类招生批次');
                     return false;
                 }
@@ -461,19 +479,22 @@
                 var lowestPrecedenceV = $('.subjectTypeList:eq('+ i +')').find('.lowestPrecedence').val();
                 var averageScoreV = $('.subjectTypeList:eq('+ i +')').find('.averageScore').val();
                 var averagePrecedenceV = $('.subjectTypeList:eq('+ i +')').find('.averagePrecedence').val();
-                batchType = {
-                    "universityMajorType":universityMajorTypeV,
-                    "batch": batchV,
-                    "planEnrollingNumber": planEnrollingNumberV,
-                    "realEnrollingNumber": realEnrollingNumberV,
-                    "highestScore": highestScoreV,
-                    "highestPrecedence": highestPrecedenceV,
-                    "lowestScore": lowestScoreV,
-                    "lowestPrecedence": lowestPrecedenceV,
-                    "averageScore": averageScoreV,
-                    "averagePrecedence": averagePrecedenceV
-                };
-                batchData.push(batchType);
+                if(batchV!=="00"){
+                    batchType = {
+                        "universityMajorType":universityMajorTypeV,
+                        "batch": batchV,
+                        "planEnrollingNumber": planEnrollingNumberV,
+                        "realEnrollingNumber": realEnrollingNumberV,
+                        "highestScore": highestScoreV,
+                        "highestPrecedence": highestPrecedenceV,
+                        "lowestScore": lowestScoreV,
+                        "lowestPrecedence": lowestPrecedenceV,
+                        "averageScore": averageScoreV,
+                        "averagePrecedence": averagePrecedenceV
+                    };
+                    batchData.push(batchType);
+                }
+
             };
 
             batchData = JSON.stringify(batchData)
