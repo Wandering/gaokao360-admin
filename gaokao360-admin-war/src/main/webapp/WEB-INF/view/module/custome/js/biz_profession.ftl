@@ -355,7 +355,7 @@
                 "introduction": hotContentIntroV,
                 "workContent": hotContentContentV,
                 "vocationalDemand": hotContentRequirementsV,
-                "careerProspects": hotContentProspectsV,
+                "careerProspects": hotContentProspectsV
             };
             Datas.id = rowId;
             console.log(Datas)
