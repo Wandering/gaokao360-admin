@@ -108,7 +108,7 @@ selectList
            </if>
        </where>
     </select>
-    <select id="fetch" parameterType="java.lang.Long" resultType="UniversityEnrolling">
+    <select id="fetch" parameterType="java.lang.Long" resultType="cn.thinkjoy.gaokao360.dto.UniversityEnrollingDTO">
         SELECT
         <include refid="Base_Column_List" />
         FROM
@@ -117,9 +117,9 @@ selectList
         LEFT JOIN zgk_province province ON province.id=enrolling.areaid
         LEFT JOIN zgk_data_dict batchdict ON batchdict.dictId=enrolling.batch AND batchdict.type='MAJOR_BATCH'
         LEFT JOIN zgk_data_dict typedict ON typedict.dictId=enrolling.batch AND typedict.type='UNIVERSITY_MAJOR_TYPE'
-        <trim prefix="WHERE" prefixOverrides="AND | OR">
-            AND enrolling.id = #{id}
-        </trim>
+        <where>
+            enrolling.id = #{id}
+        </where>
     </select>
     <update id="updateMap">
         UPDATE zgk_university_enrolling
