@@ -14,7 +14,7 @@ public interface IGkScheduleService {
      * 获取热点摘要列表 四个
      * @return
      */
-    List<GkScheduleDTO> getScheduleList(String areaId, Integer num);
+    List<GkScheduleDTO> getScheduleList(Integer num);
 
     /**
      * 获取详情

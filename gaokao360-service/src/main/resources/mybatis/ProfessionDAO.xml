@@ -854,10 +854,10 @@ selectList
                ${groupOp} ${id.field} ${id.op}  #{id.data}
            </if>
            <if test="professionType!=null">
-               ${groupOp} ${professionType.field} ${professionType.op}  #{professionType.data}
+               AND  profession_type = #{professionType.data}
            </if>
            <if test="professionSubType!=null">
-               ${groupOp} ${professionSubType.field} ${professionSubType.op}  #{professionSubType.data}
+               AND  profession_sub_type =  #{professionSubType.data}
            </if>
            <if test="professionName!=null">
                ${groupOp} ${professionName.field} ${professionName.op}  #{professionName.data}

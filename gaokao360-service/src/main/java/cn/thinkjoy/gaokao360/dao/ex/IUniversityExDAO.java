@@ -21,5 +21,5 @@ public interface IUniversityExDAO extends IBaseDAO<UniversityDTO>{
     UniversityDict getDictByName(String name);
     Integer getDictMaxSort(String type);
     List getUniversityByName(String name);
-    int insertDetail(@Param("map") Map<String, Object> entityMap);
+    int insertDetail(Map<String, Object> entityMap);
 }

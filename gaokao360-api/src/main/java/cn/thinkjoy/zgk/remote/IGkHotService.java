@@ -13,7 +13,7 @@ public interface IGkHotService {
      * 获取热点摘要列表 四个
      * @return
      */
-    List<GkHot> getGkHotList(String areaId,String type,Integer num);
+    List<GkHot> getGkHotList(String type,Integer num);
 
     /**
      * 获取详情
