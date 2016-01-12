@@ -464,9 +464,25 @@ selectList
             </trim>
         </if>
         <if test="selector==null">
-        <include refid="Base_Column_List" />
+            v.id as id ,
+            v.categoryId as categoryId ,
+            v.title as title ,
+            v.summary as summary ,
+            v.content as content ,
+            v.htmlId as htmlId ,
+            v.sortId as sortId ,
+            v.status as status ,
+            v.creator as creator ,
+            v.createDate as createDate ,
+            v.lastModifier as lastModifier ,
+            v.lastModDate as lastModDate ,
+            v.hits as hits ,
+            v.areaId as areaId,
+            p.name as areaName
         </if>
-        FROM zgk_vocabulary
+
+        FROM zgk_vocabulary v
+        left join zgk_province p on p.id= v.areaId
         <where>
 
             <if test="condition.whereSql != null">
