@@ -14,7 +14,7 @@
         }
         if (getEduLevel != '' && getEduLevel != null && getEduLevel != undefined && getEduLevel != '00') {
             var rule = {
-                'field': 'majorSubject',
+                'field': 'educationLevel',
                 'op': 'eq',
                 'data': getEduLevel
             }
