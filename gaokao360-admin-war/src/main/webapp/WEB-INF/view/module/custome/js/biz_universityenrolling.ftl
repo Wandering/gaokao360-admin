@@ -240,8 +240,8 @@
             // 当前行数据
             var rowData = CommonFn.getRowData(rowId)
             console.log(rowData)
-            $('#autoSearch').val(rowData[0].name)
-            $('#selProvince2').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
+            $('#autoSearch').val(rowData[0].name).attr('dataId',rowData[0].universityId)
+            $('#selProvince2').find('option[value="' + rowData[0].areaid + '"]').attr('selected', 'selected');
             $('#selYears2').find('option[value="' + rowData[0].year + '"]').attr('selected', 'selected');
             if(rowData[0].universityMajorType=="1"){
                 $('#subjectType1').show();
