@@ -246,6 +246,7 @@
 
         //修改
         $("#editBtn").on(ace.click_event, function () {
+            typeStr = "edit";
             rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
             var selTrN = $('tr.ui-state-highlight[role="row"]').length;
             if (selTrN != 1) {
@@ -274,6 +275,7 @@
             var rowData = CommonFn.getRowData(rowId);
             console.log(rowData)
             $('#schoolName').val(rowData[0].name);
+            $('#imgUrlData').val(rowData[0].photoUrl);
             $('#schoolCode').val(rowData[0].code);
             $('#schoolRank').val(rowData[0].rank);
             $('#schoolStatic').val(rowData[0].property);
@@ -288,9 +290,6 @@
             $('#schoolIntroduce').html(universityIntroText);
             var entranceIntroText = CommonFn.getContentHtml(rowData[0].entranceIntro).join('');
             $('#schoolArticle').html(entranceIntroText);
-
-
-
         });
 
 
