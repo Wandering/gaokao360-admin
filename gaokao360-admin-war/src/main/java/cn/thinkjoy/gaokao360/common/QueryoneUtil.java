@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,11 +61,11 @@ public class QueryoneUtil extends BaseCommonUtil{
         this.mainObj = mainObj;
     }
 
-    public Object innerHandleUQueryone(String mainObj,Object id) throws Exception {
+    public Object innerHandleUQueryone(String mainObj,Object id) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         this.setMainObj(mainObj);
         return runMethod(mainObj,id);
     }
-    public Object runMethod(String mainObj,Object id) throws Exception {
+    public Object runMethod(String mainObj,Object id) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         return this.getClass().getMethod(mainObj,new Class[]{Object.class}).invoke(this,id);
     }
     /**

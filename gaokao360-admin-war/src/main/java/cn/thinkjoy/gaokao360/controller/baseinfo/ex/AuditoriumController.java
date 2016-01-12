@@ -52,6 +52,15 @@ public class AuditoriumController extends BaseController<IAuditoriumService> {
         return doPage(request, response);
     }
 
+    /**
+     * 获取所有的组织信息
+     * @return
+     */
+    @RequestMapping(value="/Test1111")
+    @ResponseBody
+    public Integer Test1111(){
+        return 1/0;
+    }
     @Override
     protected IAuditoriumService getMainService() {
         return auditoriumService;
