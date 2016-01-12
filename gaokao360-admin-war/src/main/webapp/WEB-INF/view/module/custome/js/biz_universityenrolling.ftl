@@ -23,7 +23,7 @@
         }
         if (selProvince != '00' && selProvince != null && selProvince != undefined) {
             var rule = {
-                'field': 'province.name',
+                'field': 'university.areaid',
                 'op': 'eq',
                 'data': selProvince
             };

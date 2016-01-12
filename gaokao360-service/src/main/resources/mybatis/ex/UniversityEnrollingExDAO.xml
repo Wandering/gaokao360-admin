@@ -73,8 +73,8 @@ selectList
             <if test="condition.enrollingyear!=null">
                 ${condition.groupOp} ${condition.enrollingyear.field} ${condition.enrollingyear.op}  #{condition.enrollingyear.data}
             </if>
-            <if test="condition.provincename!=null">
-                ${condition.groupOp} ${condition.provincename.field} ${condition.provincename.op}  #{condition.provincename.data}
+            <if test="condition.universityareaid!=null">
+                ${condition.groupOp} ${condition.universityareaid.field} ${condition.universityareaid.op}  #{condition.universityareaid.data}
             </if>
         </where>
         ORDER BY  lastModDate DESC
@@ -103,8 +103,8 @@ selectList
            <if test="enrollingyear!=null">
                ${groupOp} ${enrollingyear.field} ${enrollingyear.op}  #{enrollingyear.data}
            </if>
-           <if test="provincename!=null">
-               ${groupOp} ${provincename.field} ${provincename.op}  #{provincename.data}
+           <if test="universityareaid!=null">
+               ${groupOp} ${universityareaid.field} ${universityareaid.op}  #{universityareaid.data}
            </if>
        </where>
     </select>
