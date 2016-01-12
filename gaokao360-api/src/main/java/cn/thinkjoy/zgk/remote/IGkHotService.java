@@ -1,8 +1,10 @@
 package cn.thinkjoy.zgk.remote;
 
+import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.zgk.domain.GkHot;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 高考热点dubbo
@@ -14,7 +16,7 @@ public interface IGkHotService {
      * 获取热点摘要列表 四个
      * @return
      */
-    List<GkHot> getGkHotList(String type,Integer num);
+    BizData4Page getGkHotList(Map<String, Object> conditions,Integer page,Integer rows);
 
     /**
      * 获取详情
@@ -22,10 +24,5 @@ public interface IGkHotService {
      */
     GkHot getGkHotInfo(String id);
 
-//    /**
-//     * 获取热点摘要列表 四个
-//     * @return
-//     */
-//    List<GkHot> getGkHotList();
 
 }
