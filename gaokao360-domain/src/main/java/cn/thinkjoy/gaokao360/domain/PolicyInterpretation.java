@@ -2,7 +2,7 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  PolicyInterpretation.java 2015-12-26 13:43:42 $
+ * $Id:  PolicyInterpretation.java 2016-01-12 18:41:57 $
  */
 
 
@@ -20,6 +20,8 @@ import cn.thinkjoy.common.domain.CreateBaseDomain;
 import java.util.*;
 
 public class PolicyInterpretation extends CreateBaseDomain<Long>{
+    /** 标题 */
+    private String title;
     /** 省份id */
     private Long provinceId;
     /** 录取批次id */
@@ -37,6 +39,13 @@ public class PolicyInterpretation extends CreateBaseDomain<Long>{
 
 	public PolicyInterpretation(){
 	}
+    public void setTitle(String value) {
+        this.title = value;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
     public void setProvinceId(Long value) {
         this.provinceId = value;
     }
@@ -90,6 +99,7 @@ public class PolicyInterpretation extends CreateBaseDomain<Long>{
 	public String toString() {
 		return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
 			.append("Id",getId())
+			.append("Title",getTitle())
 			.append("ProvinceId",getProvinceId())
 			.append("AdmissionBatchId",getAdmissionBatchId())
 			.append("CategoryName",getCategoryName())

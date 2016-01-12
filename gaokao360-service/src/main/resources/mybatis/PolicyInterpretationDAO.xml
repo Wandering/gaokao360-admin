@@ -26,6 +26,7 @@ selectList
 
     <sql id="Base_Column_List">
         id as id ,
+        title as title ,
         provinceId as provinceId ,
         admissionBatchId as admissionBatchId ,
         categoryName as categoryName ,
@@ -41,6 +42,7 @@ selectList
     </sql>
     <insert id="insert" parameterType="PolicyInterpretation">
         INSERT INTO zgk_policy_interpretation (
+        title,
         provinceId,
         admissionBatchId,
         categoryName,
@@ -54,6 +56,7 @@ selectList
         htmlId,
         subContent
         ) VALUES (
+        #{title},
         #{provinceId},
         #{admissionBatchId},
         #{categoryName},
@@ -76,6 +79,9 @@ selectList
     <update id="update" parameterType="PolicyInterpretation">
         UPDATE zgk_policy_interpretation
         <trim prefix="SET" suffixOverrides=",">
+            <if test="title!=null">
+                title = #{title},
+            </if>
             <if test="provinceId!=null">
                 provinceId = #{provinceId},
             </if>
@@ -120,6 +126,9 @@ selectList
     <update id="updateMap">
         UPDATE zgk_policy_interpretation
         <trim prefix="SET" suffixOverrides=",">
+            <if test="map.title!=null">
+                title = #{map.title},
+            </if>
             <if test="map.provinceId!=null">
                 provinceId = #{map.provinceId},
             </if>
@@ -164,6 +173,9 @@ selectList
     <update id="updateByCondition">
         UPDATE zgk_policy_interpretation
         <trim prefix="SET" suffixOverrides=",">
+            <if test="update.title!=null">
+                title = #{update.title},
+            </if>
             <if test="update.provinceId!=null">
                 provinceId = #{update.provinceId},
             </if>
@@ -206,6 +218,9 @@ selectList
             <if test="condition.id!=null">
                 AND id = #{condition.id}
             </if>
+            <if test="condition.title!=null">
+                AND title = #{condition.title}
+            </if>
             <if test="condition.provinceId!=null">
                 AND provinceId = #{condition.provinceId}
             </if>
@@ -247,6 +262,7 @@ selectList
 
     <insert id="insertMap" >
         INSERT INTO zgk_policy_interpretation (
+                title,
                 provinceId,
                 admissionBatchId,
                 categoryName,
@@ -260,6 +276,7 @@ selectList
                 htmlId,
                 subContent
         ) VALUES (
+                    #{map.title},
                     #{map.provinceId},
                     #{map.admissionBatchId},
                     #{map.categoryName},
@@ -279,6 +296,7 @@ selectList
     <update id="updateNull" parameterType="PolicyInterpretation">
         UPDATE zgk_policy_interpretation
         <trim prefix="SET" suffixOverrides=",">
+            title = #{title},
             provinceId = #{provinceId},
             admissionBatchId = #{admissionBatchId},
             categoryName = #{categoryName},
@@ -310,6 +328,9 @@ selectList
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="id!=null">
                 AND id = #{id}
+            </if>
+            <if test="title!=null">
+                AND title = #{title}
             </if>
             <if test="provinceId!=null">
                 AND provinceId = #{provinceId}
@@ -401,6 +422,9 @@ selectList
                         <if test="selector.id!=null">
                             , id
                         </if>
+                        <if test="selector.title!=null">
+                            , title
+                        </if>
                         <if test="selector.provinceId!=null">
                             , provinceId
                         </if>
@@ -451,6 +475,9 @@ selectList
 
             <if test="condition.id!=null">
                 ${condition.groupOp}   ${condition.id.field}  ${condition.id.op}  #{condition.id.data}
+            </if>
+            <if test="condition.title!=null">
+                ${condition.groupOp}   ${condition.title.field}  ${condition.title.op}  #{condition.title.data}
             </if>
             <if test="condition.provinceId!=null">
                 ${condition.groupOp}   ${condition.provinceId.field}  ${condition.provinceId.op}  #{condition.provinceId.data}
@@ -506,6 +533,9 @@ selectList
                     <if test="selector.id!=null">
                         , id
                     </if>
+                    <if test="selector.title!=null">
+                        , title
+                    </if>
                     <if test="selector.provinceId!=null">
                         , provinceId
                     </if>
@@ -551,6 +581,9 @@ selectList
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id like CONCAT('%', #{condition.id} , '%')
+            </if>
+            <if test="condition.title!=null">
+                AND title like CONCAT('%', #{condition.title} , '%')
             </if>
             <if test="condition.provinceId!=null">
                 AND provinceId like CONCAT('%', #{condition.provinceId} , '%')
@@ -602,6 +635,9 @@ selectList
                 <if test="selector.id!=null">
                     , id
                 </if>
+                <if test="selector.title!=null">
+                    , title
+                </if>
                 <if test="selector.provinceId!=null">
                     , provinceId
                 </if>
@@ -647,6 +683,9 @@ selectList
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id = #{condition.id}
+            </if>
+            <if test="condition.title!=null">
+                AND title = #{condition.title}
             </if>
             <if test="condition.provinceId!=null">
                 AND provinceId = #{condition.provinceId}
@@ -697,6 +736,9 @@ selectList
                     <if test="selector.id!=null">
                         , id
                     </if>
+                    <if test="selector.title!=null">
+                        , title
+                    </if>
                     <if test="selector.provinceId!=null">
                         , provinceId
                     </if>
@@ -742,6 +784,9 @@ selectList
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id = #{condition.id}
+            </if>
+            <if test="condition.title!=null">
+                AND title = #{condition.title}
             </if>
             <if test="condition.provinceId!=null">
                 AND provinceId = #{condition.provinceId}
@@ -791,6 +836,9 @@ selectList
        <where>
            <if test="id!=null">
                ${groupOp} ${id.field} ${id.op}  #{id.data}
+           </if>
+           <if test="title!=null">
+               ${groupOp} ${title.field} ${title.op}  #{title.data}
            </if>
            <if test="provinceId!=null">
                ${groupOp} ${provinceId.field} ${provinceId.op}  #{provinceId.data}

@@ -1,6 +1,8 @@
 package cn.thinkjoy.zgk.remote;
 
+import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.zgk.domain.GkHot;
+import cn.thinkjoy.zgk.domain.GkPolicy;
 
 import java.util.List;
 import java.util.Map;
@@ -13,16 +15,17 @@ public interface IGkPolicyService {
 
     /**
      * 获取政策摘要列表
-     * @param map
-     * @param num
+     * @param conditions
+     * @param page
+     * @param rows
      * @return
      */
-    List<GkHot> getGkPolicyList(Integer num,Map<String,Object> map);
+    BizData4Page getGkPolicyList(Map<String, Object> conditions,Integer page,Integer rows);
 
     /**
      * 获取政策解读详情
      * @param id
      * @return
      */
-    GkHot getGkPolicyInfo(String id);
+    GkPolicy getGkPolicyInfo(String id);
 }

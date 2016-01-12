@@ -21,6 +21,8 @@ import java.util.Map;
 @Service("GkHotServiceImpl")
 public class GkHotServiceImpl extends BaseCommonService implements IGkHotService {
 
+    //设置是否加载内容，默认不加载
+    private boolean isIgnore=false;
     @Autowired
     IGkinformationGkhotService gkinformationGkhotService;
     /**
@@ -30,10 +32,9 @@ public class GkHotServiceImpl extends BaseCommonService implements IGkHotService
     @Override
     public BizData4Page getGkHotList(Map<String, Object> conditions,Integer page,Integer rows) {
         List<GkinformationGkhot> gkinformationGkhots = null;
-//        Map<String,Object> map = new HashMap<>();
-//        map.put("groupOp","and");
-//        QueryUtil.setMapOp(map,"type","=",type);
-//        gkinformationGkhots= gkinformationGkhotService.listByPage(map,0,num,"hotdate", SqlOrderEnum.DESC);
+        if(!conditions.containsKey("isIgnore")) {
+            this.setIsIgnore(false);
+        }
         return doPage(conditions,gkinformationGkhotService.getDao(),page,rows);
     }
 
@@ -65,7 +66,9 @@ public class GkHotServiceImpl extends BaseCommonService implements IGkHotService
         if(gkinformationGkhot==null)return null;
         GkHot gkHot = new GkHot();
         gkHot.setTitle(gkinformationGkhot.getHotInformation());
-        gkHot.setContent(gkinformationGkhot.getInformationContent());
+        if(this.isIgnore()) {
+            gkHot.setContent(gkinformationGkhot.getInformationContent());
+        }
         gkHot.setSubContent(gkinformationGkhot.getInformationSubContent());
         gkHot.setImage(gkinformationGkhot.getImgUrl());
         gkHot.setHotDate(gkinformationGkhot.getHotdate());
@@ -79,4 +82,12 @@ public class GkHotServiceImpl extends BaseCommonService implements IGkHotService
 //     */
 //    List<GkHot> getGkHotList();
 
+
+    public boolean isIgnore() {
+        return isIgnore;
+    }
+
+    public void setIsIgnore(boolean isIgnore) {
+        this.isIgnore = isIgnore;
+    }
 }
