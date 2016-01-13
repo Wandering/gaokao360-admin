@@ -612,12 +612,12 @@
                     , id
                 </if>
                 <if test="selector.universityId!=null">
-                    ,
-                    (SELECT name FROM zgk_university uu WHERE uu.id = universityId limit 1) as nuiversityName
+                    ,universityId
+                    ,(SELECT name FROM zgk_university uu WHERE uu.id = universityId limit 1) as nuiversityName
                 </if>
                 <if test="selector.majorId!=null">
-                    ,
-                    (SELECT major_name FROM zgk_major uu WHERE uu.id = majorId limit 1) as majorName
+                    ,majorId
+                    ,(SELECT major_name FROM zgk_major uu WHERE uu.id = majorId limit 1) as majorName
                 </if>
                 <if test="selector.year!=null">
                     , year
@@ -631,7 +631,7 @@
                     (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'ADMISSION_BATCH_TYPE' AND dd.dictId = admissionBatchId) as admissionBatchName
                 </if>
                 <if test="selector.universityMajorType!=null">
-                    , (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'MAJOR_TYPE' AND dd.dictId = universityMajorType) as majorTypeName
+                    , (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'UNIVERSITY_MAJOR_TYPE' AND dd.dictId = universityMajorType) as majorTypeName
                 </if>
                 <if test="selector.planEnrollingNumber!=null">
                     , planEnrollingNumber
@@ -641,6 +641,7 @@
                 </if>
                 <if test="selector.lengthOfSchooling!=null">
                     , lengthOfSchooling
+                    ,(SELECT name FROM zgk_data_dict dd WHERE dd.type = 'LENGTH_OF_SCHOOLING' AND dd.dictId = lengthOfSchooling) as lengthOfSchoolingName
                 </if>
                 <if test="selector.schoolFee!=null">
                     , schoolFee
