@@ -44,6 +44,25 @@
         <qualifier value="platform"/>
     </bean>
 
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="add*" propagation="REQUIRED" />
+            <tx:method name="insert*" propagation="REQUIRED" />
+            <tx:method name="batch*" propagation="REQUIRED" />
+            <tx:method name="delete*" propagation="REQUIRED" />
+            <tx:method name="update*" propagation="REQUIRED" />
+            <tx:method name="save*" propagation="REQUIRED" />
+            <tx:method name="*" propagation="SUPPORTS" />
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config expose-proxy="true">
+        <aop:pointcut id="services" expression="execution(* cn.thinkjoy.gaokao360.service..impl.*.*(..))" />
+        <aop:pointcut id="servicesRemote" expression="execution(* cn.thinkjoy.gaokao360.remote..*.*(..))" />
+        <aop:advisor pointcut-ref="services" advice-ref="txAdvice"/>
+        <aop:advisor pointcut-ref="servicesRemote" advice-ref="txAdvice"/>
+    </aop:config>
+
     <!-- 使用annotation定义事务 -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
