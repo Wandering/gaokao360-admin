@@ -1,6 +1,6 @@
-package cn.thinkjoy.gaokao360.common;
+package cn.thinkjoy.zgk.common;
 
-import cn.thinkjoy.common.domain.SearchField;
+import cn.thinkjoy.zgk.domain.SearchField;
 
 import java.util.Map;
 

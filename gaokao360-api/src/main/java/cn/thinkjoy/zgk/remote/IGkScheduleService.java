@@ -22,11 +22,4 @@ public interface IGkScheduleService {
      * @return
      */
     GkSchedule getScheduleInfo(String id);
-
-//    /**
-//     * 获取热点摘要列表 四个
-//     * @return
-//     */
-//    List<GkHot> getGkHotList();
-
 }

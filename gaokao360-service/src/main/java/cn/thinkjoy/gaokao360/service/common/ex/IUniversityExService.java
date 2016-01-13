@@ -10,6 +10,7 @@ import cn.thinkjoy.common.dao.IBaseDAO;
 import cn.thinkjoy.common.domain.BaseDomain;
 import cn.thinkjoy.common.service.IBaseService;
 import cn.thinkjoy.common.service.IPageService;
+import cn.thinkjoy.zgk.dto.UniversityPlanChartDTO;
 
 import java.util.List;
 import java.util.Map;
@@ -19,4 +20,6 @@ public interface IUniversityExService<D extends IBaseDAO<T>, T extends BaseDomai
     void updateUniversity(Map<String,Object> dataMap);
     void deleteUniversity(Map<String,Object> dataMap);
     List getUniversityByName(String name);
+
+    List<UniversityPlanChartDTO> queryUniversityPlanChart(Map<String,Object> params);
 }

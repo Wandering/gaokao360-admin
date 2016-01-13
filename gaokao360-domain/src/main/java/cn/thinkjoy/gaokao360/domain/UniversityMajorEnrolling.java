@@ -2,7 +2,7 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  UniversityMajorEnrolling.java 2015-12-31 10:09:48 $
+ * $Id:  UniversityMajorEnrolling.java 2016-01-12 20:34:24 $
  */
 
 
@@ -20,6 +20,8 @@ import cn.thinkjoy.common.domain.CreateBaseDomain;
 import java.util.*;
 
 public class UniversityMajorEnrolling extends CreateBaseDomain<Long>{
+    /**  */
+    private Long areaId;
     /** 专业所属学校ID */
     private Long universityId;
     /** 专业名称 */
@@ -28,7 +30,7 @@ public class UniversityMajorEnrolling extends CreateBaseDomain<Long>{
     private Integer year;
     /** 批次，对应字典表MAJOR_BATCH类型 */
     private Integer batch;
-    /**  */
+    /** 一级政策分类 */
     private Long admissionBatchId;
     /** 专业类别，1文史，2理工。对应字典表中的UNIVERSITY_MAJOR_TYPE类型 */
     private Integer universityMajorType;
@@ -38,7 +40,7 @@ public class UniversityMajorEnrolling extends CreateBaseDomain<Long>{
     private Integer realEnrollingNumber;
     /** 学制，1.四年制。对应字典表中的LENGTH_OF_SCHOOLING */
     private String lengthOfSchooling;
-    /** 学费,xxxx元/年 */
+    /** 学费,xxxx元/年（计划中使用？） */
     private Integer schoolFee;
     /** 录取最高分 */
     private Integer highestScore;
@@ -54,20 +56,16 @@ public class UniversityMajorEnrolling extends CreateBaseDomain<Long>{
     private Integer averagePrecedence;
     /**  */
     private Boolean isDelete;
-    /** 区域Id */
-    private long areaId;
 
-	public UniversityMajorEnrolling(){
-	}
-
-    public long getAreaId() {
-        return areaId;
+    public UniversityMajorEnrolling(){
+    }
+    public void setAreaId(Long value) {
+        this.areaId = value;
     }
 
-    public void setAreaId(long areaId) {
-        this.areaId = areaId;
+    public Long getAreaId() {
+        return this.areaId;
     }
-
     public void setUniversityId(Long value) {
         this.universityId = value;
     }
@@ -180,8 +178,6 @@ public class UniversityMajorEnrolling extends CreateBaseDomain<Long>{
     public Integer getAveragePrecedence() {
         return this.averagePrecedence;
     }
-
-
     public void setIsDelete(Boolean value) {
         this.isDelete = value;
     }
@@ -190,46 +186,47 @@ public class UniversityMajorEnrolling extends CreateBaseDomain<Long>{
         return this.isDelete;
     }
 
-	public String toString() {
-		return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-			.append("Id",getId())
-			.append("UniversityId",getUniversityId())
-			.append("MajorId",getMajorId())
-			.append("Year",getYear())
-			.append("Batch",getBatch())
-			.append("AdmissionBatchId",getAdmissionBatchId())
-			.append("UniversityMajorType",getUniversityMajorType())
-			.append("PlanEnrollingNumber",getPlanEnrollingNumber())
-			.append("RealEnrollingNumber",getRealEnrollingNumber())
-			.append("LengthOfSchooling",getLengthOfSchooling())
-			.append("SchoolFee",getSchoolFee())
-			.append("HighestScore",getHighestScore())
-			.append("HighestPrecedence",getHighestPrecedence())
-			.append("LowestScore",getLowestScore())
-			.append("LowestPrecedence",getLowestPrecedence())
-			.append("AverageScore",getAverageScore())
-			.append("AveragePrecedence",getAveragePrecedence())
-			.append("CreateDate",getCreateDate())
-			.append("Creator",getCreator())
-			.append("LastModDate",getLastModDate())
-			.append("LastModifier",getLastModifier())
-			.append("IsDelete",getIsDelete())
-			.toString();
-	}
-	
-	public int hashCode() {
-		return new HashCodeBuilder()
-			.append(getId())
-			.toHashCode();
-	}
-	
-	public boolean equals(Object obj) {
-		if(obj instanceof UniversityMajorEnrolling == false) return false;
-		if(this == obj) return true;
-		UniversityMajorEnrolling other = (UniversityMajorEnrolling)obj;
-		return new EqualsBuilder()
-			.append(getId(),other.getId())
-			.isEquals();
-	}
+    public String toString() {
+        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
+                .append("Id",getId())
+                .append("AreaId", getAreaId())
+                .append("UniversityId",getUniversityId())
+                .append("MajorId",getMajorId())
+                .append("Year",getYear())
+                .append("Batch",getBatch())
+                .append("AdmissionBatchId",getAdmissionBatchId())
+                .append("UniversityMajorType",getUniversityMajorType())
+                .append("PlanEnrollingNumber",getPlanEnrollingNumber())
+                .append("RealEnrollingNumber",getRealEnrollingNumber())
+                .append("LengthOfSchooling",getLengthOfSchooling())
+                .append("SchoolFee",getSchoolFee())
+                .append("HighestScore",getHighestScore())
+                .append("HighestPrecedence",getHighestPrecedence())
+                .append("LowestScore",getLowestScore())
+                .append("LowestPrecedence",getLowestPrecedence())
+                .append("AverageScore",getAverageScore())
+                .append("AveragePrecedence",getAveragePrecedence())
+                .append("CreateDate",getCreateDate())
+                .append("Creator",getCreator())
+                .append("LastModDate",getLastModDate())
+                .append("LastModifier",getLastModifier())
+                .append("IsDelete",getIsDelete())
+                .toString();
+    }
+
+    public int hashCode() {
+        return new HashCodeBuilder()
+                .append(getId())
+                .toHashCode();
+    }
+
+    public boolean equals(Object obj) {
+        if(obj instanceof UniversityMajorEnrolling == false) return false;
+        if(this == obj) return true;
+        UniversityMajorEnrolling other = (UniversityMajorEnrolling)obj;
+        return new EqualsBuilder()
+                .append(getId(),other.getId())
+                .isEquals();
+    }
 }
 

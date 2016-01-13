@@ -1,7 +1,8 @@
 package cn.thinkjoy.gaokao360.remote.service.impl;
 
+import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.common.utils.SqlOrderEnum;
-import cn.thinkjoy.gaokao360.common.QueryUtil;
+import cn.thinkjoy.zgk.common.QueryUtil;
 import cn.thinkjoy.gaokao360.domain.GkinformationGkhot;
 import cn.thinkjoy.gaokao360.service.differentiation.IGkinformationGkhotService;
 import cn.thinkjoy.zgk.domain.GkHot;
@@ -18,8 +19,10 @@ import java.util.Map;
  * Created by admin on 2016/1/4.
  */
 @Service("GkHotServiceImpl")
-public class GkHotServiceImpl implements IGkHotService {
+public class GkHotServiceImpl extends BaseCommonService implements IGkHotService {
 
+    //设置是否加载内容，默认不加载
+    private boolean isIgnore=false;
     @Autowired
     IGkinformationGkhotService gkinformationGkhotService;
     /**
@@ -27,14 +30,18 @@ public class GkHotServiceImpl implements IGkHotService {
      * @return
      */
     @Override
-    public List<GkHot> getGkHotList(String type,Integer num) {
-        if(num!=null){num=10;}
+    public BizData4Page getGkHotList(Map<String, Object> conditions,Integer page,Integer rows) {
         List<GkinformationGkhot> gkinformationGkhots = null;
-        Map<String,Object> map = new HashMap<>();
-        map.put("groupOp","and");
-        QueryUtil.setMapOp(map,"type","=",type);
-        gkinformationGkhots= gkinformationGkhotService.listByPage(map,0,num,"hotdate", SqlOrderEnum.DESC);
-        return GkinformationGkhot2GkHot(gkinformationGkhots);
+        if(!conditions.containsKey("isIgnore")) {
+            this.setIsIgnore(false);
+        }
+        return doPage(conditions,gkinformationGkhotService.getDao(),page,rows);
+    }
+
+    @Override
+    protected Object enhanceStateTransition(List conditions) {
+        conditions=GkinformationGkhot2GkHot(conditions);
+        return conditions;
     }
 
     /**
@@ -59,7 +66,9 @@ public class GkHotServiceImpl implements IGkHotService {
         if(gkinformationGkhot==null)return null;
         GkHot gkHot = new GkHot();
         gkHot.setTitle(gkinformationGkhot.getHotInformation());
-        gkHot.setContent(gkinformationGkhot.getInformationContent());
+        if(this.isIgnore()) {
+            gkHot.setContent(gkinformationGkhot.getInformationContent());
+        }
         gkHot.setSubContent(gkinformationGkhot.getInformationSubContent());
         gkHot.setImage(gkinformationGkhot.getImgUrl());
         gkHot.setHotDate(gkinformationGkhot.getHotdate());
@@ -73,4 +82,12 @@ public class GkHotServiceImpl implements IGkHotService {
 //     */
 //    List<GkHot> getGkHotList();
 
+
+    public boolean isIgnore() {
+        return isIgnore;
+    }
+
+    public void setIsIgnore(boolean isIgnore) {
+        this.isIgnore = isIgnore;
+    }
 }

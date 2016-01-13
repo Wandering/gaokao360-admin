@@ -1,10 +1,11 @@
 package cn.thinkjoy.gaokao360.remote.service.impl;
 
 import cn.thinkjoy.common.utils.SqlOrderEnum;
+import cn.thinkjoy.gaokao360.common.ServiceImplMaps;
 import cn.thinkjoy.gaokao360.service.common.IDataDictService;
 import cn.thinkjoy.gaokao360.service.common.IProvinceService;
 import cn.thinkjoy.gaokao360.service.common.ex.IUniversityExService;
-import cn.thinkjoy.gaokao360.service.common.ex.IUniversityMajorExService;
+import cn.thinkjoy.zgk.dto.UniversityPlanChartDTO;
 import cn.thinkjoy.zgk.remote.IUniversityService;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class UniversityServiceImpl implements IUniversityService {
     private IDataDictService dataDictService;
 
     @Autowired
-    private IUniversityMajorExService universityMajorExService;
+    private ServiceImplMaps serviceImplMaps;
 
     /**
      * 查询学校列表
@@ -64,7 +65,6 @@ public class UniversityServiceImpl implements IUniversityService {
 
     /**
      * 获取开设专业列表
-     * @param id
      * @param condition
      * @param offset
      * @param rows
@@ -83,7 +83,41 @@ public class UniversityServiceImpl implements IUniversityService {
         if (sqlOrderEnumStr.equalsIgnoreCase("desc")){
             sqlOrderEnum=SqlOrderEnum.DESC;
         }
-        return universityMajorExService.queryPage(condition, offset, rows, orderBy, sqlOrderEnum, selectorpage);
+        return serviceImplMaps.get("universityMajorExService").queryPage(condition, offset, rows, orderBy, sqlOrderEnum, selectorpage);
+    }
+
+    /**
+     * 院校招生计划各年各类别招生统计显示
+     * @param params
+     * @return
+     */
+    @Override
+    public List<UniversityPlanChartDTO> queryUniversityPlanChart(Map<String, Object> params){
+        return universityExService.queryUniversityPlanChart(params);
+    }
+
+    /**
+     * 为dubbo调用查询提供公用接口
+     * @param serviceName
+     * @param condition
+     * @param offset
+     * @param rows
+     * @param orderBy
+     * @param sqlOrderEnumStr
+     * @param selectorpage
+     * @return
+     */
+    @Override
+    public List queryPage(String serviceName,
+                          Map<String,Object> condition,
+                          int offset, int rows,
+                          String orderBy, String sqlOrderEnumStr,
+                          Map<String,Object> selectorpage){
+        SqlOrderEnum sqlOrderEnum=SqlOrderEnum.ASC;
+        if (sqlOrderEnumStr.equalsIgnoreCase("desc")){
+            sqlOrderEnum=SqlOrderEnum.DESC;
+        }
+        return serviceImplMaps.get(serviceName).queryPage(condition, offset, rows, orderBy, sqlOrderEnum, selectorpage);
     }
 
     /**

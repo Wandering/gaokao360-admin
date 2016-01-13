@@ -15,5 +15,9 @@ dependencies {
             }
     compile "commons-codec:commons-codec:1.7"
 
+    compile "org.quartz-scheduler:quartz:2.2.2"
+
+    compile "org.quartz-scheduler:quartz-jobs:2.2.2"
+
     compile project(':gaokao360-service')
 }

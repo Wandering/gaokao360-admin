@@ -45,6 +45,21 @@ selectList
 		leveldict.name as levelName,
 		province.name as province
     </sql>
+    
+    <select id="queryUniversityPlanChart" resultType="UniversityPlanChartDTO" parameterType="java.util.Map">
+        SELECT
+        	YEAR,
+        	dd.name as typeName,
+        	sum(planEnrollingNumber) as number
+        FROM
+        	zgk_university_major_enrolling mm
+        LEFT JOIN zgk_data_dict dd ON dd.type = 'UNIVERSITY_MAJOR_TYPE'
+          AND mm.universityMajorType = dd.dictId
+        WHERE mm.universityId = #{universityId}
+        GROUP BY
+        	YEAR,universityMajorType
+    </select>
+    
     <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.UniversityDTO">
         SELECT
         <include refid="Base_Column_List" />
