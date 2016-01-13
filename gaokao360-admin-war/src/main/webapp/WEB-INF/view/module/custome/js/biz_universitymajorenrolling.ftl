@@ -75,6 +75,8 @@
         // 学制
         var schoolIngData = CommonFn.getSchoolIng();
 
+        console.log(schoolIngData)
+
         // 省份
         var provinceData = CommonFn.getProvince();
         $('#selProvince').html(provinceData);
@@ -307,7 +309,7 @@
             $('#selYears2').find('option[value="' + rowData[0].year + '"]').attr('selected', 'selected');
             $('#selSpecialty').find('option[value="' + rowData[0].majorId + '"]').attr('selected', 'selected');
             $('#nature').find('option[value="' + rowData[0].admissionBatchId + '"]').attr('selected', 'selected');
-            $('#schoolIng').find('option[value="' + rowData[0].lengthOfSchoolingName + '"]').attr('selected', 'selected');
+            $('#schoolIng').find('option[value="' + rowData[0].lengthOfSchooling + '"]').attr('selected', 'selected');
             $('#tuition').val(rowData[0].schoolFee);
 
             $('#autoSearch').attr('dataId', rowData[0].universityId)
@@ -358,7 +360,7 @@
             var natureV = $("#nature").find('option:selected').val();
             var selYearsV = $("#selYears2").find('option:selected').val();
             var schoolIngV = $("#schoolIng").find('option:selected').val();
-            var tuitionV = $("#tuition").find('option:selected').val();
+            var tuitionV = $("#tuition").val();
             var autoSearchId = $('.ui-autocomplete-input').attr('dataId');
             if (selProvinceV == "00") {
                 CommonFn.tipsDialog('温馨提示', '请选择省份');
@@ -535,7 +537,7 @@
                 "year": selYearsV,
                 "batchContent":batchData ,
                 "oper": typeStr,
-                "lengthOfSchoolingName":schoolIngV,
+                "lengthOfSchooling":schoolIngV,
                 "schoolFee":tuitionV
             };
             console.log(Datas);

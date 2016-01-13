@@ -262,11 +262,11 @@ var CommonFn = {
         contentArr.push('<option value="00">请选择学制</option>');
         $.ajaxSettings.async = false;
         CommonFn.getData(CommonFn.url.getSchoolIngUrl, 'GET', {}, function (result) {
-            console.log(result)
             for (var i = 0; i < result.bizData.length; i++) {
-                var provinceId = result.bizData[i].id;
-                var provinceName = result.bizData[i].Type;
-                contentArr.push('<option value="' + provinceId + '">' + provinceName + '</option>');
+                var SchoolIngId = result.bizData[i].dictId;
+                var SchoolIngName = result.bizData[i].name;
+
+                contentArr.push('<option value="' + SchoolIngId + '">' + SchoolIngName + '</option>');
             }
         });
         return contentArr.join('');
