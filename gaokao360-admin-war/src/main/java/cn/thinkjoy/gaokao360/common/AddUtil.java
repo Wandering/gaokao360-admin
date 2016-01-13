@@ -141,9 +141,9 @@ public class AddUtil extends BaseCommonUtil{
             JSONArray jsonArray = null;
             jsonArray = JSON.parseArray(batchContent);
             List<HashMap<String,Object>> maps= super.handleJSONArray(jsonArray);
-            Map<String,Object> dataMap2 = new HashMap<>();
             for(Map map:maps){
-                if("00".equals(map.get("batch"))||!map.containsValue("batch")){
+                Map<String,Object> dataMap2 = new HashMap<>();
+                if("00".equals(map.get("batch"))){
                     continue;
                 }
                 dataMap2.putAll(getDataMap());
@@ -182,8 +182,8 @@ public class AddUtil extends BaseCommonUtil{
             JSONArray jsonArray = null;
             jsonArray = JSON.parseArray(batchContent);
             List<HashMap<String,Object>> maps= super.handleJSONArray(jsonArray);
-            Map<String,Object> dataMap2 = new HashMap<>();
             for(Map map:maps){
+                Map<String,Object> dataMap2 = new HashMap<>();
                 dataMap2.putAll(getDataMap());
                 dataMap2.putAll(map);
                 dataMap2.put("isDelete",0);

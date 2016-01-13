@@ -29,7 +29,8 @@ var CommonFn = {
         getMajoredTypeUrl: '/admin/gaokao360/ex/getDataDictList?type=MAJOR_TYPE', // 专业类型
         getEdulevelUrl: '/admin/gaokao360/ex/getDataDictList?type=EDULEVEL', // 学历层次
         getDegreeUrl: '/admin/gaokao360/ex/getDataDictList?type=GAIN_DEGREE', // 学位
-        getuniversityTypeUrl: '/admin/gaokao360/ex/getDataDictList?type=UNIVERSITY_TYPE' // 院校类型
+        getuniversityTypeUrl: '/admin/gaokao360/ex/getDataDictList?type=UNIVERSITY_TYPE', // 院校类型
+        getSchoolIngUrl: '/admin/gaokao360/ex/getDataDictList?type=LENGTH_OF_SCHOOLING' // 学制
     },
     getData: function (url, type, data, callback) {
         $.ajax({
@@ -251,6 +252,21 @@ var CommonFn = {
                 var provinceId = result.bizData[i].id;
                 var provinceName = result.bizData[i].Type;
                 contentArr.push('<option value="' + provinceId + '">' + provinceName + '</option>');
+            }
+        });
+        return contentArr.join('');
+    },
+    // 学制
+    getSchoolIng: function () {
+        var contentArr = [];
+        contentArr.push('<option value="00">请选择学制</option>');
+        $.ajaxSettings.async = false;
+        CommonFn.getData(CommonFn.url.getSchoolIngUrl, 'GET', {}, function (result) {
+            for (var i = 0; i < result.bizData.length; i++) {
+                var SchoolIngId = result.bizData[i].dictId;
+                var SchoolIngName = result.bizData[i].name;
+
+                contentArr.push('<option value="' + SchoolIngId + '">' + SchoolIngName + '</option>');
             }
         });
         return contentArr.join('');

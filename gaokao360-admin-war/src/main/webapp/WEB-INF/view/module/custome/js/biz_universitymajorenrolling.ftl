@@ -72,6 +72,10 @@
 
         // 招生性质
         var natureData = CommonFn.getNature();
+        // 学制
+        var schoolIngData = CommonFn.getSchoolIng();
+
+        console.log(schoolIngData)
 
         // 省份
         var provinceData = CommonFn.getProvince();
@@ -109,6 +113,18 @@
                 + '              <label class="col-sm-2 control-label no-padding-right"> 年份：</label>'
                 + '              <div class="col-sm-4">'
                 + '                  <select class="form-control" id="selYears2">' + yearsData + '</select>'
+                + '              </div>'
+                + '          </div>'
+                + '          <div class="form-group">'
+                + '              <label class="col-sm-2 control-label no-padding-right"> 学制：</label>'
+                + '              <div class="col-sm-4">'
+                + '                  <select class="form-control" id="schoolIng">' + schoolIngData + '</select>'
+                + '              </div>'
+                + '          </div>'
+                + '          <div class="form-group">'
+                + '              <label class="col-sm-2 control-label no-padding-right"> 学费：</label>'
+                + '              <div class="col-sm-4">'
+                + '                  <input type="text" id="tuition" placeholder="请输入学费" class="" />'
                 + '              </div>'
                 + '          </div>'
                 + '          <div class="form-group" id="subjectType1">'
@@ -293,6 +309,8 @@
             $('#selYears2').find('option[value="' + rowData[0].year + '"]').attr('selected', 'selected');
             $('#selSpecialty').find('option[value="' + rowData[0].majorId + '"]').attr('selected', 'selected');
             $('#nature').find('option[value="' + rowData[0].admissionBatchId + '"]').attr('selected', 'selected');
+            $('#schoolIng').find('option[value="' + rowData[0].lengthOfSchooling + '"]').attr('selected', 'selected');
+            $('#tuition').val(rowData[0].schoolFee);
 
             $('#autoSearch').attr('dataId', rowData[0].universityId)
 
@@ -341,6 +359,8 @@
             var selSpecialtyV = $('#selSpecialty option:checked').val();
             var natureV = $("#nature").find('option:selected').val();
             var selYearsV = $("#selYears2").find('option:selected').val();
+            var schoolIngV = $("#schoolIng").find('option:selected').val();
+            var tuitionV = $("#tuition").val();
             var autoSearchId = $('.ui-autocomplete-input').attr('dataId');
             if (selProvinceV == "00") {
                 CommonFn.tipsDialog('温馨提示', '请选择省份');
@@ -360,6 +380,14 @@
             }
             if (selYearsV == '00') {
                 CommonFn.tipsDialog('温馨提示', '请选择年份');
+                return false;
+            }
+            if (schoolIngV == '00') {
+                CommonFn.tipsDialog('温馨提示', '请选择学制');
+                return false;
+            }
+            if (tuitionV == '00') {
+                CommonFn.tipsDialog('温馨提示', '请选择学费');
                 return false;
             }
 
@@ -508,7 +536,9 @@
                 "admissionBatchId":natureV,
                 "year": selYearsV,
                 "batchContent":batchData ,
-                "oper": typeStr
+                "oper": typeStr,
+                "lengthOfSchooling":schoolIngV,
+                "schoolFee":tuitionV
             };
             console.log(Datas);
             if (typeStr == 'edit') {
