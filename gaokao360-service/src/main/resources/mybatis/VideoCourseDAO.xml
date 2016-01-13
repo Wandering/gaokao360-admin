@@ -46,7 +46,8 @@ selectList
         lastModDate as lastModDate ,
         areaId as areaId ,
         creator as creator ,
-        lastModifier as lastModifier 
+        lastModifier as lastModifier ,
+        subInfo as subInfo 
     </sql>
     <insert id="insert" parameterType="VideoCourse">
         INSERT INTO zgk_video_course (
@@ -70,7 +71,8 @@ selectList
         lastModDate,
         areaId,
         creator,
-        lastModifier
+        lastModifier,
+        subInfo
         ) VALUES (
         #{classifyId},
         #{teacherId},
@@ -92,7 +94,8 @@ selectList
         #{lastModDate},
         #{areaId},
         #{creator},
-        #{lastModifier}
+        #{lastModifier},
+        #{subInfo}
         )
             <selectKey resultType="java.lang.Long" keyProperty="id">
                 SELECT LAST_INSERT_ID() AS ID
@@ -166,6 +169,9 @@ selectList
             <if test="lastModifier!=null">
                 lastModifier = #{lastModifier},
             </if>
+            <if test="subInfo!=null">
+                subInfo = #{subInfo},
+            </if>
         </trim>
         WHERE
         id = #{id}
@@ -236,6 +242,9 @@ selectList
             </if>
             <if test="map.lastModifier!=null">
                 lastModifier = #{map.lastModifier},
+            </if>
+            <if test="map.subInfo!=null">
+                subInfo = #{map.subInfo},
             </if>
         </trim>
         WHERE
@@ -308,6 +317,9 @@ selectList
             <if test="update.lastModifier!=null">
                 lastModifier = #{update.lastModifier},
             </if>
+            <if test="update.subInfo!=null">
+                subInfo = #{update.subInfo},
+            </if>
         </trim>
 
         <trim prefix="WHERE" prefixOverrides="AND | OR">
@@ -377,6 +389,9 @@ selectList
             <if test="condition.lastModifier!=null">
                 AND lastModifier = #{condition.lastModifier}
             </if>
+            <if test="condition.subInfo!=null">
+                AND subInfo = #{condition.subInfo}
+            </if>
         </trim>
     </update>
 
@@ -402,7 +417,8 @@ selectList
                 lastModDate,
                 areaId,
                 creator,
-                lastModifier
+                lastModifier,
+                subInfo
         ) VALUES (
                     #{map.classifyId},
                     #{map.teacherId},
@@ -424,7 +440,8 @@ selectList
                     #{map.lastModDate},
                     #{map.areaId},
                     #{map.creator},
-                    #{map.lastModifier}
+                    #{map.lastModifier},
+                    #{map.subInfo}
         )
     </insert>
 
@@ -453,6 +470,7 @@ selectList
             areaId = #{areaId},
             creator = #{creator},
             lastModifier = #{lastModifier},
+            subInfo = #{subInfo},
         </trim>
         WHERE
         id = #{id} 
@@ -536,6 +554,9 @@ selectList
             <if test="lastModifier!=null">
                 AND lastModifier = #{lastModifier}
             </if>
+            <if test="subInfo!=null">
+                AND subInfo = #{subInfo}
+            </if>
         </trim>
     </delete>
 
@@ -585,7 +606,82 @@ selectList
 
     <select id="queryPage" resultType="VideoCourse">
         SELECT
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                        <if test="selector.id!=null">
+                            , id
+                        </if>
+                        <if test="selector.classifyId!=null">
+                            , classifyId
+                        </if>
+                        <if test="selector.teacherId!=null">
+                            , teacherId
+                        </if>
+                        <if test="selector.subjectId!=null">
+                            , subjectId
+                        </if>
+                        <if test="selector.managerId!=null">
+                            , managerId
+                        </if>
+                        <if test="selector.teacher!=null">
+                            , teacher
+                        </if>
+                        <if test="selector.title!=null">
+                            , title
+                        </if>
+                        <if test="selector.content!=null">
+                            , content
+                        </if>
+                        <if test="selector.frontCover!=null">
+                            , frontCover
+                        </if>
+                        <if test="selector.subcontent!=null">
+                            , subcontent
+                        </if>
+                        <if test="selector.hit!=null">
+                            , hit
+                        </if>
+                        <if test="selector.years!=null">
+                            , years
+                        </if>
+                        <if test="selector.beikaochongciType!=null">
+                            , beikaochongci_type
+                        </if>
+                        <if test="selector.courseSort!=null">
+                            , courseSort
+                        </if>
+                        <if test="selector.frontcover1!=null">
+                            , frontcover1
+                        </if>
+                        <if test="selector.isAccept!=null">
+                            , isAccept
+                        </if>
+                        <if test="selector.createDate!=null">
+                            , createDate
+                        </if>
+                        <if test="selector.status!=null">
+                            , status
+                        </if>
+                        <if test="selector.lastModDate!=null">
+                            , lastModDate
+                        </if>
+                        <if test="selector.areaId!=null">
+                            , areaId
+                        </if>
+                        <if test="selector.creator!=null">
+                            , creator
+                        </if>
+                        <if test="selector.lastModifier!=null">
+                            , lastModifier
+                        </if>
+                        <if test="selector.subInfo!=null">
+                            , subInfo
+                        </if>
+            </trim>
+        </if>
+        <if test="selector==null">
         <include refid="Base_Column_List" />
+        </if>
         FROM zgk_video_course
         <where>
 
@@ -659,6 +755,9 @@ selectList
             <if test="condition.lastModifier!=null">
                 ${condition.groupOp}   ${condition.lastModifier.field}  ${condition.lastModifier.op}  #{condition.lastModifier.data}
             </if>
+            <if test="condition.subInfo!=null">
+                ${condition.groupOp}   ${condition.subInfo.field}  ${condition.subInfo.op}  #{condition.subInfo.data}
+            </if>
 
 
     </where>
@@ -672,7 +771,82 @@ selectList
 
     <select id="like" parameterType="java.util.Map" resultType="VideoCourse">
         SELECT
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                    <if test="selector.id!=null">
+                        , id
+                    </if>
+                    <if test="selector.classifyId!=null">
+                        , classifyId
+                    </if>
+                    <if test="selector.teacherId!=null">
+                        , teacherId
+                    </if>
+                    <if test="selector.subjectId!=null">
+                        , subjectId
+                    </if>
+                    <if test="selector.managerId!=null">
+                        , managerId
+                    </if>
+                    <if test="selector.teacher!=null">
+                        , teacher
+                    </if>
+                    <if test="selector.title!=null">
+                        , title
+                    </if>
+                    <if test="selector.content!=null">
+                        , content
+                    </if>
+                    <if test="selector.frontCover!=null">
+                        , frontCover
+                    </if>
+                    <if test="selector.subcontent!=null">
+                        , subcontent
+                    </if>
+                    <if test="selector.hit!=null">
+                        , hit
+                    </if>
+                    <if test="selector.years!=null">
+                        , years
+                    </if>
+                    <if test="selector.beikaochongciType!=null">
+                        , beikaochongci_type
+                    </if>
+                    <if test="selector.courseSort!=null">
+                        , courseSort
+                    </if>
+                    <if test="selector.frontcover1!=null">
+                        , frontcover1
+                    </if>
+                    <if test="selector.isAccept!=null">
+                        , isAccept
+                    </if>
+                    <if test="selector.createDate!=null">
+                        , createDate
+                    </if>
+                    <if test="selector.status!=null">
+                        , status
+                    </if>
+                    <if test="selector.lastModDate!=null">
+                        , lastModDate
+                    </if>
+                    <if test="selector.areaId!=null">
+                        , areaId
+                    </if>
+                    <if test="selector.creator!=null">
+                        , creator
+                    </if>
+                    <if test="selector.lastModifier!=null">
+                        , lastModifier
+                    </if>
+                    <if test="selector.subInfo!=null">
+                        , subInfo
+                    </if>
+            </trim>
+        </if>
+        <if test="selector==null">
             <include refid="Base_Column_List" />
+        </if>
         FROM zgk_video_course
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
@@ -741,6 +915,9 @@ selectList
             <if test="condition.lastModifier!=null">
                 AND lastModifier like CONCAT('%', #{condition.lastModifier} , '%')
             </if>
+            <if test="condition.subInfo!=null">
+                AND subInfo like CONCAT('%', #{condition.subInfo} , '%')
+            </if>
         </trim>
         <if test="orderBy!=null">
         ORDER BY ${orderBy} ${sortBy}
@@ -750,7 +927,82 @@ selectList
 
     <select id="queryList" parameterType="java.util.Map" resultType="VideoCourse">
         SELECT
-        <include refid="Base_Column_List" />
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                <if test="selector.id!=null">
+                    , id
+                </if>
+                <if test="selector.classifyId!=null">
+                    , classifyId
+                </if>
+                <if test="selector.teacherId!=null">
+                    , teacherId
+                </if>
+                <if test="selector.subjectId!=null">
+                    , subjectId
+                </if>
+                <if test="selector.managerId!=null">
+                    , managerId
+                </if>
+                <if test="selector.teacher!=null">
+                    , teacher
+                </if>
+                <if test="selector.title!=null">
+                    , title
+                </if>
+                <if test="selector.content!=null">
+                    , content
+                </if>
+                <if test="selector.frontCover!=null">
+                    , frontCover
+                </if>
+                <if test="selector.subcontent!=null">
+                    , subcontent
+                </if>
+                <if test="selector.hit!=null">
+                    , hit
+                </if>
+                <if test="selector.years!=null">
+                    , years
+                </if>
+                <if test="selector.beikaochongciType!=null">
+                    , beikaochongci_type
+                </if>
+                <if test="selector.courseSort!=null">
+                    , courseSort
+                </if>
+                <if test="selector.frontcover1!=null">
+                    , frontcover1
+                </if>
+                <if test="selector.isAccept!=null">
+                    , isAccept
+                </if>
+                <if test="selector.createDate!=null">
+                    , createDate
+                </if>
+                <if test="selector.status!=null">
+                    , status
+                </if>
+                <if test="selector.lastModDate!=null">
+                    , lastModDate
+                </if>
+                <if test="selector.areaId!=null">
+                    , areaId
+                </if>
+                <if test="selector.creator!=null">
+                    , creator
+                </if>
+                <if test="selector.lastModifier!=null">
+                    , lastModifier
+                </if>
+                <if test="selector.subInfo!=null">
+                    , subInfo
+                </if>
+        </trim>
+    </if>
+<if test="selector==null">
+<include refid="Base_Column_List" />
+</if>
         FROM zgk_video_course
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
@@ -818,6 +1070,9 @@ selectList
             </if>
             <if test="condition.lastModifier!=null">
                 AND lastModifier = #{condition.lastModifier}
+            </if>
+            <if test="condition.subInfo!=null">
+                AND subInfo = #{condition.subInfo}
             </if>
         </trim>
         <if test="orderBy!=null">
@@ -827,7 +1082,82 @@ selectList
 
     <select id="queryOne" parameterType="java.util.Map" resultType="VideoCourse">
         SELECT
-        <include refid="Base_Column_List" />
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                    <if test="selector.id!=null">
+                        , id
+                    </if>
+                    <if test="selector.classifyId!=null">
+                        , classifyId
+                    </if>
+                    <if test="selector.teacherId!=null">
+                        , teacherId
+                    </if>
+                    <if test="selector.subjectId!=null">
+                        , subjectId
+                    </if>
+                    <if test="selector.managerId!=null">
+                        , managerId
+                    </if>
+                    <if test="selector.teacher!=null">
+                        , teacher
+                    </if>
+                    <if test="selector.title!=null">
+                        , title
+                    </if>
+                    <if test="selector.content!=null">
+                        , content
+                    </if>
+                    <if test="selector.frontCover!=null">
+                        , frontCover
+                    </if>
+                    <if test="selector.subcontent!=null">
+                        , subcontent
+                    </if>
+                    <if test="selector.hit!=null">
+                        , hit
+                    </if>
+                    <if test="selector.years!=null">
+                        , years
+                    </if>
+                    <if test="selector.beikaochongciType!=null">
+                        , beikaochongci_type
+                    </if>
+                    <if test="selector.courseSort!=null">
+                        , courseSort
+                    </if>
+                    <if test="selector.frontcover1!=null">
+                        , frontcover1
+                    </if>
+                    <if test="selector.isAccept!=null">
+                        , isAccept
+                    </if>
+                    <if test="selector.createDate!=null">
+                        , createDate
+                    </if>
+                    <if test="selector.status!=null">
+                        , status
+                    </if>
+                    <if test="selector.lastModDate!=null">
+                        , lastModDate
+                    </if>
+                    <if test="selector.areaId!=null">
+                        , areaId
+                    </if>
+                    <if test="selector.creator!=null">
+                        , creator
+                    </if>
+                    <if test="selector.lastModifier!=null">
+                        , lastModifier
+                    </if>
+                    <if test="selector.subInfo!=null">
+                        , subInfo
+                    </if>
+            </trim>
+        </if>
+        <if test="selector==null">
+            <include refid="Base_Column_List" />
+        </if>
         FROM zgk_video_course
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
@@ -895,6 +1225,9 @@ selectList
             </if>
             <if test="condition.lastModifier!=null">
                 AND lastModifier = #{condition.lastModifier}
+            </if>
+            <if test="condition.subInfo!=null">
+                AND subInfo = #{condition.subInfo}
             </if>
         </trim>
         <if test="orderBy!=null">
@@ -971,6 +1304,9 @@ selectList
            </if>
            <if test="lastModifier!=null">
                ${groupOp} ${lastModifier.field} ${lastModifier.op}  #{lastModifier.data}
+           </if>
+           <if test="subInfo!=null">
+               ${groupOp} ${subInfo.field} ${subInfo.op}  #{subInfo.data}
            </if>
 
        </where>
