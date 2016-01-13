@@ -13,6 +13,7 @@ import cn.thinkjoy.gaokao360.dao.IUniversityDetailDAO;
 import cn.thinkjoy.gaokao360.dao.ex.IUniversityExDAO;
 import cn.thinkjoy.gaokao360.dto.UniversityDTO;
 import cn.thinkjoy.gaokao360.service.common.ex.IUniversityExService;
+import cn.thinkjoy.zgk.dto.UniversityPlanChartDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -59,6 +60,15 @@ public class UniversityExServiceImpl extends AbstractPageService<IBaseDAO<Univer
         return universityExDAO.getUniversityByName(name);
     }
 
+    /**
+     * 院校招生计划各年各类别招生统计显示
+     * @param params
+     * @return
+     */
+    @Override
+    public List<UniversityPlanChartDTO> queryUniversityPlanChart(Map<String, Object> params){
+        return universityExDAO.queryUniversityPlanChart(params);
+    }
 
 //    @Override
 //    public void insert(BaseDomain entity) {

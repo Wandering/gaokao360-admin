@@ -5,6 +5,7 @@ import cn.thinkjoy.gaokao360.common.ServiceImplMaps;
 import cn.thinkjoy.gaokao360.service.common.IDataDictService;
 import cn.thinkjoy.gaokao360.service.common.IProvinceService;
 import cn.thinkjoy.gaokao360.service.common.ex.IUniversityExService;
+import cn.thinkjoy.zgk.dto.UniversityPlanChartDTO;
 import cn.thinkjoy.zgk.remote.IUniversityService;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,6 +84,16 @@ public class UniversityServiceImpl implements IUniversityService {
             sqlOrderEnum=SqlOrderEnum.DESC;
         }
         return serviceImplMaps.get("universityMajorExService").queryPage(condition, offset, rows, orderBy, sqlOrderEnum, selectorpage);
+    }
+
+    /**
+     * 院校招生计划各年各类别招生统计显示
+     * @param params
+     * @return
+     */
+    @Override
+    public List<UniversityPlanChartDTO> queryUniversityPlanChart(Map<String, Object> params){
+        return universityExService.queryUniversityPlanChart(params);
     }
 
     /**
