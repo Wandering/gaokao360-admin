@@ -29,6 +29,8 @@ selectList
            enrolling.areaid as areaid,
            province.name as province,
            university.id as universityId,
+           university.subjection as subjection,
+           university.property as property,
            university.name as name,
            enrolling.year as year,
            enrolling.batch as batch,
@@ -44,7 +46,7 @@ selectList
            enrolling.average_score         as averageScore,
            enrolling.average_precedence   as averagePrecedence,
            batchdict.name   as batchname,
-           typedict.name   as universityMajorTypeName,
+           typedict.name   as typename,
            enrolling.lastModDate as lastModDate
 
     </sql>
@@ -72,10 +74,22 @@ selectList
                 )
             </if>
             <if test="condition.enrollingyear!=null">
-                ${condition.groupOp} ${condition.enrollingyear.field} ${condition.enrollingyear.op}  #{condition.enrollingyear.data}
+                ${condition.groupOp} enrolling.year ${condition.enrollingyear.op}  #{condition.enrollingyear.data}
             </if>
             <if test="condition.universityareaid!=null">
-                ${condition.groupOp} ${condition.universityareaid.field} ${condition.universityareaid.op}  #{condition.universityareaid.data}
+                ${condition.groupOp} enrolling.areaid ${condition.universityareaid.op}  #{condition.universityareaid.data}
+            </if>
+            <if test="condition.universityname!=null">
+                ${condition.groupOp} university.name ${condition.universityname.op}  #{condition.universityname.data}
+            </if>
+            <if test="condition.universityproperty!=null">
+                ${condition.groupOp} university.property ${condition.universityproperty.op}  #{condition.universityproperty.data}
+            </if>
+            <if test="condition.enrollingbatch!=null">
+                ${condition.groupOp} enrolling.batch ${condition.enrollingbatch.op}  #{condition.enrollingbatch.data}
+            </if>
+            <if test="condition.enrollinguniversityMajorType!=null">
+                ${condition.groupOp} enrolling.university_major_type ${condition.enrollinguniversityMajorType.op}  #{condition.enrollinguniversityMajorType.data}
             </if>
         </where>
         ORDER BY  lastModDate DESC
@@ -102,10 +116,22 @@ selectList
                )
            </if>
            <if test="enrollingyear!=null">
-               ${groupOp} ${enrollingyear.field} ${enrollingyear.op}  #{enrollingyear.data}
+               ${groupOp} enrolling.year ${enrollingyear.op}  #{enrollingyear.data}
            </if>
            <if test="universityareaid!=null">
-               ${groupOp} ${universityareaid.field} ${universityareaid.op}  #{universityareaid.data}
+               ${groupOp} enrolling.areaid ${universityareaid.op}  #{universityareaid.data}
+           </if>
+           <if test="universityname!=null">
+               ${groupOp} university.name ${universityname.op}  #{universityname.data}
+           </if>
+           <if test="universityproperty!=null">
+               ${groupOp} university.property ${universityproperty.op}  #{universityproperty.data}
+           </if>
+           <if test="enrollingbatch!=null">
+               ${groupOp} enrolling.batch ${enrollingbatch.op}  #{enrollingbatch.data}
+           </if>
+           <if test="enrollinguniversityMajorType!=null">
+               ${groupOp} enrolling.university_major_type ${enrollinguniversityMajorType.op}  #{enrollinguniversityMajorType.data}
            </if>
        </where>
     </select>

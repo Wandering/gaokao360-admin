@@ -35,4 +35,7 @@
     <!-- 政策解读 -->
     <bean id="gkPolicyServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.GkPolicyServiceImpl" />
     <dubbo:service id="gkPolicyService" interface="cn.thinkjoy.zgk.remote.IGkPolicyService" ref="gkPolicyServiceImpl"/>
+    <!--历年分数-->
+    <bean id="gkAdmissionLineServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.GkAdmissionLineServiceImpl" />
+    <dubbo:service id="gkAdmissionLineService" interface="cn.thinkjoy.zgk.remote.IGkAdmissionLineService" ref="gkAdmissionLineServiceImpl"/>
 </beans>
