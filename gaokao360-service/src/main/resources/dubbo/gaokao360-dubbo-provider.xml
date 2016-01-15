@@ -38,4 +38,7 @@
     <!--历年分数-->
     <bean id="gkAdmissionLineServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.GkAdmissionLineServiceImpl" />
     <dubbo:service id="gkAdmissionLineService" interface="cn.thinkjoy.zgk.remote.IGkAdmissionLineService" ref="gkAdmissionLineServiceImpl"/>
+    <!--视频信息-->
+    <bean id="gkVideoServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.GkVideoServiceImpl" />
+    <dubbo:service id="gkVideoService" interface="cn.thinkjoy.zgk.remote.IGkVideoService" ref="gkVideoServiceImpl"/>
 </beans>

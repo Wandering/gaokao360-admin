@@ -17,6 +17,16 @@ import java.util.Map;
  * Created by admin on 2016/1/12.
  */
 public class BaseCommonService {
+
+    //部分内容加载开关，默认关闭
+    private boolean isIgnore=false;
+    public boolean isIgnore() {
+        return isIgnore;
+    }
+
+    public void setIsIgnore(boolean isIgnore) {
+        this.isIgnore = isIgnore;
+    }
     /**
      * 生成 BizData4Page 实例
      * @param dao
@@ -30,11 +40,16 @@ public class BaseCommonService {
 
         String orderBy = null;
         String sortBy = null;
+        conditions.put("groupOp","and");
         if (conditions.containsKey("orderBy")) {
             orderBy = conditions.get("orderBy").toString();
+        }else {
+            conditions.put("orderBy","desc");
         }
         if (conditions.containsKey("sortBy")) {
             sortBy = conditions.get("sortBy").toString();
+        }else {
+            conditions.put("sortBy","lastModDate");
         }
         List mainData = dao.queryPage(conditions, offset, rows, orderBy, sortBy,null);
         mainData=(List)enhanceStateTransition(mainData);
@@ -60,7 +75,7 @@ public class BaseCommonService {
             page = 1;
         }
         if(rows==null){
-            rows = 1;
+            rows = 10;
         }
         enhanceSortBy(conditions);
         return createBizData4Page(dao,conditions, page, (page - 1) * rows, rows);

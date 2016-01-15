@@ -3,6 +3,7 @@ package cn.thinkjoy.zgk.remote;
 import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.zgk.domain.GkVideo;
 import cn.thinkjoy.zgk.domain.GkVideoInfo;
+import cn.thinkjoy.zgk.dto.GkVideoDTO;
 
 import java.util.Map;
 
@@ -24,6 +25,13 @@ public interface IGkVideoService {
      * @param id
      * @return
      */
-    GkVideoInfo getGkVideoInfo(String id);
+    GkVideoDTO getGkVideoInfo(String id);
+
+
+    /**
+     * 点击量自增
+     * @param id
+     */
+    public void hitInc(Object id);
 
 }

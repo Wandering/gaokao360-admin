@@ -1,15 +1,22 @@
 package cn.thinkjoy.gaokao360.remote.service.impl;
 
 import cn.thinkjoy.common.domain.view.BizData4Page;
+import cn.thinkjoy.common.exception.BizException;
+import cn.thinkjoy.gaokao360.common.ERRORCODE;
+import cn.thinkjoy.gaokao360.dao.IVideoCourseDAO;
 import cn.thinkjoy.gaokao360.domain.VideoClassify;
 import cn.thinkjoy.gaokao360.domain.VideoCourse;
 import cn.thinkjoy.gaokao360.domain.VideoSection;
+import cn.thinkjoy.gaokao360.dto.VideoCourseDTO;
+import cn.thinkjoy.gaokao360.dto.VideoSectionDTO;
 import cn.thinkjoy.gaokao360.service.differentiation.IVideoClassifyService;
 import cn.thinkjoy.gaokao360.service.differentiation.IVideoCourseService;
 import cn.thinkjoy.gaokao360.service.differentiation.IVideoSectionService;
+import cn.thinkjoy.gaokao360.service.differentiation.ex.IVideoSectionExService;
 import cn.thinkjoy.zgk.common.QueryUtil;
 import cn.thinkjoy.zgk.domain.GkVideo;
 import cn.thinkjoy.zgk.domain.GkVideoInfo;
+import cn.thinkjoy.zgk.dto.GkVideoDTO;
 import cn.thinkjoy.zgk.remote.IGkVideoService;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,43 +43,77 @@ public class GkVideoServiceImpl extends BaseCommonService implements IGkVideoSer
     IVideoCourseService videoCourseService;
     @Autowired
     IVideoSectionService videoSectionService;
+    @Autowired
+    IVideoSectionExService videoSectionExService;
     /**视频分类信息**/
-    private static Map<Object,String> modalMap= null;
+    private Map<Object,String> modalMap= null;
 
-    /**视频统计**/
-    private static Map<Object,String> teacherMap= Maps.newHashMap();
 
-    /**视频对应教师**/
-    private static Map<Object,Integer> countMap= Maps.newHashMap();
     /**
-     * 获取热点摘要列表 四个
+     * 获取视频列表
      * @return
      */
     @Override
     public BizData4Page getGkVideoList(Map<String, Object> conditions,Integer page,Integer rows) {
-        List<VideoCourse> videoCourses = null;
+        if(conditions.containsKey("isIgnore") && conditions.get("isIgnore").equals(true)){
+            setIsIgnore(true);
+        }
         return doPage(conditions,videoCourseService.getDao(),page,rows);
+    }
+    public void hitInc(Object id){
+        VideoCourse videoCourse=(VideoCourse)videoCourseService.fetch(id);
+        if(videoCourse==null){
+            throw new BizException(ERRORCODE.RESOURCEISNULL.getCode(),ERRORCODE.RESOURCEISNULL.getMessage());
+        }else {
+            if(videoCourse.getHit() == null){
+                videoCourse.setHit(1L);
+            }else {
+                videoCourse.setHit(videoCourse.getHit() + 1);
+            }
+            videoCourseService.update(videoCourse);
+        }
     }
     /**
      * 获取详情
      * @return
      */
     @Override
-    public GkVideoInfo getGkVideoInfo(String id){
-        return videoCourse2GkVideoInfo((VideoCourse) videoCourseService.fetch(id));
+    public GkVideoDTO getGkVideoInfo(String id){
+        return video2videoDTO((VideoCourse)videoCourseService.fetch(id));
     }
+
     @Override
     protected Object enhanceStateTransition(List conditions) {
-        conditions=videoCourse2GkVideoInfo(conditions);
+        conditions=video2videoDTO(conditions);
         return conditions;
     }
 
 
+    private List<GkVideoDTO> video2videoDTO(List<VideoCourse> videoCourses){
+        if(videoCourses==null)return null;
+        List<GkVideoDTO> gkVideoDTOs = new ArrayList<>();
+        for(VideoCourse v:videoCourses){
+            gkVideoDTOs.add(video2videoDTO(v));
+        }
+        return gkVideoDTOs;
+    }
 
-    private List<GkVideoInfo> videoCourse2GkVideoInfo(List<VideoCourse> policyInterpretations){
-        if(policyInterpretations==null)return null;
+
+    private GkVideoDTO video2videoDTO(VideoCourse v){
+        if(v==null)return null;
+            GkVideoDTO gkVideoDTO=new GkVideoDTO();
+            gkVideoDTO.setId(v.getId());
+            gkVideoDTO.setGkVideoInfo(videoCourse2GkVideoInfo(v));
+        if(isIgnore()) {
+            gkVideoDTO.setGkVideos(getVideoListById(v.getId()));
+        }
+        return gkVideoDTO;
+    }
+
+    private List<GkVideoInfo> videoCourse2GkVideoInfo(List<VideoCourse> videoCourses){
+        if(videoCourses==null)return null;
         List<GkVideoInfo> gkVideoInfos = new ArrayList<>();
-        for(VideoCourse policyInterpretation:policyInterpretations){
+        for(VideoCourse policyInterpretation:videoCourses){
             gkVideoInfos.add(videoCourse2GkVideoInfo(policyInterpretation));
         }
         return gkVideoInfos;
@@ -85,29 +126,34 @@ public class GkVideoServiceImpl extends BaseCommonService implements IGkVideoSer
         gkVideoInfo.setTitle(videoCourse.getTitle());
         gkVideoInfo.setFrontCover(videoCourse.getFrontCover());
         gkVideoInfo.setModalName(getModal(videoCourse.getClassifyId()));
-        gkVideoInfo.setSubcontent(videoCourse.getSubcontent());
-        gkVideoInfo.setSubInfo(videoCourse.getSubInfo());
-        gkVideoInfo.setVideoCount(this.getCount(videoCourse.getId()));
-        gkVideoInfo.setContent(videoCourse.getContent());
+        gkVideoInfo.setTeacher(videoCourse.getTeacher());
+        if(isIgnore()) {
+            gkVideoInfo.setSubcontent(videoCourse.getSubcontent());
+            gkVideoInfo.setHit(videoCourse.getHit());
+            gkVideoInfo.setContent(videoCourse.getContent());
+        }
         return gkVideoInfo;
     }
 
-    private List<GkVideoInfo> videoCourse2GkVideo(List<VideoCourse> policyInterpretations){
-        if(policyInterpretations==null)return null;
-        List<GkVideoInfo> gkVideoInfos = new ArrayList<>();
-        for(VideoCourse policyInterpretation:policyInterpretations){
-            gkVideoInfos.add(videoCourse2GkVideoInfo(policyInterpretation));
+    private List<GkVideo> videoSection2GkVideo(List<VideoSectionDTO> videoSectionDTOs){
+        if(videoSectionDTOs==null)return null;
+        List<GkVideo> gkVideoInfos = new ArrayList<>();
+        for(VideoSectionDTO v:videoSectionDTOs){
+
+            gkVideoInfos.add(videoSection2GkVideo(v));
         }
         return gkVideoInfos;
     }
 
-    private GkVideo videoCourse2GkVideo(VideoSection videoSection){
+
+
+    private GkVideo videoSection2GkVideo(VideoSectionDTO videoSection){
         if(videoSection==null)return null;
         GkVideo gkVideo = new GkVideo();
         gkVideo.setId(videoSection.getId());
         gkVideo.setFileUrl(videoSection.getFileUrl());
-        gkVideo.setSectionSort(videoSection.getSectionSort());
-        gkVideo.setTeacher(getTeacher(videoSection.getCourseId()));
+        gkVideo.setName(videoSection.getSectionName());
+        gkVideo.setSectionSort(Integer.parseInt(videoSection.getSectionSort()));
         return gkVideo;
     }
 
@@ -124,23 +170,10 @@ public class GkVideoServiceImpl extends BaseCommonService implements IGkVideoSer
         return modalMap.get(key);
     }
 
-    public Integer getCount(Object key) {
-        if(!countMap.containsKey(key)){
-            Map<String,Object> map = new HashMap<>();
-            QueryUtil.setMapOp(map,"courseId","=",key);
-            Integer count = videoSectionService.count(map);
-            countMap.put(key,count);
-        }
-        return countMap.get(key);
+    private List<GkVideo> getVideoListById(Object id){
+        List<VideoSectionDTO> list=videoSectionExService.getVideoSectionByCourseId(id);
+        return videoSection2GkVideo(list);
     }
 
-    public String getTeacher(Object key) {
-        if(!teacherMap.containsKey(key)){
-            Map<String,Object> map = new HashMap<>();
-            QueryUtil.setMapOp(map,"id","=",key);
-            VideoCourse videoCourse = (VideoCourse)videoCourseService.fetch(map);
-            teacherMap.put(key,videoCourse.getTeacher());
-        }
-        return teacherMap.get(key);
-    }
+
 }

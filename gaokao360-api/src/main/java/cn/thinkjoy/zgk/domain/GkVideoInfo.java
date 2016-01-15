@@ -10,8 +10,6 @@ public class GkVideoInfo extends BaseDomain {
     private String title;
     /** 信息封面 */
     private String frontCover;
-    /** 标签 */
-    private String subInfo;
     /** 专家简介 */
     private String subcontent;
     /** 视频简介 */
@@ -20,6 +18,8 @@ public class GkVideoInfo extends BaseDomain {
     private Integer videoCount;
     /** 模块名称 */
     private String modalName;
+    /** 点播数 */
+    private Long hit;
 
     public String getTeacher() {
         return teacher;
@@ -45,13 +45,6 @@ public class GkVideoInfo extends BaseDomain {
         this.frontCover = frontCover;
     }
 
-    public String getSubInfo() {
-        return subInfo;
-    }
-
-    public void setSubInfo(String subInfo) {
-        this.subInfo = subInfo;
-    }
 
     public Integer getVideoCount() {
         return videoCount;
@@ -83,5 +76,13 @@ public class GkVideoInfo extends BaseDomain {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Long getHit() {
+        return hit;
+    }
+
+    public void setHit(Long hit) {
+        this.hit = hit;
     }
 }
