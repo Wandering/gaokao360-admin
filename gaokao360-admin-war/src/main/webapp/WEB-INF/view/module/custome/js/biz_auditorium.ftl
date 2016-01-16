@@ -189,7 +189,7 @@
         $('#selCourses,#selCourses2').append(CommonFn.getSubject());
         $('#selYears').append(CommonFn.getYear());
         $('#selProvince,#selProvince2').html(CommonFn.getProvince());
-        $('#selModule').append(CommonFn.getModule())
+        $('#selModule').html(CommonFn.getModule());
 
 
         uploadFun1();
