@@ -173,14 +173,6 @@
                 + '</div>'
                 + '<div class="form-group">'
                 + '<label class="col-sm-2 control-label no-padding-right" for="policyInterOne">'
-                + '标题：</label>'
-                + '<div class="col-sm-2">'
-//                + '<select class="form-control" id="policyInterGroup">' + '<option value="00">选择政策一级分类</option>' + '<option value="000">+新建政策分类+</option>'
-                + '<input class="form-control" id="titleV" placeholder="请输入标题"></input>'
-                + '</div>'
-                + '</div>'
-                + '<div class="form-group">'
-                + '<label class="col-sm-2 control-label no-padding-right" for="policyInterOne">'
                 + '政策一级分类：</label>'
                 + '<div class="col-sm-2">'
 //                + '<select class="form-control" id="policyInterGroup">' + '<option value="00">选择政策一级分类</option>' + '<option value="000">+新建政策分类+</option>'
@@ -227,17 +219,13 @@
                 + '</div>';
 
         function addAndEditFn() {
+            var titleV = $.trim($('#title').val());
             var provinceV = $("#province2").find("option:selected").attr('value');
-            var titleV = $("#titleV").val();
             var policyInterGroupV = $("#policyInterGroup").find("option:selected").attr('value');
             var policyInterTwoV = $('#policyInterTwo').val();
             var policyInterDetailV = $('#policyInterDetail').html();
             if (provinceV == "00") {
                 CommonFn.tipsDialog('温馨提示', '请选择省份');
-                return false;
-            }
-            if (titleV == "") {
-                CommonFn.tipsDialog('温馨提示', '请填写标题');
                 return false;
             }
             var selectPolicy = $("#policyInterGroup").find("option:selected").attr('value');
@@ -253,7 +241,7 @@
                 CommonFn.tipsDialog('温馨提示', '请选择政策一级分类');
                 return false;
             }
-            if ($.trim($('#title').val())=="") {
+            if (titleV=="") {
                 CommonFn.tipsDialog('温馨提示', '请填写标题');
                 return false;
             }
@@ -266,8 +254,7 @@
                     policyContentUrl = CommonFn.getTextareaUrlData(policyContentHtml),
                     htmlUrl = policyContentUrl[0],
                     htmlId = policyContentUrl[1];
-            var titleV = $.trim($('title').val());
-                    infoData = {
+                    var infoData = {
                         htmlId: htmlId,
                         provinceId: provinceV,
                         title: titleV,
@@ -276,12 +263,14 @@
                         categoryName: policyInterTwoV,
                         oper: typeStr,
                         areaId: 0,
-                        title:titleV,
-                        subContent:$('#policyInterDetail').text().substring(8,200)
+                        subContent:$('#policyInterDetail').text().substring(0,200)
                     };
+
+
             if (typeStr == 'edit') {
                 infoData.id = rowId;
             }
+            console.log(titleV)
             $.ajax({
                 type: "POST",
                 url: '/admin/${bizSys}/commonsave/${mainObj}',
