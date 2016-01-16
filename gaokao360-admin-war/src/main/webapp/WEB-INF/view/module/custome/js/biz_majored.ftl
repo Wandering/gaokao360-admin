@@ -144,7 +144,46 @@
         });
         majoredDom.$submitBtn.click(function (e) {
             e.preventDefault();
-            majoredValidate();
+            if (majoredDom.$majoredName.val().trim() == '') {
+                CommonFn.tipsDialog('温馨提示', '专业名称不能为空');
+                return false;
+            }
+            if (majoredDom.$majoredCode.val().trim() == '') {
+                CommonFn.tipsDialog('温馨提示', '专业Code不能为空');
+                return false;
+            }
+            if ($('#selMajored2').find('option:selected').val() == '00') {
+                CommonFn.tipsDialog('温馨提示', '学科门类没有选择');
+                return false;
+            }
+            if ($('#subjectType').find('option:selected').val() == '00') {
+                CommonFn.tipsDialog('温馨提示', '专业门类没有选择');
+                return false;
+            }
+            if (majoredDom.$salaryRank.val().trim() == '') {
+                CommonFn.tipsDialog('温馨提示', '薪资排名不能为空');
+                return false;
+            }
+            if (majoredDom.$jobsRank.val().trim() == '') {
+                CommonFn.tipsDialog('温馨提示', '就业排名不能为空');
+                return false;
+            }
+            if (majoredDom.$sameMajored.val().trim() == '') {
+                CommonFn.tipsDialog('温馨提示', '相近专业不能为空');
+                return false;
+            }
+            if (majoredDom.$mainMajored.val().trim() == '') {
+                CommonFn.tipsDialog('温馨提示', '主要课程不能为空');
+                return false;
+            }
+            if (majoredDom.$employDirect.val().trim() == '') {
+                CommonFn.tipsDialog('温馨提示', '就业方向不能为空');
+                return false;
+            }
+            if (majoredDom.$excellentStudent.val().trim() == '') {
+                CommonFn.tipsDialog('温馨提示', '优秀学长不能为空');
+                return false;
+            }
             var addMajoredData = {
                 oper: typeStr
                 , majorName: majoredDom.$majoredName.val()
@@ -190,46 +229,7 @@
             $('#schoolIntroduce,#schoolArticle').html('');
         });
         function majoredValidate() {
-            if (majoredDom.$majoredName.val().trim() == '') {
-                CommonFn.tipsDialog('温馨提示', '专业名称不能为空');
-                return false;
-            }
-            if (majoredDom.$majoredCode.val().trim() == '') {
-                CommonFn.tipsDialog('温馨提示', '专业Code不能为空');
-                return false;
-            }
-            if ($('#selMajored2').find('option:selected').val() == '00') {
-                CommonFn.tipsDialog('温馨提示', '学科门类没有选择');
-                return false;
-            }
-            if ($('#subjectType').find('option:selected').val() == '00') {
-                CommonFn.tipsDialog('温馨提示', '专业门类没有选择');
-                return false;
-            }
-            if (majoredDom.$salaryRank.val().trim() == '') {
-                CommonFn.tipsDialog('温馨提示', '薪资排名不能为空');
-                return false;
-            }
-            if (majoredDom.$jobsRank.val().trim() == '') {
-                CommonFn.tipsDialog('温馨提示', '就业排名不能为空');
-                return false;
-            }
-            if (majoredDom.$sameMajored.val().trim() == '') {
-                CommonFn.tipsDialog('温馨提示', '相近专业不能为空');
-                return false;
-            }
-            if (majoredDom.$mainMajored.val().trim() == '') {
-                CommonFn.tipsDialog('温馨提示', '主要课程不能为空');
-                return false;
-            }
-            if (majoredDom.$employDirect.val().trim() == '') {
-                CommonFn.tipsDialog('温馨提示', '就业方向不能为空');
-                return false;
-            }
-            if (majoredDom.$excellentStudent.val().trim() == '') {
-                CommonFn.tipsDialog('温馨提示', '优秀学长不能为空');
-                return false;
-            }
+
         }
     });//$ end
 
