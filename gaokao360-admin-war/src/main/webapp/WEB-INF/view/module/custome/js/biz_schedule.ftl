@@ -106,6 +106,12 @@
                 + '</div>'
                 + '</div>'
                 + '<div class="form-group">'
+                + '<label class="col-sm-2 control-label no-padding-right" for="hotContent">标题：</label>'
+                + '<div class="col-sm-10">'
+                + '<input type="text" id="title" placeholder="请输入标题" class="form-control"/>'
+                + '</div>'
+                + '</div>'
+                + '<div class="form-group">'
                 + '<label class="col-sm-2 control-label no-padding-right" for="hotContent">高考日程：</label>'
                 + '<div class="col-sm-10">'
                 + '<div id="hotContent" class="wysiwyg-editor"></div>'
@@ -122,11 +128,16 @@
                 + '</div>';
         var addEditFun = function () {
             var selProvinceV = $('#selProvince2 option:checked').val();
+            var titleV = $.trim($('#title').val());
             var datePickerV = $.trim($('#date-picker2').val());
             var hotContentV = $('#hotContent').html();
 
             if (selProvinceV == "00") {
                 CommonFn.tipsDialog('温馨提示', '请选择省份');
+                return false;
+            }
+            if (titleV == "") {
+                CommonFn.tipsDialog('温馨提示', '请输入标题');
                 return false;
             }
             if (hotContentV == "") {
@@ -150,7 +161,8 @@
                 month: month,
                 years: years,
                 content: hotContentV,
-                areaId: selProvinceV
+                areaId: selProvinceV,
+                title:titleV
             };
 
             if (typeStr == 'edit') {
@@ -201,7 +213,7 @@
             console.log(rowData);
             $('#selProvince2').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
             $('#hotContent').html(rowData[0].content);
-
+            $('#title').val(rowData[0].title);
             var hotdate = rowData[0].years+'-'+rowData[0].month;
             $('#date-picker2').val(hotdate);
         });
