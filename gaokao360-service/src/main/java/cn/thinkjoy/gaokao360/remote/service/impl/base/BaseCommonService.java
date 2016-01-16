@@ -1,4 +1,4 @@
-package cn.thinkjoy.gaokao360.remote.service.impl;
+package cn.thinkjoy.gaokao360.remote.service.impl.base;
 
 import cn.thinkjoy.common.dao.IBaseDAO;
 import cn.thinkjoy.common.domain.SearchField;

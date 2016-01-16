@@ -70,7 +70,7 @@ selectList
                 province.name  LIKE  #{condition.queryparam.data},
                 OR batchdict.name  LIKE  #{condition.queryparam.data},
                 OR typedict.name  LIKE  #{condition.queryparam.data},
-                OR enrolling.year  LIKE  #{condition.queryparam.data},
+                OR enrolling.year  LIKE  #{condition.queryparam.data}
                 )
             </if>
             <if test="condition.enrollingyear!=null">

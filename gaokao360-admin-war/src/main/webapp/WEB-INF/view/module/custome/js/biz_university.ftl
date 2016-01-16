@@ -2,7 +2,7 @@
     <!-- 自定义js请写在这个文件  以下这个查询方法只是个例子，请按照业务需求修改 -->
     function buildRules() {
         var universityeducationLevel = $('#selEduLevel').val();
-        var universityprovinceName = $('#selProvince').find('option:selected').html();
+        var universityprovinceName = $('#selProvince').find('option:selected').val();
         var universityprovinceId = $('#selProvince').val();
         var queryparam = $('#EduLevelKeyWord').val();
         var rules = [];

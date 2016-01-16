@@ -3,17 +3,14 @@ package cn.thinkjoy.gaokao360.remote.service.impl;
 import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.gaokao360.common.ERRORCODE;
-import cn.thinkjoy.gaokao360.dao.IVideoCourseDAO;
 import cn.thinkjoy.gaokao360.domain.VideoClassify;
 import cn.thinkjoy.gaokao360.domain.VideoCourse;
-import cn.thinkjoy.gaokao360.domain.VideoSection;
-import cn.thinkjoy.gaokao360.dto.VideoCourseDTO;
 import cn.thinkjoy.gaokao360.dto.VideoSectionDTO;
+import cn.thinkjoy.gaokao360.remote.service.impl.base.BaseCommonService;
 import cn.thinkjoy.gaokao360.service.differentiation.IVideoClassifyService;
 import cn.thinkjoy.gaokao360.service.differentiation.IVideoCourseService;
 import cn.thinkjoy.gaokao360.service.differentiation.IVideoSectionService;
 import cn.thinkjoy.gaokao360.service.differentiation.ex.IVideoSectionExService;
-import cn.thinkjoy.zgk.common.QueryUtil;
 import cn.thinkjoy.zgk.domain.GkVideo;
 import cn.thinkjoy.zgk.domain.GkVideoInfo;
 import cn.thinkjoy.zgk.dto.GkVideoDTO;
@@ -25,7 +22,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -57,6 +53,8 @@ public class GkVideoServiceImpl extends BaseCommonService implements IGkVideoSer
     public BizData4Page getGkVideoList(Map<String, Object> conditions,Integer page,Integer rows) {
         if(conditions.containsKey("isIgnore") && conditions.get("isIgnore").equals(true)){
             setIsIgnore(true);
+        }else {
+            setIsIgnore(false);
         }
         return doPage(conditions,videoCourseService.getDao(),page,rows);
     }
@@ -79,6 +77,7 @@ public class GkVideoServiceImpl extends BaseCommonService implements IGkVideoSer
      */
     @Override
     public GkVideoDTO getGkVideoInfo(String id){
+            setIsIgnore(true);
         return video2videoDTO((VideoCourse)videoCourseService.fetch(id));
     }
 
