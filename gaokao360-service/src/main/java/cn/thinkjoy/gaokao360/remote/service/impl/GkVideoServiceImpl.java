@@ -57,6 +57,8 @@ public class GkVideoServiceImpl extends BaseCommonService implements IGkVideoSer
     public BizData4Page getGkVideoList(Map<String, Object> conditions,Integer page,Integer rows) {
         if(conditions.containsKey("isIgnore") && conditions.get("isIgnore").equals(true)){
             setIsIgnore(true);
+        }else {
+            setIsIgnore(false);
         }
         return doPage(conditions,videoCourseService.getDao(),page,rows);
     }
@@ -79,6 +81,7 @@ public class GkVideoServiceImpl extends BaseCommonService implements IGkVideoSer
      */
     @Override
     public GkVideoDTO getGkVideoInfo(String id){
+            setIsIgnore(true);
         return video2videoDTO((VideoCourse)videoCourseService.fetch(id));
     }
 
