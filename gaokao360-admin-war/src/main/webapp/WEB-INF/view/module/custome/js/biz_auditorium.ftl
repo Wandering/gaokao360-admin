@@ -49,7 +49,7 @@
             +'<div class="modal-dialog">'
             +'<div class="modal-content">'
             +'<div class="widget-header">'
-            +'<h5 class="widget-title">添加</h5>'
+            +'<h5 class="widget-title">添加1</h5>'
             <#--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span-->
             <#--class="sr-only">Close</span></button>-->
             +'</div>'
@@ -83,15 +83,15 @@
             +'</div>'
             +'</div>'
             +'<div class="form-group">'
-            +'<label class="col-sm-2 control-label no-padding-right" for="sectionTitle"> 视屏名称：</label>'
+            +'<label class="col-sm-2 control-label no-padding-right" for="sectionTitle"> 视频名称：</label>'
             +'<div class="col-sm-10">'
-            +'<input type="text" id="sectionTitle" placeholder="请输视屏名称" class="form-control"/>'
+            +'<input type="text" id="sectionTitle" placeholder="请输视频名称" class="form-control"/>'
             +'</div>'
             +'</div>'
 
 
             +'<div class="form-group">'
-            +'<label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 视屏封面图片：</label>'
+            +'<label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 视频面图片：</label>'
             +'<div class="col-sm-10">'
 
             +'<div id="uploader1" class="wu-example">'
@@ -118,7 +118,7 @@
 
 
             +'<div class="form-group">'
-            +'<label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 视屏上传列表：</label>'
+            +'<label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 视频上传列表：</label>'
             +'<div class="col-sm-10">'
 
             +'<div id="uploader2" class="wu-example">'
@@ -1316,7 +1316,7 @@
         uploader.onError = function (code) {
             alert('错误: ' + code);
         };
-//        定义一个数组用来存放视屏list
+//        定义一个数组用来存放视频list
         var videoList = [];
         var listJSON = {};
         uploader.onUploadSuccess = function (file, response) {

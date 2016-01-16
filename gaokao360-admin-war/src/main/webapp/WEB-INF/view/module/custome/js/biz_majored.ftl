@@ -90,6 +90,28 @@
             majoredDom.$excellentStudent.val(rowData[0].outstandingMentor);
 
 
+
+
+            var majoredId = majoredDom.$selMajored2.find('option:selected').val();
+            var majoredName = majoredDom.$selMajored2.find('option:selected').html();
+            CommonFn.getData('/admin/gaokao360/ex/getMajoredCategoryByPid', 'GET', {
+                id: majoredId,
+                name: majoredName
+            }, function (res) {
+                if (res.rtnCode == "0000000") {
+                    var dataJson = res.bizData;
+                    var dataHTML = [];
+                    $.each(dataJson, function (i, v) {
+                        dataHTML.push('<option value="' + v.id + '">' + v.name + '</option>');
+                    });
+                    $('#subjectType').html(dataHTML);
+                }
+            })
+
+
+
+
+
             <#--majoredDom.$submitBtn.on(ace.click_event, function (e) {-->
                 <#--e.preventDefault();-->
 <#--//                验证-->
