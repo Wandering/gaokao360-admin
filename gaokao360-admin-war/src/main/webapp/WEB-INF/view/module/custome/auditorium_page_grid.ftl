@@ -43,6 +43,12 @@
                         <div class="col-xs-12">
                             <form class="form-horizontal" role="form" id="auditoriumModal">
                                 <div class="form-group">
+                                    <label class="col-sm-2 control-label no-padding-right"> 请选择模块：</label>
+                                    <div class="col-sm-4">
+                                        <select class="form-control" id="selModule"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="col-sm-2 control-label no-padding-right"> 省份：</label>
                                     <div class="col-sm-4">
                                         <select class="form-control" id="selProvince2"></select>
