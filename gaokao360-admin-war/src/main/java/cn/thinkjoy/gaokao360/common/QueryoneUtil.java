@@ -45,6 +45,8 @@ public class QueryoneUtil extends BaseCommonUtil{
     private IAdmissionBatchExService admissionBatchExService;
     @Autowired
     private IUniversityEnrollingExService universityEnrollingExService;
+    @Autowired
+    private IUniversityMajorEnrollingExService universityMajorEnrollingExService;
 
     private String mainObj;
 
@@ -128,5 +130,9 @@ public class QueryoneUtil extends BaseCommonUtil{
     }
     public Object universityenrolling(Object id){
         return universityEnrollingExService.fetch(id);
+    }
+
+    public Object universitymajorenrolling(Object id){
+        return universityMajorEnrollingExService.fetch(id);
     }
 }
