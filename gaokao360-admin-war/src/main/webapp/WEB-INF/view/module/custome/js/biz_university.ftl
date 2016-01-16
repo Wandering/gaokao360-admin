@@ -223,7 +223,7 @@
         $("#addBtn").on(ace.click_event, function (e) {
             typeStr = "add";
             bootbox.dialog({
-                title: "添加真题密卷",
+                title: "添加院校基本信息",
                 message: dialogHtml,
                 className: 'my-modal',
                 buttons: {

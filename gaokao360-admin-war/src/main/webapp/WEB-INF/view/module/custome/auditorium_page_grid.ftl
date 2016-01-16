@@ -3,9 +3,6 @@
     <form class="form-inline" role="form" action="/admin/${bizSys}/${mainObj}s">
         <div class="row">
             <div class="form-group col-sm-2">
-                <input type="text" class="keywordSearch" placeholder="关键字查询" id="examKeyWord">
-            </div>
-            <div class="form-group col-sm-2">
                 <select class="form-control" id="selCourses"></select>
             </div>
             <div class="form-group col-sm-2">
@@ -65,6 +62,12 @@
                                     <label class="col-sm-2 control-label no-padding-right" for="teacherName"> 主讲老师：</label>
                                     <div class="col-sm-10">
                                         <input type="text" id="teacherName" placeholder="请输入主讲老师" class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 视频介绍：</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" id="content1" placeholder="请输入视频介绍"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
