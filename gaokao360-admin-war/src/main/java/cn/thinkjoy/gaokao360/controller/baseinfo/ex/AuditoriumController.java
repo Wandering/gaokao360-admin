@@ -10,6 +10,7 @@ package cn.thinkjoy.gaokao360.controller.baseinfo.ex;
 import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.gaokao360.controller.BaseController;
 import cn.thinkjoy.gaokao360.service.common.ex.IAuditoriumService;
+import cn.thinkjoy.gaokao360.service.differentiation.IVideoClassifyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,8 @@ import javax.servlet.http.HttpServletResponse;
 public class AuditoriumController extends BaseController<IAuditoriumService> {
 
 
+    @Autowired
+    private IVideoClassifyService videoClassifyService;
     @Autowired
     private IAuditoriumService auditoriumService;
 
@@ -46,12 +49,21 @@ public class AuditoriumController extends BaseController<IAuditoriumService> {
      * 获取所有的组织信息
      * @return
      */
+    @RequestMapping(value="/queryVideoType")
+    @ResponseBody
+    public Object queryVideoType(){
+        return videoClassifyService.findAll();
+    }
+
+    /**
+     * 获取所有的组织信息
+     * @return
+     */
     @RequestMapping(value="/auditoriums")
     @ResponseBody
     public BizData4Page findAllVideoCourses(HttpServletRequest request,HttpServletResponse response){
         return doPage(request, response);
     }
-
     /**
      * 获取所有的组织信息
      * @return
