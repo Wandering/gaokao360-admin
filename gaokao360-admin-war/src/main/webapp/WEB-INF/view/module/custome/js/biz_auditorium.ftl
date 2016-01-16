@@ -154,16 +154,7 @@
             +'</div>'
 
             +'</div>'
-            +'</div>'
-
-
-
-
-
-
-
-
-
+            +'</div>';
 
 
 
@@ -243,6 +234,7 @@
                     .find('.statusBar').hide();
 
             console.log(rowData);
+            $('#selModule').find('option[value="' + rowData[0].classifyId + '"]').attr('selected', 'selected');
             $('#selProvince2').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
             $('#selCourses2').find('option[value="' + rowData[0].subjectId + '"]').attr('selected', 'selected');
             $('#teacherName').val(rowData[0].teacher);
@@ -294,6 +286,7 @@
 
         var addEditFun = function () {
             var selProvinceV = $('#selProvince2 option:checked').val(),
+                    selModuleV = $('#selModule option:checked').val(),
                     selCourses2V = $('#selCourses2 option:checked').val(),
                     teacherNameV = $.trim($('#teacherName').val()),
                     expertsIntroV = $('#expertsIntro').val(),
@@ -303,6 +296,10 @@
 
             if (selProvinceV == "00") {
                 CommonFn.tipsDialog('温馨提示', '请选择省份');
+                return false;
+            }
+            if (selModuleV == "00") {
+                CommonFn.tipsDialog('温馨提示', '请选择视频模块');
                 return false;
             }
             if (selCourses2V == "00") {
@@ -332,8 +329,8 @@
 
             var addData = {
                 oper: typeStr,
-                classifyId: '${mainObj}' == 'auditorium' ? '1' : '2',
-                managerId: '${mainObj}' == 'auditorium' ? '1' : '2',
+                classifyId: selModuleV,
+                managerId: selModuleV,
                 subjectId: selCourses2V,
                 teacher: teacherNameV,
                 title: sectionTitleV,
@@ -341,6 +338,7 @@
                 subcontent: expertsIntroV,
                 areaId: selProvinceV,
                 videoSectionDTOs:videoDataV
+
             };
             console.log(addData)
             if (typeStr == 'edit') {
