@@ -53,6 +53,7 @@
             , $editBtn: $('#editBtn')
             , $eduLevel: $('#eduLevel')
             , $province: $('#province')
+            , $titleV: $('#titleV')
             , $policyInterGroup: $('#policyInterGroup')
             , $newPolicy: $('#newPolicy')
             , $addGroup: $('#add-group')
@@ -119,6 +120,7 @@
             $('#policyInterTwo').val(rowData[0].categoryName);
             // 富媒体赋值
             $('#policyInterDetail').html(CommonFn.getContentHtml(rowData[0].content).join(''));
+            $('#title').val(rowData[0].title);
         });
 
 
@@ -171,6 +173,14 @@
                 + '</div>'
                 + '<div class="form-group">'
                 + '<label class="col-sm-2 control-label no-padding-right" for="policyInterOne">'
+                + '标题：</label>'
+                + '<div class="col-sm-2">'
+//                + '<select class="form-control" id="policyInterGroup">' + '<option value="00">选择政策一级分类</option>' + '<option value="000">+新建政策分类+</option>'
+                + '<input class="form-control" id="titleV" placeholder="请输入标题"></input>'
+                + '</div>'
+                + '</div>'
+                + '<div class="form-group">'
+                + '<label class="col-sm-2 control-label no-padding-right" for="policyInterOne">'
                 + '政策一级分类：</label>'
                 + '<div class="col-sm-2">'
 //                + '<select class="form-control" id="policyInterGroup">' + '<option value="00">选择政策一级分类</option>' + '<option value="000">+新建政策分类+</option>'
@@ -195,6 +205,14 @@
                 + '</div>'
                 + '</div>'
                 + '<div class="form-group">'
+                + '<label class="col-sm-2 control-label no-padding-right" for="">'
+                + '标题：</label>'
+                + '<div class="col-sm-6">'
+                + '<input type="text" id="title" placeholder="请输入标题"'
+                + 'class="col-sm-5">'
+                + '</div>'
+                + '</div>'
+                + '<div class="form-group">'
                 + '<label class="col-sm-2 control-label no-padding-right" for="policyInterDetail">'
                 + '政策解读详情：</label>'
                 + '<div class="col-sm-10">'
@@ -210,11 +228,16 @@
 
         function addAndEditFn() {
             var provinceV = $("#province2").find("option:selected").attr('value');
+            var titleV = $("#titleV").val();
             var policyInterGroupV = $("#policyInterGroup").find("option:selected").attr('value');
             var policyInterTwoV = $('#policyInterTwo').val();
             var policyInterDetailV = $('#policyInterDetail').html();
             if (provinceV == "00") {
                 CommonFn.tipsDialog('温馨提示', '请选择省份');
+                return false;
+            }
+            if (titleV == "") {
+                CommonFn.tipsDialog('温馨提示', '请填写标题');
                 return false;
             }
             var selectPolicy = $("#policyInterGroup").find("option:selected").attr('value');
@@ -230,6 +253,10 @@
                 CommonFn.tipsDialog('温馨提示', '请选择政策一级分类');
                 return false;
             }
+            if ($.trim($('#title').val())=="") {
+                CommonFn.tipsDialog('温馨提示', '请填写标题');
+                return false;
+            }
 
             if (policyInterDetailV == "") {
                 CommonFn.tipsDialog('温馨提示', '请输入政策解读详情内容');
@@ -238,15 +265,19 @@
             var policyContentHtml = CommonFn.getTextareaData(policyInterDetailV).join(''),
                     policyContentUrl = CommonFn.getTextareaUrlData(policyContentHtml),
                     htmlUrl = policyContentUrl[0],
-                    htmlId = policyContentUrl[1],
+                    htmlId = policyContentUrl[1];
+            var titleV = $.trim($('title').val());
                     infoData = {
                         htmlId: htmlId,
                         provinceId: provinceV,
+                        title: titleV,
                         admissionBatchId: policyInterGroupV,
                         content: htmlUrl,
                         categoryName: policyInterTwoV,
                         oper: typeStr,
-                        areaId: 0
+                        areaId: 0,
+                        title:titleV,
+                        subContent:$('#policyInterDetail').text().substring(8,200)
                     };
             if (typeStr == 'edit') {
                 infoData.id = rowId;

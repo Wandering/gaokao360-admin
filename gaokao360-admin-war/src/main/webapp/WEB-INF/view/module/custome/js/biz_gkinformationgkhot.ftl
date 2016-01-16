@@ -158,14 +158,15 @@
             var hotContentHtml = CommonFn.getTextareaData(hotContentV).join(''),
                     hotContentUrl = CommonFn.getTextareaUrlData(hotContentHtml),
                     htmlUrl = hotContentUrl[0],
-                    htmlId = hotContentUrl[1],
-                    infoData = {
+                    htmlId = hotContentUrl[1];
+            var informationSubContent = $('#hotContent').text().substring(16,200);
+                    var infoData = {
                         htmlId: htmlId,
                         areaId: selProvinceV,
                         hotInformation: hotTitleV,
                         informationContent: htmlUrl,
                         hotdate: datePickerV,
-                        informationSubContent: '',
+                        informationSubContent: informationSubContent,
                         hotCount: 0,
                         oper: typeStr
                     };

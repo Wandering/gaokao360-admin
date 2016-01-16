@@ -90,7 +90,7 @@ public class AuditoriumController extends BaseController<IAuditoriumService> {
 
     @Override
     protected String getViewTitle() {
-        return "视频详情";
+        return "高考学堂";
     }
 
     @Override
