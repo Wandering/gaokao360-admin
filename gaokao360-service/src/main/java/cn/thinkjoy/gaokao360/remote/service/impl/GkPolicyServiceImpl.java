@@ -1,13 +1,10 @@
 package cn.thinkjoy.gaokao360.remote.service.impl;
 
 import cn.thinkjoy.common.domain.view.BizData4Page;
-import cn.thinkjoy.gaokao360.domain.GkinformationGkhot;
 import cn.thinkjoy.gaokao360.domain.PolicyInterpretation;
-import cn.thinkjoy.gaokao360.service.differentiation.IGkinformationGkhotService;
+import cn.thinkjoy.gaokao360.remote.service.impl.base.BaseCommonService;
 import cn.thinkjoy.gaokao360.service.differentiation.IPolicyInterpretationService;
-import cn.thinkjoy.zgk.domain.GkHot;
 import cn.thinkjoy.zgk.domain.GkPolicy;
-import cn.thinkjoy.zgk.remote.IGkHotService;
 import cn.thinkjoy.zgk.remote.IGkPolicyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

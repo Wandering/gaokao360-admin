@@ -2,6 +2,7 @@ package cn.thinkjoy.gaokao360.remote.service.impl;
 
 import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.gaokao360.dto.UniversityEnrollingDTO;
+import cn.thinkjoy.gaokao360.remote.service.impl.base.BaseCommonService;
 import cn.thinkjoy.gaokao360.service.common.ex.IUniversityEnrollingExService;
 import cn.thinkjoy.zgk.domain.GkAdmissionLine;
 import cn.thinkjoy.zgk.remote.IGkAdmissionLineService;

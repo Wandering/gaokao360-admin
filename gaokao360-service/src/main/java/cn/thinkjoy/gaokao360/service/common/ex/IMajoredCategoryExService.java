@@ -24,5 +24,5 @@ public interface IMajoredCategoryExService<D extends IBaseDAO<T>, T extends Base
 
     void deleteCategory(Map<String,Object> dataMap);
 
-    Object fetch(String id);
+    T fetch1(String id);
 }
