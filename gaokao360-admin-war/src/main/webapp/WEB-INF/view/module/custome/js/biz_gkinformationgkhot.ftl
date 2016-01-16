@@ -174,16 +174,16 @@
                 infoData.id = rowId;
             }
             console.log(infoData);
-            <#--$.ajax({-->
-                <#--type: "POST",-->
-                <#--url: '/admin/${bizSys}/commonsave/${mainObj}',-->
-                <#--data: infoData,-->
-                <#--success: function (result) {-->
-                    <#--if (result.rtnCode == "0000000") {-->
-<#--//                        searchLoad();-->
-                    <#--}-->
-                <#--}-->
-            <#--});-->
+            $.ajax({
+                type: "POST",
+                url: '/admin/${bizSys}/commonsave/${mainObj}',
+                data: infoData,
+                success: function (result) {
+                    if (result.rtnCode == "0000000") {
+                        searchLoad();
+                    }
+                }
+            });
         }
 
 
