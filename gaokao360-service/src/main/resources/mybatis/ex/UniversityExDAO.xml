@@ -43,7 +43,8 @@ selectList
         detail.featureMajor as featureMajor ,
 		typedict.name as typeName,
 		leveldict.name as levelName,
-		province.name as province
+		province.name as province,
+		university.lastModifier as lastModifier
     </sql>
     
     <select id="queryUniversityPlanChart" resultType="UniversityPlanChartDTO" parameterType="java.util.Map">
@@ -84,17 +85,18 @@ selectList
                 <!--${condition.groupOp}   ${condition.universityprovinceId.field}  ${condition.universityprovinceId.op}  #{condition.universityprovinceId.data}-->
             <!--</if>-->
             <if test="condition.queryparam!=null">
-                ${condition.groupOp}   (province.name like #{condition.queryparam.data}
-                OR university.code like #{condition.queryparam.data}
+                ${condition.groupOp}   (
+                university.code like #{condition.queryparam.data}
                 OR university.name like #{condition.queryparam.data}
                 OR university.subjection like #{condition.queryparam.data}
                 OR province.name like #{condition.queryparam.data}
                 OR typedict.name like #{condition.queryparam.data}
-                OR leveldict.name like #{condition.queryparam.data})
+                OR leveldict.name like #{condition.queryparam.data}
+                )
             </if>
 
         </where>
-            ORDER BY id DESC
+            ORDER BY lastModifier DESC
         <if test="offset != null">
             limit ${offset}, ${rows}
         </if>
@@ -119,13 +121,13 @@ selectList
                 <!--${groupOp}   ${universityprovinceId.field}  ${universityprovinceId.op}  #{universityprovinceId.data}-->
             <!--</if>-->
             <if test="queryparam!=null">
-                ${groupOp}   (province.name like #{queryparam.data}
+                ${groupOp}   (
                 OR university.code like #{queryparam.data}
                 OR university.name like #{queryparam.data}
                 OR university.subjection like #{queryparam.data}
                 OR province.name like #{queryparam.data}
                 OR typedict.name like #{queryparam.data}
-                OR leveldict.name like #{queryparam.data})
+                OR leveldict.name like #{queryparam.data}
                 )
             </if>
 

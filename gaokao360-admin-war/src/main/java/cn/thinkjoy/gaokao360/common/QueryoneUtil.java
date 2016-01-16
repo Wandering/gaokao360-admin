@@ -88,7 +88,7 @@ public class QueryoneUtil extends BaseCommonUtil{
         return getServiceMaps().get("majored" + "ex").fetch(id);
     }
     public Object majoredcategory(Object id){
-        return majoredCategoryExService.fetch(id);
+        return majoredCategoryExService.fetch1(String.valueOf(id));
     }
     public Object auditorium(Object id){
         VideoCourse videoCourse=(VideoCourse)getServiceMaps().get("videocourse").fetch(id);

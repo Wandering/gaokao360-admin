@@ -1,13 +1,10 @@
 package cn.thinkjoy.gaokao360.remote.service.impl;
 
 import cn.thinkjoy.common.domain.view.BizData4Page;
-import cn.thinkjoy.gaokao360.domain.GkinformationGkhot;
 import cn.thinkjoy.gaokao360.domain.PolicyInterpretation;
-import cn.thinkjoy.gaokao360.service.differentiation.IGkinformationGkhotService;
+import cn.thinkjoy.gaokao360.remote.service.impl.base.BaseCommonService;
 import cn.thinkjoy.gaokao360.service.differentiation.IPolicyInterpretationService;
-import cn.thinkjoy.zgk.domain.GkHot;
 import cn.thinkjoy.zgk.domain.GkPolicy;
-import cn.thinkjoy.zgk.remote.IGkHotService;
 import cn.thinkjoy.zgk.remote.IGkPolicyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,9 +18,6 @@ import java.util.Map;
  */
 @Service("GkPolicyServiceImpl")
 public class GkPolicyServiceImpl extends BaseCommonService implements IGkPolicyService {
-
-    //设置是否加载内容，默认加载
-    private boolean isIgnore=true;
     @Autowired
     IPolicyInterpretationService policyInterpretationService;
     /**
@@ -34,7 +28,7 @@ public class GkPolicyServiceImpl extends BaseCommonService implements IGkPolicyS
     public BizData4Page getGkPolicyList(Map<String, Object> conditions,Integer page,Integer rows) {
         List<PolicyInterpretation> policyInterpretations = null;
         if(!conditions.containsKey("isIgnore")) {
-            this.setIsIgnore(false);
+            this.setIsIgnore(true);
         }
         return doPage(conditions,policyInterpretationService.getDao(),page,rows);
     }
@@ -68,7 +62,7 @@ public class GkPolicyServiceImpl extends BaseCommonService implements IGkPolicyS
         if(policyInterpretation==null)return null;
         GkPolicy gkPolicy = new GkPolicy();
         gkPolicy.setId(policyInterpretation.getId());
-        gkPolicy.setContent(policyInterpretation.getContent());
+        gkPolicy.setTitle(policyInterpretation.getTitle());
         gkPolicy.setLastModDate(policyInterpretation.getLastModDate());
         gkPolicy.setSubContent(policyInterpretation.getSubContent());
         if(isIgnore()) {
@@ -77,18 +71,5 @@ public class GkPolicyServiceImpl extends BaseCommonService implements IGkPolicyS
         return gkPolicy;
     }
 
-//    /**
-//     * 获取热点摘要列表 四个
-//     * @return
-//     */
-//    List<GkHot> getGkHotList();
 
-
-    public boolean isIgnore() {
-        return isIgnore;
-    }
-
-    public void setIsIgnore(boolean isIgnore) {
-        this.isIgnore = isIgnore;
-    }
 }

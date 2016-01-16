@@ -2,7 +2,7 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  VideoCourse.java 2015-12-04 14:49:03 $
+ * $Id:  VideoCourse.java 2016-01-13 15:03:07 $
  */
 
 
@@ -52,6 +52,8 @@ public class VideoCourse extends CreateBaseDomain<Long>{
     private Integer isAccept;
     /** 区域Id */
     private Long areaId;
+    /** 简介 */
+    private String subInfo;
 
 	public VideoCourse(){
 	}
@@ -167,6 +169,13 @@ public class VideoCourse extends CreateBaseDomain<Long>{
     public Long getAreaId() {
         return this.areaId;
     }
+    public void setSubInfo(String value) {
+        this.subInfo = value;
+    }
+
+    public String getSubInfo() {
+        return this.subInfo;
+    }
 
 	public String toString() {
 		return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
@@ -192,6 +201,7 @@ public class VideoCourse extends CreateBaseDomain<Long>{
 			.append("AreaId",getAreaId())
 			.append("Creator",getCreator())
 			.append("LastModifier",getLastModifier())
+			.append("SubInfo",getSubInfo())
 			.toString();
 	}
 	

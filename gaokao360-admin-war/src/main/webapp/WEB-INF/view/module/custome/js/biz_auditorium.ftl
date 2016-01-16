@@ -49,7 +49,7 @@
             +'<div class="modal-dialog">'
             +'<div class="modal-content">'
             +'<div class="widget-header">'
-            +'<h5 class="widget-title">添加</h5>'
+            +'<h5 class="widget-title">添加1</h5>'
             <#--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span-->
             <#--class="sr-only">Close</span></button>-->
             +'</div>'
@@ -83,15 +83,15 @@
             +'</div>'
             +'</div>'
             +'<div class="form-group">'
-            +'<label class="col-sm-2 control-label no-padding-right" for="sectionTitle"> 视屏名称：</label>'
+            +'<label class="col-sm-2 control-label no-padding-right" for="sectionTitle"> 视频名称：</label>'
             +'<div class="col-sm-10">'
-            +'<input type="text" id="sectionTitle" placeholder="请输视屏名称" class="form-control"/>'
+            +'<input type="text" id="sectionTitle" placeholder="请输视频名称" class="form-control"/>'
             +'</div>'
             +'</div>'
 
 
             +'<div class="form-group">'
-            +'<label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 视屏封面图片：</label>'
+            +'<label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 视频面图片：</label>'
             +'<div class="col-sm-10">'
 
             +'<div id="uploader1" class="wu-example">'
@@ -118,7 +118,7 @@
 
 
             +'<div class="form-group">'
-            +'<label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 视屏上传列表：</label>'
+            +'<label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 视频上传列表：</label>'
             +'<div class="col-sm-10">'
 
             +'<div id="uploader2" class="wu-example">'
@@ -154,16 +154,7 @@
             +'</div>'
 
             +'</div>'
-            +'</div>'
-
-
-
-
-
-
-
-
-
+            +'</div>';
 
 
 
@@ -189,7 +180,7 @@
         $('#selCourses,#selCourses2').append(CommonFn.getSubject());
         $('#selYears').append(CommonFn.getYear());
         $('#selProvince,#selProvince2').html(CommonFn.getProvince());
-
+        $('#selModule').html(CommonFn.getModule());
 
 
         uploadFun1();
@@ -201,6 +192,7 @@
 //        uploadFun1();
 //        uploadFun2();
         UI.$addBtn.click(function () {
+            $('#videolist').html('');
             $('#imglist').html('').hide();
             $('#dialogLayer').modal('show')
                     .find('input').val('')
@@ -243,6 +235,7 @@
                     .find('.statusBar').hide();
 
             console.log(rowData);
+            $('#selModule').find('option[value="' + rowData[0].classifyId + '"]').attr('selected', 'selected');
             $('#selProvince2').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
             $('#selCourses2').find('option[value="' + rowData[0].subjectId + '"]').attr('selected', 'selected');
             $('#teacherName').val(rowData[0].teacher);
@@ -294,6 +287,7 @@
 
         var addEditFun = function () {
             var selProvinceV = $('#selProvince2 option:checked').val(),
+                    selModuleV = $('#selModule option:checked').val(),
                     selCourses2V = $('#selCourses2 option:checked').val(),
                     teacherNameV = $.trim($('#teacherName').val()),
                     expertsIntroV = $('#expertsIntro').val(),
@@ -303,6 +297,10 @@
 
             if (selProvinceV == "00") {
                 CommonFn.tipsDialog('温馨提示', '请选择省份');
+                return false;
+            }
+            if (selModuleV == "00") {
+                CommonFn.tipsDialog('温馨提示', '请选择视频模块');
                 return false;
             }
             if (selCourses2V == "00") {
@@ -332,8 +330,8 @@
 
             var addData = {
                 oper: typeStr,
-                classifyId: '${mainObj}' == 'auditorium' ? '1' : '2',
-                managerId: '${mainObj}' == 'auditorium' ? '1' : '2',
+                classifyId: selModuleV,
+                managerId: selModuleV,
                 subjectId: selCourses2V,
                 teacher: teacherNameV,
                 title: sectionTitleV,
@@ -341,6 +339,7 @@
                 subcontent: expertsIntroV,
                 areaId: selProvinceV,
                 videoSectionDTOs:videoDataV
+
             };
             console.log(addData)
             if (typeStr == 'edit') {
@@ -1316,7 +1315,7 @@
         uploader.onError = function (code) {
             alert('错误: ' + code);
         };
-//        定义一个数组用来存放视屏list
+//        定义一个数组用来存放视频list
         var videoList = [];
         var listJSON = {};
         uploader.onUploadSuccess = function (file, response) {

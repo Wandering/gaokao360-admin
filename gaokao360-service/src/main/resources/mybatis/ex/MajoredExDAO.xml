@@ -44,7 +44,8 @@ selectList
         detail.outstanding_mentor as outstandingMentor,
         category.name as categoryName,
         genre.name as genreName,
-        type.name as typeName
+        type.name as typeName,
+        major.lastModDate as lastModDate
     </sql>
 
     <select id="fetch" resultType="cn.thinkjoy.gaokao360.dto.MajorDTO">
@@ -84,13 +85,12 @@ selectList
                 OR major.employment_rank like #{condition.queryparam.data}
                 OR category.name like #{condition.queryparam.data}
                 OR genre.name like #{condition.queryparam.data}
-                OR type.name like #{condition.queryparam.data}
-                OR majoredType like #{condition.queryparam.data})
+                OR type.name like #{condition.queryparam.data})
             </if>
 
 
         </where>
-        ORDER BY id DESC
+        ORDER BY lastModDate DESC
         <if test="offset != null">
             limit ${offset}, ${rows}
         </if>
@@ -114,8 +114,7 @@ selectList
                 OR major.employment_rank like #{queryparam.data}
                 OR category.name like #{queryparam.data}
                 OR genre.name like #{queryparam.data}
-                OR type.name like #{queryparam.data}
-                OR majoredType like #{queryparam.data})
+                OR type.name like #{queryparam.data})
             </if>
 
         </where>

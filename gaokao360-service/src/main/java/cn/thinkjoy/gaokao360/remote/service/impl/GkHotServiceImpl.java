@@ -1,8 +1,7 @@
 package cn.thinkjoy.gaokao360.remote.service.impl;
 
 import cn.thinkjoy.common.domain.view.BizData4Page;
-import cn.thinkjoy.common.utils.SqlOrderEnum;
-import cn.thinkjoy.zgk.common.QueryUtil;
+import cn.thinkjoy.gaokao360.remote.service.impl.base.BaseCommonService;
 import cn.thinkjoy.gaokao360.domain.GkinformationGkhot;
 import cn.thinkjoy.gaokao360.service.differentiation.IGkinformationGkhotService;
 import cn.thinkjoy.zgk.domain.GkHot;
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,9 +18,6 @@ import java.util.Map;
  */
 @Service("GkHotServiceImpl")
 public class GkHotServiceImpl extends BaseCommonService implements IGkHotService {
-
-    //设置是否加载内容，默认不加载
-    private boolean isIgnore=false;
     @Autowired
     IGkinformationGkhotService gkinformationGkhotService;
     /**
@@ -31,7 +26,6 @@ public class GkHotServiceImpl extends BaseCommonService implements IGkHotService
      */
     @Override
     public BizData4Page getGkHotList(Map<String, Object> conditions,Integer page,Integer rows) {
-        List<GkinformationGkhot> gkinformationGkhots = null;
         if(!conditions.containsKey("isIgnore")) {
             this.setIsIgnore(false);
         }
@@ -69,6 +63,7 @@ public class GkHotServiceImpl extends BaseCommonService implements IGkHotService
         if(this.isIgnore()) {
             gkHot.setContent(gkinformationGkhot.getInformationContent());
         }
+        this.setIsIgnore(false);
         gkHot.setSubContent(gkinformationGkhot.getInformationSubContent());
         gkHot.setImage(gkinformationGkhot.getImgUrl());
         gkHot.setHotDate(gkinformationGkhot.getHotdate());
@@ -76,18 +71,5 @@ public class GkHotServiceImpl extends BaseCommonService implements IGkHotService
         return gkHot;
     }
 
-//    /**
-//     * 获取热点摘要列表 四个
-//     * @return
-//     */
-//    List<GkHot> getGkHotList();
 
-
-    public boolean isIgnore() {
-        return isIgnore;
-    }
-
-    public void setIsIgnore(boolean isIgnore) {
-        this.isIgnore = isIgnore;
-    }
 }

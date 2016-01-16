@@ -23,11 +23,22 @@
 
 
     <!--dubbo服务-->
+    <!--高考热点-->
     <bean id="gkHotServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.GkHotServiceImpl" />
     <dubbo:service id="gkHotService" interface="cn.thinkjoy.zgk.remote.IGkHotService" ref="gkHotServiceImpl"/>
+    <!--高考日程-->
     <bean id="gkScheduleServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.GkScheduleServiceImpl" />
     <dubbo:service id="gkScheduleService" interface="cn.thinkjoy.zgk.remote.IGkScheduleService" ref="gkScheduleServiceImpl"/>
     <!-- 院校查询 -->
     <bean id="remoteUniversityServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.UniversityServiceImpl" />
     <dubbo:service id="remoteUniversityService" interface="cn.thinkjoy.zgk.remote.IUniversityService" ref="remoteUniversityServiceImpl"/>
+    <!-- 政策解读 -->
+    <bean id="gkPolicyServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.GkPolicyServiceImpl" />
+    <dubbo:service id="gkPolicyService" interface="cn.thinkjoy.zgk.remote.IGkPolicyService" ref="gkPolicyServiceImpl"/>
+    <!--历年分数-->
+    <bean id="gkAdmissionLineServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.GkAdmissionLineServiceImpl" />
+    <dubbo:service id="gkAdmissionLineService" interface="cn.thinkjoy.zgk.remote.IGkAdmissionLineService" ref="gkAdmissionLineServiceImpl"/>
+    <!--视频信息-->
+    <bean id="gkVideoServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.GkVideoServiceImpl" />
+    <dubbo:service id="gkVideoService" interface="cn.thinkjoy.zgk.remote.IGkVideoService" ref="gkVideoServiceImpl"/>
 </beans>

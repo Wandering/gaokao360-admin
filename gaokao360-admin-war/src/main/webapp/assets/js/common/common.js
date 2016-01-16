@@ -30,7 +30,8 @@ var CommonFn = {
         getEdulevelUrl: '/admin/gaokao360/ex/getDataDictList?type=EDULEVEL', // 学历层次
         getDegreeUrl: '/admin/gaokao360/ex/getDataDictList?type=GAIN_DEGREE', // 学位
         getuniversityTypeUrl: '/admin/gaokao360/ex/getDataDictList?type=UNIVERSITY_TYPE', // 院校类型
-        getSchoolIngUrl: '/admin/gaokao360/ex/getDataDictList?type=LENGTH_OF_SCHOOLING' // 学制
+        getSchoolIngUrl: '/admin/gaokao360/ex/getDataDictList?type=LENGTH_OF_SCHOOLING', // 学制
+        getModuleUrl: '/admin/gaokao360/ex/queryVideoType' // 视频模块
     },
     getData: function (url, type, data, callback) {
         $.ajax({
@@ -66,6 +67,22 @@ var CommonFn = {
                 $.each(res.bizData, function (i, v) {
                     var id = res.bizData[i].id;
                     var name = res.bizData[i].name;
+                    contentArr.push('<option value="' + id + '">' + name + '</option>');
+                });
+            }
+        });
+        $.ajaxSettings.async = true;
+        return contentArr.join('');
+    },
+    // 视频模块选择
+    getModule: function () {
+        var contentArr = ['<option value="00">选择视频模块</option>'];
+        $.ajaxSettings.async = false;
+        CommonFn.getData(CommonFn.url.getModuleUrl, 'get', {}, function (res) {
+            if (res.rtnCode == '0000000') {
+                $.each(res.bizData, function (i, v) {
+                    var id = res.bizData[i].id;
+                    var name = res.bizData[i].classifyName;
                     contentArr.push('<option value="' + id + '">' + name + '</option>');
                 });
             }

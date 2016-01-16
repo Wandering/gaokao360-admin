@@ -90,6 +90,28 @@
             majoredDom.$excellentStudent.val(rowData[0].outstandingMentor);
 
 
+
+
+            var majoredId = majoredDom.$selMajored2.find('option:selected').val();
+            var majoredName = majoredDom.$selMajored2.find('option:selected').html();
+            CommonFn.getData('/admin/gaokao360/ex/getMajoredCategoryByPid', 'GET', {
+                id: majoredId,
+                name: majoredName
+            }, function (res) {
+                if (res.rtnCode == "0000000") {
+                    var dataJson = res.bizData;
+                    var dataHTML = [];
+                    $.each(dataJson, function (i, v) {
+                        dataHTML.push('<option value="' + v.id + '">' + v.name + '</option>');
+                    });
+                    $('#subjectType').html(dataHTML);
+                }
+            })
+
+
+
+
+
             <#--majoredDom.$submitBtn.on(ace.click_event, function (e) {-->
                 <#--e.preventDefault();-->
 <#--//                验证-->
@@ -144,7 +166,46 @@
         });
         majoredDom.$submitBtn.click(function (e) {
             e.preventDefault();
-            majoredValidate();
+            if (majoredDom.$majoredName.val().trim() == '') {
+                CommonFn.tipsDialog('温馨提示', '专业名称不能为空');
+                return false;
+            }
+            if (majoredDom.$majoredCode.val().trim() == '') {
+                CommonFn.tipsDialog('温馨提示', '专业Code不能为空');
+                return false;
+            }
+            if ($('#selMajored2').find('option:selected').val() == '00') {
+                CommonFn.tipsDialog('温馨提示', '学科门类没有选择');
+                return false;
+            }
+            if ($('#subjectType').find('option:selected').val() == '00') {
+                CommonFn.tipsDialog('温馨提示', '专业门类没有选择');
+                return false;
+            }
+            if (majoredDom.$salaryRank.val().trim() == '') {
+                CommonFn.tipsDialog('温馨提示', '薪资排名不能为空');
+                return false;
+            }
+            if (majoredDom.$jobsRank.val().trim() == '') {
+                CommonFn.tipsDialog('温馨提示', '就业排名不能为空');
+                return false;
+            }
+            if (majoredDom.$sameMajored.val().trim() == '') {
+                CommonFn.tipsDialog('温馨提示', '相近专业不能为空');
+                return false;
+            }
+            if (majoredDom.$mainMajored.val().trim() == '') {
+                CommonFn.tipsDialog('温馨提示', '主要课程不能为空');
+                return false;
+            }
+            if (majoredDom.$employDirect.val().trim() == '') {
+                CommonFn.tipsDialog('温馨提示', '就业方向不能为空');
+                return false;
+            }
+            if (majoredDom.$excellentStudent.val().trim() == '') {
+                CommonFn.tipsDialog('温馨提示', '优秀学长不能为空');
+                return false;
+            }
             var addMajoredData = {
                 oper: typeStr
                 , majorName: majoredDom.$majoredName.val()
@@ -190,46 +251,7 @@
             $('#schoolIntroduce,#schoolArticle').html('');
         });
         function majoredValidate() {
-            if (majoredDom.$majoredName.val().trim() == '') {
-                CommonFn.tipsDialog('温馨提示', '专业名称不能为空');
-                return false;
-            }
-            if (majoredDom.$majoredCode.val().trim() == '') {
-                CommonFn.tipsDialog('温馨提示', '专业Code不能为空');
-                return false;
-            }
-            if ($('#selMajored2').find('option:selected').val() == '00') {
-                CommonFn.tipsDialog('温馨提示', '学科门类没有选择');
-                return false;
-            }
-            if ($('#subjectType').find('option:selected').val() == '00') {
-                CommonFn.tipsDialog('温馨提示', '专业门类没有选择');
-                return false;
-            }
-            if (majoredDom.$salaryRank.val().trim() == '') {
-                CommonFn.tipsDialog('温馨提示', '薪资排名不能为空');
-                return false;
-            }
-            if (majoredDom.$jobsRank.val().trim() == '') {
-                CommonFn.tipsDialog('温馨提示', '就业排名不能为空');
-                return false;
-            }
-            if (majoredDom.$sameMajored.val().trim() == '') {
-                CommonFn.tipsDialog('温馨提示', '相近专业不能为空');
-                return false;
-            }
-            if (majoredDom.$mainMajored.val().trim() == '') {
-                CommonFn.tipsDialog('温馨提示', '主要课程不能为空');
-                return false;
-            }
-            if (majoredDom.$employDirect.val().trim() == '') {
-                CommonFn.tipsDialog('温馨提示', '就业方向不能为空');
-                return false;
-            }
-            if (majoredDom.$excellentStudent.val().trim() == '') {
-                CommonFn.tipsDialog('温馨提示', '优秀学长不能为空');
-                return false;
-            }
+
         }
     });//$ end
 

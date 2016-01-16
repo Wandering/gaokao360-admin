@@ -2,13 +2,16 @@ package cn.thinkjoy.zgk.domain;
 
 import cn.thinkjoy.common.domain.BaseWrapper;
 
+import java.io.Serializable;
+
 /**
  * 搜索操作
  *
  * @author xjli
  *
  */
-public class SearchField extends BaseWrapper {
+public class SearchField implements Serializable{
+    private static final long serialVersionUID = 0L;
     /* 搜索字段名称 */
     private String field;
 
