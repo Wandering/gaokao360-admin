@@ -68,15 +68,15 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label no-padding-right" for="sectionTitle"> 视屏名称：</label>
+                                    <label class="col-sm-2 control-label no-padding-right" for="sectionTitle"> 视频名称：</label>
                                     <div class="col-sm-10">
-                                        <input type="text" id="sectionTitle" placeholder="请输视屏名称" class="form-control"/>
+                                        <input type="text" id="sectionTitle" placeholder="请输视频名称" class="form-control"/>
                                     </div>
                                 </div>
 
 
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 视屏封面图片：</label>
+                                    <label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 视频封面图片：</label>
                                     <div class="col-sm-10">
                                         <div id="uploader1" class="wu-example">
                                             <div class="uploader-tips">(只能上传一个图片,可拖拽文件,大小小于3M)</div>
@@ -103,7 +103,7 @@
 
 
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 视屏上传列表：</label>
+                                    <label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 视频上传列表：</label>
                                     <div class="col-sm-10">
 
                                         <div id="uploader2" class="wu-example">
