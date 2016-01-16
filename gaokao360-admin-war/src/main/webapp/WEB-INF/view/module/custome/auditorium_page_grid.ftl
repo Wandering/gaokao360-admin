@@ -68,6 +68,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 视频介绍：</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" id="content1" placeholder="请输入视频介绍"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 专家介绍：</label>
                                     <div class="col-sm-10">
                                         <textarea class="form-control" id="expertsIntro" placeholder="请输入专家介绍"></textarea>

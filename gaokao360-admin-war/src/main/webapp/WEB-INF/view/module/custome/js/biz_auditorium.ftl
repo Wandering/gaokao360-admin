@@ -77,6 +77,12 @@
             +'</div>'
             +'</div>'
             +'<div class="form-group">'
+            +'<label class="col-sm-2 control-label no-padding-right" for="content1"> 视频介绍：</label>'
+            +'<div class="col-sm-10">'
+            +'<textarea class="form-control" id="content1" placeholder="请输入视频介绍"></textarea>'
+            +'</div>'
+            +'</div>'
+            +'<div class="form-group">'
             +'<label class="col-sm-2 control-label no-padding-right" for="expertsIntro"> 专家介绍：</label>'
             +'<div class="col-sm-10">'
             +'<textarea class="form-control" id="expertsIntro" placeholder="请输入专家介绍"></textarea>'
@@ -173,6 +179,7 @@
             , $selCourses2: $('#selCourses2')
             , $teacherName: $('#teacherName')
             , $expertsIntro: $('#expertsIntro')
+            , $content1: $('#content1')
             , $sectionTitle: $('#sectionTitle')
 
         };
@@ -241,6 +248,7 @@
             $('#teacherName').val(rowData[0].teacher);
             $('#sectionTitle').val(rowData[0].title);
             $('#expertsIntro').val(rowData[0].subcontent);
+            $('#content1').val(rowData[0].content);
             $('#uploader1').hide();
             $('#imglist').html('<img width="110" height="100" src="'+ rowData[0].frontCover +'"/><a href="javascript:;" id="updateImg">修改</a>');
 
@@ -291,6 +299,7 @@
                     selCourses2V = $('#selCourses2 option:checked').val(),
                     teacherNameV = $.trim($('#teacherName').val()),
                     expertsIntroV = $('#expertsIntro').val(),
+                    contentV = $('#content1').val(),
                     sectionTitleV = $('#sectionTitle').val(),
                     imgUrlDataV = $('#imgUrlData').val(),
                     videoDataV = $('#videoData').val();
@@ -309,6 +318,10 @@
             }
             if (teacherNameV == "") {
                 CommonFn.tipsDialog('温馨提示', '请选择主讲老师');
+                return false;
+            }
+            if (contentV == "") {
+                CommonFn.tipsDialog('温馨提示', '请填写视频介绍');
                 return false;
             }
             if (expertsIntroV == "") {
@@ -337,6 +350,7 @@
                 title: sectionTitleV,
                 frontCover: imgUrlDataV,
                 subcontent: expertsIntroV,
+                content: contentV,
                 areaId: selProvinceV,
                 videoSectionDTOs:videoDataV
 
