@@ -3,9 +3,6 @@
     <form class="form-inline" role="form" action="/admin/${bizSys}/${mainObj}s">
         <div class="row">
             <div class="form-group col-sm-2">
-                <input type="text" class="keywordSearch" placeholder="关键字查询" id="examKeyWord">
-            </div>
-            <div class="form-group col-sm-2">
                 <select class="form-control" id="selCourses"></select>
             </div>
             <div class="form-group col-sm-2">
