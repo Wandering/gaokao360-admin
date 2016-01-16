@@ -192,6 +192,7 @@
 //        uploadFun1();
 //        uploadFun2();
         UI.$addBtn.click(function () {
+            $('#videolist').html('');
             $('#imglist').html('').hide();
             $('#dialogLayer').modal('show')
                     .find('input').val('')
