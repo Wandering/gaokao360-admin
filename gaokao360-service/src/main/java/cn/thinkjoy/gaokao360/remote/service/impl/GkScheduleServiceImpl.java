@@ -22,7 +22,7 @@ public class GkScheduleServiceImpl implements IGkScheduleService {
     private IScheduleService scheduleService;
 
     @Override
-    public List<GkScheduleDTO> getScheduleList(Integer num) {
+    public List<GkScheduleDTO> getScheduleList(Map<String,Object> condition,Integer num) {
         Calendar calendar=Calendar.getInstance();
         Map<String,Object> map = null;
         GkScheduleDTO gkScheduleDTO=null;
@@ -38,6 +38,12 @@ public class GkScheduleServiceImpl implements IGkScheduleService {
             gkScheduleDTO.setMonth(String.valueOf(month));
             gkScheduleDTO.setYears(String.valueOf(year));
             List<Schedule> schedules=scheduleService.queryList(map,"createDate","desc");
+            if(condition.containsKey("scheduleRows")){
+                Integer scheduleRows=(Integer)condition.get("scheduleRows");
+                if(schedules!=null && schedules.size()>scheduleRows) {
+                    schedules = schedules.subList(0, scheduleRows - 1);
+                }
+            }
             //设置是否加载内容
             this.setIsIgnore(false);
             gkScheduleDTO.setSchedules(schedule2GkSchedule(schedules));
