@@ -173,6 +173,4 @@ public class GkVideoServiceImpl extends BaseCommonService implements IGkVideoSer
         List<VideoSectionDTO> list=videoSectionExService.getVideoSectionByCourseId(id);
         return videoSection2GkVideo(list);
     }
-
-
 }
