@@ -1,5 +1,6 @@
 package cn.thinkjoy.zgk.remote;
 
+import cn.thinkjoy.zgk.dto.UniversityEnrollingChartDTO;
 import cn.thinkjoy.zgk.dto.UniversityPlanChartDTO;
 
 import java.util.List;
@@ -21,6 +22,8 @@ public interface IUniversityService {
     List getDataDictListByType(String type);
 
     List<UniversityPlanChartDTO> queryUniversityPlanChart(Map<String, Object> params);
+
+    List<UniversityEnrollingChartDTO> queryUniversityEnrollingChart(Map<String,Object> params);
 
     List queryPage(String serviceName,Map<String,Object> condition,int offset, int rows,String orderBy, String sqlOrderEnumStr,Map<String,Object> selectorpage);
 }
