@@ -120,6 +120,7 @@
             $('#policyInterTwo').val(rowData[0].categoryName);
             // 富媒体赋值
             $('#policyInterDetail').html(CommonFn.getContentHtml(rowData[0].content).join(''));
+            $('#title').val(rowData[0].title);
         });
 
 
@@ -204,6 +205,14 @@
                 + '</div>'
                 + '</div>'
                 + '<div class="form-group">'
+                + '<label class="col-sm-2 control-label no-padding-right" for="">'
+                + '标题：</label>'
+                + '<div class="col-sm-6">'
+                + '<input type="text" id="title" placeholder="请输入标题"'
+                + 'class="col-sm-5">'
+                + '</div>'
+                + '</div>'
+                + '<div class="form-group">'
                 + '<label class="col-sm-2 control-label no-padding-right" for="policyInterDetail">'
                 + '政策解读详情：</label>'
                 + '<div class="col-sm-10">'
@@ -244,6 +253,10 @@
                 CommonFn.tipsDialog('温馨提示', '请选择政策一级分类');
                 return false;
             }
+            if ($.trim($('#title').val())=="") {
+                CommonFn.tipsDialog('温馨提示', '请填写标题');
+                return false;
+            }
 
             if (policyInterDetailV == "") {
                 CommonFn.tipsDialog('温馨提示', '请输入政策解读详情内容');
@@ -252,7 +265,8 @@
             var policyContentHtml = CommonFn.getTextareaData(policyInterDetailV).join(''),
                     policyContentUrl = CommonFn.getTextareaUrlData(policyContentHtml),
                     htmlUrl = policyContentUrl[0],
-                    htmlId = policyContentUrl[1],
+                    htmlId = policyContentUrl[1];
+            var titleV = $.trim($('title').val());
                     infoData = {
                         htmlId: htmlId,
                         provinceId: provinceV,
@@ -261,7 +275,9 @@
                         content: htmlUrl,
                         categoryName: policyInterTwoV,
                         oper: typeStr,
-                        areaId: 0
+                        areaId: 0,
+                        title:titleV,
+                        subContent:$('#policyInterDetail').text().substring(8,200)
                     };
             if (typeStr == 'edit') {
                 infoData.id = rowId;
