@@ -44,6 +44,7 @@ public class GkHotServiceImpl extends BaseCommonService implements IGkHotService
      */
     @Override
     public GkHot getGkHotInfo(String id){
+        this.setIsIgnore(true);
         return GkinformationGkhot2GkHot((GkinformationGkhot) gkinformationGkhotService.fetch(id));
     }
 
