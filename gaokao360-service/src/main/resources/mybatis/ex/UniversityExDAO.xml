@@ -60,7 +60,48 @@ selectList
         GROUP BY
         	YEAR,universityMajorType
     </select>
-    
+
+    <select id="queryUniversityEnrollingChart" resultType="UniversityEnrollingChartDTO" parameterType="java.util.Map">
+        SELECT
+            university_major_type as typeId,
+            (
+                SELECT
+                    NAME
+                FROM
+                    zgk_data_dict dd
+                WHERE
+                    dd.type = 'UNIVERSITY_MAJOR_TYPE'
+                AND dd.dictId = university_major_type
+            ) as typeName,
+            batch,
+            (
+                SELECT
+                    NAME
+                FROM
+                    zgk_data_dict dd
+                WHERE
+                    dd.type = 'MAJOR_BATCH'
+                AND dd.dictId = batch
+            ) as batchName,
+            year,
+            highest_score as highestScore,
+            lowest_score as lowestScore,
+            plan_enrolling_number as planEnrollingNumber,
+            real_enrolling_number as realEnrollingNumber,
+            highest_precedence as highestPrecedence,
+            lowest_precedence as lowestPrecedence,
+            average_score as averageScore,
+            average_precedence as averagePrecedence
+        FROM
+            zgk_university_enrolling ee
+        WHERE
+            ee.university_id = #{universityId}
+        GROUP BY
+            ee.year,
+            ee.batch,
+            ee.university_major_type
+    </select>
+
     <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.UniversityDTO">
         SELECT
         <include refid="Base_Column_List" />
