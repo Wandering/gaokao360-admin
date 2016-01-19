@@ -12,6 +12,7 @@ import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -52,6 +53,11 @@ public class UniversityServiceImpl implements IUniversityService {
         if(sqlOrderEnumStr.equalsIgnoreCase("DESC"))
             sqlOrderEnum=SqlOrderEnum.DESC;
         return universityExService.queryPage(condition, offset, rows, orederBy, sqlOrderEnum, selectorpage);
+    }
+
+    @Override
+    public Integer getUniversityCount(Map<String, Object> condition) {
+        return universityExService.count(condition);
     }
 
     /**
