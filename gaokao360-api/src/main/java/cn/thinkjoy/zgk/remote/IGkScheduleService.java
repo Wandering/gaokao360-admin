@@ -4,6 +4,7 @@ import cn.thinkjoy.zgk.domain.GkSchedule;
 import cn.thinkjoy.zgk.dto.GkScheduleDTO;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  *  高考日程dubbo
@@ -15,7 +16,7 @@ public interface IGkScheduleService {
      * 获取热点摘要列表 四个
      * @return
      */
-    List<GkScheduleDTO> getScheduleList(Integer num);
+    List<GkScheduleDTO> getScheduleList(Map<String,Object> map,Integer num);
 
     /**
      * 获取详情

@@ -5,12 +5,14 @@ import cn.thinkjoy.gaokao360.common.ServiceImplMaps;
 import cn.thinkjoy.gaokao360.service.common.IDataDictService;
 import cn.thinkjoy.gaokao360.service.common.IProvinceService;
 import cn.thinkjoy.gaokao360.service.common.ex.IUniversityExService;
+import cn.thinkjoy.zgk.dto.UniversityEnrollingChartDTO;
 import cn.thinkjoy.zgk.dto.UniversityPlanChartDTO;
 import cn.thinkjoy.zgk.remote.IUniversityService;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -50,7 +52,12 @@ public class UniversityServiceImpl implements IUniversityService {
         SqlOrderEnum sqlOrderEnum=SqlOrderEnum.ASC;
         if(sqlOrderEnumStr.equalsIgnoreCase("DESC"))
             sqlOrderEnum=SqlOrderEnum.DESC;
-        return universityService.queryPage(condition, offset, rows, orederBy, sqlOrderEnum, selectorpage);
+        return universityExService.queryPage(condition, offset, rows, orederBy, sqlOrderEnum, selectorpage);
+    }
+
+    @Override
+    public Integer getUniversityCount(Map<String, Object> condition) {
+        return universityExService.count(condition);
     }
 
     /**
@@ -94,6 +101,16 @@ public class UniversityServiceImpl implements IUniversityService {
     @Override
     public List<UniversityPlanChartDTO> queryUniversityPlanChart(Map<String, Object> params){
         return universityExService.queryUniversityPlanChart(params);
+    }
+
+    /**
+     * 院校录取情况各年各类别各批次招生统计显示
+     * @param params
+     * @return
+     */
+    @Override
+    public List<UniversityEnrollingChartDTO> queryUniversityEnrollingChart(Map<String,Object> params){
+        return universityExService.queryUniversityEnrollingChart(params);
     }
 
     /**

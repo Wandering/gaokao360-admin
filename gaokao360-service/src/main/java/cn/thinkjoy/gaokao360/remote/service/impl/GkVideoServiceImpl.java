@@ -127,6 +127,7 @@ public class GkVideoServiceImpl extends BaseCommonService implements IGkVideoSer
         gkVideoInfo.setModalName(getModal(videoCourse.getClassifyId()));
         gkVideoInfo.setTeacher(videoCourse.getTeacher());
         if(isIgnore()) {
+            gkVideoInfo.setLastModDate(videoCourse.getLastModDate());
             gkVideoInfo.setSubcontent(videoCourse.getSubcontent());
             gkVideoInfo.setHit(videoCourse.getHit());
             gkVideoInfo.setContent(videoCourse.getContent());
@@ -173,6 +174,4 @@ public class GkVideoServiceImpl extends BaseCommonService implements IGkVideoSer
         List<VideoSectionDTO> list=videoSectionExService.getVideoSectionByCourseId(id);
         return videoSection2GkVideo(list);
     }
-
-
 }

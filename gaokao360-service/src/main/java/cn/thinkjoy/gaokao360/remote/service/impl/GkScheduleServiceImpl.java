@@ -22,7 +22,12 @@ public class GkScheduleServiceImpl implements IGkScheduleService {
     private IScheduleService scheduleService;
 
     @Override
-    public List<GkScheduleDTO> getScheduleList(Integer num) {
+    public List<GkScheduleDTO> getScheduleList(Map<String,Object> condition,Integer num) {
+        Boolean boo=(Boolean)condition.get("boo");
+        Integer showMonth=null;
+        if(condition.containsKey("showMonth")){
+            showMonth=(Integer)condition.get("showMonth");
+        }
         Calendar calendar=Calendar.getInstance();
         Map<String,Object> map = null;
         GkScheduleDTO gkScheduleDTO=null;
@@ -31,18 +36,31 @@ public class GkScheduleServiceImpl implements IGkScheduleService {
 
             int year = calendar.get(Calendar.YEAR);
             int month = calendar.get(Calendar.MONTH)+1;
+            calendar.add(Calendar.MONTH,-1);
+            if(showMonth!=null && showMonth!=month ){
+                continue;
+            }
             map=new HashMap<>();
             map.put("years",year);
             map.put("month",month);
             gkScheduleDTO=new GkScheduleDTO();
-            gkScheduleDTO.setMonth(String.valueOf(month));
-            gkScheduleDTO.setYears(String.valueOf(year));
             List<Schedule> schedules=scheduleService.queryList(map,"createDate","desc");
+            if(condition.containsKey("scheduleRows")){
+                Integer scheduleRows=(Integer)condition.get("scheduleRows");
+                if(schedules!=null && schedules.size()>scheduleRows) {
+                    schedules = schedules.subList(0, scheduleRows - 1);
+                }
+            }
             //设置是否加载内容
             this.setIsIgnore(false);
-            gkScheduleDTO.setSchedules(schedule2GkSchedule(schedules));
+            gkScheduleDTO.setMonth(String.valueOf(month));
+            gkScheduleDTO.setYears(String.valueOf(year));
+            if(boo){
+                gkScheduleDTO.setSchedules(schedule2GkSchedule(schedules));
+            }
             gkScheduleDTOs.add(gkScheduleDTO);
-            calendar.add(Calendar.MONTH,-1);
+
+
 
         }
         return gkScheduleDTOs;
@@ -74,6 +92,7 @@ public class GkScheduleServiceImpl implements IGkScheduleService {
         gkSchedule.setMonth(schedule.getMonth());
         if(isIgnore()) {
             gkSchedule.setContent(schedule.getContent());
+            gkSchedule.setLastModDate(schedule.getLastModDate());
         }
         return gkSchedule;
     }

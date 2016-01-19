@@ -37,11 +37,4 @@ public class GkPolicy extends BaseDomain {
         this.subContent = subContent;
     }
 
-    public Long getLastModDate() {
-        return lastModDate;
-    }
-
-    public void setLastModDate(Long lastModDate) {
-        this.lastModDate = lastModDate;
-    }
 }
