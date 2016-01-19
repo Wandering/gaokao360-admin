@@ -23,6 +23,11 @@ public class GkScheduleServiceImpl implements IGkScheduleService {
 
     @Override
     public List<GkScheduleDTO> getScheduleList(Map<String,Object> condition,Integer num) {
+        Boolean boo=(Boolean)condition.get("boo");
+        Integer showMonth=null;
+        if(condition.containsKey("showMonth")){
+            showMonth=(Integer)condition.get(showMonth);
+        }
         Calendar calendar=Calendar.getInstance();
         Map<String,Object> map = null;
         GkScheduleDTO gkScheduleDTO=null;
@@ -31,12 +36,13 @@ public class GkScheduleServiceImpl implements IGkScheduleService {
 
             int year = calendar.get(Calendar.YEAR);
             int month = calendar.get(Calendar.MONTH)+1;
+            if(showMonth!=null && showMonth!=month ){
+                break;
+            }
             map=new HashMap<>();
             map.put("years",year);
             map.put("month",month);
             gkScheduleDTO=new GkScheduleDTO();
-            gkScheduleDTO.setMonth(String.valueOf(month));
-            gkScheduleDTO.setYears(String.valueOf(year));
             List<Schedule> schedules=scheduleService.queryList(map,"createDate","desc");
             if(condition.containsKey("scheduleRows")){
                 Integer scheduleRows=(Integer)condition.get("scheduleRows");
@@ -46,8 +52,13 @@ public class GkScheduleServiceImpl implements IGkScheduleService {
             }
             //设置是否加载内容
             this.setIsIgnore(false);
-            gkScheduleDTO.setSchedules(schedule2GkSchedule(schedules));
+            gkScheduleDTO.setMonth(String.valueOf(month));
+            gkScheduleDTO.setYears(String.valueOf(year));
+            if(boo){
+                gkScheduleDTO.setSchedules(schedule2GkSchedule(schedules));
+            }
             gkScheduleDTOs.add(gkScheduleDTO);
+
             calendar.add(Calendar.MONTH,-1);
 
         }

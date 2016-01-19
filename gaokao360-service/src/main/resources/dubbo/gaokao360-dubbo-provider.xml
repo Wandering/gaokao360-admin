@@ -41,4 +41,7 @@
     <!--视频信息-->
     <bean id="gkVideoServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.GkVideoServiceImpl" />
     <dubbo:service id="gkVideoService" interface="cn.thinkjoy.zgk.remote.IGkVideoService" ref="gkVideoServiceImpl"/>
+    <!--招办电话-->
+    <bean id="gkPhoneServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.GkPhoneServiceImpl" />
+    <dubbo:service id="gkPhoneService" interface="cn.thinkjoy.zgk.remote.IGkPhoneService" ref="gkPhoneServiceImpl"/>
 </beans>
