@@ -313,6 +313,7 @@
             $('#tuition').val(rowData[0].schoolFee);
 
             $('#autoSearch').attr('dataId', rowData[0].universityId)
+            $('#autoSearch').val(rowData[0].universityName)
 
 
 
