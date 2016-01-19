@@ -67,6 +67,7 @@ public class GkPolicyServiceImpl extends BaseCommonService implements IGkPolicyS
         gkPolicy.setSubContent(policyInterpretation.getSubContent());
         if(isIgnore()) {
             gkPolicy.setContent(policyInterpretation.getContent());
+            gkPolicy.setLastModDate(policyInterpretation.getLastModDate());
         }
         return gkPolicy;
     }

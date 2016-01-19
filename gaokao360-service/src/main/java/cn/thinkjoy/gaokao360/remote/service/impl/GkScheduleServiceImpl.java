@@ -26,7 +26,7 @@ public class GkScheduleServiceImpl implements IGkScheduleService {
         Boolean boo=(Boolean)condition.get("boo");
         Integer showMonth=null;
         if(condition.containsKey("showMonth")){
-            showMonth=(Integer)condition.get(showMonth);
+            showMonth=(Integer)condition.get("showMonth");
         }
         Calendar calendar=Calendar.getInstance();
         Map<String,Object> map = null;
@@ -36,8 +36,9 @@ public class GkScheduleServiceImpl implements IGkScheduleService {
 
             int year = calendar.get(Calendar.YEAR);
             int month = calendar.get(Calendar.MONTH)+1;
+            calendar.add(Calendar.MONTH,-1);
             if(showMonth!=null && showMonth!=month ){
-                break;
+                continue;
             }
             map=new HashMap<>();
             map.put("years",year);
@@ -59,7 +60,7 @@ public class GkScheduleServiceImpl implements IGkScheduleService {
             }
             gkScheduleDTOs.add(gkScheduleDTO);
 
-            calendar.add(Calendar.MONTH,-1);
+
 
         }
         return gkScheduleDTOs;
@@ -91,6 +92,7 @@ public class GkScheduleServiceImpl implements IGkScheduleService {
         gkSchedule.setMonth(schedule.getMonth());
         if(isIgnore()) {
             gkSchedule.setContent(schedule.getContent());
+            gkSchedule.setLastModDate(schedule.getLastModDate());
         }
         return gkSchedule;
     }
