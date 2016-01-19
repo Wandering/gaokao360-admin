@@ -51,7 +51,7 @@ public class UniversityServiceImpl implements IUniversityService {
         SqlOrderEnum sqlOrderEnum=SqlOrderEnum.ASC;
         if(sqlOrderEnumStr.equalsIgnoreCase("DESC"))
             sqlOrderEnum=SqlOrderEnum.DESC;
-        return universityService.queryPage(condition, offset, rows, orederBy, sqlOrderEnum, selectorpage);
+        return universityExService.queryPage(condition, offset, rows, orederBy, sqlOrderEnum, selectorpage);
     }
 
     /**
