@@ -10,8 +10,6 @@ public class GkPolicy extends BaseDomain {
     private String title;
     /** 内容摘要 */
     private String subContent;
-    /** 政策解读时间 */
-    private Long lastModDate;
 
     public String getContent() {
         return content;
