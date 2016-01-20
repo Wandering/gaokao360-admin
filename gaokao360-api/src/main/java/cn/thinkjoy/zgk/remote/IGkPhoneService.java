@@ -1,7 +1,7 @@
 package cn.thinkjoy.zgk.remote;
 
-import cn.thinkjoy.common.domain.view.BizData4Page;
-import cn.thinkjoy.zgk.dto.GkVideoDTO;
+
+import cn.thinkjoy.zgk.domain.BizData4Page;
 
 import java.util.Map;
 

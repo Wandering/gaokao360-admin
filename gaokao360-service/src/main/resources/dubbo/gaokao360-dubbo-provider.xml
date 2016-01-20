@@ -44,4 +44,7 @@
     <!--招办电话-->
     <bean id="gkPhoneServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.GkPhoneServiceImpl" />
     <dubbo:service id="gkPhoneService" interface="cn.thinkjoy.zgk.remote.IGkPhoneService" ref="gkPhoneServiceImpl"/>
+    <!--招办电话-->
+    <bean id="gkProfessionalServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.GkProfessionalServiceImpl" />
+    <dubbo:service id="gkProfessionalService" interface="cn.thinkjoy.zgk.remote.IGkProfessionalService" ref="gkProfessionalServiceImpl"/>
 </beans>

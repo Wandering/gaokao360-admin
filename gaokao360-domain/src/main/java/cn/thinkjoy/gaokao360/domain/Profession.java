@@ -25,6 +25,8 @@ public class Profession extends CreateBaseDomain<Long>{
     private String professionSubType;
     /** 职业名称 */
     private String professionName;
+    /** 职业名称 */
+    private String professionShort;
     /** 职业简介 */
     private String professionDescription;
     /** 热门度 */
@@ -91,7 +93,15 @@ public class Profession extends CreateBaseDomain<Long>{
         return this.idDelete;
     }
 
-	public String toString() {
+    public String getProfessionShort() {
+        return professionShort;
+    }
+
+    public void setProfessionShort(String professionShort) {
+        this.professionShort = professionShort;
+    }
+
+    public String toString() {
 		return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
 			.append("Id",getId())
 			.append("ProfessionType", getProfessionType())

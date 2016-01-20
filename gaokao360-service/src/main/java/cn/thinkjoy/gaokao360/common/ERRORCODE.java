@@ -11,7 +11,8 @@ public enum  ERRORCODE {
     UPDATEEXCEPTION("0100005", "修改异常"),
     DELETEEXCEPTION("0100006", "删除异常"),
     ADDEXCEPTION("0100004", "添加异常"),
-    RESOURCEISNULL("0100007", "访问资源不存在");
+    RESOURCEISNULL("0100007", "访问资源不存在"),
+    TRANSFORMATION("0100008", "转换异常");
     /** The code. */
     private final String code;
 

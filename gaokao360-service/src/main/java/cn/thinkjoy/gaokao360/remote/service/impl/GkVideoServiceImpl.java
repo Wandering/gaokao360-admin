@@ -1,6 +1,5 @@
 package cn.thinkjoy.gaokao360.remote.service.impl;
 
-import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.gaokao360.common.ERRORCODE;
 import cn.thinkjoy.gaokao360.domain.VideoClassify;
@@ -11,6 +10,7 @@ import cn.thinkjoy.gaokao360.service.differentiation.IVideoClassifyService;
 import cn.thinkjoy.gaokao360.service.differentiation.IVideoCourseService;
 import cn.thinkjoy.gaokao360.service.differentiation.IVideoSectionService;
 import cn.thinkjoy.gaokao360.service.differentiation.ex.IVideoSectionExService;
+import cn.thinkjoy.zgk.domain.BizData4Page;
 import cn.thinkjoy.zgk.domain.GkVideo;
 import cn.thinkjoy.zgk.domain.GkVideoInfo;
 import cn.thinkjoy.zgk.dto.GkVideoDTO;
