@@ -161,4 +161,14 @@ public class UniversityServiceImpl implements IUniversityService {
         return  dataDictService.queryList(condition,"dictId", SqlOrderEnum.ASC.toString(),selector);
     }
 
+    /**
+     * 根据名称模糊查询院校信息
+     * @param name
+     * @return
+     */
+    @Override
+    public List getUniversityByName(String name){
+        return universityExService.getUniversityByName(name);
+    }
+
 }

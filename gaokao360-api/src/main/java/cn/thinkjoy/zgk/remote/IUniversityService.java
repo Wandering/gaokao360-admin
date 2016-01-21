@@ -28,4 +28,6 @@ public interface IUniversityService {
     List<UniversityEnrollingChartDTO> queryUniversityEnrollingChart(Map<String,Object> params);
 
     List queryPage(String serviceName,Map<String,Object> condition,int offset, int rows,String orderBy, String sqlOrderEnumStr,Map<String,Object> selectorpage);
+
+    List getUniversityByName(String name);
 }
