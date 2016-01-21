@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <div id="but4">按钮</div>
+    <script src="http://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+
+        var data = {
+            "account": "15319799165",
+            "password": "123123"
+        }
+        var strParameter = '';
+        for (var i in data) {
+            strParameter += "&" + i + "=" + data[i]
+
+        }
+        console.log(strParameter)
+
+        xdr = new XDomainRequest();
+        xdr.open("POST", "http://172.16.130.193:8080/login/login.do?type=IE" + strParameter);
+        xdr.send();
+        xdr.onload = function() {
+            alert("返回结果:" + xdr.responseText);
+        }
+
+        xdr.onprogress = function() {
+            //Progress
+            alert(xdr.responseText)
+        };
+
+        xdr.ontimeout = function() {
+            //Timeout
+            alert(xdr.responseText)
+        };
+
+        xdr.onerror = function() {
+            //Error Occured
+            alert(xdr.responseText)
+        };
+
+
+
+
+
+
+
+
+        // $.ajax({
+        //     url: "http://172.16.130.241:8080/gkhot/getGkHotList.do?type=1",
+        //     type: 'GET',
+        //     success: function(res) {
+        //         console.log(res)
+        //         alert(888)
+        //     }
+        // })
+
+
+        //   var data ={
+        //         "account": "15319799165",
+        //         "password": "123123"
+        //     }
+
+        // xmlhttp = new window.XDomainRequest();
+        // xmlhttp.onload = checkResponse;
+        // xmlhttp.open("POST", "http://172.16.130.193:8080/login/login.do");
+        // xmlhttp.setRequestHeader("Content-Type", "application/json");
+        // xmlhttp.send("account=15319799165&password=123123");
+        // // xmlhttp.send(JSON.stringify(data));
+
+        // // xmlhttp.send(data);
+
+        // function checkResponse() {
+        //     if (xmlhttp.responseText == 200) {
+        //         alert(555)
+        //         return true;
+
+        //     } else {
+        //         alert(333)
+        //         return false;
+
+        //     }
+        // }
+
+
+        // xmlhttp = new window.XDomainRequest();
+        // xmlhttp.open("POST", "http://172.16.130.193:8080/login/login.do");
+        // xmlhttp.setRequestHeder("Content-Type", "application/json;charset=UTF-8");
+        // xmlhttp.send("account=15319799165&password=123123");
+
+
+
+
+
+
+
+
+
+
+        // var url = 'http://172.16.130.241:8080/login/login.do';
+        // $.ajax({
+        //     type: 'post',
+        //     url: url,
+        //     data: {
+        //         "account": "15319799165",
+        //         "password": "123123"
+        //     },
+        //     dataType: "jsonp",
+        //     // jsonp: "callback", //服务端用于接收callback调用的function名的参数
+        //     success: function(result) {
+        //         alert(result);
+        //         //          if (onsuccess) {
+        //         //            onsuccess(result);
+        //         //          }
+        //     },
+        //     error: function(result) {
+        //         alert('服务器维护中，请稍后再使用！');
+        //     }
+        // });
+
+
+
+
+
+
+
+        //
+        // $.ajax({
+        //     url: "http://172.16.130.193:8080/login/login.do",
+        //     type: "POST",
+        //     // crossDomain: true,
+        //     data: {
+        //       account: "15319799165",
+        //         password: "123123"
+        //     },
+        //     // crossDomain: true,
+        //     // dataType: "jsonp",
+        //     success:function(result){
+        //         alert(JSON.stringify(result));
+        //     },
+        //     error:function(xhr,status,error){
+        //         alert(status);
+        //     }
+        // });
+
+
+        // var xhr = new XMLHttpRequest();
+        //     var url = 'http://172.16.130.241:8080/login/login.do';
+        //     function crossDomainRequest() {
+        //       document.getElementById("content").innerHTML = "开始……";
+        //       if (xhr) {
+        //         xhr.open('POST', url, true);
+        //         xhr.onreadystatechange = handler;
+        //         xhr.send();
+        //       } else {
+        //         document.getElementById("content").innerHTML = "不能创建 XMLHttpRequest";
+        //       }
+        //     }
+        //     function handler(evtXHR) {
+        //       if (xhr.readyState == 4) {
+        //         if (xhr.status == 200) {
+        //           var response = xhr.responseText;
+        //           document.getElementById("content").innerHTML = "结果：" + response;
+        //         } else {
+        //           document.getElementById("content").innerHTML = "不允许跨域请求。";
+        //         }
+        //       }
+        //       else {
+        //         document.getElementById("content").innerHTML += "<br/>执行状态 readyState：" + xhr.readyState;
+        //       }
+        //     }
+
+
+    })
+    </script>
+</body>
+
+</html>

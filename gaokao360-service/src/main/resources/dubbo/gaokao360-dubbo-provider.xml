@@ -50,4 +50,7 @@
     <!--职业-->
     <bean id="gkAreaBatchServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.GkAreaBatchServiceImpl" />
     <dubbo:service id="gkAreaBatchService" interface="cn.thinkjoy.zgk.remote.IGkAreaBatchService" ref="gkAreaBatchServiceImpl"/>
+    <!--职业-->
+    <bean id="gkEntryServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.GkEntryServiceImpl" />
+    <dubbo:service id="gkEntryService" interface="cn.thinkjoy.zgk.remote.IGkEntryService" ref="gkEntryServiceImpl"/>
 </beans>
