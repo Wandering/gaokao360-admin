@@ -1,6 +1,7 @@
 package cn.thinkjoy.gaokao360.remote.service.impl;
 
 import cn.thinkjoy.common.exception.BizException;
+import cn.thinkjoy.gaokao360.common.DomainReflex;
 import cn.thinkjoy.gaokao360.common.ERRORCODE;
 import cn.thinkjoy.gaokao360.domain.VideoClassify;
 import cn.thinkjoy.gaokao360.domain.VideoCourse;
@@ -142,6 +143,8 @@ public class GkVideoServiceImpl extends BaseCommonService implements IGkVideoSer
 
             gkVideoInfos.add(videoSection2GkVideo(v));
         }
+        //排序，算法待优化，反射效率低
+        DomainReflex.objectSort(gkVideoInfos,"sectionSort");
         return gkVideoInfos;
     }
 
@@ -153,7 +156,11 @@ public class GkVideoServiceImpl extends BaseCommonService implements IGkVideoSer
         gkVideo.setId(videoSection.getId());
         gkVideo.setFileUrl(videoSection.getFileUrl());
         gkVideo.setName(videoSection.getSectionName());
-        gkVideo.setSectionSort(Integer.parseInt(videoSection.getSectionSort()));
+        if(videoSection.getSectionSort()!=null) {
+            gkVideo.setSectionSort(Integer.parseInt(videoSection.getSectionSort()));
+        }else {
+            gkVideo.setSectionSort(0);
+        }
         return gkVideo;
     }
 
