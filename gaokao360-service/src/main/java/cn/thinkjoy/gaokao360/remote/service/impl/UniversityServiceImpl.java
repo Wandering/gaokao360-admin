@@ -161,18 +161,6 @@ public class UniversityServiceImpl implements IUniversityService {
         selector.put("name","name");
         return  dataDictService.queryList(condition,"dictId", SqlOrderEnum.ASC.toString(),selector);
     }
-    /**
-     * 通过名称查询院校
-     * @param name
-     * @return
-     */
-    @Override
-    public List getUniversityByName(String name){
-        Map<String,Object> condition = Maps.newHashMap();
-        QueryUtil.setMapOp(condition,"","like",name);
-        return  universityExService.getUniversityByName(name);
-    }
-
 
 
     /**
