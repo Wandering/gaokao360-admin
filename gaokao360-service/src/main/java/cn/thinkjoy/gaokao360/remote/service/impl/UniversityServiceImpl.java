@@ -175,4 +175,14 @@ public class UniversityServiceImpl implements IUniversityService {
 
 
 
+    /**
+     * 根据名称模糊查询院校信息
+     * @param name
+     * @return
+     */
+    @Override
+    public List getUniversityByName(String name){
+        return universityExService.getUniversityByName(name);
+    }
+
 }
