@@ -5,6 +5,7 @@ import cn.thinkjoy.gaokao360.common.ServiceImplMaps;
 import cn.thinkjoy.gaokao360.service.common.IDataDictService;
 import cn.thinkjoy.gaokao360.service.common.IProvinceService;
 import cn.thinkjoy.gaokao360.service.common.ex.IUniversityExService;
+import cn.thinkjoy.zgk.common.QueryUtil;
 import cn.thinkjoy.zgk.dto.UniversityEnrollingChartDTO;
 import cn.thinkjoy.zgk.dto.UniversityPlanChartDTO;
 import cn.thinkjoy.zgk.remote.IUniversityService;
@@ -160,5 +161,18 @@ public class UniversityServiceImpl implements IUniversityService {
         selector.put("name","name");
         return  dataDictService.queryList(condition,"dictId", SqlOrderEnum.ASC.toString(),selector);
     }
+    /**
+     * 通过名称查询院校
+     * @param name
+     * @return
+     */
+    @Override
+    public List getUniversityByName(String name){
+        Map<String,Object> condition = Maps.newHashMap();
+        QueryUtil.setMapOp(condition,"","like",name);
+        return  universityExService.getUniversityByName(name);
+    }
+
+
 
 }
