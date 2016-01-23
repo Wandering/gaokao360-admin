@@ -50,7 +50,7 @@
     <!--职业信息-->
     <bean id="gkProfessionalServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.GkProfessionalServiceImpl" />
     <dubbo:service id="gkProfessionalService" interface="cn.thinkjoy.zgk.remote.IGkProfessionalService" ref="gkProfessionalServiceImpl"/>
-    <!--职业-->
+    <!--地区批次线-->
     <bean id="gkAreaBatchServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.GkAreaBatchServiceImpl" />
     <dubbo:service id="gkAreaBatchService" interface="cn.thinkjoy.zgk.remote.IGkAreaBatchService" ref="gkAreaBatchServiceImpl"/>
     <!--高考词条-->
