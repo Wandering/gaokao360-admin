@@ -63,7 +63,7 @@ allprojects {
     apply plugin: 'maven-publish'
     apply plugin: 'maven-publish-auth'
      //解决windowsGBK 不可映射字符
-    tasks.withType(JavaCompile) {
+    tasks.withType(Compile) {
         options.encoding = "UTF-8"
     }
     repositories {
