@@ -9,6 +9,7 @@ package cn.thinkjoy.gaokao360.service.common.ex.impl;
 import cn.thinkjoy.common.dao.IBaseDAO;
 import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.gaokao360.dao.ex.IUniversityMajorExDAO;
+import cn.thinkjoy.gaokao360.dto.UniversityDTO;
 import cn.thinkjoy.gaokao360.dto.UniversityMajorDTO;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
 import cn.thinkjoy.gaokao360.service.common.ex.IUniversityMajorExService;
@@ -51,6 +52,11 @@ public class UniversityMajorExServiceImpl extends AbstractPageService<IBaseDAO<U
         bizData4Page.setTotal(total);
 
         return bizData4Page;
+    }
+
+    @Override
+    public List<UniversityDTO> getMajorOpenUniversityList(Map<String, Object> map,int offset,int rows,String orderBy,String sortBy) {
+        return universityMajorExDAO.getMajorOpenUniversityList(map,offset,rows,orderBy,sortBy);
     }
 //    @Override
 //    public void insert(BaseDomain entity) {

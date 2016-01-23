@@ -32,6 +32,9 @@
     <!-- 院校查询 -->
     <bean id="remoteUniversityServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.UniversityServiceImpl" />
     <dubbo:service id="remoteUniversityService" interface="cn.thinkjoy.zgk.remote.IUniversityService" ref="remoteUniversityServiceImpl"/>
+    <!--专业-->
+    <bean id="remoteMajoredServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.MajoredServiceImpl" />
+    <dubbo:service id="remoteMajoredService" interface="cn.thinkjoy.zgk.remote.IMajoredService" ref="remoteMajoredServiceImpl"/>
     <!-- 政策解读 -->
     <bean id="gkPolicyServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.GkPolicyServiceImpl" />
     <dubbo:service id="gkPolicyService" interface="cn.thinkjoy.zgk.remote.IGkPolicyService" ref="gkPolicyServiceImpl"/>

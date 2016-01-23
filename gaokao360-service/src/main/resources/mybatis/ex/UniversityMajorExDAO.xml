@@ -919,5 +919,30 @@
         FROM zgk_university_major
     </select>
 
+    <select id="getMajorOpenUniversityList" parameterType="java.util.Map" resultType="UniversityDTO">
+        SELECT
+            university.id as id ,
+            university.name as name ,
+            university.subjection as subjection ,
+            university.photo_url as photoUrl ,
+            university.property as property ,
+            leveldict.name as levelName,
+            university.rank as rank ,
+            typedict.name as typeName,
+            province.name as province,
+            university.lastModifier as lastModifier
+        FROM
+            zgk_university university
+        LEFT JOIN zgk_province province ON province.id = university.areaid
+        LEFT JOIN zgk_data_dict typedict ON typedict.dictId=university.type AND typedict.type='UNIVERSITY_TYPE'
+        LEFT JOIN zgk_data_dict leveldict ON leveldict.dictId = university.educationLevel AND leveldict.type='EDULEVEL'
+        where
+            university.id in (select universityId from zgk_university_major mm where mm.majorId= #{condition.majorId} )
+        ORDER BY university.lastModifier DESC
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
 </mapper>
 

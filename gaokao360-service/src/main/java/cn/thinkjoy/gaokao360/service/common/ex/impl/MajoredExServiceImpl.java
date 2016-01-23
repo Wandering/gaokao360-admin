@@ -45,6 +45,10 @@ public class MajoredExServiceImpl extends AbstractPageService<IBaseDAO<MajorDTO>
         return majoredExDAO.insertMapDetail(entityMap);
     }
 
+    public void getMajorOpenUniversityList(int majoredId){
+
+    }
+
 
 //    @Override
 //    public void insert(BaseDomain entity) {
