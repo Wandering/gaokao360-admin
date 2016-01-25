@@ -49,7 +49,7 @@ public class UniversityServiceImpl implements IUniversityService {
      * @return
      */
     @Override
-    public List<cn.thinkjoy.zgk.dto.UniversityDTO> getUniversityList(Map<String, Object> condition, int offset, int rows, String orederBy, String sqlOrderEnumStr, Map<String, Object> selectorpage) {
+    public List getUniversityList(Map<String, Object> condition, int offset, int rows, String orederBy, String sqlOrderEnumStr, Map<String, Object> selectorpage) {
         SqlOrderEnum sqlOrderEnum=SqlOrderEnum.ASC;
         if(sqlOrderEnumStr.equalsIgnoreCase("DESC"))
             sqlOrderEnum=SqlOrderEnum.DESC;
