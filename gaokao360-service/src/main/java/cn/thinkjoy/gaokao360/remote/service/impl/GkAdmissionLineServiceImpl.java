@@ -47,7 +47,7 @@ public class GkAdmissionLineServiceImpl extends BaseCommonService implements IGk
     }
     private GkAdmissionLine domain2GkAdmissionLine(UniversityEnrollingDTO universityEnrollingDTO){
         GkAdmissionLine gkAdmissionLine=new GkAdmissionLine();
-        gkAdmissionLine.setId(universityEnrollingDTO.getId());
+        gkAdmissionLine.setId(universityEnrollingDTO.getUniversityId());
         gkAdmissionLine.setName(universityEnrollingDTO.getName());
         gkAdmissionLine.setAverageScore(universityEnrollingDTO.getAverageScore());
         gkAdmissionLine.setBatchname(universityEnrollingDTO.getBatchname());

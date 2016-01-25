@@ -867,7 +867,7 @@ selectList
                AND  profession_sub_type =  #{professionSubType.data}
            </if>
            <if test="professionName!=null">
-               ${groupOp} ${professionName.field} ${professionName.op}  #{professionName.data}
+               ${groupOp} profession_name like  #{professionName.data}
            </if>
            <if test="professionDescription!=null">
                ${groupOp} ${professionDescription.field} ${professionDescription.op}  #{professionDescription.data}
