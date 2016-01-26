@@ -79,10 +79,27 @@ selectList
     </select>
 
     <select id="getMajoredCategory" resultType="MajoredCategoryRemoteDTO">
-        select mc1.id,mc1.name,mc1.parentId,(select name from zgk_majored_category mc2 where mc2.id=mc1.parentId)as parentName
-        from zgk_majored_category mc1
-        where mc1.parentId
-        in (select id from zgk_majored_category mc where mc.parentId = #{condition.scienceId})
+        select id,name,parentId from zgk_majored_category mc where mc.parentId = #{condition.scienceId}
+    </select>
+
+    <select id="getCategoryMajoredList" resultType="CategoryMajoredDTO">
+        SELECT
+            mm.id AS majoredId,
+            mm.major_category AS majorCategoryId,
+            (select name from zgk_majored_category cc where cc.id=mm.major_category) as majorCategoryName,
+            mm.discipline_categories AS disciplineCategoriesId,
+            (select name from zgk_majored_category cc where cc.id=mm.discipline_categories) as disciplineCategoriesName,
+            mm.major_name AS majoredName
+        FROM
+            zgk_major mm
+        WHERE
+            mm.major_category IN (
+                SELECT
+                    mc.id
+                FROM
+                    zgk_majored_category mc
+                WHERE
+                    mc.parentId = #{condition.categoryId})
     </select>
 
 

@@ -11,4 +11,6 @@ public interface IMajoredService {
     List getMajorOpenUniversityList(int majoredId,int offset,int rows,String orderBy,String sortBy);
 
     public MajoredCategoryRemoteDTO getMajoredCategory(long scienceId);
+
+    public MajoredCategoryRemoteDTO getCategoryMajoredList(long categoryId);
 }
