@@ -538,7 +538,7 @@
             // 验证文件总大小是否超出限制, 超出则不允许加入队列
 //                fileSizeLimit: 5 * 1024 * 1024,
             // 验证单个文件大小是否超出限制, 超出则不允许加入队列
-            fileSingleSizeLimit: 3000 * 1024 * 1024
+//            fileSingleSizeLimit: 30 * 1024 * 1024
         });
         // 当有文件添加进来时执行，负责view的创建
         function addFile(file) {
@@ -980,7 +980,7 @@
             // 验证文件总大小是否超出限制, 超出则不允许加入队列
 //                fileSizeLimit: 5 * 1024 * 1024,
             // 验证单个文件大小是否超出限制, 超出则不允许加入队列
-            fileSingleSizeLimit: 300 * 1024 * 1024
+//            fileSingleSizeLimit: 300 * 1024 * 1024
         });
         // 当有文件添加进来时执行，负责view的创建
 
