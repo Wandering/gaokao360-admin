@@ -192,9 +192,24 @@ var CommonFn = {
         var hotContentHtml = [];
         hotContentHtml.push('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Document</title></head><body>');
         hotContentHtml.push(textareaV);
-        hotContentHtml.push('</body></html>');
+        hotContentHtml.push('<iframe id="myifr" style="display:none" src="http://zjtest.zhigaokao.cn/B.html"></iframe><script type="text/javascript" src="http://zjtest.zhigaokao.cn/D.js"></script></body></html>');
         return hotContentHtml;
+
+        console.log(hotContentHtml)
+
+
+
+
+
+
     },
+    //getTextareaData: function (textareaV) {
+    //    var hotContentHtml = [];
+    //    hotContentHtml.push('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Document</title></head><body>');
+    //    hotContentHtml.push(textareaV);
+    //    hotContentHtml.push('</body></html>');
+    //    return hotContentHtml;
+    //},
     // 富媒体返回值htmlTable
     getTextareaDataTable: function (textareaV) {
         var hotContentHtml = [];
