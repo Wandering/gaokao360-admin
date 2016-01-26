@@ -1,7 +1,6 @@
 package cn.thinkjoy.zgk.remote;
 
-import cn.thinkjoy.common.domain.view.BizData4Page;
-import cn.thinkjoy.zgk.domain.GkHot;
+import cn.thinkjoy.zgk.domain.BizData4Page;
 import cn.thinkjoy.zgk.domain.GkPolicy;
 
 import java.util.List;

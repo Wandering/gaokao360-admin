@@ -72,5 +72,14 @@ selectList
        </where>
     </select>
 
+    <select id="fetch" parameterType="java.lang.Long" resultType="cn.thinkjoy.gaokao360.dto.AreabatchLineDTO">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_areabatch_line line
+        LEFT JOIN  zgk_province  province ON province.id=line.areaId
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND line.areaId = #{id}
+        </trim>
+    </select>
 </mapper>
 

@@ -3,8 +3,8 @@ package cn.thinkjoy.gaokao360.remote.service.impl.base;
 import cn.thinkjoy.common.dao.IBaseDAO;
 import cn.thinkjoy.common.domain.SearchField;
 import cn.thinkjoy.common.domain.SearchFilter;
-import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.common.enumration.SearchEnum;
+import cn.thinkjoy.zgk.domain.BizData4Page;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Maps;
 import org.apache.commons.lang3.StringUtils;
@@ -51,6 +51,7 @@ public class BaseCommonService {
         }else {
             conditions.put("sortBy","lastModDate");
         }
+        enhanceSearchFilter(conditions);
         List mainData = dao.queryPage(conditions, offset, rows, orderBy, sortBy,null);
         mainData=(List)enhanceStateTransition(mainData);
         int records = dao.count(conditions);
@@ -62,9 +63,14 @@ public class BaseCommonService {
 
         int total = records / rows;
         int mod = records % rows;
+        int pagesize=0;
+        if(mainData!=null) {
+            pagesize = mainData.size();
+        }
         if(mod > 0){
             total = total + 1;
         }
+        bizData4Page.setPagesize(pagesize);
         bizData4Page.setTotal(total);
 
         return bizData4Page;
@@ -84,9 +90,9 @@ public class BaseCommonService {
 
     /**
      * 增强 或 改变 过滤条件内容
-     * @param searchFilter
+     * @param conditions
      */
-    protected void enhanceSearchFilter(SearchFilter searchFilter) {
+    protected void enhanceSearchFilter(Map<String, Object> conditions) {
     }
 
     /**

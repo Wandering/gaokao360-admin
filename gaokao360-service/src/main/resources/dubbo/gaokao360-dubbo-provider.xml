@@ -32,6 +32,9 @@
     <!-- 院校查询 -->
     <bean id="remoteUniversityServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.UniversityServiceImpl" />
     <dubbo:service id="remoteUniversityService" interface="cn.thinkjoy.zgk.remote.IUniversityService" ref="remoteUniversityServiceImpl"/>
+    <!--专业-->
+    <bean id="remoteMajoredServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.MajoredServiceImpl" />
+    <dubbo:service id="remoteMajoredService" interface="cn.thinkjoy.zgk.remote.IMajoredService" ref="remoteMajoredServiceImpl"/>
     <!-- 政策解读 -->
     <bean id="gkPolicyServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.GkPolicyServiceImpl" />
     <dubbo:service id="gkPolicyService" interface="cn.thinkjoy.zgk.remote.IGkPolicyService" ref="gkPolicyServiceImpl"/>
@@ -44,4 +47,13 @@
     <!--招办电话-->
     <bean id="gkPhoneServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.GkPhoneServiceImpl" />
     <dubbo:service id="gkPhoneService" interface="cn.thinkjoy.zgk.remote.IGkPhoneService" ref="gkPhoneServiceImpl"/>
+    <!--职业信息-->
+    <bean id="gkProfessionalServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.GkProfessionalServiceImpl" />
+    <dubbo:service id="gkProfessionalService" interface="cn.thinkjoy.zgk.remote.IGkProfessionalService" ref="gkProfessionalServiceImpl"/>
+    <!--地区批次线-->
+    <bean id="gkAreaBatchServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.GkAreaBatchServiceImpl" />
+    <dubbo:service id="gkAreaBatchService" interface="cn.thinkjoy.zgk.remote.IGkAreaBatchService" ref="gkAreaBatchServiceImpl"/>
+    <!--高考词条-->
+    <bean id="gkEntryServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.GkEntryServiceImpl" />
+    <dubbo:service id="gkEntryService" interface="cn.thinkjoy.zgk.remote.IGkEntryService" ref="gkEntryServiceImpl"/>
 </beans>

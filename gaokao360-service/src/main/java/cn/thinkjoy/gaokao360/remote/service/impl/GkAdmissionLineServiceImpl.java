@@ -1,9 +1,9 @@
 package cn.thinkjoy.gaokao360.remote.service.impl;
 
-import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.gaokao360.dto.UniversityEnrollingDTO;
 import cn.thinkjoy.gaokao360.remote.service.impl.base.BaseCommonService;
 import cn.thinkjoy.gaokao360.service.common.ex.IUniversityEnrollingExService;
+import cn.thinkjoy.zgk.domain.BizData4Page;
 import cn.thinkjoy.zgk.domain.GkAdmissionLine;
 import cn.thinkjoy.zgk.remote.IGkAdmissionLineService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +47,7 @@ public class GkAdmissionLineServiceImpl extends BaseCommonService implements IGk
     }
     private GkAdmissionLine domain2GkAdmissionLine(UniversityEnrollingDTO universityEnrollingDTO){
         GkAdmissionLine gkAdmissionLine=new GkAdmissionLine();
-        gkAdmissionLine.setId(universityEnrollingDTO.getId());
+        gkAdmissionLine.setId(universityEnrollingDTO.getUniversityId());
         gkAdmissionLine.setName(universityEnrollingDTO.getName());
         gkAdmissionLine.setAverageScore(universityEnrollingDTO.getAverageScore());
         gkAdmissionLine.setBatchname(universityEnrollingDTO.getBatchname());

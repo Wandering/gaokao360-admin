@@ -1,9 +1,9 @@
 package cn.thinkjoy.gaokao360.remote.service.impl;
 
-import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.gaokao360.remote.service.impl.base.BaseCommonService;
 import cn.thinkjoy.gaokao360.domain.GkinformationGkhot;
 import cn.thinkjoy.gaokao360.service.differentiation.IGkinformationGkhotService;
+import cn.thinkjoy.zgk.domain.BizData4Page;
 import cn.thinkjoy.zgk.domain.GkHot;
 import cn.thinkjoy.zgk.remote.IGkHotService;
 import org.springframework.beans.factory.annotation.Autowired;

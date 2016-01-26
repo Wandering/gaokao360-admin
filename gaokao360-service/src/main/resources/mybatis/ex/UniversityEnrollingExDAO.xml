@@ -82,6 +82,9 @@ selectList
             <if test="condition.universityname!=null">
                 ${condition.groupOp} university.name ${condition.universityname.op}  #{condition.universityname.data}
             </if>
+            <if test="condition.universityid!=null">
+                ${condition.groupOp} university.id ${condition.universityid.op}  #{condition.universityid.data}
+            </if>
             <if test="condition.universityproperty!=null">
                 ${condition.groupOp} university.property ${condition.universityproperty.op}  #{condition.universityproperty.data}
             </if>

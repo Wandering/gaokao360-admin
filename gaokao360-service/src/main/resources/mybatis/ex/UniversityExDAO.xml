@@ -182,6 +182,9 @@ selectList
         LEFT JOIN zgk_data_dict leveldict ON leveldict.dictId = university.educationLevel AND leveldict.type='EDULEVEL'
         <where>
             1=1
+            <if test="condition.name!=null">
+                and university.name  ${condition.name.op} #{condition.name.data}
+            </if>
             <if test="condition.whereSql != null">
                 and id in (#{condition.whereSql})
             </if>
@@ -194,9 +197,9 @@ selectList
             <if test="condition.id!=null">
                 ${condition.groupOp}   university.${condition.id.field}  ${condition.id.op}  #{condition.id.data}
             </if>
-            <if test="condition.name!=null">
-                ${condition.groupOp}   university.${condition.name.field}  ${condition.name.op}  #{condition.name.data}
-            </if>
+            <!--<if test="condition.ssss!=null">-->
+                <!--${condition.groupOp}   university.name  like  '%吉林%'-->
+            <!--</if>-->
             <if test="condition.code!=null">
                 ${condition.groupOp}   university.${condition.code.field}  ${condition.code.op}  #{condition.code.data}
             </if>

@@ -29,6 +29,7 @@ selectList
         profession_type as professionType ,
         profession_sub_type as professionSubType ,
         profession_name as professionName ,
+        professionShort as professionShort ,
         profession_description as professionDescription ,
         hot_degree as hotDegree ,
         salary_rank as salaryRank ,
@@ -43,7 +44,7 @@ selectList
         profession_type,
         profession_sub_type,
         profession_name,
-        profession_short,
+        professionShort,
         profession_description,
         hot_degree,
         salary_rank,
@@ -85,7 +86,7 @@ selectList
                 profession_name = #{professionName},
             </if>
             <if test="short!=null">
-                profession_short = #{short},
+                professionShort = #{short},
             </if>
             <if test="professionDescription!=null">
                 profession_description = #{professionDescription},
@@ -129,7 +130,7 @@ selectList
                 profession_name = #{map.professionName},
             </if>
             <if test="map.short!=null">
-                profession_short = #{map.short},
+                professionShort = #{map.short},
             </if>
             <if test="map.professionDescription!=null">
                 profession_description = #{map.professionDescription},
@@ -173,7 +174,7 @@ selectList
                 profession_name = #{update.professionName},
             </if>
             <if test="update.short!=null">
-                profession_short = #{update.short},
+                professionShort = #{update.short},
             </if>
             <if test="update.professionDescription!=null">
                 profession_description = #{update.professionDescription},
@@ -215,7 +216,7 @@ selectList
                 AND profession_name = #{condition.professionName}
             </if>
             <if test="condition.short!=null">
-                AND profession_short = #{condition.short}
+                AND professionShort = #{condition.short}
             </if>
             <if test="condition.professionDescription!=null">
                 AND profession_description = #{condition.professionDescription}
@@ -249,7 +250,7 @@ selectList
                 profession_type,
                 profession_sub_type,
                 profession_name,
-                profession_short,
+                professionShort,
                 profession_description,
                 hot_degree,
                 salary_rank,
@@ -281,7 +282,7 @@ selectList
             profession_type = #{professionType},
             profession_sub_type = #{professionSubType},
             profession_name = #{professionName},
-            profession_short = #{short},
+            professionShort = #{short},
             profession_description = #{professionDescription},
             hot_degree = #{hotDegree},
             salary_rank = #{salaryRank},
@@ -421,7 +422,7 @@ selectList
         zptt.profession_type as professionSubType,
         zp.salary_rank as salaryRank,
         zp.hot_degree as hotDegree,
-        zp.profession_short as professionShort
+        zp.professionShort as professionShort
         from zgk_profession zp
         left join zgk_profession_type zpt on zp.profession_type=zpt.id
         left join zgk_profession_type zptt on zptt.pid = zpt.id and zptt.id = zp.profession_sub_type
@@ -440,6 +441,12 @@ selectList
             </if>
             <if test="condition.professionSubType!=null">
                 AND zp.profession_sub_type=#{condition.professionSubType.data}
+            </if>
+            <if test="condition.professionTypeId!=null">
+                AND zp.id ${condition.professionTypeId.op} #{condition.professionTypeId.data}
+            </if>
+            <if test="condition.professionSubTypeId!=null">
+                AND zp.id ${condition.professionSubTypeId.op} #{condition.professionSubTypeId.data}
             </if>
             <if test="condition.queryparam!=null">
                 and (zp.profession_name like CONCAT('%', #{condition.queryparam.data}, '%')
@@ -860,7 +867,7 @@ selectList
                AND  profession_sub_type =  #{professionSubType.data}
            </if>
            <if test="professionName!=null">
-               ${groupOp} ${professionName.field} ${professionName.op}  #{professionName.data}
+               ${groupOp} profession_name like  #{professionName.data}
            </if>
            <if test="professionDescription!=null">
                ${groupOp} ${professionDescription.field} ${professionDescription.op}  #{professionDescription.data}
