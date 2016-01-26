@@ -78,6 +78,13 @@ selectList
         FROM zgk_majored_category WHERE  1=1 AND  parentId =#{id}
     </select>
 
+    <select id="getMajoredCategory" resultType="MajoredCategoryRemoteDTO">
+        select mc1.id,mc1.name,mc1.parentId,(select name from zgk_majored_category mc2 where mc2.id=mc1.parentId)as parentName
+        from zgk_majored_category mc1
+        where mc1.parentId
+        in (select id from zgk_majored_category mc where mc.parentId = #{condition.scienceId})
+    </select>
+
 
 </mapper>
 

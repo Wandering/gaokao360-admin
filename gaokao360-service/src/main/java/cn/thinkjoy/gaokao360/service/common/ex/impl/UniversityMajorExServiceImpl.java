@@ -13,6 +13,7 @@ import cn.thinkjoy.gaokao360.dto.UniversityDTO;
 import cn.thinkjoy.gaokao360.dto.UniversityMajorDTO;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
 import cn.thinkjoy.gaokao360.service.common.ex.IUniversityMajorExService;
+import cn.thinkjoy.zgk.dto.MajoredCategoryRemoteDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;

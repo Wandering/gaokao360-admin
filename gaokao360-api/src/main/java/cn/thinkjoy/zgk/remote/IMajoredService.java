@@ -1,5 +1,7 @@
 package cn.thinkjoy.zgk.remote;
 
+import cn.thinkjoy.zgk.dto.MajoredCategoryRemoteDTO;
+
 import java.util.List;
 
 /**
@@ -7,4 +9,6 @@ import java.util.List;
  */
 public interface IMajoredService {
     List getMajorOpenUniversityList(int majoredId,int offset,int rows,String orderBy,String sortBy);
+
+    public MajoredCategoryRemoteDTO getMajoredCategory(long scienceId);
 }

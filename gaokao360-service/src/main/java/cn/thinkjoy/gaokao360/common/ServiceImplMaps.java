@@ -43,6 +43,8 @@ public class ServiceImplMaps {
     @Autowired
     private IUniversityMajorEnrollingExService universityMajorEnrollingExService;
 
+    @Autowired
+    private IUniversityDetailService universityDetailService;
 
     @Autowired
     private IMajoredExService majoredExService;
@@ -59,6 +61,7 @@ public class ServiceImplMaps {
         serviceMap.put("majorService",majorService);
         serviceMap.put("universityMajorExService",universityMajorExService);
         serviceMap.put("universityMajorEnrollingExService",universityMajorEnrollingExService);
+        serviceMap.put("universityDetailService",universityDetailService);
     }
 
     public IBaseService get(String mainObj){
