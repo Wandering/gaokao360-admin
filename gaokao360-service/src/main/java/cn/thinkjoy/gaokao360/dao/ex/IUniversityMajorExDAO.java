@@ -10,6 +10,7 @@ import cn.thinkjoy.common.dao.IBaseDAO;
 import cn.thinkjoy.gaokao360.domain.UniversityMajor;
 import cn.thinkjoy.gaokao360.dto.UniversityDTO;
 import cn.thinkjoy.gaokao360.dto.UniversityMajorDTO;
+import cn.thinkjoy.zgk.dto.MajoredCategoryRemoteDTO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
