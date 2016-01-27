@@ -37,7 +37,7 @@ public class GkPolicyServiceImpl extends BaseCommonService implements IGkPolicyS
      * @return
      */
     @Override
-    public GkPolicy getGkPolicyInfo(String id){
+    public GkPolicy getGkPolicyInfo(Map<String, Object> conditions,String id){
         this.setIsIgnore(true);
         return policyInterpretation2GkPolicy((PolicyInterpretation) policyInterpretationService.fetch(id));
     }

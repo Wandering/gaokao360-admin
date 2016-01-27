@@ -59,7 +59,9 @@ public class GkVideoServiceImpl extends BaseCommonService implements IGkVideoSer
         }
         return doPage(conditions,videoCourseService.getDao(),page,rows);
     }
-    public void hitInc(Object id){
+
+    @Override
+    public void hitInc(Map<String, Object> conditions,Object id){
         VideoCourse videoCourse=(VideoCourse)videoCourseService.fetch(id);
         if(videoCourse==null){
             throw new BizException(ERRORCODE.RESOURCEISNULL.getCode(),ERRORCODE.RESOURCEISNULL.getMessage());
@@ -77,7 +79,7 @@ public class GkVideoServiceImpl extends BaseCommonService implements IGkVideoSer
      * @return
      */
     @Override
-    public GkVideoDTO getGkVideoInfo(String id){
+    public GkVideoDTO getGkVideoInfo(Map<String, Object> conditions,String id){
             setIsIgnore(true);
         return video2videoDTO((VideoCourse)videoCourseService.fetch(id));
     }

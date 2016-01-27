@@ -20,5 +20,5 @@ public interface IGkEntryService {
      * 获取热点摘要列表 四个
      * @return
      */
-    GkEntry getGkEntryInfo(Object id);
+    GkEntry getGkEntryInfo(Map<String, Object> conditions,Object id);
 }

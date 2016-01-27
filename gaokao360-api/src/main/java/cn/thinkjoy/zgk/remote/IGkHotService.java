@@ -23,7 +23,7 @@ public interface IGkHotService {
      * 获取详情
      * @return
      */
-    GkHot getGkHotInfo(String id);
+    GkHot getGkHotInfo(Map<String, Object> conditions,String id);
 
 
 }

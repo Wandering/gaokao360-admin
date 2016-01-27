@@ -26,5 +26,5 @@ public interface IGkPolicyService {
      * @param id
      * @return
      */
-    GkPolicy getGkPolicyInfo(String id);
+    GkPolicy getGkPolicyInfo(Map<String, Object> conditions,String id);
 }

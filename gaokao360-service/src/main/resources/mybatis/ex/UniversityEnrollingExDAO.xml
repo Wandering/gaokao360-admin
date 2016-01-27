@@ -94,6 +94,9 @@ selectList
             <if test="condition.enrollinguniversityMajorType!=null">
                 ${condition.groupOp} enrolling.university_major_type ${condition.enrollinguniversityMajorType.op}  #{condition.enrollinguniversityMajorType.data}
             </if>
+            <if test="condition.type!=null">
+                ${condition.groupOp} enrolling.university_major_type ${condition.type.op}  #{condition.type.data}
+            </if>
         </where>
         ORDER BY  lastModDate DESC
         <if test="offset != null">

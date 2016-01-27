@@ -31,7 +31,7 @@ public class GkAreaBatchServiceImpl extends BaseCommonService implements IGkArea
     }
 
     @Override
-    public GkAreaBatch getGkAreaBatchInfo(Object areaId) {
+    public GkAreaBatch getGkAreaBatchInfo(Map<String, Object> conditions,Object areaId) {
         return areaBatch2GkAreaBatch((AreabatchLineDTO)areabatchLineExService.fetch(areaId));
     }
 

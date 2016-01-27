@@ -67,7 +67,7 @@ public class GkScheduleServiceImpl implements IGkScheduleService {
     }
 
     @Override
-    public GkSchedule getScheduleInfo(String id) {
+    public GkSchedule getScheduleInfo(Map<String, Object> conditions,String id) {
         Schedule schedule=(Schedule)scheduleService.fetch(id);
         //设置是否加载内容
         this.setIsIgnore(true);
