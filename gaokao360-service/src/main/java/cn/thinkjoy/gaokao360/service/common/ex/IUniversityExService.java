@@ -25,4 +25,8 @@ public interface IUniversityExService<D extends IBaseDAO<T>, T extends BaseDomai
     List<UniversityPlanChartDTO> queryUniversityPlanChart(Map<String,Object> params);
 
     List<UniversityEnrollingChartDTO> queryUniversityEnrollingChart(Map<String,Object> params);
+
+    List<Map<String, Object>> getPredictUniversityInfo(Map<String,Object> params);
+
+    List<Map<String, Object>> getPredictProbability(Map<String,Object> params);
 }

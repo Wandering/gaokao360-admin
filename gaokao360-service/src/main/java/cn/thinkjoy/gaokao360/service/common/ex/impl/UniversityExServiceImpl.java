@@ -76,6 +76,16 @@ public class UniversityExServiceImpl extends AbstractPageService<IBaseDAO<Univer
         return universityExDAO.queryUniversityEnrollingChart(params);
     }
 
+    @Override
+    public List<Map<String, Object>> getPredictUniversityInfo(Map<String, Object> params) {
+        return universityExDAO.queryPredictUniversityInfo(params);
+    }
+
+    @Override
+    public List<Map<String, Object>> getPredictProbability(Map<String, Object> params) {
+        return universityExDAO.queryPredictProbability(params);
+    }
+
 //    @Override
 //    public void insert(BaseDomain entity) {
 //
