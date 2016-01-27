@@ -51,14 +51,14 @@ selectList
         SELECT
         	YEAR,
         	dd.name as typeName,
-        	sum(planEnrollingNumber) as number
+        	sum(plan_enrolling_number) as number
         FROM
-        	zgk_university_major_enrolling mm
+        	zgk_university_enrolling mm
         LEFT JOIN zgk_data_dict dd ON dd.type = 'UNIVERSITY_MAJOR_TYPE'
-          AND mm.universityMajorType = dd.dictId
-        WHERE mm.universityId = #{universityId}
+          AND mm.university_major_type = dd.dictId
+        WHERE mm.university_id = #{universityId}
         GROUP BY
-        	YEAR,universityMajorType
+        	YEAR,university_major_type
     </select>
 
     <select id="queryUniversityEnrollingChart" resultType="UniversityEnrollingChartDTO" parameterType="java.util.Map">

@@ -1,7 +1,13 @@
 package cn.thinkjoy.gaokao360.remote.service.impl;
 
+import cn.thinkjoy.gaokao360.common.ServiceImplMaps;
+import cn.thinkjoy.gaokao360.domain.Major;
+import cn.thinkjoy.gaokao360.domain.MajorDetail;
+import cn.thinkjoy.gaokao360.domain.MajorEmployment;
+import cn.thinkjoy.gaokao360.domain.MajoredCategory;
 import cn.thinkjoy.gaokao360.service.common.ex.IMajoredCategoryExService;
 import cn.thinkjoy.gaokao360.service.common.ex.IUniversityMajorExService;
+import cn.thinkjoy.zgk.dto.CategoryMajoredDTO;
 import cn.thinkjoy.zgk.dto.MajoredCategoryRemoteDTO;
 import cn.thinkjoy.zgk.remote.IMajoredService;
 import com.google.common.collect.Lists;
@@ -22,12 +28,55 @@ public class MajoredServiceImpl implements IMajoredService {
     private IUniversityMajorExService universityMajorExService;
     @Autowired
     private IMajoredCategoryExService majoredCategoryExService;
+    @Autowired
+    private ServiceImplMaps serviceImplMaps;
 
     @Override
     public List getMajorOpenUniversityList(int majoredId,int offset,int rows,String orderBy,String sortBy){
         Map<String,Object> map= Maps.newHashMap();
         map.put("majorId", majoredId);
         return universityMajorExService.getMajorOpenUniversityList(map,offset,rows,orderBy,sortBy);
+    }
+
+    @Override
+    public MajoredCategoryRemoteDTO getCategoryMajoredList(long categoryId){
+        Map<String,Object> map= Maps.newHashMap();
+        map.put("categoryId",categoryId);
+        List<CategoryMajoredDTO> categoryMajoredDTOList = majoredCategoryExService.getCategoryMajoredList(map);
+
+        MajoredCategoryRemoteDTO majoredCategoryRemoteDTO=new MajoredCategoryRemoteDTO();//大门类
+        majoredCategoryRemoteDTO.setName(categoryMajoredDTOList.get(0).getDisciplineCategoriesName());
+        majoredCategoryRemoteDTO.setId(categoryId);
+        List<String> mcList= Lists.newArrayList();
+        for (CategoryMajoredDTO categoryMajoredDTO:categoryMajoredDTOList){
+            //判断专业门类是否已存在
+            if (mcList.contains(categoryMajoredDTO.getMajorCategoryName())){//如果有
+                for (MajoredCategoryRemoteDTO majoredCategoryRemoteDTO1:majoredCategoryRemoteDTO.getChildList()){
+                    if (majoredCategoryRemoteDTO1.getName().equals(categoryMajoredDTO.getMajorCategoryName())){
+                        majoredCategoryRemoteDTO1.setMajoredNumber(majoredCategoryRemoteDTO1.getMajoredNumber()+1);
+
+                        MajoredCategoryRemoteDTO majoredCategoryRemoteDTO2=new MajoredCategoryRemoteDTO();
+                        majoredCategoryRemoteDTO2.setId(categoryMajoredDTO.getMajoredId());
+                        majoredCategoryRemoteDTO2.setName(categoryMajoredDTO.getMajoredName());
+                        majoredCategoryRemoteDTO1.getChildList().add(majoredCategoryRemoteDTO2);
+                        break;
+                    }
+                }
+            }else {
+                mcList.add(categoryMajoredDTO.getMajorCategoryName());//记录专业门类
+                MajoredCategoryRemoteDTO majoredCategoryRemoteDTO1=new MajoredCategoryRemoteDTO();//专业门类
+                majoredCategoryRemoteDTO1.setId(categoryMajoredDTO.getMajorCategoryId());//专业门类Id
+                majoredCategoryRemoteDTO1.setName(categoryMajoredDTO.getMajorCategoryName());//专业门类Name
+                majoredCategoryRemoteDTO1.setMajoredNumber(1);
+
+                MajoredCategoryRemoteDTO majoredCategoryRemoteDTO2=new MajoredCategoryRemoteDTO();
+                majoredCategoryRemoteDTO2.setId(categoryMajoredDTO.getMajoredId());
+                majoredCategoryRemoteDTO2.setName(categoryMajoredDTO.getMajoredName());
+                majoredCategoryRemoteDTO1.getChildList().add(majoredCategoryRemoteDTO2);
+                majoredCategoryRemoteDTO.getChildList().add(majoredCategoryRemoteDTO1);
+            }
+        }
+        return majoredCategoryRemoteDTO;
     }
 
     @Override
@@ -42,39 +91,42 @@ public class MajoredServiceImpl implements IMajoredService {
         }else {
             majoredCategoryRemoteDTO1.setName("专科");
         }
-        List<String> mcName1= Lists.newArrayList();
+        majoredCategoryRemoteDTO1.setChildNumber(0);
         for (MajoredCategoryRemoteDTO majoredCategoryRemoteDTO:majoredCategoryRemoteDTOList){
-            //判断本科中是否已有大门类
-            if (mcName1.contains(majoredCategoryRemoteDTO.getParentName())){//如果有
-                for (MajoredCategoryRemoteDTO majoredCategoryRemoteDTO2:majoredCategoryRemoteDTO1.getChildList()){
-                    if(majoredCategoryRemoteDTO2.getName().equals(majoredCategoryRemoteDTO.getParentName())){
-                        majoredCategoryRemoteDTO2.getChildList().add(majoredCategoryRemoteDTO);
-                        if (majoredCategoryRemoteDTO2.getChildNumber()!=null){
-                            majoredCategoryRemoteDTO2.setChildNumber(majoredCategoryRemoteDTO2.getChildNumber()+1);//包含专业门类个数
-                        }else {
-                            majoredCategoryRemoteDTO2.setChildNumber(1);//包含专业门类个数
-                        }
-                    }
-                }
-            }else {
-                mcName1.add(majoredCategoryRemoteDTO.getParentName());//记录中增加一个大门类
-                MajoredCategoryRemoteDTO majoredCategoryRemoteDTO2=new MajoredCategoryRemoteDTO();//大门类
-                majoredCategoryRemoteDTO2.setId(majoredCategoryRemoteDTO.getParentId());//大门类Id
-                majoredCategoryRemoteDTO2.setName(majoredCategoryRemoteDTO.getParentName());//大门类名称
-
-                majoredCategoryRemoteDTO2.getChildList().add(majoredCategoryRemoteDTO);//增加包含专业门类
-                if (majoredCategoryRemoteDTO2.getChildNumber()!=null){
-                    majoredCategoryRemoteDTO2.setChildNumber(majoredCategoryRemoteDTO2.getChildNumber()+1);//包含专业门类个数
-                }else {
-                    majoredCategoryRemoteDTO2.setChildNumber(1);//包含专业门类个数
-                }
-
-                majoredCategoryRemoteDTO1.getChildList().add(majoredCategoryRemoteDTO2);//将大门类增加在本科类中
-            }
-
-
+            majoredCategoryRemoteDTO1.getChildList().add(majoredCategoryRemoteDTO);
+            majoredCategoryRemoteDTO1.setChildNumber(majoredCategoryRemoteDTO1.getChildNumber()+1);
+            majoredCategoryRemoteDTO.setChildList(null);
         }
         return majoredCategoryRemoteDTO1;
+    }
+
+    /**
+     * 根据id专业接口
+     * @param id
+     * @return
+     */
+    @Override
+    public Map getMajoredInfoById(long id){
+        Major major= (Major) serviceImplMaps.get("majorService").fetch(id);
+        MajorDetail majorDetail= (MajorDetail) serviceImplMaps.get("majorDetailService").fetch(id);
+        MajorEmployment majorEmployment= (MajorEmployment) serviceImplMaps.get("majorEmploymentService").fetch(id);
+        Map<String,Object> map= Maps.newHashMap();
+        if (major!=null) {
+            map.put("id", major.getId());
+            map.put("majorName", major.getMajorName());
+        }
+        if (majorDetail!=null) {
+            map.put("majorCode", majorDetail.getMajorCode());
+            map.put("degreeOffered", majorDetail.getDegreeOffered());
+            map.put("schoolingDuration", majorDetail.getSchoolingDuration());
+            map.put("offerCourses", majorDetail.getOfferCourses());
+            map.put("majorIntroduce", majorDetail.getMajorIntroduce());
+        }
+        if (majorEmployment!=null) {
+            map.put("employmentRate", majorEmployment.getEmploymentRate());
+            map.put("salary", majorEmployment.getSalary());
+        }
+        return map;
     }
 
 }
