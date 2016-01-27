@@ -319,22 +319,19 @@ public class UniversityServiceImpl implements IUniversityService {
 
     private void getBatch(Map<String, Object> resultMap, List<Map<String, Object>> dataList, BigDecimal valueC) {
         for (Map<String, Object> data:dataList) {
-            if("2015".equals(data.get("year")) && null != data.get("minScore"))
+            String lowScore = data.get("minScore")+"";
+            if("1".equals(data.get("batch"))&&valueC.longValue()>=new BigDecimal(lowScore).longValue())
             {
-                String lowScore = data.get("minScore")+"";
-                if("1".equals(data.get("batch"))&&valueC.longValue()>=new BigDecimal(lowScore).longValue())
-                {
-                    resultMap.put("batch", "一本");
-                }else if("2".equals(data.get("batch"))&&valueC.longValue()>=new BigDecimal(lowScore).longValue())
-                {
-                    resultMap.put("batch", "二本");
-                }else if("3".equals(data.get("batch"))&&valueC.longValue()>=new BigDecimal(lowScore).longValue())
-                {
-                    resultMap.put("batch", "三本");
-                }else
-                {
-                    resultMap.put("batch", "专科");
-                }
+                resultMap.put("batch", "一本");
+            }else if("2".equals(data.get("batch"))&&valueC.longValue()>=new BigDecimal(lowScore).longValue())
+            {
+                resultMap.put("batch", "二本");
+            }else if("3".equals(data.get("batch"))&&valueC.longValue()>=new BigDecimal(lowScore).longValue())
+            {
+                resultMap.put("batch", "三本");
+            }else
+            {
+                resultMap.put("batch", "专科");
             }
         }
     }
