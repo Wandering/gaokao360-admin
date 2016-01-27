@@ -962,8 +962,8 @@
             // 上传文件的类型
             accept: {
                 title: 'Video'
-//                ,extensions:'mp4,rmvb,swf,avi,3gp'
-//                ,mineTypes:'video/*'
+                ,extensions:'mp4'
+                ,mineTypes:'video/*'
             },
 
             // swf文件路径
@@ -972,11 +972,11 @@
             disableGlobalDnd: true,
 
             // 是否要分片处理大文件上传
-            chunked: true,
+//            chunked: true,
             // server: 'http://webuploader.duapp.com/server/fileupload.php',
-            server: 'http://cs-dev.thinkjoy.com.cn/rest/v1/uploadFile?userId=gk360&dirId=0&productCode=gk360&bizSystem=gk360&spaceName=gk360',
+            server: 'http://cs-pro.thinkjoy.com.cn/rest/v1/uploadFile?userId=gk360&dirId=0&productCode=gk360&bizSystem=gk360&spaceName=gk360',
             // 验证文件总数量, 超出则不允许加入队列
-            fileNumLimit: 10,
+//            fileNumLimit: 10,
             // 验证文件总大小是否超出限制, 超出则不允许加入队列
 //                fileSizeLimit: 5 * 1024 * 1024,
             // 验证单个文件大小是否超出限制, 超出则不允许加入队列
