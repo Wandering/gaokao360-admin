@@ -25,7 +25,7 @@ public class MajorDetail extends CreateBaseDomain<Long>{
     /** 授予学位 */
     private String degreeOffered;
     /** 学习年限 */
-    private Integer schoolingDuration;
+    private String schoolingDuration;
     /** 开设课程 */
     private String offerCourses;
     /** 专业解读 */
@@ -57,11 +57,11 @@ public class MajorDetail extends CreateBaseDomain<Long>{
     public String getDegreeOffered() {
         return this.degreeOffered;
     }
-    public void setSchoolingDuration(Integer value) {
+    public void setSchoolingDuration(String value) {
         this.schoolingDuration = value;
     }
 
-    public Integer getSchoolingDuration() {
+    public String getSchoolingDuration() {
         return this.schoolingDuration;
     }
     public void setOfferCourses(String value) {

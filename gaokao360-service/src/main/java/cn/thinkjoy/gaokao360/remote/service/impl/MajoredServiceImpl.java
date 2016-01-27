@@ -1,5 +1,9 @@
 package cn.thinkjoy.gaokao360.remote.service.impl;
 
+import cn.thinkjoy.gaokao360.common.ServiceImplMaps;
+import cn.thinkjoy.gaokao360.domain.Major;
+import cn.thinkjoy.gaokao360.domain.MajorDetail;
+import cn.thinkjoy.gaokao360.domain.MajorEmployment;
 import cn.thinkjoy.gaokao360.domain.MajoredCategory;
 import cn.thinkjoy.gaokao360.service.common.ex.IMajoredCategoryExService;
 import cn.thinkjoy.gaokao360.service.common.ex.IUniversityMajorExService;
@@ -24,6 +28,8 @@ public class MajoredServiceImpl implements IMajoredService {
     private IUniversityMajorExService universityMajorExService;
     @Autowired
     private IMajoredCategoryExService majoredCategoryExService;
+    @Autowired
+    private ServiceImplMaps serviceImplMaps;
 
     @Override
     public List getMajorOpenUniversityList(int majoredId,int offset,int rows,String orderBy,String sortBy){
@@ -92,6 +98,35 @@ public class MajoredServiceImpl implements IMajoredService {
             majoredCategoryRemoteDTO.setChildList(null);
         }
         return majoredCategoryRemoteDTO1;
+    }
+
+    /**
+     * 根据id专业接口
+     * @param id
+     * @return
+     */
+    @Override
+    public Map getMajoredInfoById(long id){
+        Major major= (Major) serviceImplMaps.get("majorService").fetch(id);
+        MajorDetail majorDetail= (MajorDetail) serviceImplMaps.get("majorDetailService").fetch(id);
+        MajorEmployment majorEmployment= (MajorEmployment) serviceImplMaps.get("majorEmploymentService").fetch(id);
+        Map<String,Object> map= Maps.newHashMap();
+        if (major!=null) {
+            map.put("id", major.getId());
+            map.put("majorName", major.getMajorName());
+        }
+        if (majorDetail!=null) {
+            map.put("majorCode", majorDetail.getMajorCode());
+            map.put("degreeOffered", majorDetail.getDegreeOffered());
+            map.put("schoolingDuration", majorDetail.getSchoolingDuration());
+            map.put("offerCourses", majorDetail.getOfferCourses());
+            map.put("majorIntroduce", majorDetail.getMajorIntroduce());
+        }
+        if (majorEmployment!=null) {
+            map.put("employmentRate", majorEmployment.getEmploymentRate());
+            map.put("salary", majorEmployment.getSalary());
+        }
+        return map;
     }
 
 }
