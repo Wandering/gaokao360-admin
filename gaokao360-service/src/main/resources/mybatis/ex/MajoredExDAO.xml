@@ -161,5 +161,16 @@ selectList
         #{map.idDelete}
         )
     </insert>
+
+    <select id="getMajoredByName" resultType="MajoredQueryDTO">
+        select
+          (select name FROM zgk_majored_category cc where cc.id=mm.discipline_categories) as disciplineCategoriesName,
+          (select name FROM zgk_majored_category cc where cc.id=mm.major_category) as majorCategoryName,
+          mm.major_name as majoredName,
+          mm.id as majoredId
+        from zgk_major mm
+        where mm.major_name like CONCAT('%',#{condition.majoredName},'%')
+         and mm.major_type = #{condition.type}
+    </select>
 </mapper>
 

@@ -13,6 +13,24 @@ public class MajoredCategoryRemoteDTO implements Serializable {
     private List<MajoredCategoryRemoteDTO> childList = Lists.newArrayList();
     private Integer childNumber;
     private Integer majoredNumber;
+    private long parentId;
+    private String parentName;
+
+    public long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(long parentId) {
+        this.parentId = parentId;
+    }
+
+    public String getParentName() {
+        return parentName;
+    }
+
+    public void setParentName(String parentName) {
+        this.parentName = parentName;
+    }
 
     public long getId() {
         return id;

@@ -14,6 +14,8 @@ import cn.thinkjoy.gaokao360.dao.ex.IMajoredCategoryExDAO;
 import cn.thinkjoy.gaokao360.domain.MajoredCategory;
 import cn.thinkjoy.gaokao360.dto.MajoredCategoryDTO;
 import cn.thinkjoy.gaokao360.service.common.ex.IMajoredCategoryExService;
+import cn.thinkjoy.zgk.dto.CategoryMajoredDTO;
+import cn.thinkjoy.zgk.dto.MajoredCategoryRemoteDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -35,6 +37,16 @@ public class MajoredCategoryExServiceImpl extends AbstractPageService<IBaseDAO<M
     @Override
     public IBaseDAO<MajoredCategoryDTO> getDao() {
         return majoredCategoryExDAO;
+    }
+
+    @Override
+    public List<MajoredCategoryRemoteDTO> getMajoredCategory(Map<String,Object> map){
+        return majoredCategoryExDAO.getMajoredCategory(map);
+    }
+
+    @Override
+    public List<CategoryMajoredDTO> getCategoryMajoredList(Map<String,Object> map){
+        return majoredCategoryExDAO.getCategoryMajoredList(map);
     }
 
 
