@@ -13,6 +13,8 @@ import cn.thinkjoy.gaokao360.dao.ex.IMajoredExDAO;
 import cn.thinkjoy.gaokao360.domain.GkBaseDomain;
 import cn.thinkjoy.gaokao360.dto.MajorDTO;
 import cn.thinkjoy.gaokao360.service.common.ex.IMajoredExService;
+import cn.thinkjoy.zgk.dto.MajoredQueryDTO;
+import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -45,8 +47,12 @@ public class MajoredExServiceImpl extends AbstractPageService<IBaseDAO<MajorDTO>
         return majoredExDAO.insertMapDetail(entityMap);
     }
 
-    public void getMajorOpenUniversityList(int majoredId){
-
+    @Override
+    public List<MajoredQueryDTO> getMajoredByName(String majoredName,String type){
+        Map<String,Object> map= Maps.newHashMap();
+        map.put("majoredName",majoredName);
+        map.put("type",type);
+        return majoredExDAO.getMajoredByName(map);
     }
 
 
