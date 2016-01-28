@@ -270,6 +270,8 @@ public class UniversityServiceImpl implements IUniversityService {
         params.put("majorType",params.get("type"));
         Map<String, Object> resultMap = new LinkedHashMap<>();
         resultMap.putAll(params);
+        params.put("startYear", 2012);
+        params.put("endYear", 2014);
         List<Map<String, Object>> dataList = universityExService.getPredictProbability(params);
         String score = params.get("score")+"";
         BigDecimal valueC = new BigDecimal(score);
@@ -277,7 +279,21 @@ public class UniversityServiceImpl implements IUniversityService {
         {
             getBatch(resultMap, dataList, valueC);
             getProbability(resultMap, dataList, valueC);
-            resultMap.put("historyList", dataList);
+            List<Map<String, Object>> historyList = new ArrayList<>();
+            for (Map<String, Object> map : dataList)
+            {
+                if(resultMap.get("batch").equals(map.get("batch")+""))
+                {
+                    historyList.add(map);
+                }
+            }
+            Collections.sort(historyList, new Comparator<Map<String, Object>>() {
+                @Override
+                public int compare(Map<String, Object> o1, Map<String, Object> o2) {
+                    return Integer.parseInt(o2.get("year")+"")>Integer.parseInt(o1.get("year")+"")?1:-1;
+                }
+            });
+            resultMap.put("historyList", historyList);
         }
         return resultMap;
     }
@@ -285,28 +301,28 @@ public class UniversityServiceImpl implements IUniversityService {
     private void getProbability(Map<String, Object> resultMap, List<Map<String, Object>> dataList, BigDecimal valueC) {
         if(dataList.size()==3)
         {
-            int highScore = Integer.parseInt(dataList.get(0).get("minScore")+"");
-            int midScore = Integer.parseInt(dataList.get(1).get("minScore")+"");
-            int lowScore = Integer.parseInt(dataList.get(2).get("minScore")+"");
-            BigDecimal valueA = new BigDecimal(highScore+midScore+lowScore).divide(new BigDecimal(3)).setScale(2,BigDecimal.ROUND_HALF_UP);
-            BigDecimal valueB = new BigDecimal(highScore*2).subtract(new BigDecimal(lowScore*2)).divide(new BigDecimal(3)).setScale(2,BigDecimal.ROUND_HALF_UP);
-            BigDecimal valueD = valueC.divide(valueA.add(valueB)).setScale(2,BigDecimal.ROUND_HALF_UP);
-            if(valueD.longValue() > valueB.divide(valueA).add(new BigDecimal(1)).longValue())
+            int highScore = Integer.parseInt(dataList.get(0).get("avgScore")+"");
+            int midScore = Integer.parseInt(dataList.get(1).get("avgScore")+"");
+            int lowScore = Integer.parseInt(dataList.get(2).get("avgScore")+"");
+            BigDecimal valueA = new BigDecimal(highScore+midScore+lowScore).divide(new BigDecimal(3),2,BigDecimal.ROUND_HALF_UP);
+            BigDecimal valueB = new BigDecimal(highScore*2).subtract(new BigDecimal(lowScore*2)).divide(new BigDecimal(3),2,BigDecimal.ROUND_HALF_UP);
+            BigDecimal valueD = valueC.divide(valueA.add(valueB),2,BigDecimal.ROUND_HALF_UP);
+            if(valueD.longValue() > valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP).add(new BigDecimal(1)).longValue())
             {
                 resultMap.put("probability", 4);
             }
-            else if(valueD.longValue() <= valueB.divide(valueA).add(new BigDecimal(1)).longValue()
+            else if(valueD.longValue() <= valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP).add(new BigDecimal(1)).longValue()
                     && valueD.longValue()>1)
             {
                 resultMap.put("probability", 3);
             }
             else if(valueD.longValue() <= 1 &&
-               valueD.longValue() > new BigDecimal(1).subtract(valueB.divide(valueA)).longValue())
+               valueD.longValue() > new BigDecimal(1).subtract(valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP)).longValue())
             {
                 resultMap.put("probability", 2);
             }
-            else if(valueD.longValue() <= new BigDecimal(1).subtract(valueB.divide(valueA)).longValue()
-                    && valueD.longValue() >= new BigDecimal(1).subtract(valueB.divide(valueA).multiply(new BigDecimal(2))).longValue())
+            else if(valueD.longValue() <= new BigDecimal(1).subtract(valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP)).longValue()
+                    && valueD.longValue() >= new BigDecimal(1).subtract(valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP).multiply(new BigDecimal(2))).longValue())
             {
                 resultMap.put("probability", 1);
             }
@@ -320,21 +336,29 @@ public class UniversityServiceImpl implements IUniversityService {
     private void getBatch(Map<String, Object> resultMap, List<Map<String, Object>> dataList, BigDecimal valueC) {
         for (Map<String, Object> data:dataList) {
             String lowScore = data.get("minScore")+"";
-            if("1".equals(data.get("batch"))&&valueC.longValue()>=new BigDecimal(lowScore).longValue())
+            if("1".equals(data.get("batch")+"")&&valueC.longValue()>=new BigDecimal(lowScore).longValue())
             {
-                resultMap.put("batch", "一本");
+                resultMap.put("batch", "1");
+                break;
             }
-            else if("2".equals(data.get("batch"))&&valueC.longValue()>=new BigDecimal(lowScore).longValue())
+            else if("2".equals(data.get("batch")+"")&&valueC.longValue()>=new BigDecimal(lowScore).longValue())
             {
-                resultMap.put("batch", "二本");
+                resultMap.put("batch", "2");
+                break;
             }
-            else if("3".equals(data.get("batch"))&&valueC.longValue()>=new BigDecimal(lowScore).longValue())
+            else if("3".equals(data.get("batch")+"")&&valueC.longValue()>=new BigDecimal(lowScore).longValue())
             {
-                resultMap.put("batch", "三本");
+                resultMap.put("batch", "3");
+                break;
+            }
+            else if("8".equals(data.get("batch")+"")&&valueC.longValue()>=new BigDecimal(lowScore).longValue())
+            {
+                resultMap.put("batch", "8");
+                break;
             }
             else
             {
-                resultMap.put("batch", "专科");
+                resultMap.put("batch", "2");
             }
         }
     }

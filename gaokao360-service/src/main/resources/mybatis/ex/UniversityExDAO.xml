@@ -465,7 +465,7 @@ selectList
                  AND en.year &lt;= #{endYear}
              </if>
          </where>
-        order by lowest_score desc
+        order by average_score desc
     </select>
 </mapper>
 
