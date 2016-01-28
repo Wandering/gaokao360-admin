@@ -31,7 +31,8 @@ public class GkScheduleServiceImpl implements IGkScheduleService {
             String[] strs=startMonthStr.split("-");
             year=Integer.parseInt(strs[0]);
             month=Integer.parseInt(strs[1]);
-            calendar.add(month,0);
+            //设置当前日历为传递过来的year.month.1日
+            calendar.set(year,month,1);
         }
         Boolean boo=(Boolean)condition.get("boo");
         Integer showMonth=null;
@@ -44,21 +45,24 @@ public class GkScheduleServiceImpl implements IGkScheduleService {
         List<GkScheduleDTO> gkScheduleDTOs=new ArrayList<>();
         for(int i=0;i<num;i++){
 
-            if(condition.containsKey("startMonth")) {
-                year = calendar.get(Calendar.YEAR);
-                month = calendar.get(Calendar.MONTH) + 1;
+            year = calendar.get(Calendar.YEAR);
+            month = calendar.get(Calendar.MONTH);
+            if(month==0){
+                month=1;
+                calendar.add(Calendar.MONTH, +2);
+            }else {
+                calendar.add(Calendar.MONTH, +1);
             }
-            calendar.add(Calendar.MONTH, -1);
             if(showMonth!=null && showMonth!=month ){
                 continue;
             }
             map=new HashMap<>();
-            map.put("years",Integer.valueOf(year));
-            map.put("month",Integer.valueOf(month));
+            map.put("years",year);
+            map.put("month",month);
             gkScheduleDTO=new GkScheduleDTO();
             List<Schedule> schedules=scheduleService.queryList(map,"createDate","desc");
             if(condition.containsKey("scheduleRows")){
-                Integer scheduleRows=(Integer)condition.get("scheduleRows");
+                Integer scheduleRows=Integer.parseInt(condition.get("scheduleRows").toString());
                 if(schedules!=null && schedules.size()>scheduleRows) {
                     schedules = schedules.subList(0, scheduleRows - 1);
                 }
@@ -76,7 +80,7 @@ public class GkScheduleServiceImpl implements IGkScheduleService {
     }
 
     @Override
-    public GkSchedule getScheduleInfo(Map<String, Object> conditions,String id) {
+        public GkSchedule getScheduleInfo(Map<String, Object> conditions,String id) {
         Schedule schedule=(Schedule)scheduleService.fetch(id);
         //设置是否加载内容
         this.setIsIgnore(true);
