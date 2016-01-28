@@ -169,8 +169,9 @@ selectList
           mm.major_name as majoredName,
           mm.id as majoredId
         from zgk_major mm
+        left join zgk_majored_category mc on mc.id=mm.discipline_categories
         where mm.major_name like CONCAT('%',#{condition.majoredName},'%')
-         and mm.major_type = #{condition.type}
+         and mc.parentId = #{condition.type}
     </select>
 </mapper>
 
