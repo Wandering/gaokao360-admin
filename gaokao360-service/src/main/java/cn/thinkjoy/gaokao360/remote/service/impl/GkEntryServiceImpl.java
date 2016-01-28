@@ -30,7 +30,7 @@ public class GkEntryServiceImpl extends BaseCommonService implements IGkEntrySer
     }
 
     @Override
-    public GkEntry getGkEntryInfo(Object id) {
+    public GkEntry getGkEntryInfo(Map<String, Object> conditions,Object id) {
         this.setIsIgnore(true);
         return vocabulary2GkEntry((Vocabulary) vocabularyService.fetch(id));
     }

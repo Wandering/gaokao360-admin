@@ -31,5 +31,7 @@ public interface IUniversityService {
 
     List getUniversityByName(String name);
 
+    Map<String, Object> getPredictUniversityInfo(Map<String, Object> params);
 
+    Map<String, Object> getPredictProbability(Map<String, Object> params);
 }

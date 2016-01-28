@@ -22,5 +22,5 @@ public interface IGkScheduleService {
      * 获取详情
      * @return
      */
-    GkSchedule getScheduleInfo(String id);
+    GkSchedule getScheduleInfo(Map<String, Object> conditions,String id);
 }

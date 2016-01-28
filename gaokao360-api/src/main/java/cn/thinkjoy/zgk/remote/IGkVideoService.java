@@ -23,13 +23,13 @@ public interface IGkVideoService {
      * @param id
      * @return
      */
-    GkVideoDTO getGkVideoInfo(String id);
+    GkVideoDTO getGkVideoInfo(Map<String, Object> conditions,String id);
 
 
     /**
      * 点击量自增
      * @param id
      */
-    public void hitInc(Object id);
+    public void hitInc(Map<String, Object> conditions,Object id);
 
 }

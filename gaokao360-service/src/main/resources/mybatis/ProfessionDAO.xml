@@ -57,10 +57,10 @@ selectList
         #{professionType},
         #{professionSubType},
         #{professionName},
-        #{short},
+        #{professionShort},
         #{professionDescription},
         #{hotDegree},
-        #{salary_rank},
+        #{salaryRank},
         #{createDate},
         #{creator},
         #{lastModDate},
@@ -85,8 +85,8 @@ selectList
             <if test="professionName!=null">
                 profession_name = #{professionName},
             </if>
-            <if test="short!=null">
-                professionShort = #{short},
+            <if test="professionShort!=null">
+                professionShort = #{professionShort},
             </if>
             <if test="professionDescription!=null">
                 profession_description = #{professionDescription},
