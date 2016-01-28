@@ -5,7 +5,6 @@ import cn.thinkjoy.gaokao360.common.ServiceImplMaps;
 import cn.thinkjoy.gaokao360.service.common.IDataDictService;
 import cn.thinkjoy.gaokao360.service.common.IProvinceService;
 import cn.thinkjoy.gaokao360.service.common.ex.IUniversityExService;
-import cn.thinkjoy.zgk.common.QueryUtil;
 import cn.thinkjoy.zgk.dto.UniversityEnrollingChartDTO;
 import cn.thinkjoy.zgk.dto.UniversityPlanChartDTO;
 import cn.thinkjoy.zgk.remote.IUniversityService;
@@ -175,6 +174,7 @@ public class UniversityServiceImpl implements IUniversityService {
     @Override
     public Map<String, Object> getPredictUniversityInfo(Map<String, Object> params) {
         Map<String, Object> resultMap = new LinkedHashMap<>();
+        resultMap.putAll(params);
         List<Map<String, Object>> dataList = universityExService.getPredictUniversityInfo(params);
         caculateUniversityLists(params, resultMap, dataList);
         return resultMap;
@@ -185,7 +185,7 @@ public class UniversityServiceImpl implements IUniversityService {
         List<Map<String, Object>> twoList = new ArrayList<>();
         List<Map<String, Object>> threeList = new ArrayList<>();
         List<Map<String, Object>> fourList = new ArrayList<>();
-        String score = params.get("params")+"";
+        String score = params.get("score")+"";
         BigDecimal valueC = new BigDecimal(score);
         for (Map<String, Object> map : dataList)
         {
@@ -267,7 +267,9 @@ public class UniversityServiceImpl implements IUniversityService {
 
     @Override
     public Map<String, Object> getPredictProbability(Map<String, Object> params) {
+        params.put("majorType",params.get("type"));
         Map<String, Object> resultMap = new LinkedHashMap<>();
+        resultMap.putAll(params);
         List<Map<String, Object>> dataList = universityExService.getPredictProbability(params);
         String score = params.get("score")+"";
         BigDecimal valueC = new BigDecimal(score);
@@ -277,9 +279,6 @@ public class UniversityServiceImpl implements IUniversityService {
             getProbability(resultMap, dataList, valueC);
             resultMap.put("historyList", dataList);
         }
-        resultMap.put("score", score);
-        resultMap.put("type", params.get("type"));
-        resultMap.put("universityName", params.get("universityName"));
         return resultMap;
     }
 
@@ -310,7 +309,8 @@ public class UniversityServiceImpl implements IUniversityService {
                     && valueD.longValue() >= new BigDecimal(1).subtract(valueB.divide(valueA).multiply(new BigDecimal(2))).longValue())
             {
                 resultMap.put("probability", 1);
-            }else
+            }
+            else
             {
                 resultMap.put("probability", 1);
             }
@@ -323,13 +323,16 @@ public class UniversityServiceImpl implements IUniversityService {
             if("1".equals(data.get("batch"))&&valueC.longValue()>=new BigDecimal(lowScore).longValue())
             {
                 resultMap.put("batch", "一本");
-            }else if("2".equals(data.get("batch"))&&valueC.longValue()>=new BigDecimal(lowScore).longValue())
+            }
+            else if("2".equals(data.get("batch"))&&valueC.longValue()>=new BigDecimal(lowScore).longValue())
             {
                 resultMap.put("batch", "二本");
-            }else if("3".equals(data.get("batch"))&&valueC.longValue()>=new BigDecimal(lowScore).longValue())
+            }
+            else if("3".equals(data.get("batch"))&&valueC.longValue()>=new BigDecimal(lowScore).longValue())
             {
                 resultMap.put("batch", "三本");
-            }else
+            }
+            else
             {
                 resultMap.put("batch", "专科");
             }
