@@ -23,26 +23,38 @@ public class GkScheduleServiceImpl implements IGkScheduleService {
 
     @Override
     public List<GkScheduleDTO> getScheduleList(Map<String,Object> condition,Integer num) {
+        Integer year=null;
+        Integer month=null;
+        Calendar calendar=Calendar.getInstance();
+        if(condition.containsKey("startMonth")){
+            String startMonthStr=String.valueOf(condition.get("startMonth"));
+            String[] strs=startMonthStr.split("-");
+            year=Integer.parseInt(strs[0]);
+            month=Integer.parseInt(strs[1]);
+            calendar.add(month,0);
+        }
         Boolean boo=(Boolean)condition.get("boo");
         Integer showMonth=null;
         if(condition.containsKey("showMonth")){
             showMonth=(Integer)condition.get("showMonth");
         }
-        Calendar calendar=Calendar.getInstance();
+
         Map<String,Object> map = null;
         GkScheduleDTO gkScheduleDTO=null;
         List<GkScheduleDTO> gkScheduleDTOs=new ArrayList<>();
         for(int i=0;i<num;i++){
 
-            int year = calendar.get(Calendar.YEAR);
-            int month = calendar.get(Calendar.MONTH)+1;
-            calendar.add(Calendar.MONTH,-1);
+            if(condition.containsKey("startMonth")) {
+                year = calendar.get(Calendar.YEAR);
+                month = calendar.get(Calendar.MONTH) + 1;
+            }
+            calendar.add(Calendar.MONTH, -1);
             if(showMonth!=null && showMonth!=month ){
                 continue;
             }
             map=new HashMap<>();
-            map.put("years",year);
-            map.put("month",month);
+            map.put("years",Integer.valueOf(year));
+            map.put("month",Integer.valueOf(month));
             gkScheduleDTO=new GkScheduleDTO();
             List<Schedule> schedules=scheduleService.queryList(map,"createDate","desc");
             if(condition.containsKey("scheduleRows")){
@@ -59,9 +71,6 @@ public class GkScheduleServiceImpl implements IGkScheduleService {
                 gkScheduleDTO.setSchedules(schedule2GkSchedule(schedules));
             }
             gkScheduleDTOs.add(gkScheduleDTO);
-
-
-
         }
         return gkScheduleDTOs;
     }
