@@ -416,7 +416,6 @@ selectList
         AVG(en.lowest_score) as avgLowestScore
         from zgk_university_enrolling en
         inner join zgk_university un on en.university_id = un.id
-        where
         <where>
             1=1
             <if test="areaId!=null">
@@ -466,7 +465,7 @@ selectList
                  AND en.year &lt;= #{endYear}
              </if>
          </where>
-        order by lowest_score desc
+        order by average_score desc
     </select>
 </mapper>
 
