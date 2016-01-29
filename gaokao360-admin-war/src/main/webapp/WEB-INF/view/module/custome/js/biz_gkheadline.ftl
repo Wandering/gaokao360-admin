@@ -155,17 +155,17 @@
                 }
             });
             uploadFun();
+            CommonFn.renderDate('#date-picker');
+            CommonFn.renderTextarea('#hotContent');
             // 当前行数据
-            var rowData = CommonFn.getRowData(rowId),
+            var rowData = CommonFn.getRowData(rowId);
             // 富媒体赋值
-                    infoContet = CommonFn.getContentHtml(rowData[0].informationContent).join('');
             $('#selProvince').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
             $('#hotTitle').val(rowData[0].hotInformation);
             $('#swfUrl').val(rowData[0].imgUrl);
-            $('#hotContent').html(infoContet);
+            $('#hotContent').html(rowData[0].informationContent);
             $('#date-picker').val(rowData[0].hotdate);
-            CommonFn.renderDate('#date-picker');
-            CommonFn.renderTextarea('#hotContent');
+
         });
         //删除
         CommonFn.deleteFun('#deleteBtn', '${mainObj}');
@@ -203,15 +203,10 @@
                 CommonFn.tipsDialog('温馨提示', '请选择高考头条日期');
                 return false;
             }
-            var hotContentHtml = CommonFn.getTextareaData(hotContentV).join(''),
-                    hotContentUrl = CommonFn.getTextareaUrlData(hotContentHtml),
-                    htmlUrl = hotContentUrl[0],
-                    htmlId = hotContentUrl[1],
-                    infoData = {
-                        htmlId: htmlId,
+            var infoData = {
                         areaId: selProvinceV,
                         hotInformation: hotTitleV,
-                        informationContent: htmlUrl,
+                        informationContent: hotContentV,
                         hotdate: datePickerV,
                         informationSubContent: '',
                         hotCount: 0,

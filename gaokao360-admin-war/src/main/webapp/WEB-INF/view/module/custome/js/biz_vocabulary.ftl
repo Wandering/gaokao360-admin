@@ -107,7 +107,7 @@
 //            var voaContent = CommonFn.getContentHtml(rowData[0].content).join('');
             $.trim($('#voaTitle').val(rowData[0].title));
             $('#voaSummary').val(rowData[0].summary);
-            $('#voaContent').html(CommonFn.getContentHtml(rowData[0].content).join(''));
+            $('#voaContent').html(rowData[0].content);
             $('#voaProvince').find('option[value="'+rowData[0].areaId+'"]').attr('selected','selected');
             CommonFn.renderTextarea('#voaContent');
         });
@@ -140,16 +140,11 @@
                 CommonFn.tipsDialog('温馨提示', '摘要不能为空');
                 return false;
             }
-            var voaContentHtml = CommonFn.getTextareaData(content).join(''),
-                    voaContentUrl = CommonFn.getTextareaUrlData(voaContentHtml),
-                    htmlUrl = voaContentUrl[0],
-                    htmlId = voaContentUrl[1],
-                    voaData = {
+            var voaData = {
                         oper: typeStr
-                        , htmlId: htmlId
                         , title: title
                         , summary: summary
-                        , content: htmlUrl
+                        , content: content
                         , areaId: areaId
                         , categoryId: 2//必填字段
                         , sortId: 0//词条排序字段
