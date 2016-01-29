@@ -22,7 +22,7 @@ public interface IGkAreaBatchService {
      * 获取详情
      * @return
      */
-    GkAreaBatch getGkAreaBatchInfo(Object areaId);
+    GkAreaBatch getGkAreaBatchInfo(Map<String, Object> conditions,Object areaId);
 
 
 }

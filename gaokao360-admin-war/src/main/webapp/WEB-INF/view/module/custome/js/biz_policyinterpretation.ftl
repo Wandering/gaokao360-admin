@@ -197,6 +197,14 @@
                 + '</div>'
                 + '</div>'
                 + '<div class="form-group">'
+                + '<label class="col-sm-2 control-label no-padding-right" for="policysub">'
+                + '摘要：</label>'
+                + '<div class="col-sm-6">'
+                + '<input type="text" id="policysub" placeholder="摘要"'
+                + 'class="col-sm-5">'
+                + '</div>'
+                + '</div>'
+                + '<div class="form-group">'
                 + '<label class="col-sm-2 control-label no-padding-right" for="">'
                 + '标题：</label>'
                 + '<div class="col-sm-6">'
@@ -223,6 +231,7 @@
             var provinceV = $("#province2").find("option:selected").attr('value');
             var policyInterGroupV = $("#policyInterGroup").find("option:selected").attr('value');
             var policyInterTwoV = $('#policyInterTwo').val();
+            var policysub = $('#policysub').val();
             var policyInterDetailV = $('#policyInterDetail').html();
             if (provinceV == "00") {
                 CommonFn.tipsDialog('温馨提示', '请选择省份');
@@ -250,20 +259,23 @@
                 CommonFn.tipsDialog('温馨提示', '请输入政策解读详情内容');
                 return false;
             }
-            var policyContentHtml = CommonFn.getTextareaData(policyInterDetailV).join(''),
-                    policyContentUrl = CommonFn.getTextareaUrlData(policyContentHtml),
-                    htmlUrl = policyContentUrl[0],
-                    htmlId = policyContentUrl[1];
+            var policyContentHtml = CommonFn.getTextareaData(policyInterDetailV).join('');
+//            var policyContentHtml = CommonFn.getTextareaData(policyInterDetailV).join(''),
+//                    policyContentUrl = CommonFn.getTextareaUrlData(policyContentHtml),
+//                    htmlUrl = policyContentUrl[0],
+//                    htmlId = policyContentUrl[1];
+//            alert(policyContentHtml);
                     var infoData = {
-                        htmlId: htmlId,
+//                        htmlId: 1,
                         provinceId: provinceV,
                         title: titleV,
                         admissionBatchId: policyInterGroupV,
-                        content: htmlUrl,
+                        content: policyContentHtml,
                         categoryName: policyInterTwoV,
                         oper: typeStr,
                         areaId: 0,
-                        subContent:$('#policyInterDetail').text().substring(0,200)
+//                        subContent:$('#policyInterDetail').text().substring(0,200)
+                        subContent:policysub
                     };
 
 

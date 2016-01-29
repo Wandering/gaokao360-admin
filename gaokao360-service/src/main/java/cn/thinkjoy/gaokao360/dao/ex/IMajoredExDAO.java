@@ -10,6 +10,7 @@ import cn.thinkjoy.common.dao.IBaseDAO;
 import cn.thinkjoy.gaokao360.domain.GkBaseDomain;
 import cn.thinkjoy.gaokao360.domain.Majored;
 import cn.thinkjoy.gaokao360.dto.MajorDTO;
+import cn.thinkjoy.zgk.dto.MajoredQueryDTO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -18,5 +19,7 @@ import java.util.Map;
 public interface IMajoredExDAO extends IBaseDAO<MajorDTO>{
     List<GkBaseDomain> getMajoredListByName(@Param("name")Object name);
     int insertMapDetail(@Param("map") Map<String, Object> entityMap);
+
+    List<MajoredQueryDTO> getMajoredByName(@Param("condition")Map<String,Object> map);
 
 }

@@ -55,8 +55,8 @@ selectList
         SELECT
         <include refid="Base_Column_List" />
         FROM
-        zgk_university_enrolling enrolling
-        LEFT OUTER JOIN zgk_university university ON university.id=enrolling.university_id
+        zgk_university university
+        LEFT OUTER JOIN zgk_university_enrolling enrolling ON university.id=enrolling.university_id
         LEFT JOIN zgk_province province ON province.id=enrolling.areaid
         LEFT JOIN zgk_data_dict batchdict ON batchdict.dictId=enrolling.batch AND batchdict.type='MAJOR_BATCH'
         LEFT JOIN zgk_data_dict typedict ON typedict.dictId=enrolling.batch AND typedict.type='UNIVERSITY_MAJOR_TYPE'
@@ -94,8 +94,11 @@ selectList
             <if test="condition.enrollinguniversityMajorType!=null">
                 ${condition.groupOp} enrolling.university_major_type ${condition.enrollinguniversityMajorType.op}  #{condition.enrollinguniversityMajorType.data}
             </if>
+            <if test="condition.type!=null">
+                ${condition.groupOp} enrolling.university_major_type ${condition.type.op}  #{condition.type.data}
+            </if>
         </where>
-        ORDER BY  lastModDate DESC
+        ORDER BY  university.lastModDate DESC
         <if test="offset != null">
             limit ${offset}, ${rows}
         </if>

@@ -37,7 +37,7 @@ public class GkProfessionalServiceImpl extends BaseCommonService implements IGkP
     }
 
     @Override
-    public GkProfessionDTO getProfessionalInfo(Object id) {
+    public GkProfessionDTO getProfessionalInfo(Map<String, Object> conditions,Object id) {
 
         return professional2DTO((Profession) professionService.fetch(id));
     }

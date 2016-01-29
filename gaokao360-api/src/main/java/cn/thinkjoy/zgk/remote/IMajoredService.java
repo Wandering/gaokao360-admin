@@ -16,4 +16,6 @@ public interface IMajoredService {
     public MajoredCategoryRemoteDTO getCategoryMajoredList(long categoryId);
 
     Map getMajoredInfoById(long id);
+
+    List getMajoredByName(String majoredName,String type);
 }

@@ -6,9 +6,11 @@ import cn.thinkjoy.gaokao360.domain.MajorDetail;
 import cn.thinkjoy.gaokao360.domain.MajorEmployment;
 import cn.thinkjoy.gaokao360.domain.MajoredCategory;
 import cn.thinkjoy.gaokao360.service.common.ex.IMajoredCategoryExService;
+import cn.thinkjoy.gaokao360.service.common.ex.IMajoredExService;
 import cn.thinkjoy.gaokao360.service.common.ex.IUniversityMajorExService;
 import cn.thinkjoy.zgk.dto.CategoryMajoredDTO;
 import cn.thinkjoy.zgk.dto.MajoredCategoryRemoteDTO;
+import cn.thinkjoy.zgk.dto.MajoredQueryDTO;
 import cn.thinkjoy.zgk.remote.IMajoredService;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -30,6 +32,8 @@ public class MajoredServiceImpl implements IMajoredService {
     private IMajoredCategoryExService majoredCategoryExService;
     @Autowired
     private ServiceImplMaps serviceImplMaps;
+    @Autowired
+    private IMajoredExService majoredExService;
 
     @Override
     public List getMajorOpenUniversityList(int majoredId,int offset,int rows,String orderBy,String sortBy){
@@ -127,6 +131,41 @@ public class MajoredServiceImpl implements IMajoredService {
             map.put("salary", majorEmployment.getSalary());
         }
         return map;
+    }
+
+    @Override
+    public List getMajoredByName(String majoredName,String type){
+        List<MajoredQueryDTO> majoredQueryDTOList=majoredExService.getMajoredByName(majoredName, type);
+        List<Map<String,Object>> mapList= Lists.newArrayList();
+        List<String> mList=Lists.newArrayList();
+        for (MajoredQueryDTO majoredQueryDTO:majoredQueryDTOList){
+            if(mList.contains(majoredQueryDTO.getDisciplineCategoriesName()+majoredQueryDTO.getMajorCategoryName())){//如果存在
+                for (Map<String,Object> map1:mapList){
+                    if (map1.get("disciplineCategoriesName").equals(majoredQueryDTO.getDisciplineCategoriesName())
+                            &&map1.get("majorCategoryName").equals(majoredQueryDTO.getMajorCategoryName())){
+                        Map<String,Object> map2=Maps.newHashMap();
+                        map2.put("majoredId",majoredQueryDTO.getMajoredId());
+                        map2.put("majoredName",majoredQueryDTO.getMajoredName());
+                        List ll= (List) map1.get("majoredList");
+                        ll.add(map2);
+                        break;
+                    }
+                }
+            }else {
+                mList.add(majoredQueryDTO.getDisciplineCategoriesName() + majoredQueryDTO.getMajorCategoryName());
+                Map<String,Object> map1=Maps.newHashMap();
+                map1.put("disciplineCategoriesName",majoredQueryDTO.getDisciplineCategoriesName());
+                map1.put("majorCategoryName",majoredQueryDTO.getMajorCategoryName());
+                Map<String,Object> map2=Maps.newHashMap();
+                map2.put("majoredId",majoredQueryDTO.getMajoredId());
+                map2.put("majoredName",majoredQueryDTO.getMajoredName());
+                List ll=Lists.newArrayList();
+                ll.add(map2);
+                map1.put("majoredList",ll);
+                mapList.add(map1);
+            }
+        }
+        return mapList;
     }
 
 }

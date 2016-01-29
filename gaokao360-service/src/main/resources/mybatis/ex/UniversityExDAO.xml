@@ -403,5 +403,73 @@ selectList
         #{featureMajor}
         )
     </insert>
+
+    <select id="queryPredictUniversityInfo" resultType="java.util.HashMap">
+        select en.university_id as universityId,
+        un.`name` as universityName,
+        un.subjection as province,
+        un.rank as rank,
+        un.property as feature,
+        en.batch as batch,
+        en.areaId as areaId,
+        Case When en.university_major_type='1' then '文史'
+        When en.university_major_type='2' then '理工'
+        else '' end as major_type,
+        GROUP_CONCAT(en.average_score order by en.average_score desc SEPARATOR '@@') as averageScoreList,
+        Case when AVG(en.lowest_score) then AVG(en.lowest_score)
+        else 0 end as avgLowestScore
+        from zgk_university_enrolling en
+        inner join zgk_university un on en.university_id = un.id
+        <where>
+            1=1
+            <if test="areaId!=null">
+                AND en.areaId = #{areaId}
+            </if>
+            <if test="batch!=null">
+                AND en.batch = #{batch}
+            </if>
+            <if test="majorType!=null">
+                AND en.university_major_type = #{majorType}
+            </if>
+            <if test="startYear!=null">
+                AND en.year &gt;= #{startYear}
+            </if>
+            <if test="endYear!=null">
+                AND en.year &lt;= #{endYear}
+            </if>
+        </where>
+        group by en.university_id,un.`name`,en.batch,en.areaId,
+        en.university_major_type
+    </select>
+
+    <select id="queryPredictProbability" resultType="java.util.HashMap">
+        select un.id as universityId,un.`name` as universityName,en.`year`,
+        en.batch,en.average_score as avgScore,
+        en.lowest_score as minScore,en.real_enrolling_number as enrollingNumber
+        from zgk_university_enrolling en
+        left join zgk_university un on un.id= en.university_id
+         <where>
+             1=1
+             <if test="areaId!=null">
+                 AND en.areaId = #{areaId}
+             </if>
+             <if test="batch!=null">
+                 AND en.batch = #{batch}
+             </if>
+             <if test="universityName!=null">
+                 AND un.`name` = #{universityName}
+             </if>
+             <if test="majorType!=null">
+                 AND en.university_major_type = #{majorType}
+             </if>
+             <if test="startYear!=null">
+                 AND en.year &gt;= #{startYear}
+             </if>
+             <if test="endYear!=null">
+                 AND en.year &lt;= #{endYear}
+             </if>
+         </where>
+        order by average_score desc
+    </select>
 </mapper>
 

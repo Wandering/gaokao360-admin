@@ -24,7 +24,7 @@ public interface IGkProfessionalService {
      * @param id
      * @return
      */
-    GkProfessionDTO getProfessionalInfo(Object id);
+    GkProfessionDTO getProfessionalInfo(Map<String, Object> conditions,Object id);
 
     /**
      * 获取职业分类

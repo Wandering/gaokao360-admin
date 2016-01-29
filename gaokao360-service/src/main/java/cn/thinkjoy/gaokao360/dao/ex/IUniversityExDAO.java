@@ -30,4 +30,9 @@ public interface IUniversityExDAO extends IBaseDAO<UniversityDTO>{
     List<UniversityPlanChartDTO> queryUniversityPlanChart(Map<String,Object> params);
 
     List<UniversityEnrollingChartDTO> queryUniversityEnrollingChart(Map<String,Object> params);
+
+    List<Map<String,Object>> queryPredictUniversityInfo(Map<String, Object> params);
+
+    List<Map<String,Object>> queryPredictProbability(Map<String, Object> params);
+
 }
