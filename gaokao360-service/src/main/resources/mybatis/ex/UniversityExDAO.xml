@@ -407,16 +407,19 @@ selectList
     <select id="queryPredictUniversityInfo" resultType="java.util.HashMap">
         select en.university_id as universityId,
         un.`name` as universityName,
+        un.subjection as province,
+        un.rank as rank,
+        un.property as feature,
         en.batch as batch,
         en.areaId as areaId,
         Case When en.university_major_type='1' then '文史'
         When en.university_major_type='2' then '理工'
         else '' end as major_type,
         GROUP_CONCAT(en.average_score order by en.average_score desc SEPARATOR '@@') as averageScoreList,
-        AVG(en.lowest_score) as avgLowestScore
+        Case when AVG(en.lowest_score) then AVG(en.lowest_score)
+        else 0 end as avgLowestScore
         from zgk_university_enrolling en
         inner join zgk_university un on en.university_id = un.id
-        where
         <where>
             1=1
             <if test="areaId!=null">
@@ -466,7 +469,7 @@ selectList
                  AND en.year &lt;= #{endYear}
              </if>
          </where>
-        order by lowest_score desc
+        order by average_score desc
     </select>
 </mapper>
 
