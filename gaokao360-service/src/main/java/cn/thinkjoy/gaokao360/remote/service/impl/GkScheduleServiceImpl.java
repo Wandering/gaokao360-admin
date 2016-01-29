@@ -48,14 +48,16 @@ public class GkScheduleServiceImpl implements IGkScheduleService {
             year = calendar.get(Calendar.YEAR);
             month = calendar.get(Calendar.MONTH);
             if(month==0){
-                month=1;
-                calendar.add(Calendar.MONTH, +2);
+                month=12;
+                year=year-1;
+                calendar.add(Calendar.MONTH, +1);
             }else {
                 calendar.add(Calendar.MONTH, +1);
             }
             if(showMonth!=null && showMonth!=month ){
                 continue;
             }
+
             map=new HashMap<>();
             map.put("years",year);
             map.put("month",month);
@@ -75,6 +77,7 @@ public class GkScheduleServiceImpl implements IGkScheduleService {
                 gkScheduleDTO.setSchedules(schedule2GkSchedule(schedules));
             }
             gkScheduleDTOs.add(gkScheduleDTO);
+
         }
         return gkScheduleDTOs;
     }
