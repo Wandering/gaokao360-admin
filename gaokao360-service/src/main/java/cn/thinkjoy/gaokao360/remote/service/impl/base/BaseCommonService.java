@@ -44,12 +44,12 @@ public class BaseCommonService {
         if (conditions.containsKey("orderBy")) {
             orderBy = conditions.get("orderBy").toString();
         }else {
-            conditions.put("orderBy","desc");
+            conditions.put("orderBy","lastModDate");
         }
         if (conditions.containsKey("sortBy")) {
             sortBy = conditions.get("sortBy").toString();
         }else {
-            conditions.put("sortBy","lastModDate");
+            conditions.put("sortBy","desc");
         }
         enhanceSearchFilter(conditions);
         List mainData = dao.queryPage(conditions, offset, rows, orderBy, sortBy,null);
