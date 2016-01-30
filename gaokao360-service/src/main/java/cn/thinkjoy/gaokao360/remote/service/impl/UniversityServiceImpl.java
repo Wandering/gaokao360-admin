@@ -175,11 +175,10 @@ public class UniversityServiceImpl implements IUniversityService {
 
     @Override
     public Map<String, Object> getPredictUniversityInfo(Map<String, Object> params) {
-        Map<String, Object> resultMap = new LinkedHashMap<>();
-        resultMap.putAll(params);
         params.put("majorType",params.get("type"));
         params.put("startYear", 2012);
         params.put("endYear", 2014);
+        Map<String, Object> resultMap = new LinkedHashMap<>();
         List<Map<String, Object>> dataList = universityExService.getPredictUniversityInfo(params);
         caculateUniversityLists(params, resultMap, dataList);
         return resultMap;
@@ -301,14 +300,13 @@ public class UniversityServiceImpl implements IUniversityService {
     @Override
     public Map<String, Object> getPredictProbability(Map<String, Object> params) {
         params.put("majorType",params.get("type"));
-        Map<String, Object> resultMap = new LinkedHashMap<>();
-        resultMap.putAll(params);
         params.put("startYear", 2012);
         params.put("endYear", 2014);
         List<Map<String, Object>> dataList = universityExService.getPredictProbability(params);
-        String score = params.get("score")+"";
+        Map<String, Object> resultMap = new LinkedHashMap<>();
         if(dataList.size()>0)
         {
+            String score = params.get("score")+"";
             BigDecimal valueC = new BigDecimal(score);
             getBatch(resultMap, params.get("type")+"" , valueC);
             List<Map<String, Object>> historyList = new ArrayList<>();
