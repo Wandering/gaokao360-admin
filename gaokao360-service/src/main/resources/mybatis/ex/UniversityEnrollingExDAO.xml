@@ -113,41 +113,53 @@ selectList
     </select>
 
     <select id="count" resultType="java.lang.Integer">
-        SELECT count(enrolling.id)  FROM
-        zgk_university_enrolling enrolling
-        LEFT OUTER JOIN zgk_university university ON university.id=enrolling.university_id
-        LEFT JOIN zgk_province province ON province.id=enrolling.areaid
-        LEFT JOIN zgk_data_dict batchdict ON batchdict.dictId=enrolling.batch AND batchdict.type='MAJOR_BATCH'
-        LEFT JOIN zgk_data_dict typedict ON typedict.dictId=enrolling.university_major_type AND typedict.type='UNIVERSITY_MAJOR_TYPE'
-       <where>
-           <if test="queryparam!=null">
-               AND
-               (
-               province.name  LIKE  #{queryparam.data},
-               OR batchdict.name  LIKE  #{queryparam.data},
-               OR typedict.name  LIKE  #{queryparam.data},
-               OR enrolling.year  LIKE  #{queryparam.data},
-               )
-           </if>
-           <if test="enrollingyear!=null">
-               ${groupOp} enrolling.year ${enrollingyear.op}  #{enrollingyear.data}
-           </if>
-           <if test="universityareaid!=null">
-               ${groupOp} enrolling.areaid ${universityareaid.op}  #{universityareaid.data}
-           </if>
-           <if test="universityname!=null">
-               ${groupOp} university.name ${universityname.op}  #{universityname.data}
-           </if>
-           <if test="universityproperty!=null">
-               ${groupOp} university.property ${universityproperty.op}  #{universityproperty.data}
-           </if>
-           <if test="enrollingbatch!=null">
-               ${groupOp} enrolling.batch ${enrollingbatch.op}  #{enrollingbatch.data}
-           </if>
-           <if test="enrollinguniversityMajorType!=null">
-               ${groupOp} enrolling.university_major_type ${enrollinguniversityMajorType.op}  #{enrollinguniversityMajorType.data}
-           </if>
-       </where>
+        SELECT
+           count(*)
+        FROM
+        (select * FROM zgk_university uu
+        where 1=1
+        <if test="condition.universityname!=null">
+            ${condition.groupOp} uu.name ${condition.universityname.op}  #{condition.universityname.data}
+        </if>
+        <if test="condition.universityid!=null">
+            ${condition.groupOp} uu.id ${condition.universityid.op}  #{condition.universityid.data}
+        </if>
+        <if test="condition.universityproperty!=null">
+            ${condition.groupOp} uu.property ${condition.universityproperty.op}  #{condition.universityproperty.data}
+        </if>
+        ) university
+        LEFT OUTER JOIN zgk_university_enrolling enrolling ON university.id=enrolling.university_id
+        <where>
+            1=1
+            <if test="condition.whereSql != null">
+                and id in (#{condition.whereSql})
+            </if>
+            <if test="condition.queryparam!=null">
+                AND
+                (
+                province.name  LIKE  #{condition.queryparam.data},
+                OR batchdict.name  LIKE  #{condition.queryparam.data},
+                OR typedict.name  LIKE  #{condition.queryparam.data},
+                OR enrolling.year  LIKE  #{condition.queryparam.data}
+                )
+            </if>
+            <if test="condition.enrollingyear!=null">
+                ${condition.groupOp} enrolling.year ${condition.enrollingyear.op}  #{condition.enrollingyear.data}
+            </if>
+            <if test="condition.universityareaid!=null">
+                ${condition.groupOp} enrolling.areaid ${condition.universityareaid.op}  #{condition.universityareaid.data}
+            </if>
+
+            <if test="condition.enrollingbatch!=null">
+                ${condition.groupOp} enrolling.batch ${condition.enrollingbatch.op}  #{condition.enrollingbatch.data}
+            </if>
+            <if test="condition.enrollinguniversityMajorType!=null">
+                ${condition.groupOp} enrolling.university_major_type ${condition.enrollinguniversityMajorType.op}  #{condition.enrollinguniversityMajorType.data}
+            </if>
+            <if test="condition.entype!=null">
+                ${condition.groupOp} enrolling.university_major_type ${condition.entype.op}  #{condition.entype.data}
+            </if>
+        </where>
     </select>
     <select id="fetch" parameterType="java.lang.Long" resultType="cn.thinkjoy.gaokao360.dto.UniversityEnrollingDTO">
         SELECT
