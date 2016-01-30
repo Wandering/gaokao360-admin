@@ -8,6 +8,7 @@ import cn.thinkjoy.gaokao360.service.common.IProfessionDetailService;
 import cn.thinkjoy.gaokao360.service.common.IProfessionService;
 import cn.thinkjoy.gaokao360.service.common.IProfessionTypeService;
 import com.alibaba.dubbo.config.annotation.Service;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -57,37 +58,41 @@ public class ImportMain {
     protected String  innerHandleImport(List<Map<String,String>> list){
         int i= 0;
         for(Map<String,String> map:list){
-            Map<String,Object> map1=new HashMap();
-            map1.put("professionType",map.get("所属行业").toString().trim());
-            ProfessionType professionType1=(ProfessionType)professionTypeService.queryOne(map1);
-            if(professionType1==null){
-                professionType1=new ProfessionType();
-                professionType1.setProfessionType(map.get("所属行业").toString().trim());
-                professionTypeService.insert(professionType1);
-                professionType1=(ProfessionType)professionTypeService.queryOne(map1);
-            }
-            map1=new HashMap();
-            map1.put("professionType",map.get("职业分类").toString().trim());
-            map1.put("pid",professionType1.getId());
-            ProfessionType professionType2=(ProfessionType)professionTypeService.queryOne(map1);
-            if(professionType2==null){
-                professionType2=new ProfessionType();
-                professionType2.setProfessionType(map.get("职业分类").toString().trim());
-                professionType2.setPid(professionType1.getId());
-                professionTypeService.insert(professionType2);
-                professionType2=(ProfessionType)professionTypeService.queryOne(map1);
-            }
-            map1=new HashMap();
-            map1.put("professionName",map.get("职业名称").toString().trim());
-            Profession profession=(Profession)professionService.queryOne(map1);
-            if(profession==null){
-                profession=new Profession();
-                profession.setProfessionName(map.get("职业名称").toString().trim());
-                profession.setProfessionType(professionType2.getPid().toString());
-                profession.setProfessionSubType(professionType2.getId().toString());
-                profession.setIdDelete(false);
-                profession.setProfessionShort("简介");
-                professionService.insert(profession);
+            try {
+                Map<String, Object> map1 = new HashMap();
+                map1.put("professionType", map.get("所属行业").toString().trim());
+                ProfessionType professionType1 = (ProfessionType) professionTypeService.queryOne(map1);
+                if (professionType1 == null) {
+                    professionType1 = new ProfessionType();
+                    professionType1.setProfessionType(map.get("所属行业").toString().trim());
+                    professionTypeService.insert(professionType1);
+                    professionType1 = (ProfessionType) professionTypeService.queryOne(map1);
+                }
+                map1 = new HashMap();
+                map1.put("professionType", map.get("职业分类").toString().trim());
+                map1.put("pid", professionType1.getId());
+                ProfessionType professionType2 = (ProfessionType) professionTypeService.queryOne(map1);
+                if (professionType2 == null) {
+                    professionType2 = new ProfessionType();
+                    professionType2.setProfessionType(map.get("职业分类").toString().trim());
+                    professionType2.setPid(professionType1.getId());
+                    professionTypeService.insert(professionType2);
+                    professionType2 = (ProfessionType) professionTypeService.queryOne(map1);
+                }
+                map1 = new HashMap();
+                map1.put("professionName", map.get("职业名称").toString().trim());
+                Profession profession = (Profession) professionService.queryOne(map1);
+                if (profession == null) {
+                    profession = new Profession();
+                    profession.setProfessionName(map.get("职业名称").toString().trim());
+                    profession.setProfessionType(professionType2.getPid().toString());
+                    profession.setProfessionSubType(professionType2.getId().toString());
+                    profession.setIdDelete(false);
+                    profession.setProfessionShort("简介");
+                    professionService.insert(profession);
+                }
+            }catch (Exception e){
+                LogFactory.getLog(this.getClass()).debug("当前行是："+i);
             }
 
             System.out.println("当前处理进度："+getPercent(i++,list.size()));
@@ -132,7 +137,7 @@ public class ImportMain {
                 e.printStackTrace();
                 continue;
             }
-            System.out.println("当前处理进度："+getPercent(i++,100));
+            System.out.println("当前处理进度："+getPercent(i++,list.size()));
         }
         return "true";
     }
@@ -160,6 +165,7 @@ public class ImportMain {
     @ResponseBody
     public void test1(){
         this.doImport(new File("C:\\Users\\admin\\Documents\\Tencent Files\\963984443\\FileRecv\\职业信息ok.xls"));
+//        this.doImport(new File("C:\\Users\\admin\\Documents\\Tencent Files\\963984443\\FileRecv\\职业ok .xls"));
     }
     public String getPercent(int x,int total){
         String result="";//接受百分比的值
