@@ -331,37 +331,34 @@ public class UniversityServiceImpl implements IUniversityService {
     }
 
     private void getProbability(Map<String, Object> resultMap, List<Map<String, Object>> dataList, BigDecimal valueC) {
-        if(dataList.size()==3)
+        int highScore = Integer.parseInt(dataList.get(0).get("avgScore")+"");
+        int midScore = Integer.parseInt(dataList.get(1).get("avgScore")+"");
+        int lowScore = Integer.parseInt(dataList.get(2).get("avgScore")+"");
+        BigDecimal valueA = new BigDecimal(highScore+midScore+lowScore).divide(new BigDecimal(3),2,BigDecimal.ROUND_HALF_UP);
+        BigDecimal valueB = new BigDecimal(highScore*2).subtract(new BigDecimal(lowScore*2)).divide(new BigDecimal(3),2,BigDecimal.ROUND_HALF_UP);
+        BigDecimal valueD = valueC.divide(valueA.add(valueB),2,BigDecimal.ROUND_HALF_UP);
+        if(valueD.longValue() > valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP).add(new BigDecimal(1)).longValue())
         {
-            int highScore = Integer.parseInt(dataList.get(0).get("avgScore")+"");
-            int midScore = Integer.parseInt(dataList.get(1).get("avgScore")+"");
-            int lowScore = Integer.parseInt(dataList.get(2).get("avgScore")+"");
-            BigDecimal valueA = new BigDecimal(highScore+midScore+lowScore).divide(new BigDecimal(3),2,BigDecimal.ROUND_HALF_UP);
-            BigDecimal valueB = new BigDecimal(highScore*2).subtract(new BigDecimal(lowScore*2)).divide(new BigDecimal(3),2,BigDecimal.ROUND_HALF_UP);
-            BigDecimal valueD = valueC.divide(valueA.add(valueB),2,BigDecimal.ROUND_HALF_UP);
-            if(valueD.longValue() > valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP).add(new BigDecimal(1)).longValue())
-            {
-                resultMap.put("probability", 4);
-            }
-            else if(valueD.longValue() <= valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP).add(new BigDecimal(1)).longValue()
-                    && valueD.longValue()>1)
-            {
-                resultMap.put("probability", 3);
-            }
-            else if(valueD.longValue() <= 1 &&
-               valueD.longValue() > new BigDecimal(1).subtract(valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP)).longValue())
-            {
-                resultMap.put("probability", 2);
-            }
-            else if(valueD.longValue() <= new BigDecimal(1).subtract(valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP)).longValue()
-                    && valueD.longValue() >= new BigDecimal(1).subtract(valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP).multiply(new BigDecimal(2))).longValue())
-            {
-                resultMap.put("probability", 1);
-            }
-            else
-            {
-                resultMap.put("probability", 1);
-            }
+            resultMap.put("probability", 4);
+        }
+        else if(valueD.longValue() <= valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP).add(new BigDecimal(1)).longValue()
+                && valueD.longValue()>1)
+        {
+            resultMap.put("probability", 3);
+        }
+        else if(valueD.longValue() <= 1 &&
+           valueD.longValue() > new BigDecimal(1).subtract(valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP)).longValue())
+        {
+            resultMap.put("probability", 2);
+        }
+        else if(valueD.longValue() <= new BigDecimal(1).subtract(valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP)).longValue()
+                && valueD.longValue() >= new BigDecimal(1).subtract(valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP).multiply(new BigDecimal(2))).longValue())
+        {
+            resultMap.put("probability", 1);
+        }
+        else
+        {
+            resultMap.put("probability", 1);
         }
     }
 
