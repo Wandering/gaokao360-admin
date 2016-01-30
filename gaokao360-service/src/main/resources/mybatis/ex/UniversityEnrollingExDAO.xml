@@ -129,6 +129,11 @@ selectList
         </if>
         ) university
         LEFT OUTER JOIN zgk_university_enrolling enrolling ON university.id=enrolling.university_id
+        <if test="condition.queryparam!=null">
+        LEFT JOIN zgk_province province ON province.id=enrolling.areaid
+        LEFT JOIN zgk_data_dict batchdict ON batchdict.dictId=enrolling.batch AND batchdict.type='MAJOR_BATCH'
+        LEFT JOIN zgk_data_dict typedict ON typedict.dictId=enrolling.university_major_type AND typedict.type='UNIVERSITY_MAJOR_TYPE'
+        </if>
         <where>
             1=1
             <if test="condition.whereSql != null">
