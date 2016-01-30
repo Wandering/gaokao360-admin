@@ -354,7 +354,7 @@ public class UniversityServiceImpl implements IUniversityService {
             setProbability(resultMap, valueA, valueB, valueD);
         }else
         {
-            throw new BizException("warnning", "暂无相关数据!");
+            resultMap.put("probability", 0);
         }
     }
 
