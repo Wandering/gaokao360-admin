@@ -311,7 +311,6 @@ public class UniversityServiceImpl implements IUniversityService {
         {
             BigDecimal valueC = new BigDecimal(score);
             getBatch(resultMap, params.get("type")+"" , valueC);
-            getProbability(resultMap, dataList, valueC);
             List<Map<String, Object>> historyList = new ArrayList<>();
             for (Map<String, Object> map : dataList)
             {
@@ -320,6 +319,7 @@ public class UniversityServiceImpl implements IUniversityService {
                     historyList.add(map);
                 }
             }
+            getProbability(resultMap, historyList, valueC);
             Collections.sort(historyList, new Comparator<Map<String, Object>>() {
                 @Override
                 public int compare(Map<String, Object> o1, Map<String, Object> o2) {
@@ -344,7 +344,7 @@ public class UniversityServiceImpl implements IUniversityService {
             valueB = new BigDecimal(highScore*2).subtract(new BigDecimal(lowScore*2)).divide(new BigDecimal(3),2,BigDecimal.ROUND_HALF_UP);
             valueD = valueC.divide(valueA.add(valueB),2,BigDecimal.ROUND_HALF_UP);
             setProbability(resultMap, valueA, valueB, valueD);
-        }if(dataList.size() == 2)
+        }else if(dataList.size() == 2)
         {
             int highScore = Integer.parseInt(dataList.get(0).get("avgScore")+"");
             int lowScore = Integer.parseInt(dataList.get(1).get("avgScore")+"");
@@ -352,7 +352,8 @@ public class UniversityServiceImpl implements IUniversityService {
             valueB = new BigDecimal(highScore).subtract(new BigDecimal(lowScore)).setScale(2, BigDecimal.ROUND_HALF_UP);
             valueD = valueC.divide(valueA.add(valueB),2,BigDecimal.ROUND_HALF_UP);
             setProbability(resultMap, valueA, valueB, valueD);
-        }else
+        }
+        else
         {
             resultMap.put("probability", 0);
         }
