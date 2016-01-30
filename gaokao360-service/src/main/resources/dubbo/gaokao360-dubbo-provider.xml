@@ -56,4 +56,10 @@
     <!--高考词条-->
     <bean id="gkEntryServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.GkEntryServiceImpl" />
     <dubbo:service id="gkEntryService" interface="cn.thinkjoy.zgk.remote.IGkEntryService" ref="gkEntryServiceImpl"/>
+
+    <!--专业测评-->
+    <bean id="zgkApeskServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.ZgkApeskServiceImpl" />
+    <dubbo:service id="zgkApeskService" interface="cn.thinkjoy.zgk.remote.IZgkApeskService" ref="zgkApeskServiceImpl"/>
+    <bean id="zgkApeskCourseServiceImpl" class="cn.thinkjoy.gaokao360.remote.service.impl.ZgkApeskCourseServiceImpl" />
+    <dubbo:service id="zgkApeskCourseService" interface="cn.thinkjoy.zgk.remote.IZgkApeskService" ref="zgkApeskCourseServiceImpl"/>
 </beans>
