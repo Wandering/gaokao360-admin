@@ -116,9 +116,13 @@ selectList
         SELECT count(enrolling.id)  FROM
         zgk_university_enrolling enrolling
         LEFT OUTER JOIN zgk_university university ON university.id=enrolling.university_id
-        <if test="queryparam!=null">
+        <if test="universityareaid!=null">
         LEFT JOIN zgk_province province ON province.id=enrolling.areaid
+        </if>
+        <if test="enrollingbatch!=null">
         LEFT JOIN zgk_data_dict batchdict ON batchdict.dictId=enrolling.batch AND batchdict.type='MAJOR_BATCH'
+        </if>
+        <if test="entype!=null">
         LEFT JOIN zgk_data_dict typedict ON typedict.dictId=enrolling.batch AND typedict.type='UNIVERSITY_MAJOR_TYPE'
         </if>
         <where>
@@ -148,6 +152,9 @@ selectList
             </if>
             <if test="enrollinguniversityMajorType!=null">
                 ${groupOp} enrolling.university_major_type ${enrollinguniversityMajorType.op}  #{enrollinguniversityMajorType.data}
+            </if>
+            <if test="entype!=null">
+                ${groupOp} enrolling.university_major_type ${entype.op}  #{entype.data}
             </if>
         </where>
     </select>
