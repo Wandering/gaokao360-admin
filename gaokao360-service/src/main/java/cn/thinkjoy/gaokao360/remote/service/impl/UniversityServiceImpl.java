@@ -306,9 +306,9 @@ public class UniversityServiceImpl implements IUniversityService {
         params.put("endYear", 2014);
         List<Map<String, Object>> dataList = universityExService.getPredictProbability(params);
         String score = params.get("score")+"";
-        BigDecimal valueC = new BigDecimal(score);
         if(dataList.size()>0)
         {
+            BigDecimal valueC = new BigDecimal(score);
             getBatch(resultMap, dataList, valueC);
             getProbability(resultMap, dataList, valueC);
             List<Map<String, Object>> historyList = new ArrayList<>();
@@ -367,31 +367,43 @@ public class UniversityServiceImpl implements IUniversityService {
 
     private void getBatch(Map<String, Object> resultMap, List<Map<String, Object>> dataList, BigDecimal valueC) {
         for (Map<String, Object> data:dataList) {
-            String lowScore = data.get("minScore")+"";
-            if("1".equals(data.get("batch")+"")&&valueC.longValue()>=new BigDecimal(lowScore).longValue())
+            if(isInteger(data.get("minScore")+""))
             {
-                resultMap.put("batch", "1");
-                break;
+                String lowScore = data.get("minScore")+"";
+                if("1".equals(data.get("batch")+"")&&valueC.longValue()>=new BigDecimal(lowScore).longValue())
+                {
+                    resultMap.put("batch", "1");
+                    break;
+                }
+                else if("2".equals(data.get("batch")+"")&&valueC.longValue()>=new BigDecimal(lowScore).longValue())
+                {
+                    resultMap.put("batch", "2");
+                    break;
+                }
+                else if("3".equals(data.get("batch")+"")&&valueC.longValue()>=new BigDecimal(lowScore).longValue())
+                {
+                    resultMap.put("batch", "3");
+                    break;
+                }
+                else if("8".equals(data.get("batch")+"")&&valueC.longValue()>=new BigDecimal(lowScore).longValue())
+                {
+                    resultMap.put("batch", "8");
+                    break;
+                }
+                else
+                {
+                    resultMap.put("batch", "2");
+                }
             }
-            else if("2".equals(data.get("batch")+"")&&valueC.longValue()>=new BigDecimal(lowScore).longValue())
-            {
-                resultMap.put("batch", "2");
-                break;
-            }
-            else if("3".equals(data.get("batch")+"")&&valueC.longValue()>=new BigDecimal(lowScore).longValue())
-            {
-                resultMap.put("batch", "3");
-                break;
-            }
-            else if("8".equals(data.get("batch")+"")&&valueC.longValue()>=new BigDecimal(lowScore).longValue())
-            {
-                resultMap.put("batch", "8");
-                break;
-            }
-            else
-            {
-                resultMap.put("batch", "2");
-            }
+        }
+    }
+
+    private boolean isInteger(String value) {
+        try {
+            Integer.parseInt(value);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
         }
     }
 }
