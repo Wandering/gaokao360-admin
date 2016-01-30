@@ -444,8 +444,11 @@ selectList
 
     <select id="queryPredictProbability" resultType="java.util.HashMap">
         select un.id as universityId,un.`name` as universityName,en.`year`,
-        en.batch,en.average_score as avgScore,
-        en.lowest_score as minScore,en.real_enrolling_number as enrollingNumber
+        Case WHEN en.batch=1 then '一本' WHEN en.batch=2 then '二本'
+             WHEN en.batch=1 then '三本' ELSE '专科' end as batch,
+        CASE WHEN en.average_score  then en.average_score else '0' end as avgScore,
+        CASE WHEN en.lowest_score then en.lowest_score else '0' end as minScore,
+        en.real_enrolling_number as enrollingNumber
         from zgk_university_enrolling en
         left join zgk_university un on un.id= en.university_id
          <where>

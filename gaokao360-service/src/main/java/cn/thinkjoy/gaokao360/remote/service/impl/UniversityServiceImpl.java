@@ -1,5 +1,6 @@
 package cn.thinkjoy.gaokao360.remote.service.impl;
 
+import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.common.utils.SqlOrderEnum;
 import cn.thinkjoy.gaokao360.common.ServiceImplMaps;
 import cn.thinkjoy.gaokao360.service.common.IDataDictService;
@@ -306,11 +307,10 @@ public class UniversityServiceImpl implements IUniversityService {
         params.put("endYear", 2014);
         List<Map<String, Object>> dataList = universityExService.getPredictProbability(params);
         String score = params.get("score")+"";
-        BigDecimal valueC = new BigDecimal(score);
         if(dataList.size()>0)
         {
-            getBatch(resultMap, dataList, valueC);
-            getProbability(resultMap, dataList, valueC);
+            BigDecimal valueC = new BigDecimal(score);
+            getBatch(resultMap, params.get("type")+"" , valueC);
             List<Map<String, Object>> historyList = new ArrayList<>();
             for (Map<String, Object> map : dataList)
             {
@@ -319,6 +319,7 @@ public class UniversityServiceImpl implements IUniversityService {
                     historyList.add(map);
                 }
             }
+            getProbability(resultMap, historyList, valueC);
             Collections.sort(historyList, new Comparator<Map<String, Object>>() {
                 @Override
                 public int compare(Map<String, Object> o1, Map<String, Object> o2) {
@@ -331,67 +332,117 @@ public class UniversityServiceImpl implements IUniversityService {
     }
 
     private void getProbability(Map<String, Object> resultMap, List<Map<String, Object>> dataList, BigDecimal valueC) {
-        if(dataList.size()==3)
+        BigDecimal valueA;
+        BigDecimal valueB;
+        BigDecimal valueD;
+        if(dataList.size() == 3)
         {
             int highScore = Integer.parseInt(dataList.get(0).get("avgScore")+"");
             int midScore = Integer.parseInt(dataList.get(1).get("avgScore")+"");
             int lowScore = Integer.parseInt(dataList.get(2).get("avgScore")+"");
-            BigDecimal valueA = new BigDecimal(highScore+midScore+lowScore).divide(new BigDecimal(3),2,BigDecimal.ROUND_HALF_UP);
-            BigDecimal valueB = new BigDecimal(highScore*2).subtract(new BigDecimal(lowScore*2)).divide(new BigDecimal(3),2,BigDecimal.ROUND_HALF_UP);
-            BigDecimal valueD = valueC.divide(valueA.add(valueB),2,BigDecimal.ROUND_HALF_UP);
-            if(valueD.longValue() > valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP).add(new BigDecimal(1)).longValue())
+            valueA = new BigDecimal(highScore+midScore+lowScore).divide(new BigDecimal(3),2,BigDecimal.ROUND_HALF_UP);
+            valueB = new BigDecimal(highScore*2).subtract(new BigDecimal(lowScore*2)).divide(new BigDecimal(3),2,BigDecimal.ROUND_HALF_UP);
+            valueD = valueC.divide(valueA.add(valueB),2,BigDecimal.ROUND_HALF_UP);
+            setProbability(resultMap, valueA, valueB, valueD);
+        }else if(dataList.size() == 2)
+        {
+            int highScore = Integer.parseInt(dataList.get(0).get("avgScore")+"");
+            int lowScore = Integer.parseInt(dataList.get(1).get("avgScore")+"");
+            valueA = new BigDecimal(highScore+lowScore).divide(new BigDecimal(2),2,BigDecimal.ROUND_HALF_UP);
+            valueB = new BigDecimal(highScore).subtract(new BigDecimal(lowScore)).setScale(2, BigDecimal.ROUND_HALF_UP);
+            valueD = valueC.divide(valueA.add(valueB),2,BigDecimal.ROUND_HALF_UP);
+            setProbability(resultMap, valueA, valueB, valueD);
+        }
+        else
+        {
+            resultMap.put("probability", 0);
+        }
+    }
+
+    private void setProbability(Map<String, Object> resultMap, BigDecimal valueA, BigDecimal valueB, BigDecimal valueD) {
+        if(valueD.longValue() > valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP).add(new BigDecimal(1)).longValue())
+        {
+            resultMap.put("probability", 4);
+        }
+        else if(valueD.longValue() <= valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP).add(new BigDecimal(1)).longValue()
+                && valueD.longValue()>1)
+        {
+            resultMap.put("probability", 3);
+        }
+        else if(valueD.longValue() <= 1 &&
+                valueD.longValue() > new BigDecimal(1).subtract(valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP)).longValue())
+        {
+            resultMap.put("probability", 2);
+        }
+        else if(valueD.longValue() <= new BigDecimal(1).subtract(valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP)).longValue()
+                && valueD.longValue() >= new BigDecimal(1).subtract(valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP).multiply(new BigDecimal(2))).longValue())
+        {
+            resultMap.put("probability", 1);
+        }
+        else
+        {
+            resultMap.put("probability", 1);
+        }
+    }
+
+    private void getBatch(Map<String, Object> resultMap, String type, BigDecimal valueC) {
+        if("1".equals(type))
+        {
+           if(valueC.longValue()>=626)
+           {
+               resultMap.put("batch", "一本");
+           }
+           else if(valueC.longValue()>=472)
+           {
+               resultMap.put("batch", "二本");
+           }
+           else if(valueC.longValue()>=400)
+           {
+               resultMap.put("batch", "三本");
+           }else{
+               resultMap.put("batch", "专科");
+           }
+        }
+        else
+        {
+            if(valueC.longValue()>=605)
             {
-                resultMap.put("probability", 4);
+                resultMap.put("batch", "一本");
             }
-            else if(valueD.longValue() <= valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP).add(new BigDecimal(1)).longValue()
-                    && valueD.longValue()>1)
+            else if(valueC.longValue()>=428)
             {
-                resultMap.put("probability", 3);
+                resultMap.put("batch", "二本");
             }
-            else if(valueD.longValue() <= 1 &&
-               valueD.longValue() > new BigDecimal(1).subtract(valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP)).longValue())
+            else if(valueC.longValue()>=380)
             {
-                resultMap.put("probability", 2);
-            }
-            else if(valueD.longValue() <= new BigDecimal(1).subtract(valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP)).longValue()
-                    && valueD.longValue() >= new BigDecimal(1).subtract(valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP).multiply(new BigDecimal(2))).longValue())
-            {
-                resultMap.put("probability", 1);
-            }
-            else
-            {
-                resultMap.put("probability", 1);
+                resultMap.put("batch", "三本");
+            }else{
+                resultMap.put("batch", "专科");
             }
         }
     }
 
-    private void getBatch(Map<String, Object> resultMap, List<Map<String, Object>> dataList, BigDecimal valueC) {
-        for (Map<String, Object> data:dataList) {
-            String lowScore = data.get("minScore")+"";
-            if("1".equals(data.get("batch")+"")&&valueC.longValue()>=new BigDecimal(lowScore).longValue())
-            {
-                resultMap.put("batch", "1");
-                break;
-            }
-            else if("2".equals(data.get("batch")+"")&&valueC.longValue()>=new BigDecimal(lowScore).longValue())
-            {
-                resultMap.put("batch", "2");
-                break;
-            }
-            else if("3".equals(data.get("batch")+"")&&valueC.longValue()>=new BigDecimal(lowScore).longValue())
-            {
-                resultMap.put("batch", "3");
-                break;
-            }
-            else if("8".equals(data.get("batch")+"")&&valueC.longValue()>=new BigDecimal(lowScore).longValue())
-            {
-                resultMap.put("batch", "8");
-                break;
-            }
-            else
-            {
-                resultMap.put("batch", "2");
-            }
+    private boolean isInteger(String value) {
+        try {
+            Integer.parseInt(value);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
         }
+    }
+
+    private boolean isDouble(String value) {
+        try {
+            Double.parseDouble(value);
+            if (value.contains("."))
+                return true;
+            return false;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    private boolean isNumber(String value) {
+        return isInteger(value) || isDouble(value);
     }
 }
