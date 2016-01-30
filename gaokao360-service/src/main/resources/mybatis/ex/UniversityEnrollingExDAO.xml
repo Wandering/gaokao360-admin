@@ -110,7 +110,7 @@ selectList
         LEFT OUTER JOIN zgk_university university ON university.id=enrolling.university_id
         LEFT JOIN zgk_province province ON province.id=enrolling.areaid
         LEFT JOIN zgk_data_dict batchdict ON batchdict.dictId=enrolling.batch AND batchdict.type='MAJOR_BATCH'
-        LEFT JOIN zgk_data_dict typedict ON typedict.dictId=enrolling.batch AND typedict.type='UNIVERSITY_MAJOR_TYPE'
+        LEFT JOIN zgk_data_dict typedict ON typedict.dictId=enrolling.university_major_type AND typedict.type='UNIVERSITY_MAJOR_TYPE'
        <where>
            <if test="queryparam!=null">
                AND
@@ -149,7 +149,7 @@ selectList
         LEFT OUTER JOIN zgk_university university ON university.id=enrolling.university_id
         LEFT JOIN zgk_province province ON province.id=enrolling.areaid
         LEFT JOIN zgk_data_dict batchdict ON batchdict.dictId=enrolling.batch AND batchdict.type='MAJOR_BATCH'
-        LEFT JOIN zgk_data_dict typedict ON typedict.dictId=enrolling.batch AND typedict.type='UNIVERSITY_MAJOR_TYPE'
+        LEFT JOIN zgk_data_dict typedict ON typedict.dictId=enrolling.university_major_type AND typedict.type='UNIVERSITY_MAJOR_TYPE'
         <where>
             enrolling.id = #{id}
         </where>
