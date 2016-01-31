@@ -397,8 +397,11 @@ public class UniversityServiceImpl implements IUniversityService {
            else if(valueC.longValue()>=400)
            {
                resultMap.put("batch", "三本");
-           }else{
+           }else if(valueC.longValue()>=300){
                resultMap.put("batch", "专科");
+           }else
+           {
+               resultMap.put("batch", "无匹配批次");
            }
         }
         else
@@ -414,8 +417,11 @@ public class UniversityServiceImpl implements IUniversityService {
             else if(valueC.longValue()>=380)
             {
                 resultMap.put("batch", "三本");
-            }else{
+            }else if(valueC.longValue()>=300){
                 resultMap.put("batch", "专科");
+            }else
+            {
+                resultMap.put("batch", "无匹配批次");
             }
         }
     }
