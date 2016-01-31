@@ -67,12 +67,12 @@ selectList
             ${condition.groupOp} uu.property ${condition.universityproperty.op}  #{condition.universityproperty.data}
         </if>
         ORDER BY  uu.lastModDate DESC
-        <if test="condition.universityname==null and condition.universityid==null and condition.universityproperty==null">
+        <if test="condition.universityname==null and condition.universityid==null and condition.universityproperty==null and universityareaid==null">
             limit 10
         </if>
         ) university
         LEFT OUTER JOIN zgk_university_enrolling enrolling ON university.id=enrolling.university_id
-        LEFT JOIN zgk_province province ON province.id=enrolling.areaid
+        LEFT JOIN zgk_province province ON province.id=university.areaid
         LEFT JOIN zgk_data_dict batchdict ON batchdict.dictId=enrolling.batch AND batchdict.type='MAJOR_BATCH'
         LEFT JOIN zgk_data_dict typedict ON typedict.dictId=enrolling.university_major_type AND typedict.type='UNIVERSITY_MAJOR_TYPE'
         <where>
@@ -93,7 +93,7 @@ selectList
                 ${condition.groupOp} enrolling.year ${condition.enrollingyear.op}  #{condition.enrollingyear.data}
             </if>
             <if test="condition.universityareaid!=null">
-                ${condition.groupOp} enrolling.areaid ${condition.universityareaid.op}  #{condition.universityareaid.data}
+                ${condition.groupOp} university.areaid ${condition.universityareaid.op}  #{condition.universityareaid.data}
             </if>
 
             <if test="condition.enrollingbatch!=null">
@@ -117,7 +117,7 @@ selectList
         zgk_university_enrolling enrolling
         LEFT OUTER JOIN zgk_university university ON university.id=enrolling.university_id
         <if test="universityareaid!=null">
-        LEFT JOIN zgk_province province ON province.id=enrolling.areaid
+        LEFT JOIN zgk_province province ON province.id=university.areaid
         </if>
         <if test="enrollingbatch!=null">
         LEFT JOIN zgk_data_dict batchdict ON batchdict.dictId=enrolling.batch AND batchdict.type='MAJOR_BATCH'
@@ -139,7 +139,7 @@ selectList
                 ${groupOp} enrolling.year ${enrollingyear.op}  #{enrollingyear.data}
             </if>
             <if test="universityareaid!=null">
-                ${groupOp} enrolling.areaid ${universityareaid.op}  #{universityareaid.data}
+                ${groupOp} university.areaid ${universityareaid.op}  #{universityareaid.data}
             </if>
             <if test="universityname!=null">
                 ${groupOp} university.name ${universityname.op}  #{universityname.data}
