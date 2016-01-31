@@ -66,7 +66,7 @@ selectList
         <if test="condition.universityproperty!=null">
             ${condition.groupOp} uu.property ${condition.universityproperty.op}  #{condition.universityproperty.data}
         </if>
-        ORDER BY  uu.lastModDate DESC
+        ORDER BY  uu.id DESC
         <if test="condition.universityname==null and condition.universityid==null and condition.universityproperty==null and condition.universityareaid">
             limit 10
         </if>
