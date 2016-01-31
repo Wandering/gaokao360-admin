@@ -106,7 +106,7 @@ selectList
                 ${condition.groupOp} enrolling.university_major_type ${condition.entype.op}  #{condition.entype.data}
             </if>
         </where>
-        ORDER BY  university.lastModDate DESC
+        ORDER BY  university.id DESC
         <if test="offset != null">
             limit ${offset}, ${rows}
         </if>
