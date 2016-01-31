@@ -260,7 +260,7 @@ selectList
             </if>
 
         </where>
-            ORDER BY university.lastModifier DESC
+            ORDER BY university.id ASC
         <if test="offset != null">
             limit ${offset}, ${rows}
         </if>
