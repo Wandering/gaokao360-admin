@@ -4,6 +4,8 @@ import cn.thinkjoy.common.dao.IBaseDAO;
 import cn.thinkjoy.common.domain.SearchField;
 import cn.thinkjoy.common.domain.SearchFilter;
 import cn.thinkjoy.common.enumration.SearchEnum;
+import cn.thinkjoy.common.service.IBaseService;
+import cn.thinkjoy.common.utils.SqlOrderEnum;
 import cn.thinkjoy.zgk.domain.BizData4Page;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Maps;
@@ -37,7 +39,7 @@ public class BaseCommonService {
      * @param rows
      * @return
      */
-    public BizData4Page createBizData4Page(IBaseDAO dao, Map<String, Object> conditions, int curPage, int offset, int rows){
+    public BizData4Page createBizData4Page(IBaseService service, Map<String, Object> conditions, int curPage, int offset, int rows){
 
         String orderBy = null;
         String sortBy = null;
@@ -45,17 +47,17 @@ public class BaseCommonService {
         if (conditions.containsKey("orderBy")) {
             orderBy = conditions.get("orderBy").toString();
         }else {
-            conditions.put("orderBy","lastModDate");
+            orderBy="lastModDate";
         }
         if (conditions.containsKey("sortBy")) {
             sortBy = conditions.get("sortBy").toString();
         }else {
-            conditions.put("sortBy","desc");
+            sortBy="desc";
         }
         enhanceSearchFilter(conditions);
-        List mainData = dao.queryPage(conditions, offset, rows, orderBy, sortBy,null);
+        List mainData = service.queryPage(conditions, offset, rows, orderBy, SqlOrderEnum.DESC.valueOf(sortBy.toUpperCase()));
         mainData=(List)enhanceStateTransition(mainData);
-        int records = dao.count(conditions);
+        int records = service.count(conditions);
 
         BizData4Page bizData4Page = new BizData4Page();
         bizData4Page.setRows(mainData);
@@ -77,7 +79,7 @@ public class BaseCommonService {
         return bizData4Page;
     }
 
-    protected BizData4Page doPage(Map<String, Object> conditions,IBaseDAO dao,Integer page,Integer rows){
+    protected BizData4Page doPage(Map<String, Object> conditions,IBaseService service,Integer page,Integer rows){
         if(page==null){
             page = 1;
         }
@@ -85,7 +87,7 @@ public class BaseCommonService {
             rows = 10;
         }
         enhanceSortBy(conditions);
-        return createBizData4Page(dao,conditions, page, (page - 1) * rows, rows);
+        return createBizData4Page(service,conditions, page, (page - 1) * rows, rows);
     }
 
 

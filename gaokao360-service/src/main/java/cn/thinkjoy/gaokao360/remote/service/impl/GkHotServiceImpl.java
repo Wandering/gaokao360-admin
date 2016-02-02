@@ -29,7 +29,7 @@ public class GkHotServiceImpl extends BaseCommonService implements IGkHotService
         if(!conditions.containsKey("isIgnore")) {
             this.setIsIgnore(false);
         }
-        return doPage(conditions,gkinformationGkhotService.getDao(),page,rows);
+        return doPage(conditions,gkinformationGkhotService,page,rows);
     }
 
     @Override

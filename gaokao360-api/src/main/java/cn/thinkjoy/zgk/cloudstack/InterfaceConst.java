@@ -13,13 +13,13 @@ public abstract class InterfaceConst {
         INTERFACEMETHODS.add("getGkEntryInfo");
         INTERFACEMETHODS.add("getGkHotList");
         INTERFACEMETHODS.add("getGkHotInfo");
-        INTERFACEMETHODS.add("getGkPhoneList");
+//        INTERFACEMETHODS.add("getGkPhoneList");
         INTERFACEMETHODS.add("getGkPolicyList");
         INTERFACEMETHODS.add("getGkPolicyInfo");
         INTERFACEMETHODS.add("getGkPolicyInfo");
-        INTERFACEMETHODS.add("getGkVideoList");
-        INTERFACEMETHODS.add("getGkVideoInfo");
-        INTERFACEMETHODS.add("hitInc");
+//        INTERFACEMETHODS.add("getGkVideoList");
+//        INTERFACEMETHODS.add("getGkVideoInfo");
+//        INTERFACEMETHODS.add("hitInc");
     }
 
     public static boolean hasWhiteList(String name) {

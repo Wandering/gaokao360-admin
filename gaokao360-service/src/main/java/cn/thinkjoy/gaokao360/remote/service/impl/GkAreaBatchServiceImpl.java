@@ -27,7 +27,7 @@ public class GkAreaBatchServiceImpl extends BaseCommonService implements IGkArea
     private IAreabatchLineExService areabatchLineExService;
     @Override
     public BizData4Page getGkAreaBatchList(Map<String, Object> conditions, Integer page, Integer rows) {
-        return doPage(conditions,areabatchLineExService.getDao(),page,rows);
+        return doPage(conditions,areabatchLineExService,page,rows);
     }
 
     @Override

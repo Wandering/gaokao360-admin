@@ -5,7 +5,7 @@
  * $Id:  VocabularyService.java 2015-12-26 17:06:05 $
  */
 
-package cn.thinkjoy.gaokao360.service.common;
+package cn.thinkjoy.gaokao360.service.differentiation;
 import cn.thinkjoy.common.dao.IBaseDAO;
 import cn.thinkjoy.common.domain.BaseDomain;
 import cn.thinkjoy.common.service.IBaseService;

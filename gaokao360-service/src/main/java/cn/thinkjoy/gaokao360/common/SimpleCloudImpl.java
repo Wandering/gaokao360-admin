@@ -35,7 +35,7 @@ public class SimpleCloudImpl implements ISimpleCloud{
 
     @Override
     public void setArea(String area) {
-//        UserAreaContext.setCurrentUserArea(area);
+        UserAreaContext.setCurrentUserArea(area);
     }
 
 }

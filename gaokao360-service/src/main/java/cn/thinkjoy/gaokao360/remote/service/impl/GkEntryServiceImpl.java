@@ -1,9 +1,8 @@
 package cn.thinkjoy.gaokao360.remote.service.impl;
 
-import cn.thinkjoy.common.domain.SearchFilter;
 import cn.thinkjoy.gaokao360.domain.Vocabulary;
 import cn.thinkjoy.gaokao360.remote.service.impl.base.BaseCommonService;
-import cn.thinkjoy.gaokao360.service.common.IVocabularyService;
+import cn.thinkjoy.gaokao360.service.differentiation.IVocabularyService;
 import cn.thinkjoy.zgk.common.QueryUtil;
 import cn.thinkjoy.zgk.domain.BizData4Page;
 import cn.thinkjoy.zgk.domain.GkEntry;
@@ -26,7 +25,7 @@ public class GkEntryServiceImpl extends BaseCommonService implements IGkEntrySer
     @Override
     public BizData4Page getGkEntryList(Map<String, Object> conditions, Integer page, Integer rows) {
         this.setIsIgnore(false);
-        return doPage(conditions,vocabularyService.getDao(),page,rows);
+        return doPage(conditions,vocabularyService,page,rows);
     }
 
     @Override

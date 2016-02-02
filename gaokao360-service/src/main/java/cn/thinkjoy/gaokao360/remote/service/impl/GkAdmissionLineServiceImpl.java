@@ -29,7 +29,7 @@ public class GkAdmissionLineServiceImpl extends BaseCommonService implements IGk
      */
     @Override
     public BizData4Page getGkAdmissionLineList(Map<String, Object> conditions,Integer page,Integer rows) {
-        return doPage(conditions,universityEnrollingExService.getDao(),page,rows);
+        return doPage(conditions,universityEnrollingExService,page,rows);
     }
 
     /**

@@ -33,7 +33,7 @@ public class GkProfessionalServiceImpl extends BaseCommonService implements IGkP
 
     @Override
     public BizData4Page getProfessionalList(Map<String, Object> conditions, Integer page, Integer rows) {
-        return doPage(conditions,professionService.getDao(),page,rows);
+        return doPage(conditions,professionService,page,rows);
     }
 
     @Override
