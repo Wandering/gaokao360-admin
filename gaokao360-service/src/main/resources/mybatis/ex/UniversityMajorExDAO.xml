@@ -434,8 +434,14 @@
                     ,
                     (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'GAIN_DEGREE' AND dd.dictId = gainDegree) as gainDegreeName
                 </if>
+                <if test="selector.salaryRank!=null">
+                    , salaryRank
+                </if>
                 <if test="selector.majorRank!=null">
                     , majorRank
+                </if>
+                <if test="selector.jobRank!=null">
+                    , jobRank
                 </if>
                 <if test="selector.createDate!=null">
                     , createDate
@@ -464,6 +470,8 @@
             (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'UNIVERSITY_MAJOR_TYPE' AND dd.dictId = majorSubject limit 1) as majorSubjectName,
             (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'EDULEVEL' AND dd.dictId = educationLevel limit 1) as educationLevelName,
             (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'GAIN_DEGREE' AND dd.dictId = gainDegree limit 1) as gainDegreeName ,
+            salaryRank,
+            jobRank,
             majorRank as majorRank ,
             createDate as createDate ,
             creator as creator ,

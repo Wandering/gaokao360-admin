@@ -1,6 +1,7 @@
 package cn.thinkjoy.zgk.remote;
 
 import cn.thinkjoy.zgk.dto.UniversityEnrollingChartDTO;
+import cn.thinkjoy.zgk.dto.UniversityMajorEnrollingPlanDTO;
 import cn.thinkjoy.zgk.dto.UniversityPlanChartDTO;
 
 import java.util.List;
@@ -24,6 +25,8 @@ public interface IUniversityService {
     List getDataDictListByType(String type);
 
     List<UniversityPlanChartDTO> queryUniversityPlanChart(Map<String, Object> params);
+
+    List<UniversityMajorEnrollingPlanDTO> getUniversityMajorEnrollingPlanList(Map<String,Object> params);
 
     List<UniversityEnrollingChartDTO> queryUniversityEnrollingChart(Map<String,Object> params);
 

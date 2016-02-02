@@ -14,6 +14,7 @@ import cn.thinkjoy.gaokao360.dao.ex.IUniversityExDAO;
 import cn.thinkjoy.gaokao360.dto.UniversityDTO;
 import cn.thinkjoy.gaokao360.service.common.ex.IUniversityExService;
 import cn.thinkjoy.zgk.dto.UniversityEnrollingChartDTO;
+import cn.thinkjoy.zgk.dto.UniversityMajorEnrollingPlanDTO;
 import cn.thinkjoy.zgk.dto.UniversityPlanChartDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -69,6 +70,11 @@ public class UniversityExServiceImpl extends AbstractPageService<IBaseDAO<Univer
     @Override
     public List<UniversityPlanChartDTO> queryUniversityPlanChart(Map<String, Object> params){
         return universityExDAO.queryUniversityPlanChart(params);
+    }
+
+    @Override
+    public List<UniversityMajorEnrollingPlanDTO> getUniversityMajorEnrollingPlanList(Map<String,Object> params){
+        return universityExDAO.getUniversityMajorEnrollingPlanList(params);
     }
 
     @Override

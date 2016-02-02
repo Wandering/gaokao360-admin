@@ -10,6 +10,7 @@ import cn.thinkjoy.common.dao.IBaseDAO;
 import cn.thinkjoy.gaokao360.domain.UniversityDict;
 import cn.thinkjoy.gaokao360.dto.UniversityDTO;
 import cn.thinkjoy.zgk.dto.UniversityEnrollingChartDTO;
+import cn.thinkjoy.zgk.dto.UniversityMajorEnrollingPlanDTO;
 import cn.thinkjoy.zgk.dto.UniversityPlanChartDTO;
 
 import java.util.List;
@@ -28,6 +29,8 @@ public interface IUniversityExDAO extends IBaseDAO<UniversityDTO>{
      * @return
      */
     List<UniversityPlanChartDTO> queryUniversityPlanChart(Map<String,Object> params);
+
+    List<UniversityMajorEnrollingPlanDTO> getUniversityMajorEnrollingPlanList(Map<String,Object> params);
 
     List<UniversityEnrollingChartDTO> queryUniversityEnrollingChart(Map<String,Object> params);
 

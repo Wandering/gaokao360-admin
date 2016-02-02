@@ -7,6 +7,7 @@ import cn.thinkjoy.gaokao360.service.common.IDataDictService;
 import cn.thinkjoy.gaokao360.service.common.IProvinceService;
 import cn.thinkjoy.gaokao360.service.common.ex.IUniversityExService;
 import cn.thinkjoy.zgk.dto.UniversityEnrollingChartDTO;
+import cn.thinkjoy.zgk.dto.UniversityMajorEnrollingPlanDTO;
 import cn.thinkjoy.zgk.dto.UniversityPlanChartDTO;
 import cn.thinkjoy.zgk.remote.IUniversityService;
 import com.google.common.collect.Maps;
@@ -102,6 +103,11 @@ public class UniversityServiceImpl implements IUniversityService {
     @Override
     public List<UniversityPlanChartDTO> queryUniversityPlanChart(Map<String, Object> params){
         return universityExService.queryUniversityPlanChart(params);
+    }
+
+    @Override
+    public List<UniversityMajorEnrollingPlanDTO> getUniversityMajorEnrollingPlanList(Map<String,Object> params){
+        return universityExService.getUniversityMajorEnrollingPlanList(params);
     }
 
     /**
@@ -299,7 +305,7 @@ public class UniversityServiceImpl implements IUniversityService {
 
     @Override
     public Map<String, Object> getPredictProbability(Map<String, Object> params) {
-        params.put("majorType",params.get("type"));
+        params.put("majorType", params.get("type"));
         params.put("startYear", 2012);
         params.put("endYear", 2014);
         List<Map<String, Object>> dataList = universityExService.getPredictProbability(params);

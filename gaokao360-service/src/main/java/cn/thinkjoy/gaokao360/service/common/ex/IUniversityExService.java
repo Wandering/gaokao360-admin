@@ -11,6 +11,7 @@ import cn.thinkjoy.common.domain.BaseDomain;
 import cn.thinkjoy.common.service.IBaseService;
 import cn.thinkjoy.common.service.IPageService;
 import cn.thinkjoy.zgk.dto.UniversityEnrollingChartDTO;
+import cn.thinkjoy.zgk.dto.UniversityMajorEnrollingPlanDTO;
 import cn.thinkjoy.zgk.dto.UniversityPlanChartDTO;
 
 import java.util.List;
@@ -23,6 +24,8 @@ public interface IUniversityExService<D extends IBaseDAO<T>, T extends BaseDomai
     List getUniversityByName(String name);
 
     List<UniversityPlanChartDTO> queryUniversityPlanChart(Map<String,Object> params);
+
+    List<UniversityMajorEnrollingPlanDTO> getUniversityMajorEnrollingPlanList(Map<String,Object> params);
 
     List<UniversityEnrollingChartDTO> queryUniversityEnrollingChart(Map<String,Object> params);
 
