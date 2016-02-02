@@ -26,70 +26,88 @@ selectList
 
     <sql id="Base_Column_List">
         id as id ,
+        universityId as universityId ,
         areaId as areaId ,
-        university_id as universityId ,
         year as year ,
         batch as batch ,
-        university_major_type as universityMajorType ,
-        plan_enrolling_number as planEnrollingNumber ,
-        real_enrolling_number as realEnrollingNumber ,
-        length_of_schooling as lengthOfSchooling ,
-        school_fee as schoolFee ,
-        highest_score as highestScore ,
-        highest_precedence as highestPrecedence ,
-        lowest_score as lowestScore ,
-        lowest_precedence as lowestPrecedence ,
-        average_score as averageScore ,
-        average_precedence as averagePrecedence ,
+        majorType as majorType ,
+        realEnrollingNumber as realEnrollingNumber ,
+        highestScore as highestScore ,
+        lowestScore as lowestScore ,
+        averageScore as averageScore ,
+        proScore as proScore ,
+        schoolFee as schoolFee ,
+        lengthOfSchooling as lengthOfSchooling ,
+        highestPrecedence as highestPrecedence ,
+        lowestPrecedence as lowestPrecedence ,
+        averagePrecedence as averagePrecedence ,
+        planEnrollingNumber as planEnrollingNumber ,
         createDate as createDate ,
         creator as creator ,
         lastModDate as lastModDate ,
         lastModifier as lastModifier ,
-        is_delete as isDelete 
+        is_delete as isDelete ,
+        flag1 as flag1 ,
+        flag2 as flag2 ,
+        flag3 as flag3 ,
+        flag4 as flag4 ,
+        flag5 as flag5 
     </sql>
     <insert id="insert" parameterType="UniversityEnrolling">
         INSERT INTO zgk_university_enrolling (
+        universityId,
         areaId,
-        university_id,
         year,
         batch,
-        university_major_type,
-        plan_enrolling_number,
-        real_enrolling_number,
-        length_of_schooling,
-        school_fee,
-        highest_score,
-        highest_precedence,
-        lowest_score,
-        lowest_precedence,
-        average_score,
-        average_precedence,
+        majorType,
+        realEnrollingNumber,
+        highestScore,
+        lowestScore,
+        averageScore,
+        proScore,
+        schoolFee,
+        lengthOfSchooling,
+        highestPrecedence,
+        lowestPrecedence,
+        averagePrecedence,
+        planEnrollingNumber,
         createDate,
         creator,
         lastModDate,
         lastModifier,
-        is_delete
+        is_delete,
+        flag1,
+        flag2,
+        flag3,
+        flag4,
+        flag5
         ) VALUES (
-        #{areaId},
         #{universityId},
+        #{areaId},
         #{year},
         #{batch},
-        #{universityMajorType},
-        #{planEnrollingNumber},
+        #{majorType},
         #{realEnrollingNumber},
-        #{lengthOfSchooling},
-        #{schoolFee},
         #{highestScore},
-        #{highestPrecedence},
         #{lowestScore},
-        #{lowestPrecedence},
         #{averageScore},
+        #{proScore},
+        #{schoolFee},
+        #{lengthOfSchooling},
+        #{highestPrecedence},
+        #{lowestPrecedence},
         #{averagePrecedence},
+        #{planEnrollingNumber},
         #{createDate},
         #{creator},
         #{lastModDate},
         #{lastModifier},
-        #{isDelete}
+        #{isDelete},
+        #{flag1},
+        #{flag2},
+        #{flag3},
+        #{flag4},
+        #{flag5}
         )
             <selectKey resultType="java.lang.Long" keyProperty="id">
                 SELECT LAST_INSERT_ID() AS ID
@@ -100,11 +118,11 @@ selectList
     <update id="update" parameterType="UniversityEnrolling">
         UPDATE zgk_university_enrolling
         <trim prefix="SET" suffixOverrides=",">
+            <if test="universityId!=null">
+                universityId = #{universityId},
+            </if>
             <if test="areaId!=null">
                 areaId = #{areaId},
-            </if>
-            <if test="universityId!=null">
-                university_id = #{universityId},
             </if>
             <if test="year!=null">
                 year = #{year},
@@ -112,38 +130,41 @@ selectList
             <if test="batch!=null">
                 batch = #{batch},
             </if>
-            <if test="universityMajorType!=null">
-                university_major_type = #{universityMajorType},
-            </if>
-            <if test="planEnrollingNumber!=null">
-                plan_enrolling_number = #{planEnrollingNumber},
+            <if test="majorType!=null">
+                majorType = #{majorType},
             </if>
             <if test="realEnrollingNumber!=null">
-                real_enrolling_number = #{realEnrollingNumber},
-            </if>
-            <if test="lengthOfSchooling!=null">
-                length_of_schooling = #{lengthOfSchooling},
-            </if>
-            <if test="schoolFee!=null">
-                school_fee = #{schoolFee},
+                realEnrollingNumber = #{realEnrollingNumber},
             </if>
             <if test="highestScore!=null">
-                highest_score = #{highestScore},
-            </if>
-            <if test="highestPrecedence!=null">
-                highest_precedence = #{highestPrecedence},
+                highestScore = #{highestScore},
             </if>
             <if test="lowestScore!=null">
-                lowest_score = #{lowestScore},
-            </if>
-            <if test="lowestPrecedence!=null">
-                lowest_precedence = #{lowestPrecedence},
+                lowestScore = #{lowestScore},
             </if>
             <if test="averageScore!=null">
-                average_score = #{averageScore},
+                averageScore = #{averageScore},
+            </if>
+            <if test="proScore!=null">
+                proScore = #{proScore},
+            </if>
+            <if test="schoolFee!=null">
+                schoolFee = #{schoolFee},
+            </if>
+            <if test="lengthOfSchooling!=null">
+                lengthOfSchooling = #{lengthOfSchooling},
+            </if>
+            <if test="highestPrecedence!=null">
+                highestPrecedence = #{highestPrecedence},
+            </if>
+            <if test="lowestPrecedence!=null">
+                lowestPrecedence = #{lowestPrecedence},
             </if>
             <if test="averagePrecedence!=null">
-                average_precedence = #{averagePrecedence},
+                averagePrecedence = #{averagePrecedence},
+            </if>
+            <if test="planEnrollingNumber!=null">
+                planEnrollingNumber = #{planEnrollingNumber},
             </if>
             <if test="createDate!=null">
                 createDate = #{createDate},
@@ -160,6 +181,21 @@ selectList
             <if test="isDelete!=null">
                 is_delete = #{isDelete},
             </if>
+            <if test="flag1!=null">
+                flag1 = #{flag1},
+            </if>
+            <if test="flag2!=null">
+                flag2 = #{flag2},
+            </if>
+            <if test="flag3!=null">
+                flag3 = #{flag3},
+            </if>
+            <if test="flag4!=null">
+                flag4 = #{flag4},
+            </if>
+            <if test="flag5!=null">
+                flag5 = #{flag5},
+            </if>
         </trim>
         WHERE
         id = #{id}
@@ -168,11 +204,11 @@ selectList
     <update id="updateMap">
         UPDATE zgk_university_enrolling
         <trim prefix="SET" suffixOverrides=",">
+            <if test="map.universityId!=null">
+                universityId = #{map.universityId},
+            </if>
             <if test="map.areaId!=null">
                 areaId = #{map.areaId},
-            </if>
-            <if test="map.universityId!=null">
-                university_id = #{map.universityId},
             </if>
             <if test="map.year!=null">
                 year = #{map.year},
@@ -180,38 +216,41 @@ selectList
             <if test="map.batch!=null">
                 batch = #{map.batch},
             </if>
-            <if test="map.universityMajorType!=null">
-                university_major_type = #{map.universityMajorType},
-            </if>
-            <if test="map.planEnrollingNumber!=null">
-                plan_enrolling_number = #{map.planEnrollingNumber},
+            <if test="map.majorType!=null">
+                majorType = #{map.majorType},
             </if>
             <if test="map.realEnrollingNumber!=null">
-                real_enrolling_number = #{map.realEnrollingNumber},
-            </if>
-            <if test="map.lengthOfSchooling!=null">
-                length_of_schooling = #{map.lengthOfSchooling},
-            </if>
-            <if test="map.schoolFee!=null">
-                school_fee = #{map.schoolFee},
+                realEnrollingNumber = #{map.realEnrollingNumber},
             </if>
             <if test="map.highestScore!=null">
-                highest_score = #{map.highestScore},
-            </if>
-            <if test="map.highestPrecedence!=null">
-                highest_precedence = #{map.highestPrecedence},
+                highestScore = #{map.highestScore},
             </if>
             <if test="map.lowestScore!=null">
-                lowest_score = #{map.lowestScore},
-            </if>
-            <if test="map.lowestPrecedence!=null">
-                lowest_precedence = #{map.lowestPrecedence},
+                lowestScore = #{map.lowestScore},
             </if>
             <if test="map.averageScore!=null">
-                average_score = #{map.averageScore},
+                averageScore = #{map.averageScore},
+            </if>
+            <if test="map.proScore!=null">
+                proScore = #{map.proScore},
+            </if>
+            <if test="map.schoolFee!=null">
+                schoolFee = #{map.schoolFee},
+            </if>
+            <if test="map.lengthOfSchooling!=null">
+                lengthOfSchooling = #{map.lengthOfSchooling},
+            </if>
+            <if test="map.highestPrecedence!=null">
+                highestPrecedence = #{map.highestPrecedence},
+            </if>
+            <if test="map.lowestPrecedence!=null">
+                lowestPrecedence = #{map.lowestPrecedence},
             </if>
             <if test="map.averagePrecedence!=null">
-                average_precedence = #{map.averagePrecedence},
+                averagePrecedence = #{map.averagePrecedence},
+            </if>
+            <if test="map.planEnrollingNumber!=null">
+                planEnrollingNumber = #{map.planEnrollingNumber},
             </if>
             <if test="map.createDate!=null">
                 createDate = #{map.createDate},
@@ -228,6 +267,21 @@ selectList
             <if test="map.isDelete!=null">
                 is_delete = #{map.isDelete},
             </if>
+            <if test="map.flag1!=null">
+                flag1 = #{map.flag1},
+            </if>
+            <if test="map.flag2!=null">
+                flag2 = #{map.flag2},
+            </if>
+            <if test="map.flag3!=null">
+                flag3 = #{map.flag3},
+            </if>
+            <if test="map.flag4!=null">
+                flag4 = #{map.flag4},
+            </if>
+            <if test="map.flag5!=null">
+                flag5 = #{map.flag5},
+            </if>
         </trim>
         WHERE
         id = #{map.id}
@@ -236,11 +290,11 @@ selectList
     <update id="updateByCondition">
         UPDATE zgk_university_enrolling
         <trim prefix="SET" suffixOverrides=",">
+            <if test="update.universityId!=null">
+                universityId = #{update.universityId},
+            </if>
             <if test="update.areaId!=null">
                 areaId = #{update.areaId},
-            </if>
-            <if test="update.universityId!=null">
-                university_id = #{update.universityId},
             </if>
             <if test="update.year!=null">
                 year = #{update.year},
@@ -248,38 +302,41 @@ selectList
             <if test="update.batch!=null">
                 batch = #{update.batch},
             </if>
-            <if test="update.universityMajorType!=null">
-                university_major_type = #{update.universityMajorType},
-            </if>
-            <if test="update.planEnrollingNumber!=null">
-                plan_enrolling_number = #{update.planEnrollingNumber},
+            <if test="update.majorType!=null">
+                majorType = #{update.majorType},
             </if>
             <if test="update.realEnrollingNumber!=null">
-                real_enrolling_number = #{update.realEnrollingNumber},
-            </if>
-            <if test="update.lengthOfSchooling!=null">
-                length_of_schooling = #{update.lengthOfSchooling},
-            </if>
-            <if test="update.schoolFee!=null">
-                school_fee = #{update.schoolFee},
+                realEnrollingNumber = #{update.realEnrollingNumber},
             </if>
             <if test="update.highestScore!=null">
-                highest_score = #{update.highestScore},
-            </if>
-            <if test="update.highestPrecedence!=null">
-                highest_precedence = #{update.highestPrecedence},
+                highestScore = #{update.highestScore},
             </if>
             <if test="update.lowestScore!=null">
-                lowest_score = #{update.lowestScore},
-            </if>
-            <if test="update.lowestPrecedence!=null">
-                lowest_precedence = #{update.lowestPrecedence},
+                lowestScore = #{update.lowestScore},
             </if>
             <if test="update.averageScore!=null">
-                average_score = #{update.averageScore},
+                averageScore = #{update.averageScore},
+            </if>
+            <if test="update.proScore!=null">
+                proScore = #{update.proScore},
+            </if>
+            <if test="update.schoolFee!=null">
+                schoolFee = #{update.schoolFee},
+            </if>
+            <if test="update.lengthOfSchooling!=null">
+                lengthOfSchooling = #{update.lengthOfSchooling},
+            </if>
+            <if test="update.highestPrecedence!=null">
+                highestPrecedence = #{update.highestPrecedence},
+            </if>
+            <if test="update.lowestPrecedence!=null">
+                lowestPrecedence = #{update.lowestPrecedence},
             </if>
             <if test="update.averagePrecedence!=null">
-                average_precedence = #{update.averagePrecedence},
+                averagePrecedence = #{update.averagePrecedence},
+            </if>
+            <if test="update.planEnrollingNumber!=null">
+                planEnrollingNumber = #{update.planEnrollingNumber},
             </if>
             <if test="update.createDate!=null">
                 createDate = #{update.createDate},
@@ -296,17 +353,32 @@ selectList
             <if test="update.isDelete!=null">
                 is_delete = #{update.isDelete},
             </if>
+            <if test="update.flag1!=null">
+                flag1 = #{update.flag1},
+            </if>
+            <if test="update.flag2!=null">
+                flag2 = #{update.flag2},
+            </if>
+            <if test="update.flag3!=null">
+                flag3 = #{update.flag3},
+            </if>
+            <if test="update.flag4!=null">
+                flag4 = #{update.flag4},
+            </if>
+            <if test="update.flag5!=null">
+                flag5 = #{update.flag5},
+            </if>
         </trim>
 
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id = #{condition.id}
             </if>
+            <if test="condition.universityId!=null">
+                AND universityId = #{condition.universityId}
+            </if>
             <if test="condition.areaId!=null">
                 AND areaId = #{condition.areaId}
-            </if>
-            <if test="condition.universityId!=null">
-                AND university_id = #{condition.universityId}
             </if>
             <if test="condition.year!=null">
                 AND year = #{condition.year}
@@ -314,38 +386,41 @@ selectList
             <if test="condition.batch!=null">
                 AND batch = #{condition.batch}
             </if>
-            <if test="condition.universityMajorType!=null">
-                AND university_major_type = #{condition.universityMajorType}
-            </if>
-            <if test="condition.planEnrollingNumber!=null">
-                AND plan_enrolling_number = #{condition.planEnrollingNumber}
+            <if test="condition.majorType!=null">
+                AND majorType = #{condition.majorType}
             </if>
             <if test="condition.realEnrollingNumber!=null">
-                AND real_enrolling_number = #{condition.realEnrollingNumber}
-            </if>
-            <if test="condition.lengthOfSchooling!=null">
-                AND length_of_schooling = #{condition.lengthOfSchooling}
-            </if>
-            <if test="condition.schoolFee!=null">
-                AND school_fee = #{condition.schoolFee}
+                AND realEnrollingNumber = #{condition.realEnrollingNumber}
             </if>
             <if test="condition.highestScore!=null">
-                AND highest_score = #{condition.highestScore}
-            </if>
-            <if test="condition.highestPrecedence!=null">
-                AND highest_precedence = #{condition.highestPrecedence}
+                AND highestScore = #{condition.highestScore}
             </if>
             <if test="condition.lowestScore!=null">
-                AND lowest_score = #{condition.lowestScore}
-            </if>
-            <if test="condition.lowestPrecedence!=null">
-                AND lowest_precedence = #{condition.lowestPrecedence}
+                AND lowestScore = #{condition.lowestScore}
             </if>
             <if test="condition.averageScore!=null">
-                AND average_score = #{condition.averageScore}
+                AND averageScore = #{condition.averageScore}
+            </if>
+            <if test="condition.proScore!=null">
+                AND proScore = #{condition.proScore}
+            </if>
+            <if test="condition.schoolFee!=null">
+                AND schoolFee = #{condition.schoolFee}
+            </if>
+            <if test="condition.lengthOfSchooling!=null">
+                AND lengthOfSchooling = #{condition.lengthOfSchooling}
+            </if>
+            <if test="condition.highestPrecedence!=null">
+                AND highestPrecedence = #{condition.highestPrecedence}
+            </if>
+            <if test="condition.lowestPrecedence!=null">
+                AND lowestPrecedence = #{condition.lowestPrecedence}
             </if>
             <if test="condition.averagePrecedence!=null">
-                AND average_precedence = #{condition.averagePrecedence}
+                AND averagePrecedence = #{condition.averagePrecedence}
+            </if>
+            <if test="condition.planEnrollingNumber!=null">
+                AND planEnrollingNumber = #{condition.planEnrollingNumber}
             </if>
             <if test="condition.createDate!=null">
                 AND createDate = #{condition.createDate}
@@ -362,52 +437,79 @@ selectList
             <if test="condition.isDelete!=null">
                 AND is_delete = #{condition.isDelete}
             </if>
+            <if test="condition.flag1!=null">
+                AND flag1 = #{condition.flag1}
+            </if>
+            <if test="condition.flag2!=null">
+                AND flag2 = #{condition.flag2}
+            </if>
+            <if test="condition.flag3!=null">
+                AND flag3 = #{condition.flag3}
+            </if>
+            <if test="condition.flag4!=null">
+                AND flag4 = #{condition.flag4}
+            </if>
+            <if test="condition.flag5!=null">
+                AND flag5 = #{condition.flag5}
+            </if>
         </trim>
     </update>
 
     <insert id="insertMap" >
         INSERT INTO zgk_university_enrolling (
+                universityId,
                 areaId,
-                university_id,
                 year,
                 batch,
-                university_major_type,
-                plan_enrolling_number,
-                real_enrolling_number,
-                length_of_schooling,
-                school_fee,
-                highest_score,
-                highest_precedence,
-                lowest_score,
-                lowest_precedence,
-                average_score,
-                average_precedence,
+                majorType,
+                realEnrollingNumber,
+                highestScore,
+                lowestScore,
+                averageScore,
+                proScore,
+                schoolFee,
+                lengthOfSchooling,
+                highestPrecedence,
+                lowestPrecedence,
+                averagePrecedence,
+                planEnrollingNumber,
                 createDate,
                 creator,
                 lastModDate,
                 lastModifier,
-                is_delete
+                is_delete,
+                flag1,
+                flag2,
+                flag3,
+                flag4,
+                flag5
         ) VALUES (
-                    #{map.areaId},
                     #{map.universityId},
+                    #{map.areaId},
                     #{map.year},
                     #{map.batch},
-                    #{map.universityMajorType},
-                    #{map.planEnrollingNumber},
+                    #{map.majorType},
                     #{map.realEnrollingNumber},
-                    #{map.lengthOfSchooling},
-                    #{map.schoolFee},
                     #{map.highestScore},
-                    #{map.highestPrecedence},
                     #{map.lowestScore},
-                    #{map.lowestPrecedence},
                     #{map.averageScore},
+                    #{map.proScore},
+                    #{map.schoolFee},
+                    #{map.lengthOfSchooling},
+                    #{map.highestPrecedence},
+                    #{map.lowestPrecedence},
                     #{map.averagePrecedence},
+                    #{map.planEnrollingNumber},
                     #{map.createDate},
                     #{map.creator},
                     #{map.lastModDate},
                     #{map.lastModifier},
-                    #{map.isDelete}
+                    #{map.isDelete},
+                    #{map.flag1},
+                    #{map.flag2},
+                    #{map.flag3},
+                    #{map.flag4},
+                    #{map.flag5}
         )
     </insert>
 
@@ -415,26 +517,32 @@ selectList
     <update id="updateNull" parameterType="UniversityEnrolling">
         UPDATE zgk_university_enrolling
         <trim prefix="SET" suffixOverrides=",">
+            universityId = #{universityId},
             areaId = #{areaId},
-            university_id = #{universityId},
             year = #{year},
             batch = #{batch},
-            university_major_type = #{universityMajorType},
-            plan_enrolling_number = #{planEnrollingNumber},
-            real_enrolling_number = #{realEnrollingNumber},
-            length_of_schooling = #{lengthOfSchooling},
-            school_fee = #{schoolFee},
-            highest_score = #{highestScore},
-            highest_precedence = #{highestPrecedence},
-            lowest_score = #{lowestScore},
-            lowest_precedence = #{lowestPrecedence},
-            average_score = #{averageScore},
-            average_precedence = #{averagePrecedence},
+            majorType = #{majorType},
+            realEnrollingNumber = #{realEnrollingNumber},
+            highestScore = #{highestScore},
+            lowestScore = #{lowestScore},
+            averageScore = #{averageScore},
+            proScore = #{proScore},
+            schoolFee = #{schoolFee},
+            lengthOfSchooling = #{lengthOfSchooling},
+            highestPrecedence = #{highestPrecedence},
+            lowestPrecedence = #{lowestPrecedence},
+            averagePrecedence = #{averagePrecedence},
+            planEnrollingNumber = #{planEnrollingNumber},
             createDate = #{createDate},
             creator = #{creator},
             lastModDate = #{lastModDate},
             lastModifier = #{lastModifier},
             is_delete = #{isDelete},
+            flag1 = #{flag1},
+            flag2 = #{flag2},
+            flag3 = #{flag3},
+            flag4 = #{flag4},
+            flag5 = #{flag5},
         </trim>
         WHERE
         id = #{id} 
@@ -455,11 +563,11 @@ selectList
             <if test="id!=null">
                 AND id = #{id}
             </if>
+            <if test="universityId!=null">
+                AND universityId = #{universityId}
+            </if>
             <if test="areaId!=null">
                 AND areaId = #{areaId}
-            </if>
-            <if test="universityId!=null">
-                AND university_id = #{universityId}
             </if>
             <if test="year!=null">
                 AND year = #{year}
@@ -467,38 +575,41 @@ selectList
             <if test="batch!=null">
                 AND batch = #{batch}
             </if>
-            <if test="universityMajorType!=null">
-                AND university_major_type = #{universityMajorType}
-            </if>
-            <if test="planEnrollingNumber!=null">
-                AND plan_enrolling_number = #{planEnrollingNumber}
+            <if test="majorType!=null">
+                AND majorType = #{majorType}
             </if>
             <if test="realEnrollingNumber!=null">
-                AND real_enrolling_number = #{realEnrollingNumber}
-            </if>
-            <if test="lengthOfSchooling!=null">
-                AND length_of_schooling = #{lengthOfSchooling}
-            </if>
-            <if test="schoolFee!=null">
-                AND school_fee = #{schoolFee}
+                AND realEnrollingNumber = #{realEnrollingNumber}
             </if>
             <if test="highestScore!=null">
-                AND highest_score = #{highestScore}
-            </if>
-            <if test="highestPrecedence!=null">
-                AND highest_precedence = #{highestPrecedence}
+                AND highestScore = #{highestScore}
             </if>
             <if test="lowestScore!=null">
-                AND lowest_score = #{lowestScore}
-            </if>
-            <if test="lowestPrecedence!=null">
-                AND lowest_precedence = #{lowestPrecedence}
+                AND lowestScore = #{lowestScore}
             </if>
             <if test="averageScore!=null">
-                AND average_score = #{averageScore}
+                AND averageScore = #{averageScore}
+            </if>
+            <if test="proScore!=null">
+                AND proScore = #{proScore}
+            </if>
+            <if test="schoolFee!=null">
+                AND schoolFee = #{schoolFee}
+            </if>
+            <if test="lengthOfSchooling!=null">
+                AND lengthOfSchooling = #{lengthOfSchooling}
+            </if>
+            <if test="highestPrecedence!=null">
+                AND highestPrecedence = #{highestPrecedence}
+            </if>
+            <if test="lowestPrecedence!=null">
+                AND lowestPrecedence = #{lowestPrecedence}
             </if>
             <if test="averagePrecedence!=null">
-                AND average_precedence = #{averagePrecedence}
+                AND averagePrecedence = #{averagePrecedence}
+            </if>
+            <if test="planEnrollingNumber!=null">
+                AND planEnrollingNumber = #{planEnrollingNumber}
             </if>
             <if test="createDate!=null">
                 AND createDate = #{createDate}
@@ -514,6 +625,21 @@ selectList
             </if>
             <if test="isDelete!=null">
                 AND is_delete = #{isDelete}
+            </if>
+            <if test="flag1!=null">
+                AND flag1 = #{flag1}
+            </if>
+            <if test="flag2!=null">
+                AND flag2 = #{flag2}
+            </if>
+            <if test="flag3!=null">
+                AND flag3 = #{flag3}
+            </if>
+            <if test="flag4!=null">
+                AND flag4 = #{flag4}
+            </if>
+            <if test="flag5!=null">
+                AND flag5 = #{flag5}
             </if>
         </trim>
     </delete>
@@ -569,11 +695,11 @@ selectList
                         <if test="selector.id!=null">
                             , id
                         </if>
+                        <if test="selector.universityId!=null">
+                            , universityId
+                        </if>
                         <if test="selector.areaId!=null">
                             , areaId
-                        </if>
-                        <if test="selector.universityId!=null">
-                            , university_id
                         </if>
                         <if test="selector.year!=null">
                             , year
@@ -581,38 +707,41 @@ selectList
                         <if test="selector.batch!=null">
                             , batch
                         </if>
-                        <if test="selector.universityMajorType!=null">
-                            , university_major_type
-                        </if>
-                        <if test="selector.planEnrollingNumber!=null">
-                            , plan_enrolling_number
+                        <if test="selector.majorType!=null">
+                            , majorType
                         </if>
                         <if test="selector.realEnrollingNumber!=null">
-                            , real_enrolling_number
-                        </if>
-                        <if test="selector.lengthOfSchooling!=null">
-                            , length_of_schooling
-                        </if>
-                        <if test="selector.schoolFee!=null">
-                            , school_fee
+                            , realEnrollingNumber
                         </if>
                         <if test="selector.highestScore!=null">
-                            , highest_score
-                        </if>
-                        <if test="selector.highestPrecedence!=null">
-                            , highest_precedence
+                            , highestScore
                         </if>
                         <if test="selector.lowestScore!=null">
-                            , lowest_score
-                        </if>
-                        <if test="selector.lowestPrecedence!=null">
-                            , lowest_precedence
+                            , lowestScore
                         </if>
                         <if test="selector.averageScore!=null">
-                            , average_score
+                            , averageScore
+                        </if>
+                        <if test="selector.proScore!=null">
+                            , proScore
+                        </if>
+                        <if test="selector.schoolFee!=null">
+                            , schoolFee
+                        </if>
+                        <if test="selector.lengthOfSchooling!=null">
+                            , lengthOfSchooling
+                        </if>
+                        <if test="selector.highestPrecedence!=null">
+                            , highestPrecedence
+                        </if>
+                        <if test="selector.lowestPrecedence!=null">
+                            , lowestPrecedence
                         </if>
                         <if test="selector.averagePrecedence!=null">
-                            , average_precedence
+                            , averagePrecedence
+                        </if>
+                        <if test="selector.planEnrollingNumber!=null">
+                            , planEnrollingNumber
                         </if>
                         <if test="selector.createDate!=null">
                             , createDate
@@ -629,6 +758,21 @@ selectList
                         <if test="selector.isDelete!=null">
                             , is_delete
                         </if>
+                        <if test="selector.flag1!=null">
+                            , flag1
+                        </if>
+                        <if test="selector.flag2!=null">
+                            , flag2
+                        </if>
+                        <if test="selector.flag3!=null">
+                            , flag3
+                        </if>
+                        <if test="selector.flag4!=null">
+                            , flag4
+                        </if>
+                        <if test="selector.flag5!=null">
+                            , flag5
+                        </if>
             </trim>
         </if>
         <if test="selector==null">
@@ -644,11 +788,11 @@ selectList
             <if test="condition.id!=null">
                 ${condition.groupOp}   ${condition.id.field}  ${condition.id.op}  #{condition.id.data}
             </if>
-            <if test="condition.areaId!=null">
-                ${condition.groupOp}   ${condition.areaId.field}  ${condition.areaId.op}  #{condition.areaId.data}
-            </if>
             <if test="condition.universityId!=null">
                 ${condition.groupOp}   ${condition.universityId.field}  ${condition.universityId.op}  #{condition.universityId.data}
+            </if>
+            <if test="condition.areaId!=null">
+                ${condition.groupOp}   ${condition.areaId.field}  ${condition.areaId.op}  #{condition.areaId.data}
             </if>
             <if test="condition.year!=null">
                 ${condition.groupOp}   ${condition.year.field}  ${condition.year.op}  #{condition.year.data}
@@ -656,38 +800,41 @@ selectList
             <if test="condition.batch!=null">
                 ${condition.groupOp}   ${condition.batch.field}  ${condition.batch.op}  #{condition.batch.data}
             </if>
-            <if test="condition.universityMajorType!=null">
-                ${condition.groupOp}   ${condition.universityMajorType.field}  ${condition.universityMajorType.op}  #{condition.universityMajorType.data}
-            </if>
-            <if test="condition.planEnrollingNumber!=null">
-                ${condition.groupOp}   ${condition.planEnrollingNumber.field}  ${condition.planEnrollingNumber.op}  #{condition.planEnrollingNumber.data}
+            <if test="condition.majorType!=null">
+                ${condition.groupOp}   ${condition.majorType.field}  ${condition.majorType.op}  #{condition.majorType.data}
             </if>
             <if test="condition.realEnrollingNumber!=null">
                 ${condition.groupOp}   ${condition.realEnrollingNumber.field}  ${condition.realEnrollingNumber.op}  #{condition.realEnrollingNumber.data}
             </if>
-            <if test="condition.lengthOfSchooling!=null">
-                ${condition.groupOp}   ${condition.lengthOfSchooling.field}  ${condition.lengthOfSchooling.op}  #{condition.lengthOfSchooling.data}
-            </if>
-            <if test="condition.schoolFee!=null">
-                ${condition.groupOp}   ${condition.schoolFee.field}  ${condition.schoolFee.op}  #{condition.schoolFee.data}
-            </if>
             <if test="condition.highestScore!=null">
                 ${condition.groupOp}   ${condition.highestScore.field}  ${condition.highestScore.op}  #{condition.highestScore.data}
-            </if>
-            <if test="condition.highestPrecedence!=null">
-                ${condition.groupOp}   ${condition.highestPrecedence.field}  ${condition.highestPrecedence.op}  #{condition.highestPrecedence.data}
             </if>
             <if test="condition.lowestScore!=null">
                 ${condition.groupOp}   ${condition.lowestScore.field}  ${condition.lowestScore.op}  #{condition.lowestScore.data}
             </if>
-            <if test="condition.lowestPrecedence!=null">
-                ${condition.groupOp}   ${condition.lowestPrecedence.field}  ${condition.lowestPrecedence.op}  #{condition.lowestPrecedence.data}
-            </if>
             <if test="condition.averageScore!=null">
                 ${condition.groupOp}   ${condition.averageScore.field}  ${condition.averageScore.op}  #{condition.averageScore.data}
             </if>
+            <if test="condition.proScore!=null">
+                ${condition.groupOp}   ${condition.proScore.field}  ${condition.proScore.op}  #{condition.proScore.data}
+            </if>
+            <if test="condition.schoolFee!=null">
+                ${condition.groupOp}   ${condition.schoolFee.field}  ${condition.schoolFee.op}  #{condition.schoolFee.data}
+            </if>
+            <if test="condition.lengthOfSchooling!=null">
+                ${condition.groupOp}   ${condition.lengthOfSchooling.field}  ${condition.lengthOfSchooling.op}  #{condition.lengthOfSchooling.data}
+            </if>
+            <if test="condition.highestPrecedence!=null">
+                ${condition.groupOp}   ${condition.highestPrecedence.field}  ${condition.highestPrecedence.op}  #{condition.highestPrecedence.data}
+            </if>
+            <if test="condition.lowestPrecedence!=null">
+                ${condition.groupOp}   ${condition.lowestPrecedence.field}  ${condition.lowestPrecedence.op}  #{condition.lowestPrecedence.data}
+            </if>
             <if test="condition.averagePrecedence!=null">
                 ${condition.groupOp}   ${condition.averagePrecedence.field}  ${condition.averagePrecedence.op}  #{condition.averagePrecedence.data}
+            </if>
+            <if test="condition.planEnrollingNumber!=null">
+                ${condition.groupOp}   ${condition.planEnrollingNumber.field}  ${condition.planEnrollingNumber.op}  #{condition.planEnrollingNumber.data}
             </if>
             <if test="condition.createDate!=null">
                 ${condition.groupOp}   ${condition.createDate.field}  ${condition.createDate.op}  #{condition.createDate.data}
@@ -703,6 +850,21 @@ selectList
             </if>
             <if test="condition.isDelete!=null">
                 ${condition.groupOp}   ${condition.isDelete.field}  ${condition.isDelete.op}  #{condition.isDelete.data}
+            </if>
+            <if test="condition.flag1!=null">
+                ${condition.groupOp}   ${condition.flag1.field}  ${condition.flag1.op}  #{condition.flag1.data}
+            </if>
+            <if test="condition.flag2!=null">
+                ${condition.groupOp}   ${condition.flag2.field}  ${condition.flag2.op}  #{condition.flag2.data}
+            </if>
+            <if test="condition.flag3!=null">
+                ${condition.groupOp}   ${condition.flag3.field}  ${condition.flag3.op}  #{condition.flag3.data}
+            </if>
+            <if test="condition.flag4!=null">
+                ${condition.groupOp}   ${condition.flag4.field}  ${condition.flag4.op}  #{condition.flag4.data}
+            </if>
+            <if test="condition.flag5!=null">
+                ${condition.groupOp}   ${condition.flag5.field}  ${condition.flag5.op}  #{condition.flag5.data}
             </if>
 
 
@@ -722,11 +884,11 @@ selectList
                     <if test="selector.id!=null">
                         , id
                     </if>
+                    <if test="selector.universityId!=null">
+                        , universityId
+                    </if>
                     <if test="selector.areaId!=null">
                         , areaId
-                    </if>
-                    <if test="selector.universityId!=null">
-                        , university_id
                     </if>
                     <if test="selector.year!=null">
                         , year
@@ -734,38 +896,41 @@ selectList
                     <if test="selector.batch!=null">
                         , batch
                     </if>
-                    <if test="selector.universityMajorType!=null">
-                        , university_major_type
-                    </if>
-                    <if test="selector.planEnrollingNumber!=null">
-                        , plan_enrolling_number
+                    <if test="selector.majorType!=null">
+                        , majorType
                     </if>
                     <if test="selector.realEnrollingNumber!=null">
-                        , real_enrolling_number
-                    </if>
-                    <if test="selector.lengthOfSchooling!=null">
-                        , length_of_schooling
-                    </if>
-                    <if test="selector.schoolFee!=null">
-                        , school_fee
+                        , realEnrollingNumber
                     </if>
                     <if test="selector.highestScore!=null">
-                        , highest_score
-                    </if>
-                    <if test="selector.highestPrecedence!=null">
-                        , highest_precedence
+                        , highestScore
                     </if>
                     <if test="selector.lowestScore!=null">
-                        , lowest_score
-                    </if>
-                    <if test="selector.lowestPrecedence!=null">
-                        , lowest_precedence
+                        , lowestScore
                     </if>
                     <if test="selector.averageScore!=null">
-                        , average_score
+                        , averageScore
+                    </if>
+                    <if test="selector.proScore!=null">
+                        , proScore
+                    </if>
+                    <if test="selector.schoolFee!=null">
+                        , schoolFee
+                    </if>
+                    <if test="selector.lengthOfSchooling!=null">
+                        , lengthOfSchooling
+                    </if>
+                    <if test="selector.highestPrecedence!=null">
+                        , highestPrecedence
+                    </if>
+                    <if test="selector.lowestPrecedence!=null">
+                        , lowestPrecedence
                     </if>
                     <if test="selector.averagePrecedence!=null">
-                        , average_precedence
+                        , averagePrecedence
+                    </if>
+                    <if test="selector.planEnrollingNumber!=null">
+                        , planEnrollingNumber
                     </if>
                     <if test="selector.createDate!=null">
                         , createDate
@@ -782,6 +947,21 @@ selectList
                     <if test="selector.isDelete!=null">
                         , is_delete
                     </if>
+                    <if test="selector.flag1!=null">
+                        , flag1
+                    </if>
+                    <if test="selector.flag2!=null">
+                        , flag2
+                    </if>
+                    <if test="selector.flag3!=null">
+                        , flag3
+                    </if>
+                    <if test="selector.flag4!=null">
+                        , flag4
+                    </if>
+                    <if test="selector.flag5!=null">
+                        , flag5
+                    </if>
             </trim>
         </if>
         <if test="selector==null">
@@ -792,11 +972,11 @@ selectList
             <if test="condition.id!=null">
                 AND id like CONCAT('%', #{condition.id} , '%')
             </if>
+            <if test="condition.universityId!=null">
+                AND universityId like CONCAT('%', #{condition.universityId} , '%')
+            </if>
             <if test="condition.areaId!=null">
                 AND areaId like CONCAT('%', #{condition.areaId} , '%')
-            </if>
-            <if test="condition.universityId!=null">
-                AND university_id like CONCAT('%', #{condition.universityId} , '%')
             </if>
             <if test="condition.year!=null">
                 AND year like CONCAT('%', #{condition.year} , '%')
@@ -804,38 +984,41 @@ selectList
             <if test="condition.batch!=null">
                 AND batch like CONCAT('%', #{condition.batch} , '%')
             </if>
-            <if test="condition.universityMajorType!=null">
-                AND university_major_type like CONCAT('%', #{condition.universityMajorType} , '%')
-            </if>
-            <if test="condition.planEnrollingNumber!=null">
-                AND plan_enrolling_number like CONCAT('%', #{condition.planEnrollingNumber} , '%')
+            <if test="condition.majorType!=null">
+                AND majorType like CONCAT('%', #{condition.majorType} , '%')
             </if>
             <if test="condition.realEnrollingNumber!=null">
-                AND real_enrolling_number like CONCAT('%', #{condition.realEnrollingNumber} , '%')
-            </if>
-            <if test="condition.lengthOfSchooling!=null">
-                AND length_of_schooling like CONCAT('%', #{condition.lengthOfSchooling} , '%')
-            </if>
-            <if test="condition.schoolFee!=null">
-                AND school_fee like CONCAT('%', #{condition.schoolFee} , '%')
+                AND realEnrollingNumber like CONCAT('%', #{condition.realEnrollingNumber} , '%')
             </if>
             <if test="condition.highestScore!=null">
-                AND highest_score like CONCAT('%', #{condition.highestScore} , '%')
-            </if>
-            <if test="condition.highestPrecedence!=null">
-                AND highest_precedence like CONCAT('%', #{condition.highestPrecedence} , '%')
+                AND highestScore like CONCAT('%', #{condition.highestScore} , '%')
             </if>
             <if test="condition.lowestScore!=null">
-                AND lowest_score like CONCAT('%', #{condition.lowestScore} , '%')
-            </if>
-            <if test="condition.lowestPrecedence!=null">
-                AND lowest_precedence like CONCAT('%', #{condition.lowestPrecedence} , '%')
+                AND lowestScore like CONCAT('%', #{condition.lowestScore} , '%')
             </if>
             <if test="condition.averageScore!=null">
-                AND average_score like CONCAT('%', #{condition.averageScore} , '%')
+                AND averageScore like CONCAT('%', #{condition.averageScore} , '%')
+            </if>
+            <if test="condition.proScore!=null">
+                AND proScore like CONCAT('%', #{condition.proScore} , '%')
+            </if>
+            <if test="condition.schoolFee!=null">
+                AND schoolFee like CONCAT('%', #{condition.schoolFee} , '%')
+            </if>
+            <if test="condition.lengthOfSchooling!=null">
+                AND lengthOfSchooling like CONCAT('%', #{condition.lengthOfSchooling} , '%')
+            </if>
+            <if test="condition.highestPrecedence!=null">
+                AND highestPrecedence like CONCAT('%', #{condition.highestPrecedence} , '%')
+            </if>
+            <if test="condition.lowestPrecedence!=null">
+                AND lowestPrecedence like CONCAT('%', #{condition.lowestPrecedence} , '%')
             </if>
             <if test="condition.averagePrecedence!=null">
-                AND average_precedence like CONCAT('%', #{condition.averagePrecedence} , '%')
+                AND averagePrecedence like CONCAT('%', #{condition.averagePrecedence} , '%')
+            </if>
+            <if test="condition.planEnrollingNumber!=null">
+                AND planEnrollingNumber like CONCAT('%', #{condition.planEnrollingNumber} , '%')
             </if>
             <if test="condition.createDate!=null">
                 AND createDate like CONCAT('%', #{condition.createDate} , '%')
@@ -852,6 +1035,21 @@ selectList
             <if test="condition.isDelete!=null">
                 AND is_delete like CONCAT('%', #{condition.isDelete} , '%')
             </if>
+            <if test="condition.flag1!=null">
+                AND flag1 like CONCAT('%', #{condition.flag1} , '%')
+            </if>
+            <if test="condition.flag2!=null">
+                AND flag2 like CONCAT('%', #{condition.flag2} , '%')
+            </if>
+            <if test="condition.flag3!=null">
+                AND flag3 like CONCAT('%', #{condition.flag3} , '%')
+            </if>
+            <if test="condition.flag4!=null">
+                AND flag4 like CONCAT('%', #{condition.flag4} , '%')
+            </if>
+            <if test="condition.flag5!=null">
+                AND flag5 like CONCAT('%', #{condition.flag5} , '%')
+            </if>
         </trim>
         <if test="orderBy!=null">
         ORDER BY ${orderBy} ${sortBy}
@@ -866,11 +1064,11 @@ selectList
                 <if test="selector.id!=null">
                     , id
                 </if>
+                <if test="selector.universityId!=null">
+                    , universityId
+                </if>
                 <if test="selector.areaId!=null">
                     , areaId
-                </if>
-                <if test="selector.universityId!=null">
-                    , university_id
                 </if>
                 <if test="selector.year!=null">
                     , year
@@ -878,38 +1076,41 @@ selectList
                 <if test="selector.batch!=null">
                     , batch
                 </if>
-                <if test="selector.universityMajorType!=null">
-                    , university_major_type
-                </if>
-                <if test="selector.planEnrollingNumber!=null">
-                    , plan_enrolling_number
+                <if test="selector.majorType!=null">
+                    , majorType
                 </if>
                 <if test="selector.realEnrollingNumber!=null">
-                    , real_enrolling_number
-                </if>
-                <if test="selector.lengthOfSchooling!=null">
-                    , length_of_schooling
-                </if>
-                <if test="selector.schoolFee!=null">
-                    , school_fee
+                    , realEnrollingNumber
                 </if>
                 <if test="selector.highestScore!=null">
-                    , highest_score
-                </if>
-                <if test="selector.highestPrecedence!=null">
-                    , highest_precedence
+                    , highestScore
                 </if>
                 <if test="selector.lowestScore!=null">
-                    , lowest_score
-                </if>
-                <if test="selector.lowestPrecedence!=null">
-                    , lowest_precedence
+                    , lowestScore
                 </if>
                 <if test="selector.averageScore!=null">
-                    , average_score
+                    , averageScore
+                </if>
+                <if test="selector.proScore!=null">
+                    , proScore
+                </if>
+                <if test="selector.schoolFee!=null">
+                    , schoolFee
+                </if>
+                <if test="selector.lengthOfSchooling!=null">
+                    , lengthOfSchooling
+                </if>
+                <if test="selector.highestPrecedence!=null">
+                    , highestPrecedence
+                </if>
+                <if test="selector.lowestPrecedence!=null">
+                    , lowestPrecedence
                 </if>
                 <if test="selector.averagePrecedence!=null">
-                    , average_precedence
+                    , averagePrecedence
+                </if>
+                <if test="selector.planEnrollingNumber!=null">
+                    , planEnrollingNumber
                 </if>
                 <if test="selector.createDate!=null">
                     , createDate
@@ -926,6 +1127,21 @@ selectList
                 <if test="selector.isDelete!=null">
                     , is_delete
                 </if>
+                <if test="selector.flag1!=null">
+                    , flag1
+                </if>
+                <if test="selector.flag2!=null">
+                    , flag2
+                </if>
+                <if test="selector.flag3!=null">
+                    , flag3
+                </if>
+                <if test="selector.flag4!=null">
+                    , flag4
+                </if>
+                <if test="selector.flag5!=null">
+                    , flag5
+                </if>
         </trim>
     </if>
 <if test="selector==null">
@@ -936,11 +1152,11 @@ selectList
             <if test="condition.id!=null">
                 AND id = #{condition.id}
             </if>
+            <if test="condition.universityId!=null">
+                AND universityId = #{condition.universityId}
+            </if>
             <if test="condition.areaId!=null">
                 AND areaId = #{condition.areaId}
-            </if>
-            <if test="condition.universityId!=null">
-                AND university_id = #{condition.universityId}
             </if>
             <if test="condition.year!=null">
                 AND year = #{condition.year}
@@ -948,38 +1164,41 @@ selectList
             <if test="condition.batch!=null">
                 AND batch = #{condition.batch}
             </if>
-            <if test="condition.universityMajorType!=null">
-                AND university_major_type = #{condition.universityMajorType}
-            </if>
-            <if test="condition.planEnrollingNumber!=null">
-                AND plan_enrolling_number = #{condition.planEnrollingNumber}
+            <if test="condition.majorType!=null">
+                AND majorType = #{condition.majorType}
             </if>
             <if test="condition.realEnrollingNumber!=null">
-                AND real_enrolling_number = #{condition.realEnrollingNumber}
-            </if>
-            <if test="condition.lengthOfSchooling!=null">
-                AND length_of_schooling = #{condition.lengthOfSchooling}
-            </if>
-            <if test="condition.schoolFee!=null">
-                AND school_fee = #{condition.schoolFee}
+                AND realEnrollingNumber = #{condition.realEnrollingNumber}
             </if>
             <if test="condition.highestScore!=null">
-                AND highest_score = #{condition.highestScore}
-            </if>
-            <if test="condition.highestPrecedence!=null">
-                AND highest_precedence = #{condition.highestPrecedence}
+                AND highestScore = #{condition.highestScore}
             </if>
             <if test="condition.lowestScore!=null">
-                AND lowest_score = #{condition.lowestScore}
-            </if>
-            <if test="condition.lowestPrecedence!=null">
-                AND lowest_precedence = #{condition.lowestPrecedence}
+                AND lowestScore = #{condition.lowestScore}
             </if>
             <if test="condition.averageScore!=null">
-                AND average_score = #{condition.averageScore}
+                AND averageScore = #{condition.averageScore}
+            </if>
+            <if test="condition.proScore!=null">
+                AND proScore = #{condition.proScore}
+            </if>
+            <if test="condition.schoolFee!=null">
+                AND schoolFee = #{condition.schoolFee}
+            </if>
+            <if test="condition.lengthOfSchooling!=null">
+                AND lengthOfSchooling = #{condition.lengthOfSchooling}
+            </if>
+            <if test="condition.highestPrecedence!=null">
+                AND highestPrecedence = #{condition.highestPrecedence}
+            </if>
+            <if test="condition.lowestPrecedence!=null">
+                AND lowestPrecedence = #{condition.lowestPrecedence}
             </if>
             <if test="condition.averagePrecedence!=null">
-                AND average_precedence = #{condition.averagePrecedence}
+                AND averagePrecedence = #{condition.averagePrecedence}
+            </if>
+            <if test="condition.planEnrollingNumber!=null">
+                AND planEnrollingNumber = #{condition.planEnrollingNumber}
             </if>
             <if test="condition.createDate!=null">
                 AND createDate = #{condition.createDate}
@@ -996,6 +1215,21 @@ selectList
             <if test="condition.isDelete!=null">
                 AND is_delete = #{condition.isDelete}
             </if>
+            <if test="condition.flag1!=null">
+                AND flag1 = #{condition.flag1}
+            </if>
+            <if test="condition.flag2!=null">
+                AND flag2 = #{condition.flag2}
+            </if>
+            <if test="condition.flag3!=null">
+                AND flag3 = #{condition.flag3}
+            </if>
+            <if test="condition.flag4!=null">
+                AND flag4 = #{condition.flag4}
+            </if>
+            <if test="condition.flag5!=null">
+                AND flag5 = #{condition.flag5}
+            </if>
         </trim>
         <if test="orderBy!=null">
         ORDER BY ${orderBy} ${sortBy}
@@ -1009,11 +1243,11 @@ selectList
                     <if test="selector.id!=null">
                         , id
                     </if>
+                    <if test="selector.universityId!=null">
+                        , universityId
+                    </if>
                     <if test="selector.areaId!=null">
                         , areaId
-                    </if>
-                    <if test="selector.universityId!=null">
-                        , university_id
                     </if>
                     <if test="selector.year!=null">
                         , year
@@ -1021,38 +1255,41 @@ selectList
                     <if test="selector.batch!=null">
                         , batch
                     </if>
-                    <if test="selector.universityMajorType!=null">
-                        , university_major_type
-                    </if>
-                    <if test="selector.planEnrollingNumber!=null">
-                        , plan_enrolling_number
+                    <if test="selector.majorType!=null">
+                        , majorType
                     </if>
                     <if test="selector.realEnrollingNumber!=null">
-                        , real_enrolling_number
-                    </if>
-                    <if test="selector.lengthOfSchooling!=null">
-                        , length_of_schooling
-                    </if>
-                    <if test="selector.schoolFee!=null">
-                        , school_fee
+                        , realEnrollingNumber
                     </if>
                     <if test="selector.highestScore!=null">
-                        , highest_score
-                    </if>
-                    <if test="selector.highestPrecedence!=null">
-                        , highest_precedence
+                        , highestScore
                     </if>
                     <if test="selector.lowestScore!=null">
-                        , lowest_score
-                    </if>
-                    <if test="selector.lowestPrecedence!=null">
-                        , lowest_precedence
+                        , lowestScore
                     </if>
                     <if test="selector.averageScore!=null">
-                        , average_score
+                        , averageScore
+                    </if>
+                    <if test="selector.proScore!=null">
+                        , proScore
+                    </if>
+                    <if test="selector.schoolFee!=null">
+                        , schoolFee
+                    </if>
+                    <if test="selector.lengthOfSchooling!=null">
+                        , lengthOfSchooling
+                    </if>
+                    <if test="selector.highestPrecedence!=null">
+                        , highestPrecedence
+                    </if>
+                    <if test="selector.lowestPrecedence!=null">
+                        , lowestPrecedence
                     </if>
                     <if test="selector.averagePrecedence!=null">
-                        , average_precedence
+                        , averagePrecedence
+                    </if>
+                    <if test="selector.planEnrollingNumber!=null">
+                        , planEnrollingNumber
                     </if>
                     <if test="selector.createDate!=null">
                         , createDate
@@ -1069,6 +1306,21 @@ selectList
                     <if test="selector.isDelete!=null">
                         , is_delete
                     </if>
+                    <if test="selector.flag1!=null">
+                        , flag1
+                    </if>
+                    <if test="selector.flag2!=null">
+                        , flag2
+                    </if>
+                    <if test="selector.flag3!=null">
+                        , flag3
+                    </if>
+                    <if test="selector.flag4!=null">
+                        , flag4
+                    </if>
+                    <if test="selector.flag5!=null">
+                        , flag5
+                    </if>
             </trim>
         </if>
         <if test="selector==null">
@@ -1079,11 +1331,11 @@ selectList
             <if test="condition.id!=null">
                 AND id = #{condition.id}
             </if>
+            <if test="condition.universityId!=null">
+                AND universityId = #{condition.universityId}
+            </if>
             <if test="condition.areaId!=null">
                 AND areaId = #{condition.areaId}
-            </if>
-            <if test="condition.universityId!=null">
-                AND university_id = #{condition.universityId}
             </if>
             <if test="condition.year!=null">
                 AND year = #{condition.year}
@@ -1091,38 +1343,41 @@ selectList
             <if test="condition.batch!=null">
                 AND batch = #{condition.batch}
             </if>
-            <if test="condition.universityMajorType!=null">
-                AND university_major_type = #{condition.universityMajorType}
-            </if>
-            <if test="condition.planEnrollingNumber!=null">
-                AND plan_enrolling_number = #{condition.planEnrollingNumber}
+            <if test="condition.majorType!=null">
+                AND majorType = #{condition.majorType}
             </if>
             <if test="condition.realEnrollingNumber!=null">
-                AND real_enrolling_number = #{condition.realEnrollingNumber}
-            </if>
-            <if test="condition.lengthOfSchooling!=null">
-                AND length_of_schooling = #{condition.lengthOfSchooling}
-            </if>
-            <if test="condition.schoolFee!=null">
-                AND school_fee = #{condition.schoolFee}
+                AND realEnrollingNumber = #{condition.realEnrollingNumber}
             </if>
             <if test="condition.highestScore!=null">
-                AND highest_score = #{condition.highestScore}
-            </if>
-            <if test="condition.highestPrecedence!=null">
-                AND highest_precedence = #{condition.highestPrecedence}
+                AND highestScore = #{condition.highestScore}
             </if>
             <if test="condition.lowestScore!=null">
-                AND lowest_score = #{condition.lowestScore}
-            </if>
-            <if test="condition.lowestPrecedence!=null">
-                AND lowest_precedence = #{condition.lowestPrecedence}
+                AND lowestScore = #{condition.lowestScore}
             </if>
             <if test="condition.averageScore!=null">
-                AND average_score = #{condition.averageScore}
+                AND averageScore = #{condition.averageScore}
+            </if>
+            <if test="condition.proScore!=null">
+                AND proScore = #{condition.proScore}
+            </if>
+            <if test="condition.schoolFee!=null">
+                AND schoolFee = #{condition.schoolFee}
+            </if>
+            <if test="condition.lengthOfSchooling!=null">
+                AND lengthOfSchooling = #{condition.lengthOfSchooling}
+            </if>
+            <if test="condition.highestPrecedence!=null">
+                AND highestPrecedence = #{condition.highestPrecedence}
+            </if>
+            <if test="condition.lowestPrecedence!=null">
+                AND lowestPrecedence = #{condition.lowestPrecedence}
             </if>
             <if test="condition.averagePrecedence!=null">
-                AND average_precedence = #{condition.averagePrecedence}
+                AND averagePrecedence = #{condition.averagePrecedence}
+            </if>
+            <if test="condition.planEnrollingNumber!=null">
+                AND planEnrollingNumber = #{condition.planEnrollingNumber}
             </if>
             <if test="condition.createDate!=null">
                 AND createDate = #{condition.createDate}
@@ -1139,6 +1394,21 @@ selectList
             <if test="condition.isDelete!=null">
                 AND is_delete = #{condition.isDelete}
             </if>
+            <if test="condition.flag1!=null">
+                AND flag1 = #{condition.flag1}
+            </if>
+            <if test="condition.flag2!=null">
+                AND flag2 = #{condition.flag2}
+            </if>
+            <if test="condition.flag3!=null">
+                AND flag3 = #{condition.flag3}
+            </if>
+            <if test="condition.flag4!=null">
+                AND flag4 = #{condition.flag4}
+            </if>
+            <if test="condition.flag5!=null">
+                AND flag5 = #{condition.flag5}
+            </if>
         </trim>
         <if test="orderBy!=null">
         ORDER BY ${orderBy} ${sortBy}
@@ -1152,11 +1422,11 @@ selectList
            <if test="id!=null">
                ${groupOp} ${id.field} ${id.op}  #{id.data}
            </if>
-           <if test="areaId!=null">
-               ${groupOp} ${areaId.field} ${areaId.op}  #{areaId.data}
-           </if>
            <if test="universityId!=null">
                ${groupOp} ${universityId.field} ${universityId.op}  #{universityId.data}
+           </if>
+           <if test="areaId!=null">
+               ${groupOp} ${areaId.field} ${areaId.op}  #{areaId.data}
            </if>
            <if test="year!=null">
                ${groupOp} ${year.field} ${year.op}  #{year.data}
@@ -1164,38 +1434,41 @@ selectList
            <if test="batch!=null">
                ${groupOp} ${batch.field} ${batch.op}  #{batch.data}
            </if>
-           <if test="universityMajorType!=null">
-               ${groupOp} ${universityMajorType.field} ${universityMajorType.op}  #{universityMajorType.data}
-           </if>
-           <if test="planEnrollingNumber!=null">
-               ${groupOp} ${planEnrollingNumber.field} ${planEnrollingNumber.op}  #{planEnrollingNumber.data}
+           <if test="majorType!=null">
+               ${groupOp} ${majorType.field} ${majorType.op}  #{majorType.data}
            </if>
            <if test="realEnrollingNumber!=null">
                ${groupOp} ${realEnrollingNumber.field} ${realEnrollingNumber.op}  #{realEnrollingNumber.data}
            </if>
-           <if test="lengthOfSchooling!=null">
-               ${groupOp} ${lengthOfSchooling.field} ${lengthOfSchooling.op}  #{lengthOfSchooling.data}
-           </if>
-           <if test="schoolFee!=null">
-               ${groupOp} ${schoolFee.field} ${schoolFee.op}  #{schoolFee.data}
-           </if>
            <if test="highestScore!=null">
                ${groupOp} ${highestScore.field} ${highestScore.op}  #{highestScore.data}
-           </if>
-           <if test="highestPrecedence!=null">
-               ${groupOp} ${highestPrecedence.field} ${highestPrecedence.op}  #{highestPrecedence.data}
            </if>
            <if test="lowestScore!=null">
                ${groupOp} ${lowestScore.field} ${lowestScore.op}  #{lowestScore.data}
            </if>
-           <if test="lowestPrecedence!=null">
-               ${groupOp} ${lowestPrecedence.field} ${lowestPrecedence.op}  #{lowestPrecedence.data}
-           </if>
            <if test="averageScore!=null">
                ${groupOp} ${averageScore.field} ${averageScore.op}  #{averageScore.data}
            </if>
+           <if test="proScore!=null">
+               ${groupOp} ${proScore.field} ${proScore.op}  #{proScore.data}
+           </if>
+           <if test="schoolFee!=null">
+               ${groupOp} ${schoolFee.field} ${schoolFee.op}  #{schoolFee.data}
+           </if>
+           <if test="lengthOfSchooling!=null">
+               ${groupOp} ${lengthOfSchooling.field} ${lengthOfSchooling.op}  #{lengthOfSchooling.data}
+           </if>
+           <if test="highestPrecedence!=null">
+               ${groupOp} ${highestPrecedence.field} ${highestPrecedence.op}  #{highestPrecedence.data}
+           </if>
+           <if test="lowestPrecedence!=null">
+               ${groupOp} ${lowestPrecedence.field} ${lowestPrecedence.op}  #{lowestPrecedence.data}
+           </if>
            <if test="averagePrecedence!=null">
                ${groupOp} ${averagePrecedence.field} ${averagePrecedence.op}  #{averagePrecedence.data}
+           </if>
+           <if test="planEnrollingNumber!=null">
+               ${groupOp} ${planEnrollingNumber.field} ${planEnrollingNumber.op}  #{planEnrollingNumber.data}
            </if>
            <if test="createDate!=null">
                ${groupOp} ${createDate.field} ${createDate.op}  #{createDate.data}
@@ -1211,6 +1484,21 @@ selectList
            </if>
            <if test="isDelete!=null">
                ${groupOp} ${isDelete.field} ${isDelete.op}  #{isDelete.data}
+           </if>
+           <if test="flag1!=null">
+               ${groupOp} ${flag1.field} ${flag1.op}  #{flag1.data}
+           </if>
+           <if test="flag2!=null">
+               ${groupOp} ${flag2.field} ${flag2.op}  #{flag2.data}
+           </if>
+           <if test="flag3!=null">
+               ${groupOp} ${flag3.field} ${flag3.op}  #{flag3.data}
+           </if>
+           <if test="flag4!=null">
+               ${groupOp} ${flag4.field} ${flag4.op}  #{flag4.data}
+           </if>
+           <if test="flag5!=null">
+               ${groupOp} ${flag5.field} ${flag5.op}  #{flag5.data}
            </if>
 
        </where>
