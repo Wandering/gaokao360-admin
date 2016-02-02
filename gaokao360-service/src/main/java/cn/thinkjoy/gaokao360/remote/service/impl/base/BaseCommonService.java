@@ -10,6 +10,7 @@ import com.google.common.collect.Maps;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.CollectionUtils;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -109,4 +110,5 @@ public class BaseCommonService {
     protected Object enhanceStateTransition(List conditions) {
         return conditions;
     }
+
 }

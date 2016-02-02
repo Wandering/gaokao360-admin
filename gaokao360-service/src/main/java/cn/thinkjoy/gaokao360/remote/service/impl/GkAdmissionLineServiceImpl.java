@@ -24,7 +24,7 @@ public class GkAdmissionLineServiceImpl extends BaseCommonService implements IGk
     @Autowired
     IUniversityEnrollingExService universityEnrollingExService;
     /**
-     * 获取热点摘要列表 四个
+     * 获取历年分数线
      * @return
      */
     @Override
@@ -32,11 +32,21 @@ public class GkAdmissionLineServiceImpl extends BaseCommonService implements IGk
         return doPage(conditions,universityEnrollingExService.getDao(),page,rows);
     }
 
+    /**
+     * 将父级domain转换重写实现
+     * @param conditions
+     * @return
+     */
     @Override
     protected Object enhanceStateTransition(List conditions) {
         return domain2GkAdmissionLine(conditions);
     }
 
+    /**
+     * api需要domainList和admindomainList转换
+     * @param universityEnrollingDTOs
+     * @return
+     */
     private List<GkAdmissionLine> domain2GkAdmissionLine(List<UniversityEnrollingDTO> universityEnrollingDTOs){
         if(universityEnrollingDTOs==null)return null;
         List<GkAdmissionLine> gkAdmissionLines = new ArrayList<>();
@@ -45,6 +55,12 @@ public class GkAdmissionLineServiceImpl extends BaseCommonService implements IGk
         }
         return gkAdmissionLines;
     }
+
+    /**
+     * api需要domain和admindomain转换
+     * @param universityEnrollingDTO
+     * @return
+     */
     private GkAdmissionLine domain2GkAdmissionLine(UniversityEnrollingDTO universityEnrollingDTO){
         GkAdmissionLine gkAdmissionLine=new GkAdmissionLine();
         gkAdmissionLine.setId(universityEnrollingDTO.getUniversityId());
