@@ -19,7 +19,8 @@ import java.util.regex.Pattern;
 public class SwitchDataSourceHandler {
     private String regularPackage="cn.thinkjoy.gaokao360.service.differentiation..*(..)";
 
-    @Before("execution(* cn.thinkjoy.gaokao360.service.differentiation..*(..))||execution(* cn.thinkjoy.common.service..*(..))")
+    @Before("execution(* cn.thinkjoy.gaokao360.service.differentiation..*(..))||execution(* cn.thinkjoy.common.service..*(..))" +
+            "")
     public void switchDB(JoinPoint jionpoint)
     {
         CustomerContextHolder.clearContextType();
@@ -34,6 +35,12 @@ public class SwitchDataSourceHandler {
         if(matchPackageType(jionpoint)&&jionpoint.getSignature().getName().equals("getDao")){
             return;
         }
+        CustomerContextHolder.clearContextType();
+    }
+
+    @Before("execution(* cn.thinkjoy.gaokao360.service.common..*(..)))||execution(* cn.thinkjoy.common.managerui.service..*(..)))")
+    public void switchDBclear(JoinPoint jionpoint)
+    {
         CustomerContextHolder.clearContextType();
     }
     /**
