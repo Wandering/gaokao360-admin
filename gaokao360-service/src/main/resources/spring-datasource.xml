@@ -71,6 +71,9 @@
     <bean id="fjDataSource" parent="parentDataSource">
         <property name="url" value="${jdbc_url_fj}"/>
     </bean>
+    <bean id="gxDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_gx}"/>
+    </bean>
     <bean id="dynamicDataSource" class="cn.thinkjoy.gaokao360.common.DynamicDataSource">
         <!-- 通过key-value的形式来关联数据源 -->
         <property name="targetDataSources">
@@ -81,6 +84,7 @@
                 <entry value-ref="snDataSource" key="sn"></entry>
                 <entry value-ref="fjDataSource" key="fj"></entry>
                 <entry value-ref="hnDataSource" key="hn"></entry>
+                <entry value-ref="gxDataSource" key="gx"></entry>
             </map>
         </property>
         <property name="defaultTargetDataSource" ref="parentDataSource"/>
