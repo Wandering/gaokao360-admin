@@ -20,7 +20,6 @@ public class UserAreaContextHandler {
     @Autowired
     private IPermissionExService permissionExService;
     /**用户所属区域**/
-    private static String area=null;
     @After("execution(* cn.thinkjoy.common.managerui.iauth.client.token.storage.UserStore.postpone(**))")
     public void setUserArea(JoinPoint jionpoint)
     {
@@ -37,20 +36,16 @@ public class UserAreaContextHandler {
     public void clearUserArea(JoinPoint jionpoint)
     {
          UserAreaContext.removeCurrentUseraArea();
-         this.area=null;
     }
 
     private String getArea() throws Exception{
-        if(area==null) {
             try {
                 Object id = UserContext.getCurrentUser().getId();
-                area = permissionExService.getUserAreaByUserId(id);
+                String area = permissionExService.getUserAreaByUserId(id);
+                return area;
             }catch (Exception e){
                 throw new Exception("当前用户为空");
             }
-
-        }
-        return area;
     }
 
 }
