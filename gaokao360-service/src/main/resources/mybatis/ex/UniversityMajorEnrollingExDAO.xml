@@ -28,11 +28,13 @@
         id as id ,
         areaId as areaId ,
         universityId as universityId ,
+        universityName as universityName,
+        majorName as majorName,
         majorId as majorId ,
         year as year ,
         batch as batch ,
-        admissionBatchId as admissionBatchId ,
-        universityMajorType as universityMajorType ,
+        admissionFeature as admissionFeature ,
+        majorType as majorType ,
         planEnrollingNumber as planEnrollingNumber ,
         realEnrollingNumber as realEnrollingNumber ,
         lengthOfSchooling as lengthOfSchooling ,
@@ -53,11 +55,12 @@
         INSERT INTO zgk_university_major_enrolling (
         areaId,
         universityId,
+        universityName,
         majorId,
         year,
         batch,
-        admissionBatchId,
-        universityMajorType,
+        admissionFeature,
+        majorType,
         planEnrollingNumber,
         realEnrollingNumber,
         lengthOfSchooling,
@@ -79,8 +82,8 @@
         #{majorId},
         #{year},
         #{batch},
-        #{admissionBatchId},
-        #{universityMajorType},
+        #{admissionFeature},
+        #{majorType},
         #{planEnrollingNumber},
         #{realEnrollingNumber},
         #{lengthOfSchooling},
@@ -121,11 +124,11 @@
             <if test="batch!=null">
                 batch = #{batch},
             </if>
-            <if test="admissionBatchId!=null">
-                admissionBatchId = #{admissionBatchId},
+            <if test="admissionFeature!=null">
+                admissionFeature = #{admissionFeature},
             </if>
-            <if test="universityMajorType!=null">
-                universityMajorType = #{universityMajorType},
+            <if test="majorType!=null">
+                majorType = #{majorType},
             </if>
             <if test="planEnrollingNumber!=null">
                 planEnrollingNumber = #{planEnrollingNumber},
@@ -195,11 +198,11 @@
             <if test="map.batch!=null">
                 batch = #{map.batch},
             </if>
-            <if test="map.admissionBatchId!=null">
-                admissionBatchId = #{map.admissionBatchId},
+            <if test="map.admissionFeature!=null">
+                admissionFeature = #{map.admissionFeature},
             </if>
-            <if test="map.universityMajorType!=null">
-                universityMajorType = #{map.universityMajorType},
+            <if test="map.majorType!=null">
+                majorType = #{map.majorType},
             </if>
             <if test="map.planEnrollingNumber!=null">
                 planEnrollingNumber = #{map.planEnrollingNumber},
@@ -269,11 +272,11 @@
             <if test="update.batch!=null">
                 batch = #{update.batch},
             </if>
-            <if test="update.admissionBatchId!=null">
-                admissionBatchId = #{update.admissionBatchId},
+            <if test="update.admissionFeature!=null">
+                admissionFeature = #{update.admissionFeature},
             </if>
-            <if test="update.universityMajorType!=null">
-                universityMajorType = #{update.universityMajorType},
+            <if test="update.majorType!=null">
+                majorType = #{update.majorType},
             </if>
             <if test="update.planEnrollingNumber!=null">
                 planEnrollingNumber = #{update.planEnrollingNumber},
@@ -341,11 +344,11 @@
             <if test="condition.batch!=null">
                 AND batch = #{condition.batch}
             </if>
-            <if test="condition.admissionBatchId!=null">
-                AND admissionBatchId = #{condition.admissionBatchId}
+            <if test="condition.admissionFeature!=null">
+                AND admissionFeature = #{condition.admissionFeature}
             </if>
-            <if test="condition.universityMajorType!=null">
-                AND universityMajorType = #{condition.universityMajorType}
+            <if test="condition.majorType!=null">
+                AND majorType = #{condition.majorType}
             </if>
             <if test="condition.planEnrollingNumber!=null">
                 AND planEnrollingNumber = #{condition.planEnrollingNumber}
@@ -402,8 +405,8 @@
         majorId,
         year,
         batch,
-        admissionBatchId,
-        universityMajorType,
+        admissionFeature,
+        majorType,
         planEnrollingNumber,
         realEnrollingNumber,
         lengthOfSchooling,
@@ -425,8 +428,8 @@
         #{map.majorId},
         #{map.year},
         #{map.batch},
-        #{map.admissionBatchId},
-        #{map.universityMajorType},
+        #{map.admissionFeature},
+        #{map.majorType},
         #{map.planEnrollingNumber},
         #{map.realEnrollingNumber},
         #{map.lengthOfSchooling},
@@ -454,8 +457,8 @@
             majorId = #{majorId},
             year = #{year},
             batch = #{batch},
-            admissionBatchId = #{admissionBatchId},
-            universityMajorType = #{universityMajorType},
+            admissionFeature = #{admissionFeature},
+            majorType = #{majorType},
             planEnrollingNumber = #{planEnrollingNumber},
             realEnrollingNumber = #{realEnrollingNumber},
             lengthOfSchooling = #{lengthOfSchooling},
@@ -506,11 +509,11 @@
             <if test="batch!=null">
                 AND batch = #{batch}
             </if>
-            <if test="admissionBatchId!=null">
-                AND admissionBatchId = #{admissionBatchId}
+            <if test="admissionFeature!=null">
+                AND admissionFeature = #{admissionFeature}
             </if>
-            <if test="universityMajorType!=null">
-                AND universityMajorType = #{universityMajorType}
+            <if test="majorType!=null">
+                AND majorType = #{majorType}
             </if>
             <if test="planEnrollingNumber!=null">
                 AND planEnrollingNumber = #{planEnrollingNumber}
@@ -627,12 +630,12 @@
                     ,
                     (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'BATCHTYPE' AND dd.dictId = batch) as batchName
                 </if>
-                <if test="selector.admissionBatchId!=null">
+                <if test="selector.admissionFeature!=null">
                     ,
-                    (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'ADMISSION_BATCH_TYPE' AND dd.dictId = admissionBatchId) as admissionBatchName
+                    (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'ADMISSION_BATCH_TYPE' AND dd.dictId = admissionFeature) as admissionBatchName
                 </if>
-                <if test="selector.universityMajorType!=null">
-                    , (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'UNIVERSITY_MAJOR_TYPE' AND dd.dictId = universityMajorType) as majorTypeName
+                <if test="selector.majorType!=null">
+                    , (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'UNIVERSITY_MAJOR_TYPE' AND dd.dictId = majorType) as majorTypeName
                 </if>
                 <if test="selector.planEnrollingNumber!=null">
                     , planEnrollingNumber
@@ -694,8 +697,8 @@
             majorId as majorId ,
             year as year ,
             (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'BATCHTYPE' AND dd.dictId = batch) as batchName
-            , (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'ADMISSION_BATCH_TYPE' AND dd.dictId = admissionBatchId) as admissionBatchName
-            , (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'UNIVERSITY_MAJOR_TYPE' AND dd.dictId = universityMajorType) as majorTypeName,
+            , (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'ADMISSION_BATCH_TYPE' AND dd.dictId = admissionFeature) as admissionBatchName
+            , (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'UNIVERSITY_MAJOR_TYPE' AND dd.dictId = majorType) as majorTypeName,
             planEnrollingNumber as planEnrollingNumber ,
             realEnrollingNumber as realEnrollingNumber ,
             (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'LENGTH_OF_SCHOOLING' AND dd.dictId = lengthOfSchooling) as lengthOfSchoolingName,
@@ -739,11 +742,11 @@
             <if test="condition.batch!=null">
                 ${condition.groupOp}   ${condition.batch.field}  ${condition.batch.op}  #{condition.batch.data}
             </if>
-            <if test="condition.admissionBatchId!=null">
-                ${condition.groupOp}   ${condition.admissionBatchId.field}  ${condition.admissionBatchId.op}  #{condition.admissionBatchId.data}
+            <if test="condition.admissionFeature!=null">
+                ${condition.groupOp}   ${condition.admissionFeature.field}  ${condition.admissionFeature.op}  #{condition.admissionFeature.data}
             </if>
-            <if test="condition.universityMajorType!=null">
-                ${condition.groupOp}   ${condition.universityMajorType.field}  ${condition.universityMajorType.op}  #{condition.universityMajorType.data}
+            <if test="condition.majorType!=null">
+                ${condition.groupOp}   ${condition.majorType.field}  ${condition.majorType.op}  #{condition.majorType.data}
             </if>
             <if test="condition.planEnrollingNumber!=null">
                 ${condition.groupOp}   ${condition.planEnrollingNumber.field}  ${condition.planEnrollingNumber.op}  #{condition.planEnrollingNumber.data}
@@ -826,11 +829,11 @@
                 <if test="selector.batch!=null">
                     , batch
                 </if>
-                <if test="selector.admissionBatchId!=null">
-                    , admissionBatchId
+                <if test="selector.admissionFeature!=null">
+                    , admissionFeature
                 </if>
-                <if test="selector.universityMajorType!=null">
-                    , universityMajorType
+                <if test="selector.majorType!=null">
+                    , majorType
                 </if>
                 <if test="selector.planEnrollingNumber!=null">
                     , planEnrollingNumber
@@ -902,11 +905,11 @@
             <if test="condition.batch!=null">
                 AND batch like CONCAT('%', #{condition.batch} , '%')
             </if>
-            <if test="condition.admissionBatchId!=null">
-                AND admissionBatchId like CONCAT('%', #{condition.admissionBatchId} , '%')
+            <if test="condition.admissionFeature!=null">
+                AND admissionFeature like CONCAT('%', #{condition.admissionFeature} , '%')
             </if>
-            <if test="condition.universityMajorType!=null">
-                AND universityMajorType like CONCAT('%', #{condition.universityMajorType} , '%')
+            <if test="condition.majorType!=null">
+                AND majorType like CONCAT('%', #{condition.majorType} , '%')
             </if>
             <if test="condition.planEnrollingNumber!=null">
                 AND planEnrollingNumber like CONCAT('%', #{condition.planEnrollingNumber} , '%')
@@ -982,11 +985,11 @@
                 <if test="selector.batch!=null">
                     , batch
                 </if>
-                <if test="selector.admissionBatchId!=null">
-                    , admissionBatchId
+                <if test="selector.admissionFeature!=null">
+                    , admissionFeature
                 </if>
-                <if test="selector.universityMajorType!=null">
-                    , universityMajorType
+                <if test="selector.majorType!=null">
+                    , majorType
                 </if>
                 <if test="selector.planEnrollingNumber!=null">
                     , planEnrollingNumber
@@ -1058,11 +1061,11 @@
             <if test="condition.batch!=null">
                 AND batch = #{condition.batch}
             </if>
-            <if test="condition.admissionBatchId!=null">
-                AND admissionBatchId = #{condition.admissionBatchId}
+            <if test="condition.admissionFeature!=null">
+                AND admissionFeature = #{condition.admissionFeature}
             </if>
-            <if test="condition.universityMajorType!=null">
-                AND universityMajorType = #{condition.universityMajorType}
+            <if test="condition.majorType!=null">
+                AND majorType = #{condition.majorType}
             </if>
             <if test="condition.planEnrollingNumber!=null">
                 AND planEnrollingNumber = #{condition.planEnrollingNumber}
@@ -1137,11 +1140,11 @@
                 <if test="selector.batch!=null">
                     , batch
                 </if>
-                <if test="selector.admissionBatchId!=null">
-                    , admissionBatchId
+                <if test="selector.admissionFeature!=null">
+                    , admissionFeature
                 </if>
-                <if test="selector.universityMajorType!=null">
-                    , universityMajorType
+                <if test="selector.majorType!=null">
+                    , majorType
                 </if>
                 <if test="selector.planEnrollingNumber!=null">
                     , planEnrollingNumber
@@ -1213,11 +1216,11 @@
             <if test="condition.batch!=null">
                 AND batch = #{condition.batch}
             </if>
-            <if test="condition.admissionBatchId!=null">
-                AND admissionBatchId = #{condition.admissionBatchId}
+            <if test="condition.admissionFeature!=null">
+                AND admissionFeature = #{condition.admissionFeature}
             </if>
-            <if test="condition.universityMajorType!=null">
-                AND universityMajorType = #{condition.universityMajorType}
+            <if test="condition.majorType!=null">
+                AND majorType = #{condition.majorType}
             </if>
             <if test="condition.planEnrollingNumber!=null">
                 AND planEnrollingNumber = #{condition.planEnrollingNumber}
@@ -1292,11 +1295,11 @@
             <if test="batch!=null">
                 ${groupOp} ${batch.field} ${batch.op}  #{batch.data}
             </if>
-            <if test="admissionBatchId!=null">
-                ${groupOp} ${admissionBatchId.field} ${admissionBatchId.op}  #{admissionBatchId.data}
+            <if test="admissionFeature!=null">
+                ${groupOp} ${admissionFeature.field} ${admissionFeature.op}  #{admissionFeature.data}
             </if>
-            <if test="universityMajorType!=null">
-                ${groupOp} ${universityMajorType.field} ${universityMajorType.op}  #{universityMajorType.data}
+            <if test="majorType!=null">
+                ${groupOp} ${majorType.field} ${majorType.op}  #{majorType.data}
             </if>
             <if test="planEnrollingNumber!=null">
                 ${groupOp} ${planEnrollingNumber.field} ${planEnrollingNumber.op}  #{planEnrollingNumber.data}
