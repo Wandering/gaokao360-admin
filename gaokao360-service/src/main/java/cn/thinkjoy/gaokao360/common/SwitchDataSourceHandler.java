@@ -22,17 +22,20 @@ public class SwitchDataSourceHandler {
     @Before("execution(* cn.thinkjoy.gaokao360.service.differentiation..*(..))||execution(* cn.thinkjoy.common.service..*(..))")
     public void switchDB(JoinPoint jionpoint)
     {
+        CustomerContextHolder.clearContextType();
         if(matchPackageType(jionpoint)){
             CustomerContextHolder.setContextType(UserAreaContext.getCurrentUserArea());
         }
     }
 
     @After("execution(* cn.thinkjoy.gaokao360.service.differentiation..*(..))||execution(* cn.thinkjoy.common.service..*(..))")
-    public void switchDBBack()
+    public void switchDBBack(JoinPoint jionpoint)
     {
+        if(matchPackageType(jionpoint)&&jionpoint.getSignature().getName().equals("getDao")){
+            return;
+        }
         CustomerContextHolder.clearContextType();
     }
-
     /**
      * 正则匹配织入点
      * @return
