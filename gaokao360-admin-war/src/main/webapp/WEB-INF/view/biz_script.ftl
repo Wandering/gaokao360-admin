@@ -666,6 +666,13 @@
         return ""
     }
 
+    function subCellvalue(cellvalue, options, cell) {
+        if (cellvalue) {
+            var strHtml = cellvalue.substring(0,50)+"...";
+            return strHtml;
+        }
+        return ""
+    }
     var mainObj = '${mainObj}';
 
 </script>
