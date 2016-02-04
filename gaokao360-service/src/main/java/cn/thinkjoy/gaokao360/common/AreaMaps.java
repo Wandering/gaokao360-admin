@@ -31,6 +31,7 @@ public class AreaMaps {
     }
 
 
+    @PostConstruct
     private void initAreaInfo()
     {
         List<Province> list =  provinceService.findAll();
@@ -39,8 +40,21 @@ public class AreaMaps {
         }
     }
 
+    public Long getAreaId(Boolean boo){
+        //默认清除数据库状态 防止访问分库异常
+        if(boo) {
+            CustomerContextHolder.clearContextType();
+        }
+        //默认为空
+        try{
+            return Long.valueOf(String.valueOf(getAreaMap().get(UserAreaContext.getCurrentUserArea())).toString());
+        }catch (Exception e){
+            return null;
+        }
+    }
+
     public Long getAreaId(){
-        //默认浙江省
-        return Long.valueOf(String.valueOf(getAreaMap().get(UserAreaContext.getCurrentUserArea())).toString());
+        //当使用这一方法默认不使用分库
+        return getAreaId(true);
     }
 }

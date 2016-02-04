@@ -1,14 +1,26 @@
 package cn.thinkjoy.zgk.cloudstack;
 
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
- * Created by clei on 15/8/8.
+ * Created by admin on 2016/2/4.
  */
-public abstract class InterfaceConst {
-    protected final static List<String> INTERFACEMETHODS= new ArrayList<String>();
-    static {
+@Component
+public class BaseWhiteList{
+
+    protected final static Set<String> INTERFACEMETHODS= new HashSet<>();
+
+    public boolean hasWhiteList(String name) {
+        return INTERFACEMETHODS.contains(name);
+    }
+    @PostConstruct
+    public void init(){
         INTERFACEMETHODS.add("getGkEntryList");
         INTERFACEMETHODS.add("getGkEntryInfo");
         INTERFACEMETHODS.add("getGkHotList");
@@ -22,7 +34,4 @@ public abstract class InterfaceConst {
 //        INTERFACEMETHODS.add("hitInc");
     }
 
-    public static boolean hasWhiteList(String name) {
-        return INTERFACEMETHODS.contains(name);
-    }
 }

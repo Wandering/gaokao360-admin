@@ -59,13 +59,13 @@
     <bean id="gdDataSource" parent="parentDataSource">
         <property name="url" value="${jdbc_url_gd}"/>
     </bean>
-    <bean id="hbDataSource" parent="parentDataSource">
+    <bean id="hubeiDataSource" parent="parentDataSource">
         <property name="url" value="${jdbc_url_hb}"/>
     </bean>
     <bean id="snDataSource" parent="parentDataSource">
         <property name="url" value="${jdbc_url_sn}"/>
     </bean>
-    <bean id="hnDataSource" parent="parentDataSource">
+    <bean id="hunanDataSource" parent="parentDataSource">
         <property name="url" value="${jdbc_url_hn}"/>
     </bean>
     <bean id="fjDataSource" parent="parentDataSource">
@@ -80,10 +80,10 @@
             <map>
                 <entry value-ref="zjDataSource" key="zj"></entry>
                 <entry value-ref="gdDataSource" key="gd"></entry>
-                <entry value-ref="hbDataSource" key="hb"></entry>
+                <entry value-ref="hubeiDataSource" key="hubei"></entry>
                 <entry value-ref="snDataSource" key="sn"></entry>
                 <entry value-ref="fjDataSource" key="fj"></entry>
-                <entry value-ref="hnDataSource" key="hn"></entry>
+                <entry value-ref="hunanDataSource" key="hunan"></entry>
                 <entry value-ref="gxDataSource" key="gx"></entry>
             </map>
         </property>
