@@ -203,16 +203,17 @@
                 CommonFn.tipsDialog('温馨提示', '请选择高考头条日期');
                 return false;
             }
+            var informationSubContent = $.trim($('#hotContent').text()).substring(0,100);
             var infoData = {
-                        areaId: selProvinceV,
-                        hotInformation: hotTitleV,
-                        informationContent: hotContentV,
-                        hotdate: datePickerV,
-                        informationSubContent: '',
-                        hotCount: 0,
-                        oper: typeStr,
-                        imgUrl:fileUrl
-                    };
+                areaId: selProvinceV,
+                hotInformation: hotTitleV,
+                informationContent: hotContentV,
+                hotdate: datePickerV,
+                informationSubContent: informationSubContent,
+                hotCount: 0,
+                oper: typeStr,
+                imgUrl:fileUrl
+            };
             if (typeStr == 'edit') {
                 infoData.id = rowId;
             }
