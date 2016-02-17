@@ -51,40 +51,219 @@
 
         <!-- 配置监控统计拦截的filters -->
         <property name="filters" value="stat"/>
-    </bean>
 
-    <bean id="zjDataSource" parent="parentDataSource">
-        <property name="url" value="${jdbc_url_zj}"/>
+
+
     </bean>
+    <!--新疆维吾尔族自治区-->
+    <bean id="xjDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_xj}"/>
+    </bean>
+    <!--江西省-->
+    <bean id="jxDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_jx}"/>
+    </bean>
+    <!--辽宁省-->
+    <bean id="lnDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_ln}"/>
+    </bean>
+    <!--江苏省-->
+    <bean id="jsDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_js}"/>
+    </bean>
+    <!--香港特别行政区-->
+    <bean id="hkDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_hk}"/>
+    </bean>
+    <!--广东省-->
     <bean id="gdDataSource" parent="parentDataSource">
         <property name="url" value="${jdbc_url_gd}"/>
     </bean>
-    <bean id="hubeiDataSource" parent="parentDataSource">
-        <property name="url" value="${jdbc_url_hb}"/>
+    <!--海南省-->
+    <bean id="hiDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_hi}"/>
     </bean>
-    <bean id="snDataSource" parent="parentDataSource">
-        <property name="url" value="${jdbc_url_sn}"/>
+    <!--吉林省-->
+    <bean id="jlDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_jl}"/>
     </bean>
-    <bean id="hunanDataSource" parent="parentDataSource">
+    <!--湖南省-->
+    <bean id="hnDataSource" parent="parentDataSource">
         <property name="url" value="${jdbc_url_hn}"/>
     </bean>
+    <!--宁夏回族自治区-->
+    <bean id="nxDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_nx}"/>
+    </bean>
+    <!--天津市-->
+    <bean id="tjDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_tj}"/>
+    </bean>
+    <!--黑龙江省-->
+    <bean id="hlDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_hl}"/>
+    </bean>
+    <!--福建省-->
     <bean id="fjDataSource" parent="parentDataSource">
         <property name="url" value="${jdbc_url_fj}"/>
     </bean>
+    <!--北京市-->
+    <bean id="bjDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_bj}"/>
+    </bean>
+    <!--浙江省-->
+    <bean id="zjDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_zj}"/>
+    </bean>
+    <!--山西省-->
+    <bean id="sxDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_sx}"/>
+    </bean>
+    <!--陕西省-->
+    <bean id="snDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_sn}"/>
+    </bean>
+    <!--澳门特别行政区-->
+    <bean id="moDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_mo}"/>
+    </bean>
+    <!--贵州省-->
+    <bean id="gzDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_gz}"/>
+    </bean>
+    <!--广西壮族自治区-->
     <bean id="gxDataSource" parent="parentDataSource">
         <property name="url" value="${jdbc_url_gx}"/>
     </bean>
+    <!--山东省-->
+    <bean id="sdDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_sd}"/>
+    </bean>
+    <!--四川省-->
+    <bean id="scDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_sc}"/>
+    </bean>
+    <!--青海省-->
+    <bean id="qhDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_qh}"/>
+    </bean>
+    <!--河北省-->
+    <bean id="heDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_he}"/>
+    </bean>
+    <!--西藏自治区-->
+    <bean id="xzDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_xz}"/>
+    </bean>
+    <!--上海市-->
+    <bean id="shDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_sh}"/>
+    </bean>
+    <!--湖北省-->
+    <bean id="hbDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_hb}"/>
+    </bean>
+    <!--河南省-->
+    <bean id="haDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_ha}"/>
+    </bean>
+    <!--重庆市-->
+    <bean id="cqDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_cq}"/>
+    </bean>
+    <!--台湾省-->
+    <bean id="twDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_tw}"/>
+    </bean>
+    <!--云南省-->
+    <bean id="ynDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_yn}"/>
+    </bean>
+    <!--甘肃省-->
+    <bean id="gsDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_gs}"/>
+    </bean>
+    <!--安徽省-->
+    <bean id="ahDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_ah}"/>
+    </bean>
+    <!--内蒙古自治区-->
+    <bean id="nmDataSource" parent="parentDataSource">
+        <property name="url" value="${jdbc_url_nm}"/>
+    </bean>
+
     <bean id="dynamicDataSource" class="cn.thinkjoy.gaokao360.common.DynamicDataSource">
         <!-- 通过key-value的形式来关联数据源 -->
         <property name="targetDataSources">
             <map>
-                <entry value-ref="zjDataSource" key="zj"></entry>
+                <!--新疆维吾尔族自治区-->
+                <entry value-ref="xjDataSource" key="xj"></entry>
+                <!--江西省-->
+                <entry value-ref="jxDataSource" key="jx"></entry>
+                <!--辽宁省-->
+                <entry value-ref="lnDataSource" key="ln"></entry>
+                <!--江苏省-->
+                <entry value-ref="jsDataSource" key="js"></entry>
+                <!--香港特别行政区-->
+                <entry value-ref="hkDataSource" key="hk"></entry>
+                <!--广东省-->
                 <entry value-ref="gdDataSource" key="gd"></entry>
-                <entry value-ref="hubeiDataSource" key="hubei"></entry>
-                <entry value-ref="snDataSource" key="sn"></entry>
+                <!--海南省-->
+                <entry value-ref="hiDataSource" key="hi"></entry>
+                <!--吉林省-->
+                <entry value-ref="jlDataSource" key="jl"></entry>
+                <!--湖南省-->
+                <entry value-ref="hnDataSource" key="hn"></entry>
+                <!--宁夏回族自治区-->
+                <entry value-ref="nxDataSource" key="nx"></entry>
+                <!--天津市-->
+                <entry value-ref="tjDataSource" key="tj"></entry>
+                <!--黑龙江省-->
+                <entry value-ref="hlDataSource" key="hl"></entry>
+                <!--福建省-->
                 <entry value-ref="fjDataSource" key="fj"></entry>
-                <entry value-ref="hunanDataSource" key="hunan"></entry>
+                <!--北京市-->
+                <entry value-ref="bjDataSource" key="bj"></entry>
+                <!--浙江省-->
+                <entry value-ref="zjDataSource" key="zj"></entry>
+                <!--山西省-->
+                <entry value-ref="sxDataSource" key="sx"></entry>
+                <!--陕西省-->
+                <entry value-ref="snDataSource" key="sn"></entry>
+                <!--澳门特别行政区-->
+                <entry value-ref="moDataSource" key="mo"></entry>
+                <!--贵州省-->
+                <entry value-ref="gzDataSource" key="gz"></entry>
+                <!--广西壮族自治区-->
                 <entry value-ref="gxDataSource" key="gx"></entry>
+                <!--山东省-->
+                <entry value-ref="sdDataSource" key="sd"></entry>
+                <!--四川省-->
+                <entry value-ref="scDataSource" key="sc"></entry>
+                <!--青海省-->
+                <entry value-ref="qhDataSource" key="qh"></entry>
+                <!--河北省-->
+                <entry value-ref="heDataSource" key="he"></entry>
+                <!--西藏自治区-->
+                <entry value-ref="xzDataSource" key="xz"></entry>
+                <!--上海市-->
+                <entry value-ref="shDataSource" key="sh"></entry>
+                <!--湖北省-->
+                <entry value-ref="hbDataSource" key="hb"></entry>
+                <!--河南省-->
+                <entry value-ref="haDataSource" key="ha"></entry>
+                <!--重庆市-->
+                <entry value-ref="cqDataSource" key="cq"></entry>
+                <!--台湾省-->
+                <entry value-ref="twDataSource" key="tw"></entry>
+                <!--云南省-->
+                <entry value-ref="ynDataSource" key="yn"></entry>
+                <!--甘肃省-->
+                <entry value-ref="gsDataSource" key="gs"></entry>
+                <!--安徽省-->
+                <entry value-ref="ahDataSource" key="ah"></entry>
+                <!--内蒙古自治区-->
+                <entry value-ref="nmDataSource" key="nm"></entry>
             </map>
         </property>
         <property name="defaultTargetDataSource" ref="parentDataSource"/>
