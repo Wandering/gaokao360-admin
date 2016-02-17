@@ -6,7 +6,7 @@
     <select id="getUserAreaByUserId" resultType="java.lang.String">
         select area FROM zgk_datagroup mdgd
         inner join zgk_user_datagroup mudg on mudg.datagroupId = mdgd.id
-        WHERE mudg.userId=#{id}
+        WHERE mudg.userId=#{id} LIMIT 1
     </select>
 </mapper>
 
