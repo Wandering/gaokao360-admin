@@ -716,7 +716,7 @@
             isDelete as isDelete,
             areaId as areaId
         </if>
-        FROM zgk_university_major_enrolling
+        FROM zgk_university_major_enrolling ee
         LEFT JOIN (select id as uid,name as universityName FROM zgk_university) uu ON uu.uid=universityId
         <where>
 
