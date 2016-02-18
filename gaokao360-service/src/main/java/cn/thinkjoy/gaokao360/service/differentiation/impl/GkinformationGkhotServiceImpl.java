@@ -10,7 +10,7 @@ import cn.thinkjoy.common.dao.IBaseDAO;
 import cn.thinkjoy.gaokao360.dao.IGkinformationGkhotDAO;
 import cn.thinkjoy.gaokao360.domain.GkinformationGkhot;
 import cn.thinkjoy.gaokao360.service.differentiation.IGkinformationGkhotService;
-import cn.thinkjoy.common.service.impl.AbstractPageService;
+import cn.thinkjoy.gaokao360.service.baseservice.AbstractPageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;

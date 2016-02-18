@@ -10,7 +10,7 @@ import cn.thinkjoy.common.dao.IBaseDAO;
 import cn.thinkjoy.gaokao360.dao.IVocabularyDAO;
 import cn.thinkjoy.gaokao360.domain.Vocabulary;
 import cn.thinkjoy.gaokao360.service.differentiation.IVocabularyService;
-import cn.thinkjoy.common.service.impl.AbstractPageService;
+import cn.thinkjoy.gaokao360.service.baseservice.AbstractPageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;

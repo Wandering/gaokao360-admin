@@ -10,7 +10,7 @@ import cn.thinkjoy.common.dao.IBaseDAO;
 import cn.thinkjoy.gaokao360.dao.IUniversityMajorEnrollingDAO;
 import cn.thinkjoy.gaokao360.domain.UniversityMajorEnrolling;
 import cn.thinkjoy.gaokao360.service.common.IUniversityMajorEnrollingService;
-import cn.thinkjoy.common.service.impl.AbstractPageService;
+import cn.thinkjoy.gaokao360.service.baseservice.AbstractPageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;

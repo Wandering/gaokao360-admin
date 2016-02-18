@@ -7,7 +7,7 @@
 package cn.thinkjoy.gaokao360.service.differentiation.ex.impl;
 
 import cn.thinkjoy.common.dao.IBaseDAO;
-import cn.thinkjoy.common.service.impl.AbstractPageService;
+import cn.thinkjoy.gaokao360.service.baseservice.AbstractPageService;
 import cn.thinkjoy.gaokao360.dao.ex.IScheduleExDAO;
 import cn.thinkjoy.gaokao360.dto.ScheduleDTO;
 import cn.thinkjoy.gaokao360.service.differentiation.ex.IScheduleExService;
