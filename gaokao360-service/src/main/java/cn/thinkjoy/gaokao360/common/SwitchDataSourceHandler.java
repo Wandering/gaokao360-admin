@@ -4,7 +4,9 @@ package cn.thinkjoy.gaokao360.common;
 import cn.thinkjoy.common.utils.UserContext;
 import cn.thinkjoy.gaokao360.service.common.ex.IPermissionExService;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,32 +24,37 @@ public class SwitchDataSourceHandler {
     private String regularPackage="cn.thinkjoy.gaokao360.service.differentiation..*(..)";
     @Autowired
     private IPermissionExService permissionExService;
-    @Before("execution(* cn.thinkjoy.gaokao360.service.differentiation..*(..))||execution(* cn.thinkjoy.common.service..*(..))" +
+    @Around("execution(* cn.thinkjoy.gaokao360.service.differentiation..*(..))||execution(* cn.thinkjoy.common.service..*(..))" +
             "")
-    public void switchDB(JoinPoint jionpoint)
+    public Object switchDB(ProceedingJoinPoint jionpoint)
     {
-        System.out.println("当前类："+this.getClass().getName()+"当前线程="+Thread.currentThread().getId()+"当前切入点"+jionpoint+"访问清理，这里清理状态");
-        CustomerContextHolder.clearContextType();
-        if(matchPackageType(jionpoint)){
-            try {
-                System.out.println("当前类："+this.getClass().getName()+"当前线程="+Thread.currentThread().getId()+"当前切入点"+jionpoint);
-                CustomerContextHolder.setContextType(UserAreaContext.getCurrentUserArea());
-            } catch (Exception e) {
-                e.printStackTrace();
+        synchronized (this) {
+            System.out.println("当前类：" + this.getClass().getName() + "当前线程=" + Thread.currentThread().getId() + "当前切入点" + jionpoint + "访问清理，这里清理状态");
+            CustomerContextHolder.clearContextType();
+            if (matchPackageType(jionpoint)) {
+                try {
+                    System.out.println("当前类：" + this.getClass().getName() + "当前线程=" + Thread.currentThread().getId() + "当前切入点" + jionpoint);
+                    CustomerContextHolder.setContextType(UserAreaContext.getCurrentUserArea());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        }
-    }
+            Object o=null;
+            try {
+                o=jionpoint.proceed();
+            } catch (Throwable throwable) {
+                throwable.printStackTrace();
+            }
+            System.out.println("当前类："+this.getClass().getName()+"当前线程="+Thread.currentThread().getId()+"当前切入点"+jionpoint+"清理前");
+            if(matchPackageType(jionpoint)&&jionpoint.getSignature().getName().equals("getDao")){
+                System.out.println("当前类："+this.getClass().getName()+"当前线程="+Thread.currentThread().getId()+"当前切入点"+jionpoint+"未清理"+CustomerContextHolder.getContextType()+"Area："+UserAreaContext.getCurrentUserArea());
+            }else {
+                System.out.println("当前类："+this.getClass().getName()+"当前线程="+Thread.currentThread().getId()+"当前切入点"+jionpoint+"清理后"+CustomerContextHolder.getContextType()+"Area："+UserAreaContext.getCurrentUserArea());
+                CustomerContextHolder.clearContextType();
+            }
 
-    @After("execution(* cn.thinkjoy.gaokao360.service.differentiation..*(..))||execution(* cn.thinkjoy.common.service..*(..))")
-    public void switchDBBack(JoinPoint jionpoint)
-    {
-        System.out.println("当前类："+this.getClass().getName()+"当前线程="+Thread.currentThread().getId()+"当前切入点"+jionpoint+"清理前");
-        if(matchPackageType(jionpoint)&&jionpoint.getSignature().getName().equals("getDao")){
-            System.out.println("当前类："+this.getClass().getName()+"当前线程="+Thread.currentThread().getId()+"当前切入点"+jionpoint+"未清理"+CustomerContextHolder.getContextType()+"Area："+UserAreaContext.getCurrentUserArea());
-            return;
+            return o;
         }
-        System.out.println("当前类："+this.getClass().getName()+"当前线程="+Thread.currentThread().getId()+"当前切入点"+jionpoint+"清理后");
-        CustomerContextHolder.clearContextType();
     }
 
     @Before("execution(* cn.thinkjoy.gaokao360.service.common..*(..)))||execution(* cn.thinkjoy.common.managerui.service..*(..)))")
