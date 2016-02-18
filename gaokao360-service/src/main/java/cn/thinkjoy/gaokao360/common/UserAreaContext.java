@@ -22,7 +22,9 @@ public class UserAreaContext {
 
     public static void setCurrentUserArea(String area){
         //缓存记录
-//        SessionCacheFactory.getInstance().put(user.getName(), user);
+//        SessionCacheFactory.getInstance().put(user.getName(), user)
+        Object O = CustomerContextHolder.getContextType();
+        System.out.println(Thread.currentThread().getId()+"UserAreaContext");
         context.set(area);
     }
 

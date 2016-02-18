@@ -2,10 +2,14 @@ package cn.thinkjoy.gaokao360.common;
 
 
 import cn.thinkjoy.common.utils.UserContext;
+import cn.thinkjoy.gaokao360.service.common.ex.IPermissionExService;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.regex.Matcher;
@@ -18,24 +22,37 @@ import java.util.regex.Pattern;
 @Aspect
 public class SwitchDataSourceHandler {
     private String regularPackage="cn.thinkjoy.gaokao360.service.differentiation..*(..)";
-
-    @Before("execution(* cn.thinkjoy.gaokao360.service.differentiation..*(..))||execution(* cn.thinkjoy.common.service..*(..))" +
+    @Autowired
+    private IPermissionExService permissionExService;
+    @Around("execution(* cn.thinkjoy.gaokao360.service.differentiation..*(..))||execution(* cn.thinkjoy.common.service..*(..))" +
             "")
-    public void switchDB(JoinPoint jionpoint)
+    public synchronized Object switchDB(ProceedingJoinPoint jionpoint)
     {
-        CustomerContextHolder.clearContextType();
-        if(matchPackageType(jionpoint)){
-            CustomerContextHolder.setContextType(UserAreaContext.getCurrentUserArea());
-        }
-    }
+            System.out.println("当前类：" + this.getClass().getName() + "当前线程=" + Thread.currentThread().getId() + "当前切入点" + jionpoint + "访问清理，这里清理状态");
+            CustomerContextHolder.clearContextType();
+            if (matchPackageType(jionpoint)) {
+                try {
+                    System.out.println("当前类：" + this.getClass().getName() + "当前线程=" + Thread.currentThread().getId() + "当前切入点" + jionpoint);
+                    CustomerContextHolder.setContextType(UserAreaContext.getCurrentUserArea());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            Object o=null;
+            try {
+                o=jionpoint.proceed();
+            } catch (Throwable throwable) {
+                throwable.printStackTrace();
+            }
+            System.out.println("当前类："+this.getClass().getName()+"当前线程="+Thread.currentThread().getId()+"当前切入点"+jionpoint+"清理前");
+            if(matchPackageType(jionpoint)&&jionpoint.getSignature().getName().equals("getDao")){
+                System.out.println("当前类："+this.getClass().getName()+"当前线程="+Thread.currentThread().getId()+"当前切入点"+jionpoint+"未清理"+CustomerContextHolder.getContextType()+"Area："+UserAreaContext.getCurrentUserArea());
+            }else {
+                System.out.println("当前类："+this.getClass().getName()+"当前线程="+Thread.currentThread().getId()+"当前切入点"+jionpoint+"清理后"+CustomerContextHolder.getContextType()+"Area："+UserAreaContext.getCurrentUserArea());
+                CustomerContextHolder.clearContextType();
+            }
 
-    @After("execution(* cn.thinkjoy.gaokao360.service.differentiation..*(..))||execution(* cn.thinkjoy.common.service..*(..))")
-    public void switchDBBack(JoinPoint jionpoint)
-    {
-        if(matchPackageType(jionpoint)&&jionpoint.getSignature().getName().equals("getDao")){
-            return;
-        }
-        CustomerContextHolder.clearContextType();
+            return o;
     }
 
     @Before("execution(* cn.thinkjoy.gaokao360.service.common..*(..)))||execution(* cn.thinkjoy.common.managerui.service..*(..)))")
@@ -54,5 +71,15 @@ public class SwitchDataSourceHandler {
         Matcher matcher = pattern.matcher(targetClassName);
         if(matcher.find()){return true;}
         return false;
+    }
+
+    private String getArea() throws Exception{
+        try {
+            Object id = UserContext.getCurrentUser().getId();
+            String area = permissionExService.getUserAreaByUserId(id);
+            return area;
+        }catch (Exception e){
+            throw new Exception("当前用户为空");
+        }
     }
 }
