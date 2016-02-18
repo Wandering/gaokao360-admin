@@ -6,18 +6,11 @@
  */
 package cn.thinkjoy.gaokao360.service.common.ex.impl;
 
-import cn.thinkjoy.common.dao.IBaseDAO;
-import cn.thinkjoy.common.service.impl.AbstractPageService;
-import cn.thinkjoy.gaokao360.dao.ex.IAgentExDAO;
 import cn.thinkjoy.gaokao360.dao.ex.IPermissionExDAO;
-import cn.thinkjoy.gaokao360.dto.AgentDTO;
-import cn.thinkjoy.gaokao360.service.common.ex.IAgentExService;
 import cn.thinkjoy.gaokao360.service.common.ex.IPermissionExService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
-
-import java.util.Objects;
 
 
 @Service("PermissionExServiceImpl")

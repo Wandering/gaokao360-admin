@@ -8,8 +8,7 @@ package cn.thinkjoy.gaokao360.service.common.impl;
 
 
 import cn.thinkjoy.common.dao.IBaseDAO;
-import cn.thinkjoy.common.domain.view.BizData4Page;
-import cn.thinkjoy.common.service.impl.AbstractPageService;
+import cn.thinkjoy.gaokao360.service.baseservice.AbstractPageService;
 import cn.thinkjoy.gaokao360.dao.IProfessionDAO;
 import cn.thinkjoy.gaokao360.domain.Profession;
 import cn.thinkjoy.gaokao360.service.common.IProfessionService;

@@ -7,10 +7,10 @@
 package cn.thinkjoy.gaokao360.service.differentiation.impl;
 
 import cn.thinkjoy.common.dao.IBaseDAO;
+import cn.thinkjoy.gaokao360.service.baseservice.AbstractPageService;
 import cn.thinkjoy.gaokao360.dao.IAdmissionBatchDAO;
 import cn.thinkjoy.gaokao360.domain.AdmissionBatch;
 import cn.thinkjoy.gaokao360.service.differentiation.IAdmissionBatchService;
-import cn.thinkjoy.common.service.impl.AbstractPageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
