@@ -31,7 +31,7 @@ public class GkPhoneServiceImpl extends BaseCommonService implements IGkPhoneSer
      */
     @Override
     public BizData4Page getGkPhoneList(Map<String, Object> conditions,Integer page,Integer rows) {
-        return doPage(conditions,agentExService.getDao(),page,rows);
+        return doPage(conditions,agentExService,page,rows);
     }
 
 }

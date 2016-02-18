@@ -57,7 +57,7 @@ public class GkVideoServiceImpl extends BaseCommonService implements IGkVideoSer
         }else {
             setIsIgnore(false);
         }
-        return doPage(conditions,videoCourseService.getDao(),page,rows);
+        return doPage(conditions,videoCourseService,page,rows);
     }
 
     @Override

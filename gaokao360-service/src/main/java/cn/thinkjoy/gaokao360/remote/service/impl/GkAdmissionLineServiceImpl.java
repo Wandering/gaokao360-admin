@@ -1,5 +1,7 @@
 package cn.thinkjoy.gaokao360.remote.service.impl;
 
+import cn.thinkjoy.gaokao360.common.AreaMaps;
+import cn.thinkjoy.gaokao360.common.UserAreaContext;
 import cn.thinkjoy.gaokao360.dto.UniversityEnrollingDTO;
 import cn.thinkjoy.gaokao360.remote.service.impl.base.BaseCommonService;
 import cn.thinkjoy.gaokao360.service.common.ex.IUniversityEnrollingExService;
@@ -19,6 +21,8 @@ import java.util.Map;
 @Service("GkAdmissionLineServiceImpl")
 public class GkAdmissionLineServiceImpl extends BaseCommonService implements IGkAdmissionLineService {
 
+    @Autowired
+    private AreaMaps areaMaps;
     //设置是否加载内容，默认不加载
     private boolean isIgnore=false;
     @Autowired
@@ -29,7 +33,7 @@ public class GkAdmissionLineServiceImpl extends BaseCommonService implements IGk
      */
     @Override
     public BizData4Page getGkAdmissionLineList(Map<String, Object> conditions,Integer page,Integer rows) {
-        return doPage(conditions,universityEnrollingExService.getDao(),page,rows);
+        return doPage(conditions,universityEnrollingExService,page,rows);
     }
 
     /**
@@ -40,6 +44,18 @@ public class GkAdmissionLineServiceImpl extends BaseCommonService implements IGk
     @Override
     protected Object enhanceStateTransition(List conditions) {
         return domain2GkAdmissionLine(conditions);
+    }
+
+    /**
+     * 增强查询条件
+     * @param conditions
+     */
+    @Override
+    protected void enhanceSearchFilter(Map<String, Object> conditions) {
+        Long area=areaMaps.getAreaId();
+        if(area!=null) {
+            conditions.put("enrollingareaid",area);
+        }
     }
 
     /**

@@ -30,7 +30,7 @@ public class GkPolicyServiceImpl extends BaseCommonService implements IGkPolicyS
         if(!conditions.containsKey("isIgnore")) {
             this.setIsIgnore(true);
         }
-        return doPage(conditions,policyInterpretationService.getDao(),page,rows);
+        return doPage(conditions,policyInterpretationService,page,rows);
     }
     /**
      * 获取详情

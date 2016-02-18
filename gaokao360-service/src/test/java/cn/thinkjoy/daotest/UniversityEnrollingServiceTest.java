@@ -11,6 +11,7 @@ import cn.thinkjoy.common.domain.BaseDomain;
 import cn.thinkjoy.common.service.IBaseService;
 import cn.thinkjoy.common.service.IPageService;
 
+import cn.thinkjoy.gaokao360.common.UserAreaContext;
 import cn.thinkjoy.gaokao360.service.common.ex.IUniversityEnrollingExService;
 import cn.thinkjoy.zgk.common.QueryUtil;
 import org.junit.Test;
@@ -33,6 +34,7 @@ public class UniversityEnrollingServiceTest{
     @Test
     public void test(){
         //showcase
+        UserAreaContext.setCurrentUserArea("sn");
         Map<String,Object>  map = new HashMap<>();
         QueryUtil.setMapOp(map,"enrollingyear","=","2012");
         QueryUtil.setMapOp(map,"enrollingbatch","=","2");

@@ -25,7 +25,7 @@ selectList
 -->
 
     <sql id="Base_Column_List">
-             enrolling.id as id ,
+        enrolling.id as id ,
         enrolling.universityId as universityId ,
         enrolling.areaId as areaId ,
         enrolling.year as year ,

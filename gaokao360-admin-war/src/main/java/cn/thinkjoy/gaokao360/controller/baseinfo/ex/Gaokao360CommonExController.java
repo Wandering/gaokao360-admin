@@ -247,7 +247,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
      */
     @RequestMapping(value="/{mainObj}queryone")
     @ResponseBody
-    public Object queryOne(@PathVariable String mainObj,@RequestParam("id")String id){
+    public Object innerHandleQueryOne(@PathVariable String mainObj,@RequestParam("id")String id){
         try {
             return queryoneUtil.runMethod(mainObj,id);
         } catch (Exception e) {

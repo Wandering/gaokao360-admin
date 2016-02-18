@@ -7,17 +7,17 @@
 package cn.thinkjoy.gaokao360.common;
 
 import cn.thinkjoy.cloudstack.context.CloudContextFactory;
+import cn.thinkjoy.zgk.cloudstack.BaseWhiteList;
 import cn.thinkjoy.zgk.cloudstack.ISimpleCloud;
-import cn.thinkjoy.zgk.cloudstack.InterfaceConst;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 
 @Service("SimpleCloudImpl")
 public class SimpleCloudImpl implements ISimpleCloud{
 
+    @Autowired
+    BaseWhiteList baseWhiteList;
     @Override
     public String getCloudProduct() {
         return CloudContextFactory.getCloudContext().getProduct();
@@ -30,12 +30,12 @@ public class SimpleCloudImpl implements ISimpleCloud{
 
     @Override
     public boolean hasWhiteList(String clzName) {
-        return InterfaceConst.hasWhiteList(clzName);
+        return baseWhiteList.hasWhiteList(clzName);
     }
 
     @Override
     public void setArea(String area) {
-//        UserAreaContext.setCurrentUserArea(area);
+        UserAreaContext.setCurrentUserArea(area);
     }
 
 }

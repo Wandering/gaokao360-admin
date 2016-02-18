@@ -9,7 +9,7 @@ package cn.thinkjoy.gaokao360.controller.baseinfo;
 
 import cn.thinkjoy.common.utils.SqlOrderEnum;
 import cn.thinkjoy.gaokao360.controller.BaseController;
-import cn.thinkjoy.gaokao360.service.common.IVocabularyService;
+import cn.thinkjoy.gaokao360.service.differentiation.IVocabularyService;
 import cn.thinkjoy.common.domain.view.BizData4Page;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;

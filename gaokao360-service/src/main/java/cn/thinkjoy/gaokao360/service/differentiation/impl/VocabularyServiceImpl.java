@@ -4,12 +4,12 @@
  * Project Name: gaokao360
  * $Id:  VocabularyServiceImpl.java 2015-12-26 17:06:05 $
  */
-package cn.thinkjoy.gaokao360.service.common.impl;
+package cn.thinkjoy.gaokao360.service.differentiation.impl;
 
 import cn.thinkjoy.common.dao.IBaseDAO;
 import cn.thinkjoy.gaokao360.dao.IVocabularyDAO;
 import cn.thinkjoy.gaokao360.domain.Vocabulary;
-import cn.thinkjoy.gaokao360.service.common.IVocabularyService;
+import cn.thinkjoy.gaokao360.service.differentiation.IVocabularyService;
 import cn.thinkjoy.common.service.impl.AbstractPageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
