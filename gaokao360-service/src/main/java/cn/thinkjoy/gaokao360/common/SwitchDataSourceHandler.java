@@ -2,10 +2,12 @@ package cn.thinkjoy.gaokao360.common;
 
 
 import cn.thinkjoy.common.utils.UserContext;
+import cn.thinkjoy.gaokao360.service.common.ex.IPermissionExService;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.regex.Matcher;
@@ -18,14 +20,19 @@ import java.util.regex.Pattern;
 @Aspect
 public class SwitchDataSourceHandler {
     private String regularPackage="cn.thinkjoy.gaokao360.service.differentiation..*(..)";
-
+    @Autowired
+    private IPermissionExService permissionExService;
     @Before("execution(* cn.thinkjoy.gaokao360.service.differentiation..*(..))||execution(* cn.thinkjoy.common.service..*(..))" +
             "")
     public void switchDB(JoinPoint jionpoint)
     {
         CustomerContextHolder.clearContextType();
         if(matchPackageType(jionpoint)){
-            CustomerContextHolder.setContextType(UserAreaContext.getCurrentUserArea());
+            try {
+                CustomerContextHolder.setContextType(getArea());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -54,5 +61,15 @@ public class SwitchDataSourceHandler {
         Matcher matcher = pattern.matcher(targetClassName);
         if(matcher.find()){return true;}
         return false;
+    }
+
+    private String getArea() throws Exception{
+        try {
+            Object id = UserContext.getCurrentUser().getId();
+            String area = permissionExService.getUserAreaByUserId(id);
+            return area;
+        }catch (Exception e){
+            throw new Exception("当前用户为空");
+        }
     }
 }

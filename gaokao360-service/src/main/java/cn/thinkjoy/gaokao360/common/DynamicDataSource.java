@@ -6,7 +6,10 @@ public class DynamicDataSource extends AbstractRoutingDataSource{
 
 	@Override     
     protected Object determineCurrentLookupKey() {
+
+        Object O = CustomerContextHolder.getContextType();
+        System.out.println(Thread.currentThread().getId());
         return CustomerContextHolder.getContextType();
     }
-	
+
 }
