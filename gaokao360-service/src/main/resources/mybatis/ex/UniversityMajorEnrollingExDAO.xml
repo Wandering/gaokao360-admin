@@ -621,7 +621,7 @@
                 </if>
                 <if test="selector.majorId!=null">
                     ,majorId
-                    ,(SELECT major_name FROM zgk_major uu WHERE uu.id = majorId limit 1) as majorName
+                    ,ee.majorName as majorName
                 </if>
                 <if test="selector.year!=null">
                     , year
@@ -693,7 +693,7 @@
             (SELECT name FROM zgk_province where id = areaId) as province,
             universityId as universityId ,
             (SELECT name FROM zgk_university uu WHERE uu.id = universityId limit 1) as universityName
-            , (SELECT major_name FROM zgk_major uu WHERE uu.id = majorId limit 1) as majorName,
+            , ee.majorName as majorName,
             majorId as majorId ,
             year as year ,
             (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'BATCHTYPE' AND dd.dictId = batch) as batchName
