@@ -130,6 +130,12 @@ selectList
             zgk_university_enrolling ee
         WHERE
             ee.universityId = #{universityId}
+            <if test="majorType!=null">
+                AND ee.majorType = #{majorType}
+            </if>
+            <if test="batch!=null">
+                AND ee.batch = #{batch}
+            </if>
         GROUP BY
             ee.year,
             ee.batch,
