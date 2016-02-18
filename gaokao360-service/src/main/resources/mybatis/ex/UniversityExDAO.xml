@@ -72,7 +72,7 @@ selectList
             as batchName,
             (SELECT NAME FROM zgk_data_dict dd
             WHERE dd.type = 'UNIVERSITY_MAJOR_TYPE'
-            AND dd.dictId = pp.batch)
+            AND dd.dictId = pp.majorType)
             as majorType,
             planEnrolling,
             lengthOfSchooling,
