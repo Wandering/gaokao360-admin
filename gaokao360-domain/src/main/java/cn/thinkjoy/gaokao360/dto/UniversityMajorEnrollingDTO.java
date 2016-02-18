@@ -9,8 +9,6 @@ public class UniversityMajorEnrollingDTO extends UniversityMajorEnrolling {
 
     private String universityName;
 
-    private String majorName;
-
     private String batchName;
 
     private String admissionBatchName;
@@ -35,14 +33,6 @@ public class UniversityMajorEnrollingDTO extends UniversityMajorEnrolling {
 
     public void setUniversityName(String universityName) {
         this.universityName = universityName;
-    }
-
-    public String getMajorName() {
-        return majorName;
-    }
-
-    public void setMajorName(String majorName) {
-        this.majorName = majorName;
     }
 
     public String getBatchName() {
