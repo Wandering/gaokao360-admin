@@ -26,9 +26,8 @@ public class SwitchDataSourceHandler {
     private IPermissionExService permissionExService;
     @Around("execution(* cn.thinkjoy.gaokao360.service.differentiation..*(..))||execution(* cn.thinkjoy.common.service..*(..))" +
             "")
-    public Object switchDB(ProceedingJoinPoint jionpoint)
+    public synchronized Object switchDB(ProceedingJoinPoint jionpoint)
     {
-        synchronized (this) {
             System.out.println("当前类：" + this.getClass().getName() + "当前线程=" + Thread.currentThread().getId() + "当前切入点" + jionpoint + "访问清理，这里清理状态");
             CustomerContextHolder.clearContextType();
             if (matchPackageType(jionpoint)) {
@@ -54,7 +53,6 @@ public class SwitchDataSourceHandler {
             }
 
             return o;
-        }
     }
 
     @Before("execution(* cn.thinkjoy.gaokao360.service.common..*(..)))||execution(* cn.thinkjoy.common.managerui.service..*(..)))")
