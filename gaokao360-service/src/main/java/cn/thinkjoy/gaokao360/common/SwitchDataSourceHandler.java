@@ -26,10 +26,12 @@ public class SwitchDataSourceHandler {
             "")
     public void switchDB(JoinPoint jionpoint)
     {
+        System.out.println("当前类："+this.getClass().getName()+"当前线程="+Thread.currentThread().getId()+"当前切入点"+jionpoint+"访问清理，这里清理状态");
         CustomerContextHolder.clearContextType();
         if(matchPackageType(jionpoint)){
             try {
-                CustomerContextHolder.setContextType(getArea());
+                System.out.println("当前类："+this.getClass().getName()+"当前线程="+Thread.currentThread().getId()+"当前切入点"+jionpoint);
+                CustomerContextHolder.setContextType(UserAreaContext.getCurrentUserArea());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -39,9 +41,12 @@ public class SwitchDataSourceHandler {
     @After("execution(* cn.thinkjoy.gaokao360.service.differentiation..*(..))||execution(* cn.thinkjoy.common.service..*(..))")
     public void switchDBBack(JoinPoint jionpoint)
     {
+        System.out.println("当前类："+this.getClass().getName()+"当前线程="+Thread.currentThread().getId()+"当前切入点"+jionpoint+"清理前");
         if(matchPackageType(jionpoint)&&jionpoint.getSignature().getName().equals("getDao")){
+            System.out.println("当前类："+this.getClass().getName()+"当前线程="+Thread.currentThread().getId()+"当前切入点"+jionpoint+"未清理"+CustomerContextHolder.getContextType()+"Area："+UserAreaContext.getCurrentUserArea());
             return;
         }
+        System.out.println("当前类："+this.getClass().getName()+"当前线程="+Thread.currentThread().getId()+"当前切入点"+jionpoint+"清理后");
         CustomerContextHolder.clearContextType();
     }
 
