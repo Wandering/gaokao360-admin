@@ -5,7 +5,7 @@
  * $Id:  AgentService.java 2015-12-15 17:52:12 $
  */
 
-package cn.thinkjoy.gaokao360.service.common;
+package cn.thinkjoy.gaokao360.service.differentiation;
 import cn.thinkjoy.common.dao.IBaseDAO;
 import cn.thinkjoy.common.domain.BaseDomain;
 import cn.thinkjoy.common.service.IBaseService;

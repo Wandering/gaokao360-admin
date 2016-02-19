@@ -4,12 +4,12 @@
  * Project Name: gaokao360
  * $Id:  AgentServiceImpl.java 2015-12-15 17:52:12 $
  */
-package cn.thinkjoy.gaokao360.service.common.impl;
+package cn.thinkjoy.gaokao360.service.differentiation.impl;
 
 import cn.thinkjoy.common.dao.IBaseDAO;
 import cn.thinkjoy.gaokao360.dao.IAgentDAO;
 import cn.thinkjoy.gaokao360.domain.Agent;
-import cn.thinkjoy.gaokao360.service.common.IAgentService;
+import cn.thinkjoy.gaokao360.service.differentiation.IAgentService;
 import cn.thinkjoy.gaokao360.service.baseservice.AbstractPageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
