@@ -201,12 +201,12 @@ public class UniversityServiceImpl implements IUniversityService {
         List<Map<String, Object>> threeList = new ArrayList<>();
         List<Map<String, Object>> fourList = new ArrayList<>();
         String score = params.get("score")+"";
-        BigDecimal valueC = new BigDecimal(score);
         for (Map<String, Object> map : dataList)
         {
-            if("".equals(map.get("universityName")))
+            if("北京大学".equals(map.get("universityName")))
             {
-                continue;
+                System.out.println("haha");
+//                continue;
             }
             if(StringUtils.isEmpty(map.get("lowestScoreList")+""))
             {
@@ -254,7 +254,7 @@ public class UniversityServiceImpl implements IUniversityService {
             }
             valueA = new BigDecimal(totleScore).divide(new BigDecimal(avgScoreList.size()), 2, BigDecimal.ROUND_HALF_UP);
             map.put("avgLowScore", valueA);
-            if(valueC.floatValue() < valueA.floatValue() - 50)
+            if(new BigDecimal(score).floatValue() < valueA.floatValue() - 99)
             {
                 continue;
             }
@@ -270,30 +270,30 @@ public class UniversityServiceImpl implements IUniversityService {
             {
                 BigDecimal bigOne = new BigDecimal(avgScoreList.get(0));
                 BigDecimal smallOne = new BigDecimal(avgScoreList.get(2));
-                valueB = bigOne.subtract(smallOne).multiply(new BigDecimal(2)).setScale(2);
+                valueB = bigOne.subtract(smallOne).multiply(new BigDecimal(2)).setScale(2, BigDecimal.ROUND_HALF_UP);
             }
-            if(valueC.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue()>=valueA.add(valueB).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue() &&
-                    valueC.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue()<=valueA.add(valueB.multiply(new BigDecimal(2))).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue())
+            float floatValueA = new BigDecimal(score).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
+            if(floatValueA >= valueA.subtract(valueB.multiply(new BigDecimal(2))).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue() &&
+                    floatValueA < valueA.subtract(valueB).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue())
             {
-                fourList.add(map);
+                oneList.add(map);
                 continue;
             }
-            if(valueC.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue()>=valueA.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue() &&
-                    valueC.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue()<=valueA.add(valueB).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue())
-            {
-                threeList.add(map);
-                continue;
-            }
-            if(valueC.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue()>=valueA.subtract(valueB).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue() &&
-                    valueC.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue()<=valueA.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue())
+            if(floatValueA >= valueA.subtract(valueB).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue() &&
+                    floatValueA < valueA.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue())
             {
                 twoList.add(map);
                 continue;
             }
-            if(valueC.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue()>=valueA.subtract(valueB.multiply(new BigDecimal(2))).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue() &&
-                    valueC.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue()<=valueA.subtract(valueB).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue())
+            if(floatValueA >= valueA.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue() &&
+                    floatValueA < valueA.add(valueB).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue())
             {
-                oneList.add(map);
+                threeList.add(map);
+                continue;
+            }
+            if(floatValueA >= valueA.add(valueB).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue())
+            {
+                fourList.add(map);
             }
         }
         setResultMap(resultMap, oneList, twoList, threeList, fourList);
@@ -304,7 +304,7 @@ public class UniversityServiceImpl implements IUniversityService {
         {
             sortUniversityList(fourList);
             Map<String, Object> mapFour = new LinkedHashMap<>();
-            int size = fourList.size()>5?5:fourList.size();
+            int size = fourList.size()> 10 ? 10 :fourList.size();
             mapFour.put("count",size);
             mapFour.put("star", 4);
             List<Map<String, Object>> list = fourList.subList(0, size);
@@ -316,7 +316,7 @@ public class UniversityServiceImpl implements IUniversityService {
         {
             sortUniversityList(threeList);
             Map<String, Object> mapThree = new LinkedHashMap<>();
-            int size = threeList.size()>5?5:threeList.size();
+            int size = threeList.size()> 10 ? 10 :threeList.size();
             mapThree.put("count", size);
             mapThree.put("star", 3);
             List<Map<String, Object>> list = threeList.subList(0, size);
@@ -328,7 +328,7 @@ public class UniversityServiceImpl implements IUniversityService {
         {
             sortUniversityList(twoList);
             Map<String, Object> mapTwo = new LinkedHashMap<>();
-            int size = twoList.size()>5 ? 5 : twoList.size();
+            int size = twoList.size()> 10 ? 10 : twoList.size();
             mapTwo.put("count", size);
             mapTwo.put("star", 2);
             List<Map<String, Object>> list = twoList.subList(0, size);
@@ -340,7 +340,7 @@ public class UniversityServiceImpl implements IUniversityService {
         {
             sortUniversityList(oneList);
             Map<String, Object> mapOne = new LinkedHashMap<>();
-            int size = oneList.size()>5?5:oneList.size();
+            int size = oneList.size()> 10 ? 10 :oneList.size();
             mapOne.put("count", size);
             mapOne.put("star", 1);
             List<Map<String, Object>> list = oneList.subList(0, size);
