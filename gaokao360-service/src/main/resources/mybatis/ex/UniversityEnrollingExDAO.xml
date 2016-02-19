@@ -160,7 +160,7 @@ selectList
                 ${condition.groupOp} majorType ${condition.entype.op} #{condition.entype.data}
             </if>
             <if test="condition.enrollingareaid!=null">
-                ${condition.groupOp} areaId ${condition.enrollingareaid.op} #{condition.enrollingareaid.data}
+                ${condition.groupOp} areaId = #{condition.enrollingareaid.data}
             </if>
         </where>
         <if test="orderBy!=null">
