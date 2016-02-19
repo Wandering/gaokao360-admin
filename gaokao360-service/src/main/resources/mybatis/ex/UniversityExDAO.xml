@@ -445,31 +445,60 @@ selectList
     </insert>
 
     <select id="queryPredictUniversityInfo" resultType="java.util.HashMap">
-        select en.university_id as universityId,
-        un.`name` as universityName,
-        un.subjection as province,
-        un.rank as rank,
-        un.property as feature,
-        en.batch as batch,
+       select * FROM
+       (select en.universityId as universityId,
+       un.`name` as universityName,
+       un.subjection as province,
+       un.rank as rank,
+       un.property as feature,
+       Case WHEN en.batch=1 then '一本'
+            WHEN en.batch=2 then '二本'
+            WHEN en.batch=4 then '三本'
+            WHEN en.batch=8 then '高职（专科）'
+            WHEN en.batch=9 then '高职（专科）A'
+            WHEN en.batch=10 then '高职（专科）B'
+            WHEN en.batch=11 then '高职（专科）一段'
+            WHEN en.batch=12 then '高职（专科）二段'
+            WHEN en.batch=13 then '高职（专科）一批'
+            WHEN en.batch=14 then '高职（专科）二批'
+            WHEN en.batch=15 then '二批本科A'
+            WHEN en.batch=16 then '二批本科B'
+            WHEN en.batch=17 then '三批本科A'
+            WHEN en.batch=18 then '三批本科B'
+            WHEN en.batch=19 then '一批'
+            WHEN en.batch=20 then '二批'
+            WHEN en.batch=21 then '三批'
+            WHEN en.batch=22 then '四批'
+            WHEN en.batch=23 then '二批C'
+            ELSE '高职（专科）' end as batch,
         en.areaId as areaId,
-        Case When en.university_major_type='1' then '文史'
-        When en.university_major_type='2' then '理工'
-        else '' end as major_type,
-        GROUP_CONCAT(en.average_score order by en.average_score desc SEPARATOR '@@') as averageScoreList,
-        Case when AVG(en.lowest_score) then AVG(en.lowest_score)
+        Case When en.majorType='1' then '文史'
+        When en.majorType='2' then '理工'
+        else '' end as majorType,
+        GROUP_CONCAT(en.averageScore order by en.averageScore desc SEPARATOR '@@') as averageScoreList,
+        Case when AVG(en.lowestScore) then AVG(en.lowestScore)
         else 0 end as avgLowestScore
         from zgk_university_enrolling en
-        inner join zgk_university un on en.university_id = un.id
+        left join zgk_university un on en.universityId = un.id
         <where>
-            1=1
+            un.`name` is not null
             <if test="areaId!=null">
                 AND en.areaId = #{areaId}
             </if>
-            <if test="batch!=null">
-                AND en.batch = #{batch}
+            <if test="batch==1">
+                AND en.batch in ('1','19')
+            </if>
+            <if test="batch==2">
+                AND en.batch in ('2','15','16','20','23')
+            </if>
+            <if test="batch==4">
+                AND en.batch in ('3','17','18','21')
+            </if>
+            <if test="batch==8">
+                AND en.batch in ('8','9','10','11','12','13','14','22')
             </if>
             <if test="majorType!=null">
-                AND en.university_major_type = #{majorType}
+                AND en.majorType = #{majorType}
             </if>
             <if test="startYear!=null">
                 AND en.year &gt;= #{startYear}
@@ -478,32 +507,45 @@ selectList
                 AND en.year &lt;= #{endYear}
             </if>
         </where>
-        group by en.university_id,un.`name`,en.batch,en.areaId,
-        en.university_major_type
+        group by en.universityId,un.`name`,en.batch,en.areaId,
+        en.majorType) t
+        WHERE  t.averageScoreList is not null
     </select>
 
     <select id="queryPredictProbability" resultType="java.util.HashMap">
-        select un.id as universityId,un.`name` as universityName,en.`year`,
-        Case WHEN en.batch=1 then '一本' WHEN en.batch=2 then '二本'
-             WHEN en.batch=1 then '三本' ELSE '专科' end as batch,
-        CASE WHEN en.average_score  then en.average_score else '0' end as avgScore,
-        CASE WHEN en.lowest_score then en.lowest_score else '0' end as minScore,
-        en.real_enrolling_number as enrollingNumber
-        from zgk_university_enrolling en
-        left join zgk_university un on un.id= en.university_id
+       select un.id as universityId,un.`name` as universityName,en.`year`,
+            en.batch as batch,
+            CASE WHEN en.averageScore='-' then '0'
+            WHEN en.averageScore is null then '0'
+            ELSE en.averageScore end as avgScore,
+            CASE WHEN en.lowestScore='-' then '0'
+            WHEN en.lowestScore is null then '0'
+            ELSE en.lowestScore end as minScore,
+            en.realEnrollingNumber as enrollingNumber
+            from zgk_university_enrolling en
+            left join zgk_university un on un.id= en.universityId
          <where>
              1=1
              <if test="areaId!=null">
                  AND en.areaId = #{areaId}
              </if>
-             <if test="batch!=null">
-                 AND en.batch = #{batch}
+             <if test="batch==1">
+                 AND en.batch in ('1','19')
+             </if>
+             <if test="batch==2">
+                 AND en.batch in ('2','15','16','20','23')
+             </if>
+             <if test="batch==4">
+                 AND en.batch in ('3','17','18','21')
+             </if>
+             <if test="batch==8">
+                 AND en.batch in ('8','9','10','11','12','13','14','22')
              </if>
              <if test="universityName!=null">
                  AND un.`name` = #{universityName}
              </if>
              <if test="majorType!=null">
-                 AND en.university_major_type = #{majorType}
+                 AND en.majorType = #{majorType}
              </if>
              <if test="startYear!=null">
                  AND en.year &gt;= #{startYear}
@@ -512,7 +554,7 @@ selectList
                  AND en.year &lt;= #{endYear}
              </if>
          </where>
-        order by average_score desc
+        order by averageScore desc
     </select>
 </mapper>
 
