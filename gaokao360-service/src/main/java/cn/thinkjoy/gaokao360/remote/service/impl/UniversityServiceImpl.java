@@ -201,52 +201,99 @@ public class UniversityServiceImpl implements IUniversityService {
         List<Map<String, Object>> threeList = new ArrayList<>();
         List<Map<String, Object>> fourList = new ArrayList<>();
         String score = params.get("score")+"";
-        BigDecimal valueC = new BigDecimal(score);
         for (Map<String, Object> map : dataList)
         {
-            String[] averageScoreArray = String.valueOf(map.get("averageScoreList")+"").split("@@");
-            if(averageScoreArray.length == 0)
+            if("北京大学".equals(map.get("universityName")))
+            {
+                System.out.println("haha");
+//                continue;
+            }
+            if(StringUtils.isEmpty(map.get("lowestScoreList")+""))
             {
                 continue;
             }
-            if(averageScoreArray.length >= 3&& StringUtils.isNotEmpty(averageScoreArray[0])
-                    &&StringUtils.isNotEmpty(averageScoreArray[1])&&StringUtils.isNotEmpty(averageScoreArray[2]))
+            String[] lowestScoreArray = String.valueOf(map.get("lowestScoreList")+"").split("@@");
+            if(lowestScoreArray.length == 0)
             {
-                BigDecimal bigOne = new BigDecimal(averageScoreArray[0]);
-                BigDecimal smallOne = new BigDecimal(averageScoreArray[2]);
-                if(bigOne.floatValue()>0 && smallOne.floatValue()>0
-                        && StringUtils.isNotEmpty(map.get("avgLowestScore")+""))
+                continue;
+            }
+            List<Integer> minScoreList = new ArrayList<>();
+            for (int i = 0; i < lowestScoreArray.length ; i++) {
+                if(isLegalScore(lowestScoreArray[i]))
                 {
-                    try{
-                        BigDecimal valueB = bigOne.subtract(smallOne).multiply(new BigDecimal(2)).setScale(2);
-                        BigDecimal valueA = new BigDecimal(map.get("avgLowestScore")+"").setScale(2, BigDecimal.ROUND_HALF_UP);
-                        if(valueA.floatValue()>=valueB.floatValue()*2)
-                        {
-                            if(valueC.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue()>=valueA.add(valueB).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue() &&
-                                    valueC.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue()<=valueA.add(valueB.multiply(new BigDecimal(2))).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue())
-                            {
-                                fourList.add(map);
-                            }
-                            if(valueC.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue()>=valueA.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue() &&
-                                    valueC.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue()<=valueA.add(valueB).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue())
-                            {
-                                threeList.add(map);
-                            }
-                            if(valueC.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue()>=valueA.subtract(valueB).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue() &&
-                                    valueC.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue()<=valueA.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue())
-                            {
-                                twoList.add(map);
-                            }
-                            if(valueC.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue()>=valueA.subtract(valueB.multiply(new BigDecimal(2))).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue() &&
-                                    valueC.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue()<=valueA.subtract(valueB).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue())
-                            {
-                                oneList.add(map);
-                            }
-                        }
-                    }catch (Exception e)
+                    minScoreList.add(Integer.parseInt(lowestScoreArray[i]));
+                }
+            }
+            if(minScoreList.size()==0)
+            {
+                continue;
+            }
+            List<Integer> avgScoreList = new ArrayList<>();
+            if(StringUtils.isEmpty(map.get("averageScoreList")+""))
+            {
+                avgScoreList.addAll(minScoreList);
+            }else
+            {
+                String[] averageScoreArray = String.valueOf(map.get("averageScoreList")+"").split("@@");
+                for (int i = 0; i < averageScoreArray.length ; i++) {
+                    if(isLegalScore(averageScoreArray[i]))
                     {
+                        avgScoreList.add(Integer.parseInt(averageScoreArray[i]));
                     }
                 }
+                if(avgScoreList.size() == 0)
+                {
+                    avgScoreList.addAll(minScoreList);
+                }
+            }
+            BigDecimal valueA;
+            BigDecimal valueB = BigDecimal.ZERO;
+            int totleScore = 0;
+            for (int i = 0; i < avgScoreList.size(); i++) {
+                totleScore += avgScoreList.get(i);
+            }
+            valueA = new BigDecimal(totleScore).divide(new BigDecimal(avgScoreList.size()), 2, BigDecimal.ROUND_HALF_UP);
+            map.put("avgLowScore", valueA);
+            if(new BigDecimal(score).floatValue() < valueA.floatValue() - 99)
+            {
+                continue;
+            }
+            if(avgScoreList.size()==1)
+            {
+                valueB = BigDecimal.ZERO;
+            }
+            if(avgScoreList.size()==2)
+            {
+                valueB = new BigDecimal(avgScoreList.get(0)).subtract(new BigDecimal(avgScoreList.get(1)));
+            }
+            if(avgScoreList.size()==3)
+            {
+                BigDecimal bigOne = new BigDecimal(avgScoreList.get(0));
+                BigDecimal smallOne = new BigDecimal(avgScoreList.get(2));
+                valueB = bigOne.subtract(smallOne).multiply(new BigDecimal(2)).setScale(2, BigDecimal.ROUND_HALF_UP);
+            }
+            float floatValueA = new BigDecimal(score).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
+            if(floatValueA >= valueA.subtract(valueB.multiply(new BigDecimal(2))).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue() &&
+                    floatValueA < valueA.subtract(valueB).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue())
+            {
+                oneList.add(map);
+                continue;
+            }
+            if(floatValueA >= valueA.subtract(valueB).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue() &&
+                    floatValueA < valueA.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue())
+            {
+                twoList.add(map);
+                continue;
+            }
+            if(floatValueA >= valueA.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue() &&
+                    floatValueA < valueA.add(valueB).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue())
+            {
+                threeList.add(map);
+                continue;
+            }
+            if(floatValueA >= valueA.add(valueB).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue())
+            {
+                fourList.add(map);
             }
         }
         setResultMap(resultMap, oneList, twoList, threeList, fourList);
@@ -257,7 +304,7 @@ public class UniversityServiceImpl implements IUniversityService {
         {
             sortUniversityList(fourList);
             Map<String, Object> mapFour = new LinkedHashMap<>();
-            int size = fourList.size()>5?5:fourList.size();
+            int size = fourList.size()> 10 ? 10 :fourList.size();
             mapFour.put("count",size);
             mapFour.put("star", 4);
             List<Map<String, Object>> list = fourList.subList(0, size);
@@ -269,7 +316,7 @@ public class UniversityServiceImpl implements IUniversityService {
         {
             sortUniversityList(threeList);
             Map<String, Object> mapThree = new LinkedHashMap<>();
-            int size = threeList.size()>5?5:threeList.size();
+            int size = threeList.size()> 10 ? 10 :threeList.size();
             mapThree.put("count", size);
             mapThree.put("star", 3);
             List<Map<String, Object>> list = threeList.subList(0, size);
@@ -277,11 +324,11 @@ public class UniversityServiceImpl implements IUniversityService {
             resultMap.put("3",mapThree);
         }
 
-        if(twoList.size()>0)
+        if(twoList.size() > 0)
         {
             sortUniversityList(twoList);
             Map<String, Object> mapTwo = new LinkedHashMap<>();
-            int size = twoList.size()>5?5:twoList.size();
+            int size = twoList.size()> 10 ? 10 : twoList.size();
             mapTwo.put("count", size);
             mapTwo.put("star", 2);
             List<Map<String, Object>> list = twoList.subList(0, size);
@@ -293,7 +340,7 @@ public class UniversityServiceImpl implements IUniversityService {
         {
             sortUniversityList(oneList);
             Map<String, Object> mapOne = new LinkedHashMap<>();
-            int size = oneList.size()>5?5:oneList.size();
+            int size = oneList.size()> 10 ? 10 :oneList.size();
             mapOne.put("count", size);
             mapOne.put("star", 1);
             List<Map<String, Object>> list = oneList.subList(0, size);
@@ -306,8 +353,8 @@ public class UniversityServiceImpl implements IUniversityService {
         Collections.sort(list, new Comparator<Map<String, Object>>() {
             @Override
             public int compare(Map<String, Object> o1, Map<String, Object> o2) {
-                return ((BigDecimal)o2.get("avgLowestScore")).floatValue()>=
-                        ((BigDecimal)o1.get("avgLowestScore")).floatValue()?1:-1;
+                return ((BigDecimal)o2.get("avgLowScore")).floatValue()>=
+                        ((BigDecimal)o1.get("avgLowScore")).floatValue()?1:-1;
             }
         });
     }

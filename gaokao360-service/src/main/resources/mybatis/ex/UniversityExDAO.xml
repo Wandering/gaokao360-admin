@@ -445,43 +445,24 @@ selectList
     </insert>
 
     <select id="queryPredictUniversityInfo" resultType="java.util.HashMap">
-       select * FROM
-       (select en.universityId as universityId,
-       un.`name` as universityName,
-       un.subjection as province,
-       un.rank as rank,
-       un.property as feature,
-       Case WHEN en.batch=1 then '一本'
-            WHEN en.batch=2 then '二本'
-            WHEN en.batch=4 then '三本'
-            WHEN en.batch=8 then '高职（专科）'
-            WHEN en.batch=9 then '高职（专科）A'
-            WHEN en.batch=10 then '高职（专科）B'
-            WHEN en.batch=11 then '高职（专科）一段'
-            WHEN en.batch=12 then '高职（专科）二段'
-            WHEN en.batch=13 then '高职（专科）一批'
-            WHEN en.batch=14 then '高职（专科）二批'
-            WHEN en.batch=15 then '二批本科A'
-            WHEN en.batch=16 then '二批本科B'
-            WHEN en.batch=17 then '三批本科A'
-            WHEN en.batch=18 then '三批本科B'
-            WHEN en.batch=19 then '一批'
-            WHEN en.batch=20 then '二批'
-            WHEN en.batch=21 then '三批'
-            WHEN en.batch=22 then '四批'
-            WHEN en.batch=23 then '二批C'
-            ELSE '高职（专科）' end as batch,
+        select en.universityId as universityId,
+        un.`name` as universityName,
+        un.subjection as province,
+        un.rank as rank,
+        un.property as feature,
+        en.batch as batch,
         en.areaId as areaId,
         Case When en.majorType='1' then '文史'
         When en.majorType='2' then '理工'
         else '' end as majorType,
-        GROUP_CONCAT(en.averageScore order by en.averageScore desc SEPARATOR '@@') as averageScoreList,
-        Case when AVG(en.lowestScore) then AVG(en.lowestScore)
-        else 0 end as avgLowestScore
+        Case when GROUP_CONCAT(en.averageScore order by en.averageScore desc SEPARATOR '@@') is null then ''
+        else GROUP_CONCAT(en.averageScore order by en.averageScore desc SEPARATOR '@@') end as averageScoreList,
+        Case when GROUP_CONCAT(en.lowestScore order by en.lowestScore desc SEPARATOR '@@') is null then ''
+        else GROUP_CONCAT(en.lowestScore order by en.lowestScore desc SEPARATOR '@@') end as lowestScoreList
         from zgk_university_enrolling en
         left join zgk_university un on en.universityId = un.id
         <where>
-            un.`name` is not null
+            en.universityId !='0'
             <if test="areaId!=null">
                 AND en.areaId = #{areaId}
             </if>
@@ -507,9 +488,8 @@ selectList
                 AND en.year &lt;= #{endYear}
             </if>
         </where>
-        group by en.universityId,un.`name`,en.batch,en.areaId,
-        en.majorType) t
-        WHERE  t.averageScoreList is not null
+        group by en.universityId,un.`name`,en.batch,en.areaId,en.majorType
+        order by (case when un.rank is null then '3000' else un.rank end + 0)
     </select>
 
     <select id="queryPredictProbability" resultType="java.util.HashMap">
