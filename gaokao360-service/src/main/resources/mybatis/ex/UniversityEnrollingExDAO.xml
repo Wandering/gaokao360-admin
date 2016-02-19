@@ -210,7 +210,7 @@ selectList
                 ${groupOp} majorType ${entype.op} #{entype.data}
             </if>
             <if test="enrollingareaid!=null">
-                ${groupOp} areaId ${enrollingbatch.op} #{enrollingbatch.data}
+                ${groupOp} areaId ${enrollingareaid.op} #{enrollingareaid.data}
             </if>
         </where>
         ) enrolling
