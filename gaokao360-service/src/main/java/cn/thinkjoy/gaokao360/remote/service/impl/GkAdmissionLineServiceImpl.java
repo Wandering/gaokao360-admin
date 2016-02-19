@@ -5,6 +5,7 @@ import cn.thinkjoy.gaokao360.common.UserAreaContext;
 import cn.thinkjoy.gaokao360.dto.UniversityEnrollingDTO;
 import cn.thinkjoy.gaokao360.remote.service.impl.base.BaseCommonService;
 import cn.thinkjoy.gaokao360.service.common.ex.IUniversityEnrollingExService;
+import cn.thinkjoy.zgk.common.QueryUtil;
 import cn.thinkjoy.zgk.domain.BizData4Page;
 import cn.thinkjoy.zgk.domain.GkAdmissionLine;
 import cn.thinkjoy.zgk.remote.IGkAdmissionLineService;
@@ -54,7 +55,7 @@ public class GkAdmissionLineServiceImpl extends BaseCommonService implements IGk
     protected void enhanceSearchFilter(Map<String, Object> conditions) {
         Long area=areaMaps.getAreaId();
         if(area!=null) {
-            conditions.put("enrollingareaid",area);
+            QueryUtil.setMapOp(conditions,"enrollingareaid","=",area);
         }
     }
 

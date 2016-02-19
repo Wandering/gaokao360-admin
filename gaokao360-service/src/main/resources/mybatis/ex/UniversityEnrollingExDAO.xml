@@ -160,13 +160,13 @@ selectList
                 ${condition.groupOp} majorType ${condition.entype.op} #{condition.entype.data}
             </if>
             <if test="condition.enrollingareaid!=null">
-                ${condition.groupOp} areaId ${condition.enrollingbatch.op} #{condition.enrollingbatch.data}
+                ${condition.groupOp} areaId = #{condition.enrollingareaid.data}
             </if>
         </where>
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
         </if>
-        <if test="offset != null and condition.entype==null and condition.enrollingyear==null and condition.enrollingbatch==null and condition.universityareaid==null and condition.universityproperty==null">
+        <if test="offset != null and condition.universityareaid==null and condition.universityproperty==null">
             limit ${offset}, ${rows}
         </if>
         ) enrolling
@@ -174,7 +174,7 @@ selectList
         (SELECT id,subjection,property,name,areaid FROM zgk_university
         <where>
             <if test="condition.universityareaid!=null">
-                ${condition.groupOp} areaid=#{condition.universityareaid.data}
+                ${condition.groupOp} areaid = #{condition.universityareaid.data}
             </if>
             <if test="condition.universityproperty!=null">
                 ${condition.groupOp} property ${condition.universityproperty.op} #{condition.universityproperty.data}
