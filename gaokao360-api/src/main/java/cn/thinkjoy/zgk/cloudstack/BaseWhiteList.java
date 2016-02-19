@@ -21,14 +21,14 @@ public class BaseWhiteList{
     }
     @PostConstruct
     public void init(){
-        INTERFACEMETHODS.add("getGkEntryList");
-        INTERFACEMETHODS.add("getGkEntryInfo");
+//        INTERFACEMETHODS.add("getGkEntryList");
+//        INTERFACEMETHODS.add("getGkEntryInfo");
         INTERFACEMETHODS.add("getGkHotList");
         INTERFACEMETHODS.add("getGkHotInfo");
-//        INTERFACEMETHODS.add("getGkPhoneList");
+        INTERFACEMETHODS.add("getGkPhoneList");
         INTERFACEMETHODS.add("getGkPolicyList");
         INTERFACEMETHODS.add("getGkPolicyInfo");
-        INTERFACEMETHODS.add("getGkPolicyInfo");
+//        INTERFACEMETHODS.add("getGkPolicyInfo");
 //        INTERFACEMETHODS.add("getGkVideoList");
 //        INTERFACEMETHODS.add("getGkVideoInfo");
 //        INTERFACEMETHODS.add("hitInc");
