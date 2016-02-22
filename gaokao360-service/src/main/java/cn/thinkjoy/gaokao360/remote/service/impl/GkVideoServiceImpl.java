@@ -1,6 +1,7 @@
 package cn.thinkjoy.gaokao360.remote.service.impl;
 
 import cn.thinkjoy.common.exception.BizException;
+import cn.thinkjoy.gaokao360.common.CustomerContextHolder;
 import cn.thinkjoy.gaokao360.common.DomainReflex;
 import cn.thinkjoy.gaokao360.common.ERRORCODE;
 import cn.thinkjoy.gaokao360.domain.VideoClassify;
@@ -16,12 +17,16 @@ import cn.thinkjoy.zgk.domain.GkVideo;
 import cn.thinkjoy.zgk.domain.GkVideoInfo;
 import cn.thinkjoy.zgk.dto.GkVideoDTO;
 import cn.thinkjoy.zgk.remote.IGkVideoService;
+import com.alibaba.druid.support.logging.Log;
+import com.alibaba.druid.support.logging.LogFactory;
+import com.alibaba.dubbo.common.json.JSON;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +39,7 @@ import java.util.Map;
 @Service("GkVideoServiceImpl")
 public class GkVideoServiceImpl extends BaseCommonService implements IGkVideoService {
 
+    private Log logger = LogFactory.getLog(this.getClass());
     @Autowired
     IVideoClassifyService videoClassifyService;
     @Autowired
@@ -57,7 +63,13 @@ public class GkVideoServiceImpl extends BaseCommonService implements IGkVideoSer
         }else {
             setIsIgnore(false);
         }
-        return doPage(conditions,videoCourseService,page,rows);
+        BizData4Page bizData4Page=doPage(conditions,videoCourseService,page,rows);
+        try {
+            logger.info("dbStatus="+CustomerContextHolder.getContextType()+JSON.json(bizData4Page).toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bizData4Page;
     }
 
     @Override
