@@ -26,4 +26,6 @@ public interface ISimpleCloud {
     boolean hasWhiteList(String clzName);
 
     void setArea(String area);
+
+    public void clearArea();
 }

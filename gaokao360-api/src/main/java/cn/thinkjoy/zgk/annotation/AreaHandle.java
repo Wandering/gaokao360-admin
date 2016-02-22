@@ -38,6 +38,8 @@ public class AreaHandle {
     public Object switchDB(ProceedingJoinPoint jionpoint)throws Exception,Throwable
     {
         String methodName = jionpoint.getSignature().getName();
+        //无论是否是白名单执行清理数据库操作
+        simpleCloud.clearArea();
         //通过白名单判断是否注入省份字段
         if(simpleCloud.hasWhiteList(methodName)) {
             try {
