@@ -4,6 +4,7 @@ import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.gaokao360.common.CustomerContextHolder;
 import cn.thinkjoy.gaokao360.common.DomainReflex;
 import cn.thinkjoy.gaokao360.common.ERRORCODE;
+import cn.thinkjoy.gaokao360.common.UserAreaContext;
 import cn.thinkjoy.gaokao360.domain.VideoClassify;
 import cn.thinkjoy.gaokao360.domain.VideoCourse;
 import cn.thinkjoy.gaokao360.dto.VideoSectionDTO;
@@ -64,11 +65,7 @@ public class GkVideoServiceImpl extends BaseCommonService implements IGkVideoSer
             setIsIgnore(false);
         }
         BizData4Page bizData4Page=doPage(conditions,videoCourseService,page,rows);
-        try {
-            logger.info("dbStatus="+CustomerContextHolder.getContextType()+JSON.json(bizData4Page).toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        logger.info("dbStatus="+CustomerContextHolder.getContextType()+",UserArea="+ UserAreaContext.getCurrentUserArea());
         return bizData4Page;
     }
 
