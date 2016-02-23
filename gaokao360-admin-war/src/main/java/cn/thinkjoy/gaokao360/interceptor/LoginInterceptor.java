@@ -18,7 +18,7 @@ public class LoginInterceptor  extends HandlerInterceptorAdapter {
     public LoginInterceptor() { }
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        UserContext.getCurrentUser();
+        UserAreaContext.removeCurrentUseraArea();
         try{
             if(getArea()!=null) {
                 UserAreaContext.setCurrentUserArea(getArea());
