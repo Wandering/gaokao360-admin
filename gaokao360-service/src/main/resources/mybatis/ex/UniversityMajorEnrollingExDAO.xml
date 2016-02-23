@@ -740,7 +740,18 @@
                 ${condition.groupOp}   ${condition.year.field}  ${condition.year.op}  #{condition.year.data}
             </if>
             <if test="condition.batch!=null">
-                ${condition.groupOp}   ${condition.batch.field}  ${condition.batch.op}  #{condition.batch.data}
+                <if test="condition.batch.data==1">
+                    ${condition.groupOp}   ${condition.batch.field}  in (1,19)
+                </if>
+                <if test="condition.batch.data==2">
+                    ${condition.groupOp}   ${condition.batch.field}  in (2,15,16,20,23)
+                </if>
+                <if test="condition.batch.data==4">
+                    ${condition.groupOp}   ${condition.batch.field}  in (4,17,18,21)
+                </if>
+                <if test="condition.batch.data==8">
+                    ${condition.groupOp}   ${condition.batch.field}  in (8,9,10,11,12,13,14,22,)
+                </if>
             </if>
             <if test="condition.admissionFeature!=null">
                 ${condition.groupOp}   ${condition.admissionFeature.field}  ${condition.admissionFeature.op}  #{condition.admissionFeature.data}

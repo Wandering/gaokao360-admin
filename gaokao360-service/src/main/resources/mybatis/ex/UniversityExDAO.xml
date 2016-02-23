@@ -136,6 +136,9 @@ selectList
             <if test="batch!=null">
                 AND ee.batch = #{batch}
             </if>
+            <if test="areaId!=null">
+                AND ee.areaId = #{areaId}
+            </if>
         GROUP BY
             ee.year,
             ee.batch,
