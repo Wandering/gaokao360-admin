@@ -5,12 +5,12 @@
  * $Id:  AgentService.java 2015-12-15 17:52:12 $
  */
 
-package cn.thinkjoy.gaokao360.service.common;
+package cn.thinkjoy.gaokao360.service.differentiation.ex;
 import cn.thinkjoy.common.dao.IBaseDAO;
 import cn.thinkjoy.common.domain.BaseDomain;
 import cn.thinkjoy.common.service.IBaseService;
 import cn.thinkjoy.common.service.IPageService;
 
-public interface IAgentService<D extends IBaseDAO<T>, T extends BaseDomain> extends IBaseService<D, T>,IPageService<D, T>{
+public interface IAgentExService<D extends IBaseDAO<T>, T extends BaseDomain> extends IBaseService<D, T>,IPageService<D, T>{
 
 }

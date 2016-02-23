@@ -8,7 +8,7 @@
 package cn.thinkjoy.gaokao360.controller.baseinfo;
 
 import cn.thinkjoy.gaokao360.controller.BaseController;
-import cn.thinkjoy.gaokao360.service.common.IAgentService;
+import cn.thinkjoy.gaokao360.service.differentiation.IAgentService;
 import cn.thinkjoy.common.domain.view.BizData4Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;

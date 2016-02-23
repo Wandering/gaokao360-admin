@@ -4,27 +4,27 @@
  * Project Name: gaokao360
  * $Id:  AgentServiceImpl.java 2015-12-15 17:52:12 $
  */
-package cn.thinkjoy.gaokao360.service.common.impl;
+package cn.thinkjoy.gaokao360.service.differentiation.ex.impl;
 
 import cn.thinkjoy.common.dao.IBaseDAO;
-import cn.thinkjoy.gaokao360.dao.IAgentDAO;
-import cn.thinkjoy.gaokao360.domain.Agent;
-import cn.thinkjoy.gaokao360.service.common.IAgentService;
 import cn.thinkjoy.gaokao360.service.baseservice.AbstractPageService;
+import cn.thinkjoy.gaokao360.dao.ex.IAgentExDAO;
+import cn.thinkjoy.gaokao360.dto.AgentDTO;
+import cn.thinkjoy.gaokao360.service.differentiation.ex.IAgentExService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 
-@Service("AgentServiceImpl")
+@Service("AgentExServiceImpl")
 @Scope("prototype")
-public class AgentServiceImpl extends AbstractPageService<IBaseDAO<Agent>, Agent> implements IAgentService<IBaseDAO<Agent>,Agent>{
+public class AgentExServiceImpl extends AbstractPageService<IBaseDAO<AgentDTO>, AgentDTO> implements IAgentExService<IBaseDAO<AgentDTO>,AgentDTO> {
     @Autowired
-    private IAgentDAO agentDAO;
+    private IAgentExDAO agentExDAO;
 
     @Override
-    public IBaseDAO<Agent> getDao() {
-        return agentDAO;
+    public IBaseDAO<AgentDTO> getDao() {
+        return agentExDAO;
     }
 
 //    @Override

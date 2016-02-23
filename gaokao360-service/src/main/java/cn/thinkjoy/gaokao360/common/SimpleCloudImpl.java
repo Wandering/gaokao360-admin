@@ -38,4 +38,9 @@ public class SimpleCloudImpl implements ISimpleCloud{
         UserAreaContext.setCurrentUserArea(area);
     }
 
+    @Override
+    public void clearArea() {
+        CustomerContextHolder.clearContextType();
+        UserAreaContext.removeCurrentUseraArea();
+    }
 }

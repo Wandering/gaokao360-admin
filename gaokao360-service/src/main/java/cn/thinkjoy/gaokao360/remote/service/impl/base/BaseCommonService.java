@@ -55,7 +55,7 @@ public class BaseCommonService {
             sortBy="desc";
         }
         enhanceSearchFilter(conditions);
-        List mainData = service.queryPage(conditions, offset, rows, orderBy, SqlOrderEnum.DESC.valueOf(sortBy.toUpperCase()));
+        List mainData = service.queryPage(conditions, offset, rows, orderBy, SqlOrderEnum.valueOf(sortBy.toUpperCase()));
         mainData=(List)enhanceStateTransition(mainData);
         int records = service.count(conditions);
 

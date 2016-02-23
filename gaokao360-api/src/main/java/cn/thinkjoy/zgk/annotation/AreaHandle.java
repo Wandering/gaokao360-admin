@@ -26,8 +26,6 @@ public class AreaHandle {
     public static String FRONT ="zgkfront";
     @Autowired
     private ISimpleCloud simpleCloud;
-
-    private String area;
 //    @Pointcut("execution(* cn.thinkjoy.zgk.remote..*(..))")
 //    private void fromAnalysisRequestT(){}
 
@@ -40,6 +38,8 @@ public class AreaHandle {
     public Object switchDB(ProceedingJoinPoint jionpoint)throws Exception,Throwable
     {
         String methodName = jionpoint.getSignature().getName();
+        //无论是否是白名单执行清理数据库操作
+        simpleCloud.clearArea();
         //通过白名单判断是否注入省份字段
         if(simpleCloud.hasWhiteList(methodName)) {
             try {
@@ -58,27 +58,17 @@ public class AreaHandle {
         }
     }
 
-    private boolean hasArea(Map<String,Object> map){
-        boolean boo=false;
-        boo= map.containsKey("area");
-        if(boo)setArea(map);
-        return boo;
-    }
-
-    private void setArea(Map map){
-        try {
-            setArea(map.get("area").toString());
-        }catch (NullPointerException e){
-
-        }
-    }
 
     private Object adminHandle(ProceedingJoinPoint jionpoint) throws Throwable{
         Object[] objects=jionpoint.getArgs();
         try {
             Map<String,Object> beforeMap = (Map<String,Object>) objects[0];
-            this.hasArea(beforeMap);
-            simpleCloud.setArea(this.area);
+            try {
+                simpleCloud.setArea( beforeMap.get("area").toString());
+            }catch (NullPointerException e){
+                simpleCloud.setArea(null);
+            }
+
         }catch (ClassCastException e){
             LogFactory.getLog(this.getClass()).debug("map转换异常");
         }catch (NullPointerException e){
@@ -96,9 +86,8 @@ public class AreaHandle {
         Object[] objects=jionpoint.getArgs();
         try{
             Map<String,Object> beforeMap = (Map<String,Object>) objects[0];
-            String area=simpleCloud.getCloudArea();
-            if(area!=null) {
-                beforeMap.put("area", area);
+            if(simpleCloud.getCloudArea()!=null) {
+                beforeMap.put("area", simpleCloud.getCloudArea());
             }
         }catch (ClassCastException e){
             LogFactory.getLog(this.getClass()).debug("map转换异常");
@@ -112,13 +101,5 @@ public class AreaHandle {
             }
         }
 
-    }
-
-    public String getArea() {
-        return area;
-    }
-
-    public void setArea(String area) {
-        this.area = area;
     }
 }
