@@ -1,7 +1,6 @@
 package cn.thinkjoy.gaokao360.remote.service.impl;
 
 import cn.thinkjoy.gaokao360.common.AreaMaps;
-import cn.thinkjoy.gaokao360.common.UserAreaContext;
 import cn.thinkjoy.gaokao360.dto.UniversityEnrollingDTO;
 import cn.thinkjoy.gaokao360.remote.service.impl.base.BaseCommonService;
 import cn.thinkjoy.gaokao360.service.common.ex.IUniversityEnrollingExService;

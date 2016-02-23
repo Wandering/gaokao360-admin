@@ -57,7 +57,7 @@ selectList
 
     </sql>
 
-    <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.UniversityEnrollingDTO">
+    <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.UniversityEnrollingDTO" >
         SELECT
         <if test="selector!=null">
             <trim prefixOverrides=",">
@@ -166,13 +166,16 @@ selectList
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
         </if>
-        <if test="offset != null and condition.universityareaid==null and condition.universityproperty==null">
+        <if test="offset != null and condition.universityname==null and condition.universityareaid==null and condition.universityproperty==null">
             limit ${offset}, ${rows}
         </if>
         ) enrolling
         INNER JOIN
         (SELECT id,subjection,property,name,areaid FROM zgk_university
         <where>
+            <if test="condition.universityname!=null">
+                ${condition.groupOp} name ${condition.universityname.op} #{condition.universityname.data}
+            </if>
             <if test="condition.universityareaid!=null">
                 ${condition.groupOp} areaid = #{condition.universityareaid.data}
             </if>
@@ -214,10 +217,13 @@ selectList
             </if>
         </where>
         ) enrolling
-        <if test="universityareaid==null and universityproperty==null" >
+        <if test="universityareaid==null or universityproperty==null or universityname==null" >
         INNER JOIN
-        (SELECT id,areaid  FROM zgk_university
+        (SELECT id,name,areaid  FROM zgk_university
         <where>
+            <if test="universityname!=null">
+                ${groupOp} name ${universityname.op} #{universityname.data}
+            </if>
             <if test="universityareaid!=null">
                 ${groupOp} areaid=#{universityareaid.data}
             </if>
