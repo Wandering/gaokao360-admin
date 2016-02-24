@@ -29,15 +29,15 @@ public class ScheduleManager implements ApplicationListener<ContextRefreshedEven
     private IUserInfoExService userInfoExService;
     private void init()
     {
-//        try {
-//            sched = factory.getScheduler();
-//            sched.start();
-//            Map<String, Object> dataMap = new HashMap<>();
-//            dataMap.put("userInfoExService", userInfoExService);
-//            addJob(ResetUserInfoJob.class, ZGKConstant.EVERY_FIVE_SECOND, dataMap);
-//        } catch (SchedulerException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            sched = factory.getScheduler();
+            sched.start();
+            Map<String, Object> dataMap = new HashMap<>();
+            dataMap.put("userInfoExService", userInfoExService);
+            addJob(ResetUserInfoJob.class, ZGKConstant.EVERY_DAY_ZERO_HOUR, dataMap);
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void addJob(Class <? extends Job> jobClass, String cronExp)

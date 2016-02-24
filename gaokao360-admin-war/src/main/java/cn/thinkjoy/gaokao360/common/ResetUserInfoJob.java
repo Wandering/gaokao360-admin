@@ -18,7 +18,8 @@ public class ResetUserInfoJob implements Job{
     public void execute(JobExecutionContext context) throws JobExecutionException {
         Map<String, Object> dataMap = context.getJobDetail().getJobDataMap();
         IUserInfoExService userInfoExService = (IUserInfoExService) dataMap.get("userInfoExService");
-        userInfoExService.findUserInfoById(1);
+//        userInfoExService.findUserInfoById(1);
+        userInfoExService.updateUserCanTarget();
         System.out.println("Reset userInfo!");
     }
 }

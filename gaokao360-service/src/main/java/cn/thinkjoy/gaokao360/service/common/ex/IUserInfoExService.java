@@ -16,4 +16,5 @@ public interface IUserInfoExService {
 
     boolean updateUserInfoById(UserInfo userInfo);
 
+    void updateUserCanTarget();
 }

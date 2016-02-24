@@ -7,6 +7,7 @@
 package cn.thinkjoy.gaokao360.service.common.ex.impl;
 
 import cn.thinkjoy.gaokao360.dao.IUserInfoDAO;
+import cn.thinkjoy.gaokao360.dao.IUserInfoExDAO;
 import cn.thinkjoy.gaokao360.domain.UserInfo;
 import cn.thinkjoy.gaokao360.service.common.ex.IUserInfoExService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,8 @@ public class UserInfoExServiceImpl implements IUserInfoExService {
 
     @Autowired
     private IUserInfoDAO userInfoDAO;
-
+    @Autowired
+    private IUserInfoExDAO userInfoExDAO;
     @Override
     public UserInfo findUserInfoById(long id) {
         return userInfoDAO.fetch(id);
@@ -30,5 +32,10 @@ public class UserInfoExServiceImpl implements IUserInfoExService {
         userInfoDAO.update(userInfo);
         flag = true;
         return flag;
+    }
+
+    @Override
+    public void updateUserCanTarget() {
+        userInfoExDAO.updateUserCanTarget();
     }
 }

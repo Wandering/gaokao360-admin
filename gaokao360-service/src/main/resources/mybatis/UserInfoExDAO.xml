@@ -53,5 +53,9 @@
         FROM zgk_user_info
     </select>
 
+    <update id="updateUserCanTarget">
+        UPDATE zgk_user_account
+        SET canTargetSchool=TRUE
+    </update>
 </mapper>
 
