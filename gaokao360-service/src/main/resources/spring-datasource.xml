@@ -13,14 +13,17 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dynamicDataSource"/>
         <!-- 自动扫描domain目录, 省掉Configuration.xml里的手工配置 -->
-        <property name="typeAliasesPackage" value="cn.thinkjoy.common.managerui.domain,cn.thinkjoy.gaokao360.domain,cn.thinkjoy.gaokao360.dto,cn.thinkjoy.zgk.dto"/>
+        <property name="typeAliasesPackage"
+                  value="cn.thinkjoy.common.managerui.domain,cn.thinkjoy.gaokao360.domain,cn.thinkjoy.gaokao360.dto,cn.thinkjoy.zgk.dto"/>
         <!-- 显式指定Mapper文件位置 -->
         <property name="mapperLocations" value="classpath*:/mybatis/**/*.xml"/>
     </bean>
     <!-- 扫描basePackage下接口 自动生成代理实现类 -->
-    <mybatis:scan base-package="cn.thinkjoy.common.managerui.dao;cn.thinkjoy.gaokao360.dao" factory-ref="sqlSessionFactory"/>
+    <mybatis:scan base-package="cn.thinkjoy.common.managerui.dao;cn.thinkjoy.gaokao360.dao"
+                  factory-ref="sqlSessionFactory"/>
 
-    <bean id="parentDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+    <bean id="parentDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init"
+          destroy-method="close">
         <!-- 基本属性 url、user、password -->
         <property name="url" value="${jdbc_url2}"/>
         <property name="username" value="${jdbc_user}"/>
@@ -53,7 +56,6 @@
         <property name="filters" value="stat"/>
 
 
-
     </bean>
     <!--新疆维吾尔族自治区-->
     <bean id="xjDataSource" parent="parentDataSource">
@@ -71,17 +73,9 @@
     <bean id="jsDataSource" parent="parentDataSource">
         <property name="url" value="${jdbc_url_js}"/>
     </bean>
-    <!--香港特别行政区-->
-    <bean id="hkDataSource" parent="parentDataSource">
-        <property name="url" value="${jdbc_url_hk}"/>
-    </bean>
     <!--广东省-->
     <bean id="gdDataSource" parent="parentDataSource">
         <property name="url" value="${jdbc_url_gd}"/>
-    </bean>
-    <!--海南省-->
-    <bean id="hiDataSource" parent="parentDataSource">
-        <property name="url" value="${jdbc_url_hi}"/>
     </bean>
     <!--吉林省-->
     <bean id="jlDataSource" parent="parentDataSource">
@@ -123,10 +117,6 @@
     <bean id="snDataSource" parent="parentDataSource">
         <property name="url" value="${jdbc_url_sn}"/>
     </bean>
-    <!--澳门特别行政区-->
-    <bean id="moDataSource" parent="parentDataSource">
-        <property name="url" value="${jdbc_url_mo}"/>
-    </bean>
     <!--贵州省-->
     <bean id="gzDataSource" parent="parentDataSource">
         <property name="url" value="${jdbc_url_gz}"/>
@@ -143,17 +133,9 @@
     <bean id="scDataSource" parent="parentDataSource">
         <property name="url" value="${jdbc_url_sc}"/>
     </bean>
-    <!--青海省-->
-    <bean id="qhDataSource" parent="parentDataSource">
-        <property name="url" value="${jdbc_url_qh}"/>
-    </bean>
     <!--河北省-->
     <bean id="heDataSource" parent="parentDataSource">
         <property name="url" value="${jdbc_url_he}"/>
-    </bean>
-    <!--西藏自治区-->
-    <bean id="xzDataSource" parent="parentDataSource">
-        <property name="url" value="${jdbc_url_xz}"/>
     </bean>
     <!--上海市-->
     <bean id="shDataSource" parent="parentDataSource">
@@ -171,10 +153,6 @@
     <bean id="cqDataSource" parent="parentDataSource">
         <property name="url" value="${jdbc_url_cq}"/>
     </bean>
-    <!--台湾省-->
-    <bean id="twDataSource" parent="parentDataSource">
-        <property name="url" value="${jdbc_url_tw}"/>
-    </bean>
     <!--云南省-->
     <bean id="ynDataSource" parent="parentDataSource">
         <property name="url" value="${jdbc_url_yn}"/>
@@ -187,11 +165,34 @@
     <bean id="ahDataSource" parent="parentDataSource">
         <property name="url" value="${jdbc_url_ah}"/>
     </bean>
-    <!--内蒙古自治区-->
-    <bean id="nmDataSource" parent="parentDataSource">
-        <property name="url" value="${jdbc_url_nm}"/>
-    </bean>
-
+    <!--&lt;!&ndash;内蒙古自治区&ndash;&gt;-->
+    <!--<bean id="nmDataSource" parent="parentDataSource">-->
+    <!--<property name="url" value="${jdbc_url_nm}"/>-->
+    <!--</bean>-->
+    <!--&lt;!&ndash;台湾省&ndash;&gt;-->
+    <!--<bean id="twDataSource" parent="parentDataSource">-->
+    <!--<property name="url" value="${jdbc_url_tw}"/>-->
+    <!--</bean>-->
+    <!--&lt;!&ndash;西藏自治区&ndash;&gt;-->
+    <!--<bean id="xzDataSource" parent="parentDataSource">-->
+    <!--<property name="url" value="${jdbc_url_xz}"/>-->
+    <!--</bean>-->
+    <!--&lt;!&ndash;澳门特别行政区&ndash;&gt;-->
+    <!--<bean id="moDataSource" parent="parentDataSource">-->
+    <!--<property name="url" value="${jdbc_url_mo}"/>-->
+    <!--</bean>-->
+    <!--&lt;!&ndash;青海省&ndash;&gt;-->
+    <!--<bean id="qhDataSource" parent="parentDataSource">-->
+    <!--<property name="url" value="${jdbc_url_qh}"/>-->
+    <!--</bean>-->
+    <!--&lt;!&ndash;海南省&ndash;&gt;-->
+    <!--<bean id="hiDataSource" parent="parentDataSource">-->
+    <!--<property name="url" value="${jdbc_url_hi}"/>-->
+    <!--</bean>-->
+    <!--&lt;!&ndash;香港特别行政区&ndash;&gt;-->
+    <!--<bean id="hkDataSource" parent="parentDataSource">-->
+    <!--<property name="url" value="${jdbc_url_hk}"/>-->
+    <!--</bean>-->
     <bean id="dynamicDataSource" class="cn.thinkjoy.gaokao360.common.DynamicDataSource">
         <!-- 通过key-value的形式来关联数据源 -->
         <property name="targetDataSources">
@@ -204,12 +205,8 @@
                 <entry value-ref="lnDataSource" key="ln"></entry>
                 <!--江苏省-->
                 <entry value-ref="jsDataSource" key="js"></entry>
-                <!--香港特别行政区-->
-                <entry value-ref="hkDataSource" key="hk"></entry>
                 <!--广东省-->
                 <entry value-ref="gdDataSource" key="gd"></entry>
-                <!--海南省-->
-                <entry value-ref="hiDataSource" key="hi"></entry>
                 <!--吉林省-->
                 <entry value-ref="jlDataSource" key="jl"></entry>
                 <!--湖南省-->
@@ -230,8 +227,6 @@
                 <entry value-ref="sxDataSource" key="sx"></entry>
                 <!--陕西省-->
                 <entry value-ref="snDataSource" key="sn"></entry>
-                <!--澳门特别行政区-->
-                <entry value-ref="moDataSource" key="mo"></entry>
                 <!--贵州省-->
                 <entry value-ref="gzDataSource" key="gz"></entry>
                 <!--广西壮族自治区-->
@@ -240,12 +235,8 @@
                 <entry value-ref="sdDataSource" key="sd"></entry>
                 <!--四川省-->
                 <entry value-ref="scDataSource" key="sc"></entry>
-                <!--青海省-->
-                <entry value-ref="qhDataSource" key="qh"></entry>
                 <!--河北省-->
                 <entry value-ref="heDataSource" key="he"></entry>
-                <!--西藏自治区-->
-                <entry value-ref="xzDataSource" key="xz"></entry>
                 <!--上海市-->
                 <entry value-ref="shDataSource" key="sh"></entry>
                 <!--湖北省-->
@@ -254,8 +245,6 @@
                 <entry value-ref="haDataSource" key="ha"></entry>
                 <!--重庆市-->
                 <entry value-ref="cqDataSource" key="cq"></entry>
-                <!--台湾省-->
-                <entry value-ref="twDataSource" key="tw"></entry>
                 <!--云南省-->
                 <entry value-ref="ynDataSource" key="yn"></entry>
                 <!--甘肃省-->
@@ -263,7 +252,19 @@
                 <!--安徽省-->
                 <entry value-ref="ahDataSource" key="ah"></entry>
                 <!--内蒙古自治区-->
-                <entry value-ref="nmDataSource" key="nm"></entry>
+                <!--<entry value-ref="nmDataSource" key="nm"></entry>-->
+                <!--香港特别行政区-->
+                <!--<entry value-ref="hkDataSource" key="hk"></entry>-->
+                <!--台湾省-->
+                <!--<entry value-ref="twDataSource" key="tw"></entry>-->
+                <!--澳门特别行政区-->
+                <!--<entry value-ref="moDataSource" key="mo"></entry>-->
+                <!--海南省-->
+                <!--<entry value-ref="hiDataSource" key="hi"></entry>-->
+                <!--青海省-->
+                <!--<entry value-ref="qhDataSource" key="qh"></entry>-->
+                <!--西藏自治区-->
+                <!--<entry value-ref="xzDataSource" key="xz"></entry>-->
             </map>
         </property>
         <property name="defaultTargetDataSource" ref="parentDataSource"/>
