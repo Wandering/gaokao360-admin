@@ -133,6 +133,9 @@ selectList
                 <if test="selector.property!=null">
                     , university.property as property,
                 </if>
+                <if test="selector.rank!=null">
+                    ,university.rank as rank
+                </if>
                 <if test="selector.batchname!=null">
                     , batchdict.name as batchname,
                 </if>
