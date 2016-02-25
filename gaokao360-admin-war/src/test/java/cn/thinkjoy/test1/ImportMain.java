@@ -33,14 +33,26 @@ public class ImportMain {
     private IProfessionService professionService;
     @Autowired
     private IProfessionDetailService professionDetailService;
-    public Map<String,Object> doImport(File file){
+
+    @Test
+    public void test1(){
+        this.doImport(new File("C:\\Users\\admin\\Documents\\Tencent Files\\963984443\\FileRecv\\职业ok .xls"),0);
+        this.doImport(new File("C:\\Users\\admin\\Documents\\Tencent Files\\963984443\\FileRecv\\职业信息ok.xls"),1);
+
+    }
+
+    public Map<String,Object> doImport(File file,Integer type){
         String handleString=null;
         long startTime = System.currentTimeMillis();
 
             try {
                 List list= ImportExcelUtil.doImport(file);
                 //处理获得的list
-                innerHandleImport1(list);
+                if(type==0) {
+                innerHandleImport(list);
+                }else {
+                    innerHandleImport1(list);
+                }
             } catch (Exception e) {
                 throw  new BizException("","读取数据异常");
             }
@@ -57,7 +69,10 @@ public class ImportMain {
     //职业门类
     protected String  innerHandleImport(List<Map<String,String>> list){
         int i= 0;
+        int errInt=1;
+        List<String> errlist=new ArrayList<>();
         for(Map<String,String> map:list){
+            errInt++;
             try {
                 Map<String, Object> map1 = new HashMap();
                 map1.put("professionType", map.get("所属行业").toString().trim());
@@ -92,10 +107,15 @@ public class ImportMain {
                     professionService.insert(profession);
                 }
             }catch (Exception e){
-                LogFactory.getLog(this.getClass()).debug("当前行是："+i);
+                e.printStackTrace();
+                errlist.add(String.valueOf(errInt));
+                continue;
             }
 
             System.out.println("当前处理进度："+getPercent(i++,list.size()));
+        }
+        for(String s : errlist){
+            System.out.println(s+",");
         }
         return "true";
     }
@@ -127,10 +147,15 @@ public class ImportMain {
                     professionService.update(profession);
                     ProfessionDetail professionDetail = new ProfessionDetail();
                     professionDetail.setId(profession.getId());
-                    professionDetail.setCareerProspects(map.get("就业前景").toString());
-                    professionDetail.setVocationalDemand(map.get("从业要求及条件").toString());
-                    professionDetail.setWorkContent(map.get("从业要求及条件").toString());
+                    if(map.get("就业前景")!=null)
+                        professionDetail.setCareerProspects(map.get("就业前景").toString());
+                    if(map.get("从业要求及条件")!=null)
+                        professionDetail.setVocationalDemand(map.get("从业要求及条件").toString());
+                    if(map.get("从业要求及条件")!=null)
+                        professionDetail.setWorkContent(map.get("从业要求及条件").toString());
+                    if(map.get("简介")!=null)
                     professionDetail.setIntroduction(map.get("简介").toString());
+                    if(map.get("相关专业")!=null)
                     professionDetail.setRelateMajor(map.get("相关专业").toString());
                     professionDetail.setIsDelete(false);
                     professionDetailService.insert(professionDetail);
@@ -168,12 +193,7 @@ public class ImportMain {
     }
 
 
-    @Test
-    public void test1(){
-        this.doImport(new File("C:\\Users\\admin\\Documents\\Tencent Files\\963984443\\FileRecv\\职业ok .xls"));
-//        this.doImport(new File("C:\\Users\\admin\\Documents\\Tencent Files\\963984443\\FileRecv\\职业信息ok.xls"));
 
-    }
 
     public String getPercent(int x,int total){
         String result="";//接受百分比的值
