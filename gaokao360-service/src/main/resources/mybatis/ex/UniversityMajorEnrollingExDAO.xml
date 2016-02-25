@@ -627,12 +627,7 @@
                     , year
                 </if>
                 <if test="selector.batch!=null">
-                    <if test="condition.batch.data &lt; 9">
-                        ,(SELECT name FROM zgk_data_dict dd WHERE dd.type = 'BATCHTYPE' AND dd.dictId = batch) as batchName
-                    </if>
-                    <if test="condition.batch.data &gt; 8">
                         ,(SELECT name FROM zgk_data_dict dd WHERE dd.type = 'BATCHTYPE1' AND dd.dictId = batch) as batchName
-                    </if>
                 </if>
                 <if test="selector.admissionFeature!=null">
                     ,
@@ -700,12 +695,7 @@
             ee.majorName as majorName,
             majorId as majorId ,
             year as year ,
-            <if test="condition.batch.data &lt; 9">
-                (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'BATCHTYPE' AND dd.dictId = batch) as batchName,
-            </if>
-            <if test="condition.batch.data &gt; 8">
                 (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'BATCHTYPE1' AND dd.dictId = batch) as batchName,
-            </if>
             (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'ADMISSION_BATCH_TYPE' AND dd.dictId = admissionFeature) as admissionBatchName,
             (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'UNIVERSITY_MAJOR_TYPE' AND dd.dictId = majorType) as majorTypeName,
             planEnrollingNumber as planEnrollingNumber ,
