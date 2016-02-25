@@ -692,13 +692,18 @@
             id as id ,
             (SELECT name FROM zgk_province where id = areaId) as province,
             universityId as universityId ,
-            (SELECT name FROM zgk_university uu WHERE uu.id = universityId limit 1) as universityName
-            , ee.majorName as majorName,
+            (SELECT name FROM zgk_university uu WHERE uu.id = universityId limit 1) as universityName,
+            ee.majorName as majorName,
             majorId as majorId ,
             year as year ,
-            (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'BATCHTYPE' AND dd.dictId = batch) as batchName
-            , (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'ADMISSION_BATCH_TYPE' AND dd.dictId = admissionFeature) as admissionBatchName
-            , (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'UNIVERSITY_MAJOR_TYPE' AND dd.dictId = majorType) as majorTypeName,
+            <if test="condition.batch.data &lt; 9">
+                (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'BATCHTYPE' AND dd.dictId = batch) as batchName,
+            </if>
+            <if test="condition.batch.data &gt; 8">
+                (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'BATCHTYPE1' AND dd.dictId = batch) as batchName,
+            </if>
+            (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'ADMISSION_BATCH_TYPE' AND dd.dictId = admissionFeature) as admissionBatchName,
+            (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'UNIVERSITY_MAJOR_TYPE' AND dd.dictId = majorType) as majorTypeName,
             planEnrollingNumber as planEnrollingNumber ,
             realEnrollingNumber as realEnrollingNumber ,
             (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'LENGTH_OF_SCHOOLING' AND dd.dictId = lengthOfSchooling) as lengthOfSchoolingName,

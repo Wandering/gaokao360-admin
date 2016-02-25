@@ -143,6 +143,7 @@ selectList
             ee.year,
             ee.batch,
             ee.majorType
+        ORDER BY ee.year DESC
     </select>
 
     <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.UniversityDTO">
