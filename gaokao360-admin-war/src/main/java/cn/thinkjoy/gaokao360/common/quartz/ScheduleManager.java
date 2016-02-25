@@ -20,7 +20,7 @@ import java.util.Map;
 /**
  * Created by liusven on 16/1/12.
  */
-@Component
+@Component("scheduleManager")
 public class ScheduleManager implements ApplicationListener<ContextRefreshedEvent> {
 
     private static SchedulerFactory factory = new StdSchedulerFactory();
