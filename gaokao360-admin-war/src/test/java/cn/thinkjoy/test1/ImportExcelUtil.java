@@ -1,4 +1,4 @@
-package cn.thinkjoy.gaokao360.test1;
+package cn.thinkjoy.test1;
 
 
 import com.google.common.collect.Lists;
@@ -8,6 +8,9 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,6 +24,7 @@ import java.util.Map;
  * 批量导入数据库
  * Created by yyp on 15-8-17.
  */
+
 public class ImportExcelUtil {
 
     // 声明一个工作薄

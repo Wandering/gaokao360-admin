@@ -1,4 +1,4 @@
-package cn.thinkjoy.gaokao360.test1;
+package cn.thinkjoy.test1;
 
 import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.gaokao360.domain.Profession;
@@ -7,11 +7,12 @@ import cn.thinkjoy.gaokao360.domain.ProfessionType;
 import cn.thinkjoy.gaokao360.service.common.IProfessionDetailService;
 import cn.thinkjoy.gaokao360.service.common.IProfessionService;
 import cn.thinkjoy.gaokao360.service.common.IProfessionTypeService;
-import com.alibaba.dubbo.config.annotation.Service;
 import org.apache.commons.logging.LogFactory;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -22,9 +23,8 @@ import java.util.*;
 /**
  * Created by admin on 2016/1/25.
  */
-@Controller
-@Scope("prototype")
-@RequestMapping(value="/admin/gaokao360")
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "classpath:springtest.xml")
 public class ImportMain {
 
     @Autowired
@@ -107,7 +107,10 @@ public class ImportMain {
      */
     protected String  innerHandleImport1(List<Map<String,String>> list){
         int i= 0;
+        List<String> errlist=new ArrayList<>();
+        int errInt=1;
         for(Map<String,String> map:list){
+            errInt++;
             try {
                 Map<String, Object> map1 = new HashMap();
                 map1.put("professionType", map.get("所属行业").toString().trim());
@@ -135,9 +138,13 @@ public class ImportMain {
 
             }catch (Exception e){
                 e.printStackTrace();
+                errlist.add(String.valueOf(errInt));
                 continue;
             }
             System.out.println("当前处理进度："+getPercent(i++,list.size()));
+        }
+        for(String s : errlist){
+            System.out.println(s+",");
         }
         return "true";
     }
@@ -161,21 +168,19 @@ public class ImportMain {
     }
 
 
-    @RequestMapping(value="/test123")
-    @ResponseBody
+    @Test
     public void test1(){
-        this.doImport(new File("C:\\Users\\admin\\Documents\\Tencent Files\\963984443\\FileRecv\\职业信息ok.xls"));
-//        this.doImport(new File("C:\\Users\\admin\\Documents\\Tencent Files\\963984443\\FileRecv\\职业ok .xls"));
+        this.doImport(new File("C:\\Users\\admin\\Documents\\Tencent Files\\963984443\\FileRecv\\职业ok .xls"));
+//        this.doImport(new File("C:\\Users\\admin\\Documents\\Tencent Files\\963984443\\FileRecv\\职业信息ok.xls"));
+
     }
+
     public String getPercent(int x,int total){
         String result="";//接受百分比的值
         double x_double=x*1.0;
         double total_double=total*1.0;
         double tempresult=x_double/total_double;
-        //NumberFormat nf   =   NumberFormat.getPercentInstance();     注释掉的也是一种方法
-        //nf.setMinimumFractionDigits( 2 );        保留到小数点后几位
         DecimalFormat df1 = new DecimalFormat("0.00%");    //##.00%   百分比格式，后面不足2位的用0补齐
-        //result=nf.format(tempresult);
         result= df1.format(tempresult);
         return result;
     }

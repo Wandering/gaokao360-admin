@@ -25,7 +25,7 @@ import java.util.Map;
  * @author qyang
  * @since v0.0.1
  */
-@CacheConfig(cacheNames={CacheConstants.ALLUNUSED})
+//@CacheConfig(cacheNames={CacheConstants.ALLUNUSED})
 public abstract class AbstractBaseService<D extends IBaseDAO,T extends BaseDomain> implements IBaseService<D,T>, IDaoAware<D,T> {
 //public abstract class AbstractBaseService<D extends IBaseDAO,T extends BaseDomain> implements IBaseService<D,T>{
 
