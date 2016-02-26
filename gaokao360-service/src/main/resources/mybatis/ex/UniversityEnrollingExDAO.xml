@@ -167,9 +167,6 @@ selectList
                 ${condition.groupOp} areaId = #{condition.enrollingareaid.data}
             </if>
         </where>
-        <if test="offset != null and condition.universityname==null and condition.universityareaid==null and condition.universityproperty==null">
-            limit ${offset}, ${rows}
-        </if>
         ) enrolling
         INNER JOIN
         (SELECT id,subjection,property,name,areaid,rank FROM zgk_university
@@ -193,7 +190,7 @@ selectList
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
         </if>
-        <if test="offset != null and !(condition.universityname==null and condition.universityareaid==null and condition.universityproperty==null)">
+        <if test="offset != null">
             limit ${offset}, ${rows}
         </if>
     </select>
@@ -220,7 +217,7 @@ selectList
         ) enrolling
         <if test="universityareaid==null or universityproperty==null or universityname==null" >
         INNER JOIN
-        (SELECT id,name,areaid  FROM zgk_university
+        (SELECT id,name,areaid,property  FROM zgk_university
         <where>
             <if test="universityname!=null">
                 ${groupOp} name ${universityname.op} #{universityname.data}
