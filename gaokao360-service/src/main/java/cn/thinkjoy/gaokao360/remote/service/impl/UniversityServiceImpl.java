@@ -203,7 +203,7 @@ public class UniversityServiceImpl implements IUniversityService {
         String score = params.get("score")+"";
         for (Map<String, Object> map : dataList)
         {
-            if("北京大学".equals(map.get("universityName")))
+            if("上海交通大学".equals(map.get("universityName")))
             {
                 System.out.println("haha");
 //                continue;
@@ -270,7 +270,9 @@ public class UniversityServiceImpl implements IUniversityService {
             {
                 BigDecimal bigOne = new BigDecimal(avgScoreList.get(0));
                 BigDecimal smallOne = new BigDecimal(avgScoreList.get(2));
-                valueB = bigOne.subtract(smallOne).multiply(new BigDecimal(2)).setScale(2, BigDecimal.ROUND_HALF_UP);
+                valueB = bigOne.subtract(smallOne).
+                        multiply(new BigDecimal(2)).setScale(2, BigDecimal.ROUND_HALF_UP)
+                        .divide(new BigDecimal(2),2, BigDecimal.ROUND_HALF_UP);
             }
             float floatValueA = new BigDecimal(score).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
             if(floatValueA >= valueA.subtract(valueB.multiply(new BigDecimal(2))).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue() &&
