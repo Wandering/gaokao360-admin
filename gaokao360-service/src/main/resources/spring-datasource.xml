@@ -165,6 +165,10 @@
     <bean id="ahDataSource" parent="parentDataSource">
         <property name="url" value="${jdbc_url_ah}"/>
     </bean>
+    <!--海南省-->
+    <bean id="hiDataSource" parent="parentDataSource">
+    <property name="url" value="${jdbc_url_hi}"/>
+    </bean>
     <!--&lt;!&ndash;内蒙古自治区&ndash;&gt;-->
     <!--<bean id="nmDataSource" parent="parentDataSource">-->
     <!--<property name="url" value="${jdbc_url_nm}"/>-->
@@ -184,10 +188,6 @@
     <!--&lt;!&ndash;青海省&ndash;&gt;-->
     <!--<bean id="qhDataSource" parent="parentDataSource">-->
     <!--<property name="url" value="${jdbc_url_qh}"/>-->
-    <!--</bean>-->
-    <!--&lt;!&ndash;海南省&ndash;&gt;-->
-    <!--<bean id="hiDataSource" parent="parentDataSource">-->
-    <!--<property name="url" value="${jdbc_url_hi}"/>-->
     <!--</bean>-->
     <!--&lt;!&ndash;香港特别行政区&ndash;&gt;-->
     <!--<bean id="hkDataSource" parent="parentDataSource">-->
@@ -251,6 +251,8 @@
                 <entry value-ref="gsDataSource" key="gs"></entry>
                 <!--安徽省-->
                 <entry value-ref="ahDataSource" key="ah"></entry>
+                <!--海南省-->
+                <entry value-ref="hiDataSource" key="hi"></entry>
                 <!--内蒙古自治区-->
                 <!--<entry value-ref="nmDataSource" key="nm"></entry>-->
                 <!--香港特别行政区-->
@@ -259,8 +261,6 @@
                 <!--<entry value-ref="twDataSource" key="tw"></entry>-->
                 <!--澳门特别行政区-->
                 <!--<entry value-ref="moDataSource" key="mo"></entry>-->
-                <!--海南省-->
-                <!--<entry value-ref="hiDataSource" key="hi"></entry>-->
                 <!--青海省-->
                 <!--<entry value-ref="qhDataSource" key="qh"></entry>-->
                 <!--西藏自治区-->
