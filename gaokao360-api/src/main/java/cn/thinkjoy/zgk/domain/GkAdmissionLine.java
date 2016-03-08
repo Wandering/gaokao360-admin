@@ -1,5 +1,7 @@
 package cn.thinkjoy.zgk.domain;
 
+import java.util.Map;
+
 /**
  * Created by admin on 2016/1/14.
  */
@@ -22,6 +24,8 @@ public class GkAdmissionLine extends BaseDomain {
     private Integer averageScore;
     /** 录取最低分 */
     private Integer lowestScore;
+
+    private Map<String,Object> propertys;
 
     public String getName() {
         return name;
@@ -93,5 +97,13 @@ public class GkAdmissionLine extends BaseDomain {
 
     public void setProperty(String property) {
         this.property = property;
+    }
+
+    public Map<String, Object> getPropertys() {
+        return propertys;
+    }
+
+    public void setPropertys(Map<String, Object> propertys) {
+        this.propertys = propertys;
     }
 }
