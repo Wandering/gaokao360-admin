@@ -1,6 +1,5 @@
 package cn.thinkjoy.gaokao360.remote.service.impl;
 
-import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.common.utils.SqlOrderEnum;
 import cn.thinkjoy.gaokao360.common.ServiceImplMaps;
 import cn.thinkjoy.gaokao360.service.common.IDataDictService;
@@ -221,7 +220,7 @@ public class UniversityServiceImpl implements IUniversityService {
             for (int i = 0; i < lowestScoreArray.length ; i++) {
                 if(isLegalScore(lowestScoreArray[i]))
                 {
-                    minScoreList.add(Integer.parseInt(lowestScoreArray[i]));
+                    minScoreList.add(parseInt(lowestScoreArray[i]));
                 }
             }
             if(minScoreList.size()==0)
@@ -238,7 +237,7 @@ public class UniversityServiceImpl implements IUniversityService {
                 for (int i = 0; i < averageScoreArray.length ; i++) {
                     if(isLegalScore(averageScoreArray[i]))
                     {
-                        avgScoreList.add(Integer.parseInt(averageScoreArray[i]));
+                        avgScoreList.add(parseInt(averageScoreArray[i]));
                     }
                 }
                 if(avgScoreList.size() == 0)
@@ -434,12 +433,12 @@ public class UniversityServiceImpl implements IUniversityService {
             String avgScoreStr = map.get("avgScore") + "";
             if(isLegalScore(minScoreStr))
             {
-                minScoreList.add(Integer.parseInt(minScoreStr));
+                minScoreList.add(parseInt(minScoreStr));
                 minScoreMap.put(batch, minScoreList);
             }
             if(isLegalScore(avgScoreStr))
             {
-                avgScoreList.add(Integer.parseInt(avgScoreStr));
+                avgScoreList.add(parseInt(avgScoreStr));
                 avgScoreMap.put(batch, avgScoreList);
             }
         }
@@ -648,5 +647,11 @@ public class UniversityServiceImpl implements IUniversityService {
 
     private boolean isNumber(String value) {
         return isInteger(value) || isDouble(value);
+    }
+
+
+    private int parseInt(String value)
+    {
+        return Math.round(Float.parseFloat(value));
     }
 }
