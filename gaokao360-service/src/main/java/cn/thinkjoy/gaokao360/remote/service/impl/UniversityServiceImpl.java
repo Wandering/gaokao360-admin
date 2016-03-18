@@ -354,8 +354,12 @@ public class UniversityServiceImpl implements IUniversityService {
         Collections.sort(list, new Comparator<Map<String, Object>>() {
             @Override
             public int compare(Map<String, Object> o1, Map<String, Object> o2) {
-                return ((BigDecimal)o2.get("avgLowScore")).floatValue()>=
-                        ((BigDecimal)o1.get("avgLowScore")).floatValue()?1:-1;
+                if(((BigDecimal)o2.get("avgLowScore")).floatValue()==((BigDecimal)o1.get("avgLowScore")).floatValue())
+                {
+                    return 0;
+                }
+                return ((BigDecimal)o2.get("avgLowScore")).floatValue()>
+                        ((BigDecimal)o1.get("avgLowScore")).floatValue() ? 1 : -1;
             }
         });
     }
