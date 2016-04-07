@@ -15,6 +15,7 @@
     <dubbo:application name="zgk"  />
     <!-- 注册中心暴露服务地址 -->
     <!--<dubbo:registry address="zookeeper://10.172.7.71:2181" />-->
+    <dubbo:protocol name="dubbo"  port="-1" />
     <dubbo:registry address="${dubbo_zk_url}" file="/tmp/dubbo.cache"/>
 
     <!--测试dubbo服务-->
