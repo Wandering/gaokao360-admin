@@ -2,6 +2,10 @@ package cn.thinkjoy.gaokao360.remote.service.impl;
 
 import cn.thinkjoy.common.utils.SqlOrderEnum;
 import cn.thinkjoy.gaokao360.common.ServiceImplMaps;
+import cn.thinkjoy.gaokao360.domain.Province;
+import cn.thinkjoy.gaokao360.domain.University;
+import cn.thinkjoy.gaokao360.domain.UniversityMajor;
+import cn.thinkjoy.gaokao360.dto.GkQueryDomain;
 import cn.thinkjoy.gaokao360.service.common.IDataDictService;
 import cn.thinkjoy.gaokao360.service.common.IProvinceService;
 import cn.thinkjoy.gaokao360.service.common.ex.IUniversityExService;
@@ -49,7 +53,7 @@ public class UniversityServiceImpl implements IUniversityService {
      * @return
      */
     @Override
-    public List getUniversityList(Map<String, Object> condition, int offset, int rows, String orederBy, String sqlOrderEnumStr, Map<String, Object> selectorpage) {
+    public List<University> getUniversityList(Map<String, Object> condition, int offset, int rows, String orederBy, String sqlOrderEnumStr, Map<String, Object> selectorpage) {
         SqlOrderEnum sqlOrderEnum=SqlOrderEnum.ASC;
         if(sqlOrderEnumStr.equalsIgnoreCase("DESC"))
             sqlOrderEnum=SqlOrderEnum.DESC;
@@ -82,7 +86,7 @@ public class UniversityServiceImpl implements IUniversityService {
      * @return
      */
     @Override
-    public List getUniversityMajorListByUniversityId(long id,
+    public List<UniversityMajor> getUniversityMajorListByUniversityId(long id,
                                                      Map<String,Object> condition,
                                                      int offset, int rows,
                                                      String orderBy, String sqlOrderEnumStr,
@@ -131,7 +135,7 @@ public class UniversityServiceImpl implements IUniversityService {
      * @return
      */
     @Override
-    public List queryPage(String serviceName,
+    public List<Object> queryPage(String serviceName,
                           Map<String,Object> condition,
                           int offset, int rows,
                           String orderBy, String sqlOrderEnumStr,
@@ -148,7 +152,7 @@ public class UniversityServiceImpl implements IUniversityService {
      * @return
      */
     @Override
-    public List getProvinceName(){
+    public List<Province> getProvinceName(){
         return provinceService.findAll();
     }
 
@@ -174,7 +178,7 @@ public class UniversityServiceImpl implements IUniversityService {
      * @return
      */
     @Override
-    public List getUniversityByName(String name){
+    public List<GkQueryDomain> getUniversityByName(String name){
         return universityExService.getUniversityByName(name);
     }
 
