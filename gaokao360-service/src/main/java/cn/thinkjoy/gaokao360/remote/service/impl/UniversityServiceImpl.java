@@ -2,6 +2,7 @@ package cn.thinkjoy.gaokao360.remote.service.impl;
 
 import cn.thinkjoy.common.utils.SqlOrderEnum;
 import cn.thinkjoy.gaokao360.common.ServiceImplMaps;
+import cn.thinkjoy.gaokao360.domain.DataDict;
 import cn.thinkjoy.gaokao360.domain.Province;
 import cn.thinkjoy.gaokao360.domain.University;
 import cn.thinkjoy.gaokao360.domain.UniversityMajor;
@@ -53,7 +54,7 @@ public class UniversityServiceImpl implements IUniversityService {
      * @return
      */
     @Override
-    public List<University> getUniversityList(Map<String, Object> condition, int offset, int rows, String orederBy, String sqlOrderEnumStr, Map<String, Object> selectorpage) {
+    public List getUniversityList(Map<String, Object> condition, int offset, int rows, String orederBy, String sqlOrderEnumStr, Map<String, Object> selectorpage) {
         SqlOrderEnum sqlOrderEnum=SqlOrderEnum.ASC;
         if(sqlOrderEnumStr.equalsIgnoreCase("DESC"))
             sqlOrderEnum=SqlOrderEnum.DESC;
@@ -162,7 +163,7 @@ public class UniversityServiceImpl implements IUniversityService {
      * @return
      */
     @Override
-    public List getDataDictListByType(String type){
+    public List<DataDict> getDataDictListByType(String type){
         Map<String,Object> condition = Maps.newHashMap();
         condition.put("type",type);
         Map<String,Object> selector = Maps.newHashMap();
