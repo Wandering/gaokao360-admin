@@ -37,7 +37,7 @@ selectList
         note as note 
     </sql>
     <insert id="insert" parameterType="UniversityDict">
-        INSERT INTO gk_university_dict (
+        INSERT INTO zgk_university_dict (
         createDate,
         status,
         creator,
@@ -65,7 +65,7 @@ selectList
 
     <!-- 更新 -->
     <update id="update" parameterType="UniversityDict">
-        UPDATE gk_university_dict
+        UPDATE zgk_university_dict
         <trim prefix="SET" suffixOverrides=",">
             <if test="createDate!=null">
                 createDate = #{createDate},
@@ -100,7 +100,7 @@ selectList
     </update>
 
     <update id="updateMap">
-        UPDATE gk_university_dict
+        UPDATE zgk_university_dict
         <trim prefix="SET" suffixOverrides=",">
             <if test="map.createDate!=null">
                 createDate = #{map.createDate},
@@ -135,7 +135,7 @@ selectList
     </update>
 
     <update id="updateByCondition">
-        UPDATE gk_university_dict
+        UPDATE zgk_university_dict
         <trim prefix="SET" suffixOverrides=",">
             <if test="update.createDate!=null">
                 createDate = #{update.createDate},
@@ -201,7 +201,7 @@ selectList
     </update>
 
     <insert id="insertMap" >
-        INSERT INTO gk_university_dict (
+        INSERT INTO zgk_university_dict (
                 createDate,
                 status,
                 creator,
@@ -226,7 +226,7 @@ selectList
 
 
     <update id="updateNull" parameterType="UniversityDict">
-        UPDATE gk_university_dict
+        UPDATE zgk_university_dict
         <trim prefix="SET" suffixOverrides=",">
             createDate = #{createDate},
             status = #{status},
@@ -244,7 +244,7 @@ selectList
 
     <!-- 按Id删除 -->
     <delete id="deleteById" parameterType="java.lang.Long">
-        DELETE FROM gk_university_dict
+        DELETE FROM zgk_university_dict
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND id = #{id}
         </trim>
@@ -252,7 +252,7 @@ selectList
 
 
     <delete id="deleteByCondition" parameterType="java.util.Map">
-        DELETE FROM gk_university_dict
+        DELETE FROM zgk_university_dict
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="id!=null">
                 AND id = #{id}
@@ -288,14 +288,14 @@ selectList
     </delete>
 
     <delete id="deleteByProperty" parameterType="java.util.Map">
-        DELETE FROM gk_university_dict WHERE
+        DELETE FROM zgk_university_dict WHERE
         ${property} = #{value}
     </delete>
 
     <select id="fetch" parameterType="java.lang.Long" resultType="UniversityDict">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_university_dict
+        FROM zgk_university_dict
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND id = #{id}
         </trim>
@@ -304,7 +304,7 @@ selectList
     <select id="findOne" parameterType="java.util.Map" resultType="UniversityDict">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_university_dict WHERE
+        FROM zgk_university_dict WHERE
         ${property} = #{value}
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
@@ -315,7 +315,7 @@ selectList
     <select id="findList" parameterType="java.util.Map" resultType="UniversityDict">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_university_dict WHERE
+        FROM zgk_university_dict WHERE
         ${property} = #{value}
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
@@ -325,7 +325,7 @@ selectList
     <select id="findAll" resultType="UniversityDict">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_university_dict
+        FROM zgk_university_dict
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
         </if>
@@ -334,7 +334,7 @@ selectList
     <select id="queryPage" resultType="UniversityDict">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_university_dict
+        FROM zgk_university_dict
         <where>
 
             <if test="condition.whereSql != null">
@@ -385,7 +385,7 @@ selectList
     <select id="like" parameterType="java.util.Map" resultType="UniversityDict">
         SELECT
             <include refid="Base_Column_List" />
-        FROM gk_university_dict
+        FROM zgk_university_dict
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id like CONCAT('%', #{condition.id} , '%')
@@ -427,7 +427,7 @@ selectList
     <select id="queryList" parameterType="java.util.Map" resultType="UniversityDict">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_university_dict
+        FROM zgk_university_dict
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id = #{condition.id}
@@ -468,7 +468,7 @@ selectList
     <select id="queryOne" parameterType="java.util.Map" resultType="UniversityDict">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_university_dict
+        FROM zgk_university_dict
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id = #{condition.id}
@@ -508,7 +508,7 @@ selectList
     </select>
 
     <select id="count" resultType="java.lang.Integer">
-        SELECT count(id) FROM gk_university_dict
+        SELECT count(id) FROM zgk_university_dict
        <where>
            <if test="id!=null">
                ${groupOp} ${id.field} ${id.op}  #{id.data}
@@ -547,7 +547,7 @@ selectList
     <select id="selectMaxId" resultType="java.lang.Long">
         SELECT
         MAX(id)
-        FROM gk_university_dict
+        FROM zgk_university_dict
     </select>
 
 </mapper>

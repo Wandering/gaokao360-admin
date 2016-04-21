@@ -50,7 +50,7 @@ selectList
         year as year 
     </sql>
     <insert id="insert" parameterType="EnrollPlan">
-        INSERT INTO gk_enroll_plan (
+        INSERT INTO zgk_enroll_plan (
         sort,
         batchId,
         batch,
@@ -104,7 +104,7 @@ selectList
 
     <!-- 更新 -->
     <update id="update" parameterType="EnrollPlan">
-        UPDATE gk_enroll_plan
+        UPDATE zgk_enroll_plan
         <trim prefix="SET" suffixOverrides=",">
             <if test="sort!=null">
                 sort = #{sort},
@@ -178,7 +178,7 @@ selectList
     </update>
 
     <update id="updateMap">
-        UPDATE gk_enroll_plan
+        UPDATE zgk_enroll_plan
         <trim prefix="SET" suffixOverrides=",">
             <if test="map.sort!=null">
                 sort = #{map.sort},
@@ -252,7 +252,7 @@ selectList
     </update>
 
     <update id="updateByCondition">
-        UPDATE gk_enroll_plan
+        UPDATE zgk_enroll_plan
         <trim prefix="SET" suffixOverrides=",">
             <if test="update.sort!=null">
                 sort = #{update.sort},
@@ -396,7 +396,7 @@ selectList
     </update>
 
     <insert id="insertMap" >
-        INSERT INTO gk_enroll_plan (
+        INSERT INTO zgk_enroll_plan (
                 sort,
                 batchId,
                 batch,
@@ -447,7 +447,7 @@ selectList
 
 
     <update id="updateNull" parameterType="EnrollPlan">
-        UPDATE gk_enroll_plan
+        UPDATE zgk_enroll_plan
         <trim prefix="SET" suffixOverrides=",">
             sort = #{sort},
             batchId = #{batchId},
@@ -478,7 +478,7 @@ selectList
 
     <!-- 按Id删除 -->
     <delete id="deleteById" parameterType="java.lang.Long">
-        DELETE FROM gk_enroll_plan
+        DELETE FROM zgk_enroll_plan
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND id = #{id}
         </trim>
@@ -486,7 +486,7 @@ selectList
 
 
     <delete id="deleteByCondition" parameterType="java.util.Map">
-        DELETE FROM gk_enroll_plan
+        DELETE FROM zgk_enroll_plan
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="id!=null">
                 AND id = #{id}
@@ -561,14 +561,14 @@ selectList
     </delete>
 
     <delete id="deleteByProperty" parameterType="java.util.Map">
-        DELETE FROM gk_enroll_plan WHERE
+        DELETE FROM zgk_enroll_plan WHERE
         ${property} = #{value}
     </delete>
 
     <select id="fetch" parameterType="java.lang.Long" resultType="EnrollPlan">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_enroll_plan
+        FROM zgk_enroll_plan
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND id = #{id}
         </trim>
@@ -577,7 +577,7 @@ selectList
     <select id="findOne" parameterType="java.util.Map" resultType="EnrollPlan">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_enroll_plan WHERE
+        FROM zgk_enroll_plan WHERE
         ${property} = #{value}
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
@@ -588,7 +588,7 @@ selectList
     <select id="findList" parameterType="java.util.Map" resultType="EnrollPlan">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_enroll_plan WHERE
+        FROM zgk_enroll_plan WHERE
         ${property} = #{value}
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
@@ -598,7 +598,7 @@ selectList
     <select id="findAll" resultType="EnrollPlan">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_enroll_plan
+        FROM zgk_enroll_plan
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
         </if>
@@ -607,7 +607,7 @@ selectList
     <select id="queryPage" resultType="EnrollPlan">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_enroll_plan
+        FROM zgk_enroll_plan
         <where>
 
             <if test="condition.whereSql != null">
@@ -697,7 +697,7 @@ selectList
     <select id="like" parameterType="java.util.Map" resultType="EnrollPlan">
         SELECT
             <include refid="Base_Column_List" />
-        FROM gk_enroll_plan
+        FROM zgk_enroll_plan
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id like CONCAT('%', #{condition.id} , '%')
@@ -778,7 +778,7 @@ selectList
     <select id="queryList" parameterType="java.util.Map" resultType="EnrollPlan">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_enroll_plan
+        FROM zgk_enroll_plan
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id = #{condition.id}
@@ -858,7 +858,7 @@ selectList
     <select id="queryOne" parameterType="java.util.Map" resultType="EnrollPlan">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_enroll_plan
+        FROM zgk_enroll_plan
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id = #{condition.id}
@@ -937,7 +937,7 @@ selectList
     </select>
 
     <select id="count" resultType="java.lang.Integer">
-        SELECT count(id) FROM gk_enroll_plan
+        SELECT count(id) FROM zgk_enroll_plan
        <where>
            <if test="id!=null">
                ${groupOp} ${id.field} ${id.op}  #{id.data}
@@ -1015,7 +1015,7 @@ selectList
     <select id="selectMaxId" resultType="java.lang.Long">
         SELECT
         MAX(id)
-        FROM gk_enroll_plan
+        FROM zgk_enroll_plan
     </select>
 
 </mapper>

@@ -9,10 +9,10 @@ package cn.thinkjoy.gaokao360.controller.baseinfo.ex;
 
 import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.gaokao360.controller.BaseController;
-import cn.thinkjoy.gaokao360.service.IUniversityDictService;
-import cn.thinkjoy.gaokao360.service.IUniversityService;
-import cn.thinkjoy.gaokao360.service.ex.IUniversityExService;
+import cn.thinkjoy.gaokao360.service.common.IUniversityDictService;
+import cn.thinkjoy.gaokao360.service.common.ex.IUniversityExService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@Scope("prototype")
 @RequestMapping(value="/admin/gaokao360/ex")
 public class UniversityExController extends BaseController<IUniversityExService> {
 
@@ -70,7 +71,15 @@ public class UniversityExController extends BaseController<IUniversityExService>
         map.put("type","EDULEVEL");
         return universityDictService.queryList(map,"id","asc");
     }
-
+    /**
+     * 院校基本信息学历层次
+     * @return
+     */
+    @RequestMapping(value="/getUniversityByName",method = RequestMethod.POST)
+    @ResponseBody
+    public List getUniversityByName(String name){
+        return universityExService.getUniversityByName(name);
+    }
     @Override
     protected IUniversityExService getMainService() {
         return universityExService;

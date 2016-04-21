@@ -34,8 +34,8 @@ selectList
     <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.AreabatchLineDTO">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_areabatch_line line
-        LEFT JOIN  gk_province  province ON province.id=line.areaId
+        FROM zgk_areabatch_line line
+        LEFT JOIN  zgk_province  province ON province.id=line.areaId
         <where>
 
             <if test="condition.whereSql != null">
@@ -56,8 +56,8 @@ selectList
 
     <select id="count" resultType="java.lang.Integer">
         SELECT count(line.id)
-        FROM gk_areabatch_line line
-        LEFT JOIN  gk_province  province ON province.id=line.areaId
+        FROM zgk_areabatch_line line
+        LEFT JOIN  zgk_province  province ON province.id=line.areaId
 
        <where>
            <if test="id!=null">
@@ -72,5 +72,14 @@ selectList
        </where>
     </select>
 
+    <select id="fetch" parameterType="java.lang.Long" resultType="cn.thinkjoy.gaokao360.dto.AreabatchLineDTO">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_areabatch_line line
+        LEFT JOIN  zgk_province  province ON province.id=line.areaId
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND line.areaId = #{id}
+        </trim>
+    </select>
 </mapper>
 

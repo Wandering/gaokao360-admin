@@ -7,7 +7,7 @@
 package cn.thinkjoy.gaokao360.facade.impl;
 
 import cn.thinkjoy.gaokao360.facade.IGkinformationGkhotFacade;
-import cn.thinkjoy.gaokao360.service.IGkinformationGkhotService;
+import cn.thinkjoy.gaokao360.service.differentiation.IGkinformationGkhotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

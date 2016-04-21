@@ -35,7 +35,7 @@ selectList
         userId as userId 
     </sql>
     <insert id="insert" parameterType="UserDatagroup">
-        INSERT INTO gaokao360_user_datagroup (
+        INSERT INTO zgk_user_datagroup (
         creator,
         createDate,
         lastModifier,
@@ -59,7 +59,7 @@ selectList
 
     <!-- 更新 -->
     <update id="update" parameterType="UserDatagroup">
-        UPDATE gaokao360_user_datagroup
+        UPDATE zgk_user_datagroup
         <trim prefix="SET" suffixOverrides=",">
             <if test="creator!=null">
                 creator = #{creator},
@@ -88,7 +88,7 @@ selectList
     </update>
 
     <update id="updateMap">
-        UPDATE gaokao360_user_datagroup
+        UPDATE zgk_user_datagroup
         <trim prefix="SET" suffixOverrides=",">
             <if test="map.creator!=null">
                 creator = #{map.creator},
@@ -117,7 +117,7 @@ selectList
     </update>
 
     <update id="updateByCondition">
-        UPDATE gaokao360_user_datagroup
+        UPDATE zgk_user_datagroup
         <trim prefix="SET" suffixOverrides=",">
             <if test="update.creator!=null">
                 creator = #{update.creator},
@@ -171,7 +171,7 @@ selectList
     </update>
 
     <insert id="insertMap" >
-        INSERT INTO gaokao360_user_datagroup (
+        INSERT INTO zgk_user_datagroup (
                 creator,
                 createDate,
                 lastModifier,
@@ -192,7 +192,7 @@ selectList
 
 
     <update id="updateNull" parameterType="UserDatagroup">
-        UPDATE gaokao360_user_datagroup
+        UPDATE zgk_user_datagroup
         <trim prefix="SET" suffixOverrides=",">
             creator = #{creator},
             createDate = #{createDate},
@@ -208,7 +208,7 @@ selectList
 
     <!-- 按Id删除 -->
     <delete id="deleteById" parameterType="java.lang.Integer">
-        DELETE FROM gaokao360_user_datagroup
+        DELETE FROM zgk_user_datagroup
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND id = #{id}
         </trim>
@@ -216,7 +216,7 @@ selectList
 
 
     <delete id="deleteByCondition" parameterType="java.util.Map">
-        DELETE FROM gaokao360_user_datagroup
+        DELETE FROM zgk_user_datagroup
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="id!=null">
                 AND id = #{id}
@@ -246,14 +246,14 @@ selectList
     </delete>
 
     <delete id="deleteByProperty" parameterType="java.util.Map">
-        DELETE FROM gaokao360_user_datagroup WHERE
+        DELETE FROM zgk_user_datagroup WHERE
         ${property} = #{value}
     </delete>
 
     <select id="fetch" parameterType="java.lang.Integer" resultType="UserDatagroup">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gaokao360_user_datagroup
+        FROM zgk_user_datagroup
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND id = #{id}
         </trim>
@@ -262,7 +262,7 @@ selectList
     <select id="findOne" parameterType="java.util.Map" resultType="UserDatagroup">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gaokao360_user_datagroup WHERE
+        FROM zgk_user_datagroup WHERE
         ${property} = #{value}
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
@@ -273,7 +273,7 @@ selectList
     <select id="findList" parameterType="java.util.Map" resultType="UserDatagroup">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gaokao360_user_datagroup WHERE
+        FROM zgk_user_datagroup WHERE
         ${property} = #{value}
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
@@ -283,7 +283,7 @@ selectList
     <select id="findAll" resultType="UserDatagroup">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gaokao360_user_datagroup
+        FROM zgk_user_datagroup
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
         </if>
@@ -292,7 +292,7 @@ selectList
     <select id="queryPage" resultType="UserDatagroup">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gaokao360_user_datagroup
+        FROM zgk_user_datagroup
         <where>
 
             <if test="condition.whereSql != null">
@@ -337,7 +337,7 @@ selectList
     <select id="like" parameterType="java.util.Map" resultType="UserDatagroup">
         SELECT
             <include refid="Base_Column_List" />
-        FROM gaokao360_user_datagroup
+        FROM zgk_user_datagroup
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id like CONCAT('%', #{condition.id} , '%')
@@ -373,7 +373,7 @@ selectList
     <select id="queryList" parameterType="java.util.Map" resultType="UserDatagroup">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gaokao360_user_datagroup
+        FROM zgk_user_datagroup
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id = #{condition.id}
@@ -408,7 +408,7 @@ selectList
     <select id="queryOne" parameterType="java.util.Map" resultType="UserDatagroup">
         SELECT
             <include refid="Base_Column_List" />
-        FROM gaokao360_user_datagroup
+        FROM zgk_user_datagroup
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id = #{condition.id}
@@ -442,7 +442,7 @@ selectList
     </select>
 
     <select id="count" resultType="java.lang.Integer">
-        SELECT count(id) FROM gaokao360_user_datagroup
+        SELECT count(id) FROM zgk_user_datagroup
        <where>
            <if test="id!=null">
                ${groupOp} ${id.field} ${id.op}  #{id.data}
@@ -475,7 +475,7 @@ selectList
     <select id="selectMaxId" resultType="java.lang.Integer">
         SELECT
         MAX(id)
-        FROM gaokao360_user_datagroup
+        FROM zgk_user_datagroup
     </select>
 
 </mapper>

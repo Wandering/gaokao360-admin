@@ -56,10 +56,10 @@
     <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.VideoCourseDTO">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_video_course course
-        LEFT OUTER JOIN gk_video_classify classify ON classify.id = course.classifyId
-        LEFT OUTER JOIN gk_subject gksubject ON course.subjectId = gksubject.id
-        LEFT JOIN gk_province province ON course.areaId = province.id
+        FROM zgk_video_course course
+        LEFT OUTER JOIN zgk_video_classify classify ON classify.id = course.classifyId
+        LEFT OUTER JOIN zgk_subject gksubject ON course.subjectId = gksubject.id
+        LEFT JOIN zgk_province province ON course.areaId = province.id
 
         <where>
             course.classifyId=2
@@ -74,9 +74,9 @@
             </if>
             <if test="condition.queryparam!=null">
                 and (course.teacher like #{condition.queryparam.data}
-                province.name like #{condition.queryparam.data}
-                course.title like #{condition.queryparam.data}
-                gksubject.subjectName like #{condition.queryparam.data}
+                OR province.name like #{condition.queryparam.data}
+                OR course.title like #{condition.queryparam.data}
+                OR gksubject.subjectName like #{condition.queryparam.data}
                 OR course.subcontent like #{condition.queryparam.data})
             </if>
 
@@ -90,10 +90,10 @@
 
 
     <select id="count" resultType="java.lang.Integer">
-        SELECT count(course.id)  FROM gk_video_course course
-        LEFT OUTER JOIN gk_video_classify classify ON classify.id = course.classifyId
-        LEFT OUTER JOIN gk_subject gksubject ON course.subjectId = gksubject.id
-        LEFT JOIN gk_province province ON course.areaId = province.id
+        SELECT count(course.id)  FROM zgk_video_course course
+        LEFT OUTER JOIN zgk_video_classify classify ON classify.id = course.classifyId
+        LEFT OUTER JOIN zgk_subject gksubject ON course.subjectId = gksubject.id
+        LEFT JOIN zgk_province province ON course.areaId = province.id
         <where>
             course.classifyId=2
             <if test="coursesubjectId!=null">
@@ -115,10 +115,10 @@
     <select id="fetch" parameterType="java.lang.Long" resultType="cn.thinkjoy.gaokao360.dto.VideoCourseDTO">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_video_course course
-        LEFT OUTER JOIN gk_video_classify classify ON classify.id = course.classifyId
-        LEFT OUTER JOIN gk_subject gksubject ON course.subjectId = gksubject.id
-        LEFT JOIN gk_province province ON course.areaId = province.id
+        FROM zgk_video_course course
+        LEFT OUTER JOIN zgk_video_classify classify ON classify.id = course.classifyId
+        LEFT OUTER JOIN zgk_subject gksubject ON course.subjectId = gksubject.id
+        LEFT JOIN zgk_province province ON course.areaId = province.id
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND course.id = #{id}
         </trim>

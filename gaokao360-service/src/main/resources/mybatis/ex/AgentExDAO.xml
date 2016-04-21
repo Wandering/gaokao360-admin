@@ -41,8 +41,8 @@ selectList
     <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.AgentDTO">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_agent agent
-        LEFT JOIN gk_province province ON province.id=agent.areaId
+        FROM zgk_agent agent
+        LEFT JOIN zgk_province province ON province.id=agent.areaId
         <where>
 
             <if test="condition.whereSql != null">
@@ -69,8 +69,8 @@ selectList
 
     <select id="count" resultType="java.lang.Integer">
         SELECT count(agent.id)
-        FROM gk_agent agent
-        LEFT JOIN gk_province province ON province.id=agent.areaId
+        FROM zgk_agent agent
+        LEFT JOIN zgk_province province ON province.id=agent.areaId
        <where>
            <if test="agentareaId!=null">
                ${groupOp}   ${agentareaId.field}  ${agentareaId.op}  #{agentareaId.data}

@@ -35,13 +35,14 @@ selectList
         schedule.lastModDate as lastModDate ,
         schedule.creator as creator ,
         schedule.lastModifier as lastModifier ,
+        schedule.title as title ,
         province.name as province
     </sql>
     <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.ScheduleDTO">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_schedule schedule
-        LEFT JOIN gk_province province ON province.id=schedule.areaId
+        FROM zgk_schedule schedule
+        LEFT JOIN zgk_province province ON province.id=schedule.areaId
         <where>
 
             <if test="condition.whereSql != null">
@@ -73,8 +74,8 @@ selectList
 
     <select id="count" resultType="java.lang.Integer">
         SELECT count(schedule.id)
-        FROM gk_schedule schedule
-        LEFT JOIN gk_province province ON province.id=schedule.areaId
+        FROM zgk_schedule schedule
+        LEFT JOIN zgk_province province ON province.id=schedule.areaId
         <where>
             <if test="scheduleareaId!=null">
                 ${groupOp}   ${scheduleareaId.field}  ${scheduleareaId.op}  #{scheduleareaId.data}

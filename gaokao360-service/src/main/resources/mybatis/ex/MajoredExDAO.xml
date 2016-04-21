@@ -25,33 +25,49 @@ selectList
 -->
 
     <sql id="Base_Column_List">
-        id as id ,
-        code as code ,
-        name as name ,
-        educationLevel as educationLevel ,
-        subjectType as subjectType ,
-        majoredType as majoredType ,
-        degree as degree ,
-        similarMajored as similarMajored ,
-        mainStudy as mainStudy ,
-        mainCourse as mainCourse ,
-        workGuide as workGuide ,
-        university as university ,
-        stressUniversity as stressUniversity ,
-        other as other ,
-        jobRat as jobRat ,
-        incomeAve as incomeAve ,
-        jobMajoredRel as jobMajoredRel ,
-        salaryRank as salaryRank ,
-        employedRank as employedRank ,
-        subjectTypeId as subjectTypeId ,
-        majoredTypeId as majoredTypeId
+        major.id as id ,
+        major.major_type as majorType ,
+        major.major_category as majorCategory ,
+        major.discipline_categories as disciplineCategories ,
+        major.major_name as majorName ,
+        major.employment_rank as employmentRank ,
+        major.salary_rank as salaryRank ,
+        major.createDate as createDate ,
+        major.creator as creator ,
+        major.lastModDate as lastModDate ,
+        major.lastModifier as lastModifier ,
+        detail.major_code as majorCode ,
+        detail.offer_courses as offerCourses ,
+        detail.major_introduce as majorIntroduce ,
+        detail.similar_majors as similarMajors ,
+        detail.specialisation as specialisation ,
+        detail.outstanding_mentor as outstandingMentor,
+        category.name as categoryName,
+        genre.name as genreName,
+        type.name as typeName,
+        major.lastModDate as lastModDate
     </sql>
 
-    <select id="queryPage" resultType="Majored">
+    <select id="fetch" resultType="cn.thinkjoy.gaokao360.dto.MajorDTO">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_majored
+        FROM zgk_major major
+        LEFT OUTER JOIN zgk_major_detail detail ON detail.id=major.id
+        LEFT JOIN zgk_majored_category  genre ON genre.id=major.discipline_categories
+        LEFT JOIN zgk_majored_category  category ON category.id=major.major_category
+        LEFT JOIN zgk_majored_category  type ON type.id=major.major_type AND (type.id=0 OR type.id=1)
+        <where>
+            major.id=#{id}
+        </where>
+    </select>
+    <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.MajorDTO">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_major major
+        LEFT OUTER JOIN zgk_major_detail detail ON detail.id=major.id
+        LEFT JOIN zgk_majored_category  genre ON genre.id=major.discipline_categories
+        LEFT JOIN zgk_majored_category  category ON category.id=major.major_category
+        LEFT JOIN zgk_majored_category  type ON type.id=major.major_type AND (type.id=0 OR type.id=1)
         <where>
 
             1=1
@@ -59,48 +75,52 @@ selectList
                 and id in (#{condition.whereSql})
             </if>
             <if test="condition.subjectType!=null">
-                ${condition.groupOp}   ${condition.subjectType.field}  ${condition.subjectType.op}  #{condition.subjectType.data}
+                ${condition.groupOp}   major.discipline_categories  ${condition.subjectType.op}  #{condition.subjectType.data}
             </if>
             <if test="condition.queryparam!=null">
                 ${condition.groupOp}
-                (code like #{condition.queryparam.data}
-                OR name like #{condition.queryparam.data}
-                OR name like #{condition.queryparam.data}
-                OR salaryRank like #{condition.queryparam.data}
-                OR employedRank like #{condition.queryparam.data}
-                OR majoredType like #{condition.queryparam.data})
+                ( detail.major_code like #{condition.queryparam.data}
+                OR  major.major_name like #{condition.queryparam.data}
+                OR major.salary_rank like #{condition.queryparam.data}
+                OR major.employment_rank like #{condition.queryparam.data}
+                OR category.name like #{condition.queryparam.data}
+                OR genre.name like #{condition.queryparam.data}
+                OR type.name like #{condition.queryparam.data})
             </if>
 
 
         </where>
-            ORDER BY id DESC
+        ORDER BY lastModDate DESC
         <if test="offset != null">
             limit ${offset}, ${rows}
         </if>
     </select>
-
     <select id="count" resultType="java.lang.Integer">
-        SELECT count(id) FROM gk_majored
+        SELECT count(major.id)        FROM zgk_major major
+        LEFT OUTER JOIN zgk_major_detail detail ON detail.id=major.id
+        LEFT JOIN zgk_majored_category  genre ON genre.id=major.discipline_categories
+        LEFT JOIN zgk_majored_category  category ON category.id=major.major_category
+        LEFT JOIN zgk_majored_category  type ON type.id=major.major_type AND (type.id=0 OR type.id=1)
         <where>
 1=1
             <if test="subjectType!=null">
-                ${groupOp}   ${subjectType.field}  ${subjectType.op}  #{subjectType.data}
+                ${groupOp}   major.discipline_categories  ${subjectType.op}  #{subjectType.data}
             </if>
             <if test="queryparam!=null">
                 ${groupOp}
-                (code like #{queryparam.data}
-                OR name like #{queryparam.data}
-                OR name like #{queryparam.data}
-                OR salaryRank like #{queryparam.data}
-                OR employedRank like #{queryparam.data}
-                OR majoredType like #{queryparam.data}
-                OR subjectType like #{queryparam.data})
+                ( detail.major_code like #{queryparam.data}
+                OR  major.major_name like #{queryparam.data}
+                OR major.salary_rank like #{queryparam.data}
+                OR major.employment_rank like #{queryparam.data}
+                OR category.name like #{queryparam.data}
+                OR genre.name like #{queryparam.data}
+                OR type.name like #{queryparam.data})
             </if>
 
         </where>
     </select>
     <select id="getMajoredListByName" resultType="cn.thinkjoy.gaokao360.domain.GkBaseDomain">
-        SELECT id,name,subjectType as type FROM gk_majored
+        SELECT id,name,subjectType as type FROM zgk_majored
          <where>
              <if test="name!=null">
                  AND (name like CONCAT('%', #{name} , '%'),name subjectType CONCAT('%', #{name} , '%'))
@@ -108,6 +128,50 @@ selectList
          </where>
     </select>
 
+    <insert id="insertMapDetail" >
+        INSERT INTO zgk_major_detail (
+        id,
+        major_code,
+        degree_offered,
+        schooling_duration,
+        offer_courses,
+        major_introduce,
+        similar_majors,
+        specialisation,
+        outstanding_mentor,
+        createDate,
+        creator,
+        lastModDate,
+        lastModifier,
+        id_delete
+        ) VALUES (
+        #{map.id},
+        #{map.majorCode},
+        #{map.degreeOffered},
+        #{map.schoolingDuration},
+        #{map.offerCourses},
+        #{map.majorIntroduce},
+        #{map.similarMajors},
+        #{map.specialisation},
+        #{map.outstandingMentor},
+        #{map.createDate},
+        #{map.creator},
+        #{map.lastModDate},
+        #{map.lastModifier},
+        #{map.idDelete}
+        )
+    </insert>
 
+    <select id="getMajoredByName" resultType="MajoredQueryDTO">
+        select
+          (select name FROM zgk_majored_category cc where cc.id=mm.discipline_categories) as disciplineCategoriesName,
+          (select name FROM zgk_majored_category cc where cc.id=mm.major_category) as majorCategoryName,
+          mm.major_name as majoredName,
+          mm.id as majoredId
+        from zgk_major mm
+        left join zgk_majored_category mc on mc.id=mm.discipline_categories
+        where mm.major_name like CONCAT('%',#{condition.majoredName},'%')
+         and mc.parentId = #{condition.type}
+    </select>
 </mapper>
 

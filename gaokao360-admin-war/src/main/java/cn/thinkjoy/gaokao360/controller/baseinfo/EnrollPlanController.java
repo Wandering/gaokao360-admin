@@ -8,13 +8,10 @@
 package cn.thinkjoy.gaokao360.controller.baseinfo;
 
 import cn.thinkjoy.gaokao360.controller.BaseController;
-import cn.thinkjoy.gaokao360.service.IEnrollPlanService;
-import cn.thinkjoy.common.managerui.dao.IResourceGridDAO;
-import cn.thinkjoy.common.managerui.service.IResourceGridService;
+import cn.thinkjoy.gaokao360.service.common.IEnrollPlanService;
 import cn.thinkjoy.common.domain.view.BizData4Page;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,14 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-
-import cn.thinkjoy.common.managerui.controller.AbstractAdminController;
 
 @Controller
+@Scope("prototype")
 @RequestMapping(value="/admin/gaokao360")
 public class EnrollPlanController extends BaseController<IEnrollPlanService> {
 

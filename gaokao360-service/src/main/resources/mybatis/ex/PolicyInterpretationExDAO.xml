@@ -44,9 +44,9 @@ selectList
     <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.PolicyInterpretationDTO">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_policy_interpretation interpretation
-        LEFT JOIN gk_province province ON province.id=interpretation.provinceId
-        LEFT OUTER JOIN gk_admission_batch batch ON batch.id=interpretation.admissionBatchId
+        FROM zgk_policy_interpretation interpretation
+        LEFT JOIN zgk_province province ON province.id=interpretation.provinceId
+        LEFT OUTER JOIN zgk_admission_batch batch ON batch.id=interpretation.admissionBatchId
         <where>
 
             <if test="condition.whereSql != null">
@@ -62,8 +62,8 @@ selectList
             <if test="condition.queryparam!=null">
                   ${condition.groupOp}
                 (interpretation.categoryName LIKE #{condition.queryparam.data}
-                province.name LIKE #{condition.queryparam.data}
-                batch.name LIKE #{condition.queryparam.data}
+                OR province.name LIKE #{condition.queryparam.data}
+                OR batch.name LIKE #{condition.queryparam.data}
                 OR interpretation.content LIKE  #{condition.queryparam.data})
             </if>
 
@@ -77,9 +77,9 @@ selectList
 
     <select id="count" resultType="java.lang.Integer">
         SELECT count(interpretation.id)
-        FROM gk_policy_interpretation interpretation
-        LEFT JOIN gk_province province ON province.id=interpretation.provinceId
-        LEFT OUTER JOIN gk_admission_batch batch ON batch.id=interpretation.admissionBatchId
+        FROM zgk_policy_interpretation interpretation
+        LEFT JOIN zgk_province province ON province.id=interpretation.provinceId
+        LEFT OUTER JOIN zgk_admission_batch batch ON batch.id=interpretation.admissionBatchId
        <where>
            <if test="interpretationprovinceId!=null">
                ${groupOp} ${interpretationprovinceId.field} ${interpretationprovinceId.op}  #{interpretationprovinceId.data}
@@ -95,9 +95,9 @@ selectList
     <select id="fetch" parameterType="java.lang.Long" resultType="cn.thinkjoy.gaokao360.dto.PolicyInterpretationDTO">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_policy_interpretation interpretation
-        LEFT JOIN gk_province province ON province.id=interpretation.provinceId
-        LEFT OUTER JOIN gk_admission_batch batch ON batch.id=interpretation.admissionBatchId
+        FROM zgk_policy_interpretation interpretation
+        LEFT JOIN zgk_province province ON province.id=interpretation.provinceId
+        LEFT OUTER JOIN zgk_admission_batch batch ON batch.id=interpretation.admissionBatchId
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND interpretation.id = #{id}
         </trim>

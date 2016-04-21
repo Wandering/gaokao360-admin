@@ -32,7 +32,7 @@ selectList
         sort as sort 
     </sql>
     <insert id="insertMap" >
-        INSERT INTO gk_admission_batch (
+        INSERT INTO zgk_admission_batch (
         name,
         status,
         areaId,
@@ -42,6 +42,6 @@ selectList
         #{map.status},
         #{map.areaId},
         MAX(id) as sort
-        FROM gk_admission_batch
+        FROM zgk_admission_batch
     </insert>
 </mapper>

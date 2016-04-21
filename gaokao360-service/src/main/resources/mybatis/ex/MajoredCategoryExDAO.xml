@@ -34,7 +34,7 @@ selectList
     <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.MajoredCategoryDTO">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_majored_category
+        FROM zgk_majored_category
         <where>
             1=1 AND (parentId =1 ||  parentId =2 )
             <if test="condition.whereSql != null">
@@ -46,9 +46,7 @@ selectList
             </if>
 
     </where>
-        <if test="orderBy!=null">
-        ORDER BY ${orderBy} ${sortBy}
-        </if>
+        ORDER BY id desc
         <if test="offset != null">
             limit ${offset}, ${rows}
         </if>
@@ -58,15 +56,15 @@ selectList
     <select id="queryList" resultType="cn.thinkjoy.gaokao360.dto.MajoredCategoryDTO">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_majored_category WHERE  1=1 AND  (parentId =1 ||  parentId =2 )
+        FROM zgk_majored_category WHERE  1=1 AND  (parentId =1 ||  parentId =2 )
     </select>
     <select id="fetch" resultType="cn.thinkjoy.gaokao360.dto.MajoredCategoryDTO">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_majored_category WHERE  1=1 AND  (parentId =1 ||  parentId =2 ) AND  id=#{id}
+        FROM zgk_majored_category WHERE  1=1 AND  (parentId =1 ||  parentId =2 ) AND  id=#{id}
     </select>
     <select id="count" resultType="java.lang.Integer">
-        SELECT count(id) FROM gk_majored_category
+        SELECT count(id) FROM zgk_majored_category
        <where>
            1=1 AND  (parentId =1 ||  parentId =2 )
            <if test="name!=null">
@@ -77,7 +75,31 @@ selectList
     <select id="queryListByParentId" resultType="cn.thinkjoy.gaokao360.domain.GkBaseDomain">
         SELECT
         id,name
-        FROM gk_majored_category WHERE  1=1 AND  parentId =#{id}
+        FROM zgk_majored_category WHERE  1=1 AND  parentId =#{id}
+    </select>
+
+    <select id="getMajoredCategory" resultType="MajoredCategoryRemoteDTO">
+        select id,name,parentId from zgk_majored_category mc where mc.parentId = #{condition.scienceId}
+    </select>
+
+    <select id="getCategoryMajoredList" resultType="CategoryMajoredDTO">
+        SELECT
+            mm.id AS majoredId,
+            mm.major_category AS majorCategoryId,
+            (select name from zgk_majored_category cc where cc.id=mm.major_category) as majorCategoryName,
+            mm.discipline_categories AS disciplineCategoriesId,
+            (select name from zgk_majored_category cc where cc.id=mm.discipline_categories) as disciplineCategoriesName,
+            mm.major_name AS majoredName
+        FROM
+            zgk_major mm
+        WHERE
+            mm.major_category IN (
+                SELECT
+                    mc.id
+                FROM
+                    zgk_majored_category mc
+                WHERE
+                    mc.parentId = #{condition.categoryId})
     </select>
 
 

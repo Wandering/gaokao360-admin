@@ -8,13 +8,13 @@
 package cn.thinkjoy.gaokao360.controller.baseinfo.ex;
 
 import cn.thinkjoy.common.domain.view.BizData4Page;
-import cn.thinkjoy.common.managerui.controller.AbstractAdminController;
 import cn.thinkjoy.gaokao360.controller.BaseController;
 import cn.thinkjoy.gaokao360.domain.VideoSection;
-import cn.thinkjoy.gaokao360.service.IVideoSectionService;
-import cn.thinkjoy.gaokao360.service.ex.IVideoSectionExService;
+import cn.thinkjoy.gaokao360.service.differentiation.IVideoSectionService;
+import cn.thinkjoy.gaokao360.service.differentiation.ex.IVideoSectionExService;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,6 +29,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
+@Scope("prototype")
 @RequestMapping(value="/admin/gaokao360/ex")
 public class VideoSectionExController extends BaseController<IVideoSectionExService> {
 

@@ -2,7 +2,7 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  UniversityDAO.java 2015-12-16 18:39:46 $
+ * $Id:  UniversityDAO.java 2015-12-30 11:42:40 $
  */
 package cn.thinkjoy.gaokao360.dao;
 

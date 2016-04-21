@@ -9,9 +9,9 @@ package cn.thinkjoy.gaokao360.controller.baseinfo.ex;
 
 import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.gaokao360.controller.BaseController;
-import cn.thinkjoy.gaokao360.service.IAgentService;
-import cn.thinkjoy.gaokao360.service.ex.IAgentExService;
+import cn.thinkjoy.gaokao360.service.differentiation.ex.IAgentExService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@Scope("prototype")
 @RequestMapping(value="/admin/gaokao360/ex")
 public class AgentExController extends BaseController<IAgentExService> {
 

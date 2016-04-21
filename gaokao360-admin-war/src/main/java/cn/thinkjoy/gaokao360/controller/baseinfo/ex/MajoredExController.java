@@ -9,12 +9,12 @@ package cn.thinkjoy.gaokao360.controller.baseinfo.ex;
 
 import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.gaokao360.controller.BaseController;
-import cn.thinkjoy.gaokao360.service.IMajoredService;
-import cn.thinkjoy.gaokao360.service.ex.IMajoredExService;
+import cn.thinkjoy.gaokao360.service.common.IMajoredService;
+import cn.thinkjoy.gaokao360.service.common.ex.IMajoredExService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
+@Scope("prototype")
 @RequestMapping(value="/admin/gaokao360/ex")
 public class MajoredExController extends BaseController<IMajoredExService> {
 

@@ -17,7 +17,7 @@
 
     <appender name="DEBUG-FILE-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/gaokao360-debug.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>logs/zgk-debug.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>30</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -38,7 +38,7 @@
 
     <appender name="WARN-FILE-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/gaokao360-warn.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>logs/zgk-warn.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>30</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -54,7 +54,7 @@
 
     <appender name="SPECLOGGER-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/mubs-spec.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>logs/zgk-spec.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>30</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -80,7 +80,7 @@
         <appender-ref ref="WARN-FILE-APPENDER" />
     </logger>
 
-    <root level="DEBUG">
+    <root level="WARN">
         <appender-ref ref="STDOUT-APPENDER" />
     </root>
 </configuration>

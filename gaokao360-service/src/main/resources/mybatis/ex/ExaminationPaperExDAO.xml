@@ -53,9 +53,9 @@ selectList
     <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.ExaminationPaperDTO">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_examination_paper paper
-        LEFT OUTER JOIN gk_subject gksubject on paper.subjectId = gksubject.id
-        LEFT JOIN gk_province province ON province.id = paper.areaId
+        FROM zgk_examination_paper paper
+        LEFT OUTER JOIN zgk_subject gksubject on paper.subjectId = gksubject.id
+        LEFT JOIN zgk_province province ON province.id = paper.areaId
         <where>
 
             <if test="condition.whereSql != null">
@@ -87,9 +87,9 @@ selectList
     <select id="count" resultType="java.lang.Integer">
         SELECT
         COUNT(paper.id)
-        FROM gk_examination_paper paper
-        LEFT OUTER JOIN gk_subject gksubject on paper.subjectId = gksubject.id
-        LEFT JOIN gk_province province ON province.id = paper.areaId
+        FROM zgk_examination_paper paper
+        LEFT OUTER JOIN zgk_subject gksubject on paper.subjectId = gksubject.id
+        LEFT JOIN zgk_province province ON province.id = paper.areaId
        <where>
            <if test="papersubjectId!=null">
                ${groupOp}   ${papersubjectId.field}  ${papersubjectId.op}  #{papersubjectId.data}
@@ -111,9 +111,9 @@ selectList
     <select id="fetch" parameterType="java.lang.Long" resultType="cn.thinkjoy.gaokao360.dto.ExaminationPaperDTO">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_examination_paper paper
-        LEFT OUTER JOIN gk_subject gksubject on paper.subjectId = gksubject.id
-        LEFT JOIN gk_province province ON province.id = paper.areaId
+        FROM zgk_examination_paper paper
+        LEFT OUTER JOIN zgk_subject gksubject on paper.subjectId = gksubject.id
+        LEFT JOIN zgk_province province ON province.id = paper.areaId
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND paper.id = #{id}
         </trim>

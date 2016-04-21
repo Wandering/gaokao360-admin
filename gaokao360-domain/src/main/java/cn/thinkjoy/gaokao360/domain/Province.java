@@ -2,7 +2,7 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  Province.java 2015-12-07 11:26:48 $
+ * $Id:  Province.java 2016-01-23 10:57:01 $
  */
 
 
@@ -22,6 +22,8 @@ import java.util.*;
 public class Province extends BaseDomain<Long>{
     /**  */
     private String name;
+    /**  */
+    private String code;
 
 	public Province(){
 	}
@@ -32,11 +34,19 @@ public class Province extends BaseDomain<Long>{
     public String getName() {
         return this.name;
     }
+    public void setCode(String value) {
+        this.code = value;
+    }
+
+    public String getCode() {
+        return this.code;
+    }
 
 	public String toString() {
 		return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
 			.append("Id",getId())
 			.append("Name",getName())
+			.append("Code",getCode())
 			.toString();
 	}
 	

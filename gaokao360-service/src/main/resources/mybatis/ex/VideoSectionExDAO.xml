@@ -40,7 +40,7 @@ selectList
     <select id="queryByCourseId" parameterType="java.lang.Long" resultType="VideoSection">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_video_section
+        FROM zgk_video_section
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND courseId = #{courseId}
         </trim>
@@ -49,11 +49,11 @@ selectList
     <select id="queryByMaxId"  resultType="java.lang.Long">
         SELECT
         max(id)
-        FROM gk_video_course
+        FROM zgk_video_course
     </select>
 
     <select id="updateCourseId" parameterType="java.lang.Long" resultType="java.lang.Long">
-        UPDATE gk_video_section SET courseId=#{courseId} WHERE id=#{id}
+        UPDATE zgk_video_section SET courseId=#{courseId} WHERE id=#{id}
     </select>
 
 
@@ -64,7 +64,7 @@ selectList
         sectionName as sectionName ,
         sectionSort as sectionSort,
         fileUrl as fileUrl
-        FROM gk_video_section
+        FROM zgk_video_section
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND courseId = #{courseId}
         </trim>

@@ -32,7 +32,7 @@ selectList
         images as images 
     </sql>
     <insert id="insert" parameterType="UniversitySort">
-        INSERT INTO gk_university_sort (
+        INSERT INTO zgk_university_sort (
         universityId,
         majoredCount,
         sort,
@@ -50,7 +50,7 @@ selectList
 
     <!-- 更新 -->
     <update id="update" parameterType="UniversitySort">
-        UPDATE gk_university_sort
+        UPDATE zgk_university_sort
         <trim prefix="SET" suffixOverrides=",">
             <if test="universityId!=null">
                 universityId = #{universityId},
@@ -70,7 +70,7 @@ selectList
     </update>
 
     <update id="updateMap">
-        UPDATE gk_university_sort
+        UPDATE zgk_university_sort
         <trim prefix="SET" suffixOverrides=",">
             <if test="map.universityId!=null">
                 universityId = #{map.universityId},
@@ -90,7 +90,7 @@ selectList
     </update>
 
     <update id="updateByCondition">
-        UPDATE gk_university_sort
+        UPDATE zgk_university_sort
         <trim prefix="SET" suffixOverrides=",">
             <if test="update.universityId!=null">
                 universityId = #{update.universityId},
@@ -126,7 +126,7 @@ selectList
     </update>
 
     <insert id="insertMap" >
-        INSERT INTO gk_university_sort (
+        INSERT INTO zgk_university_sort (
                 universityId,
                 majoredCount,
                 sort,
@@ -141,7 +141,7 @@ selectList
 
 
     <update id="updateNull" parameterType="UniversitySort">
-        UPDATE gk_university_sort
+        UPDATE zgk_university_sort
         <trim prefix="SET" suffixOverrides=",">
             universityId = #{universityId},
             majoredCount = #{majoredCount},
@@ -154,7 +154,7 @@ selectList
 
     <!-- 按Id删除 -->
     <delete id="deleteById" parameterType="java.lang.Long">
-        DELETE FROM gk_university_sort
+        DELETE FROM zgk_university_sort
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND id = #{id}
         </trim>
@@ -162,7 +162,7 @@ selectList
 
 
     <delete id="deleteByCondition" parameterType="java.util.Map">
-        DELETE FROM gk_university_sort
+        DELETE FROM zgk_university_sort
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="id!=null">
                 AND id = #{id}
@@ -183,14 +183,14 @@ selectList
     </delete>
 
     <delete id="deleteByProperty" parameterType="java.util.Map">
-        DELETE FROM gk_university_sort WHERE
+        DELETE FROM zgk_university_sort WHERE
         ${property} = #{value}
     </delete>
 
     <select id="fetch" parameterType="java.lang.Long" resultType="UniversitySort">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_university_sort
+        FROM zgk_university_sort
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND id = #{id}
         </trim>
@@ -199,7 +199,7 @@ selectList
     <select id="findOne" parameterType="java.util.Map" resultType="UniversitySort">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_university_sort WHERE
+        FROM zgk_university_sort WHERE
         ${property} = #{value}
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
@@ -210,7 +210,7 @@ selectList
     <select id="findList" parameterType="java.util.Map" resultType="UniversitySort">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_university_sort WHERE
+        FROM zgk_university_sort WHERE
         ${property} = #{value}
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
@@ -220,7 +220,7 @@ selectList
     <select id="findAll" resultType="UniversitySort">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_university_sort
+        FROM zgk_university_sort
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
         </if>
@@ -229,7 +229,7 @@ selectList
     <select id="queryPage" resultType="UniversitySort">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_university_sort
+        FROM zgk_university_sort
         <where>
 
             <if test="condition.whereSql != null">
@@ -265,7 +265,7 @@ selectList
     <select id="like" parameterType="java.util.Map" resultType="UniversitySort">
         SELECT
             <include refid="Base_Column_List" />
-        FROM gk_university_sort
+        FROM zgk_university_sort
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id like CONCAT('%', #{condition.id} , '%')
@@ -292,7 +292,7 @@ selectList
     <select id="queryList" parameterType="java.util.Map" resultType="UniversitySort">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_university_sort
+        FROM zgk_university_sort
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id = #{condition.id}
@@ -318,7 +318,7 @@ selectList
     <select id="queryOne" parameterType="java.util.Map" resultType="UniversitySort">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_university_sort
+        FROM zgk_university_sort
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id = #{condition.id}
@@ -343,7 +343,7 @@ selectList
     </select>
 
     <select id="count" resultType="java.lang.Integer">
-        SELECT count(id) FROM gk_university_sort
+        SELECT count(id) FROM zgk_university_sort
        <where>
            <if test="id!=null">
                ${groupOp} ${id.field} ${id.op}  #{id.data}
@@ -367,7 +367,7 @@ selectList
     <select id="selectMaxId" resultType="java.lang.Long">
         SELECT
         MAX(id)
-        FROM gk_university_sort
+        FROM zgk_university_sort
     </select>
 
 </mapper>

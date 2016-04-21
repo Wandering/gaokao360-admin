@@ -2,118 +2,127 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.thinkjoy.gaokao360.dao.IUniversityDAO">
-<!--
-insert
-update
-updateNull
-deleteById
-deleteByCondition
-deleteByProperty
-fetch
-findOne
-findList
-findAll
-queryPage
-like
-queryList
-queryOne
-count
-selectMaxId
-updateOrSave
-selectOne
-selectList
--->
+    <!--
+    insert
+    update
+    updateNull
+    deleteById
+    deleteByCondition
+    deleteByProperty
+    fetch
+    findOne
+    findList
+    findAll
+    queryPage
+    like
+    queryList
+    queryOne
+    count
+    selectMaxId
+    updateOrSave
+    selectOne
+    selectList
+    -->
 
     <sql id="Base_Column_List">
         id as id ,
+        name as name ,
+        code as code ,
+        provinceCode as provinceCode ,
+        subjection as subjection ,
+        areaid as areaid ,
+        type as type ,
+        url as url ,
+        photo_url as photoUrl ,
+        property as property ,
+        rank as rank ,
+        educationLevel as educationLevel ,
         createDate as createDate ,
-        status as status ,
         creator as creator ,
         lastModDate as lastModDate ,
         lastModifier as lastModifier ,
-        code as code ,
-        name as name ,
-        subjection as subjection ,
-        educationLevel as educationLevel ,
-        property as property ,
-        type as type ,
-        url as url ,
-        address as address ,
-        contactPhone as contactPhone ,
-        entranceIntro as entranceIntro ,
-        universityIntro as universityIntro ,
-        provinceId as provinceId ,
-        provinceName as provinceName ,
-        cityId as cityId ,
-        cityName as cityName ,
-        countyId as countyId ,
-        countyName as countyName ,
-        batchType as batchType 
+        is_delete as isDelete 
     </sql>
     <insert id="insert" parameterType="University">
-        INSERT INTO gk_university (
+        INSERT INTO zgk_university (
+        name,
+        code,
+        provinceCode,
+        subjection,
+        areaid,
+        type,
+        url,
+        photo_url,
+        property,
+        rank,
+        educationLevel,
         createDate,
-        status,
         creator,
         lastModDate,
         lastModifier,
-        code,
-        name,
-        subjection,
-        educationLevel,
-        property,
-        type,
-        url,
-        address,
-        contactPhone,
-        entranceIntro,
-        universityIntro,
-        provinceId,
-        provinceName,
-        cityId,
-        cityName,
-        countyId,
-        countyName,
-        batchType
+        is_delete
         ) VALUES (
+        #{name},
+        #{code},
+        #{provinceCode},
+        #{subjection},
+        #{areaid},
+        #{type},
+        #{url},
+        #{photoUrl},
+        #{property},
+        #{rank},
+        #{educationLevel},
         #{createDate},
-        #{status},
         #{creator},
         #{lastModDate},
         #{lastModifier},
-        #{code},
-        #{name},
-        #{subjection},
-        #{educationLevel},
-        #{property},
-        #{type},
-        #{url},
-        #{address},
-        #{contactPhone},
-        #{entranceIntro},
-        #{universityIntro},
-        #{provinceId},
-        #{provinceName},
-        #{cityId},
-        #{cityName},
-        #{countyId},
-        #{countyName},
-        #{batchType}
+        #{isDelete}
         )
-            <selectKey resultType="java.lang.Long" keyProperty="id">
-                SELECT LAST_INSERT_ID() AS ID
-            </selectKey>
+        <selectKey resultType="java.lang.Long" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
     </insert>
 
     <!-- 更新 -->
     <update id="update" parameterType="University">
-        UPDATE gk_university
+        UPDATE zgk_university
         <trim prefix="SET" suffixOverrides=",">
+            <if test="name!=null">
+                name = #{name},
+            </if>
+            <if test="code!=null">
+                code = #{code},
+            </if>
+            <if test="provinceCode!=null">
+                provinceCode = #{provinceCode},
+            </if>
+            <if test="subjection!=null">
+                subjection = #{subjection},
+            </if>
+            <if test="areaid!=null">
+                areaid = #{areaid},
+            </if>
+            <if test="type!=null">
+                type = #{type},
+            </if>
+            <if test="url!=null">
+                url = #{url},
+            </if>
+            <if test="photoUrl!=null">
+                photo_url = #{photoUrl},
+            </if>
+            <if test="property!=null">
+                property = #{property},
+            </if>
+            <if test="rank!=null">
+                rank = #{rank},
+            </if>
+            <if test="educationLevel!=null">
+                educationLevel = #{educationLevel},
+            </if>
             <if test="createDate!=null">
                 createDate = #{createDate},
-            </if>
-            <if test="status!=null">
-                status = #{status},
             </if>
             <if test="creator!=null">
                 creator = #{creator},
@@ -124,59 +133,8 @@ selectList
             <if test="lastModifier!=null">
                 lastModifier = #{lastModifier},
             </if>
-            <if test="code!=null">
-                code = #{code},
-            </if>
-            <if test="name!=null">
-                name = #{name},
-            </if>
-            <if test="subjection!=null">
-                subjection = #{subjection},
-            </if>
-            <if test="educationLevel!=null">
-                educationLevel = #{educationLevel},
-            </if>
-            <if test="property!=null">
-                property = #{property},
-            </if>
-            <if test="type!=null">
-                type = #{type},
-            </if>
-            <if test="url!=null">
-                url = #{url},
-            </if>
-            <if test="address!=null">
-                address = #{address},
-            </if>
-            <if test="contactPhone!=null">
-                contactPhone = #{contactPhone},
-            </if>
-            <if test="entranceIntro!=null">
-                entranceIntro = #{entranceIntro},
-            </if>
-            <if test="universityIntro!=null">
-                universityIntro = #{universityIntro},
-            </if>
-            <if test="provinceId!=null">
-                provinceId = #{provinceId},
-            </if>
-            <if test="provinceName!=null">
-                provinceName = #{provinceName},
-            </if>
-            <if test="cityId!=null">
-                cityId = #{cityId},
-            </if>
-            <if test="cityName!=null">
-                cityName = #{cityName},
-            </if>
-            <if test="countyId!=null">
-                countyId = #{countyId},
-            </if>
-            <if test="countyName!=null">
-                countyName = #{countyName},
-            </if>
-            <if test="batchType!=null">
-                batchType = #{batchType},
+            <if test="isDelete!=null">
+                is_delete = #{isDelete},
             </if>
         </trim>
         WHERE
@@ -184,13 +142,43 @@ selectList
     </update>
 
     <update id="updateMap">
-        UPDATE gk_university
+        UPDATE zgk_university
         <trim prefix="SET" suffixOverrides=",">
+            <if test="map.name!=null">
+                name = #{map.name},
+            </if>
+            <if test="map.code!=null">
+                code = #{map.code},
+            </if>
+            <if test="map.provinceCode!=null">
+                provinceCode = #{map.provinceCode},
+            </if>
+            <if test="map.subjection!=null">
+                subjection = #{map.subjection},
+            </if>
+            <if test="map.areaid!=null">
+                areaid = #{map.areaid},
+            </if>
+            <if test="map.type!=null">
+                type = #{map.type},
+            </if>
+            <if test="map.url!=null">
+                url = #{map.url},
+            </if>
+            <if test="map.photoUrl!=null">
+                photo_url = #{map.photoUrl},
+            </if>
+            <if test="map.property!=null">
+                property = #{map.property},
+            </if>
+            <if test="map.rank!=null">
+                rank = #{map.rank},
+            </if>
+            <if test="map.educationLevel!=null">
+                educationLevel = #{map.educationLevel},
+            </if>
             <if test="map.createDate!=null">
                 createDate = #{map.createDate},
-            </if>
-            <if test="map.status!=null">
-                status = #{map.status},
             </if>
             <if test="map.creator!=null">
                 creator = #{map.creator},
@@ -201,59 +189,8 @@ selectList
             <if test="map.lastModifier!=null">
                 lastModifier = #{map.lastModifier},
             </if>
-            <if test="map.code!=null">
-                code = #{map.code},
-            </if>
-            <if test="map.name!=null">
-                name = #{map.name},
-            </if>
-            <if test="map.subjection!=null">
-                subjection = #{map.subjection},
-            </if>
-            <if test="map.educationLevel!=null">
-                educationLevel = #{map.educationLevel},
-            </if>
-            <if test="map.property!=null">
-                property = #{map.property},
-            </if>
-            <if test="map.type!=null">
-                type = #{map.type},
-            </if>
-            <if test="map.url!=null">
-                url = #{map.url},
-            </if>
-            <if test="map.address!=null">
-                address = #{map.address},
-            </if>
-            <if test="map.contactPhone!=null">
-                contactPhone = #{map.contactPhone},
-            </if>
-            <if test="map.entranceIntro!=null">
-                entranceIntro = #{map.entranceIntro},
-            </if>
-            <if test="map.universityIntro!=null">
-                universityIntro = #{map.universityIntro},
-            </if>
-            <if test="map.provinceId!=null">
-                provinceId = #{map.provinceId},
-            </if>
-            <if test="map.provinceName!=null">
-                provinceName = #{map.provinceName},
-            </if>
-            <if test="map.cityId!=null">
-                cityId = #{map.cityId},
-            </if>
-            <if test="map.cityName!=null">
-                cityName = #{map.cityName},
-            </if>
-            <if test="map.countyId!=null">
-                countyId = #{map.countyId},
-            </if>
-            <if test="map.countyName!=null">
-                countyName = #{map.countyName},
-            </if>
-            <if test="map.batchType!=null">
-                batchType = #{map.batchType},
+            <if test="map.isDelete!=null">
+                is_delete = #{map.isDelete},
             </if>
         </trim>
         WHERE
@@ -261,13 +198,43 @@ selectList
     </update>
 
     <update id="updateByCondition">
-        UPDATE gk_university
+        UPDATE zgk_university
         <trim prefix="SET" suffixOverrides=",">
+            <if test="update.name!=null">
+                name = #{update.name},
+            </if>
+            <if test="update.code!=null">
+                code = #{update.code},
+            </if>
+            <if test="update.provinceCode!=null">
+                provinceCode = #{update.provinceCode},
+            </if>
+            <if test="update.subjection!=null">
+                subjection = #{update.subjection},
+            </if>
+            <if test="update.areaid!=null">
+                areaid = #{update.areaid},
+            </if>
+            <if test="update.type!=null">
+                type = #{update.type},
+            </if>
+            <if test="update.url!=null">
+                url = #{update.url},
+            </if>
+            <if test="update.photoUrl!=null">
+                photo_url = #{update.photoUrl},
+            </if>
+            <if test="update.property!=null">
+                property = #{update.property},
+            </if>
+            <if test="update.rank!=null">
+                rank = #{update.rank},
+            </if>
+            <if test="update.educationLevel!=null">
+                educationLevel = #{update.educationLevel},
+            </if>
             <if test="update.createDate!=null">
                 createDate = #{update.createDate},
-            </if>
-            <if test="update.status!=null">
-                status = #{update.status},
             </if>
             <if test="update.creator!=null">
                 creator = #{update.creator},
@@ -278,59 +245,8 @@ selectList
             <if test="update.lastModifier!=null">
                 lastModifier = #{update.lastModifier},
             </if>
-            <if test="update.code!=null">
-                code = #{update.code},
-            </if>
-            <if test="update.name!=null">
-                name = #{update.name},
-            </if>
-            <if test="update.subjection!=null">
-                subjection = #{update.subjection},
-            </if>
-            <if test="update.educationLevel!=null">
-                educationLevel = #{update.educationLevel},
-            </if>
-            <if test="update.property!=null">
-                property = #{update.property},
-            </if>
-            <if test="update.type!=null">
-                type = #{update.type},
-            </if>
-            <if test="update.url!=null">
-                url = #{update.url},
-            </if>
-            <if test="update.address!=null">
-                address = #{update.address},
-            </if>
-            <if test="update.contactPhone!=null">
-                contactPhone = #{update.contactPhone},
-            </if>
-            <if test="update.entranceIntro!=null">
-                entranceIntro = #{update.entranceIntro},
-            </if>
-            <if test="update.universityIntro!=null">
-                universityIntro = #{update.universityIntro},
-            </if>
-            <if test="update.provinceId!=null">
-                provinceId = #{update.provinceId},
-            </if>
-            <if test="update.provinceName!=null">
-                provinceName = #{update.provinceName},
-            </if>
-            <if test="update.cityId!=null">
-                cityId = #{update.cityId},
-            </if>
-            <if test="update.cityName!=null">
-                cityName = #{update.cityName},
-            </if>
-            <if test="update.countyId!=null">
-                countyId = #{update.countyId},
-            </if>
-            <if test="update.countyName!=null">
-                countyName = #{update.countyName},
-            </if>
-            <if test="update.batchType!=null">
-                batchType = #{update.batchType},
+            <if test="update.isDelete!=null">
+                is_delete = #{update.isDelete},
             </if>
         </trim>
 
@@ -338,11 +254,41 @@ selectList
             <if test="condition.id!=null">
                 AND id = #{condition.id}
             </if>
+            <if test="condition.name!=null">
+                AND name = #{condition.name}
+            </if>
+            <if test="condition.code!=null">
+                AND code = #{condition.code}
+            </if>
+            <if test="condition.provinceCode!=null">
+                AND provinceCode = #{condition.provinceCode}
+            </if>
+            <if test="condition.subjection!=null">
+                AND subjection = #{condition.subjection}
+            </if>
+            <if test="condition.areaid!=null">
+                AND areaid = #{condition.areaid}
+            </if>
+            <if test="condition.type!=null">
+                AND type = #{condition.type}
+            </if>
+            <if test="condition.url!=null">
+                AND url = #{condition.url}
+            </if>
+            <if test="condition.photoUrl!=null">
+                AND photo_url = #{condition.photoUrl}
+            </if>
+            <if test="condition.property!=null">
+                AND property = #{condition.property}
+            </if>
+            <if test="condition.rank!=null">
+                AND rank = #{condition.rank}
+            </if>
+            <if test="condition.educationLevel!=null">
+                AND educationLevel = #{condition.educationLevel}
+            </if>
             <if test="condition.createDate!=null">
                 AND createDate = #{condition.createDate}
-            </if>
-            <if test="condition.status!=null">
-                AND status = #{condition.status}
             </if>
             <if test="condition.creator!=null">
                 AND creator = #{condition.creator}
@@ -353,150 +299,78 @@ selectList
             <if test="condition.lastModifier!=null">
                 AND lastModifier = #{condition.lastModifier}
             </if>
-            <if test="condition.code!=null">
-                AND code = #{condition.code}
-            </if>
-            <if test="condition.name!=null">
-                AND name = #{condition.name}
-            </if>
-            <if test="condition.subjection!=null">
-                AND subjection = #{condition.subjection}
-            </if>
-            <if test="condition.educationLevel!=null">
-                AND educationLevel = #{condition.educationLevel}
-            </if>
-            <if test="condition.property!=null">
-                AND property = #{condition.property}
-            </if>
-            <if test="condition.type!=null">
-                AND type = #{condition.type}
-            </if>
-            <if test="condition.url!=null">
-                AND url = #{condition.url}
-            </if>
-            <if test="condition.address!=null">
-                AND address = #{condition.address}
-            </if>
-            <if test="condition.contactPhone!=null">
-                AND contactPhone = #{condition.contactPhone}
-            </if>
-            <if test="condition.entranceIntro!=null">
-                AND entranceIntro = #{condition.entranceIntro}
-            </if>
-            <if test="condition.universityIntro!=null">
-                AND universityIntro = #{condition.universityIntro}
-            </if>
-            <if test="condition.provinceId!=null">
-                AND provinceId = #{condition.provinceId}
-            </if>
-            <if test="condition.provinceName!=null">
-                AND provinceName = #{condition.provinceName}
-            </if>
-            <if test="condition.cityId!=null">
-                AND cityId = #{condition.cityId}
-            </if>
-            <if test="condition.cityName!=null">
-                AND cityName = #{condition.cityName}
-            </if>
-            <if test="condition.countyId!=null">
-                AND countyId = #{condition.countyId}
-            </if>
-            <if test="condition.countyName!=null">
-                AND countyName = #{condition.countyName}
-            </if>
-            <if test="condition.batchType!=null">
-                AND batchType = #{condition.batchType}
+            <if test="condition.isDelete!=null">
+                AND is_delete = #{condition.isDelete}
             </if>
         </trim>
     </update>
 
     <insert id="insertMap" >
-        INSERT INTO gk_university (
-                createDate,
-                status,
-                creator,
-                lastModDate,
-                lastModifier,
-                code,
-                name,
-                subjection,
-                educationLevel,
-                property,
-                type,
-                url,
-                address,
-                contactPhone,
-                entranceIntro,
-                universityIntro,
-                provinceId,
-                provinceName,
-                cityId,
-                cityName,
-                countyId,
-                countyName,
-                batchType
+        INSERT INTO zgk_university (
+        name,
+        code,
+        provinceCode,
+        subjection,
+        areaid,
+        type,
+        url,
+        photo_url,
+        property,
+        rank,
+        educationLevel,
+        createDate,
+        creator,
+        lastModDate,
+        lastModifier,
+        is_delete
         ) VALUES (
-                    #{map.createDate},
-                    #{map.status},
-                    #{map.creator},
-                    #{map.lastModDate},
-                    #{map.lastModifier},
-                    #{map.code},
-                    #{map.name},
-                    #{map.subjection},
-                    #{map.educationLevel},
-                    #{map.property},
-                    #{map.type},
-                    #{map.url},
-                    #{map.address},
-                    #{map.contactPhone},
-                    #{map.entranceIntro},
-                    #{map.universityIntro},
-                    #{map.provinceId},
-                    #{map.provinceName},
-                    #{map.cityId},
-                    #{map.cityName},
-                    #{map.countyId},
-                    #{map.countyName},
-                    #{map.batchType}
+        #{map.name},
+        #{map.code},
+        #{map.provinceCode},
+        #{map.subjection},
+        #{map.areaid},
+        #{map.type},
+        #{map.url},
+        #{map.photoUrl},
+        #{map.property},
+        #{map.rank},
+        #{map.educationLevel},
+        #{map.createDate},
+        #{map.creator},
+        #{map.lastModDate},
+        #{map.lastModifier},
+        #{map.isDelete}
         )
     </insert>
 
 
     <update id="updateNull" parameterType="University">
-        UPDATE gk_university
+        UPDATE zgk_university
         <trim prefix="SET" suffixOverrides=",">
+            name = #{name},
+            code = #{code},
+            provinceCode = #{provinceCode},
+            subjection = #{subjection},
+            areaid = #{areaid},
+            type = #{type},
+            url = #{url},
+            photo_url = #{photoUrl},
+            property = #{property},
+            rank = #{rank},
+            educationLevel = #{educationLevel},
             createDate = #{createDate},
-            status = #{status},
             creator = #{creator},
             lastModDate = #{lastModDate},
             lastModifier = #{lastModifier},
-            code = #{code},
-            name = #{name},
-            subjection = #{subjection},
-            educationLevel = #{educationLevel},
-            property = #{property},
-            type = #{type},
-            url = #{url},
-            address = #{address},
-            contactPhone = #{contactPhone},
-            entranceIntro = #{entranceIntro},
-            universityIntro = #{universityIntro},
-            provinceId = #{provinceId},
-            provinceName = #{provinceName},
-            cityId = #{cityId},
-            cityName = #{cityName},
-            countyId = #{countyId},
-            countyName = #{countyName},
-            batchType = #{batchType},
+            is_delete = #{isDelete},
         </trim>
         WHERE
-        id = #{id} 
+        id = #{id}
     </update>
 
     <!-- 按Id删除 -->
     <delete id="deleteById" parameterType="java.lang.Long">
-        DELETE FROM gk_university
+        DELETE FROM zgk_university
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND id = #{id}
         </trim>
@@ -504,16 +378,46 @@ selectList
 
 
     <delete id="deleteByCondition" parameterType="java.util.Map">
-        DELETE FROM gk_university
+        DELETE FROM zgk_university
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="id!=null">
                 AND id = #{id}
             </if>
+            <if test="name!=null">
+                AND name = #{name}
+            </if>
+            <if test="code!=null">
+                AND code = #{code}
+            </if>
+            <if test="provinceCode!=null">
+                AND provinceCode = #{provinceCode}
+            </if>
+            <if test="subjection!=null">
+                AND subjection = #{subjection}
+            </if>
+            <if test="areaid!=null">
+                AND areaid = #{areaid}
+            </if>
+            <if test="type!=null">
+                AND type = #{type}
+            </if>
+            <if test="url!=null">
+                AND url = #{url}
+            </if>
+            <if test="photoUrl!=null">
+                AND photo_url = #{photoUrl}
+            </if>
+            <if test="property!=null">
+                AND property = #{property}
+            </if>
+            <if test="rank!=null">
+                AND rank = #{rank}
+            </if>
+            <if test="educationLevel!=null">
+                AND educationLevel = #{educationLevel}
+            </if>
             <if test="createDate!=null">
                 AND createDate = #{createDate}
-            </if>
-            <if test="status!=null">
-                AND status = #{status}
             </if>
             <if test="creator!=null">
                 AND creator = #{creator}
@@ -524,72 +428,21 @@ selectList
             <if test="lastModifier!=null">
                 AND lastModifier = #{lastModifier}
             </if>
-            <if test="code!=null">
-                AND code = #{code}
-            </if>
-            <if test="name!=null">
-                AND name = #{name}
-            </if>
-            <if test="subjection!=null">
-                AND subjection = #{subjection}
-            </if>
-            <if test="educationLevel!=null">
-                AND educationLevel = #{educationLevel}
-            </if>
-            <if test="property!=null">
-                AND property = #{property}
-            </if>
-            <if test="type!=null">
-                AND type = #{type}
-            </if>
-            <if test="url!=null">
-                AND url = #{url}
-            </if>
-            <if test="address!=null">
-                AND address = #{address}
-            </if>
-            <if test="contactPhone!=null">
-                AND contactPhone = #{contactPhone}
-            </if>
-            <if test="entranceIntro!=null">
-                AND entranceIntro = #{entranceIntro}
-            </if>
-            <if test="universityIntro!=null">
-                AND universityIntro = #{universityIntro}
-            </if>
-            <if test="provinceId!=null">
-                AND provinceId = #{provinceId}
-            </if>
-            <if test="provinceName!=null">
-                AND provinceName = #{provinceName}
-            </if>
-            <if test="cityId!=null">
-                AND cityId = #{cityId}
-            </if>
-            <if test="cityName!=null">
-                AND cityName = #{cityName}
-            </if>
-            <if test="countyId!=null">
-                AND countyId = #{countyId}
-            </if>
-            <if test="countyName!=null">
-                AND countyName = #{countyName}
-            </if>
-            <if test="batchType!=null">
-                AND batchType = #{batchType}
+            <if test="isDelete!=null">
+                AND is_delete = #{isDelete}
             </if>
         </trim>
     </delete>
 
     <delete id="deleteByProperty" parameterType="java.util.Map">
-        DELETE FROM gk_university WHERE
+        DELETE FROM zgk_university WHERE
         ${property} = #{value}
     </delete>
 
     <select id="fetch" parameterType="java.lang.Long" resultType="University">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_university
+        FROM zgk_university
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND id = #{id}
         </trim>
@@ -598,7 +451,7 @@ selectList
     <select id="findOne" parameterType="java.util.Map" resultType="University">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_university WHERE
+        FROM zgk_university WHERE
         ${property} = #{value}
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
@@ -609,7 +462,7 @@ selectList
     <select id="findList" parameterType="java.util.Map" resultType="University">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_university WHERE
+        FROM zgk_university WHERE
         ${property} = #{value}
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
@@ -619,7 +472,7 @@ selectList
     <select id="findAll" resultType="University">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_university
+        FROM zgk_university
         <if test="orderBy!=null">
             ORDER BY ${orderBy} ${sortBy}
         </if>
@@ -627,8 +480,65 @@ selectList
 
     <select id="queryPage" resultType="University">
         SELECT
-        <include refid="Base_Column_List" />
-        FROM gk_university
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                <if test="selector.id!=null">
+                    , id
+                </if>
+                <if test="selector.name!=null">
+                    , name
+                </if>
+                <if test="selector.code!=null">
+                    , code
+                </if>
+                <if test="selector.provinceCode!=null">
+                    , provinceCode
+                </if>
+                <if test="selector.subjection!=null">
+                    , subjection
+                </if>
+                <if test="selector.areaid!=null">
+                    , areaid
+                </if>
+                <if test="selector.type!=null">
+                    , type
+                </if>
+                <if test="selector.url!=null">
+                    , url
+                </if>
+                <if test="selector.photoUrl!=null">
+                    , photo_url
+                </if>
+                <if test="selector.property!=null">
+                    , property
+                </if>
+                <if test="selector.rank!=null">
+                    , rank
+                </if>
+                <if test="selector.educationLevel!=null">
+                    , educationLevel
+                </if>
+                <if test="selector.createDate!=null">
+                    , createDate
+                </if>
+                <if test="selector.creator!=null">
+                    , creator
+                </if>
+                <if test="selector.lastModDate!=null">
+                    , lastModDate
+                </if>
+                <if test="selector.lastModifier!=null">
+                    , lastModifier
+                </if>
+                <if test="selector.isDelete!=null">
+                    , is_delete
+                </if>
+            </trim>
+        </if>
+        <if test="selector==null">
+            <include refid="Base_Column_List" />
+        </if>
+        FROM zgk_university
         <where>
 
             <if test="condition.whereSql != null">
@@ -638,11 +548,41 @@ selectList
             <if test="condition.id!=null">
                 ${condition.groupOp}   ${condition.id.field}  ${condition.id.op}  #{condition.id.data}
             </if>
+            <if test="condition.name!=null">
+                ${condition.groupOp}   ${condition.name.field}  ${condition.name.op}  #{condition.name.data}
+            </if>
+            <if test="condition.code!=null">
+                ${condition.groupOp}   ${condition.code.field}  ${condition.code.op}  #{condition.code.data}
+            </if>
+            <if test="condition.provinceCode!=null">
+                ${condition.groupOp}   ${condition.provinceCode.field}  ${condition.provinceCode.op}  #{condition.provinceCode.data}
+            </if>
+            <if test="condition.subjection!=null">
+                ${condition.groupOp}   ${condition.subjection.field}  ${condition.subjection.op}  #{condition.subjection.data}
+            </if>
+            <if test="condition.areaid!=null">
+                ${condition.groupOp}   ${condition.areaid.field}  ${condition.areaid.op}  #{condition.areaid.data}
+            </if>
+            <if test="condition.type!=null">
+                ${condition.groupOp}   ${condition.type.field}  ${condition.type.op}  #{condition.type.data}
+            </if>
+            <if test="condition.url!=null">
+                ${condition.groupOp}   ${condition.url.field}  ${condition.url.op}  #{condition.url.data}
+            </if>
+            <if test="condition.photoUrl!=null">
+                ${condition.groupOp}   ${condition.photoUrl.field}  ${condition.photoUrl.op}  #{condition.photoUrl.data}
+            </if>
+            <if test="condition.property!=null">
+                ${condition.groupOp}   ${condition.property.field}  ${condition.property.op}  #{condition.property.data}
+            </if>
+            <if test="condition.rank!=null">
+                ${condition.groupOp}   ${condition.rank.field}  ${condition.rank.op}  #{condition.rank.data}
+            </if>
+            <if test="condition.educationLevel!=null">
+                ${condition.groupOp}   ${condition.educationLevel.field}  ${condition.educationLevel.op}  #{condition.educationLevel.data}
+            </if>
             <if test="condition.createDate!=null">
                 ${condition.groupOp}   ${condition.createDate.field}  ${condition.createDate.op}  #{condition.createDate.data}
-            </if>
-            <if test="condition.status!=null">
-                ${condition.groupOp}   ${condition.status.field}  ${condition.status.op}  #{condition.status.data}
             </if>
             <if test="condition.creator!=null">
                 ${condition.groupOp}   ${condition.creator.field}  ${condition.creator.op}  #{condition.creator.data}
@@ -653,65 +593,14 @@ selectList
             <if test="condition.lastModifier!=null">
                 ${condition.groupOp}   ${condition.lastModifier.field}  ${condition.lastModifier.op}  #{condition.lastModifier.data}
             </if>
-            <if test="condition.code!=null">
-                ${condition.groupOp}   ${condition.code.field}  ${condition.code.op}  #{condition.code.data}
-            </if>
-            <if test="condition.name!=null">
-                ${condition.groupOp}   ${condition.name.field}  ${condition.name.op}  #{condition.name.data}
-            </if>
-            <if test="condition.subjection!=null">
-                ${condition.groupOp}   ${condition.subjection.field}  ${condition.subjection.op}  #{condition.subjection.data}
-            </if>
-            <if test="condition.educationLevel!=null">
-                ${condition.groupOp}   ${condition.educationLevel.field}  ${condition.educationLevel.op}  #{condition.educationLevel.data}
-            </if>
-            <if test="condition.property!=null">
-                ${condition.groupOp}   ${condition.property.field}  ${condition.property.op}  #{condition.property.data}
-            </if>
-            <if test="condition.type!=null">
-                ${condition.groupOp}   ${condition.type.field}  ${condition.type.op}  #{condition.type.data}
-            </if>
-            <if test="condition.url!=null">
-                ${condition.groupOp}   ${condition.url.field}  ${condition.url.op}  #{condition.url.data}
-            </if>
-            <if test="condition.address!=null">
-                ${condition.groupOp}   ${condition.address.field}  ${condition.address.op}  #{condition.address.data}
-            </if>
-            <if test="condition.contactPhone!=null">
-                ${condition.groupOp}   ${condition.contactPhone.field}  ${condition.contactPhone.op}  #{condition.contactPhone.data}
-            </if>
-            <if test="condition.entranceIntro!=null">
-                ${condition.groupOp}   ${condition.entranceIntro.field}  ${condition.entranceIntro.op}  #{condition.entranceIntro.data}
-            </if>
-            <if test="condition.universityIntro!=null">
-                ${condition.groupOp}   ${condition.universityIntro.field}  ${condition.universityIntro.op}  #{condition.universityIntro.data}
-            </if>
-            <if test="condition.provinceId!=null">
-                ${condition.groupOp}   ${condition.provinceId.field}  ${condition.provinceId.op}  #{condition.provinceId.data}
-            </if>
-            <if test="condition.provinceName!=null">
-                ${condition.groupOp}   ${condition.provinceName.field}  ${condition.provinceName.op}  #{condition.provinceName.data}
-            </if>
-            <if test="condition.cityId!=null">
-                ${condition.groupOp}   ${condition.cityId.field}  ${condition.cityId.op}  #{condition.cityId.data}
-            </if>
-            <if test="condition.cityName!=null">
-                ${condition.groupOp}   ${condition.cityName.field}  ${condition.cityName.op}  #{condition.cityName.data}
-            </if>
-            <if test="condition.countyId!=null">
-                ${condition.groupOp}   ${condition.countyId.field}  ${condition.countyId.op}  #{condition.countyId.data}
-            </if>
-            <if test="condition.countyName!=null">
-                ${condition.groupOp}   ${condition.countyName.field}  ${condition.countyName.op}  #{condition.countyName.data}
-            </if>
-            <if test="condition.batchType!=null">
-                ${condition.groupOp}   ${condition.batchType.field}  ${condition.batchType.op}  #{condition.batchType.data}
+            <if test="condition.isDelete!=null">
+                ${condition.groupOp}   ${condition.isDelete.field}  ${condition.isDelete.op}  #{condition.isDelete.data}
             </if>
 
 
-    </where>
+        </where>
         <if test="orderBy!=null">
-        ORDER BY ${orderBy} ${sortBy}
+            ORDER BY ${orderBy} ${sortBy}
         </if>
         <if test="offset != null">
             limit ${offset}, ${rows}
@@ -720,17 +609,104 @@ selectList
 
     <select id="like" parameterType="java.util.Map" resultType="University">
         SELECT
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                <if test="selector.id!=null">
+                    , id
+                </if>
+                <if test="selector.name!=null">
+                    , name
+                </if>
+                <if test="selector.code!=null">
+                    , code
+                </if>
+                <if test="selector.provinceCode!=null">
+                    , provinceCode
+                </if>
+                <if test="selector.subjection!=null">
+                    , subjection
+                </if>
+                <if test="selector.areaid!=null">
+                    , areaid
+                </if>
+                <if test="selector.type!=null">
+                    , type
+                </if>
+                <if test="selector.url!=null">
+                    , url
+                </if>
+                <if test="selector.photoUrl!=null">
+                    , photo_url
+                </if>
+                <if test="selector.property!=null">
+                    , property
+                </if>
+                <if test="selector.rank!=null">
+                    , rank
+                </if>
+                <if test="selector.educationLevel!=null">
+                    , educationLevel
+                </if>
+                <if test="selector.createDate!=null">
+                    , createDate
+                </if>
+                <if test="selector.creator!=null">
+                    , creator
+                </if>
+                <if test="selector.lastModDate!=null">
+                    , lastModDate
+                </if>
+                <if test="selector.lastModifier!=null">
+                    , lastModifier
+                </if>
+                <if test="selector.isDelete!=null">
+                    , is_delete
+                </if>
+            </trim>
+        </if>
+        <if test="selector==null">
             <include refid="Base_Column_List" />
-        FROM gk_university
+        </if>
+        FROM zgk_university
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id like CONCAT('%', #{condition.id} , '%')
             </if>
+            <if test="condition.name!=null">
+                AND name like CONCAT('%', #{condition.name} , '%')
+            </if>
+            <if test="condition.code!=null">
+                AND code like CONCAT('%', #{condition.code} , '%')
+            </if>
+            <if test="condition.provinceCode!=null">
+                AND provinceCode like CONCAT('%', #{condition.provinceCode} , '%')
+            </if>
+            <if test="condition.subjection!=null">
+                AND subjection like CONCAT('%', #{condition.subjection} , '%')
+            </if>
+            <if test="condition.areaid!=null">
+                AND areaid like CONCAT('%', #{condition.areaid} , '%')
+            </if>
+            <if test="condition.type!=null">
+                AND type like CONCAT('%', #{condition.type} , '%')
+            </if>
+            <if test="condition.url!=null">
+                AND url like CONCAT('%', #{condition.url} , '%')
+            </if>
+            <if test="condition.photoUrl!=null">
+                AND photo_url like CONCAT('%', #{condition.photoUrl} , '%')
+            </if>
+            <if test="condition.property!=null">
+                AND property like CONCAT('%', #{condition.property} , '%')
+            </if>
+            <if test="condition.rank!=null">
+                AND rank like CONCAT('%', #{condition.rank} , '%')
+            </if>
+            <if test="condition.educationLevel!=null">
+                AND educationLevel like CONCAT('%', #{condition.educationLevel} , '%')
+            </if>
             <if test="condition.createDate!=null">
                 AND createDate like CONCAT('%', #{condition.createDate} , '%')
-            </if>
-            <if test="condition.status!=null">
-                AND status like CONCAT('%', #{condition.status} , '%')
             </if>
             <if test="condition.creator!=null">
                 AND creator like CONCAT('%', #{condition.creator} , '%')
@@ -741,80 +717,116 @@ selectList
             <if test="condition.lastModifier!=null">
                 AND lastModifier like CONCAT('%', #{condition.lastModifier} , '%')
             </if>
-            <if test="condition.code!=null">
-                AND code like CONCAT('%', #{condition.code} , '%')
-            </if>
-            <if test="condition.name!=null">
-                AND name like CONCAT('%', #{condition.name} , '%')
-            </if>
-            <if test="condition.subjection!=null">
-                AND subjection like CONCAT('%', #{condition.subjection} , '%')
-            </if>
-            <if test="condition.educationLevel!=null">
-                AND educationLevel like CONCAT('%', #{condition.educationLevel} , '%')
-            </if>
-            <if test="condition.property!=null">
-                AND property like CONCAT('%', #{condition.property} , '%')
-            </if>
-            <if test="condition.type!=null">
-                AND type like CONCAT('%', #{condition.type} , '%')
-            </if>
-            <if test="condition.url!=null">
-                AND url like CONCAT('%', #{condition.url} , '%')
-            </if>
-            <if test="condition.address!=null">
-                AND address like CONCAT('%', #{condition.address} , '%')
-            </if>
-            <if test="condition.contactPhone!=null">
-                AND contactPhone like CONCAT('%', #{condition.contactPhone} , '%')
-            </if>
-            <if test="condition.entranceIntro!=null">
-                AND entranceIntro like CONCAT('%', #{condition.entranceIntro} , '%')
-            </if>
-            <if test="condition.universityIntro!=null">
-                AND universityIntro like CONCAT('%', #{condition.universityIntro} , '%')
-            </if>
-            <if test="condition.provinceId!=null">
-                AND provinceId like CONCAT('%', #{condition.provinceId} , '%')
-            </if>
-            <if test="condition.provinceName!=null">
-                AND provinceName like CONCAT('%', #{condition.provinceName} , '%')
-            </if>
-            <if test="condition.cityId!=null">
-                AND cityId like CONCAT('%', #{condition.cityId} , '%')
-            </if>
-            <if test="condition.cityName!=null">
-                AND cityName like CONCAT('%', #{condition.cityName} , '%')
-            </if>
-            <if test="condition.countyId!=null">
-                AND countyId like CONCAT('%', #{condition.countyId} , '%')
-            </if>
-            <if test="condition.countyName!=null">
-                AND countyName like CONCAT('%', #{condition.countyName} , '%')
-            </if>
-            <if test="condition.batchType!=null">
-                AND batchType like CONCAT('%', #{condition.batchType} , '%')
+            <if test="condition.isDelete!=null">
+                AND is_delete like CONCAT('%', #{condition.isDelete} , '%')
             </if>
         </trim>
         <if test="orderBy!=null">
-        ORDER BY ${orderBy} ${sortBy}
+            ORDER BY ${orderBy} ${sortBy}
         </if>
     </select>
 
 
     <select id="queryList" parameterType="java.util.Map" resultType="University">
         SELECT
-        <include refid="Base_Column_List" />
-        FROM gk_university
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                <if test="selector.id!=null">
+                    , id
+                </if>
+                <if test="selector.name!=null">
+                    , name
+                </if>
+                <if test="selector.code!=null">
+                    , code
+                </if>
+                <if test="selector.provinceCode!=null">
+                    , provinceCode
+                </if>
+                <if test="selector.subjection!=null">
+                    , subjection
+                </if>
+                <if test="selector.areaid!=null">
+                    , areaid
+                </if>
+                <if test="selector.type!=null">
+                    , type
+                </if>
+                <if test="selector.url!=null">
+                    , url
+                </if>
+                <if test="selector.photoUrl!=null">
+                    , photo_url
+                </if>
+                <if test="selector.property!=null">
+                    , property
+                </if>
+                <if test="selector.rank!=null">
+                    , rank
+                </if>
+                <if test="selector.educationLevel!=null">
+                    , educationLevel
+                </if>
+                <if test="selector.createDate!=null">
+                    , createDate
+                </if>
+                <if test="selector.creator!=null">
+                    , creator
+                </if>
+                <if test="selector.lastModDate!=null">
+                    , lastModDate
+                </if>
+                <if test="selector.lastModifier!=null">
+                    , lastModifier
+                </if>
+                <if test="selector.isDelete!=null">
+                    , is_delete
+                </if>
+            </trim>
+        </if>
+        <if test="selector==null">
+            <include refid="Base_Column_List" />
+        </if>
+        FROM zgk_university
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id = #{condition.id}
             </if>
+            <if test="condition.name!=null">
+                AND name = #{condition.name}
+            </if>
+            <if test="condition.code!=null">
+                AND code = #{condition.code}
+            </if>
+            <if test="condition.provinceCode!=null">
+                AND provinceCode = #{condition.provinceCode}
+            </if>
+            <if test="condition.subjection!=null">
+                AND subjection = #{condition.subjection}
+            </if>
+            <if test="condition.areaid!=null">
+                AND areaid = #{condition.areaid}
+            </if>
+            <if test="condition.type!=null">
+                AND type = #{condition.type}
+            </if>
+            <if test="condition.url!=null">
+                AND url = #{condition.url}
+            </if>
+            <if test="condition.photoUrl!=null">
+                AND photo_url = #{condition.photoUrl}
+            </if>
+            <if test="condition.property!=null">
+                AND property = #{condition.property}
+            </if>
+            <if test="condition.rank!=null">
+                AND rank = #{condition.rank}
+            </if>
+            <if test="condition.educationLevel!=null">
+                AND educationLevel = #{condition.educationLevel}
+            </if>
             <if test="condition.createDate!=null">
                 AND createDate = #{condition.createDate}
-            </if>
-            <if test="condition.status!=null">
-                AND status = #{condition.status}
             </if>
             <if test="condition.creator!=null">
                 AND creator = #{condition.creator}
@@ -825,79 +837,115 @@ selectList
             <if test="condition.lastModifier!=null">
                 AND lastModifier = #{condition.lastModifier}
             </if>
-            <if test="condition.code!=null">
-                AND code = #{condition.code}
-            </if>
-            <if test="condition.name!=null">
-                AND name = #{condition.name}
-            </if>
-            <if test="condition.subjection!=null">
-                AND subjection = #{condition.subjection}
-            </if>
-            <if test="condition.educationLevel!=null">
-                AND educationLevel = #{condition.educationLevel}
-            </if>
-            <if test="condition.property!=null">
-                AND property = #{condition.property}
-            </if>
-            <if test="condition.type!=null">
-                AND type = #{condition.type}
-            </if>
-            <if test="condition.url!=null">
-                AND url = #{condition.url}
-            </if>
-            <if test="condition.address!=null">
-                AND address = #{condition.address}
-            </if>
-            <if test="condition.contactPhone!=null">
-                AND contactPhone = #{condition.contactPhone}
-            </if>
-            <if test="condition.entranceIntro!=null">
-                AND entranceIntro = #{condition.entranceIntro}
-            </if>
-            <if test="condition.universityIntro!=null">
-                AND universityIntro = #{condition.universityIntro}
-            </if>
-            <if test="condition.provinceId!=null">
-                AND provinceId = #{condition.provinceId}
-            </if>
-            <if test="condition.provinceName!=null">
-                AND provinceName = #{condition.provinceName}
-            </if>
-            <if test="condition.cityId!=null">
-                AND cityId = #{condition.cityId}
-            </if>
-            <if test="condition.cityName!=null">
-                AND cityName = #{condition.cityName}
-            </if>
-            <if test="condition.countyId!=null">
-                AND countyId = #{condition.countyId}
-            </if>
-            <if test="condition.countyName!=null">
-                AND countyName = #{condition.countyName}
-            </if>
-            <if test="condition.batchType!=null">
-                AND batchType = #{condition.batchType}
+            <if test="condition.isDelete!=null">
+                AND is_delete = #{condition.isDelete}
             </if>
         </trim>
         <if test="orderBy!=null">
-        ORDER BY ${orderBy} ${sortBy}
+            ORDER BY ${orderBy} ${sortBy}
         </if>
     </select>
 
     <select id="queryOne" parameterType="java.util.Map" resultType="University">
         SELECT
-        <include refid="Base_Column_List" />
-        FROM gk_university
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                <if test="selector.id!=null">
+                    , id
+                </if>
+                <if test="selector.name!=null">
+                    , name
+                </if>
+                <if test="selector.code!=null">
+                    , code
+                </if>
+                <if test="selector.provinceCode!=null">
+                    , provinceCode
+                </if>
+                <if test="selector.subjection!=null">
+                    , subjection
+                </if>
+                <if test="selector.areaid!=null">
+                    , areaid
+                </if>
+                <if test="selector.type!=null">
+                    , type
+                </if>
+                <if test="selector.url!=null">
+                    , url
+                </if>
+                <if test="selector.photoUrl!=null">
+                    , photo_url
+                </if>
+                <if test="selector.property!=null">
+                    , property
+                </if>
+                <if test="selector.rank!=null">
+                    , rank
+                </if>
+                <if test="selector.educationLevel!=null">
+                    , educationLevel
+                </if>
+                <if test="selector.createDate!=null">
+                    , createDate
+                </if>
+                <if test="selector.creator!=null">
+                    , creator
+                </if>
+                <if test="selector.lastModDate!=null">
+                    , lastModDate
+                </if>
+                <if test="selector.lastModifier!=null">
+                    , lastModifier
+                </if>
+                <if test="selector.isDelete!=null">
+                    , is_delete
+                </if>
+            </trim>
+        </if>
+        <if test="selector==null">
+            <include refid="Base_Column_List" />
+        </if>
+        FROM zgk_university
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="condition.id!=null">
                 AND id = #{condition.id}
             </if>
+            <if test="condition.name!=null">
+                AND name = #{condition.name}
+            </if>
+            <if test="condition.code!=null">
+                AND code = #{condition.code}
+            </if>
+            <if test="condition.provinceCode!=null">
+                AND provinceCode = #{condition.provinceCode}
+            </if>
+            <if test="condition.subjection!=null">
+                AND subjection = #{condition.subjection}
+            </if>
+            <if test="condition.areaid!=null">
+                AND areaid = #{condition.areaid}
+            </if>
+            <if test="condition.type!=null">
+                AND type = #{condition.type}
+            </if>
+            <if test="condition.url!=null">
+                AND url = #{condition.url}
+            </if>
+            <if test="condition.photoUrl!=null">
+                AND photo_url = #{condition.photoUrl}
+            </if>
+            <if test="condition.property!=null">
+                AND property = #{condition.property}
+            </if>
+            <if test="condition.rank!=null">
+                AND rank = #{condition.rank}
+            </if>
+            <if test="condition.educationLevel!=null">
+                AND educationLevel = #{condition.educationLevel}
+            </if>
             <if test="condition.createDate!=null">
                 AND createDate = #{condition.createDate}
-            </if>
-            <if test="condition.status!=null">
-                AND status = #{condition.status}
             </if>
             <if test="condition.creator!=null">
                 AND creator = #{condition.creator}
@@ -908,150 +956,78 @@ selectList
             <if test="condition.lastModifier!=null">
                 AND lastModifier = #{condition.lastModifier}
             </if>
-            <if test="condition.code!=null">
-                AND code = #{condition.code}
-            </if>
-            <if test="condition.name!=null">
-                AND name = #{condition.name}
-            </if>
-            <if test="condition.subjection!=null">
-                AND subjection = #{condition.subjection}
-            </if>
-            <if test="condition.educationLevel!=null">
-                AND educationLevel = #{condition.educationLevel}
-            </if>
-            <if test="condition.property!=null">
-                AND property = #{condition.property}
-            </if>
-            <if test="condition.type!=null">
-                AND type = #{condition.type}
-            </if>
-            <if test="condition.url!=null">
-                AND url = #{condition.url}
-            </if>
-            <if test="condition.address!=null">
-                AND address = #{condition.address}
-            </if>
-            <if test="condition.contactPhone!=null">
-                AND contactPhone = #{condition.contactPhone}
-            </if>
-            <if test="condition.entranceIntro!=null">
-                AND entranceIntro = #{condition.entranceIntro}
-            </if>
-            <if test="condition.universityIntro!=null">
-                AND universityIntro = #{condition.universityIntro}
-            </if>
-            <if test="condition.provinceId!=null">
-                AND provinceId = #{condition.provinceId}
-            </if>
-            <if test="condition.provinceName!=null">
-                AND provinceName = #{condition.provinceName}
-            </if>
-            <if test="condition.cityId!=null">
-                AND cityId = #{condition.cityId}
-            </if>
-            <if test="condition.cityName!=null">
-                AND cityName = #{condition.cityName}
-            </if>
-            <if test="condition.countyId!=null">
-                AND countyId = #{condition.countyId}
-            </if>
-            <if test="condition.countyName!=null">
-                AND countyName = #{condition.countyName}
-            </if>
-            <if test="condition.batchType!=null">
-                AND batchType = #{condition.batchType}
+            <if test="condition.isDelete!=null">
+                AND is_delete = #{condition.isDelete}
             </if>
         </trim>
         <if test="orderBy!=null">
-        ORDER BY ${orderBy} ${sortBy}
+            ORDER BY ${orderBy} ${sortBy}
         </if>
         limit 0,1
     </select>
 
     <select id="count" resultType="java.lang.Integer">
-        SELECT count(id) FROM gk_university
-       <where>
-           <if test="id!=null">
-               ${groupOp} ${id.field} ${id.op}  #{id.data}
-           </if>
-           <if test="createDate!=null">
-               ${groupOp} ${createDate.field} ${createDate.op}  #{createDate.data}
-           </if>
-           <if test="status!=null">
-               ${groupOp} ${status.field} ${status.op}  #{status.data}
-           </if>
-           <if test="creator!=null">
-               ${groupOp} ${creator.field} ${creator.op}  #{creator.data}
-           </if>
-           <if test="lastModDate!=null">
-               ${groupOp} ${lastModDate.field} ${lastModDate.op}  #{lastModDate.data}
-           </if>
-           <if test="lastModifier!=null">
-               ${groupOp} ${lastModifier.field} ${lastModifier.op}  #{lastModifier.data}
-           </if>
-           <if test="code!=null">
-               ${groupOp} ${code.field} ${code.op}  #{code.data}
-           </if>
-           <if test="name!=null">
-               ${groupOp} ${name.field} ${name.op}  #{name.data}
-           </if>
-           <if test="subjection!=null">
-               ${groupOp} ${subjection.field} ${subjection.op}  #{subjection.data}
-           </if>
-           <if test="educationLevel!=null">
-               ${groupOp} ${educationLevel.field} ${educationLevel.op}  #{educationLevel.data}
-           </if>
-           <if test="property!=null">
-               ${groupOp} ${property.field} ${property.op}  #{property.data}
-           </if>
-           <if test="type!=null">
-               ${groupOp} ${type.field} ${type.op}  #{type.data}
-           </if>
-           <if test="url!=null">
-               ${groupOp} ${url.field} ${url.op}  #{url.data}
-           </if>
-           <if test="address!=null">
-               ${groupOp} ${address.field} ${address.op}  #{address.data}
-           </if>
-           <if test="contactPhone!=null">
-               ${groupOp} ${contactPhone.field} ${contactPhone.op}  #{contactPhone.data}
-           </if>
-           <if test="entranceIntro!=null">
-               ${groupOp} ${entranceIntro.field} ${entranceIntro.op}  #{entranceIntro.data}
-           </if>
-           <if test="universityIntro!=null">
-               ${groupOp} ${universityIntro.field} ${universityIntro.op}  #{universityIntro.data}
-           </if>
-           <if test="provinceId!=null">
-               ${groupOp} ${provinceId.field} ${provinceId.op}  #{provinceId.data}
-           </if>
-           <if test="provinceName!=null">
-               ${groupOp} ${provinceName.field} ${provinceName.op}  #{provinceName.data}
-           </if>
-           <if test="cityId!=null">
-               ${groupOp} ${cityId.field} ${cityId.op}  #{cityId.data}
-           </if>
-           <if test="cityName!=null">
-               ${groupOp} ${cityName.field} ${cityName.op}  #{cityName.data}
-           </if>
-           <if test="countyId!=null">
-               ${groupOp} ${countyId.field} ${countyId.op}  #{countyId.data}
-           </if>
-           <if test="countyName!=null">
-               ${groupOp} ${countyName.field} ${countyName.op}  #{countyName.data}
-           </if>
-           <if test="batchType!=null">
-               ${groupOp} ${batchType.field} ${batchType.op}  #{batchType.data}
-           </if>
+        SELECT count(id) FROM zgk_university
+        <where>
+            <if test="id!=null">
+                ${groupOp} ${id.field} ${id.op}  #{id.data}
+            </if>
+            <if test="name!=null">
+                ${groupOp} ${name.field} ${name.op}  #{name.data}
+            </if>
+            <if test="code!=null">
+                ${groupOp} ${code.field} ${code.op}  #{code.data}
+            </if>
+            <if test="provinceCode!=null">
+                ${groupOp} ${provinceCode.field} ${provinceCode.op}  #{provinceCode.data}
+            </if>
+            <if test="subjection!=null">
+                ${groupOp} ${subjection.field} ${subjection.op}  #{subjection.data}
+            </if>
+            <if test="areaid!=null">
+                ${groupOp} ${areaid.field} ${areaid.op}  #{areaid.data}
+            </if>
+            <if test="type!=null">
+                ${groupOp} ${type.field} ${type.op}  #{type.data}
+            </if>
+            <if test="url!=null">
+                ${groupOp} ${url.field} ${url.op}  #{url.data}
+            </if>
+            <if test="photoUrl!=null">
+                ${groupOp} ${photoUrl.field} ${photoUrl.op}  #{photoUrl.data}
+            </if>
+            <if test="property!=null">
+                ${groupOp} ${property.field} ${property.op}  #{property.data}
+            </if>
+            <if test="rank!=null">
+                ${groupOp} ${rank.field} ${rank.op}  #{rank.data}
+            </if>
+            <if test="educationLevel!=null">
+                ${groupOp} ${educationLevel.field} ${educationLevel.op}  #{educationLevel.data}
+            </if>
+            <if test="createDate!=null">
+                ${groupOp} ${createDate.field} ${createDate.op}  #{createDate.data}
+            </if>
+            <if test="creator!=null">
+                ${groupOp} ${creator.field} ${creator.op}  #{creator.data}
+            </if>
+            <if test="lastModDate!=null">
+                ${groupOp} ${lastModDate.field} ${lastModDate.op}  #{lastModDate.data}
+            </if>
+            <if test="lastModifier!=null">
+                ${groupOp} ${lastModifier.field} ${lastModifier.op}  #{lastModifier.data}
+            </if>
+            <if test="isDelete!=null">
+                ${groupOp} ${isDelete.field} ${isDelete.op}  #{isDelete.data}
+            </if>
 
-       </where>
+        </where>
     </select>
 
     <select id="selectMaxId" resultType="java.lang.Long">
         SELECT
         MAX(id)
-        FROM gk_university
+        FROM zgk_university
     </select>
 
 </mapper>

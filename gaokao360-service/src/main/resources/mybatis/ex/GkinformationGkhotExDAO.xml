@@ -34,20 +34,21 @@ selectList
         gkhot.hotInformation as hotInformation ,
         gkhot.informationSubContent as informationSubContent ,
         gkhot.informationContent as informationContent ,
-        gkhot.hotCount as hotCount ,
         gkhot.areaId as areaId,
         gkhot.hotdate as hotdate,
-		province.name as province
+		province.name as province,
+		gkhot.type as type,
+		gkhot.imgUrl as imgUrl
 
     </sql>
 
     <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.GkinformationGkhotDTO">
         SELECT
         <include refid="Base_Column_List" />
-        FROM gk_gkinformation_gkhot gkhot
-        LEFT JOIN gk_province province on gkhot.areaId=province.id
+        FROM zgk_gkinformation_gkhot gkhot
+        LEFT JOIN zgk_province province on gkhot.areaId=province.id
         <where>
-
+            1=1 AND gkhot.type=0
             <if test="condition.whereSql != null">
                 and id in (#{condition.whereSql})
             </if>
@@ -61,7 +62,7 @@ selectList
 
 
     </where>
-        ORDER BY  id DESC
+        ORDER BY  lastModDate DESC
         <if test="offset != null">
             limit ${offset}, ${rows}
         </if>
@@ -69,10 +70,10 @@ selectList
 
     <select id="count" resultType="java.lang.Integer">
         SELECT count(gkhot.id)
-        FROM gk_gkinformation_gkhot gkhot
-        LEFT JOIN gk_province province on gkhot.areaId=province.id
+        FROM zgk_gkinformation_gkhot gkhot
+        LEFT JOIN zgk_province province on gkhot.areaId=province.id
        <where>
-
+           1=1 AND gkhot.type=0
            <if test="gkhothotInformation!=null">
                ${groupOp} ${gkhothotInformation.field} ${gkhothotInformation.op}  #{gkhothotInformation.data}
            </if>
