@@ -749,7 +749,7 @@
                     ${condition.groupOp}   ${condition.batch.field}  in (4,17,18,21)
                 </if>
                 <if test="condition.batch.data==8">
-                    ${condition.groupOp}   ${condition.batch.field}  in (8,9,10,11,12,13,14,22,)
+                    ${condition.groupOp}   ${condition.batch.field}  in (8,9,10,11,12,13,14,22)
                 </if>
             </if>
             <if test="condition.admissionFeature!=null">
