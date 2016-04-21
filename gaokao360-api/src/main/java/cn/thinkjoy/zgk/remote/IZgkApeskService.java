@@ -1,0 +1,39 @@
+package cn.thinkjoy.zgk.remote;
+
+
+
+import cn.thinkjoy.zgk.common.Criteria;
+import cn.thinkjoy.zgk.domain.ZgkApesk;
+
+import java.util.List;
+
+/**
+ * zgk_apesk
+ * @version 1.0 2015-09-28
+ * @powerby hetgyd 
+ */
+public interface IZgkApeskService {
+    List<ZgkApesk> query(Long userId, Integer acId, String liangbiao, String testEmail);
+
+    int countByExample(Criteria example);
+
+    ZgkApesk selectByPrimaryKey(Integer id);
+
+    List<ZgkApesk> selectByExample(Criteria example);
+
+    int deleteByPrimaryKey(Integer id);
+
+    int updateByPrimaryKeySelective(ZgkApesk record);
+
+    int updateByPrimaryKey(ZgkApesk record);
+
+    int deleteByExample(Criteria example);
+
+    int updateByExampleSelective(ZgkApesk record, Criteria example);
+
+    int updateByExample(ZgkApesk record, Criteria example);
+
+    int insert(ZgkApesk record);
+
+    int insertSelective(ZgkApesk record);
+}
