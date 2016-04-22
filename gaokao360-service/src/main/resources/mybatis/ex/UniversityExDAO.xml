@@ -90,6 +90,9 @@ selectList
             <if test="majorType!=null">
                 and majorType = #{majorType}
             </if>
+            <if test="areaId!=null">
+                and areaId = #{areaId}
+            </if>
         <if test="offset != null">
             limit ${offset}, ${rows}
         </if>
