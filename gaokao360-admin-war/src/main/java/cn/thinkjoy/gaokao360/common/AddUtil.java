@@ -1,7 +1,9 @@
 package cn.thinkjoy.gaokao360.common;
 
 import cn.thinkjoy.common.exception.BizException;
+import cn.thinkjoy.gaokao360.domain.Major;
 import cn.thinkjoy.gaokao360.domain.ProfessionType;
+import cn.thinkjoy.gaokao360.domain.University;
 import cn.thinkjoy.gaokao360.domain.VideoSection;
 import cn.thinkjoy.gaokao360.service.differentiation.IAdmissionBatchService;
 import cn.thinkjoy.gaokao360.service.common.ISubjectService;
@@ -186,7 +188,12 @@ public class AddUtil extends BaseCommonUtil{
                 Map<String,Object> dataMap2 = new HashMap<>();
                 dataMap2.putAll(getDataMap());
                 dataMap2.putAll(map);
-                dataMap2.put("isDelete",0);
+                dataMap2.put("isDelete", 0);
+                dataMap2.put("isDelete", 0);
+                University university = (University) getServiceMaps().get("university").findOne("id", dataMap2.get("universityId"));
+                dataMap2.put("universityName",university.getName());
+                Major major = (Major) getServiceMaps().get("major").findOne("id", dataMap2.get("majorId"));
+                dataMap2.put("majorName",major.getMajorName());
                 getServiceMaps().get("universitymajorenrolling").insertMap(dataMap2);
             }
         }
