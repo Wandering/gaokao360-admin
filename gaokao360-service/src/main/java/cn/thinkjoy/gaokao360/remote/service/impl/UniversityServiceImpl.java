@@ -207,11 +207,6 @@ public class UniversityServiceImpl implements IUniversityService {
         String score = params.get("score")+"";
         for (Map<String, Object> map : dataList)
         {
-            if("上海交通大学".equals(map.get("universityName")))
-            {
-                System.out.println("haha");
-//                continue;
-            }
             if(StringUtils.isEmpty(map.get("lowestScoreList")+""))
             {
                 continue;
