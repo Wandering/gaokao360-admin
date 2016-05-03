@@ -377,8 +377,8 @@ public class UniversityServiceImpl implements IUniversityService {
     @Override
     public Map<String, Object> getPredictProbability(Map<String, Object> params) {
         params.put("majorType", params.get("type"));
-        params.put("startYear", 2012);
-        params.put("endYear", 2014);
+//        params.put("startYear", 2012);
+//        params.put("endYear", 2014);
         List<Map<String, Object>> dataList = universityExService.getPredictProbability(params);
         Map<String, Object> resultMap = new LinkedHashMap<>();
         if(dataList.size()>0)
