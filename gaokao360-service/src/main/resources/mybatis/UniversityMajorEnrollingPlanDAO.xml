@@ -1,0 +1,794 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.thinkjoy.gaokao360.dao.IUniversityMajorEnrollingPlanDAO">
+<!--
+insert
+update
+updateNull
+deleteById
+deleteByCondition
+deleteByProperty
+fetch
+findOne
+findList
+findAll
+queryPage
+like
+queryList
+queryOne
+count
+selectMaxId
+updateOrSave
+selectOne
+selectList
+-->
+
+    <sql id="Base_Column_List">
+        id as id ,
+        universityName as universityName ,
+        universityId as universityId ,
+        year as year ,
+        areaId as areaId ,
+        batch as batch ,
+        majorType as majorType ,
+        majorName as majorName ,
+        planEnrolling as planEnrolling ,
+        lengthOfSchooling as lengthOfSchooling ,
+        schoolFee as schoolFee ,
+        majorId as majorId 
+    </sql>
+    <insert id="insert" parameterType="UniversityMajorEnrollingPlan">
+        INSERT INTO zgk_university_major_enrolling_plan (
+        universityName,
+        universityId,
+        year,
+        areaId,
+        batch,
+        majorType,
+        majorName,
+        planEnrolling,
+        lengthOfSchooling,
+        schoolFee,
+        majorId
+        ) VALUES (
+        #{universityName},
+        #{universityId},
+        #{year},
+        #{areaId},
+        #{batch},
+        #{majorType},
+        #{majorName},
+        #{planEnrolling},
+        #{lengthOfSchooling},
+        #{schoolFee},
+        #{majorId}
+        )
+            <selectKey resultType="java.lang.Long" keyProperty="id">
+                SELECT LAST_INSERT_ID() AS ID
+            </selectKey>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="UniversityMajorEnrollingPlan">
+        UPDATE zgk_university_major_enrolling_plan
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="universityName!=null">
+                universityName = #{universityName},
+            </if>
+            <if test="universityId!=null">
+                universityId = #{universityId},
+            </if>
+            <if test="year!=null">
+                year = #{year},
+            </if>
+            <if test="areaId!=null">
+                areaId = #{areaId},
+            </if>
+            <if test="batch!=null">
+                batch = #{batch},
+            </if>
+            <if test="majorType!=null">
+                majorType = #{majorType},
+            </if>
+            <if test="majorName!=null">
+                majorName = #{majorName},
+            </if>
+            <if test="planEnrolling!=null">
+                planEnrolling = #{planEnrolling},
+            </if>
+            <if test="lengthOfSchooling!=null">
+                lengthOfSchooling = #{lengthOfSchooling},
+            </if>
+            <if test="schoolFee!=null">
+                schoolFee = #{schoolFee},
+            </if>
+            <if test="majorId!=null">
+                majorId = #{majorId},
+            </if>
+        </trim>
+        WHERE
+        id = #{id}
+    </update>
+
+    <update id="updateMap">
+        UPDATE zgk_university_major_enrolling_plan
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="map.universityName!=null">
+                universityName = #{map.universityName},
+            </if>
+            <if test="map.universityId!=null">
+                universityId = #{map.universityId},
+            </if>
+            <if test="map.year!=null">
+                year = #{map.year},
+            </if>
+            <if test="map.areaId!=null">
+                areaId = #{map.areaId},
+            </if>
+            <if test="map.batch!=null">
+                batch = #{map.batch},
+            </if>
+            <if test="map.majorType!=null">
+                majorType = #{map.majorType},
+            </if>
+            <if test="map.majorName!=null">
+                majorName = #{map.majorName},
+            </if>
+            <if test="map.planEnrolling!=null">
+                planEnrolling = #{map.planEnrolling},
+            </if>
+            <if test="map.lengthOfSchooling!=null">
+                lengthOfSchooling = #{map.lengthOfSchooling},
+            </if>
+            <if test="map.schoolFee!=null">
+                schoolFee = #{map.schoolFee},
+            </if>
+            <if test="map.majorId!=null">
+                majorId = #{map.majorId},
+            </if>
+        </trim>
+        WHERE
+        id = #{map.id}
+    </update>
+
+    <update id="updateByCondition">
+        UPDATE zgk_university_major_enrolling_plan
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="update.universityName!=null">
+                universityName = #{update.universityName},
+            </if>
+            <if test="update.universityId!=null">
+                universityId = #{update.universityId},
+            </if>
+            <if test="update.year!=null">
+                year = #{update.year},
+            </if>
+            <if test="update.areaId!=null">
+                areaId = #{update.areaId},
+            </if>
+            <if test="update.batch!=null">
+                batch = #{update.batch},
+            </if>
+            <if test="update.majorType!=null">
+                majorType = #{update.majorType},
+            </if>
+            <if test="update.majorName!=null">
+                majorName = #{update.majorName},
+            </if>
+            <if test="update.planEnrolling!=null">
+                planEnrolling = #{update.planEnrolling},
+            </if>
+            <if test="update.lengthOfSchooling!=null">
+                lengthOfSchooling = #{update.lengthOfSchooling},
+            </if>
+            <if test="update.schoolFee!=null">
+                schoolFee = #{update.schoolFee},
+            </if>
+            <if test="update.majorId!=null">
+                majorId = #{update.majorId},
+            </if>
+        </trim>
+
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.universityName!=null">
+                AND universityName = #{condition.universityName}
+            </if>
+            <if test="condition.universityId!=null">
+                AND universityId = #{condition.universityId}
+            </if>
+            <if test="condition.year!=null">
+                AND year = #{condition.year}
+            </if>
+            <if test="condition.areaId!=null">
+                AND areaId = #{condition.areaId}
+            </if>
+            <if test="condition.batch!=null">
+                AND batch = #{condition.batch}
+            </if>
+            <if test="condition.majorType!=null">
+                AND majorType = #{condition.majorType}
+            </if>
+            <if test="condition.majorName!=null">
+                AND majorName = #{condition.majorName}
+            </if>
+            <if test="condition.planEnrolling!=null">
+                AND planEnrolling = #{condition.planEnrolling}
+            </if>
+            <if test="condition.lengthOfSchooling!=null">
+                AND lengthOfSchooling = #{condition.lengthOfSchooling}
+            </if>
+            <if test="condition.schoolFee!=null">
+                AND schoolFee = #{condition.schoolFee}
+            </if>
+            <if test="condition.majorId!=null">
+                AND majorId = #{condition.majorId}
+            </if>
+        </trim>
+    </update>
+
+    <insert id="insertMap" >
+        INSERT INTO zgk_university_major_enrolling_plan (
+                universityName,
+                universityId,
+                year,
+                areaId,
+                batch,
+                majorType,
+                majorName,
+                planEnrolling,
+                lengthOfSchooling,
+                schoolFee,
+                majorId
+        ) VALUES (
+                    #{map.universityName},
+                    #{map.universityId},
+                    #{map.year},
+                    #{map.areaId},
+                    #{map.batch},
+                    #{map.majorType},
+                    #{map.majorName},
+                    #{map.planEnrolling},
+                    #{map.lengthOfSchooling},
+                    #{map.schoolFee},
+                    #{map.majorId}
+        )
+    </insert>
+
+
+    <update id="updateNull" parameterType="UniversityMajorEnrollingPlan">
+        UPDATE zgk_university_major_enrolling_plan
+        <trim prefix="SET" suffixOverrides=",">
+            universityName = #{universityName},
+            universityId = #{universityId},
+            year = #{year},
+            areaId = #{areaId},
+            batch = #{batch},
+            majorType = #{majorType},
+            majorName = #{majorName},
+            planEnrolling = #{planEnrolling},
+            lengthOfSchooling = #{lengthOfSchooling},
+            schoolFee = #{schoolFee},
+            majorId = #{majorId},
+        </trim>
+        WHERE
+        id = #{id} 
+    </update>
+
+    <!-- 按Id删除 -->
+    <delete id="deleteById" parameterType="java.lang.Long">
+        DELETE FROM zgk_university_major_enrolling_plan
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+    </delete>
+
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        DELETE FROM zgk_university_major_enrolling_plan
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="id!=null">
+                AND id = #{id}
+            </if>
+            <if test="universityName!=null">
+                AND universityName = #{universityName}
+            </if>
+            <if test="universityId!=null">
+                AND universityId = #{universityId}
+            </if>
+            <if test="year!=null">
+                AND year = #{year}
+            </if>
+            <if test="areaId!=null">
+                AND areaId = #{areaId}
+            </if>
+            <if test="batch!=null">
+                AND batch = #{batch}
+            </if>
+            <if test="majorType!=null">
+                AND majorType = #{majorType}
+            </if>
+            <if test="majorName!=null">
+                AND majorName = #{majorName}
+            </if>
+            <if test="planEnrolling!=null">
+                AND planEnrolling = #{planEnrolling}
+            </if>
+            <if test="lengthOfSchooling!=null">
+                AND lengthOfSchooling = #{lengthOfSchooling}
+            </if>
+            <if test="schoolFee!=null">
+                AND schoolFee = #{schoolFee}
+            </if>
+            <if test="majorId!=null">
+                AND majorId = #{majorId}
+            </if>
+        </trim>
+    </delete>
+
+    <delete id="deleteByProperty" parameterType="java.util.Map">
+        DELETE FROM zgk_university_major_enrolling_plan WHERE
+        ${property} = #{value}
+    </delete>
+
+    <select id="fetch" parameterType="java.lang.Long" resultType="UniversityMajorEnrollingPlan">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_university_major_enrolling_plan
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+    </select>
+
+    <select id="findOne" parameterType="java.util.Map" resultType="UniversityMajorEnrollingPlan">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_university_major_enrolling_plan WHERE
+        ${property} = #{value}
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+        LIMIT 0,1
+    </select>
+
+    <select id="findList" parameterType="java.util.Map" resultType="UniversityMajorEnrollingPlan">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_university_major_enrolling_plan WHERE
+        ${property} = #{value}
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="findAll" resultType="UniversityMajorEnrollingPlan">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_university_major_enrolling_plan
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryPage" resultType="UniversityMajorEnrollingPlan">
+        SELECT
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                        <if test="selector.id!=null">
+                            , id
+                        </if>
+                        <if test="selector.universityName!=null">
+                            , universityName
+                        </if>
+                        <if test="selector.universityId!=null">
+                            , universityId
+                        </if>
+                        <if test="selector.year!=null">
+                            , year
+                        </if>
+                        <if test="selector.areaId!=null">
+                            , areaId
+                        </if>
+                        <if test="selector.batch!=null">
+                            , batch
+                        </if>
+                        <if test="selector.majorType!=null">
+                            , majorType
+                        </if>
+                        <if test="selector.majorName!=null">
+                            , majorName
+                        </if>
+                        <if test="selector.planEnrolling!=null">
+                            , planEnrolling
+                        </if>
+                        <if test="selector.lengthOfSchooling!=null">
+                            , lengthOfSchooling
+                        </if>
+                        <if test="selector.schoolFee!=null">
+                            , schoolFee
+                        </if>
+                        <if test="selector.majorId!=null">
+                            , majorId
+                        </if>
+            </trim>
+        </if>
+        <if test="selector==null">
+        <include refid="Base_Column_List" />
+        </if>
+        FROM zgk_university_major_enrolling_plan
+        <where>
+
+            <if test="condition.whereSql != null">
+                and id in (#{condition.whereSql})
+            </if>
+
+            <if test="condition.id!=null">
+                ${condition.groupOp}   ${condition.id.field}  ${condition.id.op}  #{condition.id.data}
+            </if>
+            <if test="condition.universityName!=null">
+                ${condition.groupOp}   ${condition.universityName.field}  ${condition.universityName.op}  #{condition.universityName.data}
+            </if>
+            <if test="condition.universityId!=null">
+                ${condition.groupOp}   ${condition.universityId.field}  ${condition.universityId.op}  #{condition.universityId.data}
+            </if>
+            <if test="condition.year!=null">
+                ${condition.groupOp}   ${condition.year.field}  ${condition.year.op}  #{condition.year.data}
+            </if>
+            <if test="condition.areaId!=null">
+                ${condition.groupOp}   ${condition.areaId.field}  ${condition.areaId.op}  #{condition.areaId.data}
+            </if>
+            <if test="condition.batch!=null">
+                ${condition.groupOp}   ${condition.batch.field}  ${condition.batch.op}  #{condition.batch.data}
+            </if>
+            <if test="condition.majorType!=null">
+                ${condition.groupOp}   ${condition.majorType.field}  ${condition.majorType.op}  #{condition.majorType.data}
+            </if>
+            <if test="condition.majorName!=null">
+                ${condition.groupOp}   ${condition.majorName.field}  ${condition.majorName.op}  #{condition.majorName.data}
+            </if>
+            <if test="condition.planEnrolling!=null">
+                ${condition.groupOp}   ${condition.planEnrolling.field}  ${condition.planEnrolling.op}  #{condition.planEnrolling.data}
+            </if>
+            <if test="condition.lengthOfSchooling!=null">
+                ${condition.groupOp}   ${condition.lengthOfSchooling.field}  ${condition.lengthOfSchooling.op}  #{condition.lengthOfSchooling.data}
+            </if>
+            <if test="condition.schoolFee!=null">
+                ${condition.groupOp}   ${condition.schoolFee.field}  ${condition.schoolFee.op}  #{condition.schoolFee.data}
+            </if>
+            <if test="condition.majorId!=null">
+                ${condition.groupOp}   ${condition.majorId.field}  ${condition.majorId.op}  #{condition.majorId.data}
+            </if>
+
+
+    </where>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+    <select id="like" parameterType="java.util.Map" resultType="UniversityMajorEnrollingPlan">
+        SELECT
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                    <if test="selector.id!=null">
+                        , id
+                    </if>
+                    <if test="selector.universityName!=null">
+                        , universityName
+                    </if>
+                    <if test="selector.universityId!=null">
+                        , universityId
+                    </if>
+                    <if test="selector.year!=null">
+                        , year
+                    </if>
+                    <if test="selector.areaId!=null">
+                        , areaId
+                    </if>
+                    <if test="selector.batch!=null">
+                        , batch
+                    </if>
+                    <if test="selector.majorType!=null">
+                        , majorType
+                    </if>
+                    <if test="selector.majorName!=null">
+                        , majorName
+                    </if>
+                    <if test="selector.planEnrolling!=null">
+                        , planEnrolling
+                    </if>
+                    <if test="selector.lengthOfSchooling!=null">
+                        , lengthOfSchooling
+                    </if>
+                    <if test="selector.schoolFee!=null">
+                        , schoolFee
+                    </if>
+                    <if test="selector.majorId!=null">
+                        , majorId
+                    </if>
+            </trim>
+        </if>
+        <if test="selector==null">
+            <include refid="Base_Column_List" />
+        </if>
+        FROM zgk_university_major_enrolling_plan
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id like CONCAT('%', #{condition.id} , '%')
+            </if>
+            <if test="condition.universityName!=null">
+                AND universityName like CONCAT('%', #{condition.universityName} , '%')
+            </if>
+            <if test="condition.universityId!=null">
+                AND universityId like CONCAT('%', #{condition.universityId} , '%')
+            </if>
+            <if test="condition.year!=null">
+                AND year like CONCAT('%', #{condition.year} , '%')
+            </if>
+            <if test="condition.areaId!=null">
+                AND areaId like CONCAT('%', #{condition.areaId} , '%')
+            </if>
+            <if test="condition.batch!=null">
+                AND batch like CONCAT('%', #{condition.batch} , '%')
+            </if>
+            <if test="condition.majorType!=null">
+                AND majorType like CONCAT('%', #{condition.majorType} , '%')
+            </if>
+            <if test="condition.majorName!=null">
+                AND majorName like CONCAT('%', #{condition.majorName} , '%')
+            </if>
+            <if test="condition.planEnrolling!=null">
+                AND planEnrolling like CONCAT('%', #{condition.planEnrolling} , '%')
+            </if>
+            <if test="condition.lengthOfSchooling!=null">
+                AND lengthOfSchooling like CONCAT('%', #{condition.lengthOfSchooling} , '%')
+            </if>
+            <if test="condition.schoolFee!=null">
+                AND schoolFee like CONCAT('%', #{condition.schoolFee} , '%')
+            </if>
+            <if test="condition.majorId!=null">
+                AND majorId like CONCAT('%', #{condition.majorId} , '%')
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+
+    <select id="queryList" parameterType="java.util.Map" resultType="UniversityMajorEnrollingPlan">
+        SELECT
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                <if test="selector.id!=null">
+                    , id
+                </if>
+                <if test="selector.universityName!=null">
+                    , universityName
+                </if>
+                <if test="selector.universityId!=null">
+                    , universityId
+                </if>
+                <if test="selector.year!=null">
+                    , year
+                </if>
+                <if test="selector.areaId!=null">
+                    , areaId
+                </if>
+                <if test="selector.batch!=null">
+                    , batch
+                </if>
+                <if test="selector.majorType!=null">
+                    , majorType
+                </if>
+                <if test="selector.majorName!=null">
+                    , majorName
+                </if>
+                <if test="selector.planEnrolling!=null">
+                    , planEnrolling
+                </if>
+                <if test="selector.lengthOfSchooling!=null">
+                    , lengthOfSchooling
+                </if>
+                <if test="selector.schoolFee!=null">
+                    , schoolFee
+                </if>
+                <if test="selector.majorId!=null">
+                    , majorId
+                </if>
+        </trim>
+    </if>
+<if test="selector==null">
+<include refid="Base_Column_List" />
+</if>
+        FROM zgk_university_major_enrolling_plan
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.universityName!=null">
+                AND universityName = #{condition.universityName}
+            </if>
+            <if test="condition.universityId!=null">
+                AND universityId = #{condition.universityId}
+            </if>
+            <if test="condition.year!=null">
+                AND year = #{condition.year}
+            </if>
+            <if test="condition.areaId!=null">
+                AND areaId = #{condition.areaId}
+            </if>
+            <if test="condition.batch!=null">
+                AND batch = #{condition.batch}
+            </if>
+            <if test="condition.majorType!=null">
+                AND majorType = #{condition.majorType}
+            </if>
+            <if test="condition.majorName!=null">
+                AND majorName = #{condition.majorName}
+            </if>
+            <if test="condition.planEnrolling!=null">
+                AND planEnrolling = #{condition.planEnrolling}
+            </if>
+            <if test="condition.lengthOfSchooling!=null">
+                AND lengthOfSchooling = #{condition.lengthOfSchooling}
+            </if>
+            <if test="condition.schoolFee!=null">
+                AND schoolFee = #{condition.schoolFee}
+            </if>
+            <if test="condition.majorId!=null">
+                AND majorId = #{condition.majorId}
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryOne" parameterType="java.util.Map" resultType="UniversityMajorEnrollingPlan">
+        SELECT
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                    <if test="selector.id!=null">
+                        , id
+                    </if>
+                    <if test="selector.universityName!=null">
+                        , universityName
+                    </if>
+                    <if test="selector.universityId!=null">
+                        , universityId
+                    </if>
+                    <if test="selector.year!=null">
+                        , year
+                    </if>
+                    <if test="selector.areaId!=null">
+                        , areaId
+                    </if>
+                    <if test="selector.batch!=null">
+                        , batch
+                    </if>
+                    <if test="selector.majorType!=null">
+                        , majorType
+                    </if>
+                    <if test="selector.majorName!=null">
+                        , majorName
+                    </if>
+                    <if test="selector.planEnrolling!=null">
+                        , planEnrolling
+                    </if>
+                    <if test="selector.lengthOfSchooling!=null">
+                        , lengthOfSchooling
+                    </if>
+                    <if test="selector.schoolFee!=null">
+                        , schoolFee
+                    </if>
+                    <if test="selector.majorId!=null">
+                        , majorId
+                    </if>
+            </trim>
+        </if>
+        <if test="selector==null">
+            <include refid="Base_Column_List" />
+        </if>
+        FROM zgk_university_major_enrolling_plan
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.universityName!=null">
+                AND universityName = #{condition.universityName}
+            </if>
+            <if test="condition.universityId!=null">
+                AND universityId = #{condition.universityId}
+            </if>
+            <if test="condition.year!=null">
+                AND year = #{condition.year}
+            </if>
+            <if test="condition.areaId!=null">
+                AND areaId = #{condition.areaId}
+            </if>
+            <if test="condition.batch!=null">
+                AND batch = #{condition.batch}
+            </if>
+            <if test="condition.majorType!=null">
+                AND majorType = #{condition.majorType}
+            </if>
+            <if test="condition.majorName!=null">
+                AND majorName = #{condition.majorName}
+            </if>
+            <if test="condition.planEnrolling!=null">
+                AND planEnrolling = #{condition.planEnrolling}
+            </if>
+            <if test="condition.lengthOfSchooling!=null">
+                AND lengthOfSchooling = #{condition.lengthOfSchooling}
+            </if>
+            <if test="condition.schoolFee!=null">
+                AND schoolFee = #{condition.schoolFee}
+            </if>
+            <if test="condition.majorId!=null">
+                AND majorId = #{condition.majorId}
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+        limit 0,1
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(id) FROM zgk_university_major_enrolling_plan
+       <where>
+           <if test="id!=null">
+               ${groupOp} ${id.field} ${id.op}  #{id.data}
+           </if>
+           <if test="universityName!=null">
+               ${groupOp} ${universityName.field} ${universityName.op}  #{universityName.data}
+           </if>
+           <if test="universityId!=null">
+               ${groupOp} ${universityId.field} ${universityId.op}  #{universityId.data}
+           </if>
+           <if test="year!=null">
+               ${groupOp} ${year.field} ${year.op}  #{year.data}
+           </if>
+           <if test="areaId!=null">
+               ${groupOp} ${areaId.field} ${areaId.op}  #{areaId.data}
+           </if>
+           <if test="batch!=null">
+               ${groupOp} ${batch.field} ${batch.op}  #{batch.data}
+           </if>
+           <if test="majorType!=null">
+               ${groupOp} ${majorType.field} ${majorType.op}  #{majorType.data}
+           </if>
+           <if test="majorName!=null">
+               ${groupOp} ${majorName.field} ${majorName.op}  #{majorName.data}
+           </if>
+           <if test="planEnrolling!=null">
+               ${groupOp} ${planEnrolling.field} ${planEnrolling.op}  #{planEnrolling.data}
+           </if>
+           <if test="lengthOfSchooling!=null">
+               ${groupOp} ${lengthOfSchooling.field} ${lengthOfSchooling.op}  #{lengthOfSchooling.data}
+           </if>
+           <if test="schoolFee!=null">
+               ${groupOp} ${schoolFee.field} ${schoolFee.op}  #{schoolFee.data}
+           </if>
+           <if test="majorId!=null">
+               ${groupOp} ${majorId.field} ${majorId.op}  #{majorId.data}
+           </if>
+
+       </where>
+    </select>
+
+    <select id="selectMaxId" resultType="java.lang.Long">
+        SELECT
+        MAX(id)
+        FROM zgk_university_major_enrolling_plan
+    </select>
+
+</mapper>
+
