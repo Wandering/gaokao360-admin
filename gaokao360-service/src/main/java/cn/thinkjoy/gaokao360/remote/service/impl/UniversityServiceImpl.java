@@ -191,8 +191,8 @@ public class UniversityServiceImpl implements IUniversityService {
     @Override
     public Map<String, Object> getPredictUniversityInfo(Map<String, Object> params) {
         params.put("majorType",params.get("type"));
-        params.put("startYear", 2013);
-        params.put("endYear", 2015);
+//        params.put("startYear", 2013);
+//        params.put("endYear", 2015);
         Map<String, Object> resultMap = new LinkedHashMap<>();
         List<Map<String, Object>> dataList = universityExService.getPredictUniversityInfo(params);
         caculateUniversityLists(params, resultMap, dataList);
@@ -265,7 +265,7 @@ public class UniversityServiceImpl implements IUniversityService {
             {
                 valueB = new BigDecimal(avgScoreList.get(0)).subtract(new BigDecimal(avgScoreList.get(1)));
             }
-            if(avgScoreList.size()==3)
+            if(avgScoreList.size()>=3)
             {
                 BigDecimal bigOne = new BigDecimal(avgScoreList.get(0));
                 BigDecimal smallOne = new BigDecimal(avgScoreList.get(2));
@@ -372,8 +372,8 @@ public class UniversityServiceImpl implements IUniversityService {
     @Override
     public Map<String, Object> getPredictProbability(Map<String, Object> params) {
         params.put("majorType", params.get("type"));
-        params.put("startYear", 2013);
-        params.put("endYear", 2015);
+//        params.put("startYear", 2013);
+//        params.put("endYear", 2015);
         List<Map<String, Object>> dataList = universityExService.getPredictProbability(params);
         Map<String, Object> resultMap = new LinkedHashMap<>();
         if(dataList.size()>0)
@@ -559,7 +559,7 @@ public class UniversityServiceImpl implements IUniversityService {
             BigDecimal valueA;
             BigDecimal valueB;
             BigDecimal valueD;
-            if(avgScores.size() == 3)
+            if(avgScores.size() >= 3)
             {
                 int highScore = avgScores.get(0);
                 int midScore = avgScores.get(1);
