@@ -531,12 +531,12 @@ selectList
              <if test="majorType!=null">
                  AND en.majorType = #{majorType}
              </if>
-             <if test="startYear!=null">
-                 AND en.year &gt;= #{startYear}
-             </if>
-             <if test="endYear!=null">
-                 AND en.year &lt;= #{endYear}
-             </if>
+             <!--<if test="startYear!=null">-->
+                 <!--AND en.year &gt;= #{startYear}-->
+             <!--</if>-->
+             <!--<if test="endYear!=null">-->
+                 <!--AND en.year &lt;= #{endYear}-->
+             <!--</if>-->
          </where>
         order by averageScore desc
     </select>
