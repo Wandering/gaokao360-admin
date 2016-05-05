@@ -18,7 +18,6 @@
     <result column="createDate" property="createDate" jdbcType="TIMESTAMP" />
     <result column="reportDate" property="reportDate" jdbcType="TIMESTAMP" />
     <result column="name" property="name" jdbcType="VARCHAR" />
-
     <result column="reportUrl" property="reportUrl" jdbcType="VARCHAR" />
     <result column="gradeDescribe" property="gradeDescribe" jdbcType="VARCHAR" />
     <result column="introduce" property="introduce" jdbcType="VARCHAR" />
@@ -352,7 +351,7 @@
     where id = #{id}
   </update>
   <select id="selectUserApeskResult" resultMap="UserApeskResultMap" parameterType="java.util.Map">
-    select apesk.user_id,apesk.report_id,apesk.create_date,apesk.report_date,apesk_course.name,apesk_course.report_url,apesk_course.grade_describe,apesk_course.introduce,apesk_course.pic_url,count(1) as num from zgk_apesk as apesk
+    select apesk.user_id as userId,apesk.report_id as reportId,apesk.create_date as createDate,apesk.report_date as reportDate,apesk_course.name as name,apesk_course.report_url as reportUrl,apesk_course.grade_describe as gradeDescribe,apesk_course.introduce as introduce,apesk_course.pic_url as picUrl,count(1) as num from zgk_apesk as apesk
     left join zgk_apesk_course as apesk_course
     on apesk.ac_id=apesk_course.ac_id
      <where>
