@@ -12,6 +12,19 @@
     <result column="state" property="state" jdbcType="INTEGER" />
     <result column="report_date" property="reportDate" jdbcType="TIMESTAMP" />
   </resultMap>
+  <resultMap id="UserApeskResultMap" type="cn.thinkjoy.zgk.dto.ZgkApeskDTO">
+    <id column="userId" property="userId" jdbcType="INTEGER" />
+    <result column="reportId" property="reportId" jdbcType="INTEGER" />
+    <result column="createDate" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="reportDate" property="reportDate" jdbcType="TIMESTAMP" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="reportUrl" property="reportUrl" jdbcType="VARCHAR" />
+    <result column="gradeDescribe" property="gradeDescribe" jdbcType="VARCHAR" />
+    <result column="introduce" property="introduce" jdbcType="VARCHAR" />
+    <result column="picUrl" property="picUrl" jdbcType="VARCHAR" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+  </resultMap>
+
   <sql id="Example_Where_Clause" >
     <trim prefix="where" prefixOverrides="and|or" >
       <if test="condition.acId != null and condition.acId > -1" >
@@ -337,4 +350,16 @@
       report_date = #{reportDate}
     where id = #{id}
   </update>
+  <select id="selectUserApeskResult" resultMap="UserApeskResultMap" parameterType="java.util.Map">
+    select apesk.user_id as userId,apesk.report_id as reportId,apesk.create_date as createDate,apesk.report_date as reportDate,apesk_course.name as name,apesk_course.report_url as reportUrl,apesk_course.grade_describe as gradeDescribe,apesk_course.introduce as introduce,apesk_course.pic_url as picUrl,count(1) as num from zgk_apesk as apesk
+    left join zgk_apesk_course as apesk_course
+    on apesk.ac_id=apesk_course.ac_id
+     <where>
+       <if test="userId!=null">
+         apesk.user_id=#{userId,jdbcType=INTEGER}
+       </if>
+         and report_id is not null
+     </where>
+    group by apesk.liang_biao
+  </select>
 </mapper>
