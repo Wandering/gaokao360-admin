@@ -273,26 +273,27 @@ public class UniversityServiceImpl implements IUniversityService {
                         multiply(new BigDecimal(2)).setScale(2, BigDecimal.ROUND_HALF_UP)
                         .divide(new BigDecimal(2),2, BigDecimal.ROUND_HALF_UP);
             }
-            float floatValueA = new BigDecimal(score).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
-            if(floatValueA >= valueA.subtract(valueB.multiply(new BigDecimal(2))).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue() &&
-                    floatValueA < valueA.subtract(valueB).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue())
+            float valueC = new BigDecimal(score).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
+            if(valueC >= valueA.subtract(valueB.multiply(new BigDecimal(2))).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue() &&
+                    valueC < valueA.subtract(valueB).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue())
             {
+
                 oneList.add(map);
                 continue;
             }
-            if(floatValueA >= valueA.subtract(valueB).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue() &&
-                    floatValueA < valueA.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue())
+            if(valueC >= valueA.subtract(valueB).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue() &&
+                    valueC < valueA.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue())
             {
                 twoList.add(map);
                 continue;
             }
-            if(floatValueA >= valueA.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue() &&
-                    floatValueA < valueA.add(valueB).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue())
+            if(valueC >= valueA.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue() &&
+                    valueC < valueA.add(valueB).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue())
             {
                 threeList.add(map);
                 continue;
             }
-            if(floatValueA >= valueA.add(valueB).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue())
+            if(valueC >= valueA.add(valueB).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue())
             {
                 fourList.add(map);
             }
@@ -379,7 +380,7 @@ public class UniversityServiceImpl implements IUniversityService {
         if(dataList.size()>0)
         {
             String score = params.get("score")+"";
-            BigDecimal valueC = new BigDecimal(score);
+            BigDecimal valueC = new BigDecimal(score).setScale(2, BigDecimal.ROUND_HALF_DOWN);
             Map<String,List<Integer>> minScoreMap = new HashMap<>();
             Map<String,List<Integer>> avgScoreMap = new HashMap<>();
             setScoreMap(dataList, minScoreMap, avgScoreMap);
@@ -558,7 +559,7 @@ public class UniversityServiceImpl implements IUniversityService {
             }
             BigDecimal valueA;
             BigDecimal valueB;
-            BigDecimal valueD;
+//            BigDecimal valueD;
             if(avgScores.size() >= 3)
             {
                 int highScore = avgScores.get(0);
@@ -566,24 +567,24 @@ public class UniversityServiceImpl implements IUniversityService {
                 int lowScore = avgScores.get(2);
                 valueA = new BigDecimal(highScore+midScore+lowScore).divide(new BigDecimal(3),2,BigDecimal.ROUND_HALF_UP);
                 valueB = new BigDecimal(highScore*2).subtract(new BigDecimal(lowScore*2)).divide(new BigDecimal(3),2,BigDecimal.ROUND_HALF_UP);
-                valueD = valueC.divide(valueA.add(valueB),2,BigDecimal.ROUND_HALF_UP);
-                setProbability(resultMap, valueA, valueB, valueD);
+//                valueD = valueC.divide(valueA.add(valueB),2,BigDecimal.ROUND_HALF_UP);
+                setProbabilityNew(resultMap, valueA, valueB, valueC);
             }else if(avgScores.size() == 2)
             {
                 int highScore = avgScores.get(0);
                 int lowScore = avgScores.get(1);
                 valueA = new BigDecimal(highScore+lowScore).divide(new BigDecimal(2),2,BigDecimal.ROUND_HALF_UP);
                 valueB = new BigDecimal(highScore).subtract(new BigDecimal(lowScore)).setScale(2, BigDecimal.ROUND_HALF_UP);
-                valueD = valueC.divide(valueA.add(valueB),2,BigDecimal.ROUND_HALF_UP);
-                setProbability(resultMap, valueA, valueB, valueD);
+//                valueD = valueC.divide(valueA.add(valueB),2,BigDecimal.ROUND_HALF_UP);
+                setProbabilityNew(resultMap, valueA, valueB, valueC);
             }
             else if(avgScores.size() == 1)
             {
                 int highScore = avgScores.get(0);
                 valueA = new BigDecimal(highScore);
                 valueB = BigDecimal.ZERO;
-                valueD = valueC.divide(valueA.add(valueB),2,BigDecimal.ROUND_HALF_UP);
-                setProbability(resultMap, valueA, valueB, valueD);
+//                valueD = valueC.divide(valueA.add(valueB),2,BigDecimal.ROUND_HALF_UP);
+                setProbabilityNew(resultMap, valueA, valueB, valueC);
             }
             else
             {
@@ -592,34 +593,71 @@ public class UniversityServiceImpl implements IUniversityService {
         }
     }
 
+//    /**
+//     * 难易预测计算
+//     * @param resultMap
+//     * @param valueA = 3年录取平均分累加/3
+//     * @param valueB = 3年录取平均分分差累加/3
+//     * @param valueD = 数个人分（valueC）/（录取平均分（valueA）+录取平均分分差（valueB））
+//     * valueD>1+valueB/valueA                           四颗星
+//     * valueD>[1,1+valueB/valueA]                       三颗星
+//     * valueD>[1-valueB/valueA,1]                       两颗星
+//     * valueD>[1-2valueB/valueA,1-valueB/valueA]        一颗星
+//     */
+//    private void setProbability(Map<String, Object> resultMap, BigDecimal valueA, BigDecimal valueB, BigDecimal valueD) {
+//        if(valueD.floatValue() > valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP).add(new BigDecimal(1)).floatValue())
+//        {
+//            resultMap.put("probability", 4);
+//        }
+//        else if(valueD.floatValue() <= valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP).add(new BigDecimal(1)).floatValue()
+//                && valueD.floatValue()>1)
+//        {
+//            resultMap.put("probability", 3);
+//        }
+//        else if(valueD.floatValue() <= 1 &&
+//                valueD.floatValue() > new BigDecimal(1).subtract(valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP)).floatValue())
+//        {
+//            resultMap.put("probability", 2);
+//        }
+//        else if(valueD.floatValue() <= new BigDecimal(1).subtract(valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP)).floatValue()
+//                && valueD.floatValue() >= new BigDecimal(1).subtract(valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP).multiply(new BigDecimal(2))).floatValue())
+//        {
+//            resultMap.put("probability", 1);
+//        }
+//        else
+//        {
+//            resultMap.put("probability", 0);
+//        }
+//    }
+
     /**
      * 难易预测计算
      * @param resultMap
      * @param valueA = 3年录取平均分累加/3
      * @param valueB = 3年录取平均分分差累加/3
-     * @param valueD = 数个人分（valueC）/（录取平均分（valueA）+录取平均分分差（valueB））
-     * valueD>1+valueB/valueA                           四颗星
-     * valueD>[1,1+valueB/valueA]                       三颗星
-     * valueD>[1-valueB/valueA,1]                       两颗星
-     * valueD>[1-2valueB/valueA,1-valueB/valueA]        一颗星
+     * @param valueC = 数个人分
+     * valueC>valueB+valueA                                 四颗星
+     * valueC>valueA          & valueC<= valueB + valueA    三颗星
+     * valueC>valueA - valueB & valueC<= valueA             两颗星
+     * valueC>valueA -2valueB & valueC<= valueA - valueB    一颗星
      */
-    private void setProbability(Map<String, Object> resultMap, BigDecimal valueA, BigDecimal valueB, BigDecimal valueD) {
-        if(valueD.floatValue() > valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP).add(new BigDecimal(1)).floatValue())
+    private void setProbabilityNew(Map<String, Object> resultMap, BigDecimal valueA, BigDecimal valueB, BigDecimal valueC) {
+        if(valueC.floatValue() > valueA.add(valueB).setScale(2, BigDecimal.ROUND_HALF_DOWN).floatValue())
         {
             resultMap.put("probability", 4);
         }
-        else if(valueD.floatValue() <= valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP).add(new BigDecimal(1)).floatValue()
-                && valueD.floatValue()>1)
+        else if(valueC.floatValue() <= valueA.add(valueB).setScale(2, BigDecimal.ROUND_HALF_DOWN).floatValue()
+                && valueC.floatValue()>valueA.floatValue())
         {
             resultMap.put("probability", 3);
         }
-        else if(valueD.floatValue() <= 1 &&
-                valueD.floatValue() > new BigDecimal(1).subtract(valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP)).floatValue())
+        else if(valueC.floatValue() <= valueA.floatValue()
+                && valueC.floatValue() > valueA.subtract(valueB).setScale(2, BigDecimal.ROUND_HALF_DOWN).floatValue())
         {
             resultMap.put("probability", 2);
         }
-        else if(valueD.floatValue() <= new BigDecimal(1).subtract(valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP)).floatValue()
-                && valueD.floatValue() >= new BigDecimal(1).subtract(valueB.divide(valueA,2,BigDecimal.ROUND_HALF_UP).multiply(new BigDecimal(2))).floatValue())
+        else if(valueC.floatValue() <= valueA.subtract(valueB).setScale(2, BigDecimal.ROUND_HALF_DOWN).floatValue()
+                && valueC.floatValue() >= valueA.subtract(valueB.multiply(new BigDecimal(2)).setScale(2, BigDecimal.ROUND_HALF_DOWN)).setScale(2, BigDecimal.ROUND_HALF_DOWN).floatValue())
         {
             resultMap.put("probability", 1);
         }
