@@ -475,7 +475,7 @@ selectList
                 AND en.batch in ('2','15','16','20','23')
             </if>
             <if test="batch==4">
-                AND en.batch in ('3','17','18','21')
+                AND en.batch in ('4','17','18','21')
             </if>
             <if test="batch==8">
                 AND en.batch in ('8','9','10','11','12','13','14','22')
@@ -522,7 +522,7 @@ selectList
                  AND en.batch in ('2','15','16','20','23')
              </if>
              <if test="batch==4">
-                 AND en.batch in ('3','17','18','21')
+                 AND en.batch in ('4','17','18','21')
              </if>
              <if test="batch==8">
                  AND en.batch in ('8','9','10','11','12','13','14','22')
