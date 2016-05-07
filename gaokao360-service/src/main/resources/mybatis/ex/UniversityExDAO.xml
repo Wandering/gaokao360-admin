@@ -496,7 +496,11 @@ selectList
 
     <select id="queryPredictProbability" resultType="java.util.HashMap">
        select un.id as universityId,un.`name` as universityName,en.`year`,
-            en.batch as batch,
+            case when en.batch='1' then '一批本科'
+                 when en.batch='2' then '二批本科'
+                 when en.batch='4' then '三批本科'
+                 when en.batch='8' then '高职专科'
+                 else '' end as batch,
             CASE WHEN en.averageScore='-' then '0'
             WHEN en.averageScore is null then '0'
             ELSE en.averageScore end as avgScore,
