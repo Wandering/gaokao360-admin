@@ -309,10 +309,8 @@ public class UniversityServiceImpl implements IUniversityService {
         if(avgScoreSize>=2)
         {
             for (int i = 0; i < avgScoreSize - 1 ; i++) {
-                for (int j = i+1; j < avgScoreSize; j++) {
-                    sumDiffSize++;
-                    sumDiff += Math.abs(avgScoreList.get(i) - avgScoreList.get(j));
-                }
+                sumDiffSize++;
+                sumDiff += Math.abs(avgScoreList.get(i) - avgScoreList.get(i+1));
             }
             valueB = new BigDecimal(sumDiff).divide(new BigDecimal(sumDiffSize), 2, BigDecimal.ROUND_HALF_DOWN);
         }

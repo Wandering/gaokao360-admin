@@ -454,10 +454,10 @@ selectList
         Case When en.majorType='1' then '文史'
         When en.majorType='2' then '理工'
         else '' end as majorType,
-        Case when GROUP_CONCAT(en.averageScore order by en.averageScore desc SEPARATOR '@@') is null then ''
-        else GROUP_CONCAT(en.averageScore order by en.averageScore desc SEPARATOR '@@') end as averageScoreList,
-        Case when GROUP_CONCAT(en.lowestScore order by en.lowestScore desc SEPARATOR '@@') is null then ''
-        else GROUP_CONCAT(en.lowestScore order by en.lowestScore desc SEPARATOR '@@') end as lowestScoreList
+        Case when GROUP_CONCAT(en.averageScore order by en.year desc SEPARATOR '@@') is null then ''
+        else GROUP_CONCAT(en.averageScore order by en.year desc SEPARATOR '@@') end as averageScoreList,
+        Case when GROUP_CONCAT(en.lowestScore order by en.year desc SEPARATOR '@@') is null then ''
+        else GROUP_CONCAT(en.lowestScore order by en.year desc SEPARATOR '@@') end as lowestScoreList
         from zgk_university_enrolling en
         left join zgk_university un on en.universityId = un.id
         <where>
