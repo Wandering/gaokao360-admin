@@ -462,6 +462,9 @@ selectList
         left join zgk_university un on en.universityId = un.id
         <where>
             en.universityId !='0'
+            <if test="universityName!=null">
+                AND un.`name` = #{universityName}
+            </if>
             <if test="areaId!=null">
                 AND en.areaId = #{areaId}
             </if>
