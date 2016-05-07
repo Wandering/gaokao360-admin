@@ -461,7 +461,7 @@ selectList
         from zgk_university_enrolling en
         left join zgk_university un on en.universityId = un.id
         <where>
-            en.universityId !='0'
+            en.universityId !='0' and un.`name` != ""
             <if test="universityName!=null">
                 AND un.`name` = #{universityName}
             </if>
