@@ -467,6 +467,7 @@ public class UniversityServiceImpl implements IUniversityService {
         List<Map<String, Object>> historyList = universityExService.getPredictProbability(params);
         setHistoryList(historyList);
         resultMap.put("historyList", historyList);
+        resultMap.put("batch", batch);
         return resultMap;
     }
 
