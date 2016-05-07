@@ -454,14 +454,17 @@ selectList
         Case When en.majorType='1' then '文史'
         When en.majorType='2' then '理工'
         else '' end as majorType,
-        Case when GROUP_CONCAT(en.averageScore order by en.averageScore desc SEPARATOR '@@') is null then ''
-        else GROUP_CONCAT(en.averageScore order by en.averageScore desc SEPARATOR '@@') end as averageScoreList,
-        Case when GROUP_CONCAT(en.lowestScore order by en.lowestScore desc SEPARATOR '@@') is null then ''
-        else GROUP_CONCAT(en.lowestScore order by en.lowestScore desc SEPARATOR '@@') end as lowestScoreList
+        Case when GROUP_CONCAT(en.averageScore order by en.year desc SEPARATOR '@@') is null then ''
+        else GROUP_CONCAT(en.averageScore order by en.year desc SEPARATOR '@@') end as averageScoreList,
+        Case when GROUP_CONCAT(en.lowestScore order by en.year desc SEPARATOR '@@') is null then ''
+        else GROUP_CONCAT(en.lowestScore order by en.year desc SEPARATOR '@@') end as lowestScoreList
         from zgk_university_enrolling en
         left join zgk_university un on en.universityId = un.id
         <where>
-            en.universityId !='0'
+            en.universityId !='0' and un.`name` != ""
+            <if test="universityName!=null">
+                AND un.`name` = #{universityName}
+            </if>
             <if test="areaId!=null">
                 AND en.areaId = #{areaId}
             </if>
@@ -472,7 +475,7 @@ selectList
                 AND en.batch in ('2','15','16','20','23')
             </if>
             <if test="batch==4">
-                AND en.batch in ('3','17','18','21')
+                AND en.batch in ('4','17','18','21')
             </if>
             <if test="batch==8">
                 AND en.batch in ('8','9','10','11','12','13','14','22')
@@ -493,7 +496,11 @@ selectList
 
     <select id="queryPredictProbability" resultType="java.util.HashMap">
        select un.id as universityId,un.`name` as universityName,en.`year`,
-            en.batch as batch,
+            case when en.batch='1' then '一批本科'
+                 when en.batch='2' then '二批本科'
+                 when en.batch='4' then '三批本科'
+                 when en.batch='8' then '高职专科'
+                 else '' end as batch,
             CASE WHEN en.averageScore='-' then '0'
             WHEN en.averageScore is null then '0'
             ELSE en.averageScore end as avgScore,
@@ -515,7 +522,7 @@ selectList
                  AND en.batch in ('2','15','16','20','23')
              </if>
              <if test="batch==4">
-                 AND en.batch in ('3','17','18','21')
+                 AND en.batch in ('4','17','18','21')
              </if>
              <if test="batch==8">
                  AND en.batch in ('8','9','10','11','12','13','14','22')
@@ -526,12 +533,12 @@ selectList
              <if test="majorType!=null">
                  AND en.majorType = #{majorType}
              </if>
-             <if test="startYear!=null">
-                 AND en.year &gt;= #{startYear}
-             </if>
-             <if test="endYear!=null">
-                 AND en.year &lt;= #{endYear}
-             </if>
+             <!--<if test="startYear!=null">-->
+                 <!--AND en.year &gt;= #{startYear}-->
+             <!--</if>-->
+             <!--<if test="endYear!=null">-->
+                 <!--AND en.year &lt;= #{endYear}-->
+             <!--</if>-->
          </where>
         order by averageScore desc
     </select>
