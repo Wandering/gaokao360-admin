@@ -107,12 +107,6 @@ public class ZgkApeskServiceImpl implements IZgkApeskService {
             map.put("type", zgkApeskDTO.getType());
             ZgkApeskModelDTO zgkApeskModelDTO = zgkApeskDao.selectUserApeskModel(map);
             if (zgkApeskModelDTO != null) {
-//                zgkApeskDTO.setNum(0);
-//                zgkApeskDTO.setCreateDate(null);
-//                zgkApeskDTO.setReportDate();
-//                zgkApeskDTO.setReportId(zgkApeskModelDTO.getReportId());
-//                zgkApeskDTO.setUserId(zgkApeskModelDTO.getUserId());
-//            } else {
                 zgkApeskDTO.setNum(zgkApeskModelDTO.getNum());
                 zgkApeskDTO.setCreateDate(zgkApeskModelDTO.getCreateDate());
                 zgkApeskDTO.setReportDate(zgkApeskModelDTO.getReportDate());
