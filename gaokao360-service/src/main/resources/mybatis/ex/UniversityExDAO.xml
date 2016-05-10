@@ -307,7 +307,7 @@ selectList
             </if>
 
         </where>
-            ORDER BY IF (ISNULL(${orderBy}),10000,${orderBy}) ${sortBy}
+            ORDER BY IF (ISNULL(rank),10000,rank) ${sortBy}
         <if test="offset != null">
             limit ${offset}, ${rows}
         </if>
