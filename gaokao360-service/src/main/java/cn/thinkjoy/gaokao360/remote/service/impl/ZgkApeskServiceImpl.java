@@ -1,15 +1,19 @@
 package cn.thinkjoy.gaokao360.remote.service.impl;
 
 
+import cn.thinkjoy.gaokao360.dao.ex.IZgkApeskCourseDao;
 import cn.thinkjoy.gaokao360.dao.ex.IZgkApeskDao;
 import cn.thinkjoy.zgk.common.Criteria;
 import cn.thinkjoy.zgk.common.StringUtil;
 import cn.thinkjoy.zgk.domain.ZgkApesk;
+import cn.thinkjoy.zgk.domain.ZgkApeskCourse;
 import cn.thinkjoy.zgk.dto.ZgkApeskDTO;
+import cn.thinkjoy.zgk.dto.ZgkApeskModelDTO;
 import cn.thinkjoy.zgk.remote.IZgkApeskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +26,8 @@ import java.util.Map;
 public class ZgkApeskServiceImpl implements IZgkApeskService {
     @Autowired
     private IZgkApeskDao zgkApeskDao;
+    @Autowired
+    private IZgkApeskCourseDao iZgkApeskCourseDao;
 
     public List<ZgkApesk> query(Long userId, Integer acId, String liangbiao, String testEmail) {
         Criteria example = new Criteria();
@@ -86,6 +92,36 @@ public class ZgkApeskServiceImpl implements IZgkApeskService {
     }
 
     public List<ZgkApeskDTO> selectUserApeskResult(Map map) {
-        return zgkApeskDao.selectUserApeskResult(map);
+        List<ZgkApeskCourse> zgkApeskCourses = iZgkApeskCourseDao.selectByExample(null);
+
+        List<ZgkApeskDTO> zgkApeskDTOs=new ArrayList<>();
+
+        for(ZgkApeskCourse zgkApeskCourse:zgkApeskCourses) {
+            ZgkApeskDTO zgkApeskDTO = new ZgkApeskDTO();
+            zgkApeskDTO.setName(zgkApeskCourse.getName());
+            zgkApeskDTO.setReportUrl(zgkApeskCourse.getReportUrl());
+            zgkApeskDTO.setGradeDescribe(zgkApeskCourse.getGradeDescribe());
+            zgkApeskDTO.setType(zgkApeskCourse.getAcId());
+            zgkApeskDTO.setIntroduce(zgkApeskCourse.getIntroduce());
+            zgkApeskDTO.setPicUrl(zgkApeskCourse.getPicUrl());
+            map.put("type", zgkApeskDTO.getType());
+            ZgkApeskModelDTO zgkApeskModelDTO = zgkApeskDao.selectUserApeskModel(map);
+            if (zgkApeskModelDTO != null) {
+//                zgkApeskDTO.setNum(0);
+//                zgkApeskDTO.setCreateDate(null);
+//                zgkApeskDTO.setReportDate();
+//                zgkApeskDTO.setReportId(zgkApeskModelDTO.getReportId());
+//                zgkApeskDTO.setUserId(zgkApeskModelDTO.getUserId());
+//            } else {
+                zgkApeskDTO.setNum(zgkApeskModelDTO.getNum());
+                zgkApeskDTO.setCreateDate(zgkApeskModelDTO.getCreateDate());
+                zgkApeskDTO.setReportDate(zgkApeskModelDTO.getReportDate());
+                zgkApeskDTO.setReportId(zgkApeskModelDTO.getReportId());
+                zgkApeskDTO.setUserId(zgkApeskModelDTO.getUserId());
+            }
+            zgkApeskDTOs.add(zgkApeskDTO);
+        }
+
+        return zgkApeskDTOs;
     }
 }
