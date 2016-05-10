@@ -12,6 +12,7 @@ public class ZgkApeskModelDTO implements Serializable {
     private Date createDate;
     private Date reportDate;
     private Integer num;
+    private Integer type;
 
     public Integer getUserId() {
         return userId;
@@ -52,5 +53,13 @@ public class ZgkApeskModelDTO implements Serializable {
 
     public void setNum(Integer num) {
         this.num = num;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }
