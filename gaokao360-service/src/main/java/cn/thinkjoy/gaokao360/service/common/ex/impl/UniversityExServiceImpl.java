@@ -7,6 +7,7 @@
 package cn.thinkjoy.gaokao360.service.common.ex.impl;
 
 import cn.thinkjoy.common.dao.IBaseDAO;
+import cn.thinkjoy.gaokao360.dto.GkQueryDomain;
 import cn.thinkjoy.gaokao360.service.baseservice.AbstractPageService;
 import cn.thinkjoy.gaokao360.dao.IUniversityDAO;
 import cn.thinkjoy.gaokao360.dao.IUniversityDetailDAO;
@@ -58,7 +59,7 @@ public class UniversityExServiceImpl extends AbstractPageService<IBaseDAO<Univer
     }
 
     @Override
-    public List getUniversityByName(String name) {
+    public List<GkQueryDomain> getUniversityByName(String name) {
         return universityExDAO.getUniversityByName(name);
     }
 

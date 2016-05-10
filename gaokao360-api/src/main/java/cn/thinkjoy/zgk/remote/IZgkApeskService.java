@@ -1,11 +1,12 @@
 package cn.thinkjoy.zgk.remote;
 
 
-
 import cn.thinkjoy.zgk.common.Criteria;
 import cn.thinkjoy.zgk.domain.ZgkApesk;
+import cn.thinkjoy.zgk.dto.ZgkApeskDTO;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * zgk_apesk
@@ -36,4 +37,5 @@ public interface IZgkApeskService {
     int insert(ZgkApesk record);
 
     int insertSelective(ZgkApesk record);
+    List<ZgkApeskDTO> selectUserApeskResult(Map map);
 }

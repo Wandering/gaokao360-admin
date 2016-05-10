@@ -13,6 +13,10 @@ public class UniversityMajorEnrollingPlanDTO implements Serializable{
     private String batchName;
     /** 科类 */
     private String majorType;
+    /**
+     *  招生性质
+     */
+    private String enrollType;
     /** 招生人数 */
     private int planEnrolling;
     /** 学年，学制 */
@@ -58,6 +62,14 @@ public class UniversityMajorEnrollingPlanDTO implements Serializable{
 
     public void setMajorType(String majorType) {
         this.majorType = majorType;
+    }
+
+    public String getEnrollType() {
+        return enrollType;
+    }
+
+    public void setEnrollType(String enrollType) {
+        this.enrollType = enrollType;
     }
 
     public int getPlanEnrolling() {
