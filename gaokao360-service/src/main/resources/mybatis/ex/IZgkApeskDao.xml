@@ -355,7 +355,6 @@
     left join zgk_apesk_course as apesk_course
     on apesk.ac_id=apesk_course.ac_id
      <where>
-       and 1=1
        <if test="userId!=null">
          apesk.user_id=#{userId,jdbcType=INTEGER}
        </if>
