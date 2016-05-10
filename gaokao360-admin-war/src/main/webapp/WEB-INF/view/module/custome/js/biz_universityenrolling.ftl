@@ -1,5 +1,4 @@
 <script>
-    <!-- 自定义js请写在这个文件  以下这个查询方法只是个例子，请按照业务需求修改 -->
     function buildRules() {
         var queryparam = $('#examKeyWord').val();
         var selYears = $('#selYears').val();
@@ -204,7 +203,6 @@
                         label: "关闭",
                         className: "btn-sm"
                     }
-
                 }
             });
             catcompleteFn();
@@ -216,6 +214,7 @@
         $("#editBtn").on(ace.click_event, function () {
             typeStr = "edit";
             rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
+            console.log(rowId)
             var selTrN = $('tr.ui-state-highlight[role="row"]').length;
             if (selTrN != 1) {
                 CommonFn.tipsDialog('温馨提示', '请选中一行后修改');
@@ -241,10 +240,10 @@
             var rowData = CommonFn.getRowData(rowId)
             console.log(rowData)
             $('#autoSearch').val(rowData[0].name).attr('dataId',rowData[0].universityId)
-            $('#selProvince2').find('option[value="' + rowData[0].areaid + '"]').attr('selected', 'selected');
+            $('#selProvince2').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
             $('#selYears2').find('option[value="' + rowData[0].year + '"]').attr('selected', 'selected');
-            if(rowData[0].universityMajorType=="1"){
-                $('#subjectType1').show();
+            if(rowData[0].majorType=="1"){
+                $('#subjectType1').show().attr('majorType','1');
                 $('#subjectType2').hide();
                 var oParent = $('#subjectType-main1');
                 oParent.find('.subjectType option[value="' + rowData[0].batch + '"]').attr('selected', 'selected');
@@ -257,10 +256,11 @@
                 $('.lowestPrecedence').val(rowData[0].lowestPrecedence);
                 $('.averageScore').val(rowData[0].averageScore);
                 $('.averagePrecedence').val(rowData[0].averagePrecedence);
+                subjectTypeFn(1);
 
-            }else if(rowData[0].universityMajorType=="2"){
+            }else if(rowData[0].majorType=="2"){
                 $('#subjectType1').hide();
-                $('#subjectType2').show();
+                $('#subjectType2').show().attr('majorType','2');;
                 var oParent = $('#subjectType-main2');
                 oParent.find('.subjectType option[value="' + rowData[0].batch + '"]').attr('selected', 'selected');
                 oParent.find('.subjectTypeDetail').show();
@@ -272,10 +272,11 @@
                 $('.lowestPrecedence').val(rowData[0].lowestPrecedence);
                 $('.averageScore').val(rowData[0].averageScore);
                 $('.averagePrecedence').val(rowData[0].averagePrecedence);
+                subjectTypeFn(2);
             }
             catcompleteFn();
-            subjectTypeFn(1);
-            subjectTypeFn(2);
+
+
         });
         //删除
         CommonFn.deleteFun('#deleteBtn', '${mainObj}');
@@ -283,123 +284,132 @@
         var addEditFun = function () {
             var selProvinceV = $('#selProvince2 option:checked').val();
             var selYearsV = $("#selYears2").find('option:selected').val();
-            var autoSearchId = $('.ui-autocomplete-input').attr('dataId');
+            var autoSearchId = $('#autoSearch').attr('dataId');
 
-//            if (selProvinceV == "00") {
-//                CommonFn.tipsDialog('温馨提示', '请选择省份');
-//                return false;
-//            }
-//            if ( autoSearchId=="") {
-//                CommonFn.tipsDialog('温馨提示', '请输入正确的院校名称');
-//                return false;
-//            }
-//            if (selYearsV == '00') {
-//                CommonFn.tipsDialog('温馨提示', '年份没有选择,请重新输入');
-//                return false;
-//            }
-
-
+            if (selProvinceV == "00") {
+                CommonFn.tipsDialog('温馨提示', '请选择省份');
+                return false;
+            }
+            if ( autoSearchId=="" || autoSearchId==null) {
+                CommonFn.tipsDialog('温馨提示', '请输入正确的院校名称');
+                return false;
+            }
+            if (selYearsV == '00') {
+                CommonFn.tipsDialog('温馨提示', '年份没有选择,请重新输入');
+                return false;
+            }
 
 
-            for(var i=0;i<$('#subjectType-main1 .subjectType').length;i++){
-                var values = $('#subjectType-main1 .subjectType:eq('+ i +')').find('option:selected').val();
-                var $parentDetail = $('#subjectType-main1 .subjectTypeDetail:eq('+ i +')');
-                var planEnrollingNumberV = $.trim($parentDetail.find('.planEnrollingNumber').val());
-                var realEnrollingNumberV = $.trim($parentDetail.find('.realEnrollingNumber').val());
-                var highestScoreV = $.trim($parentDetail.find('.highestScore').val());
-                var highestPrecedenceV = $.trim($parentDetail.find('.highestPrecedence').val());
-                var lowestScoreV = $.trim($parentDetail.find('.lowestScore').val());
-                var lowestPrecedenceV = $.trim($parentDetail.find('.lowestPrecedence').val());
-                var averageScoreV = $.trim($parentDetail.find('.averageScore').val());
-                var averagePrecedenceV = $.trim($parentDetail.find('.averagePrecedence').val());
+            if($('#subjectType1').attr('majorType')=='1' ){
+                alert("subjectType1 显示")
+                for(var i=0;i<$('#subjectType-main1 .subjectType').length;i++){
+                    var values = $('#subjectType-main1 .subjectType:eq('+ i +')').find('option:selected').val();
+                    var $parentDetail = $('#subjectType-main1 .subjectTypeDetail:eq('+ i +')');
+                    var planEnrollingNumberV = $.trim($parentDetail.find('.planEnrollingNumber').val());
+                    var realEnrollingNumberV = $.trim($parentDetail.find('.realEnrollingNumber').val());
+                    var highestScoreV = $.trim($parentDetail.find('.highestScore').val());
+                    var highestPrecedenceV = $.trim($parentDetail.find('.highestPrecedence').val());
+                    var lowestScoreV = $.trim($parentDetail.find('.lowestScore').val());
+                    var lowestPrecedenceV = $.trim($parentDetail.find('.lowestPrecedence').val());
+                    var averageScoreV = $.trim($parentDetail.find('.averageScore').val());
+                    var averagePrecedenceV = $.trim($parentDetail.find('.averagePrecedence').val());
 
-                if(values=="00" && $('#subjectType1').is(':visible')){
-                    CommonFn.tipsDialog('温馨提示', '请选择文史类招生批次');
-                    return false;
-                }
-                if(planEnrollingNumberV==""){
-                    CommonFn.tipsDialog('温馨提示', '请填写文史类计划数');
-                    return false;
-                }
-                if(realEnrollingNumberV==""){
-                    CommonFn.tipsDialog('温馨提示', '请填写文史类录取数');
-                    return false;
-                }
-                if(highestScoreV==""){
-                    CommonFn.tipsDialog('温馨提示', '请填写文史类最高分');
-                    return false;
-                }
-                if(highestPrecedenceV==""){
-                    CommonFn.tipsDialog('温馨提示', '请填写文史类最高位次');
-                    return false;
-                }
-                if(lowestScoreV==""){
-                    CommonFn.tipsDialog('温馨提示', '请填写文史类最低分');
-                    return false;
-                }
-                if(lowestPrecedenceV==""){
-                    CommonFn.tipsDialog('温馨提示', '请填写文史类最低位次');
-                    return false;
-                }
-                if(averageScoreV==""){
-                    CommonFn.tipsDialog('温馨提示', '请填写文史类平均分');
-                    return false;
-                }
-                if(averagePrecedenceV==""){
-                    CommonFn.tipsDialog('温馨提示', '请填写文史类平均位次');
-                    return false;
+                    if(values=="00" && $('#subjectType1').is(':visible')){
+                        CommonFn.tipsDialog('温馨提示', '请选择文史类招生批次');
+                        return false;
+                    }
+                    if(planEnrollingNumberV==""){
+                        CommonFn.tipsDialog('温馨提示', '请填写文史类计划数');
+                        return false;
+                    }
+                    if(realEnrollingNumberV==""){
+                        CommonFn.tipsDialog('温馨提示', '请填写文史类录取数');
+                        return false;
+                    }
+                    if(highestScoreV==""){
+                        CommonFn.tipsDialog('温馨提示', '请填写文史类最高分');
+                        return false;
+                    }
+                    if(highestPrecedenceV==""){
+                        CommonFn.tipsDialog('温馨提示', '请填写文史类最高位次');
+                        return false;
+                    }
+                    if(lowestScoreV==""){
+                        CommonFn.tipsDialog('温馨提示', '请填写文史类最低分');
+                        return false;
+                    }
+                    if(lowestPrecedenceV==""){
+                        CommonFn.tipsDialog('温馨提示', '请填写文史类最低位次');
+                        return false;
+                    }
+                    if(averageScoreV==""){
+                        CommonFn.tipsDialog('温馨提示', '请填写文史类平均分');
+                        return false;
+                    }
+                    if(averagePrecedenceV==""){
+                        CommonFn.tipsDialog('温馨提示', '请填写文史类平均位次');
+                        return false;
+                    }
                 }
             }
 
-            for(var i=0;i<$('#subjectType-main2 .subjectType').length;i++){
-                var values = $('#subjectType-main2 .subjectType:eq('+ i +')').find('option:selected').val();
-                var $parentDetail = $('#subjectType-main2 .subjectTypeDetail:eq('+ i +')');
-                var planEnrollingNumberV = $.trim($parentDetail.find('.planEnrollingNumber').val());
-                var realEnrollingNumberV = $.trim($parentDetail.find('.realEnrollingNumber').val());
-                var highestScoreV = $.trim($parentDetail.find('.highestScore').val());
-                var highestPrecedenceV = $.trim($parentDetail.find('.highestPrecedence').val());
-                var lowestScoreV = $.trim($parentDetail.find('.lowestScore').val());
-                var lowestPrecedenceV = $.trim($parentDetail.find('.lowestPrecedence').val());
-                var averageScoreV = $.trim($parentDetail.find('.averageScore').val());
-                var averagePrecedenceV = $.trim($parentDetail.find('.averagePrecedence').val());
 
-                if(values=="00"  && $('#subjectType2').is(':visible')){
-                    CommonFn.tipsDialog('温馨提示', '请选择理工类招生批次');
-                    return false;
-                }
-                if(planEnrollingNumberV==""){
-                    CommonFn.tipsDialog('温馨提示', '请填写理工类计划数');
-                    return false;
-                }
-                if(realEnrollingNumberV==""){
-                    CommonFn.tipsDialog('温馨提示', '请填写理工类录取数');
-                    return false;
-                }
-                if(highestScoreV==""){
-                    CommonFn.tipsDialog('温馨提示', '请填写理工类最高分');
-                    return false;
-                }
-                if(highestPrecedenceV==""){
-                    CommonFn.tipsDialog('温馨提示', '请填写理工类最高位次');
-                    return false;
-                }
-                if(lowestScoreV==""){
-                    CommonFn.tipsDialog('温馨提示', '请填写理工类最低分');
-                    return false;
-                }
-                if(lowestPrecedenceV==""){
-                    CommonFn.tipsDialog('温馨提示', '请填写理工类最低位次');
-                    return false;
-                }
-                if(averageScoreV==""){
-                    CommonFn.tipsDialog('温馨提示', '请填写理工类平均分');
-                    return false;
-                }
-                if(averagePrecedenceV==""){
-                    CommonFn.tipsDialog('温馨提示', '请填写理工类平均位次');
-                    return false;
+            if($('#subjectType2').attr('majorType')=='2'){
+                alert("subjectType2 显示")
+                for(var i=0;i<$('#subjectType-main2 .subjectType').length;i++){
+                    var values = $('#subjectType-main2 .subjectType:eq('+ i +')').find('option:selected').val();
+                    var $parentDetail = $('#subjectType-main2 .subjectTypeDetail:eq('+ i +')');
+                    var planEnrollingNumberV = $.trim($parentDetail.find('.planEnrollingNumber').val());
+                    var realEnrollingNumberV = $.trim($parentDetail.find('.realEnrollingNumber').val());
+                    var highestScoreV = $.trim($parentDetail.find('.highestScore').val());
+                    var highestPrecedenceV = $.trim($parentDetail.find('.highestPrecedence').val());
+                    var lowestScoreV = $.trim($parentDetail.find('.lowestScore').val());
+                    var lowestPrecedenceV = $.trim($parentDetail.find('.lowestPrecedence').val());
+                    var averageScoreV = $.trim($parentDetail.find('.averageScore').val());
+                    var averagePrecedenceV = $.trim($parentDetail.find('.averagePrecedence').val());
+
+                    if(values=="00"  && $('#subjectType2').is(':visible')){
+                        CommonFn.tipsDialog('温馨提示', '请选择理工类招生批次');
+                        return false;
+                    }
+                    if(planEnrollingNumberV==""){
+                        CommonFn.tipsDialog('温馨提示', '请填写理工类计划数');
+                        return false;
+                    }
+                    if(realEnrollingNumberV==""){
+                        CommonFn.tipsDialog('温馨提示', '请填写理工类录取数');
+                        return false;
+                    }
+                    if(highestScoreV==""){
+                        CommonFn.tipsDialog('温馨提示', '请填写理工类最高分');
+                        return false;
+                    }
+                    if(highestPrecedenceV==""){
+                        CommonFn.tipsDialog('温馨提示', '请填写理工类最高位次');
+                        return false;
+                    }
+                    if(lowestScoreV==""){
+                        CommonFn.tipsDialog('温馨提示', '请填写理工类最低分');
+                        return false;
+                    }
+                    if(lowestPrecedenceV==""){
+                        CommonFn.tipsDialog('温馨提示', '请填写理工类最低位次');
+                        return false;
+                    }
+                    if(averageScoreV==""){
+                        CommonFn.tipsDialog('温馨提示', '请填写理工类平均分');
+                        return false;
+                    }
+                    if(averagePrecedenceV==""){
+                        CommonFn.tipsDialog('温馨提示', '请填写理工类平均位次');
+                        return false;
+                    }
                 }
             }
+
+
+
+
 
             var batchData = [];
             var batchType = {}
@@ -415,10 +425,8 @@
                     var averageScoreV = $('.subjectTypeList:eq('+ i +')').find('.averageScore').val();
                     var averagePrecedenceV = $('.subjectTypeList:eq('+ i +')').find('.averagePrecedence').val();
                 if(batchV!=="00"){
-
-
                     batchType = {
-                        "universityMajorType":universityMajorTypeV,
+                        "majorType":universityMajorTypeV,
                         "batch": batchV,
                         "planEnrollingNumber": planEnrollingNumberV,
                         "realEnrollingNumber": realEnrollingNumberV,
@@ -460,10 +468,214 @@
                 data: Datas,
                 success: function (result) {
                     if (result.rtnCode == "0000000") {
-                        searchLoad();
+//                        searchLoad();
                     }
                 }
             });
         };
+
+
+
+
+
+        <#--var editFun = function () {-->
+            <#--var selProvinceV = $('#selProvince2 option:checked').val();-->
+            <#--var selYearsV = $("#selYears2").find('option:selected').val();-->
+            <#--var autoSearchId = $('#autoSearch').attr('dataId');-->
+
+            <#--if (selProvinceV == "00") {-->
+                <#--CommonFn.tipsDialog('温馨提示', '请选择省份');-->
+                <#--return false;-->
+            <#--}-->
+            <#--if ( autoSearchId=="" || autoSearchId==null) {-->
+                <#--CommonFn.tipsDialog('温馨提示', '请输入正确的院校名称');-->
+                <#--return false;-->
+            <#--}-->
+            <#--if (selYearsV == '00') {-->
+                <#--CommonFn.tipsDialog('温馨提示', '年份没有选择,请重新输入');-->
+                <#--return false;-->
+            <#--}-->
+
+
+            <#--for(var i=0;i<$('#subjectType-main1 .subjectType').length;i++){-->
+                <#--var values = $('#subjectType-main1 .subjectType:eq('+ i +')').find('option:selected').val();-->
+                <#--var $parentDetail = $('#subjectType-main1 .subjectTypeDetail:eq('+ i +')');-->
+                <#--var planEnrollingNumberV = $.trim($parentDetail.find('.planEnrollingNumber').val());-->
+                <#--var realEnrollingNumberV = $.trim($parentDetail.find('.realEnrollingNumber').val());-->
+                <#--var highestScoreV = $.trim($parentDetail.find('.highestScore').val());-->
+                <#--var highestPrecedenceV = $.trim($parentDetail.find('.highestPrecedence').val());-->
+                <#--var lowestScoreV = $.trim($parentDetail.find('.lowestScore').val());-->
+                <#--var lowestPrecedenceV = $.trim($parentDetail.find('.lowestPrecedence').val());-->
+                <#--var averageScoreV = $.trim($parentDetail.find('.averageScore').val());-->
+                <#--var averagePrecedenceV = $.trim($parentDetail.find('.averagePrecedence').val());-->
+
+                <#--if(values=="00" && $('#subjectType1').is(':visible')){-->
+                    <#--CommonFn.tipsDialog('温馨提示', '请选择文史类招生批次');-->
+                    <#--return false;-->
+                <#--}-->
+                <#--if(planEnrollingNumberV==""){-->
+                    <#--CommonFn.tipsDialog('温馨提示', '请填写文史类计划数');-->
+                    <#--return false;-->
+                <#--}-->
+                <#--if(realEnrollingNumberV==""){-->
+                    <#--CommonFn.tipsDialog('温馨提示', '请填写文史类录取数');-->
+                    <#--return false;-->
+                <#--}-->
+                <#--if(highestScoreV==""){-->
+                    <#--CommonFn.tipsDialog('温馨提示', '请填写文史类最高分');-->
+                    <#--return false;-->
+                <#--}-->
+                <#--if(highestPrecedenceV==""){-->
+                    <#--CommonFn.tipsDialog('温馨提示', '请填写文史类最高位次');-->
+                    <#--return false;-->
+                <#--}-->
+                <#--if(lowestScoreV==""){-->
+                    <#--CommonFn.tipsDialog('温馨提示', '请填写文史类最低分');-->
+                    <#--return false;-->
+                <#--}-->
+                <#--if(lowestPrecedenceV==""){-->
+                    <#--CommonFn.tipsDialog('温馨提示', '请填写文史类最低位次');-->
+                    <#--return false;-->
+                <#--}-->
+                <#--if(averageScoreV==""){-->
+                    <#--CommonFn.tipsDialog('温馨提示', '请填写文史类平均分');-->
+                    <#--return false;-->
+                <#--}-->
+                <#--if(averagePrecedenceV==""){-->
+                    <#--CommonFn.tipsDialog('温馨提示', '请填写文史类平均位次');-->
+                    <#--return false;-->
+                <#--}-->
+            <#--}-->
+
+            <#--for(var i=0;i<$('#subjectType-main2 .subjectType').length;i++){-->
+                <#--var values = $('#subjectType-main2 .subjectType:eq('+ i +')').find('option:selected').val();-->
+                <#--var $parentDetail = $('#subjectType-main2 .subjectTypeDetail:eq('+ i +')');-->
+                <#--var planEnrollingNumberV = $.trim($parentDetail.find('.planEnrollingNumber').val());-->
+                <#--var realEnrollingNumberV = $.trim($parentDetail.find('.realEnrollingNumber').val());-->
+                <#--var highestScoreV = $.trim($parentDetail.find('.highestScore').val());-->
+                <#--var highestPrecedenceV = $.trim($parentDetail.find('.highestPrecedence').val());-->
+                <#--var lowestScoreV = $.trim($parentDetail.find('.lowestScore').val());-->
+                <#--var lowestPrecedenceV = $.trim($parentDetail.find('.lowestPrecedence').val());-->
+                <#--var averageScoreV = $.trim($parentDetail.find('.averageScore').val());-->
+                <#--var averagePrecedenceV = $.trim($parentDetail.find('.averagePrecedence').val());-->
+
+                <#--if(values=="00"  && $('#subjectType2').is(':visible')){-->
+                    <#--CommonFn.tipsDialog('温馨提示', '请选择理工类招生批次');-->
+                    <#--return false;-->
+                <#--}-->
+                <#--if(planEnrollingNumberV==""){-->
+                    <#--CommonFn.tipsDialog('温馨提示', '请填写理工类计划数');-->
+                    <#--return false;-->
+                <#--}-->
+                <#--if(realEnrollingNumberV==""){-->
+                    <#--CommonFn.tipsDialog('温馨提示', '请填写理工类录取数');-->
+                    <#--return false;-->
+                <#--}-->
+                <#--if(highestScoreV==""){-->
+                    <#--CommonFn.tipsDialog('温馨提示', '请填写理工类最高分');-->
+                    <#--return false;-->
+                <#--}-->
+                <#--if(highestPrecedenceV==""){-->
+                    <#--CommonFn.tipsDialog('温馨提示', '请填写理工类最高位次');-->
+                    <#--return false;-->
+                <#--}-->
+                <#--if(lowestScoreV==""){-->
+                    <#--CommonFn.tipsDialog('温馨提示', '请填写理工类最低分');-->
+                    <#--return false;-->
+                <#--}-->
+                <#--if(lowestPrecedenceV==""){-->
+                    <#--CommonFn.tipsDialog('温馨提示', '请填写理工类最低位次');-->
+                    <#--return false;-->
+                <#--}-->
+                <#--if(averageScoreV==""){-->
+                    <#--CommonFn.tipsDialog('温馨提示', '请填写理工类平均分');-->
+                    <#--return false;-->
+                <#--}-->
+                <#--if(averagePrecedenceV==""){-->
+                    <#--CommonFn.tipsDialog('温馨提示', '请填写理工类平均位次');-->
+                    <#--return false;-->
+                <#--}-->
+            <#--}-->
+
+            <#--var batchData = [];-->
+            <#--var batchType = {}-->
+            <#--for(var i=0;i<$('.subjectTypeList').length;i++){-->
+                <#--var universityMajorTypeV = $('.subjectTypeList:eq('+ i +')').attr('dataid');-->
+                <#--var batchV = $('.subjectTypeList:eq('+ i +')').find('.subjectType option:checked').val();-->
+                <#--var planEnrollingNumberV = $('.subjectTypeList:eq('+ i +')').find('.planEnrollingNumber').val();-->
+                <#--var realEnrollingNumberV = $('.subjectTypeList:eq('+ i +')').find('.realEnrollingNumber').val();-->
+                <#--var highestScoreV = $('.subjectTypeList:eq('+ i +')').find('.highestScore').val();-->
+                <#--var highestPrecedenceV = $('.subjectTypeList:eq('+ i +')').find('.highestPrecedence').val();-->
+                <#--var lowestScoreV = $('.subjectTypeList:eq('+ i +')').find('.lowestScore').val();-->
+                <#--var lowestPrecedenceV = $('.subjectTypeList:eq('+ i +')').find('.lowestPrecedence').val();-->
+                <#--var averageScoreV = $('.subjectTypeList:eq('+ i +')').find('.averageScore').val();-->
+                <#--var averagePrecedenceV = $('.subjectTypeList:eq('+ i +')').find('.averagePrecedence').val();-->
+                <#--if(batchV!=="00"){-->
+
+
+                    <#--batchType = {-->
+                        <#--"universityMajorType":universityMajorTypeV,-->
+                        <#--"batch": batchV,-->
+                        <#--"planEnrollingNumber": planEnrollingNumberV,-->
+                        <#--"realEnrollingNumber": realEnrollingNumberV,-->
+                        <#--"highestScore": highestScoreV,-->
+                        <#--"highestPrecedence": highestPrecedenceV,-->
+                        <#--"lowestScore": lowestScoreV,-->
+                        <#--"lowestPrecedence": lowestPrecedenceV,-->
+                        <#--"averageScore": averageScoreV,-->
+                        <#--"averagePrecedence": averagePrecedenceV-->
+                    <#--};-->
+                    <#--batchData.push(batchType);-->
+                <#--}-->
+            <#--};-->
+
+            <#--batchData = JSON.stringify(batchData)-->
+
+
+            <#--if(batchData.length==0){-->
+                <#--CommonFn.tipsDialog('温馨提示', '至少选择一类招生信息');-->
+                <#--return false;-->
+            <#--}-->
+
+
+
+            <#--var Datas = {-->
+                <#--"areaId": selProvinceV,-->
+                <#--"universityId": autoSearchId,-->
+                <#--"year": selYearsV,-->
+                <#--"batchContent":batchData ,-->
+                <#--"oper": typeStr-->
+            <#--};-->
+            <#--console.log(Datas);-->
+            <#--if (typeStr == 'edit') {-->
+                <#--Datas.id = rowId;-->
+            <#--}-->
+            <#--$.ajax({-->
+                <#--type: "POST",-->
+                <#--url: '/admin/${bizSys}/commonsave/${mainObj}',-->
+                <#--data: Datas,-->
+                <#--success: function (result) {-->
+                    <#--if (result.rtnCode == "0000000") {-->
+                        <#--searchLoad();-->
+                    <#--}-->
+                <#--}-->
+            <#--});-->
+        <#--};-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     });
 </script>
