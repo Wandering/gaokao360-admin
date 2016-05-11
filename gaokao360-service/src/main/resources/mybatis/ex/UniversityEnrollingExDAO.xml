@@ -79,6 +79,7 @@ selectList
                 </if>
                 <if test="selector.majorType!=null">
                     , enrolling.majorType as majorType
+                    , typedict.name as typename
                 </if>
                 <if test="selector.realEnrollingNumber!=null">
                     , enrolling.realEnrollingNumber as realEnrollingNumber
