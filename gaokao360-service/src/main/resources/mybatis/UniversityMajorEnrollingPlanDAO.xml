@@ -30,7 +30,7 @@ selectList
         universityId as universityId ,
         year as year ,
         areaId as areaId ,
-        batch as batch ,
+        enrollType as enrollType,
         majorType as majorType ,
         majorName as majorName ,
         planEnrolling as planEnrolling ,
@@ -44,7 +44,7 @@ selectList
         universityId,
         year,
         areaId,
-        batch,
+        enrollType,
         majorType,
         majorName,
         planEnrolling,
@@ -56,7 +56,7 @@ selectList
         #{universityId},
         #{year},
         #{areaId},
-        #{batch},
+        #{enrollType},
         #{majorType},
         #{majorName},
         #{planEnrolling},
@@ -85,8 +85,8 @@ selectList
             <if test="areaId!=null">
                 areaId = #{areaId},
             </if>
-            <if test="batch!=null">
-                batch = #{batch},
+            <if test="enrollType!=null">
+                enrollType = #{enrollType},
             </if>
             <if test="majorType!=null">
                 majorType = #{majorType},
@@ -126,8 +126,8 @@ selectList
             <if test="map.areaId!=null">
                 areaId = #{map.areaId},
             </if>
-            <if test="map.batch!=null">
-                batch = #{map.batch},
+            <if test="map.enrollType!=null">
+                enrollType = #{map.enrollType},
             </if>
             <if test="map.majorType!=null">
                 majorType = #{map.majorType},
@@ -167,8 +167,8 @@ selectList
             <if test="update.areaId!=null">
                 areaId = #{update.areaId},
             </if>
-            <if test="update.batch!=null">
-                batch = #{update.batch},
+            <if test="update.enrollType!=null">
+                enrollType = #{update.enrollType},
             </if>
             <if test="update.majorType!=null">
                 majorType = #{update.majorType},
@@ -206,8 +206,8 @@ selectList
             <if test="condition.areaId!=null">
                 AND areaId = #{condition.areaId}
             </if>
-            <if test="condition.batch!=null">
-                AND batch = #{condition.batch}
+            <if test="condition.enrollType!=null">
+                AND enrollType = #{condition.enrollType}
             </if>
             <if test="condition.majorType!=null">
                 AND majorType = #{condition.majorType}
@@ -236,7 +236,7 @@ selectList
                 universityId,
                 year,
                 areaId,
-                batch,
+                enrollType,
                 majorType,
                 majorName,
                 planEnrolling,
@@ -248,7 +248,7 @@ selectList
                     #{map.universityId},
                     #{map.year},
                     #{map.areaId},
-                    #{map.batch},
+                    #{map.enrollType},
                     #{map.majorType},
                     #{map.majorName},
                     #{map.planEnrolling},
@@ -266,7 +266,7 @@ selectList
             universityId = #{universityId},
             year = #{year},
             areaId = #{areaId},
-            batch = #{batch},
+            enrollType = #{enrollType},
             majorType = #{majorType},
             majorName = #{majorName},
             planEnrolling = #{planEnrolling},
@@ -305,8 +305,8 @@ selectList
             <if test="areaId!=null">
                 AND areaId = #{areaId}
             </if>
-            <if test="batch!=null">
-                AND batch = #{batch}
+            <if test="enrollType!=null">
+                AND enrollType = #{enrollType}
             </if>
             <if test="majorType!=null">
                 AND majorType = #{majorType}
@@ -392,8 +392,8 @@ selectList
                         <if test="selector.areaId!=null">
                             , areaId
                         </if>
-                        <if test="selector.batch!=null">
-                            , batch
+                        <if test="selector.enrollType!=null">
+                            , enrollType
                         </if>
                         <if test="selector.majorType!=null">
                             , majorType
@@ -440,8 +440,8 @@ selectList
             <if test="condition.areaId!=null">
                 ${condition.groupOp}   ${condition.areaId.field}  ${condition.areaId.op}  #{condition.areaId.data}
             </if>
-            <if test="condition.batch!=null">
-                ${condition.groupOp}   ${condition.batch.field}  ${condition.batch.op}  #{condition.batch.data}
+            <if test="condition.enrollType!=null">
+                ${condition.groupOp}   ${condition.enrollType.field}  ${condition.enrollType.op}  #{condition.enrollType.data}
             </if>
             <if test="condition.majorType!=null">
                 ${condition.groupOp}   ${condition.majorType.field}  ${condition.majorType.op}  #{condition.majorType.data}
@@ -491,8 +491,8 @@ selectList
                     <if test="selector.areaId!=null">
                         , areaId
                     </if>
-                    <if test="selector.batch!=null">
-                        , batch
+                    <if test="selector.enrollType!=null">
+                        , enrollType
                     </if>
                     <if test="selector.majorType!=null">
                         , majorType
@@ -534,8 +534,8 @@ selectList
             <if test="condition.areaId!=null">
                 AND areaId like CONCAT('%', #{condition.areaId} , '%')
             </if>
-            <if test="condition.batch!=null">
-                AND batch like CONCAT('%', #{condition.batch} , '%')
+            <if test="condition.enrollType!=null">
+                AND enrollType like CONCAT('%', #{condition.enrollType} , '%')
             </if>
             <if test="condition.majorType!=null">
                 AND majorType like CONCAT('%', #{condition.majorType} , '%')
@@ -581,8 +581,8 @@ selectList
                 <if test="selector.areaId!=null">
                     , areaId
                 </if>
-                <if test="selector.batch!=null">
-                    , batch
+                <if test="selector.enrollType!=null">
+                    , enrollType
                 </if>
                 <if test="selector.majorType!=null">
                     , majorType
@@ -624,8 +624,8 @@ selectList
             <if test="condition.areaId!=null">
                 AND areaId = #{condition.areaId}
             </if>
-            <if test="condition.batch!=null">
-                AND batch = #{condition.batch}
+            <if test="condition.enrollType!=null">
+                AND enrollType = #{condition.enrollType}
             </if>
             <if test="condition.majorType!=null">
                 AND majorType = #{condition.majorType}
@@ -670,8 +670,8 @@ selectList
                     <if test="selector.areaId!=null">
                         , areaId
                     </if>
-                    <if test="selector.batch!=null">
-                        , batch
+                    <if test="selector.enrollType!=null">
+                        , enrollType
                     </if>
                     <if test="selector.majorType!=null">
                         , majorType
@@ -713,8 +713,8 @@ selectList
             <if test="condition.areaId!=null">
                 AND areaId = #{condition.areaId}
             </if>
-            <if test="condition.batch!=null">
-                AND batch = #{condition.batch}
+            <if test="condition.enrollType!=null">
+                AND enrollType = #{condition.enrollType}
             </if>
             <if test="condition.majorType!=null">
                 AND majorType = #{condition.majorType}
@@ -759,8 +759,8 @@ selectList
            <if test="areaId!=null">
                ${groupOp} ${areaId.field} ${areaId.op}  #{areaId.data}
            </if>
-           <if test="batch!=null">
-               ${groupOp} ${batch.field} ${batch.op}  #{batch.data}
+           <if test="enrollType!=null">
+               ${groupOp} ${enrollType.field} ${enrollType.op}  #{enrollType.data}
            </if>
            <if test="majorType!=null">
                ${groupOp} ${majorType.field} ${majorType.op}  #{majorType.data}
