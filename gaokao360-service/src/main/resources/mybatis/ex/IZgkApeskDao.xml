@@ -372,13 +372,13 @@
   <select id="selectUserApeskModel" resultMap="UserApeskModelMap" parameterType="java.util.Map">
 	select user_id as userId,report_id as reportId,create_date as createDate,report_date as reportDate,count(1) as num from zgk_apesk
 	<where>
-      and 1=1
       <if test="userId!=null">
         and user_id=#{userId,jdbcType=INTEGER}
       </if>
       <if test="type!=null">
         and ac_id=#{type,jdbcType=INTEGER}
       </if>
+      and report_id is not null
 	</where>
     group by ac_id
   </select>
