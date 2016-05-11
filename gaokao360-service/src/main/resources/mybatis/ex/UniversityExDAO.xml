@@ -380,7 +380,7 @@ selectList
             <!--</if>-->
             <if test="queryparam!=null">
                 ${groupOp}   (
-                OR university.code like #{queryparam.data}
+                university.code like #{queryparam.data}
                 OR university.name like #{queryparam.data}
                 OR university.subjection like #{queryparam.data}
                 OR province.name like #{queryparam.data}
