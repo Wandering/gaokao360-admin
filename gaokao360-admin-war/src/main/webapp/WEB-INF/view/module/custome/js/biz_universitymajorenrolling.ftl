@@ -318,7 +318,7 @@
 
 
 
-            if(rowData[0].universityMajorType=="1"){
+            if(rowData[0].majorType=="1"){
                 $('#subjectType1').show();
                 $('#subjectType2').hide();
                 var oParent = $('#subjectType-main1');
@@ -333,7 +333,7 @@
                 $('.averageScore').val(rowData[0].averageScore);
                 $('.averagePrecedence').val(rowData[0].averagePrecedence);
 
-            }else if(rowData[0].universityMajorType=="2"){
+            }else if(rowData[0].majorType=="2"){
                 $('#subjectType1').hide();
                 $('#subjectType2').show();
                 var oParent = $('#subjectType-main2');
