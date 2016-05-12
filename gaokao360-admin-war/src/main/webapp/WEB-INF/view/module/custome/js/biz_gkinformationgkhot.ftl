@@ -52,6 +52,17 @@
                 + '<input type="text" id="hotTitle" placeholder="请输入高考头条标题" class="" />'
                 + '</div>'
                 + '</div>'
+
+                + '<div class="form-group">'
+                + '<label class="col-sm-2 control-label no-padding-right"> 选择类型：</label>'
+                + '<div class="col-sm-3">'
+                + '<select class="form-control" id="seltype">'
+                + '<option value ="0">高考热点</option>'
+                + '<option value ="1">高考头条</option>'
+                + '</select>'
+                + '</div>'
+                + '</div>'
+
                 + '<div class="form-group">'
                 + '<label class="col-sm-2 control-label no-padding-right" for="hotTitle"> 头条热图：</label>'
                 + '<div class="col-sm-10">'
@@ -173,7 +184,8 @@
             var selProvinceV = $('#selProvince option:checked').val(),
                     hotTitleV = $.trim($('#hotTitle').val()),
                     hotContentV = $('#hotContent').html(),
-                    datePickerV = $.trim($('#date-picker').val());
+                    datePickerV = $.trim($('#date-picker').val()),
+                    seltypeV = $('#seltype option:checked').val();
 
             if (selProvinceV == "00") {
                 CommonFn.tipsDialog('温馨提示', '请选择省份');
@@ -204,6 +216,7 @@
                 return false;
             }
             var informationSubContent = $.trim($('#hotContent').text()).substring(0,100);
+            var type = $.trim($('#hotContent').text()).substring(0,100);
             var infoData = {
                 areaId: selProvinceV,
                 hotInformation: hotTitleV,
@@ -212,7 +225,8 @@
                 informationSubContent: informationSubContent,
                 hotCount: 0,
                 oper: typeStr,
-                imgUrl:fileUrl
+                imgUrl:fileUrl,
+                type:seltypeV
             };
             if (typeStr == 'edit') {
                 infoData.id = rowId;
