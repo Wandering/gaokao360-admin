@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+           http://mybatis.org/schema/mybatis-spring      http://mybatis.org/schema/mybatis-spring.xsd
+           http://www.springframework.org/schema/aop     http://www.springframework.org/schema/aop/spring-aop.xsd
+           http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/tx      http://www.springframework.org/schema/tx/spring-tx.xsd
+       ">
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="order" value="1"/>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+    </bean>
+
+    <bean id="zkResource" class="cn.thinkjoy.cloudstack.sz.ZookeeperResource"/>
+    <bean id="zkPropConfigurer" class="cn.thinkjoy.cloudstack.sz.ZookeeperConfigurer">
+        <property name="order" value="2"/>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="location">
+            <ref bean="zkResource"/>
+        </property>
+    </bean>
+
+    <!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
+    <context:annotation-config/>
+    <context:component-scan base-package="cn.thinkjoy">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    <aop:aspectj-autoproxy/>
+
+    <!-- 引入dubbo配置文件 请根据需要更改-->
+    <!--<import resource="classpath:dubbo/gaokao360-dubbo-provider.xml"/>-->
+    <!--默认的redis配置，启动时会建立连接-->
+    <import resource="classpath*:spring-redis.xml"/>
+    <!-- ucm的配置文件，用于统一登录 -->
+    <import resource="classpath*:spring-iauth.xml"/>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dynamicDataSource"/>
+        <qualifier value="platform"/>
+    </bean>
+
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="add*" propagation="REQUIRED" />
+            <tx:method name="insert*" propagation="REQUIRED" />
+            <tx:method name="batch*" propagation="REQUIRED" />
+            <tx:method name="delete*" propagation="REQUIRED" />
+            <tx:method name="update*" propagation="REQUIRED" />
+            <tx:method name="save*" propagation="REQUIRED" />
+            <tx:method name="*" propagation="SUPPORTS" />
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config expose-proxy="true" proxy-target-class="true">
+        <aop:pointcut id="services" expression="execution(* cn.thinkjoy.gaokao360.service..impl.*.*(..))" />
+        <aop:pointcut id="servicesRemote" expression="execution(* cn.thinkjoy.gaokao360.remote..*.*(..))" />
+        <aop:advisor pointcut-ref="services" advice-ref="txAdvice"/>
+        <aop:advisor pointcut-ref="servicesRemote" advice-ref="txAdvice"/>
+    </aop:config>
+
+    <!-- 使用annotation定义事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+
+    <!--数据源信息-->
+    <import resource="classpath:spring-datasource.xml"/>
+    <!--消费者/生产者信息-->
+    <import resource="classpath:dubbo/gaokao360-dubbo-consumer.xml"/>
+    <import resource="classpath:dubbo/gaokao360-dubbo-provider.xml"/>
+
+</beans>
