@@ -38,7 +38,7 @@ selectList
         gkhot.hotdate as hotdate,
 		province.name as province,
 		gkhot.type as type,
-		case when type=0 then '高考热点' when type=1 then '高考头条' end as typeName,
+		case when type=0 then '普通' when type=1 then '头条' end as typeName,
 		gkhot.imgUrl as imgUrl
 
     </sql>
