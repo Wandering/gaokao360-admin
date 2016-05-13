@@ -8,7 +8,7 @@
         select distinct res.* from
         zgk_resource res left outer join zgk_role_resource rres on res.id = rres.resourceId
         left outer join zgk_role_user ru on rres.roleId = ru.roleId
-        where ru.userId = #{userId}
+        where ru.userId = #{userId} and rres.`status` != -1
         order by res.orderNum
     </select>
 

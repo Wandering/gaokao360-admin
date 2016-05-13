@@ -38,6 +38,7 @@ selectList
         gkhot.hotdate as hotdate,
 		province.name as province,
 		gkhot.type as type,
+		case when type=0 then '普通' when type=1 then '头条' end as typeName,
 		gkhot.imgUrl as imgUrl
 
     </sql>
@@ -48,7 +49,7 @@ selectList
         FROM zgk_gkinformation_gkhot gkhot
         LEFT JOIN zgk_province province on gkhot.areaId=province.id
         <where>
-            1=1 AND gkhot.type=0
+            1=1
             <if test="condition.whereSql != null">
                 and id in (#{condition.whereSql})
             </if>
@@ -73,7 +74,7 @@ selectList
         FROM zgk_gkinformation_gkhot gkhot
         LEFT JOIN zgk_province province on gkhot.areaId=province.id
        <where>
-           1=1 AND gkhot.type=0
+           1=1
            <if test="gkhothotInformation!=null">
                ${groupOp} ${gkhothotInformation.field} ${gkhothotInformation.op}  #{gkhothotInformation.data}
            </if>
