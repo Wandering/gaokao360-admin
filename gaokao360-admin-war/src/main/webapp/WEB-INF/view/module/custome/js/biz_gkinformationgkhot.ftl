@@ -203,8 +203,8 @@
             }
 
 
-            if (hotTitleV.length > 30) {
-                CommonFn.tipsDialog('温馨提示', '请输入高考头条标题字数不能大于30个字');
+            if (hotTitleV.length > 50) {
+                CommonFn.tipsDialog('温馨提示', '请输入高考头条标题字数不能大于50个字');
                 return false;
             }
             if (hotContentV == "") {
