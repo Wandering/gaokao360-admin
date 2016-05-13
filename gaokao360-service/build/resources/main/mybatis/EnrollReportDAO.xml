@@ -1,0 +1,1130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.thinkjoy.gaokao360.dao.IEnrollReportDAO">
+<!--
+insert
+update
+updateNull
+deleteById
+deleteByCondition
+deleteByProperty
+fetch
+findOne
+findList
+findAll
+queryPage
+like
+queryList
+queryOne
+count
+selectMaxId
+updateOrSave
+selectOne
+selectList
+-->
+
+    <sql id="Base_Column_List">
+        id as id ,
+        sortId as sortId ,
+        year as year ,
+        batchId as batchId ,
+        batch as batch ,
+        batch1 as batch1 ,
+        universityCode as universityCode ,
+        universityName as universityName ,
+        wsPlanNumber as wsPlanNumber ,
+        wsEnrollNumber as wsEnrollNumber ,
+        wsHighestScore as wsHighestScore ,
+        wsLowestScore as wsLowestScore ,
+        wsLowestRank as wsLowestRank ,
+        wsAverageScore as wsAverageScore ,
+        wsAverageRank as wsAverageRank ,
+        lgPlanNumber as lgPlanNumber ,
+        lgEnrollNumber as lgEnrollNumber ,
+        lgHighestScore as lgHighestScore ,
+        lgHighestRank as lgHighestRank ,
+        lgLowestScore as lgLowestScore ,
+        lgLowestRank as lgLowestRank ,
+        lgAverageScore as lgAverageScore ,
+        lgAverageRank as lgAverageRank ,
+        wsHighestRank as wsHighestRank ,
+        planNumber as planNumber ,
+        enrollNumber as enrollNumber 
+    </sql>
+    <insert id="insert" parameterType="EnrollReport">
+        INSERT INTO zgk_enroll_report (
+        sortId,
+        year,
+        batchId,
+        batch,
+        batch1,
+        universityCode,
+        universityName,
+        wsPlanNumber,
+        wsEnrollNumber,
+        wsHighestScore,
+        wsLowestScore,
+        wsLowestRank,
+        wsAverageScore,
+        wsAverageRank,
+        lgPlanNumber,
+        lgEnrollNumber,
+        lgHighestScore,
+        lgHighestRank,
+        lgLowestScore,
+        lgLowestRank,
+        lgAverageScore,
+        lgAverageRank,
+        wsHighestRank,
+        planNumber,
+        enrollNumber
+        ) VALUES (
+        #{sortId},
+        #{year},
+        #{batchId},
+        #{batch},
+        #{batch1},
+        #{universityCode},
+        #{universityName},
+        #{wsPlanNumber},
+        #{wsEnrollNumber},
+        #{wsHighestScore},
+        #{wsLowestScore},
+        #{wsLowestRank},
+        #{wsAverageScore},
+        #{wsAverageRank},
+        #{lgPlanNumber},
+        #{lgEnrollNumber},
+        #{lgHighestScore},
+        #{lgHighestRank},
+        #{lgLowestScore},
+        #{lgLowestRank},
+        #{lgAverageScore},
+        #{lgAverageRank},
+        #{wsHighestRank},
+        #{planNumber},
+        #{enrollNumber}
+        )
+            <selectKey resultType="java.lang.Long" keyProperty="id">
+                SELECT LAST_INSERT_ID() AS ID
+            </selectKey>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="EnrollReport">
+        UPDATE zgk_enroll_report
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="sortId!=null">
+                sortId = #{sortId},
+            </if>
+            <if test="year!=null">
+                year = #{year},
+            </if>
+            <if test="batchId!=null">
+                batchId = #{batchId},
+            </if>
+            <if test="batch!=null">
+                batch = #{batch},
+            </if>
+            <if test="batch1!=null">
+                batch1 = #{batch1},
+            </if>
+            <if test="universityCode!=null">
+                universityCode = #{universityCode},
+            </if>
+            <if test="universityName!=null">
+                universityName = #{universityName},
+            </if>
+            <if test="wsPlanNumber!=null">
+                wsPlanNumber = #{wsPlanNumber},
+            </if>
+            <if test="wsEnrollNumber!=null">
+                wsEnrollNumber = #{wsEnrollNumber},
+            </if>
+            <if test="wsHighestScore!=null">
+                wsHighestScore = #{wsHighestScore},
+            </if>
+            <if test="wsLowestScore!=null">
+                wsLowestScore = #{wsLowestScore},
+            </if>
+            <if test="wsLowestRank!=null">
+                wsLowestRank = #{wsLowestRank},
+            </if>
+            <if test="wsAverageScore!=null">
+                wsAverageScore = #{wsAverageScore},
+            </if>
+            <if test="wsAverageRank!=null">
+                wsAverageRank = #{wsAverageRank},
+            </if>
+            <if test="lgPlanNumber!=null">
+                lgPlanNumber = #{lgPlanNumber},
+            </if>
+            <if test="lgEnrollNumber!=null">
+                lgEnrollNumber = #{lgEnrollNumber},
+            </if>
+            <if test="lgHighestScore!=null">
+                lgHighestScore = #{lgHighestScore},
+            </if>
+            <if test="lgHighestRank!=null">
+                lgHighestRank = #{lgHighestRank},
+            </if>
+            <if test="lgLowestScore!=null">
+                lgLowestScore = #{lgLowestScore},
+            </if>
+            <if test="lgLowestRank!=null">
+                lgLowestRank = #{lgLowestRank},
+            </if>
+            <if test="lgAverageScore!=null">
+                lgAverageScore = #{lgAverageScore},
+            </if>
+            <if test="lgAverageRank!=null">
+                lgAverageRank = #{lgAverageRank},
+            </if>
+            <if test="wsHighestRank!=null">
+                wsHighestRank = #{wsHighestRank},
+            </if>
+            <if test="planNumber!=null">
+                planNumber = #{planNumber},
+            </if>
+            <if test="enrollNumber!=null">
+                enrollNumber = #{enrollNumber},
+            </if>
+        </trim>
+        WHERE
+        id = #{id}
+    </update>
+
+    <update id="updateMap">
+        UPDATE zgk_enroll_report
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="map.sortId!=null">
+                sortId = #{map.sortId},
+            </if>
+            <if test="map.year!=null">
+                year = #{map.year},
+            </if>
+            <if test="map.batchId!=null">
+                batchId = #{map.batchId},
+            </if>
+            <if test="map.batch!=null">
+                batch = #{map.batch},
+            </if>
+            <if test="map.batch1!=null">
+                batch1 = #{map.batch1},
+            </if>
+            <if test="map.universityCode!=null">
+                universityCode = #{map.universityCode},
+            </if>
+            <if test="map.universityName!=null">
+                universityName = #{map.universityName},
+            </if>
+            <if test="map.wsPlanNumber!=null">
+                wsPlanNumber = #{map.wsPlanNumber},
+            </if>
+            <if test="map.wsEnrollNumber!=null">
+                wsEnrollNumber = #{map.wsEnrollNumber},
+            </if>
+            <if test="map.wsHighestScore!=null">
+                wsHighestScore = #{map.wsHighestScore},
+            </if>
+            <if test="map.wsLowestScore!=null">
+                wsLowestScore = #{map.wsLowestScore},
+            </if>
+            <if test="map.wsLowestRank!=null">
+                wsLowestRank = #{map.wsLowestRank},
+            </if>
+            <if test="map.wsAverageScore!=null">
+                wsAverageScore = #{map.wsAverageScore},
+            </if>
+            <if test="map.wsAverageRank!=null">
+                wsAverageRank = #{map.wsAverageRank},
+            </if>
+            <if test="map.lgPlanNumber!=null">
+                lgPlanNumber = #{map.lgPlanNumber},
+            </if>
+            <if test="map.lgEnrollNumber!=null">
+                lgEnrollNumber = #{map.lgEnrollNumber},
+            </if>
+            <if test="map.lgHighestScore!=null">
+                lgHighestScore = #{map.lgHighestScore},
+            </if>
+            <if test="map.lgHighestRank!=null">
+                lgHighestRank = #{map.lgHighestRank},
+            </if>
+            <if test="map.lgLowestScore!=null">
+                lgLowestScore = #{map.lgLowestScore},
+            </if>
+            <if test="map.lgLowestRank!=null">
+                lgLowestRank = #{map.lgLowestRank},
+            </if>
+            <if test="map.lgAverageScore!=null">
+                lgAverageScore = #{map.lgAverageScore},
+            </if>
+            <if test="map.lgAverageRank!=null">
+                lgAverageRank = #{map.lgAverageRank},
+            </if>
+            <if test="map.wsHighestRank!=null">
+                wsHighestRank = #{map.wsHighestRank},
+            </if>
+            <if test="map.planNumber!=null">
+                planNumber = #{map.planNumber},
+            </if>
+            <if test="map.enrollNumber!=null">
+                enrollNumber = #{map.enrollNumber},
+            </if>
+        </trim>
+        WHERE
+        id = #{map.id}
+    </update>
+
+    <update id="updateByCondition">
+        UPDATE zgk_enroll_report
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="update.sortId!=null">
+                sortId = #{update.sortId},
+            </if>
+            <if test="update.year!=null">
+                year = #{update.year},
+            </if>
+            <if test="update.batchId!=null">
+                batchId = #{update.batchId},
+            </if>
+            <if test="update.batch!=null">
+                batch = #{update.batch},
+            </if>
+            <if test="update.batch1!=null">
+                batch1 = #{update.batch1},
+            </if>
+            <if test="update.universityCode!=null">
+                universityCode = #{update.universityCode},
+            </if>
+            <if test="update.universityName!=null">
+                universityName = #{update.universityName},
+            </if>
+            <if test="update.wsPlanNumber!=null">
+                wsPlanNumber = #{update.wsPlanNumber},
+            </if>
+            <if test="update.wsEnrollNumber!=null">
+                wsEnrollNumber = #{update.wsEnrollNumber},
+            </if>
+            <if test="update.wsHighestScore!=null">
+                wsHighestScore = #{update.wsHighestScore},
+            </if>
+            <if test="update.wsLowestScore!=null">
+                wsLowestScore = #{update.wsLowestScore},
+            </if>
+            <if test="update.wsLowestRank!=null">
+                wsLowestRank = #{update.wsLowestRank},
+            </if>
+            <if test="update.wsAverageScore!=null">
+                wsAverageScore = #{update.wsAverageScore},
+            </if>
+            <if test="update.wsAverageRank!=null">
+                wsAverageRank = #{update.wsAverageRank},
+            </if>
+            <if test="update.lgPlanNumber!=null">
+                lgPlanNumber = #{update.lgPlanNumber},
+            </if>
+            <if test="update.lgEnrollNumber!=null">
+                lgEnrollNumber = #{update.lgEnrollNumber},
+            </if>
+            <if test="update.lgHighestScore!=null">
+                lgHighestScore = #{update.lgHighestScore},
+            </if>
+            <if test="update.lgHighestRank!=null">
+                lgHighestRank = #{update.lgHighestRank},
+            </if>
+            <if test="update.lgLowestScore!=null">
+                lgLowestScore = #{update.lgLowestScore},
+            </if>
+            <if test="update.lgLowestRank!=null">
+                lgLowestRank = #{update.lgLowestRank},
+            </if>
+            <if test="update.lgAverageScore!=null">
+                lgAverageScore = #{update.lgAverageScore},
+            </if>
+            <if test="update.lgAverageRank!=null">
+                lgAverageRank = #{update.lgAverageRank},
+            </if>
+            <if test="update.wsHighestRank!=null">
+                wsHighestRank = #{update.wsHighestRank},
+            </if>
+            <if test="update.planNumber!=null">
+                planNumber = #{update.planNumber},
+            </if>
+            <if test="update.enrollNumber!=null">
+                enrollNumber = #{update.enrollNumber},
+            </if>
+        </trim>
+
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.sortId!=null">
+                AND sortId = #{condition.sortId}
+            </if>
+            <if test="condition.year!=null">
+                AND year = #{condition.year}
+            </if>
+            <if test="condition.batchId!=null">
+                AND batchId = #{condition.batchId}
+            </if>
+            <if test="condition.batch!=null">
+                AND batch = #{condition.batch}
+            </if>
+            <if test="condition.batch1!=null">
+                AND batch1 = #{condition.batch1}
+            </if>
+            <if test="condition.universityCode!=null">
+                AND universityCode = #{condition.universityCode}
+            </if>
+            <if test="condition.universityName!=null">
+                AND universityName = #{condition.universityName}
+            </if>
+            <if test="condition.wsPlanNumber!=null">
+                AND wsPlanNumber = #{condition.wsPlanNumber}
+            </if>
+            <if test="condition.wsEnrollNumber!=null">
+                AND wsEnrollNumber = #{condition.wsEnrollNumber}
+            </if>
+            <if test="condition.wsHighestScore!=null">
+                AND wsHighestScore = #{condition.wsHighestScore}
+            </if>
+            <if test="condition.wsLowestScore!=null">
+                AND wsLowestScore = #{condition.wsLowestScore}
+            </if>
+            <if test="condition.wsLowestRank!=null">
+                AND wsLowestRank = #{condition.wsLowestRank}
+            </if>
+            <if test="condition.wsAverageScore!=null">
+                AND wsAverageScore = #{condition.wsAverageScore}
+            </if>
+            <if test="condition.wsAverageRank!=null">
+                AND wsAverageRank = #{condition.wsAverageRank}
+            </if>
+            <if test="condition.lgPlanNumber!=null">
+                AND lgPlanNumber = #{condition.lgPlanNumber}
+            </if>
+            <if test="condition.lgEnrollNumber!=null">
+                AND lgEnrollNumber = #{condition.lgEnrollNumber}
+            </if>
+            <if test="condition.lgHighestScore!=null">
+                AND lgHighestScore = #{condition.lgHighestScore}
+            </if>
+            <if test="condition.lgHighestRank!=null">
+                AND lgHighestRank = #{condition.lgHighestRank}
+            </if>
+            <if test="condition.lgLowestScore!=null">
+                AND lgLowestScore = #{condition.lgLowestScore}
+            </if>
+            <if test="condition.lgLowestRank!=null">
+                AND lgLowestRank = #{condition.lgLowestRank}
+            </if>
+            <if test="condition.lgAverageScore!=null">
+                AND lgAverageScore = #{condition.lgAverageScore}
+            </if>
+            <if test="condition.lgAverageRank!=null">
+                AND lgAverageRank = #{condition.lgAverageRank}
+            </if>
+            <if test="condition.wsHighestRank!=null">
+                AND wsHighestRank = #{condition.wsHighestRank}
+            </if>
+            <if test="condition.planNumber!=null">
+                AND planNumber = #{condition.planNumber}
+            </if>
+            <if test="condition.enrollNumber!=null">
+                AND enrollNumber = #{condition.enrollNumber}
+            </if>
+        </trim>
+    </update>
+
+    <insert id="insertMap" >
+        INSERT INTO zgk_enroll_report (
+                sortId,
+                year,
+                batchId,
+                batch,
+                batch1,
+                universityCode,
+                universityName,
+                wsPlanNumber,
+                wsEnrollNumber,
+                wsHighestScore,
+                wsLowestScore,
+                wsLowestRank,
+                wsAverageScore,
+                wsAverageRank,
+                lgPlanNumber,
+                lgEnrollNumber,
+                lgHighestScore,
+                lgHighestRank,
+                lgLowestScore,
+                lgLowestRank,
+                lgAverageScore,
+                lgAverageRank,
+                wsHighestRank,
+                planNumber,
+                enrollNumber
+        ) VALUES (
+                    #{map.sortId},
+                    #{map.year},
+                    #{map.batchId},
+                    #{map.batch},
+                    #{map.batch1},
+                    #{map.universityCode},
+                    #{map.universityName},
+                    #{map.wsPlanNumber},
+                    #{map.wsEnrollNumber},
+                    #{map.wsHighestScore},
+                    #{map.wsLowestScore},
+                    #{map.wsLowestRank},
+                    #{map.wsAverageScore},
+                    #{map.wsAverageRank},
+                    #{map.lgPlanNumber},
+                    #{map.lgEnrollNumber},
+                    #{map.lgHighestScore},
+                    #{map.lgHighestRank},
+                    #{map.lgLowestScore},
+                    #{map.lgLowestRank},
+                    #{map.lgAverageScore},
+                    #{map.lgAverageRank},
+                    #{map.wsHighestRank},
+                    #{map.planNumber},
+                    #{map.enrollNumber}
+        )
+    </insert>
+
+
+    <update id="updateNull" parameterType="EnrollReport">
+        UPDATE zgk_enroll_report
+        <trim prefix="SET" suffixOverrides=",">
+            sortId = #{sortId},
+            year = #{year},
+            batchId = #{batchId},
+            batch = #{batch},
+            batch1 = #{batch1},
+            universityCode = #{universityCode},
+            universityName = #{universityName},
+            wsPlanNumber = #{wsPlanNumber},
+            wsEnrollNumber = #{wsEnrollNumber},
+            wsHighestScore = #{wsHighestScore},
+            wsLowestScore = #{wsLowestScore},
+            wsLowestRank = #{wsLowestRank},
+            wsAverageScore = #{wsAverageScore},
+            wsAverageRank = #{wsAverageRank},
+            lgPlanNumber = #{lgPlanNumber},
+            lgEnrollNumber = #{lgEnrollNumber},
+            lgHighestScore = #{lgHighestScore},
+            lgHighestRank = #{lgHighestRank},
+            lgLowestScore = #{lgLowestScore},
+            lgLowestRank = #{lgLowestRank},
+            lgAverageScore = #{lgAverageScore},
+            lgAverageRank = #{lgAverageRank},
+            wsHighestRank = #{wsHighestRank},
+            planNumber = #{planNumber},
+            enrollNumber = #{enrollNumber},
+        </trim>
+        WHERE
+        id = #{id} 
+    </update>
+
+    <!-- 按Id删除 -->
+    <delete id="deleteById" parameterType="java.lang.Long">
+        DELETE FROM zgk_enroll_report
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+    </delete>
+
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        DELETE FROM zgk_enroll_report
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="id!=null">
+                AND id = #{id}
+            </if>
+            <if test="sortId!=null">
+                AND sortId = #{sortId}
+            </if>
+            <if test="year!=null">
+                AND year = #{year}
+            </if>
+            <if test="batchId!=null">
+                AND batchId = #{batchId}
+            </if>
+            <if test="batch!=null">
+                AND batch = #{batch}
+            </if>
+            <if test="batch1!=null">
+                AND batch1 = #{batch1}
+            </if>
+            <if test="universityCode!=null">
+                AND universityCode = #{universityCode}
+            </if>
+            <if test="universityName!=null">
+                AND universityName = #{universityName}
+            </if>
+            <if test="wsPlanNumber!=null">
+                AND wsPlanNumber = #{wsPlanNumber}
+            </if>
+            <if test="wsEnrollNumber!=null">
+                AND wsEnrollNumber = #{wsEnrollNumber}
+            </if>
+            <if test="wsHighestScore!=null">
+                AND wsHighestScore = #{wsHighestScore}
+            </if>
+            <if test="wsLowestScore!=null">
+                AND wsLowestScore = #{wsLowestScore}
+            </if>
+            <if test="wsLowestRank!=null">
+                AND wsLowestRank = #{wsLowestRank}
+            </if>
+            <if test="wsAverageScore!=null">
+                AND wsAverageScore = #{wsAverageScore}
+            </if>
+            <if test="wsAverageRank!=null">
+                AND wsAverageRank = #{wsAverageRank}
+            </if>
+            <if test="lgPlanNumber!=null">
+                AND lgPlanNumber = #{lgPlanNumber}
+            </if>
+            <if test="lgEnrollNumber!=null">
+                AND lgEnrollNumber = #{lgEnrollNumber}
+            </if>
+            <if test="lgHighestScore!=null">
+                AND lgHighestScore = #{lgHighestScore}
+            </if>
+            <if test="lgHighestRank!=null">
+                AND lgHighestRank = #{lgHighestRank}
+            </if>
+            <if test="lgLowestScore!=null">
+                AND lgLowestScore = #{lgLowestScore}
+            </if>
+            <if test="lgLowestRank!=null">
+                AND lgLowestRank = #{lgLowestRank}
+            </if>
+            <if test="lgAverageScore!=null">
+                AND lgAverageScore = #{lgAverageScore}
+            </if>
+            <if test="lgAverageRank!=null">
+                AND lgAverageRank = #{lgAverageRank}
+            </if>
+            <if test="wsHighestRank!=null">
+                AND wsHighestRank = #{wsHighestRank}
+            </if>
+            <if test="planNumber!=null">
+                AND planNumber = #{planNumber}
+            </if>
+            <if test="enrollNumber!=null">
+                AND enrollNumber = #{enrollNumber}
+            </if>
+        </trim>
+    </delete>
+
+    <delete id="deleteByProperty" parameterType="java.util.Map">
+        DELETE FROM zgk_enroll_report WHERE
+        ${property} = #{value}
+    </delete>
+
+    <select id="fetch" parameterType="java.lang.Long" resultType="EnrollReport">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_enroll_report
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+    </select>
+
+    <select id="findOne" parameterType="java.util.Map" resultType="EnrollReport">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_enroll_report WHERE
+        ${property} = #{value}
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+        LIMIT 0,1
+    </select>
+
+    <select id="findList" parameterType="java.util.Map" resultType="EnrollReport">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_enroll_report WHERE
+        ${property} = #{value}
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="findAll" resultType="EnrollReport">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_enroll_report
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryPage" resultType="EnrollReport">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_enroll_report
+        <where>
+
+            <if test="condition.whereSql != null">
+                and id in (#{condition.whereSql})
+            </if>
+
+            <if test="condition.id!=null">
+                ${condition.groupOp}   ${condition.id.field}  ${condition.id.op}  #{condition.id.data}
+            </if>
+            <if test="condition.sortId!=null">
+                ${condition.groupOp}   ${condition.sortId.field}  ${condition.sortId.op}  #{condition.sortId.data}
+            </if>
+            <if test="condition.year!=null">
+                ${condition.groupOp}   ${condition.year.field}  ${condition.year.op}  #{condition.year.data}
+            </if>
+            <if test="condition.batchId!=null">
+                ${condition.groupOp}   ${condition.batchId.field}  ${condition.batchId.op}  #{condition.batchId.data}
+            </if>
+            <if test="condition.batch!=null">
+                ${condition.groupOp}   ${condition.batch.field}  ${condition.batch.op}  #{condition.batch.data}
+            </if>
+            <if test="condition.batch1!=null">
+                ${condition.groupOp}   ${condition.batch1.field}  ${condition.batch1.op}  #{condition.batch1.data}
+            </if>
+            <if test="condition.universityCode!=null">
+                ${condition.groupOp}   ${condition.universityCode.field}  ${condition.universityCode.op}  #{condition.universityCode.data}
+            </if>
+            <if test="condition.universityName!=null">
+                ${condition.groupOp}   ${condition.universityName.field}  ${condition.universityName.op}  #{condition.universityName.data}
+            </if>
+            <if test="condition.wsPlanNumber!=null">
+                ${condition.groupOp}   ${condition.wsPlanNumber.field}  ${condition.wsPlanNumber.op}  #{condition.wsPlanNumber.data}
+            </if>
+            <if test="condition.wsEnrollNumber!=null">
+                ${condition.groupOp}   ${condition.wsEnrollNumber.field}  ${condition.wsEnrollNumber.op}  #{condition.wsEnrollNumber.data}
+            </if>
+            <if test="condition.wsHighestScore!=null">
+                ${condition.groupOp}   ${condition.wsHighestScore.field}  ${condition.wsHighestScore.op}  #{condition.wsHighestScore.data}
+            </if>
+            <if test="condition.wsLowestScore!=null">
+                ${condition.groupOp}   ${condition.wsLowestScore.field}  ${condition.wsLowestScore.op}  #{condition.wsLowestScore.data}
+            </if>
+            <if test="condition.wsLowestRank!=null">
+                ${condition.groupOp}   ${condition.wsLowestRank.field}  ${condition.wsLowestRank.op}  #{condition.wsLowestRank.data}
+            </if>
+            <if test="condition.wsAverageScore!=null">
+                ${condition.groupOp}   ${condition.wsAverageScore.field}  ${condition.wsAverageScore.op}  #{condition.wsAverageScore.data}
+            </if>
+            <if test="condition.wsAverageRank!=null">
+                ${condition.groupOp}   ${condition.wsAverageRank.field}  ${condition.wsAverageRank.op}  #{condition.wsAverageRank.data}
+            </if>
+            <if test="condition.lgPlanNumber!=null">
+                ${condition.groupOp}   ${condition.lgPlanNumber.field}  ${condition.lgPlanNumber.op}  #{condition.lgPlanNumber.data}
+            </if>
+            <if test="condition.lgEnrollNumber!=null">
+                ${condition.groupOp}   ${condition.lgEnrollNumber.field}  ${condition.lgEnrollNumber.op}  #{condition.lgEnrollNumber.data}
+            </if>
+            <if test="condition.lgHighestScore!=null">
+                ${condition.groupOp}   ${condition.lgHighestScore.field}  ${condition.lgHighestScore.op}  #{condition.lgHighestScore.data}
+            </if>
+            <if test="condition.lgHighestRank!=null">
+                ${condition.groupOp}   ${condition.lgHighestRank.field}  ${condition.lgHighestRank.op}  #{condition.lgHighestRank.data}
+            </if>
+            <if test="condition.lgLowestScore!=null">
+                ${condition.groupOp}   ${condition.lgLowestScore.field}  ${condition.lgLowestScore.op}  #{condition.lgLowestScore.data}
+            </if>
+            <if test="condition.lgLowestRank!=null">
+                ${condition.groupOp}   ${condition.lgLowestRank.field}  ${condition.lgLowestRank.op}  #{condition.lgLowestRank.data}
+            </if>
+            <if test="condition.lgAverageScore!=null">
+                ${condition.groupOp}   ${condition.lgAverageScore.field}  ${condition.lgAverageScore.op}  #{condition.lgAverageScore.data}
+            </if>
+            <if test="condition.lgAverageRank!=null">
+                ${condition.groupOp}   ${condition.lgAverageRank.field}  ${condition.lgAverageRank.op}  #{condition.lgAverageRank.data}
+            </if>
+            <if test="condition.wsHighestRank!=null">
+                ${condition.groupOp}   ${condition.wsHighestRank.field}  ${condition.wsHighestRank.op}  #{condition.wsHighestRank.data}
+            </if>
+            <if test="condition.planNumber!=null">
+                ${condition.groupOp}   ${condition.planNumber.field}  ${condition.planNumber.op}  #{condition.planNumber.data}
+            </if>
+            <if test="condition.enrollNumber!=null">
+                ${condition.groupOp}   ${condition.enrollNumber.field}  ${condition.enrollNumber.op}  #{condition.enrollNumber.data}
+            </if>
+
+
+    </where>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+    <select id="like" parameterType="java.util.Map" resultType="EnrollReport">
+        SELECT
+            <include refid="Base_Column_List" />
+        FROM zgk_enroll_report
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id like CONCAT('%', #{condition.id} , '%')
+            </if>
+            <if test="condition.sortId!=null">
+                AND sortId like CONCAT('%', #{condition.sortId} , '%')
+            </if>
+            <if test="condition.year!=null">
+                AND year like CONCAT('%', #{condition.year} , '%')
+            </if>
+            <if test="condition.batchId!=null">
+                AND batchId like CONCAT('%', #{condition.batchId} , '%')
+            </if>
+            <if test="condition.batch!=null">
+                AND batch like CONCAT('%', #{condition.batch} , '%')
+            </if>
+            <if test="condition.batch1!=null">
+                AND batch1 like CONCAT('%', #{condition.batch1} , '%')
+            </if>
+            <if test="condition.universityCode!=null">
+                AND universityCode like CONCAT('%', #{condition.universityCode} , '%')
+            </if>
+            <if test="condition.universityName!=null">
+                AND universityName like CONCAT('%', #{condition.universityName} , '%')
+            </if>
+            <if test="condition.wsPlanNumber!=null">
+                AND wsPlanNumber like CONCAT('%', #{condition.wsPlanNumber} , '%')
+            </if>
+            <if test="condition.wsEnrollNumber!=null">
+                AND wsEnrollNumber like CONCAT('%', #{condition.wsEnrollNumber} , '%')
+            </if>
+            <if test="condition.wsHighestScore!=null">
+                AND wsHighestScore like CONCAT('%', #{condition.wsHighestScore} , '%')
+            </if>
+            <if test="condition.wsLowestScore!=null">
+                AND wsLowestScore like CONCAT('%', #{condition.wsLowestScore} , '%')
+            </if>
+            <if test="condition.wsLowestRank!=null">
+                AND wsLowestRank like CONCAT('%', #{condition.wsLowestRank} , '%')
+            </if>
+            <if test="condition.wsAverageScore!=null">
+                AND wsAverageScore like CONCAT('%', #{condition.wsAverageScore} , '%')
+            </if>
+            <if test="condition.wsAverageRank!=null">
+                AND wsAverageRank like CONCAT('%', #{condition.wsAverageRank} , '%')
+            </if>
+            <if test="condition.lgPlanNumber!=null">
+                AND lgPlanNumber like CONCAT('%', #{condition.lgPlanNumber} , '%')
+            </if>
+            <if test="condition.lgEnrollNumber!=null">
+                AND lgEnrollNumber like CONCAT('%', #{condition.lgEnrollNumber} , '%')
+            </if>
+            <if test="condition.lgHighestScore!=null">
+                AND lgHighestScore like CONCAT('%', #{condition.lgHighestScore} , '%')
+            </if>
+            <if test="condition.lgHighestRank!=null">
+                AND lgHighestRank like CONCAT('%', #{condition.lgHighestRank} , '%')
+            </if>
+            <if test="condition.lgLowestScore!=null">
+                AND lgLowestScore like CONCAT('%', #{condition.lgLowestScore} , '%')
+            </if>
+            <if test="condition.lgLowestRank!=null">
+                AND lgLowestRank like CONCAT('%', #{condition.lgLowestRank} , '%')
+            </if>
+            <if test="condition.lgAverageScore!=null">
+                AND lgAverageScore like CONCAT('%', #{condition.lgAverageScore} , '%')
+            </if>
+            <if test="condition.lgAverageRank!=null">
+                AND lgAverageRank like CONCAT('%', #{condition.lgAverageRank} , '%')
+            </if>
+            <if test="condition.wsHighestRank!=null">
+                AND wsHighestRank like CONCAT('%', #{condition.wsHighestRank} , '%')
+            </if>
+            <if test="condition.planNumber!=null">
+                AND planNumber like CONCAT('%', #{condition.planNumber} , '%')
+            </if>
+            <if test="condition.enrollNumber!=null">
+                AND enrollNumber like CONCAT('%', #{condition.enrollNumber} , '%')
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+
+    <select id="queryList" parameterType="java.util.Map" resultType="EnrollReport">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_enroll_report
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.sortId!=null">
+                AND sortId = #{condition.sortId}
+            </if>
+            <if test="condition.year!=null">
+                AND year = #{condition.year}
+            </if>
+            <if test="condition.batchId!=null">
+                AND batchId = #{condition.batchId}
+            </if>
+            <if test="condition.batch!=null">
+                AND batch = #{condition.batch}
+            </if>
+            <if test="condition.batch1!=null">
+                AND batch1 = #{condition.batch1}
+            </if>
+            <if test="condition.universityCode!=null">
+                AND universityCode = #{condition.universityCode}
+            </if>
+            <if test="condition.universityName!=null">
+                AND universityName = #{condition.universityName}
+            </if>
+            <if test="condition.wsPlanNumber!=null">
+                AND wsPlanNumber = #{condition.wsPlanNumber}
+            </if>
+            <if test="condition.wsEnrollNumber!=null">
+                AND wsEnrollNumber = #{condition.wsEnrollNumber}
+            </if>
+            <if test="condition.wsHighestScore!=null">
+                AND wsHighestScore = #{condition.wsHighestScore}
+            </if>
+            <if test="condition.wsLowestScore!=null">
+                AND wsLowestScore = #{condition.wsLowestScore}
+            </if>
+            <if test="condition.wsLowestRank!=null">
+                AND wsLowestRank = #{condition.wsLowestRank}
+            </if>
+            <if test="condition.wsAverageScore!=null">
+                AND wsAverageScore = #{condition.wsAverageScore}
+            </if>
+            <if test="condition.wsAverageRank!=null">
+                AND wsAverageRank = #{condition.wsAverageRank}
+            </if>
+            <if test="condition.lgPlanNumber!=null">
+                AND lgPlanNumber = #{condition.lgPlanNumber}
+            </if>
+            <if test="condition.lgEnrollNumber!=null">
+                AND lgEnrollNumber = #{condition.lgEnrollNumber}
+            </if>
+            <if test="condition.lgHighestScore!=null">
+                AND lgHighestScore = #{condition.lgHighestScore}
+            </if>
+            <if test="condition.lgHighestRank!=null">
+                AND lgHighestRank = #{condition.lgHighestRank}
+            </if>
+            <if test="condition.lgLowestScore!=null">
+                AND lgLowestScore = #{condition.lgLowestScore}
+            </if>
+            <if test="condition.lgLowestRank!=null">
+                AND lgLowestRank = #{condition.lgLowestRank}
+            </if>
+            <if test="condition.lgAverageScore!=null">
+                AND lgAverageScore = #{condition.lgAverageScore}
+            </if>
+            <if test="condition.lgAverageRank!=null">
+                AND lgAverageRank = #{condition.lgAverageRank}
+            </if>
+            <if test="condition.wsHighestRank!=null">
+                AND wsHighestRank = #{condition.wsHighestRank}
+            </if>
+            <if test="condition.planNumber!=null">
+                AND planNumber = #{condition.planNumber}
+            </if>
+            <if test="condition.enrollNumber!=null">
+                AND enrollNumber = #{condition.enrollNumber}
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryOne" parameterType="java.util.Map" resultType="EnrollReport">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_enroll_report
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.sortId!=null">
+                AND sortId = #{condition.sortId}
+            </if>
+            <if test="condition.year!=null">
+                AND year = #{condition.year}
+            </if>
+            <if test="condition.batchId!=null">
+                AND batchId = #{condition.batchId}
+            </if>
+            <if test="condition.batch!=null">
+                AND batch = #{condition.batch}
+            </if>
+            <if test="condition.batch1!=null">
+                AND batch1 = #{condition.batch1}
+            </if>
+            <if test="condition.universityCode!=null">
+                AND universityCode = #{condition.universityCode}
+            </if>
+            <if test="condition.universityName!=null">
+                AND universityName = #{condition.universityName}
+            </if>
+            <if test="condition.wsPlanNumber!=null">
+                AND wsPlanNumber = #{condition.wsPlanNumber}
+            </if>
+            <if test="condition.wsEnrollNumber!=null">
+                AND wsEnrollNumber = #{condition.wsEnrollNumber}
+            </if>
+            <if test="condition.wsHighestScore!=null">
+                AND wsHighestScore = #{condition.wsHighestScore}
+            </if>
+            <if test="condition.wsLowestScore!=null">
+                AND wsLowestScore = #{condition.wsLowestScore}
+            </if>
+            <if test="condition.wsLowestRank!=null">
+                AND wsLowestRank = #{condition.wsLowestRank}
+            </if>
+            <if test="condition.wsAverageScore!=null">
+                AND wsAverageScore = #{condition.wsAverageScore}
+            </if>
+            <if test="condition.wsAverageRank!=null">
+                AND wsAverageRank = #{condition.wsAverageRank}
+            </if>
+            <if test="condition.lgPlanNumber!=null">
+                AND lgPlanNumber = #{condition.lgPlanNumber}
+            </if>
+            <if test="condition.lgEnrollNumber!=null">
+                AND lgEnrollNumber = #{condition.lgEnrollNumber}
+            </if>
+            <if test="condition.lgHighestScore!=null">
+                AND lgHighestScore = #{condition.lgHighestScore}
+            </if>
+            <if test="condition.lgHighestRank!=null">
+                AND lgHighestRank = #{condition.lgHighestRank}
+            </if>
+            <if test="condition.lgLowestScore!=null">
+                AND lgLowestScore = #{condition.lgLowestScore}
+            </if>
+            <if test="condition.lgLowestRank!=null">
+                AND lgLowestRank = #{condition.lgLowestRank}
+            </if>
+            <if test="condition.lgAverageScore!=null">
+                AND lgAverageScore = #{condition.lgAverageScore}
+            </if>
+            <if test="condition.lgAverageRank!=null">
+                AND lgAverageRank = #{condition.lgAverageRank}
+            </if>
+            <if test="condition.wsHighestRank!=null">
+                AND wsHighestRank = #{condition.wsHighestRank}
+            </if>
+            <if test="condition.planNumber!=null">
+                AND planNumber = #{condition.planNumber}
+            </if>
+            <if test="condition.enrollNumber!=null">
+                AND enrollNumber = #{condition.enrollNumber}
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+        limit 0,1
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(id) FROM zgk_enroll_report
+       <where>
+           <if test="id!=null">
+               ${groupOp} ${id.field} ${id.op}  #{id.data}
+           </if>
+           <if test="sortId!=null">
+               ${groupOp} ${sortId.field} ${sortId.op}  #{sortId.data}
+           </if>
+           <if test="year!=null">
+               ${groupOp} ${year.field} ${year.op}  #{year.data}
+           </if>
+           <if test="batchId!=null">
+               ${groupOp} ${batchId.field} ${batchId.op}  #{batchId.data}
+           </if>
+           <if test="batch!=null">
+               ${groupOp} ${batch.field} ${batch.op}  #{batch.data}
+           </if>
+           <if test="batch1!=null">
+               ${groupOp} ${batch1.field} ${batch1.op}  #{batch1.data}
+           </if>
+           <if test="universityCode!=null">
+               ${groupOp} ${universityCode.field} ${universityCode.op}  #{universityCode.data}
+           </if>
+           <if test="universityName!=null">
+               ${groupOp} ${universityName.field} ${universityName.op}  #{universityName.data}
+           </if>
+           <if test="wsPlanNumber!=null">
+               ${groupOp} ${wsPlanNumber.field} ${wsPlanNumber.op}  #{wsPlanNumber.data}
+           </if>
+           <if test="wsEnrollNumber!=null">
+               ${groupOp} ${wsEnrollNumber.field} ${wsEnrollNumber.op}  #{wsEnrollNumber.data}
+           </if>
+           <if test="wsHighestScore!=null">
+               ${groupOp} ${wsHighestScore.field} ${wsHighestScore.op}  #{wsHighestScore.data}
+           </if>
+           <if test="wsLowestScore!=null">
+               ${groupOp} ${wsLowestScore.field} ${wsLowestScore.op}  #{wsLowestScore.data}
+           </if>
+           <if test="wsLowestRank!=null">
+               ${groupOp} ${wsLowestRank.field} ${wsLowestRank.op}  #{wsLowestRank.data}
+           </if>
+           <if test="wsAverageScore!=null">
+               ${groupOp} ${wsAverageScore.field} ${wsAverageScore.op}  #{wsAverageScore.data}
+           </if>
+           <if test="wsAverageRank!=null">
+               ${groupOp} ${wsAverageRank.field} ${wsAverageRank.op}  #{wsAverageRank.data}
+           </if>
+           <if test="lgPlanNumber!=null">
+               ${groupOp} ${lgPlanNumber.field} ${lgPlanNumber.op}  #{lgPlanNumber.data}
+           </if>
+           <if test="lgEnrollNumber!=null">
+               ${groupOp} ${lgEnrollNumber.field} ${lgEnrollNumber.op}  #{lgEnrollNumber.data}
+           </if>
+           <if test="lgHighestScore!=null">
+               ${groupOp} ${lgHighestScore.field} ${lgHighestScore.op}  #{lgHighestScore.data}
+           </if>
+           <if test="lgHighestRank!=null">
+               ${groupOp} ${lgHighestRank.field} ${lgHighestRank.op}  #{lgHighestRank.data}
+           </if>
+           <if test="lgLowestScore!=null">
+               ${groupOp} ${lgLowestScore.field} ${lgLowestScore.op}  #{lgLowestScore.data}
+           </if>
+           <if test="lgLowestRank!=null">
+               ${groupOp} ${lgLowestRank.field} ${lgLowestRank.op}  #{lgLowestRank.data}
+           </if>
+           <if test="lgAverageScore!=null">
+               ${groupOp} ${lgAverageScore.field} ${lgAverageScore.op}  #{lgAverageScore.data}
+           </if>
+           <if test="lgAverageRank!=null">
+               ${groupOp} ${lgAverageRank.field} ${lgAverageRank.op}  #{lgAverageRank.data}
+           </if>
+           <if test="wsHighestRank!=null">
+               ${groupOp} ${wsHighestRank.field} ${wsHighestRank.op}  #{wsHighestRank.data}
+           </if>
+           <if test="planNumber!=null">
+               ${groupOp} ${planNumber.field} ${planNumber.op}  #{planNumber.data}
+           </if>
+           <if test="enrollNumber!=null">
+               ${groupOp} ${enrollNumber.field} ${enrollNumber.op}  #{enrollNumber.data}
+           </if>
+
+       </where>
+    </select>
+
+    <select id="selectMaxId" resultType="java.lang.Long">
+        SELECT
+        MAX(id)
+        FROM zgk_enroll_report
+    </select>
+
+</mapper>
+

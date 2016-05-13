@@ -28,8 +28,8 @@ public class UniversityMajorEnrollingPlan extends BaseDomain<Long>{
     private Integer year;
     /** 省份ID */
     private Long areaId;
-    /** 批次 */
-    private String batch;
+    /** 招生类型 */
+    private String enrollType;
     /** 科类，1文科，2理科 */
     private String majorType;
     /** 专业名称 */
@@ -73,12 +73,12 @@ public class UniversityMajorEnrollingPlan extends BaseDomain<Long>{
     public Long getAreaId() {
         return this.areaId;
     }
-    public void setBatch(String value) {
-        this.batch = value;
+    public void setenrollType(String value) {
+        this.enrollType = value;
     }
 
-    public String getBatch() {
-        return this.batch;
+    public String getenrollType() {
+        return this.enrollType;
     }
     public void setMajorType(String value) {
         this.majorType = value;
@@ -130,7 +130,7 @@ public class UniversityMajorEnrollingPlan extends BaseDomain<Long>{
 			.append("UniversityId",getUniversityId())
 			.append("Year",getYear())
 			.append("AreaId",getAreaId())
-			.append("Batch",getBatch())
+			.append("enrollType",getenrollType())
 			.append("MajorType",getMajorType())
 			.append("MajorName",getMajorName())
 			.append("PlanEnrolling",getPlanEnrolling())
