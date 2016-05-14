@@ -14,7 +14,7 @@
             }
             rules.push(rule);
         }
-        if (universityprovinceName != '' && universityprovinceName != null && universityprovinceName != undefined&&universityprovinceName!=='请选择省份') {
+        if (universityprovinceName != '' && universityprovinceName != null && universityprovinceName != undefined&&universityprovinceName!=='请选择省份' && universityprovinceName!=='00') {
             var rule = {
                 'field': 'university.provinceName',
                 'op': 'eq',

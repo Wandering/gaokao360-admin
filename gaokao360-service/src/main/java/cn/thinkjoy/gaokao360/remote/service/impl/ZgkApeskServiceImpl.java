@@ -1,15 +1,21 @@
 package cn.thinkjoy.gaokao360.remote.service.impl;
 
 
+import cn.thinkjoy.gaokao360.dao.ex.IZgkApeskCourseDao;
 import cn.thinkjoy.gaokao360.dao.ex.IZgkApeskDao;
 import cn.thinkjoy.zgk.common.Criteria;
 import cn.thinkjoy.zgk.common.StringUtil;
 import cn.thinkjoy.zgk.domain.ZgkApesk;
+import cn.thinkjoy.zgk.domain.ZgkApeskCourse;
+import cn.thinkjoy.zgk.dto.ZgkApeskDTO;
+import cn.thinkjoy.zgk.dto.ZgkApeskModelDTO;
 import cn.thinkjoy.zgk.remote.IZgkApeskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * zgk_apesk
@@ -20,22 +26,25 @@ import java.util.List;
 public class ZgkApeskServiceImpl implements IZgkApeskService {
     @Autowired
     private IZgkApeskDao zgkApeskDao;
+    @Autowired
+    private IZgkApeskCourseDao iZgkApeskCourseDao;
 
-    public List<ZgkApesk> query(Long userId, Integer acId, String liangbiao, String testEmail){
-    	Criteria example =new Criteria();
-    	if(userId>-1){
-    		example.put("userId", userId);
-    	}
-    	if(acId>-1){
-    		example.put("acId", acId);
-    	}
-    	if(!StringUtil.isNulOrBlank(liangbiao)){
-    		example.put("liangBiao", liangbiao);
-    	}
-    	if(!StringUtil.isNulOrBlank(testEmail)){
-    		example.put("testEmail", testEmail);
-    	}
-    	return selectByExample(example);
+    public List<ZgkApesk> query(Long userId, Integer acId, String liangbiao, String testEmail) {
+        Criteria example = new Criteria();
+        if (userId > -1) {
+            example.put("userId", userId);
+        }
+        if (acId > -1) {
+            example.put("acId", acId);
+        }
+        if (!StringUtil.isNulOrBlank(liangbiao)) {
+            example.put("liangBiao", liangbiao);
+        }
+        if (!StringUtil.isNulOrBlank(testEmail)) {
+            example.put("testEmail", testEmail);
+        }
+        example.put("orderByClause", "create_date desc");
+        return selectByExample(example);
     }
     public int countByExample(Criteria example) {
         int count = this.zgkApeskDao.countByExample(example);
@@ -80,5 +89,33 @@ public class ZgkApeskServiceImpl implements IZgkApeskService {
 
     public int insertSelective(ZgkApesk record) {
         return this.zgkApeskDao.insertSelective(record);
+    }
+
+    public List<ZgkApeskDTO> selectUserApeskResult(Map map) {
+        List<ZgkApeskCourse> zgkApeskCourses = iZgkApeskCourseDao.selectByExample(null);
+
+        List<ZgkApeskDTO> zgkApeskDTOs=new ArrayList<>();
+
+        for(ZgkApeskCourse zgkApeskCourse:zgkApeskCourses) {
+            ZgkApeskDTO zgkApeskDTO = new ZgkApeskDTO();
+            zgkApeskDTO.setName(zgkApeskCourse.getName());
+            zgkApeskDTO.setReportUrl(zgkApeskCourse.getReportUrl());
+            zgkApeskDTO.setGradeDescribe(zgkApeskCourse.getGradeDescribe());
+            zgkApeskDTO.setType(zgkApeskCourse.getAcId());
+            zgkApeskDTO.setIntroduce(zgkApeskCourse.getIntroduce());
+            zgkApeskDTO.setPicUrl(zgkApeskCourse.getPicUrl());
+            map.put("type", zgkApeskDTO.getType());
+            ZgkApeskModelDTO zgkApeskModelDTO = zgkApeskDao.selectUserApeskModel(map);
+            if (zgkApeskModelDTO != null) {
+                zgkApeskDTO.setNum(zgkApeskModelDTO.getNum());
+                zgkApeskDTO.setCreateDate(zgkApeskModelDTO.getCreateDate());
+                zgkApeskDTO.setReportDate(zgkApeskModelDTO.getReportDate());
+                zgkApeskDTO.setReportId(zgkApeskModelDTO.getReportId());
+                zgkApeskDTO.setUserId(zgkApeskModelDTO.getUserId());
+            }
+            zgkApeskDTOs.add(zgkApeskDTO);
+        }
+
+        return zgkApeskDTOs;
     }
 }
