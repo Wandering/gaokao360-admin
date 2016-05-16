@@ -22,6 +22,7 @@
 /plutommi/mmi/Framework/EventHandling/EventsInc/mmi_menu_handlers.h
 /vendor/font/MTK/official/project/plutommi/content/inc/
 /vendor/font/MTK/official/project/plutommi/content/src/
+*.war/*
 
 
 
