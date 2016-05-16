@@ -308,7 +308,7 @@
             $('#selProvince2').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
             $('#selYears2').find('option[value="' + rowData[0].year + '"]').attr('selected', 'selected');
             $('#selSpecialty').find('option[value="' + rowData[0].majorId + '"]').attr('selected', 'selected');
-            $('#nature').find('option[value="' + rowData[0].admissionBatchId + '"]').attr('selected', 'selected');
+            $('#nature').find('option[value="' + rowData[0].admissionFeature + '"]').attr('selected', 'selected');
             $('#schoolIng').find('option[value="' + rowData[0].lengthOfSchooling + '"]').attr('selected', 'selected');
             $('#tuition').val(rowData[0].schoolFee);
 
@@ -318,7 +318,7 @@
 
 
 
-            if(rowData[0].universityMajorType=="1"){
+            if(rowData[0].majorType=="1"){
                 $('#subjectType1').show();
                 $('#subjectType2').hide();
                 var oParent = $('#subjectType-main1');
@@ -333,7 +333,7 @@
                 $('.averageScore').val(rowData[0].averageScore);
                 $('.averagePrecedence').val(rowData[0].averagePrecedence);
 
-            }else if(rowData[0].universityMajorType=="2"){
+            }else if(rowData[0].majorType=="2"){
                 $('#subjectType1').hide();
                 $('#subjectType2').show();
                 var oParent = $('#subjectType-main2');
@@ -534,7 +534,7 @@
                 "areaId": selProvinceV,
                 "universityId": autoSearchId,
                 "majorId":selSpecialtyV,
-                "admissionBatchId":natureV,
+                "admissionFeature":natureV,
                 "year": selYearsV,
                 "batchContent":batchData ,
                 "oper": typeStr,

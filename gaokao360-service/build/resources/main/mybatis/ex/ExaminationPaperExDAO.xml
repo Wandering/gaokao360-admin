@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IExaminationPaperExDAO">
+<!--
+insert
+update
+updateNull
+deleteById
+deleteByCondition
+deleteByProperty
+fetch
+findOne
+findList
+findAll
+queryPage
+like
+queryList
+queryOne
+count
+selectMaxId
+updateOrSave
+selectOne
+selectList
+-->
+
+    <sql id="Base_Column_List">
+		paper.id as id ,
+        paper.years as years ,
+        paper.sort as sort ,
+        paper.m_beikaochongci_type_id as mbeikaochongciTypeId ,
+        paper.m_beikaochongci_type as mbeikaochongciType ,
+        paper.subjectId as subjectId ,
+		gksubject.subjectName as subjectName,
+        paper.paperName as paperName ,
+        paper.frontCover as frontCover ,
+        paper.subContent as subContent ,
+        paper.price as price ,
+        paper.isAccept as isAccept ,
+        paper.resources as resources ,
+        paper.resourcesExt as resourcesExt ,
+        paper.resourcesFilesize as resourcesFilesize ,
+        paper.downloadsAutomatic as downloadsAutomatic ,
+        paper.downloadsManual as downloadsManual ,
+        paper.createDate as createDate ,
+        paper.status as status ,
+        paper.creator as creator ,
+        paper.lastModDate as lastModDate ,
+        paper.lastModifier as lastModifier ,
+        paper.areaId as areaId ,
+		province.name as province
+    </sql>
+    <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.ExaminationPaperDTO">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_examination_paper paper
+        LEFT OUTER JOIN zgk_subject gksubject on paper.subjectId = gksubject.id
+        LEFT JOIN zgk_province province ON province.id = paper.areaId
+        <where>
+
+            <if test="condition.whereSql != null">
+                and id in (#{condition.whereSql})
+            </if>
+
+            <if test="condition.papersubjectId!=null">
+                ${condition.groupOp}   ${condition.papersubjectId.field}  ${condition.papersubjectId.op}  #{condition.papersubjectId.data}
+            </if>
+            <if test="condition.paperyears!=null">
+                ${condition.groupOp}   ${condition.paperyears.field}  ${condition.paperyears.op}  #{condition.paperyears.data}
+            </if>
+            <if test="condition.paperareaId!=null">
+                ${condition.groupOp}   ${condition.paperareaId.field}  ${condition.paperareaId.op}  #{condition.paperareaId.data}
+            </if>
+            <if test="condition.queryparam!=null">
+                ${condition.groupOp}   (province.name like #{condition.queryparam.data} OR paper.paperName  like #{condition.queryparam.data} OR gksubject.subjectName like #{condition.queryparam.data})
+            </if>
+
+
+    </where>
+        ORDER BY id DESC
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT
+        COUNT(paper.id)
+        FROM zgk_examination_paper paper
+        LEFT OUTER JOIN zgk_subject gksubject on paper.subjectId = gksubject.id
+        LEFT JOIN zgk_province province ON province.id = paper.areaId
+       <where>
+           <if test="papersubjectId!=null">
+               ${groupOp}   ${papersubjectId.field}  ${papersubjectId.op}  #{papersubjectId.data}
+           </if>
+           <if test="paperyears!=null">
+               ${groupOp}   ${paperyears.field}  ${paperyears.op}  #{paperyears.data}
+           </if>
+           <if test="paperareaId!=null">
+               ${groupOp}   ${paperareaId.field}  ${paperareaId.op}  #{paperareaId.data}
+           </if>
+           <if test="queryparam!=null">
+               ${groupOp}   (province.name like #{queryparam.data} OR paper.paperName  like #{queryparam.data} OR gksubject.subjectName like #{queryparam.data})
+           </if>
+
+
+       </where>
+    </select>
+
+    <select id="fetch" parameterType="java.lang.Long" resultType="cn.thinkjoy.gaokao360.dto.ExaminationPaperDTO">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_examination_paper paper
+        LEFT OUTER JOIN zgk_subject gksubject on paper.subjectId = gksubject.id
+        LEFT JOIN zgk_province province ON province.id = paper.areaId
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND paper.id = #{id}
+        </trim>
+    </select>
+</mapper>
+

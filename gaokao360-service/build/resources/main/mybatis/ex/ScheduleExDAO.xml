@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IScheduleExDAO">
+<!--
+insert
+update
+updateNull
+deleteById
+deleteByCondition
+deleteByProperty
+fetch
+findOne
+findList
+findAll
+queryPage
+like
+queryList
+queryOne
+count
+selectMaxId
+updateOrSave
+selectOne
+selectList
+-->
+
+    <sql id="Base_Column_List">
+        schedule.id as id ,
+        schedule.areaId as areaId ,
+        schedule.month as month ,
+        schedule.years as years ,
+        schedule.content as content ,
+        schedule.status as status ,
+        schedule.createDate as createDate ,
+        schedule.lastModDate as lastModDate ,
+        schedule.creator as creator ,
+        schedule.lastModifier as lastModifier ,
+        schedule.title as title ,
+        province.name as province
+    </sql>
+    <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.ScheduleDTO">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_schedule schedule
+        LEFT JOIN zgk_province province ON province.id=schedule.areaId
+        <where>
+
+            <if test="condition.whereSql != null">
+                and id in (#{condition.whereSql})
+            </if>
+            <if test="condition.schedulemonth!=null">
+                ${condition.groupOp}   ${condition.schedulemonth.field}  ${condition.schedulemonth.op}  #{condition.schedulemonth.data}
+            </if>
+            <if test="condition.scheduleyears!=null">
+                ${condition.groupOp}   ${condition.scheduleyears.field}  ${condition.scheduleyears.op}  #{condition.scheduleyears.data}
+            </if>
+            <if test="condition.scheduleareaId!=null">
+                ${condition.groupOp}   ${condition.scheduleareaId.field}  ${condition.scheduleareaId.op}  #{condition.scheduleareaId.data}
+            </if>
+            <if test="condition.queryparam!=null">
+                ${condition.groupOp}  (province.name like #{condition.queryparam.data} OR schedule.month like #{condition.queryparam.data} OR schedule.years like #{condition.queryparam.data} OR schedule.content like #{condition.queryparam.data} )
+            </if>
+
+
+
+        </where>
+        ORDER BY id DESC
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(schedule.id)
+        FROM zgk_schedule schedule
+        LEFT JOIN zgk_province province ON province.id=schedule.areaId
+        <where>
+            <if test="scheduleareaId!=null">
+                ${groupOp}   ${scheduleareaId.field}  ${scheduleareaId.op}  #{scheduleareaId.data}
+            </if>
+            <if test="queryparam!=null">
+                ${groupOp}  (province.name like #{queryparam.data} OR schedule.month like #{queryparam.data} OR schedule.years like #{queryparam.data})
+            </if>
+            <if test="scheduleareaId!=null">
+                ${groupOp}   ${scheduleareaId.field}  ${scheduleareaId.op}  #{scheduleareaId.data}
+            </if>
+        </where>
+    </select>
+</mapper>
+
