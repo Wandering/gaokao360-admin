@@ -1,5 +1,5 @@
 /_souceInsight_/
-/build/
+*/build/*
 /MoDIS/
 /Doc/
 /mtk_lib/
@@ -50,6 +50,7 @@
 *.o
 *.plg
 *.keep
+*.class
 
 
 ###############
