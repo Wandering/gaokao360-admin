@@ -53,6 +53,11 @@ public class ZgkApeskDTO implements Serializable {
     private String picUrl;
 
     /**
+     * 测评类型
+     */
+    private Long type;
+
+    /**
      * 测评次数
      */
     private Integer num;
@@ -127,6 +132,14 @@ public class ZgkApeskDTO implements Serializable {
 
     public void setPicUrl(String picUrl) {
         this.picUrl = picUrl;
+    }
+
+    public Long getType() {
+        return type;
+    }
+
+    public void setType(Long type) {
+        this.type = type;
     }
 
     public Integer getNum() {

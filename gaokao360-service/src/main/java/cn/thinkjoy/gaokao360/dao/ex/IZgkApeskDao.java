@@ -3,6 +3,7 @@ package cn.thinkjoy.gaokao360.dao.ex;
 import cn.thinkjoy.zgk.common.Criteria;
 import cn.thinkjoy.zgk.domain.ZgkApesk;
 import cn.thinkjoy.zgk.dto.ZgkApeskDTO;
+import cn.thinkjoy.zgk.dto.ZgkApeskModelDTO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -70,4 +71,10 @@ public interface IZgkApeskDao {
      * @return
      */
     List<ZgkApeskDTO> selectUserApeskResult(Map map);
+    /**
+     * 获取测评结果
+     * @param map
+     * @return
+     */
+    ZgkApeskModelDTO selectUserApeskModel(Map map);
 }

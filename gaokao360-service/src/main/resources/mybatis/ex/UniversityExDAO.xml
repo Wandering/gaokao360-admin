@@ -299,7 +299,7 @@ selectList
             </if>
 
         </where>
-            ORDER BY university.id ASC
+            ORDER BY IF (ISNULL(${orderBy}),10000,${orderBy}) ${sortBy}
         <if test="offset != null">
             limit ${offset}, ${rows}
         </if>
