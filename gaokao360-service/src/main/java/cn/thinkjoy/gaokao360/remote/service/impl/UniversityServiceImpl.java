@@ -473,11 +473,7 @@ public class UniversityServiceImpl implements IUniversityService {
         Collections.sort(historyList, new Comparator<Map<String, Object>>() {
             @Override
             public int compare(Map<String, Object> o1, Map<String, Object> o2) {
-                if(Integer.parseInt(o2.get("year") + "") == Integer.parseInt(o1.get("year") + ""))
-                {
-                    return Integer.parseInt(o2.get("batch") + "") < Integer.parseInt(o1.get("batch") + "") ? 1 : -1;
-                }
-                return Integer.parseInt(o2.get("year") + "")>Integer.parseInt(o1.get("year") + "")?1:-1;
+                return Integer.parseInt(o2.get("year") + "") >= Integer.parseInt(o1.get("year") + "")?1:-1;
             }
         });
     }
