@@ -203,19 +203,19 @@
                 +'                        placeholder="区号+号码，如:029-6666666">'
                 +'                        </div>'
                 +'                        </div>'
-                +'                        <div class="form-group">'
-                +'                        <label for="schoolIntroduce" class="col-sm-2 control-label">院校简介</label>'
-                +'                        <div class="col-sm-10">'
-                +'                        <div id="schoolIntroduce" class="wysiwyg-editor"></div>'
-                +'                        </div>'
-                +'                        </div>'
-                +''
-                +'                        <div class="form-group">'
-                +'                        <label for="schoolArticle" class="col-sm-2 control-label">院校章程</label>'
-                +'                        <div class="col-sm-10">'
-                +'                        <div class="wysiwyg-editor" id="schoolArticle"></div>'
-                +'                        </div>'
-                +'                        </div>'
+//                +'                        <div class="form-group">'
+//                +'                        <label for="schoolIntroduce" class="col-sm-2 control-label">院校简介</label>'
+//                +'                        <div class="col-sm-10">'
+//                +'                        <div id="schoolIntroduce" class="wysiwyg-editor"></div>'
+//                +'                        </div>'
+//                +'                        </div>'
+//                +''
+//                +'                        <div class="form-group">'
+//                +'                        <label for="schoolArticle" class="col-sm-2 control-label">院校章程</label>'
+//                +'                        <div class="col-sm-10">'
+//                +'                        <div class="wysiwyg-editor" id="schoolArticle"></div>'
+//                +'                        </div>'
+//                +'                        </div>'
                 +'                        </form>'
                 +'                        </div>'
                 +'                        </div>';
@@ -286,10 +286,10 @@
             $('#schoolInProvince2').find('option[value="' + rowData[0].areaid + '"]').attr('selected', 'selected');
             $('#schoolAddress').val(rowData[0].address);
             $('#schoolTel').val(rowData[0].contactPhone);
-            var universityIntroText = CommonFn.getContentHtml(rowData[0].universityIntro).join('');
-            $('#schoolIntroduce').html(universityIntroText);
-            var entranceIntroText = CommonFn.getContentHtml(rowData[0].entranceIntro).join('');
-            $('#schoolArticle').html(entranceIntroText);
+//            var universityIntroText = CommonFn.getContentHtml(rowData[0].universityIntro).join('');
+//            $('#schoolIntroduce').html(universityIntroText);
+//            var entranceIntroText = CommonFn.getContentHtml(rowData[0].entranceIntro).join('');
+//            $('#schoolArticle').html(entranceIntroText);
         });
         //删除院校基本信息
         CommonFn.deleteFun('#deleteBtn', '${mainObj}');
@@ -410,29 +410,29 @@
             }
 
 //                院校简介
-            var schoolIntroduce = $('#schoolIntroduce').html().trim();
-            if (schoolTel.length == '') {
-                CommonFn.tipsDialog('温馨提示', '院校简介输入不能为空');
-                return false;
-            }
-//                院校章程
-            var schoolArticle = $('#schoolArticle').html().trim();
-            if (schoolArticle.length == '') {
-                CommonFn.tipsDialog('温馨提示', '院校章程输入不能为空');
-                return false;
-            }
-            var schoolIntroduceV = $('#schoolIntroduce').html();
-
-            var schoolIntroduceHtml = CommonFn.getTextareaData(schoolIntroduceV).join(''),
-                    schoolIntroduceHtmlUrl = CommonFn.getTextareaUrlData(schoolIntroduceHtml),
-                    schoolIntroduceUrl = schoolIntroduceHtmlUrl[0],
-                    schoolIntroducelId = schoolIntroduceHtmlUrl[1];
-
-            var schoolArticleV = $('#schoolArticle').html();
-            var schoolArticleHtml = CommonFn.getTextareaData(schoolArticleV).join(''),
-                    schoolArticleHtmlUrl = CommonFn.getTextareaUrlData(schoolArticleHtml),
-                    schoolArticleUrl = schoolArticleHtmlUrl[0],
-                    schoolArticleId = schoolArticleHtmlUrl[1];
+//            var schoolIntroduce = $('#schoolIntroduce').html().trim();
+//            if (schoolTel.length == '') {
+//                CommonFn.tipsDialog('温馨提示', '院校简介输入不能为空');
+//                return false;
+//            }
+////                院校章程
+//            var schoolArticle = $('#schoolArticle').html().trim();
+//            if (schoolArticle.length == '') {
+//                CommonFn.tipsDialog('温馨提示', '院校章程输入不能为空');
+//                return false;
+//            }
+//            var schoolIntroduceV = $('#schoolIntroduce').html();
+//
+//            var schoolIntroduceHtml = CommonFn.getTextareaData(schoolIntroduceV).join(''),
+//                    schoolIntroduceHtmlUrl = CommonFn.getTextareaUrlData(schoolIntroduceHtml),
+//                    schoolIntroduceUrl = schoolIntroduceHtmlUrl[0],
+//                    schoolIntroducelId = schoolIntroduceHtmlUrl[1];
+//
+//            var schoolArticleV = $('#schoolArticle').html();
+//            var schoolArticleHtml = CommonFn.getTextareaData(schoolArticleV).join(''),
+//                    schoolArticleHtmlUrl = CommonFn.getTextareaUrlData(schoolArticleHtml),
+//                    schoolArticleUrl = schoolArticleHtmlUrl[0],
+//                    schoolArticleId = schoolArticleHtmlUrl[1];
 
             var addUniversityData = {
                 oper: typeStr
@@ -449,8 +449,8 @@
                 , provinceName: $('#schoolInProvince2 option:checked').text()
                 , address: $.trim($('#schoolAddress').val())
                 , contactPhone: $.trim($('#schoolTel').val())
-                , universityIntro:schoolIntroduceUrl
-                , entranceIntro:schoolArticleUrl
+//                , universityIntro:schoolIntroduceUrl
+//                , entranceIntro:schoolArticleUrl
             };
 
 
