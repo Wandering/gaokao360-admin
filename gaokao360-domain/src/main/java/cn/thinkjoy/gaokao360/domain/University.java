@@ -40,6 +40,8 @@ public class University extends CreateBaseDomain<Long>{
     private String property;
     /** 学校排名 */
     private Integer rank;
+    /** 选测等级 */
+    private String xcRank;
     /** 学历层次，本科或专科，对应字典表中的EDUCATION_LEVEL */
     private Integer educationLevel;
     /** 是否逻辑删除 */
@@ -47,6 +49,15 @@ public class University extends CreateBaseDomain<Long>{
 
 	public University(){
 	}
+
+    public String getXcRank() {
+        return xcRank;
+    }
+
+    public void setXcRank(String xcRank) {
+        this.xcRank = xcRank;
+    }
+
     public void setName(String value) {
         this.name = value;
     }

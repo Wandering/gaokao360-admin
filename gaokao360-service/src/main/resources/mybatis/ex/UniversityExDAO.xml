@@ -35,6 +35,7 @@ selectList
         university.photo_url as photoUrl ,
         university.property as property ,
         university.rank as rank ,
+        university.xc_rank as xcRank ,
         university.educationLevel as educationLevel,
         detail.address as address ,
         detail.contactPhone as contactPhone ,
@@ -180,6 +181,9 @@ selectList
             </if>
             <if test="selector.rank!=null">
             , university.rank as rank
+            </if>
+            <if test="selector.xcRank!=null">
+            , university.xc_rank as xcRank
             </if>
             <if test="selector.educationLevel!=null">
             , university.educationLevel as educationLevel
