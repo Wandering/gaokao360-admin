@@ -43,6 +43,7 @@ public class ZgkApeskServiceImpl implements IZgkApeskService {
         if (!StringUtil.isNulOrBlank(testEmail)) {
             example.put("testEmail", testEmail);
         }
+        example.put("filtNotNull", "true");
         example.put("orderByClause", "create_date desc");
         return selectByExample(example);
     }
