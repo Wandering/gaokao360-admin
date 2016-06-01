@@ -160,6 +160,9 @@
       <if test="condition.reportDate2 != null" >
          and report_date &lt;= #{condition.reportDate2}
       </if>
+      <if test="filtNotNull!=null">
+        and report_id is not null
+      </if>
     </trim>
   </sql>
   <sql id="Base_Column_List" >
@@ -175,6 +178,7 @@
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
+
     <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>

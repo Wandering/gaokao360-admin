@@ -88,10 +88,10 @@ public class UniversityServiceImpl implements IUniversityService {
      */
     @Override
     public List<UniversityMajor> getUniversityMajorListByUniversityId(long id,
-                                                     Map<String,Object> condition,
-                                                     int offset, int rows,
-                                                     String orderBy, String sqlOrderEnumStr,
-                                                     Map<String,Object> selectorpage){
+                                                                      Map<String,Object> condition,
+                                                                      int offset, int rows,
+                                                                      String orderBy, String sqlOrderEnumStr,
+                                                                      Map<String,Object> selectorpage){
         SqlOrderEnum sqlOrderEnum=SqlOrderEnum.ASC;
         if (sqlOrderEnumStr.equalsIgnoreCase("desc")){
             sqlOrderEnum=SqlOrderEnum.DESC;
@@ -137,10 +137,10 @@ public class UniversityServiceImpl implements IUniversityService {
      */
     @Override
     public List<Object> queryPage(String serviceName,
-                          Map<String,Object> condition,
-                          int offset, int rows,
-                          String orderBy, String sqlOrderEnumStr,
-                          Map<String,Object> selectorpage){
+                                  Map<String,Object> condition,
+                                  int offset, int rows,
+                                  String orderBy, String sqlOrderEnumStr,
+                                  Map<String,Object> selectorpage){
         SqlOrderEnum sqlOrderEnum=SqlOrderEnum.ASC;
         if (sqlOrderEnumStr.equalsIgnoreCase("desc")){
             sqlOrderEnum=SqlOrderEnum.DESC;
@@ -215,10 +215,9 @@ public class UniversityServiceImpl implements IUniversityService {
                 continue;
             }
             List<Integer> minScoreList = new ArrayList<>();
-            for (int i = 0; i < lowestScoreArray.length ; i++) {
-                if(isLegalScore(lowestScoreArray[i]))
-                {
-                    minScoreList.add(parseInt(lowestScoreArray[i]));
+            for (String aLowestScoreArray : lowestScoreArray) {
+                if (isLegalScore(aLowestScoreArray)) {
+                    minScoreList.add(parseInt(aLowestScoreArray));
                 }
             }
             if(minScoreList.size()==0)
@@ -279,10 +278,9 @@ public class UniversityServiceImpl implements IUniversityService {
         }else
         {
             String[] averageScoreArray = String.valueOf(map.get("averageScoreList")+"").split("@@");
-            for (int i = 0; i < averageScoreArray.length ; i++) {
-                if(isLegalScore(averageScoreArray[i]))
-                {
-                    avgScoreList.add(parseInt(averageScoreArray[i]));
+            for (String anAverageScoreArray : averageScoreArray) {
+                if (isLegalScore(anAverageScoreArray)) {
+                    avgScoreList.add(parseInt(anAverageScoreArray));
                 }
             }
             if(avgScoreList.size() == 0)
@@ -320,8 +318,8 @@ public class UniversityServiceImpl implements IUniversityService {
     private BigDecimal getValueA(Map<String, Object> map, List<Integer> avgScoreList) {
         BigDecimal valueA;
         int totleScore = 0;
-        for (int i = 0; i < avgScoreList.size(); i++) {
-            totleScore += avgScoreList.get(i);
+        for (Integer anAvgScoreList : avgScoreList) {
+            totleScore += anAvgScoreList;
         }
         valueA = new BigDecimal(totleScore).divide(new BigDecimal(avgScoreList.size()), 2, BigDecimal.ROUND_HALF_UP);
         map.put("avgLowScore", valueA);
@@ -394,8 +392,8 @@ public class UniversityServiceImpl implements IUniversityService {
 
     /**
      * 录取难易预测算法
-     * @param params
-     * @return
+     * @param params  params
+     * @return Map
      */
     @Override
     public Map<String, Object> getPredictProbability(Map<String, Object> params) {
@@ -418,10 +416,9 @@ public class UniversityServiceImpl implements IUniversityService {
                     continue;
                 }
                 List<Integer> minScoreList = new ArrayList<>();
-                for (int i = 0; i < lowestScoreArray.length ; i++) {
-                    if(isLegalScore(lowestScoreArray[i]))
-                    {
-                        minScoreList.add(parseInt(lowestScoreArray[i]));
+                for (String aLowestScoreArray : lowestScoreArray) {
+                    if (isLegalScore(aLowestScoreArray)) {
+                        minScoreList.add(parseInt(aLowestScoreArray));
                     }
                 }
                 if(minScoreList.size()==0)
@@ -473,11 +470,7 @@ public class UniversityServiceImpl implements IUniversityService {
         Collections.sort(historyList, new Comparator<Map<String, Object>>() {
             @Override
             public int compare(Map<String, Object> o1, Map<String, Object> o2) {
-                if(Integer.parseInt(o2.get("year") + "") == Integer.parseInt(o1.get("year") + ""))
-                {
-                    return Integer.parseInt(o2.get("batch") + "") < Integer.parseInt(o1.get("batch") + "") ? 1 : -1;
-                }
-                return Integer.parseInt(o2.get("year") + "")>Integer.parseInt(o1.get("year") + "")?1:-1;
+                return Integer.parseInt(o2.get("year") + "") >= Integer.parseInt(o1.get("year") + "")?1:-1;
             }
         });
     }
