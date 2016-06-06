@@ -22,6 +22,16 @@ public class Criteria {
      */
     protected String orderByClause;
 
+    private String filtNotNull;
+
+    public String getFiltNotNull() {
+        return filtNotNull;
+    }
+
+    public void setFiltNotNull(String filtNotNull) {
+        this.filtNotNull = filtNotNull;
+    }
+
     private Integer mysqlOffset;
 
     private Integer mysqlLength;
