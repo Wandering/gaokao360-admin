@@ -55,7 +55,7 @@ buildscript{
 /** 此闭包内的声明子类皆可使用 */
 allprojects {
     group = 'cn.thinkjoy.gaokao360'
-    version = '0.0.32-SNAPSHOT'
+    version = '0.0.33-SNAPSHOT'
 
     apply plugin: 'java'
     apply plugin: 'idea'

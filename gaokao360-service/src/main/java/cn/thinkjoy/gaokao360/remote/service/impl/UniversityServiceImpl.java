@@ -88,10 +88,10 @@ public class UniversityServiceImpl implements IUniversityService {
      */
     @Override
     public List<UniversityMajor> getUniversityMajorListByUniversityId(long id,
-                                                     Map<String,Object> condition,
-                                                     int offset, int rows,
-                                                     String orderBy, String sqlOrderEnumStr,
-                                                     Map<String,Object> selectorpage){
+                                                                      Map<String,Object> condition,
+                                                                      int offset, int rows,
+                                                                      String orderBy, String sqlOrderEnumStr,
+                                                                      Map<String,Object> selectorpage){
         SqlOrderEnum sqlOrderEnum=SqlOrderEnum.ASC;
         if (sqlOrderEnumStr.equalsIgnoreCase("desc")){
             sqlOrderEnum=SqlOrderEnum.DESC;
@@ -137,10 +137,10 @@ public class UniversityServiceImpl implements IUniversityService {
      */
     @Override
     public List<Object> queryPage(String serviceName,
-                          Map<String,Object> condition,
-                          int offset, int rows,
-                          String orderBy, String sqlOrderEnumStr,
-                          Map<String,Object> selectorpage){
+                                  Map<String,Object> condition,
+                                  int offset, int rows,
+                                  String orderBy, String sqlOrderEnumStr,
+                                  Map<String,Object> selectorpage){
         SqlOrderEnum sqlOrderEnum=SqlOrderEnum.ASC;
         if (sqlOrderEnumStr.equalsIgnoreCase("desc")){
             sqlOrderEnum=SqlOrderEnum.DESC;
