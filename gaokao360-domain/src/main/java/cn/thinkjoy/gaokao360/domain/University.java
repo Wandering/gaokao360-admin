@@ -42,7 +42,7 @@ public class University extends CreateBaseDomain<Long>{
     private Integer rank;
     /** 选测等级 */
     private String xcRank;
-    /** 学历层次，本科或专科，对应字典表中的EDUCATION_LEVEL */
+    /** 学历层次，本科或专科，对应字典表中的EDULEVEL */
     private Integer educationLevel;
     /** 是否逻辑删除 */
     private Boolean isDelete;
