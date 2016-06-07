@@ -57,8 +57,8 @@ selectList
             <if test="condition.gkhothotInformation!=null">
                 ${condition.groupOp}   ${condition.gkhothotInformation.field}  ${condition.gkhothotInformation.op}  #{condition.gkhothotInformation.data}
             </if>
-            <if test="condition.gkhotareaId!=null">
-                ${condition.groupOp}   ${condition.gkhotareaId.field}  ${condition.gkhotareaId.op}  #{condition.gkhotareaId.data}
+            <if test="condition.areaId!=null">
+                AND   ${condition.areaId.field}  ${condition.areaId.op}  #{condition.areaId.data}
             </if>
 
 
@@ -78,8 +78,8 @@ selectList
            <if test="gkhothotInformation!=null">
                ${groupOp} ${gkhothotInformation.field} ${gkhothotInformation.op}  #{gkhothotInformation.data}
            </if>
-           <if test="gkhotareaId!=null">
-               ${groupOp} ${gkhotareaId.field} ${gkhotareaId.op}  #{gkhotareaId.data}
+           <if test="areaId!=null">
+               AND ${areaId.field} ${areaId.op}  #{areaId.data}
            </if>
 
        </where>

@@ -39,7 +39,8 @@
     <import resource="classpath*:spring-iauth.xml"/>
 
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dynamicDataSource"/>
+        <!--<property name="dataSource" ref="dynamicDataSource"/>-->
+        <property name="dataSource" ref="parentDataSource"/>
         <qualifier value="platform"/>
     </bean>
 
