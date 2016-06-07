@@ -77,4 +77,7 @@ public interface IZgkApeskDao {
      * @return
      */
     ZgkApeskModelDTO selectUserApeskModel(Map map);
+
+
+    List<ZgkApesk> selectApeskLimit(Map map);
 }

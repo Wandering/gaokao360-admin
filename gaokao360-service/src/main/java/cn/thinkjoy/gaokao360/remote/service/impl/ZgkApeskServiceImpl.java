@@ -43,9 +43,11 @@ public class ZgkApeskServiceImpl implements IZgkApeskService {
         if (!StringUtil.isNulOrBlank(testEmail)) {
             example.put("testEmail", testEmail);
         }
-        example.put("filtNotNull", "true");
         example.put("orderByClause", "create_date desc");
         return selectByExample(example);
+    }
+    public List<ZgkApesk> selectApeskLimit(Map map) {
+        return zgkApeskDao.selectApeskLimit(map);
     }
     public int countByExample(Criteria example) {
         int count = this.zgkApeskDao.countByExample(example);

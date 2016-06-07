@@ -160,9 +160,6 @@
       <if test="condition.reportDate2 != null" >
          and report_date &lt;= #{condition.reportDate2}
       </if>
-      <if test="filtNotNull!=null">
-        and report_id is not null
-      </if>
     </trim>
   </sql>
   <sql id="Base_Column_List" >
@@ -185,6 +182,25 @@
     <if test="mysqlOffset != null and mysqlLength != null" >
       <![CDATA[ limit #{mysqlOffset} , #{mysqlLength} ]]>
     </if>
+  </select>
+  <select id="selectApeskLimit" resultMap="BaseResultMap" parameterType="Map">
+    select <include refid="Base_Column_List" /> from zgk_apesk
+    <where>
+         <if test="acId!=null">
+           and ac_id=#{acId}
+         </if>
+        <if test="userId!=null">
+          and user_id=#{userId}
+        </if>
+        <if test="liangBiao!=null">
+          and liang_biao=#{liangBiao}
+        </if>
+        <if test="testEmail!=null">
+          and test_email=#{testEmail}
+      </if>
+      and  report_id is not null
+    </where>
+
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
