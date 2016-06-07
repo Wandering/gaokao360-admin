@@ -35,7 +35,7 @@ public class AreaHandle {
      * @return
      */
     @Around("execution(* cn.thinkjoy.zgk.remote..*(..))")
-    public Object switchDB(ProceedingJoinPoint jionpoint)throws Exception,Throwable
+    public Object switchDB(ProceedingJoinPoint jionpoint)throws Throwable
     {
         String methodName = jionpoint.getSignature().getName();
         //无论是否是白名单执行清理数据库操作

@@ -53,8 +53,8 @@ selectList
                 and id in (#{condition.whereSql})
             </if>
 
-            <if test="condition.interpretationprovinceId!=null">
-                ${condition.groupOp}   ${condition.interpretationprovinceId.field}  ${condition.interpretationprovinceId.op}  #{condition.interpretationprovinceId.data}
+            <if test="condition.provinceId!=null">
+               AND   ${condition.provinceId.field}  ${condition.provinceId.op}  #{condition.provinceId.data}
             </if>
             <if test="condition.interpretationadmissionBatchId!=null">
                 ${condition.groupOp}   ${condition.interpretationadmissionBatchId.field}  ${condition.interpretationadmissionBatchId.op}  #{condition.interpretationadmissionBatchId.data}
@@ -81,8 +81,8 @@ selectList
         LEFT JOIN zgk_province province ON province.id=interpretation.provinceId
         LEFT OUTER JOIN zgk_admission_batch batch ON batch.id=interpretation.admissionBatchId
        <where>
-           <if test="interpretationprovinceId!=null">
-               ${groupOp} ${interpretationprovinceId.field} ${interpretationprovinceId.op}  #{interpretationprovinceId.data}
+           <if test="provinceId!=null">
+               ${groupOp} ${provinceId.field} ${provinceId.op}  #{provinceId.data}
            </if>
            <if test="interpretationadmissionBatchId!=null">
                ${groupOp} ${interpretationadmissionBatchId.field} ${interpretationadmissionBatchId.op}  #{interpretationadmissionBatchId.data}
