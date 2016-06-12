@@ -80,4 +80,6 @@ public interface IZgkApeskDao {
 
 
     List<ZgkApesk> selectApeskLimit(Map map);
+
+    List<ZgkApesk> selectApeskCallBack(Map map);
 }

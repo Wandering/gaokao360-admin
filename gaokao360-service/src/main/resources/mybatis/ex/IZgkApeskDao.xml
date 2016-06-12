@@ -183,6 +183,24 @@
       <![CDATA[ limit #{mysqlOffset} , #{mysqlLength} ]]>
     </if>
   </select>
+  <select id="selectApeskCallBack" resultMap="BaseResultMap" parameterType="Map">
+    select <include refid="Base_Column_List" /> from zgk_apesk
+    <where>
+      <if test="acId!=null">
+        and ac_id=#{acId}
+      </if>
+      <if test="userId!=null">
+        and user_id=#{userId}
+      </if>
+      <if test="liangBiao!=null">
+        and liang_biao=#{liangBiao}
+      </if>
+      <if test="testEmail!=null">
+        and test_email=#{testEmail}
+      </if>
+      order by id desc limit 1
+    </where>
+  </select>
   <select id="selectApeskLimit" resultMap="BaseResultMap" parameterType="Map">
     select <include refid="Base_Column_List" /> from zgk_apesk
     <where>

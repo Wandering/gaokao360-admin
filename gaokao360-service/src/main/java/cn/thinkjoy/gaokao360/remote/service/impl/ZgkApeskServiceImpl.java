@@ -49,6 +49,10 @@ public class ZgkApeskServiceImpl implements IZgkApeskService {
     public List<ZgkApesk> selectApeskLimit(Map map) {
         return zgkApeskDao.selectApeskLimit(map);
     }
+
+    public List<ZgkApesk> selectApeskCallBack(Map map) {
+        return zgkApeskDao.selectApeskCallBack(map);
+    }
     public int countByExample(Criteria example) {
         int count = this.zgkApeskDao.countByExample(example);
         return count;
