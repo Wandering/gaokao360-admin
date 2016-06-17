@@ -334,14 +334,14 @@
             }
 //                院校特征
             var schoolStatic = $('#schoolStatic').val();
-            if (schoolStatic.length == '') {
-                CommonFn.tipsDialog('温馨提示', '院校特征输入不能为空');
-                return false;
-            }
-            if (schoolStatic.length > 10) {
-                CommonFn.tipsDialog('温馨提示', '院校特征输入不能大于10个字');
-                return false;
-            }
+//            if (schoolStatic.length == '') {
+//                CommonFn.tipsDialog('温馨提示', '院校特征输入不能为空');
+//                return false;
+//            }
+//            if (schoolStatic.length > 10) {
+//                CommonFn.tipsDialog('温馨提示', '院校特征输入不能大于10个字');
+//                return false;
+//            }
 
             var selEduLevel2V = $('#selEduLevel2').find('option:selected').val();
 
