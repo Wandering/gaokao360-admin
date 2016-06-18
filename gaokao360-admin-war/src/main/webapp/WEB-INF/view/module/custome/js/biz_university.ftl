@@ -324,14 +324,14 @@
 //                院校排名
             var regNum = /^[0-9]*$/;
             var schoolRank = $('#schoolRank').val().trim();
-            if (schoolRank.length == '') {
-                CommonFn.tipsDialog('温馨提示', '院校排名不能为空');
-                return false;
-            }
-            if (schoolRank.length > 6 || !regNum.test(schoolRank)) {
-                CommonFn.tipsDialog('温馨提示', '院校排名输入只能位数字,且不能大于6位数字');
-                return false;
-            }
+//            if (schoolRank.length == '') {
+//                CommonFn.tipsDialog('温馨提示', '院校排名不能为空');
+//                return false;
+//            }
+//            if (schoolRank.length > 6 || !regNum.test(schoolRank)) {
+//                CommonFn.tipsDialog('温馨提示', '院校排名输入只能位数字,且不能大于6位数字');
+//                return false;
+//            }
 //                院校特征
             var schoolStatic = $('#schoolStatic').val();
 //            if (schoolStatic.length == '') {
@@ -439,7 +439,7 @@
                 , code: $.trim($('#schoolCode').val())
                 , name: $.trim($('#schoolName').val())
                 , photoUrl: $('#imgUrlData').val()
-                , rank: $.trim($('#schoolRank').val())
+//                , rank: $.trim($('#schoolRank').val())
                 , property: $.trim($('#schoolStatic').val())
                 , educationLevel: selEduLevel2V
                 , type: universityTypeV
