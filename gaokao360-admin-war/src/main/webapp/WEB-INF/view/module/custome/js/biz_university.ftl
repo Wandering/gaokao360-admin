@@ -302,8 +302,8 @@
                 CommonFn.tipsDialog('温馨提示', '院校名称输入不能为空');
                 return false;
             }
-            if (schoolName.length > 15) {
-                CommonFn.tipsDialog('温馨提示', '院校名称输入不能大于15个字');
+            if (schoolName.length > 40) {
+                CommonFn.tipsDialog('温馨提示', '院校名称输入不能大于40个字');
                 return false;
             }
             if($('#imgUrlData').val()==""){
