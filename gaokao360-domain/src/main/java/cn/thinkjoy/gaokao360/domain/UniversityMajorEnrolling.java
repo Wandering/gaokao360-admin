@@ -136,11 +136,11 @@ public class UniversityMajorEnrolling extends CreateBaseDomain<Long>{
     public Integer getAverageScore() {
         return this.averageScore;
     }
-    public void setHighestScore(Integer value) {
+    public void setHighestScore(String value) {
         this.highestScore = value;
     }
 
-    public Integer getHighestScore() {
+    public String getHighestScore() {
         return this.highestScore;
     }
     public void setLowestScore(Integer value) {
