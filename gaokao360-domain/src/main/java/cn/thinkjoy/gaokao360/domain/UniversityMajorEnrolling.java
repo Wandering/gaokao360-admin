@@ -39,7 +39,7 @@ public class UniversityMajorEnrolling extends CreateBaseDomain<Long>{
     /** 录取平均分（查询时为0的，返回‘’或者‘－’） */
     private Integer averageScore;
     /** 录取最高分（无数据，暂不用） */
-    private Integer highestScore;
+    private String highestScore;
     /** 录取最低分（无数据，暂不用） */
     private Integer lowestScore;
     /** 招生性质（无数据，暂时不用） */
