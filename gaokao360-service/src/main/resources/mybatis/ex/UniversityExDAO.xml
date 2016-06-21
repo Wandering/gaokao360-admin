@@ -456,7 +456,7 @@ selectList
         un.subjection as province,
         un.rank as rank,
         un.property as feature,
-        en.batch as batch,
+        SUBSTR(en.batch,1,1) as 'batch',
         en.areaId as areaId,
         Case When en.majorType='1' then '文史'
         When en.majorType='2' then '理工'
@@ -497,8 +497,8 @@ selectList
                 AND en.year &lt;= #{endYear}
             </if>
         </where>
-        group by en.universityId,un.`name`,en.batch,en.areaId,en.majorType
-        order by (case when un.rank is null then '3000' else un.rank end + 0)
+        group by en.universityId,un.`name`,'batch',en.areaId,en.majorType
+        order by en.batch,(case when un.rank is null then '3000' else un.rank end + 0)
     </select>
 
     <select id="queryPredictProbability" resultType="java.util.HashMap">
