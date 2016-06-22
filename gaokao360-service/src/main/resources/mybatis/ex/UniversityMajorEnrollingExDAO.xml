@@ -637,7 +637,7 @@
                     , year
                 </if>
                 <if test="selector.batch!=null">
-                    ,(SELECT name FROM zgk_data_dict dd WHERE dd.type = 'BATCHTYPE1' AND dd.dictId = batch) as batchName
+                    ,(SELECT name FROM zgk_data_dict dd WHERE dd.type = 'BATCHTYPE2' AND dd.dictId = batch) as batchName
                 </if>
                 <if test="selector.admissionFeature!=null">
                     ,
@@ -748,18 +748,7 @@
                 ${condition.groupOp}   ${condition.year.field}  ${condition.year.op}  #{condition.year.data}
             </if>
             <if test="condition.batch!=null">
-                <if test="condition.batch.data==1">
-                    ${condition.groupOp}   ${condition.batch.field}  in (1,19)
-                </if>
-                <if test="condition.batch.data==2">
-                    ${condition.groupOp}   ${condition.batch.field}  in (2,15,16,20,23)
-                </if>
-                <if test="condition.batch.data==4">
-                    ${condition.groupOp}   ${condition.batch.field}  in (4,17,18,21)
-                </if>
-                <if test="condition.batch.data==8">
-                    ${condition.groupOp}   ${condition.batch.field}  in (8,9,10,11,12,13,14,22)
-                </if>
+                    ${condition.groupOp}   ${condition.batch.field}  = #{condition.batch.data}
             </if>
             <if test="condition.admissionFeature!=null">
                 ${condition.groupOp}   ${condition.admissionFeature.field}  ${condition.admissionFeature.op}  #{condition.admissionFeature.data}
