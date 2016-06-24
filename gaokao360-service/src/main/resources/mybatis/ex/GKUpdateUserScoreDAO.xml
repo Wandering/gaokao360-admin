@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IGKUpdateUserScoreDAO">
+<!--
+insert
+update
+updateNull
+deleteById
+deleteByCondition
+deleteByProperty
+fetch
+findOne
+findList
+findAll
+queryPage
+like
+queryList
+queryOne
+count
+selectMaxId
+updateOrSave
+selectOne
+selectList
+-->
+
+    <select id="getUserScore" resultType="java.util.Map">
+        select id,score,precedence from zgk_report_lock rr where rr.user_id=(
+        select id
+        from zgk_user_account aa
+        where account=#{account}) LIMIT 1
+    </select>
+    <delete id="resetUserScore">
+        DELETE FROM zgk_report_lock WHERE id=#{id}
+    </delete>
+</mapper>
+
