@@ -25,13 +25,11 @@ selectList
 -->
 
     <select id="getUserScore" resultType="java.util.Map">
-        select id,score,precedence from zgk_report_lock rr where rr.user_id=(
-        select id
-        from zgk_user_account aa
-        where account=#{account}) LIMIT 1
+        select rr.user_id as id,score,precedence from zgk2.zgk_report_lock rr,zgk2.zgk_user_account aa
+        where rr.user_id = aa.id and account=#{account} limit 1;
     </select>
     <delete id="resetUserScore">
-        DELETE FROM zgk_report_lock WHERE id=#{id}
+        DELETE FROM zgk_report_lock WHERE user_id=#{id}
     </delete>
 </mapper>
 
