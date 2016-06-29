@@ -302,8 +302,8 @@
                 CommonFn.tipsDialog('温馨提示', '院校名称输入不能为空');
                 return false;
             }
-            if (schoolName.length > 15) {
-                CommonFn.tipsDialog('温馨提示', '院校名称输入不能大于15个字');
+            if (schoolName.length > 40) {
+                CommonFn.tipsDialog('温馨提示', '院校名称输入不能大于40个字');
                 return false;
             }
             if($('#imgUrlData').val()==""){
@@ -312,36 +312,36 @@
             }
         //院校代码
             var schoolCode = $('#schoolCode').val().trim();
-            var regCode = /^[0-9a-zA-Z]*$/g;
-            if (schoolCode.length == '') {
-                CommonFn.tipsDialog('温馨提示', '院校代码不能为空');
-                return false;
-            }
-            if (schoolCode.length > 8 || !regCode.test(schoolCode)) {
-                CommonFn.tipsDialog('温馨提示', '院校代码只能为8位数字/符号/英文字母');
-                return false;
-            }
+//            var regCode = /^[0-9a-zA-Z]*$/g;
+//            if (schoolCode.length == '') {
+//                CommonFn.tipsDialog('温馨提示', '院校代码不能为空');
+//                return false;
+//            }
+//            if (schoolCode.length > 8 || !regCode.test(schoolCode)) {
+//                CommonFn.tipsDialog('温馨提示', '院校代码只能为8位数字/符号/英文字母');
+//                return false;
+//            }
 //                院校排名
             var regNum = /^[0-9]*$/;
             var schoolRank = $('#schoolRank').val().trim();
-            if (schoolRank.length == '') {
-                CommonFn.tipsDialog('温馨提示', '院校排名不能为空');
-                return false;
-            }
-            if (schoolRank.length > 6 || !regNum.test(schoolRank)) {
-                CommonFn.tipsDialog('温馨提示', '院校排名输入只能位数字,且不能大于6位数字');
-                return false;
-            }
+//            if (schoolRank.length == '') {
+//                CommonFn.tipsDialog('温馨提示', '院校排名不能为空');
+//                return false;
+//            }
+//            if (schoolRank.length > 6 || !regNum.test(schoolRank)) {
+//                CommonFn.tipsDialog('温馨提示', '院校排名输入只能位数字,且不能大于6位数字');
+//                return false;
+//            }
 //                院校特征
             var schoolStatic = $('#schoolStatic').val();
-            if (schoolStatic.length == '') {
-                CommonFn.tipsDialog('温馨提示', '院校特征输入不能为空');
-                return false;
-            }
-            if (schoolStatic.length > 10) {
-                CommonFn.tipsDialog('温馨提示', '院校特征输入不能大于10个字');
-                return false;
-            }
+//            if (schoolStatic.length == '') {
+//                CommonFn.tipsDialog('温馨提示', '院校特征输入不能为空');
+//                return false;
+//            }
+//            if (schoolStatic.length > 10) {
+//                CommonFn.tipsDialog('温馨提示', '院校特征输入不能大于10个字');
+//                return false;
+//            }
 
             var selEduLevel2V = $('#selEduLevel2').find('option:selected').val();
 
@@ -369,18 +369,18 @@
 //                院校网址
             var regWeb = /((https|http|ftp|rtsp|mms):\/\/)?(([0-9a-z_!~*'().&=+$%-]+:)?[0-9a-z_!~*'().&=+$%-]+@)?(([0-9]{1,3}\.){3}[0-9]{1,3}|([0-9a-z_!~*'()-]+\.)*([0-9a-z][0-9a-z-]{0,61})?[0-9a-z]\.[a-z]{2,6})(:[0-9]{1,4})?((\/?)|(\/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+\/?)/g;
             var schoolWeb = $('#schoolWeb').val().trim();
-            if (schoolWeb.length == '') {
-                CommonFn.tipsDialog('温馨提示', '院校网址输入不能为空');
-                return false;
-            }
-            if (!regWeb.test(schoolWeb)) {
-                CommonFn.tipsDialog('温馨提示', '院校网址输入不符合网络地址规范');
-                return false;
-            }
-            if (schoolWeb.length > 30) {
-                CommonFn.tipsDialog('温馨提示', '院校网址输入不能大于30个字');
-                return false;
-            }
+//            if (schoolWeb.length == '') {
+//                CommonFn.tipsDialog('温馨提示', '院校网址输入不能为空');
+//                return false;
+//            }
+//            if (!regWeb.test(schoolWeb)) {
+//                CommonFn.tipsDialog('温馨提示', '院校网址输入不符合网络地址规范');
+//                return false;
+//            }
+//            if (schoolWeb.length > 30) {
+//                CommonFn.tipsDialog('温馨提示', '院校网址输入不能大于30个字');
+//                return false;
+//            }
 //                所在省份
             var schoolInProvince2 = $("#schoolInProvince2").find('option:selected').val();
             if (schoolInProvince2 == '00') {
@@ -389,10 +389,10 @@
             }
 //                院校地址
             var schoolAddress = $('#schoolAddress').val().trim();
-            if (schoolAddress.length == '') {
-                CommonFn.tipsDialog('温馨提示', '输入院校地址不能为空');
-                return false;
-            }
+//            if (schoolAddress.length == '') {
+//                CommonFn.tipsDialog('温馨提示', '输入院校地址不能为空');
+//                return false;
+//            }
             if (schoolAddress.length > 120) {
                 CommonFn.tipsDialog('温馨提示', '输入院校地址内容不能超过120个字');
                 return false;
@@ -439,7 +439,7 @@
                 , code: $.trim($('#schoolCode').val())
                 , name: $.trim($('#schoolName').val())
                 , photoUrl: $('#imgUrlData').val()
-                , rank: $.trim($('#schoolRank').val())
+//                , rank: $.trim($('#schoolRank').val())
                 , property: $.trim($('#schoolStatic').val())
                 , educationLevel: selEduLevel2V
                 , type: universityTypeV
