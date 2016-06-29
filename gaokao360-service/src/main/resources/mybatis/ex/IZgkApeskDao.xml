@@ -396,16 +396,18 @@
     where id = #{id}
   </update>
   <select id="selectUserApeskResult" resultMap="UserApeskResultMap" parameterType="java.util.Map">
-    select apesk.user_id as userId,apesk.report_id as reportId,apesk.create_date as createDate,apesk.report_date as reportDate,apesk_course.name as name,apesk_course.report_url as reportUrl,apesk_course.grade_describe as gradeDescribe,apesk_course.introduce as introduce,apesk_course.pic_url as picUrl,count(1) as num,apesk.ac_id as type from zgk_apesk as apesk
+    select userId,reportId,createDate,reportDate,name,reportUrl,gradeDescribe,introduce,picUrl,type,count(1) as num from (
+    select apesk.liang_biao,apesk.user_id as userId,apesk.report_id as reportId,apesk.create_date as createDate,apesk.report_date as reportDate,apesk_course.name as name,apesk_course.report_url as reportUrl,apesk_course.grade_describe as gradeDescribe,apesk_course.introduce as introduce,apesk_course.pic_url as picUrl,apesk.ac_id as type
+    from zgk_apesk as apesk
     left join zgk_apesk_course as apesk_course
     on apesk.ac_id=apesk_course.ac_id
-     <where>
-       <if test="userId!=null">
-         apesk.user_id=#{userId,jdbcType=INTEGER}
-       </if>
-         and report_id is not null
-     </where>
-    group by apesk.liang_biao
+    <where>
+      <if test="userId!=null">
+        apesk.user_id=#{userId,jdbcType=INTEGER}
+      </if>
+      and report_id is not null
+    </where>
+    order by id desc)t group by liang_biao
   </select>
   <select id="selectUserApeskModel" resultMap="UserApeskModelMap" parameterType="java.util.Map">
 	select user_id as userId,report_id as reportId,create_date as createDate,report_date as reportDate,count(1) as num from zgk_apesk
