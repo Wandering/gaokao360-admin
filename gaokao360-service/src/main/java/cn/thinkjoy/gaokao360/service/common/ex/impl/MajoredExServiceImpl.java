@@ -55,6 +55,36 @@ public class MajoredExServiceImpl extends AbstractPageService<IBaseDAO<MajorDTO>
         return majoredExDAO.getMajoredByName(map);
     }
 
+    @Override
+    public long insertMajored(Map<String, Object> map) {
+        return majoredExDAO.insertMajored(map);
+    }
+
+    @Override
+    public long insertDetail(Map<String, Object> map) {
+        return majoredExDAO.insertDetail(map);
+    }
+
+    @Override
+    public boolean updateMajor(Map<String, Object> map) {
+        return majoredExDAO.updateMajor(map);
+    }
+
+    @Override
+    public boolean updateMajorDetail(Map<String, Object> map) {
+        return majoredExDAO.updateMajorDetail(map);
+    }
+
+    @Override
+    public boolean deleteMajorDetailById(Object id) {
+        return majoredExDAO.deleteMajorDetailById(id);
+    }
+
+    @Override
+    public boolean deleteMajorById(Object id) {
+        return majoredExDAO.deleteMajorById(id);
+    }
+
 
 //    @Override
 //    public void insert(BaseDomain entity) {

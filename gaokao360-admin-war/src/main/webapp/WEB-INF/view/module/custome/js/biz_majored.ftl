@@ -41,15 +41,16 @@
             $addBtn: $('#addBtn')
             , $editBtn: $('#editBtn')
             , $deleteBtn: $('#deleteBtn')
-            , $majoredName: $('#majoredName')
-            , $selMajored2: $('#selMajored2')
-            , $subjectType: $('#subjectType')
-            , $salaryRank: $('#salaryRank')
-            , $jobsRank: $('#jobsRank')
-            , $majoredCode: $('#majoredCode')
-            , $sameMajored: $('#sameMajored')
-            , $mainMajored: $('#mainMajored')
-            , $employDirect: $('#employDirect')
+            , $majorName: $('#majorName')
+            , $disciplineCategories: $('#disciplineCategories')
+            , $majorCategory: $('#majorCategory')
+            , $employmentRate: $('#employmentRate')
+            , $schoolingDuration: $('#schoolingDuration')
+            , $majorCode: $('#majorCode')
+            , $degreeOffered: $('#degreeOffered')
+            , $offerCourses: $('#offerCourses')
+            , $specialisation: $('#specialisation')
+            , $majorIntroduce: $('#majorIntroduce')
             , $excellentStudent: $('#excellentStudent')
             , $submitBtn: $('#submitBtn')
             , $cancelBtn: $('#cancelBtn')
@@ -57,7 +58,7 @@
 
 //        获取学科分类
         var majored = CommonFn.getMajored();
-        $('#selMajored,#selMajored2').append(majored);
+        $('#selMajored,#disciplineCategories').append(majored);
 
 //        添加专业基本信息
         majoredDom.$addBtn.click(function (e) {
@@ -78,22 +79,26 @@
             // 获取当前行数据
             var rowData = CommonFn.getRowData(rowId);
             console.log(rowData)
-            majoredDom.$majoredName.val(rowData[0].majorName);
-            majoredDom.$majoredCode.val(rowData[0].majorCode);
-            $('#selMajored2').find('option[value="' + rowData[0].disciplineCategories + '"]').attr('selected', 'selected');
-            $('#subjectType').find('option[value="' + rowData[0].majorCategory + '"]').attr('selected', 'selected');
-            majoredDom.$jobsRank.val(rowData[0].employmentRank);
-            $('#salaryRank').val(rowData[0].salaryRank);
-            majoredDom.$sameMajored.val(rowData[0].similarMajors);
-            majoredDom.$mainMajored.val(rowData[0].offerCourses);
-            majoredDom.$employDirect.val(rowData[0].specialisation);
-            majoredDom.$excellentStudent.val(rowData[0].outstandingMentor);
+            if (rowData[0].majorName) {
+            majoredDom.$majorName.val(rowData[0].majorName);
+        }
+            majoredDom.$majorCode.val(rowData[0].majorCode);
+            $('#disciplineCategories').find('option[value="' + rowData[0].disciplineCategories + '"]').attr('selected', 'selected');
+            $('#majorCategory').find('option[value="' + rowData[0].majorCategory + '"]').attr('selected', 'selected');
+            $('#majorType').find('option[value="' + rowData[0].majorType + '"]').attr('selected', 'selected');
+            majoredDom.$employmentRate.val(rowData[0].employmentRate);
+//            $('#salaryRank').val(rowData[0].salaryRank);
+            majoredDom.$specialisation.val(rowData[0].specialisation);
+            majoredDom.$schoolingDuration.val(rowData[0].schoolingDuration);
+            majoredDom.$degreeOffered.val(rowData[0].degreeOffered);
+            majoredDom.$offerCourses.val(rowData[0].offerCourses);
+            majoredDom.$majorIntroduce.val(rowData[0].majorIntroduce);
 
 
 
 
-            var majoredId = majoredDom.$selMajored2.find('option:selected').val();
-            var majoredName = majoredDom.$selMajored2.find('option:selected').html();
+            var majoredId = majoredDom.$disciplineCategories.find('option:selected').val();
+            var majoredName = majoredDom.$disciplineCategories.find('option:selected').html();
             CommonFn.getData('/admin/gaokao360/ex/getMajoredCategoryByPid', 'GET', {
                 id: majoredId,
                 name: majoredName
@@ -104,7 +109,7 @@
                     $.each(dataJson, function (i, v) {
                         dataHTML.push('<option value="' + v.id + '">' + v.name + '</option>');
                     });
-                    $('#subjectType').html(dataHTML);
+                    $('#majorCategory').html(dataHTML);
                 }
             })
 
@@ -121,9 +126,9 @@
                     <#--, majorName: majoredDom.$majoredName.val()-->
                     <#--, majorCode: majoredDom.$majoredCode.val()-->
                     <#--, disciplineCategories: $('#selMajored2').find('option:selected').val()-->
-                    <#--, subjectType: $('#selMajored2').find('option:selected').html()-->
-                    <#--, majorCategory: $('#subjectType').find('option:selected').val()-->
-                    <#--, majoredType: $('#subjectType').find('option:selected').html()-->
+                    <#--, majorCategory: $('#selMajored2').find('option:selected').html()-->
+                    <#--, majorCategory: $('#majorCategory').find('option:selected').val()-->
+                    <#--, majoredType: $('#majorCategory').find('option:selected').html()-->
                     <#--, salaryRank: majoredDom.$salaryRank.val()-->
                     <#--, employmentRank: majoredDom.$jobsRank.val()-->
                     <#--, similarMajors: majoredDom.$sameMajored.val()-->
@@ -147,7 +152,7 @@
         CommonFn.deleteFun('#deleteBtn', '${mainObj}');
 //        关闭清空form表单内容
 
-        majoredDom.$selMajored2.change(function () {
+        majoredDom.$disciplineCategories.change(function () {
             var majoredId = $(this).find('option:selected').val();
             var majoredName = $(this).find('option:selected').html();
             CommonFn.getData('/admin/gaokao360/ex/getMajoredCategoryByPid', 'GET', {
@@ -160,66 +165,65 @@
                     $.each(dataJson, function (i, v) {
                         dataHTML.push('<option value="' + v.id + '">' + v.name + '</option>');
                     });
-                    $('#subjectType').html(dataHTML);
+                    $('#majorCategory').html(dataHTML);
                 }
             })
         });
         majoredDom.$submitBtn.click(function (e) {
             e.preventDefault();
-            if (majoredDom.$majoredName.val().trim() == '') {
-                CommonFn.tipsDialog('温馨提示', '专业名称不能为空');
-                return false;
-            }
-            if (majoredDom.$majoredCode.val().trim() == '') {
-                CommonFn.tipsDialog('温馨提示', '专业Code不能为空');
-                return false;
-            }
-            if ($('#selMajored2').find('option:selected').val() == '00') {
-                CommonFn.tipsDialog('温馨提示', '学科门类没有选择');
-                return false;
-            }
-            if ($('#subjectType').find('option:selected').val() == '00') {
-                CommonFn.tipsDialog('温馨提示', '专业门类没有选择');
-                return false;
-            }
-            if (majoredDom.$salaryRank.val().trim() == '') {
-                CommonFn.tipsDialog('温馨提示', '薪资排名不能为空');
-                return false;
-            }
-            if (majoredDom.$jobsRank.val().trim() == '') {
-                CommonFn.tipsDialog('温馨提示', '就业排名不能为空');
-                return false;
-            }
-            if (majoredDom.$sameMajored.val().trim() == '') {
-                CommonFn.tipsDialog('温馨提示', '相近专业不能为空');
-                return false;
-            }
-            if (majoredDom.$mainMajored.val().trim() == '') {
-                CommonFn.tipsDialog('温馨提示', '主要课程不能为空');
-                return false;
-            }
-            if (majoredDom.$employDirect.val().trim() == '') {
-                CommonFn.tipsDialog('温馨提示', '就业方向不能为空');
-                return false;
-            }
-            if (majoredDom.$excellentStudent.val().trim() == '') {
-                CommonFn.tipsDialog('温馨提示', '优秀学长不能为空');
-                return false;
-            }
+//            if (majoredDom.$majoredName.val().trim() == '') {
+//                CommonFn.tipsDialog('温馨提示', '专业名称不能为空');
+//                return false;
+//            }
+//            if (majoredDom.$majoredCode.val().trim() == '') {
+//                CommonFn.tipsDialog('温馨提示', '专业Code不能为空');
+//                return false;
+//            }
+//            if ($('#selMajored2').find('option:selected').val() == '00') {
+//                CommonFn.tipsDialog('温馨提示', '学科门类没有选择');
+//                return false;
+//            }
+//            if ($('#majorCategory').find('option:selected').val() == '00') {
+//                CommonFn.tipsDialog('温馨提示', '专业门类没有选择');
+//                return false;
+//            }
+//            if (majoredDom.$salaryRank.val().trim() == '') {
+//                CommonFn.tipsDialog('温馨提示', '薪资排名不能为空');
+//                return false;
+//            }
+//            if (majoredDom.$jobsRank.val().trim() == '') {
+//                CommonFn.tipsDialog('温馨提示', '就业排名不能为空');
+//                return false;
+//            }
+//            if (majoredDom.$sameMajored.val().trim() == '') {
+//                CommonFn.tipsDialog('温馨提示', '相近专业不能为空');
+//                return false;
+//            }
+//            if (majoredDom.$mainMajored.val().trim() == '') {
+//                CommonFn.tipsDialog('温馨提示', '主要课程不能为空');
+//                return false;
+//            }
+//            if (majoredDom.$employDirect.val().trim() == '') {
+//                CommonFn.tipsDialog('温馨提示', '就业方向不能为空');
+//                return false;
+//            }
+//            if (majoredDom.$excellentStudent.val().trim() == '') {
+//                CommonFn.tipsDialog('温馨提示', '优秀学长不能为空');
+//                return false;
+//            }
             var addMajoredData = {
                 oper: typeStr
-                , majorName: majoredDom.$majoredName.val()
-                , majorCode: majoredDom.$majoredCode.val()
-                , disciplineCategories: $('#selMajored2').find('option:selected').val()
-                , subjectType: $('#selMajored2').find('option:selected').html()
-                , majorCategory: $('#subjectType').find('option:selected').val()
-                , majoredType: $('#subjectType').find('option:selected').html()
-                , salaryRank: majoredDom.$salaryRank.val()
-                , employmentRank: majoredDom.$jobsRank.val()
-                , similarMajors: majoredDom.$sameMajored.val()
-                , offerCourses: majoredDom.$mainMajored.val()
-                , specialisation: majoredDom.$employDirect.val()
-                , outstandingMentor: majoredDom.$excellentStudent.val()
+                , majorName: majoredDom.$majorName.val()
+                , majorCode: majoredDom.$majorCode.val()
+                , disciplineCategories: $('#disciplineCategories').find('option:selected').val()
+                , majorCategory: $('#majorCategory').find('option:selected').val()
+                , majorType: $('#majorType').find('option:selected').val()
+                , employmentRate: majoredDom.$employmentRate.val()
+                , schoolingDuration: majoredDom.$schoolingDuration.val()
+                , majorIntroduce: majoredDom.$majorIntroduce.val()
+                , degreeOffered: majoredDom.$degreeOffered.val()
+                , offerCourses: majoredDom.$offerCourses.val()
+                , specialisation: majoredDom.$specialisation.val()
             };
             if (typeStr == 'edit') {
                 addMajoredData.id = rowId;

@@ -119,8 +119,8 @@ public class UpdateUtil extends BaseCommonUtil{
 
 
     public void majored(){
-        getServiceMaps().get("major").updateMap(dataMap);
-        getServiceMaps().get("majorDetail").updateMap(dataMap);
+        majoredExService.updateMajor(dataMap);
+        majoredExService.updateMajorDetail(dataMap);
     }
 
 
