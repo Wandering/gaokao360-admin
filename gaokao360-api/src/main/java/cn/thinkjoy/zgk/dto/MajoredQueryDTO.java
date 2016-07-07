@@ -1,9 +1,11 @@
 package cn.thinkjoy.zgk.dto;
 
+import java.io.Serializable;
+
 /**
  * Created by zuohao on 16/1/27.
  */
-public class MajoredQueryDTO {
+public class MajoredQueryDTO implements Serializable {
     private String disciplineCategoriesName;
     private String majorCategoryName;
     private String majoredName;
