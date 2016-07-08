@@ -35,6 +35,8 @@ public class AddUtil extends BaseCommonUtil{
     @Autowired
     private IUniversityExService universityExService;
     @Autowired
+    private IUniversityMajorExService universityMajorExService;
+    @Autowired
     private IMajoredCategoryExService majoredCategoryExService;
     @Autowired
     private IMajoredExService majoredExService;
@@ -156,6 +158,10 @@ public class AddUtil extends BaseCommonUtil{
             }
         }
 
+    }
+
+    public void universitymajor(){
+        universityMajorExService.insertUniversityMajor(getDataMap());
     }
 
     public void professiontype(){

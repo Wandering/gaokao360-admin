@@ -64,15 +64,7 @@ public class AuditoriumController extends BaseController<IAuditoriumService> {
     public BizData4Page findAllVideoCourses(HttpServletRequest request,HttpServletResponse response){
         return doPage(request, response);
     }
-    /**
-     * 获取所有的组织信息
-     * @return
-     */
-    @RequestMapping(value="/Test1111")
-    @ResponseBody
-    public Integer Test1111(){
-        return 1/0;
-    }
+
     @Override
     protected IAuditoriumService getMainService() {
         return auditoriumService;

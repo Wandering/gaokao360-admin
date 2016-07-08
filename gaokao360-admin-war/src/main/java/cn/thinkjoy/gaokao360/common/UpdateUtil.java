@@ -37,6 +37,8 @@ public class UpdateUtil extends BaseCommonUtil{
     @Autowired
     private IUniversityExService universityExService;
     @Autowired
+    private IUniversityMajorExService universityMajorExService;
+    @Autowired
     private IMajoredCategoryExService majoredCategoryExService;
     @Autowired
     private IMajoredExService majoredExService;
@@ -228,6 +230,9 @@ public class UpdateUtil extends BaseCommonUtil{
             }
         }
 
+    }
+    public void universitymajor(){
+        universityMajorExService.updateUniversityMajor(getDataMap());
     }
 
 
