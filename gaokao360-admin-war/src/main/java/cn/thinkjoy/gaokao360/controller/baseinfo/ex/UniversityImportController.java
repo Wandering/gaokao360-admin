@@ -97,7 +97,7 @@ public class UniversityImportController{
      */
     @RequestMapping(value="/importMajorData")
     @ResponseBody
-    public void importMajorData(@RequestParam("file") MultipartFile file,HttpServletRequest request){
+    public void importMajorData(@RequestParam("file") final MultipartFile file,HttpServletRequest request){
         String originalFilename = file.getOriginalFilename();
         // FIXME
         // 避免使用request session
@@ -132,6 +132,12 @@ public class UniversityImportController{
                         } catch (IOException e) {
                             errorTaskFile(e);
                             e.printStackTrace();
+                        }finally {
+                            File file1=new File(path);
+                            if(file1.exists()){
+                                file1.delete();
+                            }
+                            file1=null;
                         }
                     }
                 }.start();
@@ -203,6 +209,12 @@ public class UniversityImportController{
                         }  catch (Exception e){
                             errorTaskFile(e);
                             e.printStackTrace();
+                        }finally {
+                            File file1=new File(path);
+                            if(file1.exists()){
+                                file1.delete();
+                            }
+                            file1=null;
                         }
                     }
                 }.start();
@@ -252,6 +264,12 @@ public class UniversityImportController{
                         } catch (IOException e) {
                             errorTaskFile(e);
                             e.printStackTrace();
+                        }finally {
+                            File file1=new File(path);
+                            if(file1.exists()){
+                                file1.delete();
+                            }
+                            file1=null;
                         }
                     }
                 }.start();
