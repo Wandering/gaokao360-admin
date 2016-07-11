@@ -125,7 +125,7 @@ public class UniversityImportController{
                             univercityDAO.updateUniversityIdToImportMajor();
                             univercityDAO.updateMajorIdToImportMajor();
                             univercityDAO.getUniversityNameIsNullMajor();
-//                            univercityDAO.insertImportToMajorFormal();
+                            univercityDAO.insertImportToMajorFormal();
                             String time=( System.currentTimeMillis()-start)/60*1000+"";
                             updateSuccessTaskFile(time);
                             LOG.info("导入院校专业录取信息用时：" + time);
