@@ -21,6 +21,11 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.quartz.SchedulerConfigException;
+import org.quartz.impl.DefaultThreadExecutor;
+import org.quartz.simpl.SimpleThreadPool;
+import org.quartz.spi.ThreadExecutor;
+import org.quartz.spi.ThreadPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +37,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.*;
@@ -52,44 +58,15 @@ public class UniversityImportController{
 
     private static int MAX_BATCH_COUNT = 20000;
     private static final Logger LOG = LoggerFactory.getLogger(UniversityImportController.class);
-
-//    public static void main(String[] args) throws IOException {
-//        String flag = "majorPlan";
-//        String path = "/Users/jfshe/Downloads/data2";
-//
-//        if(args.length == 1)
-//        {
-//            path = args[0];
-//        }
-//        if(args.length == 2)
-//        {
-//            path=args[0];
-//            flag = args[1];
-//        }
-//        if(args.length == 3){
-//            path=args[0];
-//            flag = args[1];
-//            try{
-//                MAX_BATCH_COUNT = Integer.parseInt(args[2]);
-//            }catch (Exception e)
-//            {
-//                throw new RuntimeException("输入批处理个数必须是数字!");
-//            }
-//        }
-//        long start = System.currentTimeMillis();
-//
-//        if ("major".equals(flag)){
-//            insertMajorData(path);
-//            LOG.info("导入院校专业录取信息用时："+( System.currentTimeMillis()-start)/60*1000);
-//        }else if("majorPlan".equals(flag)){
-//            insertMajorPlanData( path);
-//            LOG.info("导入院校专业计划录取信息用时：" + (System.currentTimeMillis()-start)/60*1000);
-//        }else{
-//            insertUniversityData(path);
-//            LOG.info("导入院校录取信息用时：" + (System.currentTimeMillis()-start)/60*1000);
-//        }
-//    }
-
+    private static ThreadPool POOL=new SimpleThreadPool(3,Thread.NORM_PRIORITY);
+    @PostConstruct
+    void initThread(){
+        try {
+            POOL.initialize();
+        } catch (SchedulerConfigException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * 导入院校专业录取信息用时
@@ -98,28 +75,14 @@ public class UniversityImportController{
     @RequestMapping(value="/importMajorData")
     @ResponseBody
     public void importMajorData(@RequestParam("file") final MultipartFile file,HttpServletRequest request){
-        String originalFilename = file.getOriginalFilename();
-        // FIXME
-        // 避免使用request session
-        String filePath = request.getSession().getServletContext().getRealPath("/") + "/upload/"
-                + originalFilename;
-        //转存文件
-        if (!file.isEmpty()) {
+
             try {
-                    //Map<String, Object> datas =  OldExcelUtil;
-                    // 转存文件
-                    file.transferTo(new File(filePath));
-                    //daoMaps.get(mainObj).insert();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            try {
-                final String path=filePath;
-                new Thread(){
+                final String path=filetransferTo(file,request);
+                Runnable task=new Runnable() {
                     @Override
                     public void run() {
                         try {
-                            createTaskFile();
+                            createTaskFile(getFileName(path));
                             long start = System.currentTimeMillis();
                             insertMajorData(path);
                             univercityDAO.updateUniversityIdToImportMajor();
@@ -127,10 +90,10 @@ public class UniversityImportController{
                             univercityDAO.getUniversityNameIsNullMajor();
                             univercityDAO.insertImportToMajorFormal();
                             String time=( System.currentTimeMillis()-start)/60*1000+"";
-                            updateSuccessTaskFile(time);
+                            updateSuccessTaskFile(time,getFileName(path));
                             LOG.info("导入院校专业录取信息用时：" + time);
                         } catch (IOException e) {
-                            errorTaskFile(e);
+                            errorTaskFile(e,getFileName(path));
                             e.printStackTrace();
                         }finally {
                             File file1=new File(path);
@@ -140,12 +103,12 @@ public class UniversityImportController{
                             file1=null;
                         }
                     }
-                }.start();
+                };
+                POOL.runInThread(task);
             } catch (Exception e) {
                 throw  new BizException("","读取数据异常");
             }
         }
-    }
 
 
 
@@ -156,28 +119,14 @@ public class UniversityImportController{
     @RequestMapping(value="/importMajorPlanData")
     @ResponseBody
     public void importMajorPlanData(@RequestParam("file") MultipartFile file,HttpServletRequest request){
-        String originalFilename = file.getOriginalFilename();
-        // FIXME
-        // 避免使用request session
-        String filePath = request.getSession().getServletContext().getRealPath("/") + "/upload/"
-                + originalFilename;
-        //转存文件
-        if (!file.isEmpty()) {
             try {
-                //Map<String, Object> datas =  OldExcelUtil;
-                // 转存文件
-                file.transferTo(new File(filePath));
-                //daoMaps.get(mainObj).insert();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            try {
-                final String path=filePath;
-                new Thread(){
+                final String path=filetransferTo(file,request);
+
+                Runnable task=new Runnable() {
                     @Override
                     public void run() {
                         try {
-                            createTaskFile();
+                            createTaskFile(getFileName(path));
                             long start = System.currentTimeMillis();
                             insertMajorPlanData(path);
                             univercityDAO.updateUniversityIdToImport();
@@ -193,35 +142,35 @@ public class UniversityImportController{
                             univercityDAO.updateBatch9();
                             univercityDAO.updateBatch10();
                             univercityDAO.updateBatch11();
-                            List<String> ll=univercityDAO.getUniversityNameIsNull();
-                            if(ll.isEmpty()) {
+                            List<String> ll = univercityDAO.getUniversityNameIsNull();
+                            if (ll.isEmpty()) {
                                 univercityDAO.truncateUniq();
                                 univercityDAO.insertImportToUniq();
                                 univercityDAO.insertUniversityPlanToFormal();
                                 univercityDAO.insertMajorPlanToFormal();
-                            }else {
+                            } else {
                                 LOG.info("执行失败");
-                                updateFailTaskFile(ll);
+                                updateFailTaskFile(ll,getFileName(path));
                             }
-                            String time=(( System.currentTimeMillis()-start)/60*1000)+"";
-                            LOG.info("导入院校专业录取信息用时："+time);
-                            updateSuccessTaskFile(time);
-                        }  catch (Exception e){
-                            errorTaskFile(e);
+                            String time = ((System.currentTimeMillis() - start) / 60 * 1000) + "";
+                            LOG.info("导入院校专业录取信息用时：" + time);
+                            updateSuccessTaskFile(time,getFileName(path));
+                        } catch (Exception e) {
+                            errorTaskFile(e,getFileName(path));
                             e.printStackTrace();
-                        }finally {
-                            File file1=new File(path);
-                            if(file1.exists()){
+                        } finally {
+                            File file1 = new File(path);
+                            if (file1.exists()) {
                                 file1.delete();
                             }
-                            file1=null;
+                            file1 = null;
                         }
                     }
-                }.start();
+                };
+                POOL.runInThread(task);
             } catch (Exception e) {
                 throw  new BizException("","读取数据异常");
             }
-        }
     }
 
     /**
@@ -231,38 +180,23 @@ public class UniversityImportController{
     @RequestMapping(value="/importUniversityData")
     @ResponseBody
     public void importUniversityData(@RequestParam("file") MultipartFile file,HttpServletRequest request){
-        String originalFilename = file.getOriginalFilename();
-        // FIXME
-        // 避免使用request session
-        String filePath = request.getSession().getServletContext().getRealPath("/") + "/upload/"
-                + originalFilename;
-        //转存文件
-        if (!file.isEmpty()) {
             try {
-                //Map<String, Object> datas =  OldExcelUtil;
-                // 转存文件
-                file.transferTo(new File(filePath));
-                //daoMaps.get(mainObj).insert();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            try {
-                final String path=filePath;
-                new Thread(){
+                final String path=filetransferTo(file,request);
+                Runnable task=new Runnable() {
                     @Override
                     public void run() {
                         try {
                             long start = System.currentTimeMillis();
-                            createTaskFile();
+                            createTaskFile(getFileName(path));
                             insertUniversityData(path);
                             univercityDAO.updateUniversityIdToImportUniversity();
                             univercityDAO.getUniversityNameIsNullUniversity();
                             univercityDAO.insertImportToUniversityFormal();
                             String time=( System.currentTimeMillis()-start)/60*1000+"";
-                            updateSuccessTaskFile(time);
+                            updateSuccessTaskFile(time,getFileName(path));
                             LOG.info("导入院校专业录取信息用时："+time);
                         } catch (IOException e) {
-                            errorTaskFile(e);
+                            errorTaskFile(e,getFileName(path));
                             e.printStackTrace();
                         }finally {
                             File file1=new File(path);
@@ -272,11 +206,11 @@ public class UniversityImportController{
                             file1=null;
                         }
                     }
-                }.start();
+                };
+                POOL.runInThread(task);
             } catch (Exception e) {
                 throw  new BizException("","读取数据异常");
             }
-        }
     }
 
     /**
@@ -547,65 +481,84 @@ public class UniversityImportController{
         }
         return result;
     }
-    public static void createTaskFile(){
-        String contextPath=Thread.currentThread().getContextClassLoader().getResource("").getPath();
-        String path=contextPath.substring(0,contextPath.length()-16)+"/temp/"+"taskFile.json";
-        try {
-            Writer out = new BufferedWriter( new OutputStreamWriter(new FileOutputStream(path),"UTF-8"));
-            out.write("当前任务添加成功，正在执行任务中，请稍后..\n");
-            out.flush();
-            out.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public static void createTaskFile(String fileName){
+            writerFile("\n当前任务添加成功，正在执行任务中，请稍后..\n当前读写文件："+fileName+"\n");
     }
 
-    public static void updateFailTaskFile(List<String> list){
-        String contextPath=Thread.currentThread().getContextClassLoader().getResource("").getPath();
-        String path=contextPath.substring(0,contextPath.length()-16)+"/temp/"+"taskFile.json";
-        try {
-            Writer writer = new BufferedWriter( new OutputStreamWriter(new FileOutputStream(path),"UTF-8"));
-            writer.write("添加失败的院校有："+"\n");
+    public static void updateFailTaskFile(List<String> list,String fileName){
+        StringBuffer buffer=new StringBuffer();
+        buffer.append("\n文件"+fileName+"添加失败的院校有：" + "\n");
             for(String str:list) {
-                writer.write(str+"\n");
+                buffer.append("\n"+str + "\n");
             }
-            writer.flush();
-            writer.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        writerFile(buffer.toString());
     }
-    public static void updateSuccessTaskFile(String time){
-        String contextPath=Thread.currentThread().getContextClassLoader().getResource("").getPath();
-        String path=contextPath.substring(0,contextPath.length()-16)+"/temp/"+"taskFile.json";
-        try {
-            Writer writer = new BufferedWriter( new OutputStreamWriter(new FileOutputStream(path),"UTF-8"));
-            writer.write("所有院校添加成功，任务已经执行完成,任务用时："+time+"\n");
-            writer.flush();
-            writer.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public static void updateSuccessTaskFile(String time,String fileName){
+        writerFile("\n"+fileName+"所有院校添加成功，任务已经执行完成,任务用时："+time+"\n");
     }
 
-    public static void errorTaskFile(Exception ep){
+    public static void errorTaskFile(Exception ep,String fileName){
+        writerFile("\n"+fileName+"添加院校异常："+ep.getMessage()+"\n");
+    }
+
+    public static synchronized void  writerFile(String content){
         String contextPath=Thread.currentThread().getContextClassLoader().getResource("").getPath();
         String path=contextPath.substring(0,contextPath.length()-16)+"/temp/"+"taskFile.json";
+        RandomAccessFile randomFile =null;
         try {
-            Writer writer = new BufferedWriter( new OutputStreamWriter(new FileOutputStream(path),"UTF-8"));
-            writer.write("添加院校异常："+ep.getMessage()+"\n");
-            writer.flush();
-            writer.close();
+//            Writer writer = new BufferedWriter( new OutputStreamWriter(new FileOutputStream(path),"UTF-8"));
+//            writer.write("所有院校添加成功，任务已经执行完成,任务用时："+time+"\n");
+//            writer.flush();
+//            writer.close();
+            // 打开一个随机访问文件流，按读写方式
+            randomFile = new RandomAccessFile(path, "rw");
+
+            // 文件长度，字节数
+            long fileLength = randomFile.length();
+            //将写文件指针移到文件尾。
+            randomFile.seek(fileLength);
+//            String s = new String(content.getBytes("GBK"),"UTF-8");
+//            randomFile.writeBytes(s);
+            randomFile.writeUTF(content);
+            randomFile.close();
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        }finally {
+            if(randomFile!=null){
+                try {
+                    randomFile.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                randomFile=null;
+            }
         }
+    }
+    public static synchronized String filetransferTo(final MultipartFile file,HttpServletRequest request){
+        String originalFilename = file.getOriginalFilename();
+        // FIXME
+        // 避免使用request session
+        String filePath = request.getSession().getServletContext().getRealPath("/") + "/upload/"
+                + originalFilename;
+        //转存文件
+        if (!file.isEmpty()) {
+            try {
+                //Map<String, Object> datas =  OldExcelUtil;
+                // 转存文件
+                file.transferTo(new File(filePath));
+                //daoMaps.get(mainObj).insert();
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+            return filePath;
+        }
+        return null;
+    }
+    private static String getFileName(String path){
+        return path.substring(path.lastIndexOf("/")+1);
     }
 }
