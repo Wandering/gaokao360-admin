@@ -528,5 +528,127 @@
             $upload.addClass('state-' + state);
             updateTotalProgress();
         }
+
+    var deleteByDataHtml=""
+            + '<div class="row">'
+            + '<div class="col-xs-12">'
+            + '<form class="form-horizontal" role="form">'
+
+            + '<div class="form-group">'
+            + '<label class="col-sm-2 control-label no-padding-right" for=""> 地区：</label>'
+            + '<div class="col-sm-5">'
+            + '<div id="areas"></div>'
+            + '</div>'
+            + '</div>'
+            + '<div class="form-group">'
+            + '<label class="col-sm-2 control-label no-padding-right" for=""> 年份：</label>'
+            + '<div class="col-sm-5">'
+            + '<div id="years"></div>'
+            + '</div>'
+
+            + '</div>'
+            + '<div class="form-group">'
+            + '<label class="col-sm-2 control-label no-padding-right" for=""> 批次：</label>'
+            + '<div class="col-sm-5">'
+            + '<div id="batchs"></div>'
+            + '</div>'
+
+            + '</form>'
+            + '</div>'
+            + '</div>';;
+    $("#deleteByDataBtn").on(ace.click_event, function () {
+
+        bootbox.dialog({
+            title: "删除信息",
+            message: deleteByDataHtml,
+            className: 'my-modal',
+            buttons: {
+                "success": {
+                    "label": "<i class='ace-icon fa fa-check'></i> 提交",
+                    "className": "btn-sm btn-success",
+                    "callback": deleteByDataFun
+                },
+                cancel: {
+                    label: "关闭",
+                    className: "btn-sm"
+                }
+            }
+        });
+        $.ajax({
+            type: 'GET',
+            url:CommonFn.url.getProvince ,
+            dataType: 'JSON',
+            success: function(res){
+                var areaData='';
+                console.log(res);
+                var areas=res.bizData
+                for(var i=0;i<areas.length;i++){
+                    areaData+='<label><input name="areas" type="checkbox" value="'+areas[i].id+'" />'+areas[i].name+' </label>';
+                }
+                $('#areas').append(areaData);
+            }
+        });
+        $.ajax({
+            type: 'GET',
+            url:CommonFn.url.getBatchTypeUrl ,
+            dataType: 'JSON',
+            success: function(res){
+                var batchData='';
+                console.log(res);
+                var batchs=res.bizData
+                for(var i=0;i<batchs.length;i++){
+                    batchData+='<label><input name="batchs" type="checkbox" value="'+batchs[i]+'" />'+batchs[i]+' </label>';
+                }
+                $('#batchs').append(batchData);
+            }
+        });
+        $.ajax({
+            type: 'GET',
+            url: '/admin/gaokao360/ex/{mainObj}/getYears' ,
+            dataType: 'JSON',
+            success: function(res){
+                var yearData='';
+                console.log(res);
+                var years=res.bizData
+                for(var i=0;i<years.length;i++){
+                    yearData+='<label><input name="years" type="checkbox" value="'+years[i]+'" />'+years[i]+' </label>';
+                }
+                $('#years').append(yearData);
+            }
+        });
+
+
     });
+        var deleteByDataFun=function(){
+            var years=[];
+            $("input[name='years']:checked").each(function(){
+                years.push($(this).val())
+            })
+            console.log(years)
+            var areas=[];
+            $("input[name='areas']:checked").each(function(){
+                areas.push($(this).val())
+
+            })
+            var batchs=[];
+            $("input[name='batchs']:checked").each(function(){
+                batchs.push($(this).val())
+            })
+            $.ajax({
+                type: 'GET',
+                url: '/admin/gaokao360/ex/import/delMajorPlanData' ,
+                dataType: 'JSON',
+                traditional:true,
+                data: {
+                    areaIds:areas,
+                    years:years,
+                    batchs:batchs
+                },
+                success: function(res){
+                    console.log(res);
+                }
+            });
+            console.log(areas)
+        }
+ });
 </script>

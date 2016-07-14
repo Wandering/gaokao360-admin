@@ -50,6 +50,7 @@
 			areaId,
 			enrollType,
 			majorType,
+			batch,
 			year,
 			majorName,
 		    planEnrolling,
@@ -63,6 +64,7 @@
 			#{item.areaId},
 			#{item.enrollType},
 			#{item.majorType},
+			#{item.batch},
 			#{item.year},
 			#{item.majorName},
 			#{item.planEnrolling},
@@ -380,6 +382,113 @@
 		FROM
 		zgk_university_enrolling_import a;
 	</insert>
-
-
+	<!-- 删除到删除表中 -->
+	<insert id="delMajorEnrollingPlan">
+		INSERT INTO zgk_university_major_enrolling_plan_delete (
+		universityName,
+		universityId,
+		YEAR,
+		batch,
+		areaId,
+		enrollType,
+		majorType,
+		majorName,
+		planEnrolling,
+		lengthOfSchooling,
+		schoolFee,
+		majorId
+		) SELECT
+		a.universityName,
+		a.universityId,
+		a. YEAR,
+		a.batch,
+		a.areaId,
+		a.enrollType,
+		a.majorType,
+		a.majorName,
+		a.planEnrolling,
+		a.lengthOfSchooling,
+		a.schoolFee,
+		a.majorId
+		FROM
+		zgk_university_major_enrolling_plan a
+		<where>
+			<if test="batchList!=null">
+				and a.batch in(
+				<foreach collection="batchList" item="batch" separator=",">
+					#{batch}
+				</foreach>
+				)
+			</if>
+			<if test="yearList!=null">
+				and a.year in(
+				<foreach collection="yearList" item="year" separator=",">
+					#{year}
+				</foreach>
+				)
+			</if>
+			<if test="areaIdList!=null">
+				and a.areaId in(
+				<foreach collection="areaIdList" item="areaId" separator=",">
+					#{areaId}
+				</foreach>
+				)
+			</if>
+		</where>
+	</insert>
+	<delete id="delByBatchYearAreaId">
+			DELETE FROM zgk_university_major_enrolling_plan
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="batchList!=null">
+				and.batch in(
+				<foreach collection="batchList" item="batch" separator=",">
+					#{batch}
+				</foreach>
+				)
+			</if>
+			<if test="yearList!=null">
+				and year in(
+				<foreach collection="yearList" item="year" separator=",">
+					#{year}
+				</foreach>
+				)
+			</if>
+			<if test="areaIdList!=null">
+				and areaId in(
+				<foreach collection="areaIdList" item="areaId" separator=",">
+					#{areaId}
+				</foreach>
+				)
+			</if>
+		</trim>
+	</delete>
+	<delete id="delUnivsersityByBatchYearAreaId">
+		DELETE FROM zgk_university_enrolling_plan
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="batchList!=null">
+				and batch in(
+				<foreach collection="batchList" item="batch" separator=",">
+					#{batch}
+				</foreach>
+				)
+			</if>
+			<if test="yearList!=null">
+				and year in(
+				<foreach collection="yearList" item="year" separator=",">
+					#{year}
+				</foreach>
+				)
+			</if>
+			<if test="areaIdList!=null">
+				and areaId in(
+				<foreach collection="areaIdList" item="areaId" separator=",">
+					#{areaId}
+				</foreach>
+				)
+			</if>
+		</trim>
+	</delete>
+	<select id="getMajorPlanBatch" resultType="java.lang.String">
+		SELECT batch FROM zgk_university_major_enrolling_plan WHERE batch IS NOT NULL GROUP BY batch
+	</select>
 </mapper>

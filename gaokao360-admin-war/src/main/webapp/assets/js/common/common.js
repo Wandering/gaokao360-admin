@@ -31,6 +31,7 @@ var CommonFn = {
         getDegreeUrl: '/admin/gaokao360/ex/getDataDictList?type=GAIN_DEGREE', // 学位
         getuniversityTypeUrl: '/admin/gaokao360/ex/getDataDictList?type=UNIVERSITY_TYPE', // 院校类型
         getSchoolIngUrl: '/admin/gaokao360/ex/getDataDictList?type=LENGTH_OF_SCHOOLING', // 学制
+        getBatchTypeUrl: '/admin/gaokao360/ex/import/getMajorPlanBatch', // 学制
         getModuleUrl: '/admin/gaokao360/ex/queryVideoType' // 视频模块
     },
     getData: function (url, type, data, callback) {

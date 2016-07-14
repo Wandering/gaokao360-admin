@@ -19,7 +19,7 @@ public interface UnivercityDAO {
 	void cleanMajorPlanData();
 	void cleanMajorData();
 
-	//	流程院校专业招生计划流程
+	//	娴佺▼闄㈡牎涓撲笟鎷涚敓璁″垝娴佺▼
 	void updateUniversityIdToImport();
 	void updateMajorIdToImport();
 	void updateBatch1();
@@ -39,16 +39,22 @@ public interface UnivercityDAO {
 	void insertMajorPlanToFormal();
 	void insertUniversityPlanToFormal();
 
-	//院校录取人数流程
+	//闄㈡牎褰曞彇浜烘暟娴佺▼
 	void updateUniversityIdToImportMajor();
 	void updateMajorIdToImportMajor();
 	void getUniversityNameIsNullMajor();
 	void insertImportToMajorFormal();
 
-	//院校录取人数流程
+	//闄㈡牎褰曞彇浜烘暟娴佺▼
 	void updateUniversityIdToImportUniversity();
 	void getUniversityNameIsNullUniversity();
 	void insertImportToUniversityFormal();
+
+
+	void delMajorEnrollingPlan(Map<String,Object> map);
+	void delByBatchYearAreaId(Map<String,Object> map);
+	void delUnivsersityByBatchYearAreaId(Map<String,Object> map);
+	List<String> getMajorPlanBatch();
 
 
 }

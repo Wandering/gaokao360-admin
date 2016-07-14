@@ -2,7 +2,11 @@
 <div class="page-content">
     <!-- 搜索end -->
     <div class="form-group hr10">
-        <button id="importFile" class="btn btn-import"><i class="ace-icon fa fa-trash-o align-top bigger-125"></i>导入
+        <button id="importFile" class="btn btn-import">导入
+        </button>
+        <button id="deleteByDataBtn" class="btn btn-import">删除数据
+        </button>
+        <button id="deleteByDataBtn" class="btn btn-import"><a href="/temp/taskFile.json" target="_blank">查看导入进度</a>
         </button>
     </div>
     <!-- 搜索end -->

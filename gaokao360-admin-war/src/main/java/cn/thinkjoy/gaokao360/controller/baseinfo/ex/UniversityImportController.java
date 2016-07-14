@@ -148,13 +148,13 @@ public class UniversityImportController{
                                 univercityDAO.insertImportToUniq();
                                 univercityDAO.insertUniversityPlanToFormal();
                                 univercityDAO.insertMajorPlanToFormal();
+                                String time = ((System.currentTimeMillis() - start) / 60 * 1000) + "";
+                                LOG.info("导入院校专业录取信息用时：" + time);
+                                updateSuccessTaskFile(time,getFileName(path));
                             } else {
                                 LOG.info("执行失败");
                                 updateFailTaskFile(ll,getFileName(path));
                             }
-                            String time = ((System.currentTimeMillis() - start) / 60 * 1000) + "";
-                            LOG.info("导入院校专业录取信息用时：" + time);
-                            updateSuccessTaskFile(time,getFileName(path));
                         } catch (Exception e) {
                             errorTaskFile(e,getFileName(path));
                             e.printStackTrace();
@@ -173,6 +173,40 @@ public class UniversityImportController{
             }
     }
 
+    /**
+     * 导入院校专业录取计划用时
+     * @return
+     */
+    @RequestMapping(value="/delMajorPlanData")
+    @ResponseBody
+    public boolean delMajorPlanData(String[] areaIds,String[] years,String[] batchs){
+        try {
+            Map<String, Object> map = new HashMap<>();
+            map.put("areaIdList", areaIds);
+            map.put("yearList", years);
+            map.put("batchList", batchs);
+
+
+            univercityDAO.delMajorEnrollingPlan(map);
+            univercityDAO.delByBatchYearAreaId(map);
+            univercityDAO.delUnivsersityByBatchYearAreaId(map);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new BizException("error","删除失败！");
+        }
+        return true;
+    }
+
+    //    SELECT batch FROM zgk_university_major_enrolling_plan WHERE batch IS NOT NULL GROUP BY batch
+    /**
+     * 导入院校专业录取计划用时
+     * @return
+     */
+    @RequestMapping(value="/getMajorPlanBatch")
+    @ResponseBody
+    public List<String> getMajorPlanBatch(){
+        return univercityDAO.getMajorPlanBatch();
+    }
     /**
      * 导入院校录取信息用时
      * @return
@@ -395,17 +429,20 @@ public class UniversityImportController{
                 String univisityName = getCellValue(row,0);
                 String areaId = getCellValue(row,1);
                 String year = getCellValue(row,2);
-                String enrollType = getCellValue(row,3);
-                String majorType = getCellValue(row,4);
-                String majorName = getCellValue(row,5);
-                String planEnrolling = getCellValue(row,6);
-                String lengthOfSchooling = getCellValue(row,7);
-                String schoolFee = getCellValue(row,8);
+                String batch = getCellValue(row,3);
+                String enrollType = getCellValue(row,4);
+                String majorType = getCellValue(row,5);
+
+                String majorName = getCellValue(row,6);
+                String planEnrolling = getCellValue(row,7);
+                String lengthOfSchooling = getCellValue(row,8);
+                String schoolFee = getCellValue(row,9);
                 LOG.debug(univisityName + ":" + areaId + ":" + enrollType + ":" + majorType + ":" + year + ":" + majorName + ":" + planEnrolling + ":" + lengthOfSchooling + ":" + schoolFee);
                 if(StringUtils.isNotEmpty(areaId))
                 {
                     dataMap.put("univisityName", univisityName);
                     dataMap.put("areaId", areaId);
+                    dataMap.put("batch", batch);
                     dataMap.put("enrollType", enrollType);
                     dataMap.put("majorType", majorType);
                     dataMap.put("year", year);
@@ -506,21 +543,21 @@ public class UniversityImportController{
         String path=contextPath.substring(0,contextPath.length()-16)+"/temp/"+"taskFile.json";
         RandomAccessFile randomFile =null;
         try {
-//            Writer writer = new BufferedWriter( new OutputStreamWriter(new FileOutputStream(path),"UTF-8"));
-//            writer.write("所有院校添加成功，任务已经执行完成,任务用时："+time+"\n");
-//            writer.flush();
-//            writer.close();
-            // 打开一个随机访问文件流，按读写方式
-            randomFile = new RandomAccessFile(path, "rw");
-
-            // 文件长度，字节数
-            long fileLength = randomFile.length();
-            //将写文件指针移到文件尾。
-            randomFile.seek(fileLength);
-//            String s = new String(content.getBytes("GBK"),"UTF-8");
-//            randomFile.writeBytes(s);
-            randomFile.writeUTF(content);
-            randomFile.close();
+            Writer writer = new BufferedWriter( new OutputStreamWriter(new FileOutputStream(path),"UTF-8"));
+            writer.write(content);
+            writer.flush();
+            writer.close();
+//            // 打开一个随机访问文件流，按读写方式
+//            randomFile = new RandomAccessFile(path, "rw");
+//
+//            // 文件长度，字节数
+//            long fileLength = randomFile.length();
+//            //将写文件指针移到文件尾。
+//            randomFile.seek(fileLength);
+////            String s = new String(content.getBytes("GBK"),"UTF-8");
+////            randomFile.writeBytes(s);
+//            randomFile.writeUTF(content);
+//            randomFile.close();
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
