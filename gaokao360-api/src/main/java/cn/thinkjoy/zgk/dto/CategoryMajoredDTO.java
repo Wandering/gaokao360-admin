@@ -1,9 +1,11 @@
 package cn.thinkjoy.zgk.dto;
 
+import java.io.Serializable;
+
 /**
  * Created by zuohao on 16/1/26.
  */
-public class CategoryMajoredDTO {
+public class CategoryMajoredDTO implements Serializable {
     private long majoredId;
     private long disciplineCategoriesId;//大门类
     private String disciplineCategoriesName;//大门类
