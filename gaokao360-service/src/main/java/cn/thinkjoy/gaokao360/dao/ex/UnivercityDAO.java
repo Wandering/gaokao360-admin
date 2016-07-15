@@ -33,8 +33,12 @@ public interface UnivercityDAO {
 	void updateBatch9();
 	void updateBatch10();
 	void updateBatch11();
+	void updateBatch12();
+	void updateBatch13();
+	void updateBatch14();
+	void updateBatch15();
 	List<String> getUniversityNameIsNull();
-	void truncateUniq();
+//	void truncateUniq();
 	void insertImportToUniq();
 	void insertMajorPlanToFormal();
 	void insertUniversityPlanToFormal();
@@ -54,7 +58,9 @@ public interface UnivercityDAO {
 	void delMajorEnrollingPlan(Map<String,Object> map);
 	void delByBatchYearAreaId(Map<String,Object> map);
 	void delUnivsersityByBatchYearAreaId(Map<String,Object> map);
-	List<String> getMajorPlanBatch();
+//	List<String> getMajorPlanBatch();
+
+	List<Map<String,Object>> getDelBatch();
 
 
 }

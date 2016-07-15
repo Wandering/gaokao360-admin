@@ -553,6 +553,13 @@
             + '<div id="batchs"></div>'
             + '</div>'
 
+            + '</div>'
+            + '<div class="form-group">'
+            + '<label class="col-sm-2 control-label no-padding-right" for=""> 科类：</label>'
+            + '<div class="col-sm-5">'
+            + '<div id="majorTypes"></div>'
+            + '</div>'
+
             + '</form>'
             + '</div>'
             + '</div>';;
@@ -590,6 +597,20 @@
         });
         $.ajax({
             type: 'GET',
+            url:CommonFn.url.dictListUrl ,
+            dataType: 'JSON',
+            success: function(res){
+                var majorTypeData='';
+                console.log(res);
+                var majorTypes=res.bizData
+                for(var i=0;i<majorTypes.length;i++){
+                    majorTypeData+='<label><input name="majorTypes" type="checkbox" value="'+majorTypes[i].dictId+'" />'+majorTypes[i].name+' </label>';
+                }
+                $('#majorTypes').append(majorTypeData);
+            }
+        });
+        $.ajax({
+            type: 'GET',
             url:CommonFn.url.getBatchTypeUrl ,
             dataType: 'JSON',
             success: function(res){
@@ -597,7 +618,7 @@
                 console.log(res);
                 var batchs=res.bizData
                 for(var i=0;i<batchs.length;i++){
-                    batchData+='<label><input name="batchs" type="checkbox" value="'+batchs[i]+'" />'+batchs[i]+' </label>';
+                    batchData+='<label><input name="batchs" type="checkbox" value="'+batchs[i].note+'" />'+batchs[i].name+' </label>';
                 }
                 $('#batchs').append(batchData);
             }
@@ -634,6 +655,10 @@
             $("input[name='batchs']:checked").each(function(){
                 batchs.push($(this).val())
             })
+            var majorTypes=[];
+            $("input[name='majorTypes']:checked").each(function(){
+                majorTypes.push($(this).val())
+            })
             $.ajax({
                 type: 'GET',
                 url: '/admin/gaokao360/ex/import/delMajorPlanData' ,
@@ -642,7 +667,8 @@
                 data: {
                     areaIds:areas,
                     years:years,
-                    batchs:batchs
+                    batchs:batchs,
+                    majorTypes:majorTypes
                 },
                 success: function(res){
                     console.log(res);

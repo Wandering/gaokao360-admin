@@ -189,10 +189,22 @@
 		update zgk_university_major_enrolling_plan_import set batch='4-2' where batch='84';
 	</update>
 
-	<!-- 清空唯一表 -->
-	<delete id="truncateUniq">
-		truncate table zgk_university_major_enrolling_plan_uniq;
-	</delete>
+	<update id="updateBatch12">
+		update zgk_university_major_enrolling_plan_import set batch='1-1' where batch='111';
+	</update>
+	<update id="updateBatch13">
+		update zgk_university_major_enrolling_plan_import set batch='3-1' where batch='411';
+	</update>
+	<update id="updateBatch14">
+		update zgk_university_major_enrolling_plan_import set batch='3-2' where batch='42';
+	</update>
+	<update id="updateBatch15">
+		update zgk_university_major_enrolling_plan_import set batch='3-1' where batch='412';
+	</update>
+	<!--&lt;!&ndash; 清空唯一表 &ndash;&gt;-->
+	<!--<delete id="truncateUniq">-->
+		<!--truncate table zgk_university_major_enrolling_plan_uniq;-->
+	<!--</delete>-->
 
 	<!-- 导入表添加到唯一表中 -->
 	<insert id="insertImportToUniq">
@@ -434,13 +446,20 @@
 				</foreach>
 				)
 			</if>
+			<if test="majorTypeList!=null">
+				and a.majorType in(
+				<foreach collection="majorTypeList" item="majorType" separator=",">
+					#{majorType}
+				</foreach>
+				)
+			</if>
 		</where>
 	</insert>
 	<delete id="delByBatchYearAreaId">
 			DELETE FROM zgk_university_major_enrolling_plan
 		<trim prefix="WHERE" prefixOverrides="AND | OR">
 			<if test="batchList!=null">
-				and.batch in(
+				and batch in(
 				<foreach collection="batchList" item="batch" separator=",">
 					#{batch}
 				</foreach>
@@ -457,6 +476,13 @@
 				and areaId in(
 				<foreach collection="areaIdList" item="areaId" separator=",">
 					#{areaId}
+				</foreach>
+				)
+			</if>
+			<if test="majorTypeList!=null">
+				and majorType in(
+				<foreach collection="majorTypeList" item="majorType" separator=",">
+					#{majorType}
 				</foreach>
 				)
 			</if>
@@ -486,9 +512,20 @@
 				</foreach>
 				)
 			</if>
+			<if test="majorTypeList!=null">
+				and majorType in(
+				<foreach collection="majorTypeList" item="majorType" separator=",">
+					#{majorType}
+				</foreach>
+				)
+			</if>
 		</trim>
 	</delete>
-	<select id="getMajorPlanBatch" resultType="java.lang.String">
-		SELECT batch FROM zgk_university_major_enrolling_plan WHERE batch IS NOT NULL GROUP BY batch
+	<!--<select id="getMajorPlanBatch" resultType="java.lang.String">-->
+		<!--SELECT batch FROM zgk_university_major_enrolling_plan WHERE batch IS NOT NULL GROUP BY batch-->
+	<!--</select>-->
+
+	<select id="getDelBatch" resultType="java.util.Map">
+		SELECT note,name FROM  zgk_data_dict WHERE type='BATCHTYPE2'
 	</select>
 </mapper>

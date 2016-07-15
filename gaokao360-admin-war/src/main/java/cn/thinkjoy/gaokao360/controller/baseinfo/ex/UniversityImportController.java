@@ -11,7 +11,9 @@ import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.gaokao360.common.ImportExcelUtil;
 import cn.thinkjoy.gaokao360.controller.BaseController;
+import cn.thinkjoy.gaokao360.dao.IDataDictDAO;
 import cn.thinkjoy.gaokao360.dao.ex.UnivercityDAO;
+import cn.thinkjoy.gaokao360.domain.DataDict;
 import cn.thinkjoy.gaokao360.service.common.ex.IAuditoriumService;
 import cn.thinkjoy.gaokao360.service.differentiation.IVideoClassifyService;
 import org.apache.commons.lang3.StringUtils;
@@ -142,9 +144,13 @@ public class UniversityImportController{
                             univercityDAO.updateBatch9();
                             univercityDAO.updateBatch10();
                             univercityDAO.updateBatch11();
+                            univercityDAO.updateBatch12();
+                            univercityDAO.updateBatch13();
+                            univercityDAO.updateBatch14();
+                            univercityDAO.updateBatch15();
                             List<String> ll = univercityDAO.getUniversityNameIsNull();
                             if (ll.isEmpty()) {
-                                univercityDAO.truncateUniq();
+//                                univercityDAO.truncateUniq();
                                 univercityDAO.insertImportToUniq();
                                 univercityDAO.insertUniversityPlanToFormal();
                                 univercityDAO.insertMajorPlanToFormal();
@@ -179,13 +185,13 @@ public class UniversityImportController{
      */
     @RequestMapping(value="/delMajorPlanData")
     @ResponseBody
-    public boolean delMajorPlanData(String[] areaIds,String[] years,String[] batchs){
+    public boolean delMajorPlanData(String[] areaIds,String[] years,String[] batchs,String[] majorTypes){
         try {
             Map<String, Object> map = new HashMap<>();
             map.put("areaIdList", areaIds);
             map.put("yearList", years);
             map.put("batchList", batchs);
-
+            map.put("majorTypeList", majorTypes);
 
             univercityDAO.delMajorEnrollingPlan(map);
             univercityDAO.delByBatchYearAreaId(map);
@@ -204,8 +210,8 @@ public class UniversityImportController{
      */
     @RequestMapping(value="/getMajorPlanBatch")
     @ResponseBody
-    public List<String> getMajorPlanBatch(){
-        return univercityDAO.getMajorPlanBatch();
+    public List<Map<String,Object>> getMajorPlanBatch(){
+        return univercityDAO.getDelBatch();
     }
     /**
      * 导入院校录取信息用时
