@@ -103,6 +103,17 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
+                                    <label for="majorType2" class="col-sm-2 control-label">学科类型</label>
+                                    <div class="col-sm-6">
+                                        <select name="" id="majorType2" class="form-control">
+                                            <option value="1">本科</option>
+                                            <option value="2">高职（专科）</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
                                     <label for="disciplineCategories" class="col-sm-2 control-label">学科门类</label>
                                     <div class="col-sm-6">
                                         <select name="" id="disciplineCategories" class="form-control">

@@ -350,11 +350,11 @@
 
 	<!-- 尝试给院校添加ID -->
 	<update id="updateUniversityIdToImportUniversity">
-		UPDATE zgk_university_major_enrolling_import a,
+		UPDATE zgk_university_enrolling_import a,
 		zgk_university b
 		SET a.universityId = b.id
 		WHERE
-		a.universityName = b. NAME;
+		a.universityName = b.name;
 	</update>
 
 	<!--&lt;!&ndash; 尝试给专业添加ID &ndash;&gt;-->
@@ -365,8 +365,7 @@
 
 	<!-- 检查有院校没有对齐的院校表的情况 -->
 	<select id="getUniversityNameIsNullUniversity" resultType="java.lang.String">
-		update zgk_university_enrolling_import a, zgk_university b set a.universityId = b.id where
-		a.universityName = b.`name`;
+		SELECT DISTINCT universityName from zgk_university_enrolling_import WHERE universityId IS NULL
 	</select>
 
 	<!-- 导入表添加到正式表中 -->

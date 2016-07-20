@@ -89,11 +89,17 @@ public class UniversityImportController{
                             insertMajorData(path);
                             univercityDAO.updateUniversityIdToImportMajor();
                             univercityDAO.updateMajorIdToImportMajor();
-                            univercityDAO.getUniversityNameIsNullMajor();
-                            univercityDAO.insertImportToMajorFormal();
-                            String time=( System.currentTimeMillis()-start)/60*1000+"";
-                            updateSuccessTaskFile(time,getFileName(path));
-                            LOG.info("导入院校专业录取信息用时：" + time);
+
+                            List<String> ll = univercityDAO.getUniversityNameIsNullMajor();
+                            if (ll.isEmpty()) {
+                                univercityDAO.insertImportToMajorFormal();
+                                String time = (System.currentTimeMillis() - start) / 60 * 1000 + "";
+                                updateSuccessTaskFile(time, getFileName(path));
+                                LOG.info("导入院校专业录取信息用时：" + time);
+                            }else {
+                                LOG.info("执行失败");
+                                updateFailTaskFile(ll,getFileName(path));
+                            }
                         } catch (IOException e) {
                             errorTaskFile(e,getFileName(path));
                             e.printStackTrace();
@@ -230,11 +236,16 @@ public class UniversityImportController{
                             createTaskFile(getFileName(path));
                             insertUniversityData(path);
                             univercityDAO.updateUniversityIdToImportUniversity();
-                            univercityDAO.getUniversityNameIsNullUniversity();
-                            univercityDAO.insertImportToUniversityFormal();
-                            String time=( System.currentTimeMillis()-start)/60*1000+"";
-                            updateSuccessTaskFile(time,getFileName(path));
-                            LOG.info("导入院校专业录取信息用时："+time);
+                            List<String> ll =  univercityDAO.getUniversityNameIsNullUniversity();
+                            if (ll.isEmpty()) {
+                                univercityDAO.insertImportToUniversityFormal();
+                                String time = (System.currentTimeMillis() - start) / 60 * 1000 + "";
+                                updateSuccessTaskFile(time, getFileName(path));
+                                LOG.info("导入院校专业录取信息用时：" + time);
+                            }else {
+                                LOG.info("执行失败");
+                                updateFailTaskFile(ll,getFileName(path));
+                            }
                         } catch (IOException e) {
                             errorTaskFile(e,getFileName(path));
                             e.printStackTrace();

@@ -46,12 +46,12 @@ public interface UnivercityDAO {
 	//院校录取人数流程
 	void updateUniversityIdToImportMajor();
 	void updateMajorIdToImportMajor();
-	void getUniversityNameIsNullMajor();
+	List<String>  getUniversityNameIsNullMajor();
 	void insertImportToMajorFormal();
 
 	//院校录取人数流程
 	void updateUniversityIdToImportUniversity();
-	void getUniversityNameIsNullUniversity();
+	List<String> getUniversityNameIsNullUniversity();
 	void insertImportToUniversityFormal();
 
 

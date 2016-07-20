@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IUniversityMajorEnrollingPlanExDAO">
+<!--
+insert
+update
+updateNull
+deleteById
+deleteByCondition
+deleteByProperty
+fetch
+findOne
+findList
+findAll
+queryPage
+like
+queryList
+queryOne
+count
+selectMaxId
+updateOrSave
+selectOne
+selectList
+-->
+
+    <select id="fetch" parameterType="java.lang.Long" resultType="cn.thinkjoy.gaokao360.dto.UniversityMajorEnrollingPlanExDTO">
+        SELECT
+        id,
+        year,
+        universityName,
+        areaId,
+        (SELECT name FROM zgk_province where id = areaId) as areaName,
+        enrollType,
+        majorName,
+        planEnrolling,
+        lengthOfSchooling,
+        schoolFee,
+        batch,
+        (SELECT name FROM zgk_data_dict where note = batch AND type='BATCHTYPE2' LIMIT 1) as batchName,
+        majorType,
+        (SELECT name FROM zgk_data_dict where dictId = majorType AND type='UNIVERSITY_MAJOR_TYPE' LIMIT 1) as majorTypeName
+        FROM zgk_university_major_enrolling_plan
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+    </select>
+
+    <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.UniversityMajorEnrollingPlanExDTO">
+        SELECT
+        id,
+        year,
+        universityName,
+        areaId,
+        (SELECT name FROM zgk_province where id = areaId) as areaName,
+        enrollType,
+        majorName,
+        planEnrolling,
+        lengthOfSchooling,
+        schoolFee,
+        batch,
+        (SELECT name FROM zgk_data_dict where note = batch AND type='BATCHTYPE2' LIMIT 1) as batchName,
+        majorType,
+        (SELECT name FROM zgk_data_dict where dictId = majorType AND type='UNIVERSITY_MAJOR_TYPE' LIMIT 1) as majorTypeName
+        FROM zgk_university_major_enrolling_plan
+      <where>
+
+      </where>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(id) FROM zgk_university_major_enrolling_plan
+       <where>
+
+       </where>
+    </select>
+</mapper>
+

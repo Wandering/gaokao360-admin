@@ -42,6 +42,7 @@
             , $editBtn: $('#editBtn')
             , $deleteBtn: $('#deleteBtn')
             , $majorName: $('#majorName')
+            , $majorType2: $('#majorType2')
             , $disciplineCategories: $('#disciplineCategories')
             , $majorCategory: $('#majorCategory')
             , $employmentRate: $('#employmentRate')
@@ -83,6 +84,7 @@
             majoredDom.$majorName.val(rowData[0].majorName);
         }
             majoredDom.$majorCode.val(rowData[0].majorCode);
+            $('#majorType2').find('option[value="' + rowData[0].disciplineCategories + '"]').attr('selected', 'selected');
             $('#disciplineCategories').find('option[value="' + rowData[0].disciplineCategories + '"]').attr('selected', 'selected');
             $('#majorCategory').find('option[value="' + rowData[0].majorCategory + '"]').attr('selected', 'selected');
             $('#majorType').find('option[value="' + rowData[0].majorType + '"]').attr('selected', 'selected');
@@ -94,8 +96,19 @@
             majoredDom.$offerCourses.val(rowData[0].offerCourses);
             majoredDom.$majorIntroduce.val(rowData[0].majorIntroduce);
 
-
-
+            var majorType2Id = majoredDom.$majorType2.find('option:selected').val();
+            CommonFn.getData('/admin/gaokao360/ex/getMajoredCategoryByPid', 'GET', {
+                id: majorType2Id
+            }, function (res) {
+                if (res.rtnCode == "0000000") {
+                    var dataJson = res.bizData;
+                    var dataHTML = [];
+                    $.each(dataJson, function (i, v) {
+                        dataHTML.push('<option value="' + v.id + '">' + v.name + '</option>');
+                    });
+                    $('#disciplineCategories').html(dataHTML);
+                }
+            })
 
             var majoredId = majoredDom.$disciplineCategories.find('option:selected').val();
             var majoredName = majoredDom.$disciplineCategories.find('option:selected').html();
@@ -151,6 +164,22 @@
 //        删除专业基本信息
         CommonFn.deleteFun('#deleteBtn', '${mainObj}');
 //        关闭清空form表单内容
+
+        majoredDom.$majorType2.change(function () {
+            var majorType2Id = $(this).find('option:selected').val();
+            CommonFn.getData('/admin/gaokao360/ex/getMajoredCategoryByPid', 'GET', {
+                id: majorType2Id
+            }, function (res) {
+                if (res.rtnCode == "0000000") {
+                    var dataJson = res.bizData;
+                    var dataHTML = [];
+                    $.each(dataJson, function (i, v) {
+                        dataHTML.push('<option value="' + v.id + '">' + v.name + '</option>');
+                    });
+                    $('#disciplineCategories').html(dataHTML);
+                }
+            })
+        });
 
         majoredDom.$disciplineCategories.change(function () {
             var majoredId = $(this).find('option:selected').val();
