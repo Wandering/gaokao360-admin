@@ -413,7 +413,7 @@ public class UniversityImportController{
                 String avgScore = getCellValue(row,7);
                 String lowScore = getCellValue(row,8);
                 String enrollingNumber = getCellValue(row,9);
-                if(StringUtils.isNotEmpty(areaId))
+                if(StringUtils.isNotEmpty(areaId)&&(!univisityName.equals("0")))
                 {
                     //System.out.println( areaId + ":" + batch + ":" + majorType + ":" + majorName + ":" + highScore + ":" + avgScore + ":" + lowScore + ":" + enrollingNumber + ":");
                     dataMap.put("univisityName", univisityName);
@@ -455,7 +455,7 @@ public class UniversityImportController{
                 String lengthOfSchooling = getCellValue(row,8);
                 String schoolFee = getCellValue(row,9);
                 LOG.debug(univisityName + ":" + areaId + ":" + enrollType + ":" + majorType + ":" + year + ":" + majorName + ":" + planEnrolling + ":" + lengthOfSchooling + ":" + schoolFee);
-                if(StringUtils.isNotEmpty(areaId))
+                if(StringUtils.isNotEmpty(areaId)&&(!univisityName.equals("0")))
                 {
                     dataMap.put("univisityName", univisityName);
                     dataMap.put("areaId", areaId);
@@ -496,7 +496,7 @@ public class UniversityImportController{
                 if(highScore.length()>5)
                     System.out.println(univisityName + ":" + areaId + ":" + batch + ":" + majorType + ":" + year + ":" + highScore + ":" + avgScore + ":" + lowScore + ":" + enrollingNumber + ":");
 
-                if(StringUtils.isNotEmpty(areaId))
+                if(StringUtils.isNotEmpty(areaId)&&(!univisityName.equals("0")))
                 {
                     dataMap.put("univisityName", univisityName);
                     dataMap.put("areaId", areaId);
