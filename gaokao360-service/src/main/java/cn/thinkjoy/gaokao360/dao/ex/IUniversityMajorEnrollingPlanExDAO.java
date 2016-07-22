@@ -11,5 +11,5 @@ import cn.thinkjoy.gaokao360.dto.UniversityMajorEnrollingPlanExDTO;
 
 public interface IUniversityMajorEnrollingPlanExDAO extends IBaseDAO<UniversityMajorEnrollingPlanExDTO>{
 	
-
+    boolean universityNameExist(String universityName);
 }

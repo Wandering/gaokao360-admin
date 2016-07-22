@@ -60,7 +60,7 @@ public class DataDictController extends AbstractAdminController<IDataDictService
     @ResponseBody
     public List geBatch(){
         Map<String,Object> map = new HashMap<>();
-        map.put("type","MAJOR_BATCH");
+        map.put("type","BATCHTYPE2");
         return dataDictService.queryList(map,"dictId","asc");
     }
 

@@ -41,6 +41,8 @@ public class AddUtil extends BaseCommonUtil{
     @Autowired
     private IMajoredExService majoredExService;
 
+    @Autowired
+    private IUniversityMajorEnrollingPlanExService universityMajorEnrollingPlanExService;
 
     @Autowired
     private IAdmissionBatchExService admissionBatchExService;
@@ -70,6 +72,15 @@ public class AddUtil extends BaseCommonUtil{
     public void gkinformationgkhot(){
         getDataMap().put("type", 0);
         getServiceMaps().get("gkinformationgkhot").insertMap(getDataMap());
+    }
+
+    public void universitymajorenrollingplan(){
+        if(universityMajorEnrollingPlanExService.universityNameExist(getDataMap().get("universityName").toString())){
+            universityMajorEnrollingPlanExService.insertMap(getDataMap());
+        }else {
+            throw new BizException("error","院校不存在");
+        }
+
     }
 
     public void majored(){

@@ -25,4 +25,9 @@ public class UniversityMajorEnrollingPlanExServiceImpl extends AbstractPageServi
     public IBaseDAO<UniversityMajorEnrollingPlanExDTO> getDao() {
         return universityMajorEnrollingPlanExDAO;
     }
+
+    @Override
+    public boolean universityNameExist(String universityName) {
+        return universityMajorEnrollingPlanExDAO.universityNameExist(universityName);
+    }
 }

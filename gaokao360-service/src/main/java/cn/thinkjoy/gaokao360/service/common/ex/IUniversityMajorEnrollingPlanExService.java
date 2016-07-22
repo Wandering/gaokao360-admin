@@ -12,5 +12,5 @@ import cn.thinkjoy.common.service.IBaseService;
 import cn.thinkjoy.common.service.IPageService;
 
 public interface IUniversityMajorEnrollingPlanExService<D extends IBaseDAO<T>, T extends BaseDomain> extends IBaseService<D, T>,IPageService<D, T>{
-
+    boolean universityNameExist(String universityName);
 }

@@ -43,7 +43,8 @@ public class UpdateUtil extends BaseCommonUtil{
     @Autowired
     private IMajoredExService majoredExService;
 
-
+    @Autowired
+    private IUniversityMajorEnrollingPlanExService universityMajorEnrollingPlanExService;
     @Autowired
     private IAdmissionBatchExService admissionBatchExService;
 
@@ -90,6 +91,14 @@ public class UpdateUtil extends BaseCommonUtil{
         }
     }
 
+    public void universitymajorenrollingplan(){
+        if(universityMajorEnrollingPlanExService.universityNameExist(getDataMap().get("universityName").toString())){
+            universityMajorEnrollingPlanExService.insertMap(getDataMap());
+        }else {
+            throw new BizException("error","院校不存在");
+        }
+
+    }
 
     public void auditorium(){
         getServiceMaps().get("videocourse").updateMap(dataMap);

@@ -33,7 +33,7 @@ public class LoginInterceptor  extends HandlerInterceptorAdapter {
         private String getArea() throws Exception{
             try {
                 Object id = UserContext.getCurrentUser().getId();
-                System.out.println("当前类："+this.getClass().getName()+"当前线程="+Thread.currentThread().getId());
+//                System.out.println("当前类："+this.getClass().getName()+"当前线程="+Thread.currentThread().getId());
                 String area = permissionExService.getUserAreaByUserId(id);
                 return area;
             }catch (Exception e){
