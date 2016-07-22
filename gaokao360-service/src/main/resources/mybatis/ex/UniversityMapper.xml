@@ -322,23 +322,27 @@
 	<!-- 导入表添加到正式表中 -->
 	<insert id="insertImportToMajorFormal">
 		INSERT IGNORE INTO zgk_university_major_enrolling (
+		universityId,
 		universityName,
 			areaId,
 			batch,
 			majorType,
 			year,
 			majorName,
+			majorId,
 			highestScore,
 			averageScore,
 			lowestScore,
 			realEnrollingNumber
 		) SELECT
+			a.universityId,
 			a.universityName,
 			a.areaId,
 			a.batch,
 			a.majorType,
 			a.year,
 			a.majorName,
+			a.majorId,
 			a.highestScore,
 			a.averageScore,
 			a.lowestScore,
