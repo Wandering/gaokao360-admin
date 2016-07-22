@@ -32,7 +32,9 @@ var CommonFn = {
         getuniversityTypeUrl: '/admin/gaokao360/ex/getDataDictList?type=UNIVERSITY_TYPE', // 院校类型
         getSchoolIngUrl: '/admin/gaokao360/ex/getDataDictList?type=LENGTH_OF_SCHOOLING', // 学制
         getBatchTypeUrl: '/admin/gaokao360/ex/import/getMajorPlanBatch', //
-        getModuleUrl: '/admin/gaokao360/ex/queryVideoType' // 视频模块
+        getModuleUrl: '/admin/gaokao360/ex/queryVideoType', // 视频模块
+        getDataDictList: '/admin/gaokao360/ex/getDataDictList?type=FEATURE' // 院校特征
+
     },
     getData: function (url, type, data, callback) {
         $.ajax({
@@ -573,6 +575,17 @@ var CommonFn = {
         });
         return contentArr.join('');
     }
+    //getDataDictList:function(){
+    //    var contentArr = [];
+    //    $.ajaxSettings.async = false;
+    //    CommonFn.getData(CommonFn.url.getDataDictList, 'GET', {}, function (result) {
+    //        if (result.rtnCode == "0000000") {
+    //            console.log(result)
+    //        }
+    //
+    //    });
+    //    return contentArr.join('');
+    //}
 
 
 
