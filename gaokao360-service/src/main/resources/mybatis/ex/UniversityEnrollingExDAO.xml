@@ -36,7 +36,6 @@ selectList
         enrolling.lowestScore as lowestScore ,
         enrolling.averageScore as averageScore ,
         enrolling.proScore as proScore ,
-        enrolling.lengthOfSchooling as lengthOfSchooling ,
         enrolling.highestPrecedence as highestPrecedence ,
         enrolling.lowestPrecedence as lowestPrecedence ,
         enrolling.averagePrecedence as averagePrecedence ,
