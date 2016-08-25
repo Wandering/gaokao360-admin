@@ -113,7 +113,7 @@ selectList
                 FROM
                     zgk_data_dict dd
                 WHERE
-                    dd.type = 'MAJOR_BATCH'
+                    dd.type = 'BATCHTYPE2'
                 AND dd.dictId = batch
             ) as batchName,
             year,
