@@ -7,8 +7,8 @@
         SELECT
           COUNT(acc.id)
         FROM zgk_user_account acc
-        left join gk_user_vip vip on acc.id = vip.id
-        left join gk_user_info info on acc.id = info.id
+        left join zgk_user_vip vip on acc.userId = vip.userId
+        left join zgk_user_info info on acc.userId = info.userId
         <where>
             acc.userType = 0
             <if test="token!=null">
