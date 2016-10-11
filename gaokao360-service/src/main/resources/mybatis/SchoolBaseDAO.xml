@@ -264,7 +264,7 @@ selectList
                 ${condition.groupOp}   ${condition.schoolCode.field}  ${condition.schoolCode.op}  #{condition.schoolCode.data}
             </if>
             <if test="condition.schoolName!=null">
-                school_name   ${condition.schoolName.field}  ${condition.schoolName.op}  #{condition.schoolName.data}
+                ${condition.groupOp} school_name  ${condition.schoolName.op}  #{condition.schoolName.data}
             </if>
             <if test="condition.areaCode!=null">
                 ${condition.groupOp}   ${condition.areaCode.field}  ${condition.areaCode.op}  #{condition.areaCode.data}
