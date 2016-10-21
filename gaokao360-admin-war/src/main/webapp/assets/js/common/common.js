@@ -33,8 +33,10 @@ var CommonFn = {
         getSchoolIngUrl: '/admin/gaokao360/ex/getDataDictList?type=LENGTH_OF_SCHOOLING', // 学制
         getBatchTypeUrl: '/admin/gaokao360/ex/import/getMajorPlanBatch', //
         getModuleUrl: '/admin/gaokao360/ex/queryVideoType', // 视频模块
-        getDataDictList: '/admin/gaokao360/ex/getDataDictList?type=FEATURE' // 院校特征
-
+        getDataDictList: '/admin/gaokao360/ex/getDataDictList?type=FEATURE', // 院校特征
+        queryExpert: '/admin/zgkadmin/ex/queryAllExpert', // 查询所有的专家名称
+        queryServiceTypeByExpert:'/admin/zgkadmin/ex/queryServiceTypeByExpert', //根据专家获取专家服务
+        auditPass:'/admin/zgkadmin/ex/auditPass' //根据专家获取专家服务
     },
     getData: function (url, type, data, callback) {
         $.ajax({

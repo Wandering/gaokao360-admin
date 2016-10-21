@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IExpertAppraiseExDAO">
+<!--
+insert
+update
+updateNull
+deleteById
+deleteByCondition
+deleteByProperty
+fetch
+findOne
+findList
+findAll
+queryPage
+like
+queryList
+queryOne
+count
+selectMaxId
+updateOrSave
+selectOne
+selectList
+-->
+    <sql id="Base_Column_List">
+        app.id as id,
+        app.expert_id as expertId,
+        app.user_id as userId,
+        app.user_name as userName,
+        app.server_type as serverType,
+        app.user_comments as userComments,
+        app.is_checked as isChecked,
+        app.create_date as createDate,
+        info.expert_name as expertName,
+        config.config_value as serverName
+    </sql>
+
+    <select id="queryPage" resultType="ExpertAppraiseDTO">
+        SELECT
+        <include refid="Base_Column_List" />
+         FROM zgk_expert_appraise app
+        LEFT JOIN zgk_expert_info info ON info.id = app.expert_id
+        LEFT JOIN zgk_expert_config config ON app.server_type = config.config_key and config.config_domain = 'serviceType'
+        <where>
+
+            <if test="condition.whereSql != null">
+                and id in (#{condition.whereSql})
+            </if>
+
+            <if test="condition.id!=null">
+                ${condition.groupOp}   app.id  ${condition.id.op}  #{condition.id.data}
+            </if>
+            <if test="condition.expertId!=null">
+                ${condition.groupOp}   app.expert_id  ${condition.expert_id.op}  #{condition.expert_id.data}
+            </if>
+            <if test="condition.userId!=null">
+                ${condition.groupOp}   app.user_id  ${condition.user_id.op}  #{condition.user_id.data}
+            </if>
+            <if test="condition.userName!=null">
+                ${condition.groupOp}   app.user_name  ${condition.user_name.op}  #{condition.user_name.data}
+            </if>
+            <if test="condition.serverType!=null">
+                ${condition.groupOp}   app.server_type  ${condition.server_type.op}  #{condition.server_type.data}
+            </if>
+            <if test="condition.userComments!=null">
+                ${condition.groupOp}   app.user_comments  ${condition.user_comments.op}  #{condition.user_comments.data}
+            </if>
+            <if test="condition.isChecked!=null">
+                ${condition.groupOp}   app.is_checked  ${condition.isChecked.op}  #{condition.isChecked.data}
+            </if>
+            <if test="condition.createDate!=null">
+                ${condition.groupOp}   app.create_date  ${condition.create_date.op}  #{condition.create_date.data}
+            </if>
+
+
+    </where>
+
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(id) FROM zgk_expert_appraise
+       <where>
+           <if test="id!=null">
+               ${groupOp} id ${id.op}  #{id.data}
+           </if>
+           <if test="expertId!=null">
+               ${groupOp} expert_id ${expert_id.op}  #{expert_id.data}
+           </if>
+           <if test="userId!=null">
+               ${groupOp} user_id ${user_id.op}  #{user_id.data}
+           </if>
+           <if test="userName!=null">
+               ${groupOp} user_name ${user_name.op}  #{user_name.data}
+           </if>
+           <if test="serverType!=null">
+               ${groupOp} server_type ${server_type.op}  #{server_type.data}
+           </if>
+           <if test="userComments!=null">
+               ${groupOp} user_comments ${user_comments.op}  #{user_comments.data}
+           </if>
+           <if test="isChecked!=null">
+               ${groupOp} is_checked ${isChecked.op}  #{isChecked.data}
+           </if>
+           <if test="createDate!=null">
+               ${groupOp} create_date ${create_date.op}  #{create_date.data}
+           </if>
+
+       </where>
+    <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+    </if>
+    </select>
+
+
+    <select id="getAllExpert" resultType="ExpertInfo">
+        SELECT id,expert_name as expertName from zgk_expert_info WHERE is_checked = 1
+    </select>
+
+
+    <select id="getServiceTypeByExpert" resultType="java.util.Map">
+        SELECT config.config_key as id,config.config_value as name from zgk_expert_service_relation relation
+        LEFT JOIN zgk_expert_config config ON relation.service_type_id = config.config_key and config.config_domain = 'serviceType'
+        WHERE relation.expert_id = #{id} GROUP BY relation.service_type_id
+    </select>
+
+
+    <update id="auditPass">
+        UPDATE  zgk_expert_appraise  SET is_checked = 1 where id = #{id}
+    </update>
+
+
+
+</mapper>
+
