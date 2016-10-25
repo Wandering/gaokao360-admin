@@ -2,30 +2,30 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  ExpertInfoServiceImpl.java 2016-10-19 15:14:27 $
+ * $Id:  ExpertReservationOrderServiceImpl.java 2016-10-24 09:47:11 $
  */
-package cn.thinkjoy.gaokao360.service.common.impl;
+package cn.thinkjoy.gaokao360.service.common.ex.impl;
 
 import cn.thinkjoy.common.dao.IBaseDAO;
-import cn.thinkjoy.gaokao360.dao.IExpertInfoDAO;
-import cn.thinkjoy.gaokao360.domain.ExpertInfo;
+import cn.thinkjoy.gaokao360.dao.IExpertReservationOrderDAO;
+import cn.thinkjoy.gaokao360.dao.ex.IExpertReservationOrderExDAO;
+import cn.thinkjoy.gaokao360.domain.ExpertReservationOrder;
+import cn.thinkjoy.gaokao360.dto.ExpertReservationOrderDTO;
 import cn.thinkjoy.gaokao360.service.baseservice.AbstractPageService;
-import cn.thinkjoy.gaokao360.service.common.IExpertInfoService;
+import cn.thinkjoy.gaokao360.service.common.IExpertReservationOrderService;
+import cn.thinkjoy.gaokao360.service.common.ex.IExpertReservationOrderExService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
 
-
-@Service("ExpertInfoServiceImpl")
-public class ExpertInfoServiceImpl extends AbstractPageService<IBaseDAO<ExpertInfo>, ExpertInfo> implements IExpertInfoService<IBaseDAO<ExpertInfo>,ExpertInfo> {
+@Service("ExpertReservationOrderExServiceImpl")
+public class ExpertReservationOrderExServiceImpl extends AbstractPageService<IBaseDAO<ExpertReservationOrderDTO>, ExpertReservationOrderDTO>  implements IExpertReservationOrderExService<IBaseDAO<ExpertReservationOrderDTO>,ExpertReservationOrderDTO>{
     @Autowired
-    private IExpertInfoDAO expertInfoDAO;
+    private IExpertReservationOrderExDAO expertReservationOrderExDAO;
 
     @Override
-    public IBaseDAO<ExpertInfo> getDao() {
-        return expertInfoDAO;
+    public IBaseDAO<ExpertReservationOrderDTO> getDao() {
+        return expertReservationOrderExDAO;
     }
 
 //    @Override
@@ -79,8 +79,8 @@ public class ExpertInfoServiceImpl extends AbstractPageService<IBaseDAO<ExpertIn
 //    }
 //
 //    @Override
-//    public List<ExpertInfo> findAll() {
-//        return expertInfoDAO.findAll();
+//    public List<ExpertReservationOrder> findAll() {
+//        return expertReservationOrderDAO.findAll();
 //    }
 //
 //    @Override
@@ -134,8 +134,8 @@ public class ExpertInfoServiceImpl extends AbstractPageService<IBaseDAO<ExpertIn
 //    }
 //
 //    @Override
-//    protected ExpertInfoDAO getDao() {
-//        return expertInfoDAO;
+//    protected ExpertReservationOrderDAO getDao() {
+//        return expertReservationOrderDAO;
 //    }
 //
 //    @Override

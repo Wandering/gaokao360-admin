@@ -56,7 +56,6 @@
                 + '</div>'
 
                 + '<div class="col-xs-12" style="margin-bottom: 20px">'
-//                + '<form class="form-horizontal" role="form">'
                 + '<div class="form-group">'
                 + '<label class="col-sm-2 control-label no-padding-right" for="selExpert"> 评价对象：</label>'
                 + '<div class="col-sm-4">'
@@ -68,7 +67,6 @@
                 + '</div>'
 
                 + '<div class="col-xs-12" style="margin-bottom: 20px">'
-//                + '<form class="form-horizontal" role="form">'
                 + '<div class="form-group">'
                 + '<label class="col-sm-2 control-label no-padding-right" for="selServiceType"> 服务内容：</label>'
                 + '<div class="col-sm-4">'

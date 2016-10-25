@@ -673,6 +673,39 @@
         }
         return ""
     }
+
+    function formatdate3(cellvalue, options, cell) {
+        if (cellvalue) {
+            return new Date(parseInt(cellvalue) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
+        }
+        return ""
+    }
+    function loadOrderStatus(cellvalue, options, cell) {
+
+        if (cellvalue) {
+            switch (parseInt(cellvalue)){
+                case -1:
+                     return "已删除";
+                case 0:
+                    return "未支付";
+                case 1:
+                    return "支付成功";
+                case 2:
+                    return "初步沟通";
+                case 3:
+                    return "预约成功";
+                case 4:
+                    return "支付成功";
+                case 5:
+                    return "结束";
+                case 10:
+                    return "已过期";
+                default:
+                    return cellvalue;
+            }
+        }
+        return cellvalue
+    }
     var mainObj = '${mainObj}';
 
 </script>

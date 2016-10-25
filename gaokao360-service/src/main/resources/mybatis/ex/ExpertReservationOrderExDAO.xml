@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IExpertReservationOrderExDAO">
+<!--
+insert
+update
+updateNull
+deleteById
+deleteByCondition
+deleteByProperty
+fetch
+findOne
+findList
+findAll
+queryPage
+like
+queryList
+queryOne
+count
+selectMaxId
+updateOrSave
+selectOne
+selectList
+-->
+    <sql id="Base_Column_List">
+        ord.id   as id,
+        ord.orderNo   as orderNo,
+        ord.orderStatus   as orderStatus,
+        ord.userId   as userId,
+        ord.expertId   as expertId,
+        ord.channel   as channel,
+        ord.serverContent   as serverContent,
+        ord.serverType   as serverType,
+        ord.serverAddress   as serverAddress,
+        ord.serverPrice   as serverPrice,
+        ord.contactPerson   as contactPerson,
+        ord.contactPhone   as contactPhone,
+        ord.contactQq   as contactQq,
+        ord.expectBeginDate   as expectBeginDate,
+        ord.expectEndDate   as expectEndDate,
+        ord.createDate   as createDate,
+        ord.questionDesc   as questionDesc,
+        ord.meetingAddress   as meetingAddress,
+        info.expert_name as expertName,
+        info.expert_phone as expertPhone
+    </sql>
+
+    <select id="queryPage" resultType="ExpertReservationOrderDTO">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_expert_reservation_order ord
+        LEFT JOIN zgk_expert_info info on info.id = ord.expertId
+        <where>
+
+            <if test="condition.whereSql != null">
+                and id in (#{condition.whereSql})
+            </if>
+
+            <if test="condition.id!=null">
+                ${condition.groupOp}   id  ${condition.id.op}  #{condition.id.data}
+            </if>
+            <if test="condition.orderNo!=null">
+                ${condition.groupOp}   orderNo  ${condition.orderNo.op}  #{condition.orderNo.data}
+            </if>
+            <if test="condition.orderStatus!=null">
+                ${condition.groupOp}   orderStatus  ${condition.orderStatus.op}  #{condition.orderStatus.data}
+            </if>
+            <if test="condition.userId!=null">
+                ${condition.groupOp}   userId  ${condition.userId.op}  #{condition.userId.data}
+            </if>
+            <if test="condition.expertId!=null">
+                ${condition.groupOp}   expertId  ${condition.expertId.op}  #{condition.expertId.data}
+            </if>
+            <if test="condition.channel!=null">
+                ${condition.groupOp}   channel  ${condition.channel.op}  #{condition.channel.data}
+            </if>
+            <if test="condition.serverContent!=null">
+                ${condition.groupOp}   serverContent  ${condition.serverContent.op}  #{condition.serverContent.data}
+            </if>
+            <if test="condition.serverType!=null">
+                ${condition.groupOp}   serverType  ${condition.serverType.op}  #{condition.serverType.data}
+            </if>
+            <if test="condition.serverAddress!=null">
+                ${condition.groupOp}   serverAddress  ${condition.serverAddress.op}  #{condition.serverAddress.data}
+            </if>
+            <if test="condition.serverPrice!=null">
+                ${condition.groupOp}   serverPrice  ${condition.serverPrice.op}  #{condition.serverPrice.data}
+            </if>
+            <if test="condition.contactPerson!=null">
+                ${condition.groupOp}   contactPerson  ${condition.contactPerson.op}  #{condition.contactPerson.data}
+            </if>
+            <if test="condition.contactPhone!=null">
+                ${condition.groupOp}   contactPhone  ${condition.contactPhone.op}  #{condition.contactPhone.data}
+            </if>
+            <if test="condition.contactQq!=null">
+                ${condition.groupOp}   contactQq  ${condition.contactQq.op}  #{condition.contactQq.data}
+            </if>
+            <if test="condition.expectBeginDate!=null">
+                ${condition.groupOp}   expectBeginDate  ${condition.expectBeginDate.op}  #{condition.expectBeginDate.data}
+            </if>
+            <if test="condition.expectEndDate!=null">
+                ${condition.groupOp}   expectEndDate  ${condition.expectEndDate.op}  #{condition.expectEndDate.data}
+            </if>
+            <if test="condition.createDate!=null">
+                ${condition.groupOp}   createDate  ${condition.createDate.op}  #{condition.createDate.data}
+            </if>
+            <if test="condition.questionDesc!=null">
+                ${condition.groupOp}   questionDesc  ${condition.questionDesc.op}  #{condition.questionDesc.data}
+            </if>
+            <if test="condition.meetingAddress!=null">
+                ${condition.groupOp}   meetingAddress  ${condition.meetingAddress.op}  #{condition.meetingAddress.data}
+            </if>
+
+
+    </where>
+
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(id) FROM zgk_expert_reservation_order
+       <where>
+           <if test="id!=null">
+               ${groupOp} id ${id.op}  #{id.data}
+           </if>
+           <if test="orderNo!=null">
+               ${groupOp} orderNo ${orderNo.op}  #{orderNo.data}
+           </if>
+           <if test="orderStatus!=null">
+               ${groupOp} orderStatus ${orderStatus.op}  #{orderStatus.data}
+           </if>
+           <if test="userId!=null">
+               ${groupOp} userId ${userId.op}  #{userId.data}
+           </if>
+           <if test="expertId!=null">
+               ${groupOp} expertId ${expertId.op}  #{expertId.data}
+           </if>
+           <if test="channel!=null">
+               ${groupOp} channel ${channel.op}  #{channel.data}
+           </if>
+           <if test="serverContent!=null">
+               ${groupOp} serverContent ${serverContent.op}  #{serverContent.data}
+           </if>
+           <if test="serverType!=null">
+               ${groupOp} serverType ${serverType.op}  #{serverType.data}
+           </if>
+           <if test="serverAddress!=null">
+               ${groupOp} serverAddress ${serverAddress.op}  #{serverAddress.data}
+           </if>
+           <if test="serverPrice!=null">
+               ${groupOp} serverPrice ${serverPrice.op}  #{serverPrice.data}
+           </if>
+           <if test="contactPerson!=null">
+               ${groupOp} contactPerson ${contactPerson.op}  #{contactPerson.data}
+           </if>
+           <if test="contactPhone!=null">
+               ${groupOp} contactPhone ${contactPhone.op}  #{contactPhone.data}
+           </if>
+           <if test="contactQq!=null">
+               ${groupOp} contactQq ${contactQq.op}  #{contactQq.data}
+           </if>
+           <if test="expectBeginDate!=null">
+               ${groupOp} expectBeginDate ${expectBeginDate.op}  #{expectBeginDate.data}
+           </if>
+           <if test="expectEndDate!=null">
+               ${groupOp} expectEndDate ${expectEndDate.op}  #{expectEndDate.data}
+           </if>
+           <if test="createDate!=null">
+               ${groupOp} createDate ${createDate.op}  #{createDate.data}
+           </if>
+           <if test="questionDesc!=null">
+               ${groupOp} questionDesc ${questionDesc.op}  #{questionDesc.data}
+           </if>
+           <if test="meetingAddress!=null">
+               ${groupOp} meetingAddress ${meetingAddress.op}  #{meetingAddress.data}
+           </if>
+
+       </where>
+    <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+    </if>
+    </select>
+
+</mapper>
+

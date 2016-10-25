@@ -117,6 +117,9 @@ public class ServiceMaps extends BaseServiceMaps{
     @Autowired
     private IExpertAppraiseService expertAppraiseService;
 
+    @Autowired
+    private IExpertReservationOrderService expertReservationOrderService;
+
     @PostConstruct
     public void init(){
         super.init();
@@ -148,6 +151,7 @@ public class ServiceMaps extends BaseServiceMaps{
         serviceMap.put("professiontype",professionTypeService);
         serviceMap.put("expertinfo",expertInfoService);
         serviceMap.put("expertappraise",expertAppraiseService);
+        serviceMap.put("expertreservationorder",expertReservationOrderService);
 
         serviceMap.put("majored",majoredService);
         serviceMap.put("majoredex",majoredExService);

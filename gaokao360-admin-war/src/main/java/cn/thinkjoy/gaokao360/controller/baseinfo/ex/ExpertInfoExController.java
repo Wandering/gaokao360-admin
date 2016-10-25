@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 @Controller
 @Scope("prototype")
@@ -51,6 +52,21 @@ public class ExpertInfoExController extends BaseController<IExpertInfoExService>
     @ResponseBody
     public BizData4Page findAllExpertInfos(HttpServletRequest request,HttpServletResponse response){
         return doPage(request, response);
+    }
+
+    /***
+     * 添加查询条件
+
+     * @param
+    request
+     * @param conditions
+     */
+    @
+            Override
+    protected void enhancePageConditions(HttpServletRequest request, Map conditions) {
+        super.enhancePageConditions(request, conditions);
+        conditions.put("sortBy","desc");
+        conditions.put("orderBy","id");
     }
 
     @Override

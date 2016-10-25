@@ -86,7 +86,7 @@ selectList
 
 
     <select id="count" resultType="java.lang.Integer">
-        SELECT count(id) FROM zgk_expert_appraise
+        SELECT count(id) FROM zgk_expert_appraise app
        <where>
            <if test="id!=null">
                ${groupOp} id ${id.op}  #{id.data}

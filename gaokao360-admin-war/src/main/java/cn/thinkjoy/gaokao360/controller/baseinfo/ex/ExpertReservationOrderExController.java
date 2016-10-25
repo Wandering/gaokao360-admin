@@ -2,39 +2,34 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  ScheduleController.java 2015-12-16 10:49:57 $
+ * $Id:  ProvinceController.java 2015-12-07 11:26:48 $
  */
 
 package cn.thinkjoy.gaokao360.controller.baseinfo.ex;
 
-import cn.thinkjoy.common.domain.SearchField;
-import cn.thinkjoy.common.domain.SearchFilter;
 import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.gaokao360.controller.BaseController;
-import cn.thinkjoy.gaokao360.domain.ExpertInfo;
-import cn.thinkjoy.gaokao360.service.common.IExpertAppraiseService;
-import cn.thinkjoy.gaokao360.service.common.ex.IExpertAppraiseExService;
+import cn.thinkjoy.gaokao360.service.common.IExpertReservationOrderService;
+import cn.thinkjoy.gaokao360.service.common.ex.IExpertReservationOrderExService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 import java.util.Map;
 
 @Controller
 @Scope("prototype")
 @RequestMapping(value="/admin/zgkadmin/ex")
-public class ExpertAppraiseExController extends BaseController<IExpertAppraiseExService> {
+public class ExpertReservationOrderExController extends BaseController<IExpertReservationOrderExService> {
 
 
     @Autowired
-    private IExpertAppraiseExService expertAppraiseExService;
+    private IExpertReservationOrderExService expertReservationOrderExService;
 
     /**
      * 页面主请求
@@ -42,7 +37,7 @@ public class ExpertAppraiseExController extends BaseController<IExpertAppraiseEx
      * @param response
      * @return  返回菜单数据、表格描述元数据、当前主描述  如本页面为org
      */
-    @RequestMapping(value="/expertappraise")
+    @RequestMapping(value="/expertreservationorder")
     public ModelAndView renderMainView(HttpServletRequest request,HttpServletResponse response){
 
 
@@ -53,50 +48,11 @@ public class ExpertAppraiseExController extends BaseController<IExpertAppraiseEx
      * 获取所有的组织信息
      * @return
      */
-    @RequestMapping(value="/expertappraises")
+    @RequestMapping(value="/expertreservationorders")
     @ResponseBody
-    public BizData4Page findAllExpertAppraises(HttpServletRequest request,HttpServletResponse response){
+    public BizData4Page findAllExpertReservationOrders(HttpServletRequest request,HttpServletResponse response){
         return doPage(request, response);
     }
-
-
-
-    /**
-     * 查询所有专家
-     * @return
-     */
-    @RequestMapping(value="/queryAllExpert")
-    @ResponseBody
-    public List<ExpertInfo> queryAllExpert(){
-
-        return expertAppraiseExService.getAllExpert();
-    }
-
-
-
-    /**
-     * 查询专家对应的服务
-     * @return
-     */
-    @RequestMapping(value="/queryServiceTypeByExpert")
-    @ResponseBody
-    public List<Map<String,Object>> queryServiceTypeByExpert(@RequestParam Long expertId){
-
-        return expertAppraiseExService.getServiceTypeByExpert(expertId);
-    }
-
-
-    /**
-     * 审核通过
-     * @return
-     */
-    @RequestMapping(value="/auditPass")
-    @ResponseBody
-    public boolean auditPass(@RequestParam Long id){
-
-        return expertAppraiseExService.auditPass(id);
-    }
-
 
     /***
      * 添加查询条件
@@ -109,20 +65,14 @@ public class ExpertAppraiseExController extends BaseController<IExpertAppraiseEx
             Override
     protected void enhancePageConditions(HttpServletRequest request, Map conditions) {
         super.enhancePageConditions(request, conditions);
-
-        SearchField field = new SearchField();
-        field.setData("isChecked");
-        field.setOp("=");
-        field.setData("2");
-        conditions.put("isChecked",field);
         conditions.put("sortBy","desc");
-        conditions.put("orderBy","app.create_date");
-    }
-    @Override
-    protected IExpertAppraiseExService getMainService() {
-        return expertAppraiseExService;
+        conditions.put("orderBy","id");
     }
 
+    @Override
+    protected IExpertReservationOrderExService getMainService() {
+        return expertReservationOrderExService;
+    }
 
     @Override
     protected String getBizSys() {
@@ -131,12 +81,12 @@ public class ExpertAppraiseExController extends BaseController<IExpertAppraiseEx
 
     @Override
     protected String getMainObjName() {
-        return "expertappraise";
+        return "expertreservationorder";
     }
 
     @Override
     protected String getViewTitle() {
-        return "服务评价管理";
+        return "订单状态管理";
     }
 
     @Override
