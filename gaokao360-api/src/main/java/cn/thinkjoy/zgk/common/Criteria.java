@@ -27,6 +27,8 @@ public class Criteria {
 
     private Integer mysqlLength;
 
+    private String[] types;
+
     protected Criteria(Criteria example) {
         this.orderByClause = example.orderByClause;
         this.condition = example.condition;
@@ -48,7 +50,7 @@ public class Criteria {
     }
 
     /**
-     * @param condition 
+     * @param condition
 	 *            查询的条件名称
 	 * @param value
 	 *            查询的值
@@ -59,7 +61,7 @@ public class Criteria {
     }
 
     /**
-     * @param orderByClause 
+     * @param orderByClause
 	 *            排序字段
      */
     public void setOrderByClause(String orderByClause) {
@@ -67,7 +69,7 @@ public class Criteria {
     }
 
     /**
-     * @param distinct 
+     * @param distinct
 	 *            是否相异
      */
     public void setDistinct(boolean distinct) {
@@ -75,7 +77,7 @@ public class Criteria {
     }
 
     /**
-     * @param condition 
+     * @param condition
 	 *            存放条件查询值
      */
     public void setCondition(Map<String, Object> condition) {
@@ -83,7 +85,7 @@ public class Criteria {
     }
 
     /**
-     * @param condition 
+     * @param condition
 	 *            存放条件查询值
      */
     public Map<String, Object> getCondition() {
@@ -91,7 +93,7 @@ public class Criteria {
     }
 
     /**
-     * @param mysqlOffset 
+     * @param mysqlOffset
 	 * 指定返回记录行的偏移量<br/>
 	 * mysqlOffset= 5,mysqlLength=10;  <br/>// 检索记录行 6-15
      */
@@ -100,11 +102,35 @@ public class Criteria {
     }
 
     /**
-     * @param mysqlLength 
+     * @param mysqlLength
 	 * 指定返回记录行的最大数目<br/>
 	 * mysqlOffset= 5,mysqlLength=10;  <br/>// 检索记录行 6-15
      */
     public void setMysqlLength(Integer mysqlLength) {
         this.mysqlLength = mysqlLength;
+    }
+
+    public boolean isDistinct() {
+        return distinct;
+    }
+
+    public String getOrderByClause() {
+        return orderByClause;
+    }
+
+    public Integer getMysqlOffset() {
+        return mysqlOffset;
+    }
+
+    public Integer getMysqlLength() {
+        return mysqlLength;
+    }
+
+    public String[] getTypes() {
+        return types;
+    }
+
+    public void setTypes(String[] types) {
+        this.types = types;
     }
 }

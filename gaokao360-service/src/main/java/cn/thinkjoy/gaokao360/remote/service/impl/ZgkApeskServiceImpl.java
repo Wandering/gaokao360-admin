@@ -14,13 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
  * zgk_apesk
  * @version 1.0 2015-09-28
- * @powerby hetgyd 
+ * @powerby hetgyd
  */
 @Service("ZgkApeskServiceImpl")
 public class ZgkApeskServiceImpl implements IZgkApeskService {
@@ -99,7 +100,12 @@ public class ZgkApeskServiceImpl implements IZgkApeskService {
     }
 
     public List<ZgkApeskDTO> selectUserApeskResult(Map map) {
-        List<ZgkApeskCourse> zgkApeskCourses = iZgkApeskCourseDao.selectByExample(null);
+        //types
+        String areaId = map.get("userArea").toString();
+        String typeStr = iZgkApeskCourseDao.queryConfigByAreaId(areaId);
+        Criteria criteria = new Criteria();
+        criteria.setTypes(typeStr.split(","));
+        List<ZgkApeskCourse> zgkApeskCourses = iZgkApeskCourseDao.selectByExample(criteria);
 
         List<ZgkApeskDTO> zgkApeskDTOs=new ArrayList<>();
 
