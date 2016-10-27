@@ -30,7 +30,7 @@
          and name &lt;&gt; #{condition.name_notequal}
       </if>
       <if test="condition.types != null" >
-        <foreach collection="types" item="type" open="and ac_id in (" close=")">
+        <foreach collection="condition.types" item="type" open="and ac_order in (" close=")" separator=",">
           #{type}
         </foreach>
       </if>
@@ -246,7 +246,7 @@
   </delete>
   <delete id="deleteByExample" parameterType="cn.thinkjoy.zgk.common.Criteria" >
     delete from zgk_apesk_course
-    <if test="_parameter != null" >
+    <if test="condition != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>

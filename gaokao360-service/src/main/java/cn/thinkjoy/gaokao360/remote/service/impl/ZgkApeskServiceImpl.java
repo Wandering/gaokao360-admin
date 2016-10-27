@@ -104,7 +104,9 @@ public class ZgkApeskServiceImpl implements IZgkApeskService {
         String areaId = map.get("userArea").toString();
         String typeStr = iZgkApeskCourseDao.queryConfigByAreaId(areaId);
         Criteria criteria = new Criteria();
-        criteria.setTypes(typeStr.split(","));
+        Map<String,Object> condition = new HashMap<>();
+        condition.put("types",typeStr.split(","));
+        criteria.setCondition(condition);
         List<ZgkApeskCourse> zgkApeskCourses = iZgkApeskCourseDao.selectByExample(criteria);
 
         List<ZgkApeskDTO> zgkApeskDTOs=new ArrayList<>();

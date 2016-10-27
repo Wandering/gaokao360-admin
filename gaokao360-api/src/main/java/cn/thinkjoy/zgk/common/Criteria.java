@@ -27,7 +27,6 @@ public class Criteria {
 
     private Integer mysqlLength;
 
-    private String[] types;
 
     protected Criteria(Criteria example) {
         this.orderByClause = example.orderByClause;
@@ -125,12 +124,5 @@ public class Criteria {
     public Integer getMysqlLength() {
         return mysqlLength;
     }
-
-    public String[] getTypes() {
-        return types;
-    }
-
-    public void setTypes(String[] types) {
-        this.types = types;
-    }
+    
 }
