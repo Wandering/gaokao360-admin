@@ -75,12 +75,13 @@
     </logger>
 
     <!-- 这里平时的level为WARN，跟踪问题时才设置为DEBUG -->
-    <logger name="cn.thinkjoy.gaokao360.dao.IExpertAppraiseDAO" level="DEBUG">
-        <appender-ref ref="DEBUG-FILE-APPENDER"/>
-        <appender-ref ref="WARN-FILE-APPENDER" />
+    <logger name="cn.thinkjoy.gaokao360.dao.ex.IZgkApeskCourseDao" level="DEBUG">
+        <!--<appender-ref ref="DEBUG-FILE-APPENDER"/>-->
+        <!--<appender-ref ref="WARN-FILE-APPENDER" />-->
+        <appender-ref ref="STDOUT-APPENDER" />
     </logger>
 
-    <root level="WARN">
+    <root level="DEBUG">
         <appender-ref ref="STDOUT-APPENDER" />
     </root>
 </configuration>

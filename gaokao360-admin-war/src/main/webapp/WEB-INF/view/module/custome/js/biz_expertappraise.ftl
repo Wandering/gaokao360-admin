@@ -156,7 +156,7 @@
 
         var addEditFun = function () {
             var expertV = $('#selExpert option:checked').val(),
-                    serviceTypeV = $('#selExpert option:checked').val(),
+                    serviceTypeV = $('#selServiceType option:checked').val(),
                     userNameV = $.trim($('#userName').val()),
                     contentDetailV = $('#contentDetail').html(),
                     datePickerV = $.trim($('#date-picker').val());
