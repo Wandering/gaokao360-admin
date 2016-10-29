@@ -23,6 +23,7 @@
                 var rowData = $("#grid-table").jqGrid('getRowData',rowId);
                 if (rowData.expertProfile&&rowData.expertProfile!=null&&rowData.expertProfile!=''){
                     downFile(rowData.expertProfile);
+                    console.info($(this));
                 }else {
                     CommonFn.tipsDialog('温馨提示', '选中行没有需要下载的文件!');
                 }
@@ -34,17 +35,17 @@
         });
 
         var downFile = function(url) {
-            var content="下载"
-            var aLink = document.createElement('a');
-            var blob = new Blob([content]);
-            var evt = document.createEvent("HTMLEvents");
-            evt.initEvent("click", false, false);//initEvent 不加后两个参数在FF下会报错, 感谢 Barret Lee 的反馈
-            aLink.download = url;
-            aLink.href = URL.createObjectURL(blob);
-            aLink.dispatchEvent(evt);
-        }
+            try{
+                var elemIF = document.createElement("iframe");
+                elemIF.src = url;
+                elemIF.style.display = "none";
+                document.body.appendChild(elemIF);
+            }catch(e){
+
+            }
+        };
+
 //      删除
         CommonFn.deleteFun('#deleteBtn', '${mainObj}');
-
     });//$结束
 </script>
