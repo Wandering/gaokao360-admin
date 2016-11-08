@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" ?>  
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.thinkjoy.gaokao360.dao.ex.UnivercityDAO">
 
 	<delete id="cleanUniversityData">
@@ -280,7 +280,7 @@
 		planEnrolling,
 		lengthOfSchooling,
 		schoolFee,
-		majorId
+		majorCode
 		) SELECT
 		a.universityName,
 		a.universityId,
@@ -293,7 +293,7 @@
 		a.planEnrolling,
 		a.lengthOfSchooling,
 		a.schoolFee,
-		a.majorId
+		a.majorCode
 		FROM
 		zgk_university_major_enrolling_plan_uniq a;
 	</insert>
@@ -309,8 +309,8 @@
 
 	<!-- 尝试给专业添加ID -->
 	<update id="updateMajorIdToImportMajor">
-		update zgk_university_major_enrolling_import a ,zgk_major b set
-		a.majorId=b.id where a.majorName = b.major_name ;
+		update zgk_university_major_enrolling_import a ,zgk_major_base b set
+		a.majorCode=b.major_code where a.majorName = b.major_name ;
 	</update>
 
 	<!-- 检查有院校没有对齐的院校表的情况 -->
@@ -329,7 +329,7 @@
 			majorType,
 			year,
 			majorName,
-			majorId,
+			majorCode,
 			highestScore,
 			averageScore,
 			lowestScore,
@@ -342,7 +342,7 @@
 			a.majorType,
 			a.year,
 			a.majorName,
-			a.majorId,
+			a.majorCode,
 			a.highestScore,
 			a.averageScore,
 			a.lowestScore,
