@@ -30,7 +30,7 @@ public class ZgkApeskServiceImpl implements IZgkApeskService {
     @Autowired
     private IZgkApeskCourseDao iZgkApeskCourseDao;
 
-    public List<ZgkApesk> query(Long userId, Integer acId, String liangbiao, String testEmail) {
+    public List<ZgkApesk> query(Long userId, Integer acId, String liangbiao, String testEmail,Integer state) {
         Criteria example = new Criteria();
         if (userId > -1) {
             example.put("userId", userId);
@@ -43,6 +43,11 @@ public class ZgkApeskServiceImpl implements IZgkApeskService {
         }
         if (!StringUtil.isNulOrBlank(testEmail)) {
             example.put("testEmail", testEmail);
+        }
+        if (state!=null) {
+            example.put("state", state);
+        }else {
+            example.put("state", 0);
         }
         example.put("orderByClause", "create_date desc");
         return selectByExample(example);

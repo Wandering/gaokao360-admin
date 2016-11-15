@@ -11,10 +11,10 @@ import java.util.Map;
 /**
  * zgk_apesk
  * @version 1.0 2015-09-28
- * @powerby hetgyd 
+ * @powerby hetgyd
  */
 public interface IZgkApeskService {
-    List<ZgkApesk> query(Long userId, Integer acId, String liangbiao, String testEmail);
+    List<ZgkApesk> query(Long userId, Integer acId, String liangbiao, String testEmail,Integer state);
 
     int countByExample(Criteria example);
 
