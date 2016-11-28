@@ -343,6 +343,20 @@ var CommonFn = {
             todayHighlight: true
         });
     },
+    renderTime: function (obj) {
+        $(obj).timepicker({
+            // minuteStep: 5,
+            // showInputs: false,
+            // disableFocus: true
+            minuteStep: 1,
+            secondStep: 5,
+            showInputs: true,
+            template: 'modal',
+            modalBackdrop: true,
+            showSeconds: false,
+            showMeridian: false
+        });
+    },
     renderDateYear: function (obj) {
         $(obj).datepicker({
             data: false,

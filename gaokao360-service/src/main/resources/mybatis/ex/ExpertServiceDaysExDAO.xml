@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IExpertServiceDaysExDAO">
+<!--
+insert
+update
+updateNull
+deleteById
+deleteByCondition
+deleteByProperty
+fetch
+findOne
+findList
+findAll
+queryPage
+like
+queryList
+queryOne
+count
+selectMaxId
+updateOrSave
+selectOne
+selectList
+-->
+    <sql id="Base_Column_List">
+        times.id as id,
+        service_day as serviceDay,
+        time_segment as timeSegment,
+        info.expert_name as expertName,
+        info.id as expertId,
+        times.is_available as isAvailable
+    </sql>
+
+
+    <select id="queryPage" resultType="ExpertServiceDaysDTO">
+        SELECT
+        <include refid="Base_Column_List" />
+        from zgk_expert_service_times times
+        join zgk_expert_service_days days on times.expert_day_id = days.id
+        join zgk_expert_info info on days.expert_id = info.id
+        <where>
+        </where>
+
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(id) FROM zgk_expert_service_times
+       <where>
+       </where>
+    <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+    </if>
+    </select>
+    <select id="fetch" resultType="ExpertServiceDaysDTO">
+        SELECT
+        <include refid="Base_Column_List" />
+        from zgk_expert_service_times times
+        join zgk_expert_service_days days on times.expert_day_id = days.id
+        join zgk_expert_info info on days.expert_id = info.id
+        WHERE times.id = #{id}
+    </select>
+    <select id="selectMaxId" resultType="java.lang.Integer">
+        SELECT
+        MAX(id)
+        FROM zgk_expert_service_days
+    </select>
+
+</mapper>
+

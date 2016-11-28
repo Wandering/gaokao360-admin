@@ -17,7 +17,7 @@ import cn.thinkjoy.common.domain.BaseDomain;
 
 import java.util.*;
 
-public class ExpertServiceDays extends BaseDomain{
+public class ExpertServiceDays extends BaseDomain<Long>{
     private Integer expertId;
     private Date serviceDay;
     private String isAvailable;
