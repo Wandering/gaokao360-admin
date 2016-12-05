@@ -36,7 +36,7 @@ public interface IZgkApeskService {
 
     int insert(ZgkApesk record);
 
-    int insertSelective(ZgkApesk record);
+    ZgkApesk insertSelective(ZgkApesk record);
     List<ZgkApeskDTO> selectUserApeskResult(Map map);
 
     public List<ZgkApesk> selectApeskCallBack(Map map);

@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * zgk_apesk_course
  * @version 1.0 2015-10-31
- * @powerby hetgyd 
+ * @powerby hetgyd
  */
 public interface IZgkApeskCourseService {
     int countByExample(Criteria example);
@@ -33,7 +33,7 @@ public interface IZgkApeskCourseService {
 
     int insert(ZgkApeskCourse record);
 
-    int insertSelective(ZgkApeskCourse record);
+    ZgkApeskCourse insertSelective(ZgkApeskCourse record);
 
     ZgkApeskCourse queryByLiangBiao(String liangBiao);
 

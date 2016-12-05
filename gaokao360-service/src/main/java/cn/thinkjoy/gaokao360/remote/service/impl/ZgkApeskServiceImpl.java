@@ -100,8 +100,9 @@ public class ZgkApeskServiceImpl implements IZgkApeskService {
         return this.zgkApeskDao.insert(record);
     }
 
-    public int insertSelective(ZgkApesk record) {
-        return this.zgkApeskDao.insertSelective(record);
+    public ZgkApesk insertSelective(ZgkApesk record) {
+        this.zgkApeskDao.insertSelective(record);
+        return record;
     }
 
     public List<ZgkApeskDTO> selectUserApeskResult(Map map) {

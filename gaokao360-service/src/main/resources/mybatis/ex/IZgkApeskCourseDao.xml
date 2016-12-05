@@ -328,6 +328,9 @@
         #{gradeDescribe},
       </if>
     </trim>
+    <selectKey resultType="java.lang.Long" keyProperty="id">
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
   </insert>
   <select id="countByExample" parameterType="cn.thinkjoy.zgk.common.Criteria" resultType="java.lang.Integer" >
     select count(*) from zgk_apesk_course
