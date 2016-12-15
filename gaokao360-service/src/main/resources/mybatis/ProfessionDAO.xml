@@ -480,7 +480,7 @@ selectList
                 ${condition.groupOp}   ${condition.idDelete.field}  ${condition.idDelete.op}  #{condition.idDelete.data}
             </if>
         </where>
-        order by zp.salary_rank asc
+        ORDER BY zp.salary_rank desc,CONVERT( zp.profession_name USING gbk ) COLLATE gbk_chinese_ci ASC
         <if test="offset != null">
             limit ${offset}, ${rows}
         </if>
