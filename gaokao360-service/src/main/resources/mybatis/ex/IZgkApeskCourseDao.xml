@@ -29,8 +29,13 @@
       <if test="condition.name_notequal != null" >
          and name &lt;&gt; #{condition.name_notequal}
       </if>
+      <if test="condition.types != null" >
+        <foreach collection="condition.types" item="type" open="and ac_order in (" close=")" separator=",">
+          #{type}
+        </foreach>
+      </if>
       <if test="condition.name_in != null" >
-         and name in 
+         and name in
 		<foreach collection="condition.name_in" item="name" open="(" separator="," close=")" >
 			#{name}
 		</foreach>
@@ -48,7 +53,7 @@
          and liang_biao &lt;&gt; #{condition.liangBiao_notequal}
       </if>
       <if test="condition.liangBiao_in != null" >
-         and liang_biao in 
+         and liang_biao in
 		<foreach collection="condition.liangBiao_in" item="liangBiao" open="(" separator="," close=")" >
 			#{liangBiao}
 		</foreach>
@@ -66,7 +71,7 @@
          and ac_order &lt;&gt; #{condition.acOrder_notequal}
       </if>
       <if test="condition.acOrder_in != null" >
-         and ac_order in 
+         and ac_order in
 		<foreach collection="condition.acOrder_in" item="acOrder" open="(" separator="," close=")" >
 			#{acOrder}
 		</foreach>
@@ -84,7 +89,7 @@
          and pic_url &lt;&gt; #{condition.picUrl_notequal}
       </if>
       <if test="condition.picUrl_in != null" >
-         and pic_url in 
+         and pic_url in
 		<foreach collection="condition.picUrl_in" item="picUrl" open="(" separator="," close=")" >
 			#{picUrl}
 		</foreach>
@@ -102,7 +107,7 @@
          and introduce &lt;&gt; #{condition.introduce_notequal}
       </if>
       <if test="condition.introduce_in != null" >
-         and introduce in 
+         and introduce in
 		<foreach collection="condition.introduce_in" item="introduce" open="(" separator="," close=")" >
 			#{introduce}
 		</foreach>
@@ -120,7 +125,7 @@
          and batch &lt;&gt; #{condition.batch_notequal}
       </if>
       <if test="condition.batch_in != null" >
-         and batch in 
+         and batch in
 		<foreach collection="condition.batch_in" item="batch" open="(" separator="," close=")" >
 			#{batch}
 		</foreach>
@@ -147,7 +152,7 @@
          and state &lt;&gt; #{condition.state_notequal}
       </if>
       <if test="condition.state_in != null" >
-         and state in 
+         and state in
 		<foreach collection="condition.state_in" item="state" open="(" separator="," close=")" >
 			#{state}
 		</foreach>
@@ -165,7 +170,7 @@
          and report_url &lt;&gt; #{condition.reportUrl_notequal}
       </if>
       <if test="condition.reportUrl_in != null" >
-         and report_url in 
+         and report_url in
 		<foreach collection="condition.reportUrl_in" item="reportUrl" open="(" separator="," close=")" >
 			#{reportUrl}
 		</foreach>
@@ -183,7 +188,7 @@
          and grade &lt;&gt; #{condition.grade_notequal}
       </if>
       <if test="condition.grade_in != null" >
-         and grade in 
+         and grade in
 		<foreach collection="condition.grade_in" item="grade" open="(" separator="," close=")" >
 			#{grade}
 		</foreach>
@@ -201,7 +206,7 @@
          and grade_describe &lt;&gt; #{condition.gradeDescribe_notequal}
       </if>
       <if test="condition.gradeDescribe_in != null" >
-         and grade_describe in 
+         and grade_describe in
 		<foreach collection="condition.gradeDescribe_in" item="gradeDescribe" open="(" separator="," close=")" >
 			#{gradeDescribe}
 		</foreach>
@@ -209,7 +214,7 @@
     </trim>
   </sql>
   <sql id="Base_Column_List" >
-    ac_id, name, liang_biao, ac_order, pic_url, introduce, batch, create_date, state, 
+    ac_id, name, liang_biao, ac_order, pic_url, introduce, batch, create_date, state,
     report_url, grade, grade_describe
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.thinkjoy.zgk.common.Criteria" >
@@ -230,7 +235,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from zgk_apesk_course
     where ac_id = #{acId}
@@ -241,14 +246,14 @@
   </delete>
   <delete id="deleteByExample" parameterType="cn.thinkjoy.zgk.common.Criteria" >
     delete from zgk_apesk_course
-    <if test="_parameter != null" >
+    <if test="condition != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="cn.thinkjoy.zgk.domain.ZgkApeskCourse" useGeneratedKeys="true" keyProperty="acId" >
-    insert into zgk_apesk_course (name, liang_biao, ac_order, pic_url, introduce, batch, create_date, 
+    insert into zgk_apesk_course (name, liang_biao, ac_order, pic_url, introduce, batch, create_date,
       state, report_url, grade, grade_describe)
-    values (#{name}, #{liangBiao}, #{acOrder}, #{picUrl}, #{introduce}, #{batch}, #{createDate}, 
+    values (#{name}, #{liangBiao}, #{acOrder}, #{picUrl}, #{introduce}, #{batch}, #{createDate},
       #{state}, #{reportUrl}, #{grade}, #{gradeDescribe})
   </insert>
   <insert id="insertSelective" parameterType="cn.thinkjoy.zgk.domain.ZgkApeskCourse" useGeneratedKeys="true" keyProperty="acId" >
@@ -323,6 +328,9 @@
         #{gradeDescribe},
       </if>
     </trim>
+    <selectKey resultType="java.lang.Long" keyProperty="id">
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
   </insert>
   <select id="countByExample" parameterType="cn.thinkjoy.zgk.common.Criteria" resultType="java.lang.Integer" >
     select count(*) from zgk_apesk_course
@@ -446,4 +454,8 @@
       grade_describe = #{gradeDescribe}
     where ac_id = #{acId}
   </update>
+
+  <select id="queryConfigByAreaId" resultType="java.lang.String">
+    SELECT config_value from zgk_web_config where type = 'APESK' and config_key = #{areaId}
+  </select>
 </mapper>

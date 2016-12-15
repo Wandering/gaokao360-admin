@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IUniversityMajorEnrollingPlanExDAO">
+<!--
+insert
+update
+updateNull
+deleteById
+deleteByCondition
+deleteByProperty
+fetch
+findOne
+findList
+findAll
+queryPage
+like
+queryList
+queryOne
+count
+selectMaxId
+updateOrSave
+selectOne
+selectList
+-->
+
+    <select id="fetch" parameterType="java.lang.Long" resultType="cn.thinkjoy.gaokao360.dto.UniversityMajorEnrollingPlanExDTO">
+        SELECT
+        id,
+        year,
+        universityName,
+        areaId,
+        (SELECT name FROM zgk_province where id = areaId) as areaName,
+        enrollType,
+        majorName,
+        planEnrolling,
+        lengthOfSchooling,
+        schoolFee,
+        batch,
+        (SELECT name FROM zgk_data_dict where note = batch AND type='BATCHTYPE2' LIMIT 1) as batchName,
+        majorType,
+        (SELECT name FROM zgk_data_dict where dictId = majorType AND type='UNIVERSITY_MAJOR_TYPE' LIMIT 1) as majorTypeName
+        FROM zgk_university_major_enrolling_plan
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+    </select>
+
+
+    <insert id="insertMap" >
+        INSERT INTO zgk_university_major_enrolling_plan (
+        universityName,
+        universityId,
+        year,
+        areaId,
+        enrollType,
+        majorType,
+        majorName,
+        planEnrolling,
+        lengthOfSchooling,
+        schoolFee,
+        majorId
+        ) VALUES (
+        #{map.universityName},
+        (SELECT id FROM zgk_university WHERE name = #{map.universityName}),
+        #{map.year},
+        #{map.areaId},
+        #{map.enrollType},
+        #{map.majorType},
+        #{map.majorName},
+        #{map.planEnrolling},
+        #{map.lengthOfSchooling},
+        #{map.schoolFee},
+        (SELECT id FROM zgk_major WHERE major_name = #{majorName})
+        )
+    </insert>
+
+    <insert id="insert" parameterType="UniversityMajorEnrollingPlan">
+        INSERT INTO zgk_university_major_enrolling_plan (
+        universityName,
+        universityId,
+        year,
+        areaId,
+        enrollType,
+        majorType,
+        majorName,
+        planEnrolling,
+        lengthOfSchooling,
+        schoolFee,
+        majorId
+        ) VALUES (
+        #{universityName},
+        (SELECT id FROM zgk_university WHERE name = #{universityName}),
+        #{year},
+        #{areaId},
+        #{enrollType},
+        #{majorType},
+        #{majorName},
+        #{planEnrolling},
+        #{lengthOfSchooling},
+        #{schoolFee},
+        (SELECT id FROM zgk_major WHERE major_name = #{majorName})
+        )
+        <selectKey resultType="java.lang.Long" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <select id="universityNameExist" resultType="java.lang.Boolean">
+        select id from zgk_university WHERE  name =#{universityName};
+    </select>
+    
+    
+    <update id="updateMap">
+        UPDATE zgk_university_major_enrolling_plan
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="map.universityName!=null">
+                universityName = #{map.universityName},
+            </if>
+            <if test="map.universityName!=null">
+                universityId = (SELECT id FROM zgk_university WHERE name = #{map.universityName}),
+            </if>
+            <if test="map.year!=null">
+                year = #{map.year},
+            </if>
+            <if test="map.areaId!=null">
+                areaId = #{map.areaId},
+            </if>
+            <if test="map.enrollType!=null">
+                enrollType = #{map.enrollType},
+            </if>
+            <if test="map.majorType!=null">
+                majorType = #{map.majorType},
+            </if>
+            <if test="map.majorName!=null">
+                majorName = #{map.majorName},
+            </if>
+            <if test="map.planEnrolling!=null">
+                planEnrolling = #{map.planEnrolling},
+            </if>
+            <if test="map.lengthOfSchooling!=null">
+                lengthOfSchooling = #{map.lengthOfSchooling},
+            </if>
+            <if test="map.schoolFee!=null">
+                schoolFee = #{map.schoolFee},
+            </if>
+            <if test="map.majorName!=null">
+                majorId = (SELECT id FROM zgk_major WHERE major_name = #{majorName}),
+            </if>
+        </trim>
+        WHERE
+        id = #{map.id}
+    </update>
+
+    <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.UniversityMajorEnrollingPlanExDTO">
+        SELECT
+        id,
+        year,
+        universityName,
+        areaId,
+        (SELECT name FROM zgk_province where id = areaId) as areaName,
+        enrollType,
+        majorName,
+        planEnrolling,
+        lengthOfSchooling,
+        schoolFee,
+        batch,
+        (SELECT name FROM zgk_data_dict where note = batch AND type='BATCHTYPE2' LIMIT 1) as batchName,
+        majorType,
+        (SELECT name FROM zgk_data_dict where dictId = majorType AND type='UNIVERSITY_MAJOR_TYPE' LIMIT 1) as majorTypeName
+        FROM zgk_university_major_enrolling_plan
+      <where>
+
+      </where>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(id) FROM zgk_university_major_enrolling_plan
+       <where>
+
+       </where>
+    </select>
+</mapper>
+

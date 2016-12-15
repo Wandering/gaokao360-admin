@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.UnivercityDAO">
+
+	<delete id="cleanUniversityData">
+		truncate table zgk_university_enrolling_import
+	</delete>
+	<delete id="cleanMajorPlanData">
+		truncate table zgk_university_major_enrolling_plan_import
+	</delete>
+	<delete id="cleanMajorData">
+		truncate table zgk_university_major_enrolling_import
+	</delete>
+
+	<update id="updateUniversityId">
+		update hb_1_w a, zgk_university b set a.universityId=b.id where a.universityName=b.name
+	</update>
+	<insert id="insertMajorEnBatch" parameterType="java.util.List">
+			INSERT INTO zgk_university_major_enrolling_import (
+			universityName,
+			areaId,
+			batch,
+			majorType,
+			year,
+			majorName,
+			highestScore,
+			averageScore,
+			lowestScore,
+			realEnrollingNumber
+			) VALUES
+		<foreach collection="list" item="item" index="index"
+				 separator=",">
+			(
+			#{item.univisityName},
+			#{item.areaId},
+			#{item.batch},
+			#{item.majorType},
+			#{item.year},
+			#{item.majorName},
+			#{item.highScore},
+			#{item.avgScore},
+			#{item.lowScore},
+			#{item.enrollingNumber}
+			)
+		</foreach>
+	</insert>
+	<insert id="insertMajorPlanEnBatch" parameterType="java.util.List">
+			INSERT INTO zgk_university_major_enrolling_plan_import (
+			universityName,
+			areaId,
+			enrollType,
+			majorType,
+			batch,
+			year,
+			majorName,
+		    planEnrolling,
+		    lengthOfSchooling,
+		    schoolFee
+			) VALUES
+		<foreach collection="list" item="item" index="index"
+				 separator=",">
+			(
+			#{item.univisityName},
+			#{item.areaId},
+			#{item.enrollType},
+			#{item.majorType},
+			#{item.batch},
+			#{item.year},
+			#{item.majorName},
+			#{item.planEnrolling},
+			#{item.lengthOfSchooling},
+			#{item.schoolFee}
+			)
+		</foreach>
+	</insert>
+	<insert id="insertUniversityEnBatch" parameterType="java.util.List">
+			INSERT INTO zgk_university_enrolling_import (
+			universityName,
+			areaId,
+			batch,
+			majorType,
+			year,
+			highestScore,
+			averageScore,
+			lowestScore,
+			realEnrollingNumber
+			) VALUES
+		<foreach collection="list" item="item" index="index"
+				 separator=",">
+			(
+			#{item.univisityName},
+			#{item.areaId},
+			#{item.batch},
+			#{item.majorType},
+			#{item.year},
+			#{item.highScore},
+			#{item.avgScore},
+			#{item.lowScore},
+			#{item.enrollingNumber}
+			)
+		</foreach>
+	</insert>
+
+	<delete id="cleanSuanfaData_hb_1_w">
+		truncate table jx_2_w
+	</delete>
+	<insert id="insertSuanfaData_hb_1_w" parameterType="java.util.List" >
+		INSERT INTO jx_2_w(
+		year,
+		majorType,
+		batch,
+		universityName,
+		precedence,
+		prePrecedence,
+		preScoreDiff,
+		enrollRate,
+		scoreUseRate
+		)
+		VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.year},
+			#{item.majorType},
+			#{item.batch},
+			#{item.universityName},
+			#{item.precedence},
+			#{item.prePrecedence},
+			#{item.preScoreDiff},
+			#{item.enrollRate},
+			#{item.scoreUseRate}
+			)
+		</foreach>
+
+	</insert>
+
+	<!-- 尝试给院校添加ID -->
+	<update id="updateUniversityIdToImport">
+		UPDATE zgk_university_major_enrolling_plan_import a,
+ 			zgk_university b
+			SET a.universityId = b.id
+			WHERE
+			a.universityName = b. NAME;
+	</update>
+	<!-- 尝试给专业添加ID -->
+	<update id="updateMajorIdToImport">
+		update zgk_university_major_enrolling_plan_import a ,zgk_major b set
+		a.majorId=b.id where a.majorName = b.major_name ;
+	</update>
+
+
+	<!-- 检查有院校没有对齐的院校表的情况 -->
+	<select id="getUniversityNameIsNull" resultType="java.lang.String">
+		select DISTINCT universityName from zgk_university_major_enrolling_plan_import a
+			where a.universityId is null;
+	</select>
+
+	<!-- 尝试修改批次与数据库对齐  -->
+	<update id="updateBatch1">
+		update zgk_university_major_enrolling_plan_import set batch='1-1' where batch='11';
+	</update>
+	<update id="updateBatch2">
+		update zgk_university_major_enrolling_plan_import set batch='1-2' where batch='12';
+	</update>
+	<update id="updateBatch3">
+		update zgk_university_major_enrolling_plan_import set batch='2-1' where batch='21';
+	</update>
+	<update id="updateBatch4">
+		update zgk_university_major_enrolling_plan_import set batch='2-2' where batch='22';
+	</update>
+	<update id="updateBatch5">
+		update zgk_university_major_enrolling_plan_import set batch='2-3' where batch='23';
+	</update>
+	<update id="updateBatch6">
+		update zgk_university_major_enrolling_plan_import set batch='3' where batch='4';
+	</update>
+	<update id="updateBatch7">
+		update zgk_university_major_enrolling_plan_import set batch='4' where batch='8';;
+	</update>
+	<update id="updateBatch8">
+		update zgk_university_major_enrolling_plan_import set batch='4-1' where batch='81';
+	</update>
+	<update id="updateBatch9">
+		update zgk_university_major_enrolling_plan_import set batch='4-2' where batch='82';
+	</update>
+	<update id="updateBatch10">
+		update zgk_university_major_enrolling_plan_import set batch='4-1' where batch='83';
+	</update>
+	<update id="updateBatch11">
+		update zgk_university_major_enrolling_plan_import set batch='4-2' where batch='84';
+	</update>
+
+	<update id="updateBatch12">
+		update zgk_university_major_enrolling_plan_import set batch='1-1' where batch='111';
+	</update>
+	<update id="updateBatch13">
+		update zgk_university_major_enrolling_plan_import set batch='3-1' where batch='411';
+	</update>
+	<update id="updateBatch14">
+		update zgk_university_major_enrolling_plan_import set batch='3-2' where batch='42';
+	</update>
+	<update id="updateBatch15">
+		update zgk_university_major_enrolling_plan_import set batch='3-1' where batch='412';
+	</update>
+	<!--&lt;!&ndash; 清空唯一表 &ndash;&gt;-->
+	<!--<delete id="truncateUniq">-->
+		<!--truncate table zgk_university_major_enrolling_plan_uniq;-->
+	<!--</delete>-->
+
+	<!-- 导入表添加到唯一表中 -->
+	<insert id="insertImportToUniq">
+		INSERT IGNORE INTO zgk_university_major_enrolling_plan_uniq (
+       universityName,
+       universityId,
+       YEAR,
+       batch,
+       areaId,
+       enrollType,
+       majorType,
+       majorName,
+       planEnrolling,
+       lengthOfSchooling,
+       schoolFee,
+       majorId
+       ) SELECT
+       a.universityName,
+       a.universityId,
+       a. YEAR,
+       a.batch,
+       a.areaId,
+       a.enrollType,
+       a.majorType,
+       a.majorName,
+       a.planEnrolling,
+       a.lengthOfSchooling,
+       a.schoolFee,
+       a.majorId
+       FROM
+       zgk_university_major_enrolling_plan_import a;
+	</insert>
+
+	<!--添加院校计划到正式表中-->
+	<insert id="insertUniversityPlanToFormal">
+		insert IGNORE into zgk_university_enrolling_plan(
+			year,
+			majorType,
+			areaId,
+			batch,
+			universityId,
+			universityName,
+			planEnrollingNumber)
+			SELECT
+				YEAR,
+				majorType,
+				areaId,
+			batch,
+				universityId,
+				universityName,
+				sum(planEnrolling)
+			FROM
+				zgk_university_major_enrolling_plan_uniq
+			GROUP BY
+				YEAR,
+				majorType,
+				areaId,
+			batch,
+				universityId,
+				universityName;
+	</insert>
+	<!--添加专业招生计划到正式表中-->
+	<insert id="insertMajorPlanToFormal">
+		INSERT IGNORE INTO zgk_university_major_enrolling_plan (
+		universityName,
+		universityId,
+		YEAR,
+		batch,
+		areaId,
+		enrollType,
+		majorType,
+		majorName,
+		planEnrolling,
+		lengthOfSchooling,
+		schoolFee,
+		majorCode
+		) SELECT
+		a.universityName,
+		a.universityId,
+		a. YEAR,
+		a.batch,
+		a.areaId,
+		a.enrollType,
+		a.majorType,
+		a.majorName,
+		a.planEnrolling,
+		a.lengthOfSchooling,
+		a.schoolFee,
+		a.majorCode
+		FROM
+		zgk_university_major_enrolling_plan_uniq a;
+	</insert>
+
+	<!-- 尝试给院校添加ID -->
+	<update id="updateUniversityIdToImportMajor">
+		UPDATE zgk_university_major_enrolling_import a,
+		zgk_university b
+		SET a.universityId = b.id
+		WHERE
+		a.universityName = b. NAME;
+	</update>
+
+	<!-- 尝试给专业添加ID -->
+	<update id="updateMajorIdToImportMajor">
+		update zgk_university_major_enrolling_import a ,zgk_major_base b set
+		a.majorCode=b.major_code where a.majorName = b.major_name ;
+	</update>
+
+	<!-- 检查有院校没有对齐的院校表的情况 -->
+	<select id="getUniversityNameIsNullMajor" resultType="java.lang.String">
+		select DISTINCT universityName from zgk_university_major_enrolling_import a
+		where a.universityId is null;
+	</select>
+
+	<!-- 导入表添加到正式表中 -->
+	<insert id="insertImportToMajorFormal">
+		INSERT IGNORE INTO zgk_university_major_enrolling (
+		universityId,
+		universityName,
+			areaId,
+			batch,
+			majorType,
+			year,
+			majorName,
+			majorCode,
+			highestScore,
+			averageScore,
+			lowestScore,
+			realEnrollingNumber
+		) SELECT
+			a.universityId,
+			a.universityName,
+			a.areaId,
+			a.batch,
+			a.majorType,
+			a.year,
+			a.majorName,
+			a.majorCode,
+			a.highestScore,
+			a.averageScore,
+			a.lowestScore,
+			a.realEnrollingNumber
+		FROM
+		zgk_university_major_enrolling_import a;
+	</insert>
+
+
+	<!-- 尝试给院校添加ID -->
+	<update id="updateUniversityIdToImportUniversity">
+		UPDATE zgk_university_enrolling_import a,
+		zgk_university b
+		SET a.universityId = b.id
+		WHERE
+		a.universityName = b.name;
+	</update>
+
+	<!--&lt;!&ndash; 尝试给专业添加ID &ndash;&gt;-->
+	<!--<update id="updateMajorIdToImportUniversity">-->
+		<!--update zgk_university_major_enrolling_import a ,zgk_major b set-->
+		<!--a.majorId=b.id where a.majorName = b.major_name ;-->
+	<!--</update>-->
+
+	<!-- 检查有院校没有对齐的院校表的情况 -->
+	<select id="getUniversityNameIsNullUniversity" resultType="java.lang.String">
+		SELECT DISTINCT universityName from zgk_university_enrolling_import WHERE universityId IS NULL
+	</select>
+
+	<!-- 导入表添加到正式表中 -->
+	<insert id="insertImportToUniversityFormal">
+				INSERT IGNORE INTO zgk_university_enrolling (
+		universityId,
+		areaId,
+		YEAR,
+		batch,
+		majorType,
+		realEnrollingNumber,
+		highestScore,
+		lowestScore,
+		averageScore
+		) SELECT
+		a.universityId,
+		a.areaId,
+		a. YEAR,
+		a.batch,
+		a.majorType,
+		a.realEnrollingNumber,
+		a.highestScore,
+		a.lowestScore,
+		a.averageScore
+		FROM
+		zgk_university_enrolling_import a;
+	</insert>
+	<!-- 删除到删除表中 -->
+	<insert id="delMajorEnrollingPlan">
+		INSERT INTO zgk_university_major_enrolling_plan_delete (
+		universityName,
+		universityId,
+		YEAR,
+		batch,
+		areaId,
+		enrollType,
+		majorType,
+		majorName,
+		planEnrolling,
+		lengthOfSchooling,
+		schoolFee,
+		majorId
+		) SELECT
+		a.universityName,
+		a.universityId,
+		a. YEAR,
+		a.batch,
+		a.areaId,
+		a.enrollType,
+		a.majorType,
+		a.majorName,
+		a.planEnrolling,
+		a.lengthOfSchooling,
+		a.schoolFee,
+		a.majorId
+		FROM
+		zgk_university_major_enrolling_plan a
+		<where>
+			<if test="batchList!=null">
+				and a.batch in(
+				<foreach collection="batchList" item="batch" separator=",">
+					#{batch}
+				</foreach>
+				)
+			</if>
+			<if test="yearList!=null">
+				and a.year in(
+				<foreach collection="yearList" item="year" separator=",">
+					#{year}
+				</foreach>
+				)
+			</if>
+			<if test="areaIdList!=null">
+				and a.areaId in(
+				<foreach collection="areaIdList" item="areaId" separator=",">
+					#{areaId}
+				</foreach>
+				)
+			</if>
+			<if test="majorTypeList!=null">
+				and a.majorType in(
+				<foreach collection="majorTypeList" item="majorType" separator=",">
+					#{majorType}
+				</foreach>
+				)
+			</if>
+		</where>
+	</insert>
+	<delete id="delByBatchYearAreaId">
+			DELETE FROM zgk_university_major_enrolling_plan
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="batchList!=null">
+				and batch in(
+				<foreach collection="batchList" item="batch" separator=",">
+					#{batch}
+				</foreach>
+				)
+			</if>
+			<if test="yearList!=null">
+				and year in(
+				<foreach collection="yearList" item="year" separator=",">
+					#{year}
+				</foreach>
+				)
+			</if>
+			<if test="areaIdList!=null">
+				and areaId in(
+				<foreach collection="areaIdList" item="areaId" separator=",">
+					#{areaId}
+				</foreach>
+				)
+			</if>
+			<if test="majorTypeList!=null">
+				and majorType in(
+				<foreach collection="majorTypeList" item="majorType" separator=",">
+					#{majorType}
+				</foreach>
+				)
+			</if>
+		</trim>
+	</delete>
+	<delete id="delUnivsersityByBatchYearAreaId">
+		DELETE FROM zgk_university_enrolling_plan
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="batchList!=null">
+				and batch in(
+				<foreach collection="batchList" item="batch" separator=",">
+					#{batch}
+				</foreach>
+				)
+			</if>
+			<if test="yearList!=null">
+				and year in(
+				<foreach collection="yearList" item="year" separator=",">
+					#{year}
+				</foreach>
+				)
+			</if>
+			<if test="areaIdList!=null">
+				and areaId in(
+				<foreach collection="areaIdList" item="areaId" separator=",">
+					#{areaId}
+				</foreach>
+				)
+			</if>
+			<if test="majorTypeList!=null">
+				and majorType in(
+				<foreach collection="majorTypeList" item="majorType" separator=",">
+					#{majorType}
+				</foreach>
+				)
+			</if>
+		</trim>
+	</delete>
+	<!--<select id="getMajorPlanBatch" resultType="java.lang.String">-->
+		<!--SELECT batch FROM zgk_university_major_enrolling_plan WHERE batch IS NOT NULL GROUP BY batch-->
+	<!--</select>-->
+
+	<select id="getDelBatch" resultType="java.util.Map">
+		SELECT note,name FROM  zgk_data_dict WHERE type='BATCHTYPE2'
+	</select>
+</mapper>

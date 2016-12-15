@@ -31,7 +31,12 @@ var CommonFn = {
         getDegreeUrl: '/admin/gaokao360/ex/getDataDictList?type=GAIN_DEGREE', // 学位
         getuniversityTypeUrl: '/admin/gaokao360/ex/getDataDictList?type=UNIVERSITY_TYPE', // 院校类型
         getSchoolIngUrl: '/admin/gaokao360/ex/getDataDictList?type=LENGTH_OF_SCHOOLING', // 学制
-        getModuleUrl: '/admin/gaokao360/ex/queryVideoType' // 视频模块
+        getBatchTypeUrl: '/admin/gaokao360/ex/import/getMajorPlanBatch', //
+        getModuleUrl: '/admin/gaokao360/ex/queryVideoType', // 视频模块
+        getDataDictList: '/admin/gaokao360/ex/getDataDictList?type=FEATURE', // 院校特征
+        queryExpert: '/admin/zgkadmin/ex/queryAllExpert', // 查询所有的专家名称
+        queryServiceTypeByExpert:'/admin/zgkadmin/ex/queryServiceTypeByExpert', //根据专家获取专家服务
+        auditPass:'/admin/zgkadmin/ex/auditPass' //根据专家获取专家服务
     },
     getData: function (url, type, data, callback) {
         $.ajax({
@@ -338,6 +343,20 @@ var CommonFn = {
             todayHighlight: true
         });
     },
+    renderTime: function (obj) {
+        $(obj).timepicker({
+            // minuteStep: 5,
+            // showInputs: false,
+            // disableFocus: true
+            minuteStep: 1,
+            secondStep: 5,
+            showInputs: true,
+            template: 'modal',
+            modalBackdrop: true,
+            showSeconds: false,
+            showMeridian: false
+        });
+    },
     renderDateYear: function (obj) {
         $(obj).datepicker({
             data: false,
@@ -572,6 +591,17 @@ var CommonFn = {
         });
         return contentArr.join('');
     }
+    //getDataDictList:function(){
+    //    var contentArr = [];
+    //    $.ajaxSettings.async = false;
+    //    CommonFn.getData(CommonFn.url.getDataDictList, 'GET', {}, function (result) {
+    //        if (result.rtnCode == "0000000") {
+    //            console.log(result)
+    //        }
+    //
+    //    });
+    //    return contentArr.join('');
+    //}
 
 
 

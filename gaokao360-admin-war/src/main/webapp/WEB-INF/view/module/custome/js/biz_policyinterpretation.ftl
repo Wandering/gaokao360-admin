@@ -118,8 +118,10 @@
             $('#province2').find('option[value="' + rowData[0].provinceId + '"]').attr('selected', 'selected');
             $('#policyInterGroup').find('option[value="' + rowData[0].admissionBatchId + '"]').attr('selected', 'selected');
             $('#policyInterTwo').val(rowData[0].categoryName);
+            $('#policysub').val(rowData[0].subContent);
             // 富媒体赋值
-            $('#policyInterDetail').html(CommonFn.getContentHtml(rowData[0].content).join(''));
+            console.log(rowData[0])
+            $('#policyInterDetail').html(rowData[0].content);
             $('#title').val(rowData[0].title);
         });
 
@@ -135,29 +137,29 @@
         });
 
         // 创建提交
-        $(document).on('click', '#add-group', function () {
-            var newGroupName = $.trim($('#policyInterNew').val());
-            if(newGroupName == ""){
-                CommonFn.tipsDialog('温馨提示', '新建政策分类不能为空');
-                return false;
-            }
-            $.ajax({
-                url: '/admin/gaokao360/ex/addAdmissionBatch?name=' + newGroupName,
-                type: 'POST',
-                dataType: 'json',
-                success: function (res) {
-                    console.log(res)
-                    if (res.rtnCode == '0000000') {
-                        var id = res.bizData.id;
-                        var name = res.bizData.name;
-                        $('#newPolicy').hide();
-                        $('#policyInterGroup').append('<option value="' + id + '">' + name + '</option>');
-                        $('#policyInterGroup').find('option[value="' + id + '"]').attr('selected', 'selected');
-                    }
-                }
-            })
-
-        });
+//        $(document).on('click', '#add-group', function () {
+//            var newGroupName = $.trim($('#policyInterNew').val());
+//            if(newGroupName == ""){
+//                CommonFn.tipsDialog('温馨提示', '新建政策分类不能为空');
+//                return false;
+//            }
+//            $.ajax({
+//                url: '/admin/gaokao360/ex/addAdmissionBatch?name=' + newGroupName,
+//                type: 'POST',
+//                dataType: 'json',
+//                success: function (res) {
+//                    console.log(res)
+//                    if (res.rtnCode == '0000000') {
+//                        var id = res.bizData.id;
+//                        var name = res.bizData.name;
+//                        $('#newPolicy').hide();
+//                        $('#policyInterGroup').append('<option value="' + id + '">' + name + '</option>');
+//                        $('#policyInterGroup').find('option[value="' + id + '"]').attr('selected', 'selected');
+//                    }
+//                }
+//            })
+//
+//        });
 
 
         var dialogHtml = ''
@@ -171,31 +173,31 @@
                 + '<select class="form-control" id="province2">' + province + '</select>'
                 + '</div>'
                 + '</div>'
-                + '<div class="form-group">'
-                + '<label class="col-sm-2 control-label no-padding-right" for="policyInterOne">'
-                + '政策一级分类：</label>'
-                + '<div class="col-sm-2">'
-//                + '<select class="form-control" id="policyInterGroup">' + '<option value="00">选择政策一级分类</option>' + '<option value="000">+新建政策分类+</option>'
-                + '<select class="form-control" id="policyInterGroup">'+ policyData +'</select>'
-                + '</div>'
-                + '</div>'
-                + '<div class="form-group hide" id="newPolicy">'
-                + '<label class="col-sm-2 control-label no-padding-right" for="policyInterOne">'
-                + '新建政策一级分类：</label>'
-                + '<div class="col-sm-6">'
-                + '<input type="text" id="policyInterNew" placeholder="政策解读一级分类，限制字数10个字"'
-                + 'class="col-sm-5">'
-                + '<div class="btn btn-success btn-sm col-sm-push-1" id="add-group">添加</div>'
-                + '</div>'
-                + '</div>'
-                + '<div class="form-group">'
-                + '<label class="col-sm-2 control-label no-padding-right" for="policyInterTwo">'
-                + '政策二级分类：</label>'
-                + '<div class="col-sm-6">'
-                + '<input type="text" id="policyInterTwo" placeholder="政策解读二级分类，限制字数10个字"'
-                + 'class="col-sm-5">'
-                + '</div>'
-                + '</div>'
+//                + '<div class="form-group">'
+//                + '<label class="col-sm-2 control-label no-padding-right" for="policyInterOne">'
+//                + '政策一级分类：</label>'
+//                + '<div class="col-sm-2">'
+////                + '<select class="form-control" id="policyInterGroup">' + '<option value="00">选择政策一级分类</option>' + '<option value="000">+新建政策分类+</option>'
+//                + '<select class="form-control" id="policyInterGroup">'+ policyData +'</select>'
+//                + '</div>'
+//                + '</div>'
+//                + '<div class="form-group hide" id="newPolicy">'
+//                + '<label class="col-sm-2 control-label no-padding-right" for="policyInterOne">'
+//                + '新建政策一级分类：</label>'
+//                + '<div class="col-sm-6">'
+//                + '<input type="text" id="policyInterNew" placeholder="政策解读一级分类，限制字数10个字"'
+//                + 'class="col-sm-5">'
+//                + '<div class="btn btn-success btn-sm col-sm-push-1" id="add-group">添加</div>'
+//                + '</div>'
+//                + '</div>'
+//                + '<div class="form-group">'
+//                + '<label class="col-sm-2 control-label no-padding-right" for="policyInterTwo">'
+//                + '政策二级分类：</label>'
+//                + '<div class="col-sm-6">'
+//                + '<input type="text" id="policyInterTwo" placeholder="政策解读二级分类，限制字数10个字"'
+//                + 'class="col-sm-5">'
+//                + '</div>'
+//                + '</div>'
                 + '<div class="form-group">'
                 + '<label class="col-sm-2 control-label no-padding-right" for="policysub">'
                 + '摘要：</label>'
@@ -269,7 +271,7 @@
 //                        htmlId: 1,
                         provinceId: provinceV,
                         title: titleV,
-                        admissionBatchId: policyInterGroupV,
+//                        admissionBatchId: policyInterGroupV,
                         content: policyContentHtml,
                         categoryName: policyInterTwoV,
                         oper: typeStr,

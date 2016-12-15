@@ -29,18 +29,20 @@ import java.util.*;
 public class AddUtil extends BaseCommonUtil{
 
     @Autowired
-    private ISubjectService subjectService;
-    @Autowired
     private IAdmissionBatchService admissionBatchService;
     @Autowired
     private IVideoSectionExService videoSectionExService;
     @Autowired
     private IUniversityExService universityExService;
     @Autowired
+    private IUniversityMajorExService universityMajorExService;
+    @Autowired
     private IMajoredCategoryExService majoredCategoryExService;
     @Autowired
     private IMajoredExService majoredExService;
 
+    @Autowired
+    private IUniversityMajorEnrollingPlanExService universityMajorEnrollingPlanExService;
 
     @Autowired
     private IAdmissionBatchExService admissionBatchExService;
@@ -72,12 +74,25 @@ public class AddUtil extends BaseCommonUtil{
         getServiceMaps().get("gkinformationgkhot").insertMap(getDataMap());
     }
 
-    public void majored(){
-        getServiceMaps().get("major").insertMap(getDataMap());
-        Long lid =(Long)getServiceMaps().get("major").selectMaxId();
-        getDataMap().put("id", lid);
-        majoredExService.insertMapDetail(getDataMap());
+    public void universitymajorenrollingplan(){
+        if(universityMajorEnrollingPlanExService.universityNameExist(getDataMap().get("universityName").toString())){
+            universityMajorEnrollingPlanExService.insertMap(getDataMap());
+        }else {
+            throw new BizException("error","院校不存在");
+        }
+
     }
+
+    public void majored(){
+        long lid=majoredExService.insertMajored(getDataMap());
+        majoredExService.insertDetail(getDataMap());
+    }
+//    public void majored(){
+//        getServiceMaps().get("major").insertMap(getDataMap());
+//        Long lid =(Long)getServiceMaps().get("major").selectMaxId();
+//        getDataMap().put("id", lid);
+//        majoredExService.insertMapDetail(getDataMap());
+//    }
     public void auditorium(){
         getServiceMaps().get("videocourse").insertMap(getDataMap());
         Long lid = (Long)getServiceMaps().get("videocourse").selectMaxId();
@@ -154,6 +169,10 @@ public class AddUtil extends BaseCommonUtil{
             }
         }
 
+    }
+
+    public void universitymajor(){
+        universityMajorExService.insertUniversityMajor(getDataMap());
     }
 
     public void professiontype(){

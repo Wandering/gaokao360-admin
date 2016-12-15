@@ -1,0 +1,842 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.thinkjoy.gaokao360.dao.IExpertReservationOrderDAO">
+<!--
+insert
+update
+updateNull
+deleteById
+deleteByCondition
+deleteByProperty
+fetch
+findOne
+findList
+findAll
+queryPage
+like
+queryList
+queryOne
+count
+selectMaxId
+updateOrSave
+selectOne
+selectList
+-->
+    <sql id="Base_Column_List">
+        id,
+        orderNo,
+        orderStatus,
+        userId,
+        expertId,
+        channel,
+        serverContent,
+        serverType,
+        serverAddress,
+        serverPrice,
+        contactPerson,
+        contactPhone,
+        contactQq,
+        expectBeginDate,
+        expectEndDate,
+        createDate,
+        questionDesc,
+        meetingAddress
+    </sql>
+    <insert id="insert" parameterType="ExpertReservationOrder">
+        INSERT INTO zgk_expert_reservation_order (
+        orderNo,
+        orderStatus,
+        userId,
+        expertId,
+        channel,
+        serverContent,
+        serverType,
+        serverAddress,
+        serverPrice,
+        contactPerson,
+        contactPhone,
+        contactQq,
+        expectBeginDate,
+        expectEndDate,
+        createDate,
+        questionDesc,
+        meetingAddress
+        ) VALUES (
+        #{orderNo},
+        #{orderStatus},
+        #{userId},
+        #{expertId},
+        #{channel},
+        #{serverContent},
+        #{serverType},
+        #{serverAddress},
+        #{serverPrice},
+        #{contactPerson},
+        #{contactPhone},
+        #{contactQq},
+        #{expectBeginDate},
+        #{expectEndDate},
+        #{createDate},
+        #{questionDesc},
+        #{meetingAddress}
+        )
+        <selectKey resultType="java.lang.Long" keyProperty="id">
+        SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="ExpertReservationOrder">
+        UPDATE zgk_expert_reservation_order
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="orderNo!=null">
+                orderNo = #{orderNo},
+            </if>
+            <if test="orderStatus!=null">
+                orderStatus = #{orderStatus},
+            </if>
+            <if test="userId!=null">
+                userId = #{userId},
+            </if>
+            <if test="expertId!=null">
+                expertId = #{expertId},
+            </if>
+            <if test="channel!=null">
+                channel = #{channel},
+            </if>
+            <if test="serverContent!=null">
+                serverContent = #{serverContent},
+            </if>
+            <if test="serverType!=null">
+                serverType = #{serverType},
+            </if>
+            <if test="serverAddress!=null">
+                serverAddress = #{serverAddress},
+            </if>
+            <if test="serverPrice!=null">
+                serverPrice = #{serverPrice},
+            </if>
+            <if test="contactPerson!=null">
+                contactPerson = #{contactPerson},
+            </if>
+            <if test="contactPhone!=null">
+                contactPhone = #{contactPhone},
+            </if>
+            <if test="contactQq!=null">
+                contactQq = #{contactQq},
+            </if>
+            <if test="expectBeginDate!=null">
+                expectBeginDate = #{expectBeginDate},
+            </if>
+            <if test="expectEndDate!=null">
+                expectEndDate = #{expectEndDate},
+            </if>
+            <if test="createDate!=null">
+                createDate = #{createDate},
+            </if>
+            <if test="questionDesc!=null">
+                questionDesc = #{questionDesc},
+            </if>
+            <if test="meetingAddress!=null">
+                meetingAddress = #{meetingAddress},
+            </if>
+        </trim>
+        WHERE
+        id = #{id}
+    </update>
+
+    <update id="updateMap">
+        UPDATE zgk_expert_reservation_order
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="map.orderNo!=null">
+                orderNo = #{map.orderNo},
+            </if>
+            <if test="map.orderStatus!=null">
+                orderStatus = #{map.orderStatus},
+            </if>
+            <if test="map.userId!=null">
+                userId = #{map.userId},
+            </if>
+            <if test="map.expertId!=null">
+                expertId = #{map.expertId},
+            </if>
+            <if test="map.channel!=null">
+                channel = #{map.channel},
+            </if>
+            <if test="map.serverContent!=null">
+                serverContent = #{map.serverContent},
+            </if>
+            <if test="map.serverType!=null">
+                serverType = #{map.serverType},
+            </if>
+            <if test="map.serverAddress!=null">
+                serverAddress = #{map.serverAddress},
+            </if>
+            <if test="map.serverPrice!=null">
+                serverPrice = #{map.serverPrice},
+            </if>
+            <if test="map.contactPerson!=null">
+                contactPerson = #{map.contactPerson},
+            </if>
+            <if test="map.contactPhone!=null">
+                contactPhone = #{map.contactPhone},
+            </if>
+            <if test="map.contactQq!=null">
+                contactQq = #{map.contactQq},
+            </if>
+            <if test="map.expectBeginDate!=null">
+                expectBeginDate = #{map.expectBeginDate},
+            </if>
+            <if test="map.expectEndDate!=null">
+                expectEndDate = #{map.expectEndDate},
+            </if>
+            <if test="map.createDate!=null">
+                createDate = #{map.createDate},
+            </if>
+            <if test="map.questionDesc!=null">
+                questionDesc = #{map.questionDesc},
+            </if>
+            <if test="map.meetingAddress!=null">
+                meetingAddress = #{map.meetingAddress},
+            </if>
+        </trim>
+        WHERE
+        id = #{map.id}
+    </update>
+
+    <update id="updateByCondition">
+        UPDATE zgk_expert_reservation_order
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="update.orderNo!=null">
+                orderNo = #{update.orderNo},
+            </if>
+            <if test="update.orderStatus!=null">
+                orderStatus = #{update.orderStatus},
+            </if>
+            <if test="update.userId!=null">
+                userId = #{update.userId},
+            </if>
+            <if test="update.expertId!=null">
+                expertId = #{update.expertId},
+            </if>
+            <if test="update.channel!=null">
+                channel = #{update.channel},
+            </if>
+            <if test="update.serverContent!=null">
+                serverContent = #{update.serverContent},
+            </if>
+            <if test="update.serverType!=null">
+                serverType = #{update.serverType},
+            </if>
+            <if test="update.serverAddress!=null">
+                serverAddress = #{update.serverAddress},
+            </if>
+            <if test="update.serverPrice!=null">
+                serverPrice = #{update.serverPrice},
+            </if>
+            <if test="update.contactPerson!=null">
+                contactPerson = #{update.contactPerson},
+            </if>
+            <if test="update.contactPhone!=null">
+                contactPhone = #{update.contactPhone},
+            </if>
+            <if test="update.contactQq!=null">
+                contactQq = #{update.contactQq},
+            </if>
+            <if test="update.expectBeginDate!=null">
+                expectBeginDate = #{update.expectBeginDate},
+            </if>
+            <if test="update.expectEndDate!=null">
+                expectEndDate = #{update.expectEndDate},
+            </if>
+            <if test="update.createDate!=null">
+                createDate = #{update.createDate},
+            </if>
+            <if test="update.questionDesc!=null">
+                questionDesc = #{update.questionDesc},
+            </if>
+            <if test="update.meetingAddress!=null">
+                meetingAddress = #{update.meetingAddress},
+            </if>
+        </trim>
+
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.orderNo!=null">
+                AND orderNo = #{condition.orderNo}
+            </if>
+            <if test="condition.orderStatus!=null">
+                AND orderStatus = #{condition.orderStatus}
+            </if>
+            <if test="condition.userId!=null">
+                AND userId = #{condition.userId}
+            </if>
+            <if test="condition.expertId!=null">
+                AND expertId = #{condition.expertId}
+            </if>
+            <if test="condition.channel!=null">
+                AND channel = #{condition.channel}
+            </if>
+            <if test="condition.serverContent!=null">
+                AND serverContent = #{condition.serverContent}
+            </if>
+            <if test="condition.serverType!=null">
+                AND serverType = #{condition.serverType}
+            </if>
+            <if test="condition.serverAddress!=null">
+                AND serverAddress = #{condition.serverAddress}
+            </if>
+            <if test="condition.serverPrice!=null">
+                AND serverPrice = #{condition.serverPrice}
+            </if>
+            <if test="condition.contactPerson!=null">
+                AND contactPerson = #{condition.contactPerson}
+            </if>
+            <if test="condition.contactPhone!=null">
+                AND contactPhone = #{condition.contactPhone}
+            </if>
+            <if test="condition.contactQq!=null">
+                AND contactQq = #{condition.contactQq}
+            </if>
+            <if test="condition.expectBeginDate!=null">
+                AND expectBeginDate = #{condition.expectBeginDate}
+            </if>
+            <if test="condition.expectEndDate!=null">
+                AND expectEndDate = #{condition.expectEndDate}
+            </if>
+            <if test="condition.createDate!=null">
+                AND createDate = #{condition.createDate}
+            </if>
+            <if test="condition.questionDesc!=null">
+                AND questionDesc = #{condition.questionDesc}
+            </if>
+            <if test="condition.meetingAddress!=null">
+                AND meetingAddress = #{condition.meetingAddress}
+            </if>
+        </trim>
+    </update>
+
+    <insert id="insertMap" >
+        INSERT INTO zgk_expert_reservation_order (
+                orderNo,
+                orderStatus,
+                userId,
+                expertId,
+                channel,
+                serverContent,
+                serverType,
+                serverAddress,
+                serverPrice,
+                contactPerson,
+                contactPhone,
+                contactQq,
+                expectBeginDate,
+                expectEndDate,
+                createDate,
+                questionDesc,
+                meetingAddress
+        ) VALUES (
+                    #{map.orderNo},
+                    #{map.orderStatus},
+                    #{map.userId},
+                    #{map.expertId},
+                    #{map.channel},
+                    #{map.serverContent},
+                    #{map.serverType},
+                    #{map.serverAddress},
+                    #{map.serverPrice},
+                    #{map.contactPerson},
+                    #{map.contactPhone},
+                    #{map.contactQq},
+                    #{map.expectBeginDate},
+                    #{map.expectEndDate},
+                    #{map.createDate},
+                    #{map.questionDesc},
+                    #{map.meetingAddress}
+        )
+    </insert>
+
+
+    <update id="updateNull" parameterType="ExpertReservationOrder">
+        UPDATE zgk_expert_reservation_order
+        <trim prefix="SET" suffixOverrides=",">
+            orderNo = #{orderNo},
+            orderStatus = #{orderStatus},
+            userId = #{userId},
+            expertId = #{expertId},
+            channel = #{channel},
+            serverContent = #{serverContent},
+            serverType = #{serverType},
+            serverAddress = #{serverAddress},
+            serverPrice = #{serverPrice},
+            contactPerson = #{contactPerson},
+            contactPhone = #{contactPhone},
+            contactQq = #{contactQq},
+            expectBeginDate = #{expectBeginDate},
+            expectEndDate = #{expectEndDate},
+            createDate = #{createDate},
+            questionDesc = #{questionDesc},
+            meetingAddress = #{meetingAddress},
+        </trim>
+        WHERE
+        id = #{id} 
+    </update>
+
+    <!-- 按Id删除 -->
+    <delete id="deleteById" parameterType="java.lang.Long">
+        DELETE FROM zgk_expert_reservation_order
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+    </delete>
+
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        DELETE FROM zgk_expert_reservation_order
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="id!=null">
+                AND id = #{id}
+            </if>
+            <if test="orderNo!=null">
+                AND orderNo = #{orderNo}
+            </if>
+            <if test="orderStatus!=null">
+                AND orderStatus = #{orderStatus}
+            </if>
+            <if test="userId!=null">
+                AND userId = #{userId}
+            </if>
+            <if test="expertId!=null">
+                AND expertId = #{expertId}
+            </if>
+            <if test="channel!=null">
+                AND channel = #{channel}
+            </if>
+            <if test="serverContent!=null">
+                AND serverContent = #{serverContent}
+            </if>
+            <if test="serverType!=null">
+                AND serverType = #{serverType}
+            </if>
+            <if test="serverAddress!=null">
+                AND serverAddress = #{serverAddress}
+            </if>
+            <if test="serverPrice!=null">
+                AND serverPrice = #{serverPrice}
+            </if>
+            <if test="contactPerson!=null">
+                AND contactPerson = #{contactPerson}
+            </if>
+            <if test="contactPhone!=null">
+                AND contactPhone = #{contactPhone}
+            </if>
+            <if test="contactQq!=null">
+                AND contactQq = #{contactQq}
+            </if>
+            <if test="expectBeginDate!=null">
+                AND expectBeginDate = #{expectBeginDate}
+            </if>
+            <if test="expectEndDate!=null">
+                AND expectEndDate = #{expectEndDate}
+            </if>
+            <if test="createDate!=null">
+                AND createDate = #{createDate}
+            </if>
+            <if test="questionDesc!=null">
+                AND questionDesc = #{questionDesc}
+            </if>
+            <if test="meetingAddress!=null">
+                AND meetingAddress = #{meetingAddress}
+            </if>
+        </trim>
+    </delete>
+
+    <delete id="deleteByProperty" parameterType="java.util.Map">
+        DELETE FROM zgk_expert_reservation_order WHERE
+        ${property} = #{value}
+    </delete>
+
+    <select id="fetch" parameterType="java.lang.Long" resultType="ExpertReservationOrder">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_expert_reservation_order
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="findOne" parameterType="java.util.Map" resultType="ExpertReservationOrder">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_expert_reservation_order WHERE
+        ${property} = #{value}
+        LIMIT 0,1
+    </select>
+
+    <select id="findList" parameterType="java.util.Map" resultType="ExpertReservationOrder">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_expert_reservation_order WHERE
+        ${property} = #{value}
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="findAll" resultType="ExpertReservationOrder">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_expert_reservation_order
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryPage" resultType="ExpertReservationOrder">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_expert_reservation_order
+        <where>
+
+            <if test="condition.whereSql != null">
+                and id in (#{condition.whereSql})
+            </if>
+
+            <if test="condition.id!=null">
+                ${condition.groupOp}   id  ${condition.id.op}  #{condition.id.data}
+            </if>
+            <if test="condition.orderNo!=null">
+                ${condition.groupOp}   orderNo  ${condition.orderNo.op}  #{condition.orderNo.data}
+            </if>
+            <if test="condition.orderStatus!=null">
+                ${condition.groupOp}   orderStatus  ${condition.orderStatus.op}  #{condition.orderStatus.data}
+            </if>
+            <if test="condition.userId!=null">
+                ${condition.groupOp}   userId  ${condition.userId.op}  #{condition.userId.data}
+            </if>
+            <if test="condition.expertId!=null">
+                ${condition.groupOp}   expertId  ${condition.expertId.op}  #{condition.expertId.data}
+            </if>
+            <if test="condition.channel!=null">
+                ${condition.groupOp}   channel  ${condition.channel.op}  #{condition.channel.data}
+            </if>
+            <if test="condition.serverContent!=null">
+                ${condition.groupOp}   serverContent  ${condition.serverContent.op}  #{condition.serverContent.data}
+            </if>
+            <if test="condition.serverType!=null">
+                ${condition.groupOp}   serverType  ${condition.serverType.op}  #{condition.serverType.data}
+            </if>
+            <if test="condition.serverAddress!=null">
+                ${condition.groupOp}   serverAddress  ${condition.serverAddress.op}  #{condition.serverAddress.data}
+            </if>
+            <if test="condition.serverPrice!=null">
+                ${condition.groupOp}   serverPrice  ${condition.serverPrice.op}  #{condition.serverPrice.data}
+            </if>
+            <if test="condition.contactPerson!=null">
+                ${condition.groupOp}   contactPerson  ${condition.contactPerson.op}  #{condition.contactPerson.data}
+            </if>
+            <if test="condition.contactPhone!=null">
+                ${condition.groupOp}   contactPhone  ${condition.contactPhone.op}  #{condition.contactPhone.data}
+            </if>
+            <if test="condition.contactQq!=null">
+                ${condition.groupOp}   contactQq  ${condition.contactQq.op}  #{condition.contactQq.data}
+            </if>
+            <if test="condition.expectBeginDate!=null">
+                ${condition.groupOp}   expectBeginDate  ${condition.expectBeginDate.op}  #{condition.expectBeginDate.data}
+            </if>
+            <if test="condition.expectEndDate!=null">
+                ${condition.groupOp}   expectEndDate  ${condition.expectEndDate.op}  #{condition.expectEndDate.data}
+            </if>
+            <if test="condition.createDate!=null">
+                ${condition.groupOp}   createDate  ${condition.createDate.op}  #{condition.createDate.data}
+            </if>
+            <if test="condition.questionDesc!=null">
+                ${condition.groupOp}   questionDesc  ${condition.questionDesc.op}  #{condition.questionDesc.data}
+            </if>
+            <if test="condition.meetingAddress!=null">
+                ${condition.groupOp}   meetingAddress  ${condition.meetingAddress.op}  #{condition.meetingAddress.data}
+            </if>
+
+
+    </where>
+
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+    <select id="like" parameterType="java.util.Map" resultType="ExpertReservationOrder">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_expert_reservation_order
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="id!=null">
+                AND id like CONCAT('%', #{id} , '%')
+            </if>
+            <if test="orderNo!=null">
+                AND orderNo like CONCAT('%', #{orderNo} , '%')
+            </if>
+            <if test="orderStatus!=null">
+                AND orderStatus like CONCAT('%', #{orderStatus} , '%')
+            </if>
+            <if test="userId!=null">
+                AND userId like CONCAT('%', #{userId} , '%')
+            </if>
+            <if test="expertId!=null">
+                AND expertId like CONCAT('%', #{expertId} , '%')
+            </if>
+            <if test="channel!=null">
+                AND channel like CONCAT('%', #{channel} , '%')
+            </if>
+            <if test="serverContent!=null">
+                AND serverContent like CONCAT('%', #{serverContent} , '%')
+            </if>
+            <if test="serverType!=null">
+                AND serverType like CONCAT('%', #{serverType} , '%')
+            </if>
+            <if test="serverAddress!=null">
+                AND serverAddress like CONCAT('%', #{serverAddress} , '%')
+            </if>
+            <if test="serverPrice!=null">
+                AND serverPrice like CONCAT('%', #{serverPrice} , '%')
+            </if>
+            <if test="contactPerson!=null">
+                AND contactPerson like CONCAT('%', #{contactPerson} , '%')
+            </if>
+            <if test="contactPhone!=null">
+                AND contactPhone like CONCAT('%', #{contactPhone} , '%')
+            </if>
+            <if test="contactQq!=null">
+                AND contactQq like CONCAT('%', #{contactQq} , '%')
+            </if>
+            <if test="expectBeginDate!=null">
+                AND expectBeginDate like CONCAT('%', #{expectBeginDate} , '%')
+            </if>
+            <if test="expectEndDate!=null">
+                AND expectEndDate like CONCAT('%', #{expectEndDate} , '%')
+            </if>
+            <if test="createDate!=null">
+                AND createDate like CONCAT('%', #{createDate} , '%')
+            </if>
+            <if test="questionDesc!=null">
+                AND questionDesc like CONCAT('%', #{questionDesc} , '%')
+            </if>
+            <if test="meetingAddress!=null">
+                AND meetingAddress like CONCAT('%', #{meetingAddress} , '%')
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+
+    <select id="queryList" parameterType="java.util.Map" resultType="ExpertReservationOrder">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_expert_reservation_order
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.orderNo!=null">
+                AND orderNo = #{condition.orderNo}
+            </if>
+            <if test="condition.orderStatus!=null">
+                AND orderStatus = #{condition.orderStatus}
+            </if>
+            <if test="condition.userId!=null">
+                AND userId = #{condition.userId}
+            </if>
+            <if test="condition.expertId!=null">
+                AND expertId = #{condition.expertId}
+            </if>
+            <if test="condition.channel!=null">
+                AND channel = #{condition.channel}
+            </if>
+            <if test="condition.serverContent!=null">
+                AND serverContent = #{condition.serverContent}
+            </if>
+            <if test="condition.serverType!=null">
+                AND serverType = #{condition.serverType}
+            </if>
+            <if test="condition.serverAddress!=null">
+                AND serverAddress = #{condition.serverAddress}
+            </if>
+            <if test="condition.serverPrice!=null">
+                AND serverPrice = #{condition.serverPrice}
+            </if>
+            <if test="condition.contactPerson!=null">
+                AND contactPerson = #{condition.contactPerson}
+            </if>
+            <if test="condition.contactPhone!=null">
+                AND contactPhone = #{condition.contactPhone}
+            </if>
+            <if test="condition.contactQq!=null">
+                AND contactQq = #{condition.contactQq}
+            </if>
+            <if test="condition.expectBeginDate!=null">
+                AND expectBeginDate = #{condition.expectBeginDate}
+            </if>
+            <if test="condition.expectEndDate!=null">
+                AND expectEndDate = #{condition.expectEndDate}
+            </if>
+            <if test="condition.createDate!=null">
+                AND createDate = #{condition.createDate}
+            </if>
+            <if test="condition.questionDesc!=null">
+                AND questionDesc = #{condition.questionDesc}
+            </if>
+            <if test="condition.meetingAddress!=null">
+                AND meetingAddress = #{condition.meetingAddress}
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryOne" parameterType="java.util.Map" resultType="ExpertReservationOrder">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_expert_reservation_order
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.orderNo!=null">
+                AND orderNo = #{condition.orderNo}
+            </if>
+            <if test="condition.orderStatus!=null">
+                AND orderStatus = #{condition.orderStatus}
+            </if>
+            <if test="condition.userId!=null">
+                AND userId = #{condition.userId}
+            </if>
+            <if test="condition.expertId!=null">
+                AND expertId = #{condition.expertId}
+            </if>
+            <if test="condition.channel!=null">
+                AND channel = #{condition.channel}
+            </if>
+            <if test="condition.serverContent!=null">
+                AND serverContent = #{condition.serverContent}
+            </if>
+            <if test="condition.serverType!=null">
+                AND serverType = #{condition.serverType}
+            </if>
+            <if test="condition.serverAddress!=null">
+                AND serverAddress = #{condition.serverAddress}
+            </if>
+            <if test="condition.serverPrice!=null">
+                AND serverPrice = #{condition.serverPrice}
+            </if>
+            <if test="condition.contactPerson!=null">
+                AND contactPerson = #{condition.contactPerson}
+            </if>
+            <if test="condition.contactPhone!=null">
+                AND contactPhone = #{condition.contactPhone}
+            </if>
+            <if test="condition.contactQq!=null">
+                AND contactQq = #{condition.contactQq}
+            </if>
+            <if test="condition.expectBeginDate!=null">
+                AND expectBeginDate = #{condition.expectBeginDate}
+            </if>
+            <if test="condition.expectEndDate!=null">
+                AND expectEndDate = #{condition.expectEndDate}
+            </if>
+            <if test="condition.createDate!=null">
+                AND createDate = #{condition.createDate}
+            </if>
+            <if test="condition.questionDesc!=null">
+                AND questionDesc = #{condition.questionDesc}
+            </if>
+            <if test="condition.meetingAddress!=null">
+                AND meetingAddress = #{condition.meetingAddress}
+            </if>
+        </trim>
+        limit 0,1
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(id) FROM zgk_expert_reservation_order
+       <where>
+           <if test="id!=null">
+               ${groupOp} id ${id.op}  #{id.data}
+           </if>
+           <if test="orderNo!=null">
+               ${groupOp} orderNo ${orderNo.op}  #{orderNo.data}
+           </if>
+           <if test="orderStatus!=null">
+               ${groupOp} orderStatus ${orderStatus.op}  #{orderStatus.data}
+           </if>
+           <if test="userId!=null">
+               ${groupOp} userId ${userId.op}  #{userId.data}
+           </if>
+           <if test="expertId!=null">
+               ${groupOp} expertId ${expertId.op}  #{expertId.data}
+           </if>
+           <if test="channel!=null">
+               ${groupOp} channel ${channel.op}  #{channel.data}
+           </if>
+           <if test="serverContent!=null">
+               ${groupOp} serverContent ${serverContent.op}  #{serverContent.data}
+           </if>
+           <if test="serverType!=null">
+               ${groupOp} serverType ${serverType.op}  #{serverType.data}
+           </if>
+           <if test="serverAddress!=null">
+               ${groupOp} serverAddress ${serverAddress.op}  #{serverAddress.data}
+           </if>
+           <if test="serverPrice!=null">
+               ${groupOp} serverPrice ${serverPrice.op}  #{serverPrice.data}
+           </if>
+           <if test="contactPerson!=null">
+               ${groupOp} contactPerson ${contactPerson.op}  #{contactPerson.data}
+           </if>
+           <if test="contactPhone!=null">
+               ${groupOp} contactPhone ${contactPhone.op}  #{contactPhone.data}
+           </if>
+           <if test="contactQq!=null">
+               ${groupOp} contactQq ${contactQq.op}  #{contactQq.data}
+           </if>
+           <if test="expectBeginDate!=null">
+               ${groupOp} expectBeginDate ${expectBeginDate.op}  #{expectBeginDate.data}
+           </if>
+           <if test="expectEndDate!=null">
+               ${groupOp} expectEndDate ${expectEndDate.op}  #{expectEndDate.data}
+           </if>
+           <if test="createDate!=null">
+               ${groupOp} createDate ${createDate.op}  #{createDate.data}
+           </if>
+           <if test="questionDesc!=null">
+               ${groupOp} questionDesc ${questionDesc.op}  #{questionDesc.data}
+           </if>
+           <if test="meetingAddress!=null">
+               ${groupOp} meetingAddress ${meetingAddress.op}  #{meetingAddress.data}
+           </if>
+
+       </where>
+    <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+    </if>
+    </select>
+
+    <select id="selectMaxId" resultType="java.lang.Long">
+        SELECT
+        MAX(id)
+        FROM zgk_expert_reservation_order
+    </select>
+
+</mapper>
+

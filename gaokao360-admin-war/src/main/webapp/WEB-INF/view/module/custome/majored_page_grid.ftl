@@ -34,59 +34,110 @@
                     <h5 class="widget-title">添加专业基本信息</h5>
                 <#--<button type="button" class="close" data-dismiss="modal"><span-->
                 <#--aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>-->
+                    <#--专业代码-->
+                    <#--专业类型-->
+                    <#--专业类型-->
+                    <#--学科门类-->
+                    <#--学科门类-->
+                    <#--专业门类-->
+                    <#--专业门类-->
+                    <#--专业名称-->
+                    <#--授予学位-->
+                    <#--院校简介-->
+                    <#--就业方向-->
+                    <#--修学年限-->
+                    <#--主要课程-->
+                    <#--就业率-->
+                    <#--平均收入-->
+                    <#--工作和专业相关度-->
+                    <#--薪资排名-->
+                    <#--就业排名-->
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal" id="submitForm">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="majoredName" class="col-sm-2 control-label">专业名称</label>
+                                    <label for="majorName" class="col-sm-2 control-label">专业名称</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="majoredName"
-                                               placeholder="专业名称名称不能超过30个字">
+                                        <input type="text" class="form-control" id="majorName"
+                                               placeholder="不能超过30个字">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="majoredCode" class="col-sm-2 control-label">专业Code</label>
+                                    <label for="majorCode" class="col-sm-2 control-label">专业Code</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="majoredCode"
-                                               placeholder="专业名称名称不能超过30个字">
+                                        <input type="text" class="form-control" id="majorCode"
+                                               placeholder="不能超过30个字">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="selMajored2" class="col-sm-2 control-label">学科门类</label>
+                                    <label for="employmentRate" class="col-sm-2 control-label">就业率</label>
                                     <div class="col-sm-6">
-                                        <select name="" id="selMajored2" class="form-control"></select>
+                                        <input type="text" class="form-control" id="employmentRate"
+                                               placeholder="">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="subjectType" class="col-sm-2 control-label">专业门类</label>
+                                    <label for="schoolingDuration" class="col-sm-2 control-label">修学年限</label>
                                     <div class="col-sm-6">
-                                        <select name="" id="subjectType" class="form-control">
-                                            <option value="00">请选择专业门类</option>
+                                        <input type="text" class="form-control" id="schoolingDuration"
+                                               placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="degreeOffered" class="col-sm-2 control-label">授予学位</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="degreeOffered"
+                                               placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="majorType2" class="col-sm-2 control-label">学科类型</label>
+                                    <div class="col-sm-6">
+                                        <select name="" id="majorType2" class="form-control">
+                                            <option value="1">本科</option>
+                                            <option value="2">高职（专科）</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="salaryRank" class="col-sm-2 control-label">薪资排名</label>
+                                    <label for="disciplineCategories" class="col-sm-2 control-label">学科门类</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="salaryRank">
+                                        <select name="" id="disciplineCategories" class="form-control">
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="jobsRank" class="col-sm-2 control-label">就业排名</label>
+                                    <label for="majorCategory" class="col-sm-2 control-label">专业门类</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="jobsRank">
+                                        <select name="" id="majorCategory" class="form-control">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="majorType" class="col-sm-2 control-label">专业门类</label>
+                                    <div class="col-sm-6">
+                                        <select name="" id="majorType" class="form-control">
+                                            <option value="0">普通专业</option>
+                                            <option value="1">重点专业</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -94,31 +145,26 @@
                     <#--好长的Dom-->
 
 
+
                         <div class="form-group">
-                            <label for="sameMajored" class="col-sm-1 control-label">相近专业</label>
+                            <label for="offerCourses" class="col-sm-1 control-label">主要课程</label>
                             <div class="col-sm-11">
-                                <textarea cols="30" rows="3" class="form-control" id="sameMajored"
+                                <textarea cols="30" rows="3" class="form-control" id="offerCourses"
+                                          placeholder="请输入内容不能超过120个字"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="specialisation" class="col-sm-1 control-label">就业方向</label>
+                            <div class="col-sm-11">
+                                <textarea cols="30" rows="3" class="form-control" id="specialisation"
                                           placeholder="请输入内容不能超过120个字"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="mainMajored" class="col-sm-1 control-label">主要课程</label>
+                            <label for="majorIntroduce" class="col-sm-1 control-label">专业简介</label>
                             <div class="col-sm-11">
-                                <textarea cols="30" rows="3" class="form-control" id="mainMajored"
-                                          placeholder="请输入内容不能超过120个字"></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="employDirect" class="col-sm-1 control-label">就业方向</label>
-                            <div class="col-sm-11">
-                                <textarea cols="30" rows="3" class="form-control" id="employDirect"
-                                          placeholder="请输入内容不能超过120个字"></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="excellentStudent" class="col-sm-1 control-label">优秀学长</label>
-                            <div class="col-sm-11">
-                                <textarea cols="30" rows="3" class="form-control" id="excellentStudent"
+                                <textarea cols="30" rows="3" class="form-control" id="majorIntroduce"
                                           placeholder="请输入内容不能超过120个字"></textarea>
                             </div>
                         </div>

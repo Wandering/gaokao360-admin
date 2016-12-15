@@ -101,6 +101,6 @@ public class UniversityMajorEnrollingExController extends BaseController<IUniver
 
         enhancePageConditions(request,conditions);
 
-        return getMainService().queryPageByDataPerm(uri, conditions, page, (page - 1) * rows, rows, "createDate", SqlOrderEnum.DESC);
+        return getMainService().queryPageByDataPerm(uri, conditions, page, (page - 1) * rows, rows, "id", SqlOrderEnum.DESC);
     }
 }

@@ -2,14 +2,15 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  UniversityDictController.java 2015-12-16 18:39:47 $
+ * $Id:  ScheduleController.java 2015-12-16 10:49:57 $
  */
 
 package cn.thinkjoy.gaokao360.controller.baseinfo;
 
-import cn.thinkjoy.gaokao360.controller.BaseController;
-import cn.thinkjoy.gaokao360.service.common.IUniversityDictService;
+import cn.thinkjoy.common.domain.SearchField;
 import cn.thinkjoy.common.domain.view.BizData4Page;
+import cn.thinkjoy.gaokao360.controller.BaseController;
+import cn.thinkjoy.gaokao360.service.common.IExpertInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -19,15 +20,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 @Controller
 @Scope("prototype")
-@RequestMapping(value="/admin/gaokao360")
-public class UniversityDictController extends BaseController<IUniversityDictService> {
+@RequestMapping(value="/admin/zgkadmin")
+public class ExpertInfoController extends BaseController<IExpertInfoService> {
 
 
     @Autowired
-    private IUniversityDictService universityDictService;
+    private IExpertInfoService expertInfoService;
 
     /**
      * 页面主请求
@@ -35,7 +37,7 @@ public class UniversityDictController extends BaseController<IUniversityDictServ
      * @param response
      * @return  返回菜单数据、表格描述元数据、当前主描述  如本页面为org
      */
-    @RequestMapping(value="/universitydict")
+    @RequestMapping(value="/expertinfo")
     public ModelAndView renderMainView(HttpServletRequest request,HttpServletResponse response){
 
 
@@ -46,35 +48,56 @@ public class UniversityDictController extends BaseController<IUniversityDictServ
      * 获取所有的组织信息
      * @return
      */
-    @RequestMapping(value="/universitydicts")
+    @RequestMapping(value="/expertinfos")
     @ResponseBody
-    public BizData4Page findAllUniversityDicts(HttpServletRequest request,HttpServletResponse response){
+    public BizData4Page findAllExpertInfos(HttpServletRequest request,HttpServletResponse response){
+
         return doPage(request, response);
     }
 
+    /***
+     * 添加查询条件
+
+     * @param
+    request
+     * @param conditions
+     */
+    @
+            Override
+    protected void enhancePageConditions(HttpServletRequest request, Map conditions) {
+        super.enhancePageConditions(request, conditions);
+        SearchField field = new SearchField();
+        field.setData("isChecked");
+        field.setOp("=");
+        field.setData("2");
+        conditions.put("isChecked",field);
+        conditions.put("sortBy","desc");
+        conditions.put("orderBy","id");
+    }
+
     @Override
-    protected IUniversityDictService getMainService() {
-        return universityDictService;
+    protected IExpertInfoService getMainService() {
+        return expertInfoService;
     }
 
     @Override
     protected String getBizSys() {
-        return "gaokao360";
+        return "zgkadmin";
     }
 
     @Override
     protected String getMainObjName() {
-        return "universitydict";
+        return "expertinfo";
     }
 
     @Override
     protected String getViewTitle() {
-        return "院校分类";
+        return "高考日程";
     }
 
     @Override
     protected String getParentTitle() {
-        return "基础信息";
+        return "数据模块";
     }
 
     @Override

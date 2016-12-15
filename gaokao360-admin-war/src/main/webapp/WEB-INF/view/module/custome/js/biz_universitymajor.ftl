@@ -116,13 +116,13 @@
             // 获取当前行数据
             var rowData = CommonFn.getRowData(rowId);
             console.log(rowData);
-            $('#majoredrank').val(rowData[0].majorRank);
-            $('#MajoredNameList').find('option[value="' + rowData[0].majorId + '"]').attr('selected', 'selected');
-            $('#UniversityNameList').find('option[value="' + rowData[0].universityId + '"]').attr('selected', 'selected');
-            $('#MAJOR_TYPE').find('option[value="' + rowData[0].majorType + '"]').attr('selected', 'selected');
-            $('#UNIVERSITY_MAJOR_TYPE').find('option[value="' + rowData[0].majorSubject + '"]').attr('selected', 'selected');
+            $('#universityName').val(rowData[0].universityName);
+            $('#majorName').val(rowData[0].majorName);
+            $('#majorRank').val(rowData[0].majorRank);
+            $('#salaryRank').val(rowData[0].salaryRank);
+            $('#jobRank').val(rowData[0].jobRank);
+            $('#majorFeature').val(rowData[0].majorFeature);
             $('#eduLevel').find('option[value="' + rowData[0].educationLevel + '"]').attr('selected', 'selected');
-            $('#GAIN_DEGREE').find('option[value="' + rowData[0].gainDegree + '"]').attr('selected', 'selected');
         });
 
 
@@ -130,57 +130,55 @@
         CommonFn.deleteFun('#deleteBtn', '${mainObj}');
 //          添加修改方法
         function addAndEditFun() {
-            var MajoredNameList = $('#MajoredNameList').find('option:selected').attr('value');
-            var MajoredNameListText = $('#MajoredNameList').find('option:selected').text();
-            var UniversityNameList = $('#UniversityNameList').find('option:selected').attr('value');
-            var UniversityNameListText = $('#UniversityNameList').find('option:selected').text();
-            var MAJOR_TYPE = $('#MAJOR_TYPE').find('option:selected').attr('value');
-            var UNIVERSITY_MAJOR_TYPE = $('#UNIVERSITY_MAJOR_TYPE').find('option:selected').attr('value');
+//            var MajoredNameList = $('#MajoredNameList').find('option:selected').attr('value');
+//            var MajoredNameListText = $('#MajoredNameList').find('option:selected').text();
+//            var UniversityNameList = $('#UniversityNameList').find('option:selected').attr('value');
+//            var UniversityNameListText = $('#UniversityNameList').find('option:selected').text();
+//            var MAJOR_TYPE = $('#MAJOR_TYPE').find('option:selected').attr('value');
+//            var UNIVERSITY_MAJOR_TYPE = $('#UNIVERSITY_MAJOR_TYPE').find('option:selected').attr('value');
 
             var eduLevel = $('#eduLevel').find('option:selected').attr('value');
 
-            var GAIN_DEGREE = $('#GAIN_DEGREE').find('option:selected').attr('value');
-            if (MajoredNameList == '00') {
-                CommonFn.tipsDialog('温馨提示', '专业名称没有选择');
-                return false;
-            }
-            if (UniversityNameList == '00') {
-                CommonFn.tipsDialog('温馨提示', '开设院校没有选择');
-                return false;
-            }
-            if (MAJOR_TYPE == '00') {
-                CommonFn.tipsDialog('温馨提示', '专业类型没有选择');
-                return false;
-            }
-            if ($.trim($('#majoredrank').val()) == '') {
-                CommonFn.tipsDialog('温馨提示', '请输入院校排名');
-                return false;
-            }
-            if (UNIVERSITY_MAJOR_TYPE == '00') {
-                CommonFn.tipsDialog('温馨提示', '科类没有选择');
-                return false;
-            }
+//            var GAIN_DEGREE = $('#GAIN_DEGREE').find('option:selected').attr('value');
+//            if (MajoredNameList == '00') {
+//                CommonFn.tipsDialog('温馨提示', '专业名称没有选择');
+//                return false;
+//            }
+//            if (UniversityNameList == '00') {
+//                CommonFn.tipsDialog('温馨提示', '开设院校没有选择');
+//                return false;
+//            }
+//            if (MAJOR_TYPE == '00') {
+//                CommonFn.tipsDialog('温馨提示', '专业类型没有选择');
+//                return false;
+//            }
+//            if ($.trim($('#majoredrank').val()) == '') {
+//                CommonFn.tipsDialog('温馨提示', '请输入院校排名');
+//                return false;
+//            }
+//            if (UNIVERSITY_MAJOR_TYPE == '00') {
+//                CommonFn.tipsDialog('温馨提示', '科类没有选择');
+//                return false;
+//            }
             if (eduLevel == '00') {
                 CommonFn.tipsDialog('温馨提示', '学历层次没有选择');
                 return false;
             }
-            if (GAIN_DEGREE == '00') {
-                CommonFn.tipsDialog('温馨提示', '学位没有选择');
-                return false;
-            }
+//            if (GAIN_DEGREE == '00') {
+//                CommonFn.tipsDialog('温馨提示', '学位没有选择');
+//                return false;
+//            }
 
             var data = {
                 oper: typeStr,
-                universityId: UniversityNameList,
-                universityName: UniversityNameListText,
-                majorId: MajoredNameList,
-                majorName: MajoredNameListText,
-                majorType: MAJOR_TYPE,
-                majorSubject: UNIVERSITY_MAJOR_TYPE,
+                universityName: $('#universityName').val(),
+                majorName: $('#majorName').val(),
                 educationLevel: eduLevel,
-                gainDegree: GAIN_DEGREE,
                 isDelete: 0,
-                majorRank:$('#majoredrank').val()
+                majorRank:$('#majorRank').val(),
+                salaryRank:$('#salaryRank').val(),
+                jobRank:$('#jobRank').val(),
+                majorFeature:$('#majorFeature').val()
             };
             if (typeStr == 'edit') {
                 data.id = rowId;
@@ -201,47 +199,48 @@
                 + '<div class="form-group">'
                 + '<label class="col-sm-2 control-label no-padding-right" for=""> 专业名称：</label>'
                 + '<div class="col-sm-5">'
-                + '<select name="" id="MajoredNameList" class="col-sm-10">'+ specialityData + '</select>'
+                + '<input type="text" id="majorName" placeholder="请输入专业名称" class="" />'
                 + '</div>'
                 + '</div>'
                 + '<div class="form-group">'
                 + '<label class="col-sm-2 control-label no-padding-right" for=""> 开设院校名称：</label>'
                 + '<div class="col-sm-5">'
-                + '<select name="" id="UniversityNameList"  class="col-sm-10">'+ universityNameListData +'</select>'
+                + '<input type="text" id="universityName" placeholder="请输入开设院校名称" class="" />'
                 + '</div>'
                 + '</div>'
-                + '<div class="form-group">'
-                + '<label class="col-sm-2 control-label no-padding-right" for=""> 专业类型：</label>'
-                + '<div class="col-sm-5">'
-                + '<select name="" id="MAJOR_TYPE"  class="col-sm-10">'+ majoredTypeData +'</select>'
-                + '</div>'
-                + '</div>'
-                + '<div class="form-group">'
-                + '<label class="col-sm-2 control-label no-padding-right" for=""> 专业排名：</label>'
-                + '<div class="col-sm-5">'
-                + '<input type="text" id="majoredrank" placeholder="请输入专业排名" class="" />'
-                + '</div>'
-                + '</div>'
-                + '<div class="form-group">'
-                + '<label class="col-sm-2 control-label no-padding-right" for=""> 科类：</label>'
-                + '<div class="col-sm-5">'
-                + '<select name="" id="UNIVERSITY_MAJOR_TYPE"  class="col-sm-10">'+ subjectTypeData +'</select>'
-                + '</div>'
-                + '</div>'
-
                 + '<div class="form-group">'
                 + '<label class="col-sm-2 control-label no-padding-right" for=""> 学历层次：</label>'
                 + '<div class="col-sm-5">'
                 + '<select name="" id="eduLevel"  class="col-sm-10"> '+ edulevelData +' </select>'
                 + '</div>'
                 + '</div>'
-
                 + '<div class="form-group">'
-                + '<label class="col-sm-2 control-label no-padding-right" for=""> 学位：</label>'
+                + '<label class="col-sm-2 control-label no-padding-right" for=""> 专业排名：</label>'
                 + '<div class="col-sm-5">'
-                + '<select name="" id="GAIN_DEGREE"  class="col-sm-10">'+ degreeData +'</select>'
+                + '<input type="text" id="majorRank" placeholder="请输入专业排名" class="" />'
                 + '</div>'
                 + '</div>'
+                + '<div class="form-group">'
+                + '<label class="col-sm-2 control-label no-padding-right" for=""> 薪资排名：</label>'
+                + '<div class="col-sm-5">'
+                + '<input type="text" id="salaryRank" placeholder="请输入专业排名" class="" />'
+                + '</div>'
+                + '</div>'
+                + '<div class="form-group">'
+                + '<label class="col-sm-2 control-label no-padding-right" for=""> 就业排名：</label>'
+                + '<div class="col-sm-5">'
+                + '<input type="text" id="jobRank" placeholder="请输入就业排名" class="" />'
+                + '</div>'
+                + '</div>'
+                + '<div class="form-group">'
+                + '<label class="col-sm-2 control-label no-padding-right" for=""> 专业特征：</label>'
+                + '<div class="col-sm-5">'
+                + '<input type="text" id="majorFeature" placeholder="请输入专业特征" class="" />'
+                + '</div>'
+                + '</div>'
+
+
+
 
                 + '</form>'
                 + '</div>'

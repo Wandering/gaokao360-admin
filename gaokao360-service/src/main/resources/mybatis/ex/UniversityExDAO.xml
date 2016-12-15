@@ -423,16 +423,6 @@ selectList
         WHERE university.name LIKE CONCAT('%', #{name} , '%')
         ORDER BY category ASC
     </select>
-    <select id="getDictByName" resultType="cn.thinkjoy.gaokao360.domain.UniversityDict">
-        SELECT
-        *
-        from zgk_university_dict dict WHERE dict.type='FEATURE' AND name=#{name}
-
-    </select>
-    <select id="getDictMaxSort" resultType="Integer">
-         SELECT MAX(dictId) FROM zgk_university_dict WHERE type=#{type}
-    </select>
-
     <insert id="insertDetail" parameterType="UniversityDetail">
         INSERT INTO zgk_university_detail (id,
         address,

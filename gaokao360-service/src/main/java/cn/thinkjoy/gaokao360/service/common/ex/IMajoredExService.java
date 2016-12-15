@@ -21,4 +21,11 @@ public interface IMajoredExService<D extends IBaseDAO<T>, T extends BaseDomain> 
     int insertMapDetail(Map<String, Object> entityMap);
     List<MajoredQueryDTO> getMajoredByName(String majoredName,String type);
 
+    long insertMajored(Map<String,Object> map);
+    long insertDetail(Map<String,Object> map);
+    boolean updateMajor(Map<String,Object> map);
+    boolean updateMajorDetail(Map<String,Object> map);
+    boolean deleteMajorDetailById(Object id);
+    boolean deleteMajorById(Object id);
+
 }

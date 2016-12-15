@@ -62,4 +62,6 @@ public interface IZgkApeskCourseDao {
      * 根据主键更新记录
      */
     int updateByPrimaryKey(ZgkApeskCourse record);
+
+    String queryConfigByAreaId(String areaId);
 }
