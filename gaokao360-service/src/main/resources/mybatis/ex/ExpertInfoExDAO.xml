@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IExpertInfoExDAO">
+<!--
+insert
+update
+updateNull
+deleteById
+deleteByCondition
+deleteByProperty
+fetch
+findOne
+findList
+findAll
+queryPage
+like
+queryList
+queryOne
+count
+selectMaxId
+updateOrSave
+selectOne
+selectList
+-->
+    <sql id="Base_Column_List">
+        id as id,
+        expert_name as expertName,
+        expert_photo_url as expertPhotoUrl,
+        expert_intro as expertIntro,
+        expert_phone as expertPhone,
+        server_cases as serverCases,
+        area_id as areaId,
+        expert_domain as expertDomain,
+        expert_profile as expertProfile,
+        best_expert as bestExpert,
+        is_checked as isChecked,
+        create_date as createDate
+    </sql>
+
+    <select id="queryPage" resultType="ExpertInfo">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_expert_info
+        <where>
+            <if test="condition.whereSql != null">
+                and id in (#{condition.whereSql})
+            </if>
+
+            <if test="condition.id!=null">
+                ${condition.groupOp}   id  ${condition.id.op}  #{condition.id.data}
+            </if>
+            <if test="condition.expertName!=null">
+                ${condition.groupOp}   expert_name  ${condition.expert_name.op}  #{condition.expert_name.data}
+            </if>
+            <if test="condition.expertPhotoUrl!=null">
+                ${condition.groupOp}   expert_photo_url  ${condition.expert_photo_url.op}  #{condition.expert_photo_url.data}
+            </if>
+            <if test="condition.expertIntro!=null">
+                ${condition.groupOp}   expert_intro  ${condition.expert_intro.op}  #{condition.expert_intro.data}
+            </if>
+            <if test="condition.expertPhone!=null">
+                ${condition.groupOp}   expert_phone  ${condition.expert_phone.op}  #{condition.expert_phone.data}
+            </if>
+            <if test="condition.serverCases!=null">
+                ${condition.groupOp}   server_cases  ${condition.server_cases.op}  #{condition.server_cases.data}
+            </if>
+            <if test="condition.areaId!=null">
+                ${condition.groupOp}   area_id  ${condition.area_id.op}  #{condition.area_id.data}
+            </if>
+            <if test="condition.expertDomain!=null">
+                ${condition.groupOp}   expert_domain  ${condition.expert_domain.op}  #{condition.expert_domain.data}
+            </if>
+            <if test="condition.expertProfile!=null">
+                ${condition.groupOp}   expert_profile  ${condition.expert_profile.op}  #{condition.expert_profile.data}
+            </if>
+            <if test="condition.bestExpert!=null">
+                ${condition.groupOp}   best_expert  ${condition.best_expert.op}  #{condition.best_expert.data}
+            </if>
+            <if test="condition.isChecked!=null">
+                ${condition.groupOp}   is_checked  ${condition.is_checked.op}  #{condition.is_checked.data}
+            </if>
+            <if test="condition.createDate!=null">
+                ${condition.groupOp}   create_date  ${condition.create_date.op}  #{condition.create_date.data}
+            </if>
+
+
+    </where>
+
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(id) FROM zgk_expert_info
+       <where>
+           <if test="id!=null">
+               ${groupOp} id ${id.op}  #{id.data}
+           </if>
+           <if test="expertName!=null">
+               ${groupOp} expert_name ${expert_name.op}  #{expert_name.data}
+           </if>
+           <if test="expertPhotoUrl!=null">
+               ${groupOp} expert_photo_url ${expert_photo_url.op}  #{expert_photo_url.data}
+           </if>
+           <if test="expertIntro!=null">
+               ${groupOp} expert_intro ${expert_intro.op}  #{expert_intro.data}
+           </if>
+           <if test="expertPhone!=null">
+               ${groupOp} expert_phone ${expert_phone.op}  #{expert_phone.data}
+           </if>
+           <if test="serverCases!=null">
+               ${groupOp} server_cases ${server_cases.op}  #{server_cases.data}
+           </if>
+           <if test="areaId!=null">
+               ${groupOp} area_id ${area_id.op}  #{area_id.data}
+           </if>
+           <if test="expertDomain!=null">
+               ${groupOp} expert_domain ${expert_domain.op}  #{expert_domain.data}
+           </if>
+           <if test="expertProfile!=null">
+               ${groupOp} expert_profile ${expert_profile.op}  #{expert_profile.data}
+           </if>
+           <if test="bestExpert!=null">
+               ${groupOp} best_expert ${best_expert.op}  #{best_expert.data}
+           </if>
+           <if test="isChecked!=null">
+               ${groupOp} is_checked ${is_checked.op}  #{is_checked.data}
+           </if>
+           <if test="createDate!=null">
+               ${groupOp} create_date ${create_date.op}  #{create_date.data}
+           </if>
+
+       </where>
+    <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+    </if>
+    </select>
+
+
+</mapper>
+

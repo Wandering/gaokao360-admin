@@ -37,6 +37,7 @@
             , $majoredCategoryModal: $('#majoredCategoryModal')
             , $majoredCategoryName: $('#majoredCategoryName')
             , $majoredCategoryType: $('#majoredCategoryType')
+            , $majorType: $('#majorType')
         };
         UI.$addBtn.click(function () {
             typeStr = 'add';
@@ -45,8 +46,13 @@
 
         UI.$submitBtn.click(function () {
 //                majoredCategoryValidate();
+            var majorType = $.trim(UI.$majorType.val());
             var categoryName = $.trim(UI.$majoredCategoryName.val());
             var categoryType = $.trim(UI.$majoredCategoryType.val());
+            if (majorType == '') {
+                CommonFn.tipsDialog('温馨提示', '专业类型不能为空');
+                return false;
+            }
             if (categoryName == '') {
                 CommonFn.tipsDialog('温馨提示', '学科门类不能为空');
                 return false;

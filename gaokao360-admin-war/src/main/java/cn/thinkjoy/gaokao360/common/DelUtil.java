@@ -67,8 +67,8 @@ public class DelUtil extends BaseCommonUtil{
     }
 
     public void majored(){
-        getServiceMaps().get("major").delete(dataMap.get("id"));
-        getServiceMaps().get("majorDetail").delete(dataMap.get("id"));
+        majoredExService.deleteMajorById(dataMap.get("id"));
+        majoredExService.deleteMajorDetailById(dataMap.get("id"));
     }
 
     public void university(){

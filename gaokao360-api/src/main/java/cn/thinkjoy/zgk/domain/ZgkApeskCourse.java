@@ -74,7 +74,7 @@ public class ZgkApeskCourse implements Serializable {
     }
 
     /**
-     * @param acId 
+     * @param acId
 	 *            id
      */
     public void setAcId(Long acId) {
@@ -89,7 +89,7 @@ public class ZgkApeskCourse implements Serializable {
     }
 
     /**
-     * @param name 
+     * @param name
 	 *            测试标题
      */
     public void setName(String name) {
@@ -104,7 +104,7 @@ public class ZgkApeskCourse implements Serializable {
     }
 
     /**
-     * @param liangBiao 
+     * @param liangBiao
 	 *            才储量表标识
      */
     public void setLiangBiao(String liangBiao) {
@@ -119,7 +119,7 @@ public class ZgkApeskCourse implements Serializable {
     }
 
     /**
-     * @param acOrder 
+     * @param acOrder
 	 *            顺序
      */
     public void setAcOrder(Integer acOrder) {
@@ -134,7 +134,7 @@ public class ZgkApeskCourse implements Serializable {
     }
 
     /**
-     * @param picUrl 
+     * @param picUrl
 	 *            图片
      */
     public void setPicUrl(String picUrl) {
@@ -149,7 +149,7 @@ public class ZgkApeskCourse implements Serializable {
     }
 
     /**
-     * @param introduce 
+     * @param introduce
 	 *            介绍
      */
     public void setIntroduce(String introduce) {
@@ -164,7 +164,7 @@ public class ZgkApeskCourse implements Serializable {
     }
 
     /**
-     * @param batch 
+     * @param batch
 	 *            批次
      */
     public void setBatch(String batch) {
@@ -179,7 +179,7 @@ public class ZgkApeskCourse implements Serializable {
     }
 
     /**
-     * @param createDate 
+     * @param createDate
 	 *            创建时间
      */
     public void setCreateDate(Long createDate) {
@@ -194,7 +194,7 @@ public class ZgkApeskCourse implements Serializable {
     }
 
     /**
-     * @param state 
+     * @param state
 	 *            状态
      */
     public void setState(Integer state) {
@@ -209,7 +209,7 @@ public class ZgkApeskCourse implements Serializable {
     }
 
     /**
-     * @param reportUrl 
+     * @param reportUrl
 	 *            报告地址
      */
     public void setReportUrl(String reportUrl) {
@@ -224,7 +224,7 @@ public class ZgkApeskCourse implements Serializable {
     }
 
     /**
-     * @param grade 
+     * @param grade
 	 *            多个年级用,
      */
     public void setGrade(String grade) {
@@ -239,7 +239,7 @@ public class ZgkApeskCourse implements Serializable {
     }
 
     /**
-     * @param gradeDescribe 
+     * @param gradeDescribe
 	 *            年级描述文本
      */
     public void setGradeDescribe(String gradeDescribe) {

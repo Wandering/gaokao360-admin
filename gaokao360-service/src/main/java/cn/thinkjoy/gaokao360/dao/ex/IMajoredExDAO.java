@@ -19,7 +19,12 @@ import java.util.Map;
 public interface IMajoredExDAO extends IBaseDAO<MajorDTO>{
     List<GkBaseDomain> getMajoredListByName(@Param("name")Object name);
     int insertMapDetail(@Param("map") Map<String, Object> entityMap);
-
     List<MajoredQueryDTO> getMajoredByName(@Param("condition")Map<String,Object> map);
+    long insertMajored(Map<String,Object> map);
+    long insertDetail(Map<String,Object> map);
+    boolean updateMajor(Map<String,Object> map);
+    boolean updateMajorDetail(Map<String,Object> map);
+    boolean deleteMajorDetailById(Object id);
+    boolean deleteMajorById(Object id);
 
 }

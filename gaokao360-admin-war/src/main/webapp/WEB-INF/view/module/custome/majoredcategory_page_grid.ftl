@@ -40,6 +40,19 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
+                                    <label for="majoredCategoryName" class="col-sm-2 control-label">专业类型</label>
+                                    <div class="col-sm-6">
+                                        <select id="majorType">
+                                            <option value="1">本科</option>
+                                            <option value="2">高职(专科)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
                                     <label for="majoredCategoryName" class="col-sm-2 control-label">学科门类</label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" id="majoredCategoryName"

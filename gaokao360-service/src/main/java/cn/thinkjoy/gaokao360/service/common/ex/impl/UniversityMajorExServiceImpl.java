@@ -58,7 +58,17 @@ public class UniversityMajorExServiceImpl extends AbstractPageService<IBaseDAO<U
     public List<UniversityDTO> getMajorOpenUniversityList(Map<String, Object> map,int offset,int rows,String orderBy,String sortBy) {
         return universityMajorExDAO.getMajorOpenUniversityList(map,offset,rows,orderBy,sortBy);
     }
-//    @Override
+
+    @Override
+    public boolean insertUniversityMajor(Map<String, Object> map) {
+        return universityMajorExDAO.insertUniversityMajor(map);
+    }
+
+    @Override
+    public boolean updateUniversityMajor(Map<String, Object> map) {
+        return universityMajorExDAO.updateUniversityMajor(map);
+    }
+    //    @Override
 //    public void insert(BaseDomain entity) {
 //
 //    }

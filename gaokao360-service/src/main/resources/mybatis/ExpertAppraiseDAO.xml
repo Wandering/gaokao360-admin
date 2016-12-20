@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.thinkjoy.gaokao360.dao.IExpertAppraiseDAO">
+<!--
+insert
+update
+updateNull
+deleteById
+deleteByCondition
+deleteByProperty
+fetch
+findOne
+findList
+findAll
+queryPage
+like
+queryList
+queryOne
+count
+selectMaxId
+updateOrSave
+selectOne
+selectList
+-->
+    <sql id="Base_Column_List">
+        id as id,
+        expert_id as expertId,
+        user_id as userId,
+        user_name as userName,
+        server_type as serverType,
+        user_comments as userComments,
+        is_checked as isChecked,
+        create_date as createDate
+    </sql>
+    <insert id="insert" parameterType="ExpertAppraise">
+        INSERT INTO zgk_expert_appraise (
+        expert_id,
+        user_id,
+        user_name,
+        server_type,
+        user_comments,
+        is_checked,
+        create_date
+        ) VALUES (
+        #{expertId},
+        #{userId},
+        #{userName},
+        #{serverType},
+        #{userComments},
+        #{isChecked},
+        #{createDate}
+        )
+        <selectKey resultType="java.lang.Long" keyProperty="id">
+        SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="ExpertAppraise">
+        UPDATE zgk_expert_appraise
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="expertId!=null">
+                expert_id = #{expertId},
+            </if>
+            <if test="userId!=null">
+                user_id = #{userId},
+            </if>
+            <if test="userName!=null">
+                user_name = #{userName},
+            </if>
+            <if test="serverType!=null">
+                server_type = #{serverType},
+            </if>
+            <if test="userComments!=null">
+                user_comments = #{userComments},
+            </if>
+            <if test="isChecked!=null">
+                is_checked = #{isChecked},
+            </if>
+            <if test="createDate!=null">
+                create_date = #{createDate},
+            </if>
+        </trim>
+        WHERE
+        id = #{id}
+    </update>
+
+    <update id="updateMap">
+        UPDATE zgk_expert_appraise
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="map.expertId!=null">
+                expert_id = #{map.expertId},
+            </if>
+            <if test="map.userId!=null">
+                user_id = #{map.userId},
+            </if>
+            <if test="map.userName!=null">
+                user_name = #{map.userName},
+            </if>
+            <if test="map.serverType!=null">
+                server_type = #{map.serverType},
+            </if>
+            <if test="map.userComments!=null">
+                user_comments = #{map.userComments},
+            </if>
+            <if test="map.isChecked!=null">
+                is_checked = #{map.isChecked},
+            </if>
+            <if test="map.createDate!=null">
+                create_date = #{map.createDate},
+            </if>
+        </trim>
+        WHERE
+        id = #{map.id}
+    </update>
+
+    <update id="updateByCondition">
+        UPDATE zgk_expert_appraise
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="update.expertId!=null">
+                expert_id = #{update.expertId},
+            </if>
+            <if test="update.userId!=null">
+                user_id = #{update.userId},
+            </if>
+            <if test="update.userName!=null">
+                user_name = #{update.userName},
+            </if>
+            <if test="update.serverType!=null">
+                server_type = #{update.serverType},
+            </if>
+            <if test="update.userComments!=null">
+                user_comments = #{update.userComments},
+            </if>
+            <if test="update.isChecked!=null">
+                is_checked = #{update.isChecked},
+            </if>
+            <if test="update.createDate!=null">
+                create_date = #{update.createDate},
+            </if>
+        </trim>
+
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.expertId!=null">
+                AND expert_id = #{condition.expertId}
+            </if>
+            <if test="condition.userId!=null">
+                AND user_id = #{condition.userId}
+            </if>
+            <if test="condition.userName!=null">
+                AND user_name = #{condition.userName}
+            </if>
+            <if test="condition.serverType!=null">
+                AND server_type = #{condition.serverType}
+            </if>
+            <if test="condition.userComments!=null">
+                AND user_comments = #{condition.userComments}
+            </if>
+            <if test="condition.isChecked!=null">
+                AND is_checked = #{condition.isChecked}
+            </if>
+            <if test="condition.createDate!=null">
+                AND create_date = #{condition.createDate}
+            </if>
+        </trim>
+    </update>
+
+    <insert id="insertMap" >
+        INSERT INTO zgk_expert_appraise (
+                expert_id,
+                user_id,
+                user_name,
+                server_type,
+                user_comments,
+                is_checked,
+                create_date
+        ) VALUES (
+                    #{map.expertId},
+                    #{map.userId},
+                    #{map.userName},
+                    #{map.serverType},
+                    #{map.userComments},
+                    #{map.isChecked},
+                    #{map.appDate}
+        )
+    </insert>
+
+
+    <update id="updateNull" parameterType="ExpertAppraise">
+        UPDATE zgk_expert_appraise
+        <trim prefix="SET" suffixOverrides=",">
+            expert_id = #{expertId},
+            user_id = #{userId},
+            user_name = #{userName},
+            server_type = #{serverType},
+            user_comments = #{userComments},
+            is_checked = #{isChecked},
+            create_date = #{createDate},
+        </trim>
+        WHERE
+        id = #{id} 
+    </update>
+
+    <!-- 按Id删除 -->
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM zgk_expert_appraise
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+    </delete>
+
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        DELETE FROM zgk_expert_appraise
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="id!=null">
+                AND id = #{id}
+            </if>
+            <if test="expertId!=null">
+                AND expert_id = #{expertId}
+            </if>
+            <if test="userId!=null">
+                AND user_id = #{userId}
+            </if>
+            <if test="userName!=null">
+                AND user_name = #{userName}
+            </if>
+            <if test="serverType!=null">
+                AND server_type = #{serverType}
+            </if>
+            <if test="userComments!=null">
+                AND user_comments = #{userComments}
+            </if>
+            <if test="isChecked!=null">
+                AND is_checked = #{isChecked}
+            </if>
+            <if test="createDate!=null">
+                AND create_date = #{createDate}
+            </if>
+        </trim>
+    </delete>
+
+    <delete id="deleteByProperty" parameterType="java.util.Map">
+        DELETE FROM zgk_expert_appraise WHERE
+        ${property} = #{value}
+    </delete>
+
+    <select id="fetch" parameterType="java.lang.Integer" resultType="ExpertAppraise">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_expert_appraise
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="findOne" parameterType="java.util.Map" resultType="ExpertAppraise">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_expert_appraise WHERE
+        ${property} = #{value}
+        LIMIT 0,1
+    </select>
+
+    <select id="findList" parameterType="java.util.Map" resultType="ExpertAppraise">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_expert_appraise WHERE
+        ${property} = #{value}
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="findAll" resultType="ExpertAppraise">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_expert_appraise
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryPage" resultType="ExpertAppraise">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_expert_appraise
+        <where>
+
+            <if test="condition.whereSql != null">
+                and id in (#{condition.whereSql})
+            </if>
+
+            <if test="condition.id!=null">
+                ${condition.groupOp}   id  ${condition.id.op}  #{condition.id.data}
+            </if>
+            <if test="condition.expertId!=null">
+                ${condition.groupOp}   expert_id  ${condition.expert_id.op}  #{condition.expert_id.data}
+            </if>
+            <if test="condition.userId!=null">
+                ${condition.groupOp}   user_id  ${condition.user_id.op}  #{condition.user_id.data}
+            </if>
+            <if test="condition.userName!=null">
+                ${condition.groupOp}   user_name  ${condition.user_name.op}  #{condition.user_name.data}
+            </if>
+            <if test="condition.serverType!=null">
+                ${condition.groupOp}   server_type  ${condition.server_type.op}  #{condition.server_type.data}
+            </if>
+            <if test="condition.userComments!=null">
+                ${condition.groupOp}   user_comments  ${condition.user_comments.op}  #{condition.user_comments.data}
+            </if>
+            <if test="condition.isChecked!=null">
+                ${condition.groupOp}   is_checked  ${condition.is_checked.op}  #{condition.is_checked.data}
+            </if>
+            <if test="condition.createDate!=null">
+                ${condition.groupOp}   create_date  ${condition.create_date.op}  #{condition.create_date.data}
+            </if>
+
+
+    </where>
+
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+    <select id="like" parameterType="java.util.Map" resultType="ExpertAppraise">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_expert_appraise
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="id!=null">
+                AND id like CONCAT('%', #{id} , '%')
+            </if>
+            <if test="expertId!=null">
+                AND expert_id like CONCAT('%', #{expertId} , '%')
+            </if>
+            <if test="userId!=null">
+                AND user_id like CONCAT('%', #{userId} , '%')
+            </if>
+            <if test="userName!=null">
+                AND user_name like CONCAT('%', #{userName} , '%')
+            </if>
+            <if test="serverType!=null">
+                AND server_type like CONCAT('%', #{serverType} , '%')
+            </if>
+            <if test="userComments!=null">
+                AND user_comments like CONCAT('%', #{userComments} , '%')
+            </if>
+            <if test="isChecked!=null">
+                AND is_checked like CONCAT('%', #{isChecked} , '%')
+            </if>
+            <if test="createDate!=null">
+                AND create_date like CONCAT('%', #{createDate} , '%')
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+
+    <select id="queryList" parameterType="java.util.Map" resultType="ExpertAppraise">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_expert_appraise
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.expertId!=null">
+                AND expert_id = #{condition.expertId}
+            </if>
+            <if test="condition.userId!=null">
+                AND user_id = #{condition.userId}
+            </if>
+            <if test="condition.userName!=null">
+                AND user_name = #{condition.userName}
+            </if>
+            <if test="condition.serverType!=null">
+                AND server_type = #{condition.serverType}
+            </if>
+            <if test="condition.userComments!=null">
+                AND user_comments = #{condition.userComments}
+            </if>
+            <if test="condition.isChecked!=null">
+                AND is_checked = #{condition.isChecked}
+            </if>
+            <if test="condition.createDate!=null">
+                AND create_date = #{condition.createDate}
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryOne" parameterType="java.util.Map" resultType="ExpertAppraise">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_expert_appraise
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.expertId!=null">
+                AND expert_id = #{condition.expertId}
+            </if>
+            <if test="condition.userId!=null">
+                AND user_id = #{condition.userId}
+            </if>
+            <if test="condition.userName!=null">
+                AND user_name = #{condition.userName}
+            </if>
+            <if test="condition.serverType!=null">
+                AND server_type = #{condition.serverType}
+            </if>
+            <if test="condition.userComments!=null">
+                AND user_comments = #{condition.userComments}
+            </if>
+            <if test="condition.isChecked!=null">
+                AND is_checked = #{condition.isChecked}
+            </if>
+            <if test="condition.createDate!=null">
+                AND create_date = #{condition.createDate}
+            </if>
+        </trim>
+        limit 0,1
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(id) FROM zgk_expert_appraise
+       <where>
+           <if test="id!=null">
+               ${groupOp} id ${id.op}  #{id.data}
+           </if>
+           <if test="expertId!=null">
+               ${groupOp} expert_id ${expert_id.op}  #{expert_id.data}
+           </if>
+           <if test="userId!=null">
+               ${groupOp} user_id ${user_id.op}  #{user_id.data}
+           </if>
+           <if test="userName!=null">
+               ${groupOp} user_name ${user_name.op}  #{user_name.data}
+           </if>
+           <if test="serverType!=null">
+               ${groupOp} server_type ${server_type.op}  #{server_type.data}
+           </if>
+           <if test="userComments!=null">
+               ${groupOp} user_comments ${user_comments.op}  #{user_comments.data}
+           </if>
+           <if test="isChecked!=null">
+               ${groupOp} is_checked ${is_checked.op}  #{is_checked.data}
+           </if>
+           <if test="createDate!=null">
+               ${groupOp} create_date ${create_date.op}  #{create_date.data}
+           </if>
+
+       </where>
+    <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+    </if>
+    </select>
+
+    <select id="selectMaxId" resultType="java.lang.Integer">
+        SELECT
+        MAX(id)
+        FROM zgk_expert_appraise
+    </select>
+
+</mapper>
+

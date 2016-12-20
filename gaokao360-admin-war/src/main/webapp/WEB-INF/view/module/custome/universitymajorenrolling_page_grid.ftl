@@ -34,7 +34,12 @@
         </button>
         <button class="btn btn-danger" id="deleteBtn"><i class="ace-icon fa fa-trash-o align-top bigger-125"></i>删除
         </button>
+        <button id="importFile" class="btn btn-import">导入
+        </button>
+        <button id="deleteByDataBtn" class="btn btn-import"><a href="/temp/taskFile.json" target="_blank">查看导入进度</a>
+        </button>
     </div>
+
 
 
 

@@ -37,11 +37,14 @@ public class UpdateUtil extends BaseCommonUtil{
     @Autowired
     private IUniversityExService universityExService;
     @Autowired
+    private IUniversityMajorExService universityMajorExService;
+    @Autowired
     private IMajoredCategoryExService majoredCategoryExService;
     @Autowired
     private IMajoredExService majoredExService;
 
-
+    @Autowired
+    private IUniversityMajorEnrollingPlanExService universityMajorEnrollingPlanExService;
     @Autowired
     private IAdmissionBatchExService admissionBatchExService;
 
@@ -88,6 +91,14 @@ public class UpdateUtil extends BaseCommonUtil{
         }
     }
 
+    public void universitymajorenrollingplan(){
+        if(universityMajorEnrollingPlanExService.universityNameExist(getDataMap().get("universityName").toString())){
+            universityMajorEnrollingPlanExService.insertMap(getDataMap());
+        }else {
+            throw new BizException("error","院校不存在");
+        }
+
+    }
 
     public void auditorium(){
         getServiceMaps().get("videocourse").updateMap(dataMap);
@@ -119,8 +130,8 @@ public class UpdateUtil extends BaseCommonUtil{
 
 
     public void majored(){
-        getServiceMaps().get("major").updateMap(dataMap);
-        getServiceMaps().get("majorDetail").updateMap(dataMap);
+        majoredExService.updateMajor(dataMap);
+        majoredExService.updateMajorDetail(dataMap);
     }
 
 
@@ -228,6 +239,9 @@ public class UpdateUtil extends BaseCommonUtil{
             }
         }
 
+    }
+    public void universitymajor(){
+        universityMajorExService.updateUniversityMajor(getDataMap());
     }
 
 

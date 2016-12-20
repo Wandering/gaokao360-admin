@@ -14,13 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
  * zgk_apesk
  * @version 1.0 2015-09-28
- * @powerby hetgyd 
+ * @powerby hetgyd
  */
 @Service("ZgkApeskServiceImpl")
 public class ZgkApeskServiceImpl implements IZgkApeskService {
@@ -29,7 +30,7 @@ public class ZgkApeskServiceImpl implements IZgkApeskService {
     @Autowired
     private IZgkApeskCourseDao iZgkApeskCourseDao;
 
-    public List<ZgkApesk> query(Long userId, Integer acId, String liangbiao, String testEmail) {
+    public List<ZgkApesk> query(Long userId, Integer acId, String liangbiao, String testEmail,Integer state) {
         Criteria example = new Criteria();
         if (userId > -1) {
             example.put("userId", userId);
@@ -42,6 +43,11 @@ public class ZgkApeskServiceImpl implements IZgkApeskService {
         }
         if (!StringUtil.isNulOrBlank(testEmail)) {
             example.put("testEmail", testEmail);
+        }
+        if (state!=null) {
+            example.put("state", state);
+        }else {
+            example.put("state", 0);
         }
         example.put("orderByClause", "create_date desc");
         return selectByExample(example);
@@ -94,12 +100,20 @@ public class ZgkApeskServiceImpl implements IZgkApeskService {
         return this.zgkApeskDao.insert(record);
     }
 
-    public int insertSelective(ZgkApesk record) {
-        return this.zgkApeskDao.insertSelective(record);
+    public ZgkApesk insertSelective(ZgkApesk record) {
+        this.zgkApeskDao.insertSelective(record);
+        return record;
     }
 
     public List<ZgkApeskDTO> selectUserApeskResult(Map map) {
-        List<ZgkApeskCourse> zgkApeskCourses = iZgkApeskCourseDao.selectByExample(null);
+        //types
+        String areaId = map.get("userArea").toString();
+        String typeStr = iZgkApeskCourseDao.queryConfigByAreaId(areaId);
+        Criteria criteria = new Criteria();
+        Map<String,Object> condition = new HashMap<>();
+        condition.put("types",typeStr.split(","));
+        criteria.setCondition(condition);
+        List<ZgkApeskCourse> zgkApeskCourses = iZgkApeskCourseDao.selectByExample(criteria);
 
         List<ZgkApeskDTO> zgkApeskDTOs=new ArrayList<>();
 

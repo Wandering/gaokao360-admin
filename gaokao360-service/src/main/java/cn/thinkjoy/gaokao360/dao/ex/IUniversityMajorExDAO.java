@@ -23,4 +23,7 @@ public interface IUniversityMajorExDAO extends IBaseDAO<UniversityMajorDTO>{
     List<UniversityDTO> getMajorOpenUniversityList(@Param("condition")Map<String, Object> map, @Param("offset") int offset, @Param("rows") int rows,
     @Param("orderBy") String orderBy, @Param("sortBy") String sortBy);
 
+    boolean insertUniversityMajor(Map<String,Object> map);
+    boolean updateUniversityMajor(Map<String,Object> map);
+
 }

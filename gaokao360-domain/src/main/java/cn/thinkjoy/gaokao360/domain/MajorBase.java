@@ -1,8 +1,8 @@
 /*
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
- * Project Name: gaokao360
- * $Id:  MajorBase.java 2016-08-18 10:40:42 $
+ * Project Name: managerui-biz-startup
+ * $Id:  MajorBase.java 2016-09-07 09:32:52 $
  */
 
 
@@ -22,15 +22,15 @@ import java.util.*;
 public class MajorBase extends BaseDomain<Integer>{
     /** 专业类型，0本科／1专科。对应字典表中的MAJOR_TYPE类型。 */
     private Integer majorType;
-    /**  */
+    /** 学科门类CODE */
     private Integer disciplineCode;
     /** 学科门类 */
     private String disciplineName;
-    /**  */
+    /** 专业门类CODE */
     private Integer disciplineSubCode;
-    /**  */
+    /** 学科门类 */
     private String disciplineSubName;
-    /** 专业类别 */
+    /** 专业CODE */
     private String majorCode;
     /** 专业名称 */
     private String majorName;

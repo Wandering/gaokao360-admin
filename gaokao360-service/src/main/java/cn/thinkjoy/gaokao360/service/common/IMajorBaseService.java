@@ -1,8 +1,8 @@
 /*
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
- * Project Name: gaokao360
- * $Id:  MajorBaseService.java 2016-08-18 10:40:42 $
+ * Project Name: managerui-biz-startup
+ * $Id:  MajorBaseService.java 2016-09-07 09:32:52 $
  */
 
 package cn.thinkjoy.gaokao360.service.common;

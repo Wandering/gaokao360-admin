@@ -2,29 +2,30 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  UniversityDictServiceImpl.java 2015-12-16 18:39:47 $
+ * $Id:  ExpertInfoServiceImpl.java 2016-10-19 15:14:27 $
  */
 package cn.thinkjoy.gaokao360.service.common.impl;
 
 import cn.thinkjoy.common.dao.IBaseDAO;
-import cn.thinkjoy.gaokao360.dao.IUniversityDictDAO;
-import cn.thinkjoy.gaokao360.domain.UniversityDict;
-import cn.thinkjoy.gaokao360.service.common.IUniversityDictService;
+import cn.thinkjoy.gaokao360.dao.IExpertInfoDAO;
+import cn.thinkjoy.gaokao360.domain.ExpertInfo;
 import cn.thinkjoy.gaokao360.service.baseservice.AbstractPageService;
+import cn.thinkjoy.gaokao360.service.common.IExpertInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
 
-@Service("UniversityDictServiceImpl")
-@Scope("prototype")
-public class UniversityDictServiceImpl extends AbstractPageService<IBaseDAO<UniversityDict>, UniversityDict> implements IUniversityDictService<IBaseDAO<UniversityDict>,UniversityDict>{
+
+@Service("ExpertInfoServiceImpl")
+public class ExpertInfoServiceImpl extends AbstractPageService<IBaseDAO<ExpertInfo>, ExpertInfo> implements IExpertInfoService<IBaseDAO<ExpertInfo>,ExpertInfo> {
     @Autowired
-    private IUniversityDictDAO universityDictDAO;
+    private IExpertInfoDAO expertInfoDAO;
 
     @Override
-    public IBaseDAO<UniversityDict> getDao() {
-        return universityDictDAO;
+    public IBaseDAO<ExpertInfo> getDao() {
+        return expertInfoDAO;
     }
 
 //    @Override
@@ -78,8 +79,8 @@ public class UniversityDictServiceImpl extends AbstractPageService<IBaseDAO<Univ
 //    }
 //
 //    @Override
-//    public List<UniversityDict> findAll() {
-//        return universityDictDAO.findAll();
+//    public List<ExpertInfo> findAll() {
+//        return expertInfoDAO.findAll();
 //    }
 //
 //    @Override
@@ -133,8 +134,8 @@ public class UniversityDictServiceImpl extends AbstractPageService<IBaseDAO<Univ
 //    }
 //
 //    @Override
-//    protected UniversityDictDAO getDao() {
-//        return universityDictDAO;
+//    protected ExpertInfoDAO getDao() {
+//        return expertInfoDAO;
 //    }
 //
 //    @Override

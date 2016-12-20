@@ -35,21 +35,13 @@
         batch as batch ,
         admissionFeature as admissionFeature ,
         majorType as majorType ,
-        planEnrollingNumber as planEnrollingNumber ,
         realEnrollingNumber as realEnrollingNumber ,
-        lengthOfSchooling as lengthOfSchooling ,
-        schoolFee as schoolFee ,
         highestScore as highestScore ,
         highestPrecedence as highestPrecedence ,
         lowestScore as lowestScore ,
         lowestPrecedence as lowestPrecedence ,
         averageScore as averageScore ,
         averagePrecedence as averagePrecedence ,
-        createDate as createDate ,
-        creator as creator ,
-        lastModDate as lastModDate ,
-        lastModifier as lastModifier ,
-        isDelete as isDelete
     </sql>
     <insert id="insert" parameterType="UniversityMajorEnrolling">
         INSERT INTO zgk_university_major_enrolling (
@@ -646,18 +638,12 @@
                 <if test="selector.majorType!=null">
                     , (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'UNIVERSITY_MAJOR_TYPE' AND dd.dictId = majorType) as majorTypeName
                 </if>
-                <if test="selector.planEnrollingNumber!=null">
-                    , planEnrollingNumber
-                </if>
                 <if test="selector.realEnrollingNumber!=null">
                     , realEnrollingNumber
                 </if>
                 <if test="selector.lengthOfSchooling!=null">
                     , lengthOfSchooling
                     ,(SELECT name FROM zgk_data_dict dd WHERE dd.type = 'LENGTH_OF_SCHOOLING' AND dd.dictId = lengthOfSchooling) as lengthOfSchoolingName
-                </if>
-                <if test="selector.schoolFee!=null">
-                    , schoolFee
                 </if>
                 <if test="selector.highestScore!=null">
                     , highestScore
@@ -677,24 +663,6 @@
                 <if test="selector.averagePrecedence!=null">
                     , averagePrecedence
                 </if>
-                <if test="selector.createDate!=null">
-                    , createDate
-                </if>
-                <if test="selector.creator!=null">
-                    , creator
-                </if>
-                <if test="selector.lastModDate!=null">
-                    , lastModDate
-                </if>
-                <if test="selector.lastModifier!=null">
-                    , lastModifier
-                </if>
-                <if test="selector.isDelete!=null">
-                    , isDelete
-                </if>
-                <if test="selector.areaId!=null">
-                    , areaId
-                </if>
             </trim>
         </if>
         <if test="selector==null">
@@ -708,21 +676,13 @@
             (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'BATCHTYPE1' AND dd.dictId = batch) as batchName,
             (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'ADMISSION_BATCH_TYPE' AND dd.dictId = admissionFeature) as admissionBatchName,
             (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'UNIVERSITY_MAJOR_TYPE' AND dd.dictId = majorType) as majorTypeName,
-            planEnrollingNumber as planEnrollingNumber ,
             realEnrollingNumber as realEnrollingNumber ,
-            (SELECT name FROM zgk_data_dict dd WHERE dd.type = 'LENGTH_OF_SCHOOLING' AND dd.dictId = lengthOfSchooling) as lengthOfSchoolingName,
-            schoolFee as schoolFee ,
             highestScore as highestScore ,
             highestPrecedence as highestPrecedence ,
             lowestScore as lowestScore ,
             lowestPrecedence as lowestPrecedence ,
             averageScore as averageScore ,
             averagePrecedence as averagePrecedence ,
-            createDate as createDate ,
-            creator as creator ,
-            lastModDate as lastModDate ,
-            lastModifier as lastModifier ,
-            isDelete as isDelete,
             areaId as areaId
         </if>
         FROM zgk_university_major_enrolling ee
@@ -756,18 +716,11 @@
             <if test="condition.majorType!=null">
                 ${condition.groupOp}   ${condition.majorType.field}  ${condition.majorType.op}  #{condition.majorType.data}
             </if>
-            <if test="condition.planEnrollingNumber!=null">
-                ${condition.groupOp}   ${condition.planEnrollingNumber.field}  ${condition.planEnrollingNumber.op}  #{condition.planEnrollingNumber.data}
-            </if>
+
             <if test="condition.realEnrollingNumber!=null">
                 ${condition.groupOp}   ${condition.realEnrollingNumber.field}  ${condition.realEnrollingNumber.op}  #{condition.realEnrollingNumber.data}
             </if>
-            <if test="condition.lengthOfSchooling!=null">
-                ${condition.groupOp}   ${condition.lengthOfSchooling.field}  ${condition.lengthOfSchooling.op}  #{condition.lengthOfSchooling.data}
-            </if>
-            <if test="condition.schoolFee!=null">
-                ${condition.groupOp}   ${condition.schoolFee.field}  ${condition.schoolFee.op}  #{condition.schoolFee.data}
-            </if>
+
             <if test="condition.highestScore!=null">
                 ${condition.groupOp}   ${condition.highestScore.field}  ${condition.highestScore.op}  #{condition.highestScore.data}
             </if>
@@ -785,21 +738,6 @@
             </if>
             <if test="condition.averagePrecedence!=null">
                 ${condition.groupOp}   ${condition.averagePrecedence.field}  ${condition.averagePrecedence.op}  #{condition.averagePrecedence.data}
-            </if>
-            <if test="condition.createDate!=null">
-                ${condition.groupOp}   ${condition.createDate.field}  ${condition.createDate.op}  #{condition.createDate.data}
-            </if>
-            <if test="condition.creator!=null">
-                ${condition.groupOp}   ${condition.creator.field}  ${condition.creator.op}  #{condition.creator.data}
-            </if>
-            <if test="condition.lastModDate!=null">
-                ${condition.groupOp}   ${condition.lastModDate.field}  ${condition.lastModDate.op}  #{condition.lastModDate.data}
-            </if>
-            <if test="condition.lastModifier!=null">
-                ${condition.groupOp}   ${condition.lastModifier.field}  ${condition.lastModifier.op}  #{condition.lastModifier.data}
-            </if>
-            <if test="condition.isDelete!=null">
-                ${condition.groupOp}   ${condition.isDelete.field}  ${condition.isDelete.op}  #{condition.isDelete.data}
             </if>
             <if test="condition.areaId!=null">
                 ${condition.groupOp}   ${condition.areaId.field}  ${condition.areaId.op}  #{condition.areaId.data}
@@ -1309,17 +1247,8 @@
             <if test="majorType!=null">
                 ${groupOp} ${majorType.field} ${majorType.op}  #{majorType.data}
             </if>
-            <if test="planEnrollingNumber!=null">
-                ${groupOp} ${planEnrollingNumber.field} ${planEnrollingNumber.op}  #{planEnrollingNumber.data}
-            </if>
             <if test="realEnrollingNumber!=null">
                 ${groupOp} ${realEnrollingNumber.field} ${realEnrollingNumber.op}  #{realEnrollingNumber.data}
-            </if>
-            <if test="lengthOfSchooling!=null">
-                ${groupOp} ${lengthOfSchooling.field} ${lengthOfSchooling.op}  #{lengthOfSchooling.data}
-            </if>
-            <if test="schoolFee!=null">
-                ${groupOp} ${schoolFee.field} ${schoolFee.op}  #{schoolFee.data}
             </if>
             <if test="highestScore!=null">
                 ${groupOp} ${highestScore.field} ${highestScore.op}  #{highestScore.data}
@@ -1339,22 +1268,6 @@
             <if test="averagePrecedence!=null">
                 ${groupOp} ${averagePrecedence.field} ${averagePrecedence.op}  #{averagePrecedence.data}
             </if>
-            <if test="createDate!=null">
-                ${groupOp} ${createDate.field} ${createDate.op}  #{createDate.data}
-            </if>
-            <if test="creator!=null">
-                ${groupOp} ${creator.field} ${creator.op}  #{creator.data}
-            </if>
-            <if test="lastModDate!=null">
-                ${groupOp} ${lastModDate.field} ${lastModDate.op}  #{lastModDate.data}
-            </if>
-            <if test="lastModifier!=null">
-                ${groupOp} ${lastModifier.field} ${lastModifier.op}  #{lastModifier.data}
-            </if>
-            <if test="isDelete!=null">
-                ${groupOp} ${isDelete.field} ${isDelete.op}  #{isDelete.data}
-            </if>
-
         </where>
     </select>
 

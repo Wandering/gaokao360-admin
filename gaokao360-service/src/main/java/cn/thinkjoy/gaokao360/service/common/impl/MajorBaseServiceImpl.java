@@ -1,16 +1,16 @@
 /*
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
- * Project Name: gaokao360
- * $Id:  MajorBaseServiceImpl.java 2016-08-18 10:40:42 $
+ * Project Name: managerui-biz-startup
+ * $Id:  MajorBaseServiceImpl.java 2016-09-07 09:32:52 $
  */
 package cn.thinkjoy.gaokao360.service.common.impl;
 
 import cn.thinkjoy.common.domain.BaseDomain;
 import cn.thinkjoy.common.dao.IBaseDAO;
+import cn.thinkjoy.common.service.impl.AbstractPageService;
 import cn.thinkjoy.gaokao360.dao.IMajorBaseDAO;
 import cn.thinkjoy.gaokao360.domain.MajorBase;
-import cn.thinkjoy.common.service.impl.AbstractPageService;
 import cn.thinkjoy.gaokao360.service.common.IMajorBaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -203,19 +203,19 @@
                 +'                        placeholder="区号+号码，如:029-6666666">'
                 +'                        </div>'
                 +'                        </div>'
-//                +'                        <div class="form-group">'
-//                +'                        <label for="schoolIntroduce" class="col-sm-2 control-label">院校简介</label>'
-//                +'                        <div class="col-sm-10">'
-//                +'                        <div id="schoolIntroduce" class="wysiwyg-editor"></div>'
-//                +'                        </div>'
-//                +'                        </div>'
+                +'                        <div class="form-group">'
+                +'                        <label for="schoolIntroduce" class="col-sm-2 control-label">院校简介</label>'
+                +'                        <div class="col-sm-10">'
+                +'                        <div id="schoolIntroduce" class="wysiwyg-editor"></div>'
+                +'                        </div>'
+                +'                        </div>'
 //                +''
-//                +'                        <div class="form-group">'
-//                +'                        <label for="schoolArticle" class="col-sm-2 control-label">院校章程</label>'
-//                +'                        <div class="col-sm-10">'
-//                +'                        <div class="wysiwyg-editor" id="schoolArticle"></div>'
-//                +'                        </div>'
-//                +'                        </div>'
+                +'                        <div class="form-group">'
+                +'                        <label for="schoolArticle" class="col-sm-2 control-label">院校章程</label>'
+                +'                        <div class="col-sm-10">'
+                +'                        <div class="wysiwyg-editor" id="schoolArticle"></div>'
+                +'                        </div>'
+                +'                        </div>'
                 +'                        </form>'
                 +'                        </div>'
                 +'                        </div>';
@@ -302,10 +302,10 @@
                 CommonFn.tipsDialog('温馨提示', '院校名称输入不能为空');
                 return false;
             }
-            if (schoolName.length > 40) {
-                CommonFn.tipsDialog('温馨提示', '院校名称输入不能大于40个字');
-                return false;
-            }
+//            if (schoolName.length > 40) {
+//                CommonFn.tipsDialog('温馨提示', '院校名称输入不能大于40个字');
+//                return false;
+//            }
             if($('#imgUrlData').val()==""){
                 CommonFn.tipsDialog('温馨提示', '请上传院校图片');
                 return false;
@@ -362,10 +362,10 @@
                 CommonFn.tipsDialog('温馨提示', '院校隶属输入不能为空');
                 return false;
             }
-            if (schoolOwn.length > 10) {
-                CommonFn.tipsDialog('温馨提示', '院校隶属输入不能大于10个字');
-                return false;
-            }
+//            if (schoolOwn.length > 10) {
+//                CommonFn.tipsDialog('温馨提示', '院校隶属输入不能大于10个字');
+//                return false;
+//            }
 //                院校网址
             var regWeb = /((https|http|ftp|rtsp|mms):\/\/)?(([0-9a-z_!~*'().&=+$%-]+:)?[0-9a-z_!~*'().&=+$%-]+@)?(([0-9]{1,3}\.){3}[0-9]{1,3}|([0-9a-z_!~*'()-]+\.)*([0-9a-z][0-9a-z-]{0,61})?[0-9a-z]\.[a-z]{2,6})(:[0-9]{1,4})?((\/?)|(\/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+\/?)/g;
             var schoolWeb = $('#schoolWeb').val().trim();
@@ -393,21 +393,21 @@
 //                CommonFn.tipsDialog('温馨提示', '输入院校地址不能为空');
 //                return false;
 //            }
-            if (schoolAddress.length > 120) {
-                CommonFn.tipsDialog('温馨提示', '输入院校地址内容不能超过120个字');
-                return false;
-            }
+//            if (schoolAddress.length > 120) {
+//                CommonFn.tipsDialog('温馨提示', '输入院校地址内容不能超过120个字');
+//                return false;
+//            }
 //                联系电话
             var regPhone = /^0\d{2,3}-?\d{7,8}$/
             var schoolTel = $('#schoolTel').val().trim();
-            if (schoolTel.length == '') {
-                CommonFn.tipsDialog('温馨提示', '电话号码不能为空');
-                return false;
-            }
-            if (!regPhone.test(schoolTel)) {
-                CommonFn.tipsDialog('温馨提示', '电话号码输入有误');
-                return false;
-            }
+//            if (schoolTel.length == '') {
+//                CommonFn.tipsDialog('温馨提示', '电话号码不能为空');
+//                return false;
+//            }
+//            if (!regPhone.test(schoolTel)) {
+//                CommonFn.tipsDialog('温馨提示', '电话号码输入有误');
+//                return false;
+//            }
 
 //                院校简介
 //            var schoolIntroduce = $('#schoolIntroduce').html().trim();

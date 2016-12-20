@@ -25,98 +25,65 @@ selectList
 -->
 
     <sql id="Base_Column_List">
-        major.id as id ,
-        major.major_type as majorType ,
-        major.major_category as majorCategory ,
-        major.discipline_categories as disciplineCategories ,
-        major.major_name as majorName ,
-        major.employment_rank as employmentRank ,
-        major.salary_rank as salaryRank ,
-        major.createDate as createDate ,
-        major.creator as creator ,
-        major.lastModDate as lastModDate ,
-        major.lastModifier as lastModifier ,
-        detail.major_code as majorCode ,
-        detail.offer_courses as offerCourses ,
-        detail.major_introduce as majorIntroduce ,
-        detail.similar_majors as similarMajors ,
-        detail.specialisation as specialisation ,
-        detail.outstanding_mentor as outstandingMentor,
-        category.name as categoryName,
-        genre.name as genreName,
-        type.name as typeName,
-        major.lastModDate as lastModDate
+        aa.id,
+        major_code as majorCode,
+        major_type as majorType,
+        (select name from zgk_data_dict where dictId=aa.major_type and type='MAJOR_TYPE') as majorTypeName,
+        discipline_categories as disciplineCategories,
+        (select name from zgk_majored_category where id= aa.discipline_categories) as disciplineCategoriesName,
+        major_category as majorCategory,
+        (select name from zgk_majored_category where id= aa.major_category) as majorCategoryName,
+        major_name as majorName,
+        bb.degree_offered as degreeOffered,
+        bb.major_introduce as majorIntroduce,
+        specialisation,
+        schooling_duration as schoolingDuration,
+        offer_courses as offerCourses,
+        employmentRate
     </sql>
 
     <select id="fetch" resultType="cn.thinkjoy.gaokao360.dto.MajorDTO">
         SELECT
         <include refid="Base_Column_List" />
-        FROM zgk_major major
-        LEFT OUTER JOIN zgk_major_detail detail ON detail.id=major.id
-        LEFT JOIN zgk_majored_category  genre ON genre.id=major.discipline_categories
-        LEFT JOIN zgk_majored_category  category ON category.id=major.major_category
-        LEFT JOIN zgk_majored_category  type ON type.id=major.major_type AND (type.id=0 OR type.id=1)
-        <where>
-            major.id=#{id}
-        </where>
+        FROM zgk_major aa
+        INNER JOIN zgk_major_detail bb ON aa.id=bb.id WHERE
+        aa.id=#{id}
     </select>
     <select id="queryPage" resultType="cn.thinkjoy.gaokao360.dto.MajorDTO">
         SELECT
         <include refid="Base_Column_List" />
-        FROM zgk_major major
-        LEFT OUTER JOIN zgk_major_detail detail ON detail.id=major.id
-        LEFT JOIN zgk_majored_category  genre ON genre.id=major.discipline_categories
-        LEFT JOIN zgk_majored_category  category ON category.id=major.major_category
-        LEFT JOIN zgk_majored_category  type ON type.id=major.major_type AND (type.id=0 OR type.id=1)
+        FROM zgk_major aa
+        INNER JOIN zgk_major_detail bb ON aa.id=bb.id
         <where>
-
-            1=1
             <if test="condition.whereSql != null">
                 and id in (#{condition.whereSql})
             </if>
-            <if test="condition.subjectType!=null">
-                ${condition.groupOp}   major.discipline_categories  ${condition.subjectType.op}  #{condition.subjectType.data}
+            <if test="condition.subjectType != null">
+                and majorType = #{condition.subjectType}
             </if>
-            <if test="condition.queryparam!=null">
-                ${condition.groupOp}
-                ( detail.major_code like #{condition.queryparam.data}
-                OR  major.major_name like #{condition.queryparam.data}
-                OR major.salary_rank like #{condition.queryparam.data}
-                OR major.employment_rank like #{condition.queryparam.data}
-                OR category.name like #{condition.queryparam.data}
-                OR genre.name like #{condition.queryparam.data}
-                OR type.name like #{condition.queryparam.data})
+            <if test="condition.queryparam != null">
+                and major_name LIKE CONCAT('%',#{condition.queryparam},'%')
             </if>
-
-
         </where>
-        ORDER BY lastModDate DESC
+        ORDER BY id DESC
         <if test="offset != null">
             limit ${offset}, ${rows}
         </if>
     </select>
     <select id="count" resultType="java.lang.Integer">
-        SELECT count(major.id)        FROM zgk_major major
-        LEFT OUTER JOIN zgk_major_detail detail ON detail.id=major.id
-        LEFT JOIN zgk_majored_category  genre ON genre.id=major.discipline_categories
-        LEFT JOIN zgk_majored_category  category ON category.id=major.major_category
-        LEFT JOIN zgk_majored_category  type ON type.id=major.major_type AND (type.id=0 OR type.id=1)
+        SELECT count(aa.id)
+        FROM zgk_major aa
+        INNER JOIN zgk_major_detail bb ON aa.id=bb.id
         <where>
-1=1
-            <if test="subjectType!=null">
-                ${groupOp}   major.discipline_categories  ${subjectType.op}  #{subjectType.data}
+            <if test="whereSql != null">
+                and id in (#{whereSql})
             </if>
-            <if test="queryparam!=null">
-                ${groupOp}
-                ( detail.major_code like #{queryparam.data}
-                OR  major.major_name like #{queryparam.data}
-                OR major.salary_rank like #{queryparam.data}
-                OR major.employment_rank like #{queryparam.data}
-                OR category.name like #{queryparam.data}
-                OR genre.name like #{queryparam.data}
-                OR type.name like #{queryparam.data})
+            <if test="subjectType != null">
+                and majorType = #{subjectType}
             </if>
-
+            <if test="queryparam != null">
+                and major_name LIKE CONCAT('%',#{queryparam},'%')
+            </if>
         </where>
     </select>
     <select id="getMajoredListByName" resultType="cn.thinkjoy.gaokao360.domain.GkBaseDomain">
@@ -127,6 +94,149 @@ selectList
              </if>
          </where>
     </select>
+
+    <insert id="insertMajored" >
+        INSERT INTO zgk_major (
+        major_type,
+        major_category,
+        discipline_categories,
+        major_name,
+        employmentRate,
+        createDate,
+        creator,
+        lastModDate,
+        lastModifier,
+        is_delete
+        ) VALUES (
+        #{majorType},
+        #{majorCategory},
+        #{disciplineCategories},
+        #{majorName},
+        #{employmentRate},
+        #{createDate},
+        #{creator},
+        #{lastModDate},
+        #{lastModifier},
+        #{isDelete}
+        )
+        <selectKey resultType="java.lang.Long" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <insert id="insertDetail" >
+      INSERT INTO zgk_major_detail (
+        id,
+        major_code,
+        degree_offered,
+        schooling_duration,
+        offer_courses,
+        major_introduce,
+        specialisation,
+        createDate,
+        creator,
+        lastModDate,
+        lastModifier,
+        id_delete
+        ) VALUES (
+        #{id},
+        #{majorCode},
+        #{degreeOffered},
+        #{schoolingDuration},
+        #{offerCourses},
+        #{majorIntroduce},
+        #{specialisation},
+        #{createDate},
+        #{creator},
+        #{lastModDate},
+        #{lastModifier},
+        #{idDelete}
+        )
+        <selectKey resultType="java.lang.Long" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="updateMajor" parameterType="Major">
+        UPDATE zgk_major
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="majorType!=null">
+                major_type = #{majorType},
+            </if>
+            <if test="majorCategory!=null">
+                major_category = #{majorCategory},
+            </if>
+            <if test="disciplineCategories!=null">
+                discipline_categories = #{disciplineCategories},
+            </if>
+            <if test="majorName!=null">
+                major_name = #{majorName},
+            </if>
+            <if test="employmentRate!=null">
+                employmentRate = #{employmentRate},
+            </if>
+            <if test="createDate!=null">
+                createDate = #{createDate},
+            </if>
+            <if test="creator!=null">
+                creator = #{creator},
+            </if>
+            <if test="lastModDate!=null">
+                lastModDate = #{lastModDate},
+            </if>
+            <if test="lastModifier!=null">
+                lastModifier = #{lastModifier},
+            </if>
+            <if test="isDelete!=null">
+                is_delete = #{isDelete},
+            </if>
+        </trim>
+        WHERE
+        id = #{id}
+    </update>
+
+    <!-- 更新 -->
+    <update id="updateMajorDetail" parameterType="java.util.Map">
+        UPDATE zgk_major_detail
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="majorCode!=null">
+                major_code = #{majorCode},
+            </if>
+            <if test="degreeOffered!=null">
+                degree_offered = #{degreeOffered},
+            </if>
+            <if test="schoolingDuration!=null">
+                schooling_duration = #{schoolingDuration},
+            </if>
+            <if test="offerCourses!=null">
+                offer_courses = #{offerCourses},
+            </if>
+            <if test="majorIntroduce!=null">
+                major_introduce = #{majorIntroduce},
+            </if>
+            <if test="specialisation!=null">
+                specialisation = #{specialisation},
+            </if>
+            <if test="createDate!=null">
+                createDate = #{createDate},
+            </if>
+            <if test="creator!=null">
+                creator = #{creator},
+            </if>
+            <if test="lastModDate!=null">
+                lastModDate = #{lastModDate},
+            </if>
+            <if test="lastModifier!=null">
+                lastModifier = #{lastModifier},
+            </if>
+            <if test="idDelete!=null">
+                id_delete = #{idDelete},
+            </if>
+        </trim>
+        WHERE
+        id = #{id}
+    </update>
 
     <insert id="insertMapDetail" >
         INSERT INTO zgk_major_detail (
@@ -173,5 +283,21 @@ selectList
         where mm.major_name like CONCAT('%',#{condition.majoredName},'%')
          and mc.parentId = #{condition.type}
     </select>
+
+    <!-- 按Id删除 -->
+    <delete id="deleteMajorDetailById" parameterType="java.lang.Long">
+        DELETE FROM zgk_major_detail
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+    </delete>
+
+    <!-- 按Id删除 -->
+    <delete id="deleteMajorById" parameterType="java.lang.Long">
+        DELETE FROM zgk_major
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+    </delete>
 </mapper>
 

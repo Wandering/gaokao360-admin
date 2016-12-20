@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * zgk_apesk_course
  * @version 1.0 2015-10-31
- * @powerby hetgyd 
+ * @powerby hetgyd
  */
 @Service("ZgkApeskCourseServiceImpl")
 public class ZgkApeskCourseServiceImpl implements IZgkApeskCourseService {
@@ -37,7 +37,7 @@ public class ZgkApeskCourseServiceImpl implements IZgkApeskCourseService {
     	example.setOrderByClause("ac_order");
     	return selectByExample(example);
     }
-    
+
     /**通过量表查询
      * @param liangBiao
      * @return
@@ -52,8 +52,8 @@ public class ZgkApeskCourseServiceImpl implements IZgkApeskCourseService {
         		return list.get(0);
         	}
     	}
-    	
-    	
+
+
     	return null;
     }
     public int countByExample(Criteria example) {
@@ -97,7 +97,9 @@ public class ZgkApeskCourseServiceImpl implements IZgkApeskCourseService {
         return this.zgkApeskCourseDao.insert(record);
     }
 
-    public int insertSelective(ZgkApeskCourse record) {
-        return this.zgkApeskCourseDao.insertSelective(record);
+    public ZgkApeskCourse insertSelective(ZgkApeskCourse record) {
+
+        this.zgkApeskCourseDao.insertSelective(record);
+        return record;
     }
 }

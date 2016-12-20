@@ -17,4 +17,6 @@ import java.util.Map;
 
 public interface IUniversityMajorExService<D extends IBaseDAO<T>, T extends BaseDomain> extends IBaseService<D, T>,IPageService<D, T>{
     List<UniversityDTO> getMajorOpenUniversityList(Map<String,Object> map,int offset,int rows,String orderBy,String sortBy);
+    boolean insertUniversityMajor(Map<String,Object> map);
+    boolean updateUniversityMajor(Map<String,Object> map);
 }

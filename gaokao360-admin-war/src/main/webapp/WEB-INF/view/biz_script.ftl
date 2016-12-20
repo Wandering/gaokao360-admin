@@ -24,7 +24,12 @@
 
 
 <!-- page specific plugin scripts -->
+<script src="${path}/assets/js/date-time/moment.min.js"></script>
+<script src="${path}/assets/js/date-time/bootstrap-datetimepicker.min.js"></script>
 <script src="${path}/assets/js/date-time/bootstrap-datepicker.min.js"></script>
+<script src="${path}/assets/js/date-time/bootstrap-timepicker.min.js"></script>
+<script src="${path}/assets/js/date-time/daterangepicker.min.js"></script>
+
 <script src="${path}/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
 <#--<script src="${path}/assets/js/uncompressed/jqGrid/jquery.jqGrid.js"></script>-->
 <script src="${path}/assets/js/jqGrid/i18n/grid.locale-en.js"></script>
@@ -40,7 +45,6 @@
 
 <!-- inline scripts related to this page -->
 <script type="text/javascript">
-
     jQuery(function ($) {
 
         var currentGridId;
@@ -673,6 +677,39 @@
         }
         return ""
     }
+
+    function formatdate3(cellvalue, options, cell) {
+        if (cellvalue) {
+            return new Date(parseInt(cellvalue) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
+        }
+        return ""
+    }
+    function loadOrderStatus(cellvalue, options, cell) {
+
+        if (cellvalue) {
+            switch (parseInt(cellvalue)){
+                case -1:
+                     return "已删除";
+                case 0:
+                    return "未支付";
+                case 1:
+                    return "支付成功";
+                case 2:
+                    return "初步沟通";
+                case 3:
+                    return "预约成功";
+                case 4:
+                    return "支付成功";
+                case 5:
+                    return "结束";
+                case 10:
+                    return "已过期";
+                default:
+                    return cellvalue;
+            }
+        }
+        return cellvalue
+    }
     var mainObj = '${mainObj}';
 
 </script>
@@ -687,6 +724,8 @@
 <script src="${path}/docs/assets/js/language/html.js"></script>
 <script src="${path}/docs/assets/js/language/css.js"></script>
 <script src="${path}/docs/assets/js/language/javascript.js"></script>
+
+
 <!-- biz js引入 -->
 <script src="${path}/assets/js/biz/biz-common.js"></script>
 <#--<script src="${path}/assets/js/biz/jpgrid-common.js"></script>-->
