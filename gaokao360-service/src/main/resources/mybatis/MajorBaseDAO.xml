@@ -1,0 +1,746 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.thinkjoy.gaokao360.dao.IMajorBaseDAO">
+<!--
+insert
+update
+updateNull
+deleteById
+deleteByCondition
+deleteByProperty
+fetch
+findOne
+findList
+findAll
+queryPage
+like
+queryList
+queryOne
+count
+selectMaxId
+updateOrSave
+selectOne
+selectList
+-->
+
+    <sql id="Base_Column_List">
+        id as id ,
+        major_type as majorType ,
+        discipline_code as disciplineCode ,
+        discipline_name as disciplineName ,
+        discipline_sub_code as disciplineSubCode ,
+        discipline_sub_name as disciplineSubName ,
+        major_code as majorCode ,
+        major_name as majorName ,
+        major_note as majorNote ,
+        salary_rank as salaryRank ,
+        employmentRate as employmentRate 
+    </sql>
+    <insert id="insert" parameterType="MajorBase">
+        INSERT INTO zgk_major_base (
+        major_type,
+        discipline_code,
+        discipline_name,
+        discipline_sub_code,
+        discipline_sub_name,
+        major_code,
+        major_name,
+        major_note,
+        salary_rank,
+        employmentRate
+        ) VALUES (
+        #{majorType},
+        #{disciplineCode},
+        #{disciplineName},
+        #{disciplineSubCode},
+        #{disciplineSubName},
+        #{majorCode},
+        #{majorName},
+        #{majorNote},
+        #{salaryRank},
+        #{employmentRate}
+        )
+            <selectKey resultType="java.lang.Integer" keyProperty="id">
+                SELECT LAST_INSERT_ID() AS ID
+            </selectKey>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="MajorBase">
+        UPDATE zgk_major_base
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="majorType!=null">
+                major_type = #{majorType},
+            </if>
+            <if test="disciplineCode!=null">
+                discipline_code = #{disciplineCode},
+            </if>
+            <if test="disciplineName!=null">
+                discipline_name = #{disciplineName},
+            </if>
+            <if test="disciplineSubCode!=null">
+                discipline_sub_code = #{disciplineSubCode},
+            </if>
+            <if test="disciplineSubName!=null">
+                discipline_sub_name = #{disciplineSubName},
+            </if>
+            <if test="majorCode!=null">
+                major_code = #{majorCode},
+            </if>
+            <if test="majorName!=null">
+                major_name = #{majorName},
+            </if>
+            <if test="majorNote!=null">
+                major_note = #{majorNote},
+            </if>
+            <if test="salaryRank!=null">
+                salary_rank = #{salaryRank},
+            </if>
+            <if test="employmentRate!=null">
+                employmentRate = #{employmentRate},
+            </if>
+        </trim>
+        WHERE
+        id = #{id}
+    </update>
+
+    <update id="updateMap">
+        UPDATE zgk_major_base
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="map.majorType!=null">
+                major_type = #{map.majorType},
+            </if>
+            <if test="map.disciplineCode!=null">
+                discipline_code = #{map.disciplineCode},
+            </if>
+            <if test="map.disciplineName!=null">
+                discipline_name = #{map.disciplineName},
+            </if>
+            <if test="map.disciplineSubCode!=null">
+                discipline_sub_code = #{map.disciplineSubCode},
+            </if>
+            <if test="map.disciplineSubName!=null">
+                discipline_sub_name = #{map.disciplineSubName},
+            </if>
+            <if test="map.majorCode!=null">
+                major_code = #{map.majorCode},
+            </if>
+            <if test="map.majorName!=null">
+                major_name = #{map.majorName},
+            </if>
+            <if test="map.majorNote!=null">
+                major_note = #{map.majorNote},
+            </if>
+            <if test="map.salaryRank!=null">
+                salary_rank = #{map.salaryRank},
+            </if>
+            <if test="map.employmentRate!=null">
+                employmentRate = #{map.employmentRate},
+            </if>
+        </trim>
+        WHERE
+        id = #{map.id}
+    </update>
+
+    <update id="updateByCondition">
+        UPDATE zgk_major_base
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="update.majorType!=null">
+                major_type = #{update.majorType},
+            </if>
+            <if test="update.disciplineCode!=null">
+                discipline_code = #{update.disciplineCode},
+            </if>
+            <if test="update.disciplineName!=null">
+                discipline_name = #{update.disciplineName},
+            </if>
+            <if test="update.disciplineSubCode!=null">
+                discipline_sub_code = #{update.disciplineSubCode},
+            </if>
+            <if test="update.disciplineSubName!=null">
+                discipline_sub_name = #{update.disciplineSubName},
+            </if>
+            <if test="update.majorCode!=null">
+                major_code = #{update.majorCode},
+            </if>
+            <if test="update.majorName!=null">
+                major_name = #{update.majorName},
+            </if>
+            <if test="update.majorNote!=null">
+                major_note = #{update.majorNote},
+            </if>
+            <if test="update.salaryRank!=null">
+                salary_rank = #{update.salaryRank},
+            </if>
+            <if test="update.employmentRate!=null">
+                employmentRate = #{update.employmentRate},
+            </if>
+        </trim>
+
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.majorType!=null">
+                AND major_type = #{condition.majorType}
+            </if>
+            <if test="condition.disciplineCode!=null">
+                AND discipline_code = #{condition.disciplineCode}
+            </if>
+            <if test="condition.disciplineName!=null">
+                AND discipline_name = #{condition.disciplineName}
+            </if>
+            <if test="condition.disciplineSubCode!=null">
+                AND discipline_sub_code = #{condition.disciplineSubCode}
+            </if>
+            <if test="condition.disciplineSubName!=null">
+                AND discipline_sub_name = #{condition.disciplineSubName}
+            </if>
+            <if test="condition.majorCode!=null">
+                AND major_code = #{condition.majorCode}
+            </if>
+            <if test="condition.majorName!=null">
+                AND major_name = #{condition.majorName}
+            </if>
+            <if test="condition.majorNote!=null">
+                AND major_note = #{condition.majorNote}
+            </if>
+            <if test="condition.salaryRank!=null">
+                AND salary_rank = #{condition.salaryRank}
+            </if>
+            <if test="condition.employmentRate!=null">
+                AND employmentRate = #{condition.employmentRate}
+            </if>
+        </trim>
+    </update>
+
+    <insert id="insertMap" >
+        INSERT INTO zgk_major_base (
+                major_type,
+                discipline_code,
+                discipline_name,
+                discipline_sub_code,
+                discipline_sub_name,
+                major_code,
+                major_name,
+                major_note,
+                salary_rank,
+                employmentRate
+        ) VALUES (
+                    #{map.majorType},
+                    #{map.disciplineCode},
+                    #{map.disciplineName},
+                    #{map.disciplineSubCode},
+                    #{map.disciplineSubName},
+                    #{map.majorCode},
+                    #{map.majorName},
+                    #{map.majorNote},
+                    #{map.salaryRank},
+                    #{map.employmentRate}
+        )
+    </insert>
+
+
+    <update id="updateNull" parameterType="MajorBase">
+        UPDATE zgk_major_base
+        <trim prefix="SET" suffixOverrides=",">
+            major_type = #{majorType},
+            discipline_code = #{disciplineCode},
+            discipline_name = #{disciplineName},
+            discipline_sub_code = #{disciplineSubCode},
+            discipline_sub_name = #{disciplineSubName},
+            major_code = #{majorCode},
+            major_name = #{majorName},
+            major_note = #{majorNote},
+            salary_rank = #{salaryRank},
+            employmentRate = #{employmentRate},
+        </trim>
+        WHERE
+        id = #{id} 
+    </update>
+
+    <!-- 按Id删除 -->
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM zgk_major_base
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+    </delete>
+
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        DELETE FROM zgk_major_base
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="id!=null">
+                AND id = #{id}
+            </if>
+            <if test="majorType!=null">
+                AND major_type = #{majorType}
+            </if>
+            <if test="disciplineCode!=null">
+                AND discipline_code = #{disciplineCode}
+            </if>
+            <if test="disciplineName!=null">
+                AND discipline_name = #{disciplineName}
+            </if>
+            <if test="disciplineSubCode!=null">
+                AND discipline_sub_code = #{disciplineSubCode}
+            </if>
+            <if test="disciplineSubName!=null">
+                AND discipline_sub_name = #{disciplineSubName}
+            </if>
+            <if test="majorCode!=null">
+                AND major_code = #{majorCode}
+            </if>
+            <if test="majorName!=null">
+                AND major_name = #{majorName}
+            </if>
+            <if test="majorNote!=null">
+                AND major_note = #{majorNote}
+            </if>
+            <if test="salaryRank!=null">
+                AND salary_rank = #{salaryRank}
+            </if>
+            <if test="employmentRate!=null">
+                AND employmentRate = #{employmentRate}
+            </if>
+        </trim>
+    </delete>
+
+    <delete id="deleteByProperty" parameterType="java.util.Map">
+        DELETE FROM zgk_major_base WHERE
+        ${property} = #{value}
+    </delete>
+
+    <select id="fetch" parameterType="java.lang.Integer" resultType="MajorBase">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_major_base
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+    </select>
+
+    <select id="findOne" parameterType="java.util.Map" resultType="MajorBase">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_major_base WHERE
+        ${property} = #{value}
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+        LIMIT 0,1
+    </select>
+
+    <select id="findList" parameterType="java.util.Map" resultType="MajorBase">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_major_base WHERE
+        ${property} = #{value}
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="findAll" resultType="MajorBase">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_major_base
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryPage" resultType="MajorBase">
+        SELECT
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                        <if test="selector.id!=null">
+                            , id
+                        </if>
+                        <if test="selector.majorType!=null">
+                            , major_type
+                        </if>
+                        <if test="selector.disciplineCode!=null">
+                            , discipline_code
+                        </if>
+                        <if test="selector.disciplineName!=null">
+                            , discipline_name
+                        </if>
+                        <if test="selector.disciplineSubCode!=null">
+                            , discipline_sub_code
+                        </if>
+                        <if test="selector.disciplineSubName!=null">
+                            , discipline_sub_name
+                        </if>
+                        <if test="selector.majorCode!=null">
+                            , major_code
+                        </if>
+                        <if test="selector.majorName!=null">
+                            , major_name
+                        </if>
+                        <if test="selector.majorNote!=null">
+                            , major_note
+                        </if>
+                        <if test="selector.salaryRank!=null">
+                            , salary_rank
+                        </if>
+                        <if test="selector.employmentRate!=null">
+                            , employmentRate
+                        </if>
+            </trim>
+        </if>
+        <if test="selector==null">
+        <include refid="Base_Column_List" />
+        </if>
+        FROM zgk_major_base
+        <where>
+
+            <if test="condition.whereSql != null">
+                and id in (#{condition.whereSql})
+            </if>
+
+            <if test="condition.id!=null">
+                ${condition.groupOp}   ${condition.id.field}  ${condition.id.op}  #{condition.id.data}
+            </if>
+            <if test="condition.majorType!=null">
+                ${condition.groupOp}   ${condition.majorType.field}  ${condition.majorType.op}  #{condition.majorType.data}
+            </if>
+            <if test="condition.disciplineCode!=null">
+                ${condition.groupOp}   ${condition.disciplineCode.field}  ${condition.disciplineCode.op}  #{condition.disciplineCode.data}
+            </if>
+            <if test="condition.disciplineName!=null">
+                ${condition.groupOp}   ${condition.disciplineName.field}  ${condition.disciplineName.op}  #{condition.disciplineName.data}
+            </if>
+            <if test="condition.disciplineSubCode!=null">
+                ${condition.groupOp}   ${condition.disciplineSubCode.field}  ${condition.disciplineSubCode.op}  #{condition.disciplineSubCode.data}
+            </if>
+            <if test="condition.disciplineSubName!=null">
+                ${condition.groupOp}   ${condition.disciplineSubName.field}  ${condition.disciplineSubName.op}  #{condition.disciplineSubName.data}
+            </if>
+            <if test="condition.majorCode!=null">
+                ${condition.groupOp}   ${condition.majorCode.field}  ${condition.majorCode.op}  #{condition.majorCode.data}
+            </if>
+            <if test="condition.majorName!=null">
+                ${condition.groupOp}   ${condition.majorName.field}  ${condition.majorName.op}  #{condition.majorName.data}
+            </if>
+            <if test="condition.majorNote!=null">
+                ${condition.groupOp}   ${condition.majorNote.field}  ${condition.majorNote.op}  #{condition.majorNote.data}
+            </if>
+            <if test="condition.salaryRank!=null">
+                ${condition.groupOp}   ${condition.salaryRank.field}  ${condition.salaryRank.op}  #{condition.salaryRank.data}
+            </if>
+            <if test="condition.employmentRate!=null">
+                ${condition.groupOp}   ${condition.employmentRate.field}  ${condition.employmentRate.op}  #{condition.employmentRate.data}
+            </if>
+
+
+    </where>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+    <select id="like" parameterType="java.util.Map" resultType="MajorBase">
+        SELECT
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                    <if test="selector.id!=null">
+                        , id
+                    </if>
+                    <if test="selector.majorType!=null">
+                        , major_type
+                    </if>
+                    <if test="selector.disciplineCode!=null">
+                        , discipline_code
+                    </if>
+                    <if test="selector.disciplineName!=null">
+                        , discipline_name
+                    </if>
+                    <if test="selector.disciplineSubCode!=null">
+                        , discipline_sub_code
+                    </if>
+                    <if test="selector.disciplineSubName!=null">
+                        , discipline_sub_name
+                    </if>
+                    <if test="selector.majorCode!=null">
+                        , major_code
+                    </if>
+                    <if test="selector.majorName!=null">
+                        , major_name
+                    </if>
+                    <if test="selector.majorNote!=null">
+                        , major_note
+                    </if>
+                    <if test="selector.salaryRank!=null">
+                        , salary_rank
+                    </if>
+                    <if test="selector.employmentRate!=null">
+                        , employmentRate
+                    </if>
+            </trim>
+        </if>
+        <if test="selector==null">
+            <include refid="Base_Column_List" />
+        </if>
+        FROM zgk_major_base
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id like CONCAT('%', #{condition.id} , '%')
+            </if>
+            <if test="condition.majorType!=null">
+                AND major_type like CONCAT('%', #{condition.majorType} , '%')
+            </if>
+            <if test="condition.disciplineCode!=null">
+                AND discipline_code like CONCAT('%', #{condition.disciplineCode} , '%')
+            </if>
+            <if test="condition.disciplineName!=null">
+                AND discipline_name like CONCAT('%', #{condition.disciplineName} , '%')
+            </if>
+            <if test="condition.disciplineSubCode!=null">
+                AND discipline_sub_code like CONCAT('%', #{condition.disciplineSubCode} , '%')
+            </if>
+            <if test="condition.disciplineSubName!=null">
+                AND discipline_sub_name like CONCAT('%', #{condition.disciplineSubName} , '%')
+            </if>
+            <if test="condition.majorCode!=null">
+                AND major_code like CONCAT('%', #{condition.majorCode} , '%')
+            </if>
+            <if test="condition.majorName!=null">
+                AND major_name like CONCAT('%', #{condition.majorName} , '%')
+            </if>
+            <if test="condition.majorNote!=null">
+                AND major_note like CONCAT('%', #{condition.majorNote} , '%')
+            </if>
+            <if test="condition.salaryRank!=null">
+                AND salary_rank like CONCAT('%', #{condition.salaryRank} , '%')
+            </if>
+            <if test="condition.employmentRate!=null">
+                AND employmentRate like CONCAT('%', #{condition.employmentRate} , '%')
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+
+    <select id="queryList" parameterType="java.util.Map" resultType="MajorBase">
+        SELECT
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                <if test="selector.id!=null">
+                    , id
+                </if>
+                <if test="selector.majorType!=null">
+                    , major_type
+                </if>
+                <if test="selector.disciplineCode!=null">
+                    , discipline_code
+                </if>
+                <if test="selector.disciplineName!=null">
+                    , discipline_name
+                </if>
+                <if test="selector.disciplineSubCode!=null">
+                    , discipline_sub_code
+                </if>
+                <if test="selector.disciplineSubName!=null">
+                    , discipline_sub_name
+                </if>
+                <if test="selector.majorCode!=null">
+                    , major_code
+                </if>
+                <if test="selector.majorName!=null">
+                    , major_name
+                </if>
+                <if test="selector.majorNote!=null">
+                    , major_note
+                </if>
+                <if test="selector.salaryRank!=null">
+                    , salary_rank
+                </if>
+                <if test="selector.employmentRate!=null">
+                    , employmentRate
+                </if>
+        </trim>
+    </if>
+<if test="selector==null">
+<include refid="Base_Column_List" />
+</if>
+        FROM zgk_major_base
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.majorType!=null">
+                AND major_type = #{condition.majorType}
+            </if>
+            <if test="condition.disciplineCode!=null">
+                AND discipline_code = #{condition.disciplineCode}
+            </if>
+            <if test="condition.disciplineName!=null">
+                AND discipline_name = #{condition.disciplineName}
+            </if>
+            <if test="condition.disciplineSubCode!=null">
+                AND discipline_sub_code = #{condition.disciplineSubCode}
+            </if>
+            <if test="condition.disciplineSubName!=null">
+                AND discipline_sub_name = #{condition.disciplineSubName}
+            </if>
+            <if test="condition.majorCode!=null">
+                AND major_code = #{condition.majorCode}
+            </if>
+            <if test="condition.majorName!=null">
+                AND major_name = #{condition.majorName}
+            </if>
+            <if test="condition.majorNote!=null">
+                AND major_note = #{condition.majorNote}
+            </if>
+            <if test="condition.salaryRank!=null">
+                AND salary_rank = #{condition.salaryRank}
+            </if>
+            <if test="condition.employmentRate!=null">
+                AND employmentRate = #{condition.employmentRate}
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryOne" parameterType="java.util.Map" resultType="MajorBase">
+        SELECT
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                    <if test="selector.id!=null">
+                        , id
+                    </if>
+                    <if test="selector.majorType!=null">
+                        , major_type
+                    </if>
+                    <if test="selector.disciplineCode!=null">
+                        , discipline_code
+                    </if>
+                    <if test="selector.disciplineName!=null">
+                        , discipline_name
+                    </if>
+                    <if test="selector.disciplineSubCode!=null">
+                        , discipline_sub_code
+                    </if>
+                    <if test="selector.disciplineSubName!=null">
+                        , discipline_sub_name
+                    </if>
+                    <if test="selector.majorCode!=null">
+                        , major_code
+                    </if>
+                    <if test="selector.majorName!=null">
+                        , major_name
+                    </if>
+                    <if test="selector.majorNote!=null">
+                        , major_note
+                    </if>
+                    <if test="selector.salaryRank!=null">
+                        , salary_rank
+                    </if>
+                    <if test="selector.employmentRate!=null">
+                        , employmentRate
+                    </if>
+            </trim>
+        </if>
+        <if test="selector==null">
+            <include refid="Base_Column_List" />
+        </if>
+        FROM zgk_major_base
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.majorType!=null">
+                AND major_type = #{condition.majorType}
+            </if>
+            <if test="condition.disciplineCode!=null">
+                AND discipline_code = #{condition.disciplineCode}
+            </if>
+            <if test="condition.disciplineName!=null">
+                AND discipline_name = #{condition.disciplineName}
+            </if>
+            <if test="condition.disciplineSubCode!=null">
+                AND discipline_sub_code = #{condition.disciplineSubCode}
+            </if>
+            <if test="condition.disciplineSubName!=null">
+                AND discipline_sub_name = #{condition.disciplineSubName}
+            </if>
+            <if test="condition.majorCode!=null">
+                AND major_code = #{condition.majorCode}
+            </if>
+            <if test="condition.majorName!=null">
+                AND major_name = #{condition.majorName}
+            </if>
+            <if test="condition.majorNote!=null">
+                AND major_note = #{condition.majorNote}
+            </if>
+            <if test="condition.salaryRank!=null">
+                AND salary_rank = #{condition.salaryRank}
+            </if>
+            <if test="condition.employmentRate!=null">
+                AND employmentRate = #{condition.employmentRate}
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+        limit 0,1
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(id) FROM zgk_major_base
+       <where>
+           <if test="id!=null">
+               ${groupOp} ${id.field} ${id.op}  #{id.data}
+           </if>
+           <if test="majorType!=null">
+               ${groupOp} ${majorType.field} ${majorType.op}  #{majorType.data}
+           </if>
+           <if test="disciplineCode!=null">
+               ${groupOp} ${disciplineCode.field} ${disciplineCode.op}  #{disciplineCode.data}
+           </if>
+           <if test="disciplineName!=null">
+               ${groupOp} ${disciplineName.field} ${disciplineName.op}  #{disciplineName.data}
+           </if>
+           <if test="disciplineSubCode!=null">
+               ${groupOp} ${disciplineSubCode.field} ${disciplineSubCode.op}  #{disciplineSubCode.data}
+           </if>
+           <if test="disciplineSubName!=null">
+               ${groupOp} ${disciplineSubName.field} ${disciplineSubName.op}  #{disciplineSubName.data}
+           </if>
+           <if test="majorCode!=null">
+               ${groupOp} ${majorCode.field} ${majorCode.op}  #{majorCode.data}
+           </if>
+           <if test="majorName!=null">
+               ${groupOp} ${majorName.field} ${majorName.op}  #{majorName.data}
+           </if>
+           <if test="majorNote!=null">
+               ${groupOp} ${majorNote.field} ${majorNote.op}  #{majorNote.data}
+           </if>
+           <if test="salaryRank!=null">
+               ${groupOp} ${salaryRank.field} ${salaryRank.op}  #{salaryRank.data}
+           </if>
+           <if test="employmentRate!=null">
+               ${groupOp} ${employmentRate.field} ${employmentRate.op}  #{employmentRate.data}
+           </if>
+
+       </where>
+    </select>
+
+    <select id="selectMaxId" resultType="java.lang.Integer">
+        SELECT
+        MAX(id)
+        FROM zgk_major_base
+    </select>
+
+</mapper>
+

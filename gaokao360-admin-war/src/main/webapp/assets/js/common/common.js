@@ -17,7 +17,7 @@ var CommonFn = {
         getMajored:'/admin/gaokao360/ex/getMajoredCategoryList',//获取学科分类
         saveData: '/admin/gaokao360/ex/commonsave/' + mainObj,
         flashSwfUrl: '/assets/js/webuploader-0.1.5/Uploader.swf', // 上传选择按钮渲染
-        uploaderUrl: 'http://cs-dev.thinkjoy.com.cn/rest/v1/uploadFile?userId=gk360&dirId=0&productCode=gk360&bizSystem=gk360&spaceName=gk360',
+        uploaderUrl: 'http://cs-pro.qtonecloud.cn/rest/v1/uploadFile?userId=gk360&dirId=0&productCode=gk360&bizSystem=gk360&spaceName=gk360',
         eduLevel: '/admin/gaokao360/ex/eduLevel',
         AllSchoolUrl: '/admin/gaokao360/ex/getUniversityByName',
         getBatchUrl: '/admin/gaokao360/geBatch',

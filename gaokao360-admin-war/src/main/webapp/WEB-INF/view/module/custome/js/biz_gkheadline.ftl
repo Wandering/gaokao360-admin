@@ -313,7 +313,7 @@
                 // 是否要分片处理大文件上传
                 chunked: true,
                 // server: 'http://webuploader.duapp.com/server/fileupload.php',
-                server: 'http://cs-dev.thinkjoy.com.cn/rest/v1/uploadFile?userId=gk360&dirId=0&productCode=gk360&bizSystem=gk360&spaceName=gk360',
+                server: 'http://cs-pro.qtonecloud.cn/rest/v1/uploadFile?userId=gk360&dirId=0&productCode=gk360&bizSystem=gk360&spaceName=gk360',
                 // 验证文件总数量, 超出则不允许加入队列
                 fileNumLimit: 0,
                 // 验证文件总大小是否超出限制, 超出则不允许加入队列

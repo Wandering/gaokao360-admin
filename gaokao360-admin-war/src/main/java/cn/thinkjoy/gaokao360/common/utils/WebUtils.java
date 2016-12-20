@@ -22,7 +22,7 @@ public class WebUtils {
     public static Map<String, Object> saveContentAsHtml(String path, String content){
         String result =null;
         String filename = "gk" + System.currentTimeMillis() + ".html";
-        String url = "http://cs-dev.thinkjoy.com.cn/rest/v1/uploadFile";
+        String url = "http://cs-pro.qtonecloud.cn/rest/v1/uploadFile";
         try {
             try {
                 FileOutputStream os = new FileOutputStream(path + "/" + filename);
@@ -63,7 +63,7 @@ public class WebUtils {
 
     public static String delFileUrl(Object id){
         String result =null;
-        String url = "http://cs-dev.thinkjoy.com.cn/rest/v1/delFile?fileId="+id;
+        String url = "http://cs-pro.qtonecloud.cn/rest/v1/delFile?fileId="+id;
         try {
             RestTemplate template = new RestTemplate();
             template.getMessageConverters().add(new FastJsonHttpMessageConverter());

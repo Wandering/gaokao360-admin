@@ -306,7 +306,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         String st =null;
         String path = request.getSession().getServletContext().getRealPath("/upload");
         String filename = "gk" + System.currentTimeMillis() + ".html";
-        String url = "http://cs-dev.thinkjoy.com.cn/rest/v1/uploadFile";
+        String url = "http://cs-pro.qtonecloud.cn/rest/v1/uploadFile";
         try {
             try {
                 FileOutputStream outputStream = new FileOutputStream(path + "/" + filename);
@@ -349,7 +349,7 @@ public class Gaokao360CommonExController extends AbstractCommonController {
         try {
         String path = request.getSession().getServletContext().getRealPath("/upload");
         String filename = "gk" + System.currentTimeMillis() + ".html";
-        String url = "http://cs-dev.thinkjoy.com.cn/rest/v1/delFile?fileId="+id;
+        String url = "http://cs-pro.qtonecloud.cn/rest/v1/delFile?fileId="+id;
             RestTemplate template = new RestTemplate();
             //这里大家可以用其他的httpClient均可以
 
