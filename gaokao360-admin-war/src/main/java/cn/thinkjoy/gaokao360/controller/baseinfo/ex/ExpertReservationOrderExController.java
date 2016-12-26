@@ -91,7 +91,7 @@ public class ExpertReservationOrderExController extends BaseController<IExpertRe
 
     @Override
     protected String getParentTitle() {
-        return "数据模块";
+        return "专家服务";
     }
 
     @Override
