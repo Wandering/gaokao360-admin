@@ -164,6 +164,7 @@ public class ServiceMaps extends BaseServiceMaps{
         serviceMap.put("major",majorService);
         serviceMap.put("universitymajor",universityMajorExService);
         serviceMap.put("universitymajorenrolling",universityMajorEnrollingExService);
+        serviceMap.put("expertInfoDetail",expertInfoService);
     }
 
 }

@@ -1,61 +1,129 @@
 <script>
     <!-- 自定义js请写在这个文件  以下这个查询方法只是个例子，请按照业务需求修改 -->
     function buildRules() {
-        var areaId = $('#areaId').val();
-        var hotInformation = $('#hotInformation').val();
-//        var hotInformation = "0";
+//        var areaId = $('#selProvince').val();
+//        var queryparam = $('#agentKeyWord').val();
         var rules = [];
-        if (areaId != '' && areaId != null && areaId != undefined && areaId != "00") {
-            var rule = {
-                'field': 'gkhot.areaId',
-                'op': 'eq',
-                'data': areaId
-            };
-            rules.push(rule);
-        }
-        if (hotInformation != '' && hotInformation != null && hotInformation != undefined) {
-            var rule = {
-                'field': 'gkhot.hotInformation',
-                'op': 'lk',
-                'data': hotInformation
-            };
-            rules.push(rule);
-        }
-//        console.log(rules);
+//        if (areaId != '' && areaId != null && areaId != undefined && areaId != '00') {
+//            var rule = {
+//                'field': 'agent.areaId',
+//                'op': 'eq',
+//                'data': areaId
+//            }
+//            rules.push(rule);
+//        }
+//        if (queryparam != '' && queryparam != null && queryparam != undefined) {
+//            var rule = {
+//                'field': 'queryparam',
+//                'op': 'lk',
+//                'data': queryparam
+//            }
+//            rules.push(rule);
+//        }
         return rules;
     }
 
+
+
+    /*
+    *
+    * 招办电话模块
+    *
+    * */
     jQuery(function ($) {
+
         var typeStr;
         var rowId;
-        $("#search").click(function () {
+        var UI = {
+            $agentKeyWord: $('#agentKeyWord'),
+            $selMonth: $('#selMonth'),
+            $selProvince: $('#selProvince'),
+            $search: $('#search')
+        };
+//       搜索
+        UI.$search.click(function () {
             searchLoad();
         });
-        // 获取省份数据
+//     获取省份
         var provinceData = CommonFn.getProvince();
-        $('#areaId').html(provinceData);
+        UI.$selProvince.append(provinceData);
+
+//      添加招办联系电话
+        $("#addBtn").on(ace.click_event, function () {
+            typeStr = "add";
+            bootbox.dialog({
+                title: "添加",
+                message: dialogHtml,
+                className: 'my-modal',
+                buttons: {
+                    "success": {
+                        "label": "<i class='ace-icon fa fa-check'></i> 提交",
+                        "className": "btn-sm btn-success",
+                        "callback": addEditFun
+                    },
+                    cancel: {
+                        label: "关闭",
+                        className: "btn-sm"
+                    }
+                }
+            });
+            uploadFun();
+        });
+//      修改高考日程
+        $("#editBtn").on(ace.click_event, function () {
+            typeStr = "edit";
+            rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
+            var selTrN = $('tr.ui-state-highlight[role="row"]').length;
+            if (selTrN != 1) {
+                CommonFn.tipsDialog('温馨提示', '请选中一行后修改');
+                return false;
+            }
+            bootbox.dialog({
+                title: "修改",
+                message: dialogHtml,
+                className: 'my-modal',
+                buttons: {
+                    "success": {
+                        "label": "<i class='ace-icon fa fa-check'></i> 提交",
+                        "className": "btn-sm btn-success",
+                        "callback": addEditFun
+                    },
+                    cancel: {
+                        label: "关闭",
+                        className: "btn-sm"
+                    }
+                }
+            });
+            // 当前行数据
+            var rowData = CommonFn.getRowData(rowId);
+            var expertName = $("#expertName").val(rowData[0].expertName);
+            var expertPhone = $("#expertPhone").val(rowData[0].expertPhone);
+            var expertPhotoUrl =  $('#expertPhotoUrl').val(rowData[0].expertPhotoUrl);
+            var expertIntro = $("#expertIntro").val(rowData[0].expertIntro);
+            var areaId = $("#areaId").find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
+            var bestExpert = $("#bestExpert").val(rowData[0].bestExpert);
+            var qualification = $("#qualification").val(rowData[0].qualification);
+            var famousTeacher = $("#famousTeacher").val(rowData[0].famousTeacher);
+            var isChecked = $("#isChecked").val(rowData[0].isChecked);
+            var preAppointDays = $("#preAppointDays").val(rowData[0].preAppointDays);
+            var qq = $("#qq").val(rowData[0].qq);
+            var weixin = $("#weixin").val(rowData[0].weixin);
+            uploadFun();
+        });
+
         var dialogHtml = ''
                 + '<div class="row">'
                 + '<div class="col-xs-12">'
                 + '<form class="form-horizontal" role="form">'
                 + '<div class="form-group">'
-                + '<label class="col-sm-2 control-label no-padding-right"> 选择省份：</label>'
-                + '<div class="col-sm-3">'
-                + '<select class="form-control" id="selProvince">';
-        dialogHtml += provinceData
-                + '</select>'
-                + '</div>'
-                + '</div>'
-                + '<div class="form-group">'
-                + '<label class="col-sm-2 control-label no-padding-right" for="hotTitle"> 头条标题：</label>'
-                + '<div class="col-sm-3">'
-                + '<input type="text" id="hotTitle" placeholder="请输入高考头条标题" class="" />'
+                + '<label class="col-sm-2 control-label no-padding-right">  专家姓名：</label>'
+                + '<div class="col-sm-4">'
+                + '<input type="text" class="form-control input-mask-phone" id="expertName" />'
                 + '</div>'
                 + '</div>'
 
-
                 + '<div class="form-group">'
-                + '<label class="col-sm-2 control-label no-padding-right" for="hotTitle"> 头条热图：</label>'
+                + '<label class="col-sm-2 control-label no-padding-right">  专家照片：</label>'
                 + '<div class="col-sm-10">'
                 + '<div id="uploader" class="wu-example">'
                 + '<div class="uploader-tips">(只能上传一个文件,可拖拽文件)</div>'
@@ -77,194 +145,181 @@
                 + '</div>'
 
                 + '<div class="form-group">'
-                + '<label class="col-sm-2 control-label no-padding-right" for="hotContent"> 头条内容：</label>'
-                + '<div class="col-sm-10">'
-                + '<div id="hotContent" class="wysiwyg-editor"></div>'
-                + '</div>'
-                + '</div>'
-                + '<div class="form-group">'
-                + '<label class="col-sm-2 control-label no-padding-right" for="hotContent"> 日期：</label>'
+                + '<label class="col-sm-2 control-label no-padding-right">  专家手机：</label>'
                 + '<div class="col-sm-4">'
-                + '<div class="input-group">'
-                + '<input class="form-control date-picker" placeholder="请选择高考头条日期" id="date-picker" type="text" data-date-format="yyyy-mm-dd" />'
-                + '<span class="input-group-addon">'
-                + '<i class="fa fa-calendar bigger-110"></i>'
-                + '</span>'
-                + '</div>'
+                + '<input type="text" class="form-control input-mask-phone" id="expertPhone" />'
                 + '</div>'
                 + '</div>'
 
-                + '<input type="hidden" value="" id="swfUrl">'
+                + '<div class="form-group">'
+                + '<label class="col-sm-2 control-label no-padding-right">  专家简介：</label>'
+                + '<div class="col-sm-4">'
+                + '<input type="text" class="form-control input-mask-phone" id="expertIntro" />'
+                + '</div>'
+                + '</div>'
 
+                + '<div class="form-group">'
+                + '<label class="col-sm-2 control-label no-padding-right">  地区：</label>'
+                + '<div class="col-sm-4">'
+                + '<select type="text" class="form-control input-mask-phone" id="areaId">';
+        dialogHtml += provinceData
+                + '</select>'
+                + '</div>'
+                + '</div>'
+
+
+
+                + '<div class="form-group">'
+                + '<label class="col-sm-2 control-label no-padding-right">  是否是本月人气专家：</label>'
+                + '<div class="col-sm-4">'
+                + '<select class="form-control" id="bestExpert">'
+                + '<option value="1">是</option>'
+                + '<option value="0">否</option>'
+                + '</select>'
+                + '</div>'
+                + '</div>'
+
+                + '<div class="form-group">'
+                + '<label class="col-sm-2 control-label no-padding-right">  联盟高校认证专家：</label>'
+                + '<div class="col-sm-4">'
+                + '<select class="form-control" id="qualification">'
+                + '<option value="1">是</option>'
+                + '<option value="0">否</option>'
+                + '</select>'
+                + '</div>'
+                + '</div>'
+
+                + '<div class="form-group">'
+                + '<label class="col-sm-2 control-label no-padding-right">  顶级名师：</label>'
+                + '<div class="col-sm-4">'
+                + '<select class="form-control" id="famousTeacher">'
+                + '<option value="1">是</option>'
+                + '<option value="0">否</option>'
+                + '</select>'
+                + '</div>'
+                + '</div>'
+
+                + '<div class="form-group">'
+                + '<label class="col-sm-2 control-label no-padding-right">  是否审核通过 ：</label>'
+                + '<div class="col-sm-4">'
+                + '<select class="form-control" id="isChecked">'
+                + '<option value="1">是</option>'
+                + '<option value="2">否</option>'
+                + '</select>'
+                + '</div>'
+                + '</div>'
+
+                + '<div class="form-group">'
+                + '<label class="col-sm-2 control-label no-padding-right">  专家设置的提前预约天数 ：</label>'
+                + '<div class="col-sm-4">'
+                + '<input class="form-control" id="preAppointDays"></input>'
+                + '</div>'
+                + '</div>'
+
+                + '<div class="form-group">'
+                + '<label class="col-sm-2 control-label no-padding-right">  qq ：</label>'
+                + '<div class="col-sm-4">'
+                + '<input type="text" class="form-control input-mask-phone" id="qq" />'
+                + '</div>'
+                + '</div>'
+
+                + '<div class="form-group">'
+                + '<label class="col-sm-2 control-label no-padding-right">  weixin ：</label>'
+                + '<div class="col-sm-4">'
+                + '<input type="text" class="form-control input-mask-phone" id="weixin" />'
+                + '</div>'
+                + '</div>'
+                + '<input type="hidden" value="" id="expertPhotoUrl">'
                 + '</form>'
                 + '</div>'
                 + '</div>';
-        // 添加高考头条
-        $("#addBtn").on(ace.click_event, function (e) {
-            typeStr = "add";
-            bootbox.dialog({
-                title: "添加高考头条",
-                message: dialogHtml,
-                className: 'my-modal',
-                buttons: {
-                    "success": {
-                        "label": "<i class='ace-icon fa fa-check'></i> 提交",
-                        "className": "btn-sm btn-success",
-                        "callback": addEditFun
-                    },
-                    cancel: {
-                        label: "关闭",
-                        className: "btn-sm"
-                    }
-                }
-            });
-            CommonFn.renderDate('#date-picker');
-            CommonFn.renderTextarea('#hotContent');
-            uploadFun();
-        });
-
-
-        //修改高考头条
-        $("#editBtn").on(ace.click_event, function () {
-            typeStr = "edit";
-            rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
-            var selTrN = $('tr.ui-state-highlight[role="row"]').length;
-            if (selTrN != 1) {
-                CommonFn.tipsDialog('温馨提示', '请选中一行后修改');
-                return false;
-            }
-            bootbox.dialog({
-                title: "修改高考头条",
-                message: dialogHtml,
-                className: 'my-modal',
-                buttons: {
-                    "success": {
-                        "label": "<i class='ace-icon fa fa-check'></i> 提交",
-                        "className": "btn-sm btn-success",
-                        "callback": addEditFun
-                    },
-                    cancel: {
-                        label: "关闭",
-                        className: "btn-sm"
-                    }
-                }
-            });
-            uploadFun();
-            CommonFn.renderDate('#date-picker');
-            CommonFn.renderTextarea('#hotContent');
-            // 当前行数据
-            var rowData = CommonFn.getRowData(rowId);
-            // 富媒体赋值
-            $('#selProvince').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
-            $('#hotTitle').val(rowData[0].hotInformation);
-            $('#swfUrl').val(rowData[0].imgUrl);
-            $('#hotContent').html(rowData[0].informationContent);
-            $('#date-picker').val(rowData[0].hotdate);
-
-        });
-        //删除
-        CommonFn.deleteFun('#deleteBtn', '${mainObj}');
         var addEditFun = function () {
-            var selProvinceV = $('#selProvince option:checked').val(),
-                    hotTitleV = $.trim($('#hotTitle').val()),
-                    hotContentV = $('#hotContent').html(),
-                    datePickerV = $.trim($('#date-picker').val());
+            var expertName = $("#expertName").val();
+            var expertPhone = $("#expertPhone").val();
+            var expertPhotoUrl =  $('#expertPhotoUrl').val();
+            var expertIntro = $("#expertIntro").val();
+            var areaId = $("#areaId option:checked").val();
+            var bestExpert = $("#bestExpert option:checked").val();
+            var qualification = $("#qualification option:checked").val();
+            var famousTeacher = $("#famousTeacher option:checked").val();
+            var isChecked = $("#isChecked option:checked").val();
+            var preAppointDays = $("#preAppointDays").val();
+            var qq = $("#qq").val();
+            var weixin = $("#weixin").val();
 
-            if (selProvinceV == "00") {
-                CommonFn.tipsDialog('温馨提示', '请选择省份');
-                return false;
-            }
-            if (hotTitleV == "") {
-                CommonFn.tipsDialog('温馨提示', '请输入高考头条标题');
-                return false;
-            }
-
-            var fileUrl = $('#swfUrl').val();
-            if (fileUrl == "") {
-                CommonFn.tipsDialog('温馨提示', '请上头条热图上传');
-                return false;
-            }
-
-
-            if (hotTitleV.length > 50) {
-                CommonFn.tipsDialog('温馨提示', '请输入高考头条标题字数不能大于50个字');
-                return false;
-            }
-            if (hotContentV == "") {
-                CommonFn.tipsDialog('温馨提示', '请输入高考头条内容');
-                return false;
-            }
-            if (datePickerV == "") {
-                CommonFn.tipsDialog('温馨提示', '请选择高考头条日期');
-                return false;
-            }
-            var informationSubContent = $.trim($('#hotContent').text()).substring(0,100);
-            var infoData = {
-                areaId: selProvinceV,
-                hotInformation: hotTitleV,
-                informationContent: hotContentV,
-                hotdate: datePickerV,
-                informationSubContent: informationSubContent,
-                hotCount: 0,
+            var addInfoData = {
                 oper: typeStr,
-                imgUrl:fileUrl
+                expertName: expertName,
+                expertPhone: expertPhone,
+                expertPhotoUrl: expertPhotoUrl,
+                expertIntro: expertIntro,
+                areaId: areaId,
+                bestExpert: bestExpert,
+                qualification: qualification,
+                famousTeacher: famousTeacher,
+                isChecked: isChecked,
+                preAppointDays: preAppointDays,
+                qq: qq,
+                weixin: weixin,
+                password: '4297f44b13955235245b2497399d7a93'
             };
+
             if (typeStr == 'edit') {
-                infoData.id = rowId;
+                addInfoData.id = rowId;
             }
-            console.log(infoData);
             $.ajax({
                 type: "POST",
-                url: '/admin/${bizSys}/commonsave/${mainObj}',
-                data: infoData,
+                url: '/admin/gaokao360/ex/commonsave/${mainObj}',
+                data: addInfoData,
                 success: function (result) {
                     if (result.rtnCode == "0000000") {
                         searchLoad();
                     }
                 }
             });
-        }
-
+        };//添加修改方法
+//      删除
+        CommonFn.deleteFun('#deleteBtn', '${mainObj}');
 
 
         function uploadFun() {
             var $wrap = $('#uploader'),
 
-            // 图片容器
+                    // 图片容器
                     $queue = $('<ul class="filelist"></ul>').appendTo($wrap.find('.queueList')),
 
-            // 状态栏，包括进度和控制按钮
+                    // 状态栏，包括进度和控制按钮
                     $statusBar = $wrap.find('.statusBar'),
 
-            // 文件总体选择信息。
+                    // 文件总体选择信息。
                     $info = $statusBar.find('.info'),
 
-            // 上传按钮
+                    // 上传按钮
                     $upload = $wrap.find('.uploadBtn'),
 
-            // 没选择文件之前的内容。
+                    // 没选择文件之前的内容。
                     $placeHolder = $wrap.find('.placeholder'),
 
-            // 总体进度条
+                    // 总体进度条
                     $progress = $statusBar.find('.progress').hide(),
 
-            // 添加的文件数量
+                    // 添加的文件数量
                     fileCount = 0,
 
-            // 添加的文件总大小
+                    // 添加的文件总大小
                     fileSize = 0,
 
-            // 优化retina, 在retina下这个值是2
+                    // 优化retina, 在retina下这个值是2
                     ratio = window.devicePixelRatio || 1,
 
-            // 缩略图大小
+                    // 缩略图大小
                     thumbnailWidth = 110 * ratio,
                     thumbnailHeight = 110 * ratio,
 
-            // 可能有pedding, ready, uploading, confirm, done.
+                    // 可能有pedding, ready, uploading, confirm, done.
                     state = 'pedding',
 
-            // 所有文件的进度信息，key为file id
+                    // 所有文件的进度信息，key为file id
                     percentages = {},
                     supportTransition = (function () {
                         var s = document.createElement('p').style,
@@ -277,7 +332,7 @@
                         return r;
                     })(),
 
-            // WebUploader实例
+                    // WebUploader实例
                     uploader;
 
             if (!WebUploader.Uploader.support()) {
@@ -641,7 +696,7 @@
                 console.log(response.bizData.file.fileUrl)
 ////                alert(response.bizData.file.fileUrl)
 //                fileUrl = response.bizData.file.fileUrl;
-                $('body').find('#swfUrl').val(response.bizData.file.fileUrl);
+                $('body').find('#expertPhotoUrl').val(response.bizData.file.fileUrl);
 
             };
 
@@ -670,8 +725,7 @@
             $upload.addClass('state-' + state);
             updateTotalProgress();
         }
-
-    });
+    });//$结束
 
 
 </script>
