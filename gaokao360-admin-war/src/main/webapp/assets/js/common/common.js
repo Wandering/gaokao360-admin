@@ -35,6 +35,7 @@ var CommonFn = {
         getModuleUrl: '/admin/gaokao360/ex/queryVideoType', // 视频模块
         getDataDictList: '/admin/gaokao360/ex/getDataDictList?type=FEATURE', // 院校特征
         queryExpert: '/admin/zgkadmin/ex/queryAllExpert', // 查询所有的专家名称
+        queryExpertService:'/admin/zgkadmin/ex/queryAllExpertService', //获取所有专家服务
         queryServiceTypeByExpert:'/admin/zgkadmin/ex/queryServiceTypeByExpert', //根据专家获取专家服务
         auditPass:'/admin/zgkadmin/ex/auditPass' //根据专家获取专家服务
     },

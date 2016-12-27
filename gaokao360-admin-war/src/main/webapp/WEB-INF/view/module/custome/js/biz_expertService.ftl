@@ -27,7 +27,7 @@
 
     /*
     *
-    * 招办电话模块
+    * 专家服务模块
     *
     * */
     jQuery(function ($) {
@@ -44,15 +44,45 @@
         UI.$search.click(function () {
             searchLoad();
         });
-//     获取省份
-        var provinceData = CommonFn.getProvince();
-        UI.$selProvince.append(provinceData);
 
-//      添加招办联系电话
+
+        var queryExpert = function() {
+            var contentArr = [];
+            contentArr.push('<option value="00">请选择专家</option>');
+            $.ajaxSettings.async = false;
+            CommonFn.getData(CommonFn.url.queryExpert, 'GET', {}, function (result) {
+                console.log(result)
+                for (var i = 0; i < result.bizData.length; i++) {
+                    var expertId = result.bizData[i].id;
+                    var expertName = result.bizData[i].expertName;
+                    contentArr.push('<option value="' + expertId + '">' + expertName + '</option>');
+                }
+            });
+            return contentArr.join('');
+        }
+        var queryExpertService = function() {
+            var contentArr = [];
+            contentArr.push('<option value="00">请选择服务类型</option>');
+            $.ajaxSettings.async = false;
+            CommonFn.getData(CommonFn.url.queryExpertService, 'GET', {}, function (result) {
+                console.log(result)
+                for (var i = 0; i < result.bizData.length; i++) {
+                    var serviceId = result.bizData[i].id;
+                    var serviceName = result.bizData[i].name;
+                    contentArr.push('<option value="' + serviceId + '">' + serviceName + '</option>');
+                }
+            });
+            return contentArr.join('');
+        }
+        // 获取专家数据
+        var expertData = queryExpert();
+        var expertServiceData = queryExpertService();
+
+        // 添加专家服务
         $("#addBtn").on(ace.click_event, function () {
             typeStr = "add";
             bootbox.dialog({
-                title: "添加招办联系电话",
+                title: "添加专家服务",
                 message: dialogHtml,
                 className: 'my-modal',
                 buttons: {
@@ -68,7 +98,7 @@
                 }
             });
         });
-//      修改高考日程
+        // 修改专家服务
         $("#editBtn").on(ace.click_event, function () {
             typeStr = "edit";
             rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
@@ -78,7 +108,7 @@
                 return false;
             }
             bootbox.dialog({
-                title: "修改招办联系电话",
+                title: "修改专家服务",
                 message: dialogHtml,
                 className: 'my-modal',
                 buttons: {
@@ -107,23 +137,19 @@
                 + '<div class="col-xs-12">'
                 + '<form class="form-horizontal" role="form">'
                 + '<div class="form-group">'
-                + '<label class="col-sm-2 control-label no-padding-right">  省份：</label>'
+                + '<label class="col-sm-2 control-label no-padding-right">  专家:</label>'
                 + '<div class="col-sm-4">'
                 + '<select class="form-control" id="selProvince2">';
-        dialogHtml += provinceData
+        dialogHtml += expertData
                 + '</select>'
                 + '</div>'
                 + '</div>'
                 + '<div class="form-group">'
-                + '<label class="col-sm-2 control-label no-padding-right">  地区：</label>'
+                + '<label class="col-sm-2 control-label no-padding-right">  服务:</label>'
                 + '<div class="col-sm-4">'
-                + '<input type="text" id="areaName" placeholder="请输入地区名称" class="form-control">'
-                + '</div>'
-                + '</div>'
-                + '<div class="form-group">'
-                + '<label class="col-sm-2 control-label no-padding-right">  招办联系电话：</label>'
-                + '<div class="col-sm-4">'
-                + '<input type="text" class="form-control input-mask-phone" id="agentTel" placeholder="请输入招办电话,格式:0917-3262380">'
+                + '<select class="form-control" id="areaName">';
+        dialogHtml += expertServiceData
+                + '</select>'
                 + '</div>'
                 + '</div>'
                 + '</form>'
@@ -131,30 +157,18 @@
                 + '</div>';
         var addEditFun = function () {
             var selProvinceV = $('#selProvince2 option:checked').val();
-            var tel = /^((0\d{2,3}-\d{7,8})|(1[35874]\d{9}))$/;
-            var agentTel = $.trim($('#agentTel').val());
-            var area = $('#areaName').val();
             var areaName = $('#selProvince2 option:checked').html() + area;
             if (selProvinceV == "00") {
-                CommonFn.tipsDialog('温馨提示', '请选择省份');
+                CommonFn.tipsDialog('温馨提示', '请选择专家');
                 return false;
             }
             if (areaName == "") {
-                CommonFn.tipsDialog('温馨提示', '请输入招办地区名称');
-                return false;
-            }
-            if (agentTel == "") {
-                CommonFn.tipsDialog('温馨提示', '请输入招办联系电话');
-                return false;
-            }
-            if (!tel.test(agentTel)) {
-                CommonFn.tipsDialog('温馨提示', '招办电话填写有误');
+                CommonFn.tipsDialog('温馨提示', '请选择专家服务');
                 return false;
             }
             var addAgentData = {
                 oper: typeStr,
                 areaId: selProvinceV,
-                telphone: agentTel,
                 name: areaName,
                 address: areaName
             };

@@ -13,6 +13,12 @@
         LEFT JOIN zgk_expert_info t1 ON t0.expert_id = t1.id
         LEFT JOIN zgk_expert_config t2 ON t0.service_type_id = t2.config_key
         AND t2.config_domain = 'serviceType'
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
     </select>
 
     <select id="count" resultType="java.lang.Integer">

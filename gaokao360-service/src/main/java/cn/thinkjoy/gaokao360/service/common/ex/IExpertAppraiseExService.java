@@ -32,6 +32,13 @@ public interface IExpertAppraiseExService<D extends IBaseDAO<T>, T extends BaseD
     List<Map<String,Object>> getServiceTypeByExpert(Long id);
 
     /**
+     * 查询所有专家服务
+     *
+     * @return
+     */
+    List<Map<String,Object>> queryAllExpertService();
+
+    /**
      * 审核通过
      * @param id
      * @return

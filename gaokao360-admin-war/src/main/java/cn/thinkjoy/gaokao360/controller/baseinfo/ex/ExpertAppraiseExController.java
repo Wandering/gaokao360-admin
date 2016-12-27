@@ -36,6 +36,7 @@ public class ExpertAppraiseExController extends BaseController<IExpertAppraiseEx
     @Autowired
     private IExpertAppraiseExService expertAppraiseExService;
 
+
     /**
      * 页面主请求
      * @param request
@@ -70,6 +71,17 @@ public class ExpertAppraiseExController extends BaseController<IExpertAppraiseEx
     public List<ExpertInfo> queryAllExpert(){
 
         return expertAppraiseExService.getAllExpert();
+    }
+
+    /**
+     * 查询所有专家服务
+     * @return
+     */
+    @RequestMapping(value="/queryAllExpertService")
+    @ResponseBody
+    public List<Map<String,Object>> queryAllExpertService(){
+
+        return expertAppraiseExService.queryAllExpertService();
     }
 
 

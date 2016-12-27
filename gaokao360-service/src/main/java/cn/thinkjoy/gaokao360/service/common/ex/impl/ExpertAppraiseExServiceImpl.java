@@ -36,6 +36,11 @@ public class ExpertAppraiseExServiceImpl extends AbstractPageService implements 
         return expertAppraiseExDAO.getAllExpert();
     }
 
+    @Override
+    public List<Map<String, Object>> queryAllExpertService() {
+        return expertAppraiseExDAO.queryAllExpertService();
+    }
+
     /**
      * 查询该专家所有服务
      *

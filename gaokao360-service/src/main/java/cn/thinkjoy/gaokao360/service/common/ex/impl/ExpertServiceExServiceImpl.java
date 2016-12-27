@@ -20,4 +20,6 @@ public class ExpertServiceExServiceImpl extends AbstractPageService implements I
     public IBaseDAO getDao() {
         return expertServiceExDAO;
     }
+
+
 }

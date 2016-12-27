@@ -131,6 +131,15 @@ selectList
         WHERE relation.expert_id = #{id} GROUP BY relation.service_type_id
     </select>
 
+    <select id="queryAllExpertService" resultType="java.util.Map">
+        SELECT
+            config.config_key AS id,
+            config.config_value AS name
+        FROM
+            zgk_expert_config config
+        WHERE
+            config.config_domain = 'serviceType'
+    </select>
 
     <update id="auditPass">
         UPDATE  zgk_expert_appraise  SET is_checked = 1 where id = #{id}

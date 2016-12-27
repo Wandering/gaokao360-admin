@@ -50,15 +50,13 @@ public class ExpertServiceExController extends BaseController<IExpertInfoExServi
      */
     @RequestMapping(value="/expertServices")
     @ResponseBody
-    public BizData4Page findAllExpertInfos(HttpServletRequest request,HttpServletResponse response){
+    public BizData4Page expertServices(HttpServletRequest request,HttpServletResponse response){
         return doPage(request, response);
     }
 
     /***
      * 添加查询条件
-
-     * @param
-    request
+     * @param request
      * @param conditions
      */
     @Override

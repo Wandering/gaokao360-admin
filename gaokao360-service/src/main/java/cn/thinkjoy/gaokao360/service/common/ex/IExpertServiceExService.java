@@ -13,5 +13,4 @@ import cn.thinkjoy.common.service.IPageService;
 
 public interface IExpertServiceExService<D extends IBaseDAO<T>, T extends BaseDomain> extends IBaseService<D, T>,IPageService<D, T>{
 
-
 }
