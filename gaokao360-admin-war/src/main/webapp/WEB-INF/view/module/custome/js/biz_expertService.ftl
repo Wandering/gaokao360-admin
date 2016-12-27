@@ -1,191 +1,182 @@
 <script>
-
     <!-- 自定义js请写在这个文件  以下这个查询方法只是个例子，请按照业务需求修改 -->
     function buildRules() {
+        var areaId = $('#selProvince').val();
+        var queryparam = $('#agentKeyWord').val();
         var rules = [];
+        if (areaId != '' && areaId != null && areaId != undefined && areaId != '00') {
+            var rule = {
+                'field': 'agent.areaId',
+                'op': 'eq',
+                'data': areaId
+            }
+            rules.push(rule);
+        }
+        if (queryparam != '' && queryparam != null && queryparam != undefined) {
+            var rule = {
+                'field': 'queryparam',
+                'op': 'lk',
+                'data': queryparam
+            }
+            rules.push(rule);
+        }
         return rules;
     }
-    $("#search").click(function () {
-        searchLoad();
-    });
+
+
+
+    /*
+    *
+    * 招办电话模块
+    *
+    * */
     jQuery(function ($) {
+
         var typeStr;
         var rowId;
-        var dialogHtml = ''
-                + '<div class="row" id="dialogHtml">'
-                + '    <div class="col-xs-12">'
-                + '      <div class="form-horizontal" role="form">'
-                + '          <div class="form-group">'
-                + '              <label class="col-sm-2 control-label no-padding-right"> 专家姓名：</label>'
-                + '              <div class="col-sm-4">'
-                + '                     <span id="expertName">张专家</span>'
-                + '                  <input class="form-control" style="hidden" type="hidden" value="2" id="expertId" />'
-                + '              </div>'
-                + '          </div>'
-                + '          <div class="form-group" id="expertDate">'
-                + '              <label class="col-sm-2 control-label no-padding-right"> 服务日期：</label>'
-                + '              <div class="col-sm-9 expertDate-main">'
-                + '                  <div class="col-sm-11 expertDateList" dataId="1">'
-                + '                     <div>'
-                + '                      <div class="col-sm-3">'
-                + '                         <div class="input-group">'
-                + '                             <input class="form-control date-picker date-picker3" placeholder="请选择服务日期" type="text" data-date-format="yyyy-mm-dd" />'
-                + '                             <span class="input-group-addon">'
-                + '                             <i class="fa fa-calendar bigger-110"></i>'
-                + '                             </span>'
-                + '                         </div>'
-                + '                      </div>'
-                + '                      <div class="col-sm-9">'
-                + '                             <div class="col-sm-1">'
-                + '                                <button class="btn btn-minier btn-pink deleteExpertDateBtn">删除</button>'
-                + '                                <div class="line"></div>'
-                + '                             </div>'
-                + '                      </div>';
-        dialogHtml += '                      <div class="form-group col-sm-12 expertDateDetail">'
-//                + '                           <div class="col-sm-12">'
-//                + '                                 <div class="col-sm-11"></div>'
-//                + '                           </div>'
-                + '                           <div class="form-group dateDetail">'
-                + '                             <div>'
-                + '                               <div class="col-sm-11 dateDetail-main">'
-                + '                                   <div class="dateDetailList col-sm-12" dataId="1">'
-                + '                                       <div class="form-group col-sm-11 dateDetailDetail">'
-                + '                                         <div class="form-group col-sm-12">'
-                + '                                            <div class="col-sm-11">'
-                + '                                                 <label class="col-sm-3 control-label no-padding-right"> 服务时间：</label>'
-                + '                                                 <input class="col-sm-2 bootstrap-timepicker date-picker1" placeholder="请选择开始服务时间" type="text" data-date-format="HH:mm" />'
-                + '                                                 <div class="col-sm-2">——</div>'
-                + '                                                 <input class="col-sm-2 bootstrap-timepicker date-picker2" placeholder="请选择结束服务时间" type="text" data-date-format="HH:mm" />'
-                + '                                            </div>';
-        dialogHtml+=  '                                           <div class="col-sm-1">'
-                + '                                               <button class="btn btn-minier btn-pink deleteDateDetailBtn">删除</button>'
-                + '                                               <div class="line"></div>'
-                + '                                            </div>'
-                + '                                         </div>'
-                + '                                       </div>'
-                + '                                   </div>'
-                + '                               </div>'
-                + '                               <div class="col-sm-1">'
-                + '                                   <button class="btn btn-sm btn-primary dateDetailBtn">增加</button>'
-                + '                               </div>'
-                + '                              </div>'
-                + '                           </div>'
-                + '                      </div>'
-                + '                    </div>'
-                + '                  </div>'
-                + '                  <div class="col-sm-1">'
-                + '                      <button class="btn btn-sm btn-primary expertDateBtn" >增加</button>'
-                + '                  </div>'
-                + '              </div>'
-                + '          </div>'
-                + '      </div>'
-                + '  </div>'
-                + '</div>';
+        var UI = {
+            $agentKeyWord: $('#agentKeyWord'),
+            $selMonth: $('#selMonth'),
+            $selProvince: $('#selProvince'),
+            $search: $('#search')
+        };
+//       搜索
+        UI.$search.click(function () {
+            searchLoad();
+        });
+//     获取省份
+        var provinceData = CommonFn.getProvince();
+        UI.$selProvince.append(provinceData);
 
-//        日期增删
-        function expertDateFn(name, delName) {
-            var list = $('.' + name + '-main').find('.' + name + 'List').html();
-            // 增加招生批次明细
-            console.info(name);
-            $('.expertDate-main').on('click','.' + name + 'Btn', function (event) {
-                event.stopPropagation();
-                event.preventDefault();
-                $(this).parent().prev().append('<div class="' + name + 'List" dataId="' + name + '">' + list + '</div>');
-//                $('.' + name + '-main').append('<div class="' + name + 'List" dataId="' + name + '">' + list + '</div>');
-                CommonFn.renderDate('.date-picker');
-                CommonFn.renderTime('.bootstrap-timepicker');
-//                $(document).find('.delete' + delName + 'Btn:eq(last-child)').hide();
-            });
-            $('.expertDate-main').find('.delete' + delName + 'Btn:eq(0)').hide();
-
-            // 删除批次
-            $('.expertDate-main').on('click', '.delete' + delName + 'Btn', function (event) {
-                event.stopPropagation();
-                event.preventDefault();
-                $(this).parents('.' + name + 'List').remove();
-            });
-        }
-
-        // 添加
-        $("#addBtn").on(ace.click_event, function (e) {
-            // 当前行数据
-            var rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
-            var rowData = CommonFn.getRowData(rowId);
-            console.log(rowData)
-            if (rowId == undefined || rowId == '' || rowId == null) {
-                CommonFn.tipsDialog('温馨提示', '请选择一个专家');
-                return false;
-            }
+//      添加招办联系电话
+        $("#addBtn").on(ace.click_event, function () {
+            typeStr = "add";
             bootbox.dialog({
-                title: "添加专家服务时间",
+                title: "添加招办联系电话",
                 message: dialogHtml,
                 className: 'my-modal',
                 buttons: {
                     "success": {
                         "label": "<i class='ace-icon fa fa-check'></i> 提交",
                         "className": "btn-sm btn-success",
-                        "callback":addEditFun
+                        "callback": addEditFun
                     },
                     cancel: {
                         label: "关闭",
-                        className: "btn-sm",
-                        "callback": function () {
-                        }
+                        className: "btn-sm"
                     }
-
                 }
             });
-            $('#expertName').html(rowData[0].expertName)
-            $('#expertId').val(rowData[0].expertId);
-            expertDateFn("expertDate", "ExpertDate");
-            expertDateFn("dateDetail", "DateDetail");
-            CommonFn.renderDate('.date-picker');
-            CommonFn.renderTime('.bootstrap-timepicker');
         });
-        //删除
-        CommonFn.deleteFun('#deleteBtn', '${mainObj}');
-//        添加
-        var addEditFun = function () {
-            var expertId = $('#expertId').val();
-            if (expertId == undefined || expertId == '' || expertId == null) {
-                CommonFn.tipsDialog('温馨提示', '请选择一个专家');
+//      修改高考日程
+        $("#editBtn").on(ace.click_event, function () {
+            typeStr = "edit";
+            rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
+            var selTrN = $('tr.ui-state-highlight[role="row"]').length;
+            if (selTrN != 1) {
+                CommonFn.tipsDialog('温馨提示', '请选中一行后修改');
                 return false;
             }
-            var expertDate = [];
-            console.log($('.expertDate-main').length)
-            for (var i = 0; i < $('.expertDate-main .date-picker3').length; i++) {
-                var picker3 = $('.expertDate-main .date-picker3').eq(i).val();
-                var pickerData = {};
-                var picker = picker3;
-                for(var j = 0; j < $('.expertDate-main .dateDetail-main').length; j++){
-                    console.log($('.dateDetail-main .date-picker1'))
-                    console.log($('.dateDetail-main .date-picker2'))
-                    var picker1 = $('.dateDetail-main .date-picker1').eq(i).val();
-                    var picker2 = $('.dateDetail-main .date-picker2').eq(i).val();
-                    var start = picker1;
-                    var end = picker2;
-                    pickerData.start=start;
-                    pickerData.end=end;
-                    pickerData.picker=picker;
-                    expertDate.push(pickerData);
+            bootbox.dialog({
+                title: "修改招办联系电话",
+                message: dialogHtml,
+                className: 'my-modal',
+                buttons: {
+                    "success": {
+                        "label": "<i class='ace-icon fa fa-check'></i> 提交",
+                        "className": "btn-sm btn-success",
+                        "callback": addEditFun
+                    },
+                    cancel: {
+                        label: "关闭",
+                        className: "btn-sm"
+                    }
                 }
+            });
+            // 当前行数据
+            var rowData = CommonFn.getRowData(rowId);
+            $('#selProvince2').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
+            var subProvince = $('#selProvince2 option:checked').html();
+            var provinceArea = (rowData[0].name).replace(subProvince,'');
+            $('#areaName').val(provinceArea);
+            $('#agentTel').val(rowData[0].telphone);
+        });
+
+        var dialogHtml = ''
+                + '<div class="row">'
+                + '<div class="col-xs-12">'
+                + '<form class="form-horizontal" role="form">'
+                + '<div class="form-group">'
+                + '<label class="col-sm-2 control-label no-padding-right">  省份：</label>'
+                + '<div class="col-sm-4">'
+                + '<select class="form-control" id="selProvince2">';
+        dialogHtml += provinceData
+                + '</select>'
+                + '</div>'
+                + '</div>'
+                + '<div class="form-group">'
+                + '<label class="col-sm-2 control-label no-padding-right">  地区：</label>'
+                + '<div class="col-sm-4">'
+                + '<input type="text" id="areaName" placeholder="请输入地区名称" class="form-control">'
+                + '</div>'
+                + '</div>'
+                + '<div class="form-group">'
+                + '<label class="col-sm-2 control-label no-padding-right">  招办联系电话：</label>'
+                + '<div class="col-sm-4">'
+                + '<input type="text" class="form-control input-mask-phone" id="agentTel" placeholder="请输入招办电话,格式:0917-3262380">'
+                + '</div>'
+                + '</div>'
+                + '</form>'
+                + '</div>'
+                + '</div>';
+        var addEditFun = function () {
+            var selProvinceV = $('#selProvince2 option:checked').val();
+            var tel = /^((0\d{2,3}-\d{7,8})|(1[35874]\d{9}))$/;
+            var agentTel = $.trim($('#agentTel').val());
+            var area = $('#areaName').val();
+            var areaName = $('#selProvince2 option:checked').html() + area;
+            if (selProvinceV == "00") {
+                CommonFn.tipsDialog('温馨提示', '请选择省份');
+                return false;
             }
-            var data = {
-                expertId:expertId,
-                expertTimes:expertDate
+            if (areaName == "") {
+                CommonFn.tipsDialog('温馨提示', '请输入招办地区名称');
+                return false;
             }
-            console.log(data)
+            if (agentTel == "") {
+                CommonFn.tipsDialog('温馨提示', '请输入招办联系电话');
+                return false;
+            }
+            if (!tel.test(agentTel)) {
+                CommonFn.tipsDialog('温馨提示', '招办电话填写有误');
+                return false;
+            }
+            var addAgentData = {
+                oper: typeStr,
+                areaId: selProvinceV,
+                telphone: agentTel,
+                name: areaName,
+                address: areaName
+            };
+
+            if (typeStr == 'edit') {
+                addAgentData.id = rowId;
+            }
             $.ajax({
                 type: "POST",
-                url: '/admin/zgkadmin/ex/addDate',
-                data: {expertDateStr:JSON.stringify(data)},
+                url: '/admin/gaokao360/ex/commonsave/${mainObj}',
+                data: addAgentData,
                 success: function (result) {
                     if (result.rtnCode == "0000000") {
                         searchLoad();
                     }
                 }
             });
+        };//添加修改方法
+//      删除
+        CommonFn.deleteFun('#deleteBtn', '${mainObj}');
 
-        };
-    });
+    });//$结束
+
+
 </script>
