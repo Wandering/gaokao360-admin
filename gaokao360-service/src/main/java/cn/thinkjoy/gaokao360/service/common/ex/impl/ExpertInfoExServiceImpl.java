@@ -6,10 +6,12 @@ import cn.thinkjoy.gaokao360.service.baseservice.AbstractPageService;
 import cn.thinkjoy.gaokao360.service.common.ex.IExpertAppraiseExService;
 import cn.thinkjoy.gaokao360.service.common.ex.IExpertInfoExService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by yangyongping on 2016/10/20.
  */
+@Service
 public class ExpertInfoExServiceImpl extends AbstractPageService implements IExpertInfoExService {
     @Autowired
     private IExpertInfoExDAO expertInfoExDAO;
