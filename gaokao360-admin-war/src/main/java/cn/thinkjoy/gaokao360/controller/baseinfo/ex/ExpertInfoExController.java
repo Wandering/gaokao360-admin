@@ -9,8 +9,10 @@ package cn.thinkjoy.gaokao360.controller.baseinfo.ex;
 
 import cn.thinkjoy.common.domain.view.BizData4Page;
 import cn.thinkjoy.gaokao360.controller.BaseController;
+import cn.thinkjoy.gaokao360.domain.ExpertInfo;
 import cn.thinkjoy.gaokao360.service.common.IExpertInfoService;
 import cn.thinkjoy.gaokao360.service.common.ex.IExpertInfoExService;
+import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -52,6 +55,20 @@ public class ExpertInfoExController extends BaseController<IExpertInfoExService>
     @ResponseBody
     public BizData4Page findAllExpertInfos(HttpServletRequest request,HttpServletResponse response){
         return doPage(request, response);
+    }
+
+    /**
+     * 获取所有的组织信息
+     * @return
+     */
+    @RequestMapping(value="/queryExpertName")
+    @ResponseBody
+    public List<ExpertInfo> findAllExpertName(HttpServletRequest request, HttpServletResponse response){
+        Map<String,Object> param = Maps.newHashMap();
+        param.put("id","id");
+        param.put("expertName","expertName");
+        Map<String,Object> param2 = Maps.newHashMap();
+        return expertInfoExService.queryList(param2,"id","desc",param);
     }
 
     /***
