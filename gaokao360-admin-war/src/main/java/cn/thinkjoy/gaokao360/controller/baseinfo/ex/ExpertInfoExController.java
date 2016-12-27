@@ -30,7 +30,8 @@ import java.util.Map;
 @RequestMapping(value="/admin/zgkadmin/ex")
 public class ExpertInfoExController extends BaseController<IExpertInfoExService> {
 
-
+    @Autowired
+    private IExpertInfoService expertInfoService;
     @Autowired
     private IExpertInfoExService expertInfoExService;
 
@@ -68,7 +69,7 @@ public class ExpertInfoExController extends BaseController<IExpertInfoExService>
         param.put("id","id");
         param.put("expertName","expertName");
         Map<String,Object> param2 = Maps.newHashMap();
-        return expertInfoExService.queryList(param2,"id","desc",param);
+        return expertInfoService.queryList(param2,"id","desc",param);
     }
 
     /***
