@@ -11,6 +11,21 @@
     jQuery(function ($) {
         var typeStr;
         var rowId;
+        var queryExpert = function() {
+            var contentArr = [];
+            contentArr.push('<option value="00">请选择专家</option>');
+            $.ajaxSettings.async = false;
+            CommonFn.getData(CommonFn.url.queryExpert, 'GET', {}, function (result) {
+                console.log(result)
+                for (var i = 0; i < result.bizData.length; i++) {
+                    var expertId = result.bizData[i].id;
+                    var expertName = result.bizData[i].expertName;
+                    contentArr.push('<option value="' + expertId + '">' + expertName + '</option>');
+                }
+            });
+            return contentArr.join('');
+        }
+        var expertData = queryExpert();
         var dialogHtml = ''
                 + '<div class="row" id="dialogHtml">'
                 + '    <div class="col-xs-12">'
@@ -18,8 +33,9 @@
                 + '          <div class="form-group">'
                 + '              <label class="col-sm-2 control-label no-padding-right"> 专家姓名：</label>'
                 + '              <div class="col-sm-4">'
-                + '                     <span id="expertName">张专家</span>'
-                + '                  <input class="form-control" style="hidden" type="hidden" value="2" id="expertId" />'
+                + '<select class="form-control" id="expertId">'
+                +expertData
+                + '</select>'
                 + '              </div>'
                 + '          </div>'
                 + '          <div class="form-group" id="expertDate">'
@@ -109,13 +125,7 @@
         // 添加
         $("#addBtn").on(ace.click_event, function (e) {
             // 当前行数据
-            var rowId = $('tr.ui-state-highlight[role="row"]').attr('id');
-            var rowData = CommonFn.getRowData(rowId);
-            console.log(rowData)
-            if (rowId == undefined || rowId == '' || rowId == null) {
-                CommonFn.tipsDialog('温馨提示', '请选择一个专家');
-                return false;
-            }
+
             bootbox.dialog({
                 title: "添加专家服务时间",
                 message: dialogHtml,
@@ -135,12 +145,12 @@
 
                 }
             });
-            $('#expertName').html(rowData[0].expertName)
-            $('#expertId').val(rowData[0].expertId);
             expertDateFn("expertDate", "ExpertDate");
             expertDateFn("dateDetail", "DateDetail");
             CommonFn.renderDate('.date-picker');
             CommonFn.renderTime('.bootstrap-timepicker');
+
+
         });
         //删除
         CommonFn.deleteFun('#deleteBtn', '${mainObj}');
