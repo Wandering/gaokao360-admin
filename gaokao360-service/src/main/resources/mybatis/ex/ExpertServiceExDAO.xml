@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.thinkjoy.gaokao360.dao.ex.IExpertServiceExDAO">
+
+    <select id="queryPage" resultType="ExpertService">
+        SELECT
+            t0.expert_id AS id,
+            t1.expert_name AS expertName,
+            t2.config_value AS expertServices
+        FROM
+            zgk_expert_service_relation t0
+        LEFT JOIN zgk_expert_info t1 ON t0.expert_id = t1.id
+        LEFT JOIN zgk_expert_config t2 ON t0.service_type_id = t2.config_key
+        AND t2.config_domain = 'serviceType'
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT
+            count(*)
+        FROM
+            zgk_expert_service_relation t0
+        LEFT JOIN zgk_expert_info t1 ON t0.expert_id = t1.id
+        LEFT JOIN zgk_expert_config t2 ON t0.service_type_id = t2.config_key
+        AND t2.config_domain = 'serviceType'
+    </select>
+</mapper>
+
