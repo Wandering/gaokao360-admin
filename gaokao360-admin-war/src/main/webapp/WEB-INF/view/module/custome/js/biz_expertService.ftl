@@ -125,11 +125,9 @@
             });
             // 当前行数据
             var rowData = CommonFn.getRowData(rowId);
-            $('#selProvince2').find('option[value="' + rowData[0].areaId + '"]').attr('selected', 'selected');
-            var subProvince = $('#selProvince2 option:checked').html();
-            var provinceArea = (rowData[0].name).replace(subProvince,'');
-            $('#areaName').val(provinceArea);
-            $('#agentTel').val(rowData[0].telphone);
+            console.log(rowData)
+            $('#expertId').find('option[value="' + rowData[0].expertId + '"]').attr('selected', 'selected');
+            $('#serviceId').find('option[value="' + rowData[0].serviceTypeId + '"]').attr('selected', 'selected');
         });
 
         var dialogHtml = ''
@@ -139,7 +137,7 @@
                 + '<div class="form-group">'
                 + '<label class="col-sm-2 control-label no-padding-right">  专家:</label>'
                 + '<div class="col-sm-4">'
-                + '<select class="form-control" id="selProvince2">';
+                + '<select class="form-control" id="expertId">';
         dialogHtml += expertData
                 + '</select>'
                 + '</div>'
@@ -147,7 +145,7 @@
                 + '<div class="form-group">'
                 + '<label class="col-sm-2 control-label no-padding-right">  服务:</label>'
                 + '<div class="col-sm-4">'
-                + '<select class="form-control" id="areaName">';
+                + '<select class="form-control" id="serviceId">';
         dialogHtml += expertServiceData
                 + '</select>'
                 + '</div>'
@@ -156,21 +154,20 @@
                 + '</div>'
                 + '</div>';
         var addEditFun = function () {
-            var selProvinceV = $('#selProvince2 option:checked').val();
-            var areaName = $('#selProvince2 option:checked').html() + area;
-            if (selProvinceV == "00") {
+            var expertId = $('#expertId option:checked').val();
+            var serviceId = $('#serviceId option:checked').val();
+            if (expertId == "00") {
                 CommonFn.tipsDialog('温馨提示', '请选择专家');
                 return false;
             }
-            if (areaName == "") {
+            if (serviceId == "") {
                 CommonFn.tipsDialog('温馨提示', '请选择专家服务');
                 return false;
             }
             var addAgentData = {
                 oper: typeStr,
-                areaId: selProvinceV,
-                name: areaName,
-                address: areaName
+                expertId: expertId,
+                serviceTypeId: serviceId,
             };
 
             if (typeStr == 'edit') {

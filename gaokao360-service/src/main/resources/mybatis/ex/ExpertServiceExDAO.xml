@@ -5,7 +5,7 @@
 
     <select id="queryPage" resultType="ExpertService">
         SELECT
-            t0.expert_id AS id,
+            t0.id AS id,
             t1.expert_name AS expertName,
             t2.config_value AS expertServices
         FROM
