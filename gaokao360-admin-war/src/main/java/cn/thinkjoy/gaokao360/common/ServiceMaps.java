@@ -116,6 +116,8 @@ public class ServiceMaps extends BaseServiceMaps{
 
     @Autowired
     private IExpertAppraiseService expertAppraiseService;
+    @Autowired
+    private IExpertCasesService iExpertCasesService;
 
     @Autowired
     private IExpertReservationOrderService expertReservationOrderService;
@@ -158,6 +160,7 @@ public class ServiceMaps extends BaseServiceMaps{
         serviceMap.put("professiontype",professionTypeService);
         serviceMap.put("expertinfo",expertInfoService);
         serviceMap.put("expertappraise",expertAppraiseService);
+        serviceMap.put("expertcases",iExpertCasesService);
         serviceMap.put("expertreservationorder",expertReservationOrderService);
         serviceMap.put("expertserviceday",expertServiceDaysExService);
 
