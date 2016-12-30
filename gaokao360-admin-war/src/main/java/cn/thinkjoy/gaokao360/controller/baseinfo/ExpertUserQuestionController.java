@@ -2,16 +2,17 @@
  * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
  *
  * Project Name: gaokao360
- * $Id:  ExpertCasesController.java 2016-12-26 11:24:38 $
+ * $Id:  ExpertUserQuestionController.java 2016-12-30 11:34:05 $
  */
 
 package cn.thinkjoy.gaokao360.controller.baseinfo;
 
-import cn.thinkjoy.gaokao360.controller.BaseController;
-import cn.thinkjoy.gaokao360.service.common.IExpertCasesService;
+import cn.thinkjoy.common.domain.SearchField;
 import cn.thinkjoy.common.managerui.dao.IResourceGridDAO;
 import cn.thinkjoy.common.managerui.service.IResourceGridService;
 import cn.thinkjoy.common.domain.view.BizData4Page;
+import cn.thinkjoy.gaokao360.controller.BaseController;
+import cn.thinkjoy.gaokao360.service.common.IExpertUserQuestionService;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +32,11 @@ import cn.thinkjoy.common.managerui.controller.AbstractAdminController;
 
 @Controller
 @RequestMapping(value="/admin/zgkadmin")
-public class ExpertCasesController extends BaseController<IExpertCasesService> {
+public class ExpertUserQuestionController extends BaseController<IExpertUserQuestionService> {
 
 
     @Autowired
-    private IExpertCasesService expertCasesService;
+    private IExpertUserQuestionService expertUserQuestionService;
 
     /**
      * 页面主请求
@@ -43,7 +44,7 @@ public class ExpertCasesController extends BaseController<IExpertCasesService> {
      * @param response
      * @return  返回菜单数据、表格描述元数据、当前主描述  如本页面为org
      */
-    @RequestMapping(value="/expertcases")
+    @RequestMapping(value="/expertuserquestion")
     public ModelAndView renderMainView(HttpServletRequest request,HttpServletResponse response){
 
 
@@ -54,9 +55,9 @@ public class ExpertCasesController extends BaseController<IExpertCasesService> {
      * 获取所有的组织信息
      * @return
      */
-    @RequestMapping(value="/expertcasess")
+    @RequestMapping(value="/expertuserquestions")
     @ResponseBody
-    public BizData4Page findAllExpertCasess(HttpServletRequest request,HttpServletResponse response){
+    public BizData4Page findAllExpertUserQuestions(HttpServletRequest request,HttpServletResponse response){
         return doPage(request, response);
     }
 
@@ -67,8 +68,8 @@ public class ExpertCasesController extends BaseController<IExpertCasesService> {
     }
 
     @Override
-    protected IExpertCasesService getMainService() {
-        return expertCasesService;
+    protected IExpertUserQuestionService getMainService() {
+        return expertUserQuestionService;
     }
 
     @Override
@@ -78,17 +79,17 @@ public class ExpertCasesController extends BaseController<IExpertCasesService> {
 
     @Override
     protected String getMainObjName() {
-        return "expertcases";
+        return "expertuserquestion";
     }
 
     @Override
     protected String getViewTitle() {
-        return "智高考签约专家服务案例";
+        return "专家回答用户问题";
     }
 
     @Override
     protected String getParentTitle() {
-        return "智高考签约专家服务案例";
+        return "专家回答用户问题";
     }
 
     @Override
