@@ -2,6 +2,7 @@ package cn.thinkjoy.gaokao360.remote.service.impl;
 
 import cn.thinkjoy.common.utils.SqlOrderEnum;
 import cn.thinkjoy.gaokao360.common.ServiceImplMaps;
+import cn.thinkjoy.gaokao360.dao.ex.IUniversityExDAO;
 import cn.thinkjoy.gaokao360.domain.DataDict;
 import cn.thinkjoy.gaokao360.domain.Province;
 import cn.thinkjoy.gaokao360.domain.University;
@@ -42,6 +43,9 @@ public class UniversityServiceImpl implements IUniversityService {
 
     @Autowired
     private ServiceImplMaps serviceImplMaps;
+
+    @Autowired
+    private IUniversityExDAO universityExDAO;
 
     /**
      * 查询学校列表
@@ -397,8 +401,8 @@ public class UniversityServiceImpl implements IUniversityService {
      */
     @Override
     public Map<String, Object> getPredictProbability(Map<String, Object> params) {
-        params.put("majorType", params.get("type"));
-        List<Map<String, Object>> dataList = universityExService.getPredictUniversityInfo(params);
+        universityExDAO.insertPredictRecord(params);
+        List<Map<String, Object>> dataList = universityExDAO.queryPredictUniversityInfo(params);
         Map<String, Object> resultMap = new LinkedHashMap<>();
         String batch = "";
         if(dataList.size() > 0)
@@ -463,7 +467,7 @@ public class UniversityServiceImpl implements IUniversityService {
             batch = batch.substring(0,1);
         }
         params.put("batch", batch);
-        List<Map<String, Object>> historyList = universityExService.getPredictProbability(params);
+        List<Map<String, Object>> historyList = universityExDAO.queryPredictProbability(params);
         setHistoryList(historyList);
         resultMap.put("historyList", historyList);
         resultMap.put("batch", batch);

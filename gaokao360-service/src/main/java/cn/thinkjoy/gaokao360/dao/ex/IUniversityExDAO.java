@@ -39,4 +39,10 @@ public interface IUniversityExDAO extends IBaseDAO<UniversityDTO>{
 
     List<Map<String,Object>> queryPredictProbability(Map<String, Object> params);
 
+    /**
+     * 插入录取预测记录
+     *
+     * @param map
+     */
+    void insertPredictRecord(Map<String,Object> map);
 }
