@@ -41,6 +41,8 @@ public class ExpertDaysExController extends BaseController<IExpertServiceDaysExS
     @Autowired
     private IExpertServiceTimesService expertServiceTimesService;
 
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    private static final SimpleDateFormat dayFmt = new SimpleDateFormat("yyyy-MM-dd");
     /**
      * 页面主请求
      *
@@ -75,8 +77,7 @@ public class ExpertDaysExController extends BaseController<IExpertServiceDaysExS
     @ResponseBody
     public Boolean addDate(String expertDateStr) {
         ExpertDate expertDate = JSON.parseObject(expertDateStr, ExpertDate.class);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        SimpleDateFormat dayFmt = new SimpleDateFormat("yyyy-MM-dd");
+
         List<ExpertTime> expertTimes = new ArrayList<>();
         for (ExpertTime time : expertDate.getExpertTimes()) {
             try {
@@ -210,5 +211,13 @@ public class ExpertDaysExController extends BaseController<IExpertServiceDaysExS
 //        System.out.println(format.format(new Date(date)) );
 //        return new Date(date);
 //    }
+public static void main(String[] args) {
+    String tt  = "2016-01-31 11:21";
+    try {
+        Date start = sdf.parse(tt);
+    } catch (ParseException e) {
+        e.printStackTrace();
+    }
 
+}
 }
