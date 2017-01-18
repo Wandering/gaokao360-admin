@@ -127,7 +127,7 @@ selectList
 
     <select id="getServiceTypeByExpert" resultType="java.util.Map">
         SELECT config.config_key as id,config.config_value as name from zgk_expert_service_relation relation
-        LEFT JOIN zgk_expert_config config ON relation.service_type_id = config.config_key and config.config_domain = 'serviceType'
+        LEFT JOIN zgk_expert_config config ON relation.service_type_id = config.config_key and config.config_domain = 'expertService'
         WHERE relation.expert_id = #{id} GROUP BY relation.service_type_id
     </select>
 
@@ -138,7 +138,7 @@ selectList
         FROM
             zgk_expert_config config
         WHERE
-            config.config_domain = 'serviceType'
+            config.config_domain = 'expertService'
     </select>
 
     <update id="auditPass">
