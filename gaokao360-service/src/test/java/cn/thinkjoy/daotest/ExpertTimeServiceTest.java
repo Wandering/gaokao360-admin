@@ -1,83 +1,51 @@
-package cn.thinkjoy.gaokao360.controller.baseinfo.ex;
+/*
+ * Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
+ *
+ * Project Name: gaokao360
+ * $Id:  UniversityEnrollingService.java 2016-02-01 17:02:35 $
+ */
+
+package cn.thinkjoy.daotest;
 
 import cn.thinkjoy.common.domain.view.BizData4Page;
-import cn.thinkjoy.gaokao360.controller.BaseController;
-import cn.thinkjoy.gaokao360.domain.ExpertDate;
-import cn.thinkjoy.gaokao360.domain.ExpertServiceDays;
-import cn.thinkjoy.gaokao360.domain.ExpertServiceTimes;
-import cn.thinkjoy.gaokao360.domain.ExpertTime;
+import cn.thinkjoy.gaokao360.common.UserAreaContext;
+import cn.thinkjoy.gaokao360.domain.*;
+import cn.thinkjoy.gaokao360.service.common.IExpertInfoService;
 import cn.thinkjoy.gaokao360.service.common.IExpertServiceDaysService;
 import cn.thinkjoy.gaokao360.service.common.IExpertServiceTimesService;
+import cn.thinkjoy.gaokao360.service.common.ex.IExpertInfoExService;
 import cn.thinkjoy.gaokao360.service.common.ex.IExpertServiceDaysExService;
+import cn.thinkjoy.gaokao360.service.common.ex.IUniversityEnrollingExService;
+import cn.thinkjoy.zgk.common.QueryUtil;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Maps;
-import com.sun.org.apache.xpath.internal.operations.Bool;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-@Controller
-@Scope("prototype")
-@RequestMapping(value = "/admin/zgkadmin/ex")
-public class ExpertDaysExController extends BaseController<IExpertServiceDaysExService> {
+import static org.junit.Assert.assertEquals;
 
-
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "classpath:springme.xml")
+public class ExpertTimeServiceTest {
     @Autowired
     private IExpertServiceDaysService expertServiceDaysService;
 
-
     @Autowired
-    private IExpertServiceDaysExService expertServiceDaysExService;
-
+    private IExpertInfoService expertInfoService;
     @Autowired
     private IExpertServiceTimesService expertServiceTimesService;
 
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     private static final SimpleDateFormat dayFmt = new SimpleDateFormat("yyyy-MM-dd");
-    /**
-     * 页面主请求
-     *
-     * @param request
-     * @param response
-     * @return 返回菜单数据、表格描述元数据、当前主描述  如本页面为org
-     */
-    @RequestMapping(value = "/expertserviceday")
-    public ModelAndView renderMainView(HttpServletRequest request, HttpServletResponse response) {
 
-
-        return doRenderMainView(request, response);
-    }
-
-    /**
-     * 获取所有的组织信息
-     *
-     * @return
-     */
-    @RequestMapping(value = "/expertservicedays")
-    @ResponseBody
-    public BizData4Page findAllExpertServiceDays(HttpServletRequest request, HttpServletResponse response) {
-        return doPage(request, response);
-    }
-
-    /**
-     * 获取所有的组织信息
-     *
-     * @return
-     */
-    @RequestMapping(value = "/addDate")
-    @ResponseBody
-    public Boolean addDate(String expertDateStr) {
-        ExpertDate expertDate = JSON.parseObject(expertDateStr, ExpertDate.class);
-
+    public Boolean addDate(ExpertDate expertDate) {
         List<ExpertTime> expertTimes = new ArrayList<>();
         for (ExpertTime time : expertDate.getExpertTimes()) {
             try {
@@ -116,37 +84,6 @@ public class ExpertDaysExController extends BaseController<IExpertServiceDaysExS
                 expertServiceTimesService.add(expertServiceTime);
             }
         }
-        return true;
-    }
-
-    @Override
-    protected IExpertServiceDaysExService getMainService() {
-        return expertServiceDaysExService;
-    }
-
-
-    @Override
-    protected String getBizSys() {
-        return "zgkadmin/ex";
-    }
-
-    @Override
-    protected String getMainObjName() {
-        return "expertserviceday";
-    }
-
-    @Override
-    protected String getViewTitle() {
-        return "专家天数设置";
-    }
-
-    @Override
-    protected String getParentTitle() {
-        return "专家服务";
-    }
-
-    @Override
-    public boolean getEnableDataPerm() {
         return true;
     }
 
@@ -201,24 +138,56 @@ public class ExpertDaysExController extends BaseController<IExpertServiceDaysExS
         }
         return list;
     }
-//
-//    private Date getLastMonth() {
-//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//
-//        Calendar cal = Calendar.getInstance();
-//        cal.add(Calendar.HOUR, -1);    //得到前一天
-//        cal.add(Calendar.MONTH, -1);    //得到前一个月
-//        long date = cal.getTimeInMillis();
-//        System.out.println(format.format(new Date(date)) );
-//        return new Date(date);
-//    }
-public static void main(String[] args) {
-    String tt  = "2016-01-31 11:21";
-    try {
-        Date start = sdf.parse(tt);
-    } catch (ParseException e) {
-        e.printStackTrace();
+
+    @Test
+    public void test(){
+        Map<String,Object> map = new HashMap<>();
+        map.put("isChecked","1");
+        List<ExpertInfo> expertInfos = expertInfoService.queryList(map,"id","desc");
+        for (ExpertInfo expertInfo : expertInfos) {
+            ExpertDate expertDate = new ExpertDate();
+            expertDate.setExpertId(expertInfo.getId().toString());
+            String start = "2017-01-26";
+            String end = "2017-08-01";
+            try {
+                putExpertDate(start,end,expertInfo);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 
-}
+    private void putExpertDate(String start,String end,ExpertInfo expertInfo) throws ParseException {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(dayFmt.parse(start));
+
+        String tempDate = "";
+        do {
+            boolean flag = true;
+            System.out.println("当前时间:"+ dayFmt.format(calendar.getTime()));
+            System.out.println("当前专家:"+ expertInfo.getExpertName());
+
+            int sunday = calendar.get(Calendar.DAY_OF_WEEK);
+            if ( sunday == 7 || sunday == 1 )
+                flag = false;
+            ExpertDate expertDate = new ExpertDate();
+            expertDate.setExpertId(expertInfo.getId().toString());
+            List<ExpertTime> expertTimes = new ArrayList<>();
+            ExpertTime expertTime = new ExpertTime();
+            expertTime.setPicker(dayFmt.format(calendar.getTime()));
+            if (flag) {
+                expertTime.setStart("18:00");
+                expertTime.setEnd("22:00");
+            }else {
+                expertTime.setStart("8:00");
+                expertTime.setEnd("21:00");
+            }
+            expertTimes.add(expertTime);
+            expertDate.setExpertTimes(expertTimes);
+            addDate(expertDate);
+            tempDate = dayFmt.format(calendar.getTime());
+            calendar.set(Calendar.DATE,calendar.get(Calendar.DATE)+1);
+        }while (!tempDate.equals(end));
+    }
 }
